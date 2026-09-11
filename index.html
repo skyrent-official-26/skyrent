@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkyShare Aviation</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#252525;
+    padding-bottom:90px;
+}
+
+.header{
+    background:white;
+    padding:18px 18px 14px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:linear-gradient(145deg,#082b63,#1d75d1);
+    color:#ffd447;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    box-shadow:0 3px 8px rgba(0,0,0,.18);
+}
+
+.brand h1{
+    font-size:21px;
+    color:#222;
+}
+
+.language{
+    font-size:15px;
+    color:#333;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:15px;
+}
+
+/* HERO */
+
+.hero{
+    height:220px;
+    border-radius:22px;
+    overflow:hidden;
+    position:relative;
+    background:
+    linear-gradient(rgba(5,32,75,.28),rgba(5,32,75,.7)),
+    linear-gradient(135deg,#4e94ce,#d7e8f6 55%,#71899c);
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+    display:flex;
+    align-items:flex-end;
+    padding:25px;
+    color:white;
+    margin-bottom:18px;
+}
+
+.hero:before{
+    content:"✈";
+    position:absolute;
+    right:25px;
+    top:35px;
+    font-size:80px;
+    transform:rotate(-8deg);
+    opacity:.9;
+}
+
+.hero h2{
+    font-size:28px;
+    margin-bottom:8px;
+    position:relative;
+}
+
+.hero p{
+    font-size:14px;
+    position:relative;
+}
+
+/* QUICK BUTTONS */
+
+.quick{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.quick-card{
+    background:white;
+    border-radius:18px;
+    min-height:105px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+    cursor:pointer;
+}
+
+.quick-icon{
+    font-size:28px;
+}
+
+.quick-card span{
+    font-size:14px;
+}
+
+/* BALANCE */
+
+.balance{
+    background:linear-gradient(135deg,#082b63,#1261b8);
+    color:white;
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:24px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.balance small{
+    opacity:.8;
+}
+
+.balance h2{
+    font-size:32px;
+    margin:8px 0;
+}
+
+.balance-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    opacity:.9;
+}
+
+/* SECTION */
+
+.section-title{
+    font-size:21px;
+    margin:18px 4px 12px;
+}
+
+/* AIRCRAFT */
+
+.aircraft{
+    background:white;
+    border-radius:22px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.aircraft-img{
+    height:150px;
+    border-radius:17px;
+    background:
+    linear-gradient(rgba(0,30,70,.15),rgba(0,30,70,.2)),
+    linear-gradient(135deg,#79b9e7,#dceefb);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:75px;
+    margin-bottom:14px;
+}
+
+.aircraft-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.aircraft-name{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.tag{
+    background:#e8f2ff;
+    color:#0755a5;
+    border-radius:20px;
+    padding:5px 10px;
+    font-size:11px;
+}
+
+.aircraft-info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin:15px 0;
+}
+
+.info{
+    background:#f7f8fa;
+    padding:10px;
+    border-radius:12px;
+}
+
+.info small{
+    display:block;
+    color:#777;
+    margin-bottom:4px;
+}
+
+.info b{
+    font-size:15px;
+}
+
+.revenue{
+    background:#f0f8ff;
+    border-radius:14px;
+    padding:13px;
+    margin-bottom:12px;
+}
+
+.revenue-title{
+    font-size:12px;
+    color:#777;
+}
+
+.revenue-value{
+    color:#0758b7;
+    font-size:20px;
+    font-weight:bold;
+    margin-top:4px;
+}
+
+.btn{
+    width:100%;
+    border:0;
+    border-radius:13px;
+    padding:14px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-primary{
+    background:#0755ad;
+    color:white;
+}
+
+.btn-gold{
+    background:#f4c430;
+    color:#17233a;
+}
+
+/* PAGE */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* FORM */
+
+.form-box{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+label{
+    display:block;
+    font-size:13px;
+    color:#666;
+    margin:13px 0 6px;
+}
+
+input,select{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:13px;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus,select:focus{
+    border-color:#1769c2;
+}
+
+/* SUMMARY */
+
+.summary{
+    background:#f5f8fc;
+    padding:15px;
+    border-radius:15px;
+    margin:15px 0;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:9px 0;
+    border-bottom:1px solid #e5e5e5;
+}
+
+.summary-row:last-child{
+    border-bottom:0;
+}
+
+/* HISTORY */
+
+.history-item{
+    background:white;
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.history-left{
+    display:flex;
+    gap:12px;
+}
+
+.history-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#eaf3ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
+}
+
+.green{
+    color:#179447;
+}
+
+.orange{
+    color:#e68b00;
+}
+
+.red{
+    color:#d63d3d;
+}
+
+/* PROFILE */
+
+.profile{
+    text-align:center;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.avatar{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    margin:auto;
+    background:#0b4f9c;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:36px;
+}
+
+.menu-item{
+    background:white;
+    padding:17px;
+    border-radius:14px;
+    margin-top:10px;
+    display:flex;
+    justify-content:space-between;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:100;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.55);
+    padding:20px;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    border-radius:22px;
+    padding:22px;
+    width:100%;
+    max-width:450px;
+    max-height:90vh;
+    overflow:auto;
+}
+
+.close{
+    float:right;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:75px;
+    background:white;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    box-shadow:0 -4px 15px rgba(0,0,0,.12);
+    z-index:50;
+    border-radius:25px 25px 0 0;
+}
+
+.nav-item{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:4px;
+    color:#777;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.nav-item div{
+    font-size:23px;
+}
+
+.nav-item.active{
+    color:#0755ad;
+}
+
+/* NOTICE */
+
+.notice{
+    background:#fff9e6;
+    border:1px solid #f0d477;
+    border-radius:14px;
+    padding:13px;
+    font-size:12px;
+    color:#725800;
+    margin-bottom:15px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+    .quick-card{
+        min-height:95px;
+    }
+
+    .quick-card span{
+        font-size:12px;
+    }
+
+    .hero{
+        height:205px;
+    }
+
+    .hero h2{
+        font-size:24px;
+    }
+
+    .aircraft-img{
+        height:140px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+    <div class="brand">
+        <div class="logo">✈</div>
+        <h1>SkyShare Aviation</h1>
+    </div>
+
+    <div class="language">🌐 English</div>
+</header>
+
+
+<main class="container">
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="page active">
+
+    <div class="hero">
+        <div>
+            <h2>Aircraft Rental & Revenue</h2>
+            <p>Participate in aircraft rental operations and track revenue generated from actual rentals.</p>
+        </div>
+    </div>
+
+    <div class="notice">
+        ⚠️ <b>Demo Platform:</b> Revenue figures shown here are examples only and are not guaranteed returns.
+    </div>
+
+    <div class="quick">
+
+        <div class="quick-card" onclick="openPage('aircraft')">
+            <div class="quick-icon">✈️</div>
+            <span>Aircraft</span>
+        </div>
+
+        <div class="quick-card" onclick="openPage('deposit')">
+            <div class="quick-icon">💰</div>
+            <span>Deposit</span>
+        </div>
+
+        <div class="quick-card" onclick="openPage('withdraw')">
+            <div class="quick-icon">💸</div>
+            <span>Withdrawal</span>
+        </div>
+
+        <div class="quick-card" onclick="openPage('support')">
+            <div class="quick-icon">🎧</div>
+            <span>Customer</span>
+        </div>
+
+    </div>
+
+    <div class="balance">
+
+        <small>Available Demo Balance</small>
+
+        <h2 id="homeBalance">$0.00</h2>
+
+        <div class="balance-row">
+            <span>Total Revenue</span>
+            <span id="homeRevenue">$0.00</span>
+        </div>
+
+    </div>
+
+    <h2 class="section-title">Featured Aircraft</h2>
+
+    <div id="homeAircraft"></div>
+
+</section>
+
+
+<!-- ================= AIRCRAFT ================= -->
+
+<section id="aircraft" class="page">
+
+    <h2 class="section-title">Aircraft Marketplace</h2>
+
+    <div class="notice">
+        Aircraft participation is a demonstration of how a rental-revenue platform could be presented. Actual aircraft, contracts, availability and revenue must be verified independently.
+    </div>
+
+    <div id="aircraftList"></div>
+
+</section>
+
+
+<!-- ================= DEPOSIT ================= -->
+
+<section id="deposit" class="page">
+
+    <h2 class="section-title">Deposit</h2>
+
+    <div class="form-box">
+
+        <p style="color:#666;font-size:14px;">
+            Demo balance only. No real payment will be processed.
+        </p>
+
+        <label>Amount</label>
+
+        <input type="number" id="depositAmount" placeholder="Enter amount">
+
+        <label>Payment Method</label>
+
+        <select id="paymentMethod">
+            <option>Bank Transfer</option>
+            <option>Mobile Wallet</option>
+            <option>Card</option>
+        </select>
+
+        <br><br>
+
+        <button class="btn btn-primary" onclick="makeDeposit()">
+            Submit Demo Deposit
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WITHDRAW ================= -->
+
+<section id="withdraw" class="page">
+
+    <h2 class="section-title">Withdrawal</h2>
+
+    <div class="balance">
+        <small>Available Balance</small>
+        <h2 id="withdrawBalance">$0.00</h2>
+    </div>
+
+    <div class="form-box">
+
+        <label>Withdrawal Amount</label>
+
+        <input type="number" id="withdrawAmount" placeholder="Enter amount">
+
+        <label>Destination</label>
+
+        <select>
+            <option>Bank Account</option>
+            <option>Mobile Wallet</option>
+        </select>
+
+        <label>Account Name</label>
+
+        <input type="text" placeholder="Account name">
+
+        <br><br>
+
+        <button class="btn btn-primary" onclick="requestWithdraw()">
+            Submit Withdrawal Request
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SHARE / PARTICIPATION ================= -->
+
+<section id="share" class="page">
+
+    <h2 class="section-title">My Aircraft Participation</h2>
+
+    <div class="balance">
+
+        <small>Total Participation</small>
+
+        <h2 id="participationTotal">$0.00</h2>
+
+        <div class="balance-row">
+            <span>Revenue Received</span>
+            <span id="participationRevenue">$0.00</span>
+        </div>
+
+    </div>
+
+    <div id="myParticipation"></div>
+
+    <h2 class="section-title">Revenue History</h2>
+
+    <div id="history"></div>
+
+</section>
+
+
+<!-- ================= MY ACCOUNT ================= -->
+
+<section id="my" class="page">
+
+    <h2 class="section-title">My Account</h2>
+
+    <div class="profile">
+
+        <div class="avatar">👤</div>
+
+        <br>
+
+        <h2>Demo Member</h2>
+
+        <p style="color:#777;margin-top:5px;">
+            member@example.com
+        </p>
+
+    </div>
+
+    <div class="menu-item">
+        <span>👤 Personal Information</span>
+        <span>›</span>
+    </div>
+
+    <div class="menu-item" onclick="openPage('share')">
+        <span>📊 My Revenue</span>
+        <span>›</span>
+    </div>
+
+    <div class="menu-item" onclick="openPage('deposit')">
+        <span>💰 Deposit</span>
+        <span>›</span>
+    </div>
+
+    <div class="menu-item" onclick="openPage('withdraw')">
+        <span>💸 Withdrawal</span>
+        <span>›</span>
+    </div>
+
+    <div class="menu-item" onclick="openPage('support')">
+        <span>🎧 Customer Service</span>
+        <span>›</span>
+    </div>
+
+</section>
+
+
+<!-- ================= SUPPORT ================= -->
+
+<section id="support" class="page">
+
+    <h2 class="section-title">Customer Service</h2>
+
+    <div class="form-box">
+
+        <h3>How can we help?</h3>
+
+        <label>Name</label>
+
+        <input type="text" placeholder="Your name">
+
+        <label>Email</label>
+
+        <input type="email" placeholder="Your email">
+
+        <label>Message</label>
+
+        <textarea
+        id="message"
+        placeholder="Write your message..."
+        style="width:100%;height:120px;border:1px solid #ddd;border-radius:12px;padding:13px;font-size:15px;">
+        </textarea>
+
+        <br><br>
+
+        <button class="btn btn-primary" onclick="sendMessage()">
+            Send Message
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+    <div class="nav-item active" data-page="home" onclick="openPage('home')">
+        <div>⌂</div>
+        Home
+    </div>
+
+    <div class="nav-item" data-page="aircraft" onclick="openPage('aircraft')">
+        <div>✈</div>
+        Aircraft
+    </div>
+
+    <div class="nav-item" data-page="share" onclick="openPage('share')">
+        <div>▣</div>
+        Revenue
+    </div>
+
+    <div class="nav-item" data-page="my" onclick="openPage('my')">
+        <div>▢</div>
+        My
+    </div>
+
+</nav>
+
+
+<!-- ================= AIRCRAFT MODAL ================= -->
+
+<div class="modal" id="aircraftModal">
+
+    <div class="modal-box">
+
+        <span class="close" onclick="closeModal()">×</span>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ================= DATA ================= */
+
+const aircraft = [
+
+{
+    id:1,
+    name:"Gulfstream G650",
+    type:"Business Jet",
+    icon:"✈️",
+    rate:8500,
+    minimum:500,
+    hours:20,
+    location:"Dubai",
+    status:"Available"
+},
+
+{
+    id:2,
+    name:"Bombardier Global 7500",
+    type:"Long Range Jet",
+    icon:"🛩️",
+    rate:7800,
+    minimum:500,
+    hours:18,
+    location:"Abu Dhabi",
+    status:"Available"
+},
+
+{
+    id:3,
+    name:"Airbus ACJ319",
+    type:"Corporate Aircraft",
+    icon:"✈️",
+    rate:12000,
+    minimum:1000,
+    hours:15,
+    location:"Singapore",
+    status:"Available"
+}
+
+];
+
+
+/* ================= STORAGE ================= */
+
+let balance = Number(localStorage.getItem("balance")) || 0;
+
+let revenue = Number(localStorage.getItem("revenue")) || 0;
+
+let participation = JSON.parse(
+    localStorage.getItem("participation") || "[]"
+);
+
+
+/* ================= NAVIGATION ================= */
+
+function openPage(page){
+
+    document.querySelectorAll(".page").forEach(function(p){
+        p.classList.remove("active");
+    });
+
+    const selected = document.getElementById(page);
+
+    if(selected){
+        selected.classList.add("active");
+    }
+
+    document.querySelectorAll(".nav-item").forEach(function(item){
+        item.classList.remove("active");
+
+        if(item.dataset.page === page){
+            item.classList.add("active");
+        }
+    });
+
+    updateDisplay();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* ================= AIRCRAFT DISPLAY ================= */
+
+function renderAircraft(){
+
+    const list = document.getElementById("aircraftList");
+
+    list.innerHTML = "";
+
+    aircraft.forEach(function(a){
+
+        const estimatedGross = a.rate * a.hours;
+
+        list.innerHTML += `
+
+        <div class="aircraft">
+
+            <div class="aircraft-img">
+                ${a.icon}
+            </div>
+
+            <div class="aircraft-top">
+
+                <div class="aircraft-name">
+                    ${a.name}
+                </div>
+
+                <div class="tag">
+                    ${a.status}
+                </div>
+
+            </div>
+
+            <p style="color:#777;margin-top:5px;">
+                ${a.type} • ${a.location}
+            </p>
+
+            <div class="aircraft-info">
+
+                <div class="info">
+                    <small>Rental Rate</small>
+                    <b>$${a.rate.toLocaleString()}/hour</b>
+                </div>
+
+                <div class="info">
+                    <small>Minimum Participation</small>
+                    <b>$${a.minimum.toLocaleString()}</b>
+                </div>
+
+                <div class="info">
+                    <small>Example Rental Hours</small>
+                    <b>${a.hours} hours</b>
+                </div>
+
+                <div class="info">
+                    <small>Example Gross Rental</small>
+                    <b>$${estimatedGross.toLocaleString()}</b>
+                </div>
+
+            </div>
+
+            <div class="revenue">
+
+                <div class="revenue-title">
+                    Revenue information
+                </div>
+
+                <div class="revenue-value">
+                    Based on actual rentals
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary"
+                onclick="openAircraft(${a.id})">
+
+                View Aircraft
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("homeAircraft").innerHTML =
+        aircraft.slice(0,2).map(function(a){
+
+            return `
+
+            <div class="aircraft">
+
+                <div class="aircraft-img">
+                    ${a.icon}
+                </div>
+
+                <div class="aircraft-top">
+
+                    <div class="aircraft-name">
+                        ${a.name}
+                    </div>
+
+                    <div class="tag">
+                        ${a.status}
+                    </div>
+
+                </div>
+
+                <p style="color:#777;margin:8px 0;">
+                    ${a.type}
+                </p>
+
+                <div class="revenue">
+
+                    <div class="revenue-title">
+                        Rental rate
+                    </div>
+
+                    <div class="revenue-value">
+                        $${a.rate.toLocaleString()} / hour
+                    </div>
+
+                </div>
+
+                <button class="btn btn-primary"
+                    onclick="openAircraft(${a.id})">
+
+                    View Aircraft
+
+                </button>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* ================= AIRCRAFT DETAILS ================= */
+
+function openAircraft(id){
+
+    const a = aircraft.find(x => x.id === id);
+
+    if(!a) return;
+
+    document.getElementById("modalContent").innerHTML = `
+
+        <div class="aircraft-img">
+            ${a.icon}
+        </div>
+
+        <h2>${a.name}</h2>
+
+        <p style="color:#777;margin-top:5px;">
+            ${a.type} • ${a.location}
+        </p>
+
+        <div class="summary">
+
+            <div class="summary-row">
+                <span>Rental Rate</span>
+                <b>$${a.rate.toLocaleString()}/hour</b>
+            </div>
+
+            <div class="summary-row">
+                <span>Example Rental Hours</span>
+                <b>${a.hours}</b>
+            </div>
+
+            <div class="summary-row">
+                <span>Example Gross Rental Revenue</span>
+                <b>$${(a.rate*a.hours).toLocaleString()}</b>
+            </div>
+
+            <div class="summary-row">
+                <span>Minimum Participation</span>
+                <b>$${a.minimum.toLocaleString()}</b>
+            </div>
+
+        </div>
+
+        <p style="font-size:12px;color:#777;margin-bottom:15px;">
+            Revenue figures are estimates for demonstration purposes.
+            Actual revenue depends on real aircraft utilization,
+            operating costs, contracts and applicable fees.
+        </p>
+
+        <label>Participation Amount</label>
+
+        <input
+            type="number"
+            id="participationAmount"
+            value="${a.minimum}"
+            min="${a.minimum}"
+            oninput="calculateParticipation(${a.id})"
+        >
+
+        <div class="summary">
+
+            <div class="summary-row">
+                <span>Amount</span>
+                <b id="calcAmount">
+                    $${a.minimum.toLocaleString()}
+                </b>
+            </div>
+
+            <div class="summary-row">
+                <span>Share of Example Gross Revenue</span>
+                <b id="calcShare">
+                    —
+                </b>
+            </div>
+
+        </div>
+
+        <button class="btn btn-gold"
+            onclick="participate(${a.id})">
+
+            Participate in Demo
+
+        </button>
+
+    `;
+
+    document.getElementById("aircraftModal")
+        .classList.add("show");
+
+    calculateParticipation(id);
+}
+
+
+/* ================= CALCULATOR ================= */
+
+function calculateParticipation(id){
+
+    const a = aircraft.find(x => x.id === id);
+
+    const amount =
+        Number(document.getElementById("participationAmount").value) || 0;
+
+    const gross = a.rate * a.hours;
+
+    const percentage =
+        gross > 0 ? (amount/gross)*100 : 0;
+
+    document.getElementById("calcAmount").innerText =
+        "$" + amount.toLocaleString();
+
+    document.getElementById("calcShare").innerText =
+        percentage.toFixed(4) + "%";
+
+}
+
+
+/* ================= PARTICIPATION ================= */
+
+function participate(id){
+
+    const a = aircraft.find(x => x.id === id);
+
+    const amount =
+        Number(document.getElementById("participationAmount").value);
+
+    if(!amount || amount < a.minimum){
+
+        alert(
+            "Minimum participation for this demo aircraft is $" +
+            a.minimum
+        );
+
+        return;
+    }
+
+    if(amount > balance){
+
+        alert(
+            "Insufficient demo balance. Please use the Demo Deposit page first."
+        );
+
+        return;
+    }
+
+    balance -= amount;
+
+    participation.push({
+
+        aircraft:a.name,
+
+        amount:amount,
+
+        date:new Date().toLocaleDateString(),
+
+        revenue:0
+
+    });
+
+    save();
+
+    closeModal();
+
+    alert(
+        "Demo participation created successfully."
+    );
+
+    openPage("share");
+
+}
+
+
+/* ================= DEPOSIT ================= */
+
+function makeDeposit(){
+
+    const amount =
+        Number(document.getElementById("depositAmount").value);
+
+    if(!amount || amount <= 0){
+
+        alert("Please enter a valid amount.");
+
+        return;
+    }
+
+    balance += amount;
+
+    save();
+
+    document.getElementById("depositAmount").value = "";
+
+    alert(
+        "Demo deposit added: $" +
+        amount.toLocaleString()
+    );
+
+    updateDisplay();
+
+}
+
+
+/* ================= WITHDRAW ================= */
+
+function requestWithdraw(){
+
+    const amount =
+        Number(document.getElementById("withdrawAmount").value);
+
+    if(!amount || amount <= 0){
+
+        alert("Please enter a valid amount.");
+
+        return;
+    }
+
+    if(amount > balance){
+
+        alert("Insufficient demo balance.");
+
+        return;
+    }
+
+    balance -= amount;
+
+    save();
+
+    document.getElementById("withdrawAmount").value = "";
+
+    alert(
+        "Demo withdrawal request submitted for $" +
+        amount.toLocaleString()
+    );
+
+    updateDisplay();
+
+}
+
+
+/* ================= DISPLAY ================= */
+
+function updateDisplay(){
+
+    document.getElementById("homeBalance").innerText =
+        "$" + balance.toLocaleString(undefined,{
+            minimumFractionDigits:2
+        });
+
+    document.getElementById("withdrawBalance").innerText =
+        "$" + balance.toLocaleString(undefined,{
+            minimumFractionDigits:2
+        });
+
+    document.getElementById("homeRevenue").innerText =
+        "$" + revenue.toLocaleString(undefined,{
+            minimumFractionDigits:2
+        });
+
+    const totalParticipation =
+        participation.reduce(
+            (sum,p)=>sum+Number(p.amount),0
+        );
+
+    document.getElementById("participationTotal").innerText =
+        "$" + totalParticipation.toLocaleString();
+
+    document.getElementById("participationRevenue").innerText =
+        "$" + revenue.toLocaleString();
+
+    renderParticipation();
+
+    renderHistory();
+
+}
+
+
+/* ================= MY PARTICIPATION ================= */
+
+function renderParticipation(){
+
+    const box =
+        document.getElementById("myParticipation");
+
+    if(participation.length === 0){
+
+        box.innerHTML = `
+
+            <div class="form-box">
+
+                <p style="text-align:center;color:#777;">
+                    You don't have any aircraft participation yet.
+                </p>
+
+                <br>
+
+                <button class="btn btn-primary"
+                    onclick="openPage('aircraft')">
+
+                    Browse Aircraft
+
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    box.innerHTML = participation.map(function(p){
+
+        return `
+
+        <div class="aircraft">
+
+            <h3>${p.aircraft}</h3>
+
+            <div class="summary">
+
+                <div class="summary-row">
+                    <span>Participation</span>
+                    <b>$${Number(p.amount).toLocaleString()}</b>
+                </div>
+
+                <div class="summary-row">
+                    <span>Date</span>
+                    <b>${p.date}</b>
+                </div>
+
+                <div class="summary-row">
+                    <span>Revenue Received</span>
+                    <b>$${Number(p.revenue).toLocaleString()}</b>
+                </div>
+
+            </div>
+
+            <span class="tag">
+                Active Demo Record
+            </span>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* ================= HISTORY ================= */
+
+function renderHistory(){
+
+    const box =
+        document.getElementById("history");
+
+    if(participation.length === 0){
+
+        box.innerHTML =
+            "<p style='color:#777;text-align:center;'>No revenue history.</p>";
+
+        return;
+    }
+
+    box.innerHTML = participation.map(function(p){
+
+        return `
+
+        <div class="history-item">
+
+            <div class="history-left">
+
+                <div class="history-icon">
+                    ✈️
+                </div>
+
+                <div>
+
+                    <b>${p.aircraft}</b>
+
+                    <div style="font-size:12px;color:#777;margin-top:5px;">
+                        Participation record
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="green">
+                +$${Number(p.revenue).toLocaleString()}
+            </div>
+
+        </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* ================= SUPPORT ================= */
+
+function sendMessage(){
+
+    alert(
+        "Demo message sent. Connect this form to your support system before going live."
+    );
+
+}
+
+
+/* ================= MODAL ================= */
+
+function closeModal(){
+
+    document.getElementById("aircraftModal")
+        .classList.remove("show");
+
+}
+
+
+/* ================= SAVE ================= */
+
+function save(){
+
+    localStorage.setItem(
+        "balance",
+        balance
+    );
+
+    localStorage.setItem(
+        "revenue",
+        revenue
+    );
+
+    localStorage.setItem(
+        "participation",
+        JSON.stringify(participation)
+    );
+
+    updateDisplay();
+
+}
+
+
+/* ================= START ================= */
+
+renderAircraft();
+
+updateDisplay();
+
+</script>
+
+</body>
+</html>
