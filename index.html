@@ -1261,7 +1261,23 @@ showLogin();
 
 catch(error){
 
-alert(error.message);
+if(error.code === "auth/email-already-in-use"){
+
+alert("This phone number is already registered. Please login or use another number.");
+
+}
+
+else if(error.code === "auth/weak-password"){
+
+alert("Password is too weak. Please use at least 6 characters.");
+
+}
+
+else{
+
+alert("Registration failed. Please try again.");
+
+}
 
 }
 
