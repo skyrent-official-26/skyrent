@@ -1035,17 +1035,14 @@ onclick="togglePassword('loginPassword',this)">
 
 
 
-
 <button
-
 type="button"
-
+id="loginBtn"
 class="btn">
 
 ✈ LOGIN
 
 </button>
-
 
 </form>
 
@@ -1402,13 +1399,121 @@ const db = getFirestore(app);
 
 
 import { 
-createUserWithEmailAndPassword 
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
 doc,
 setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+document.getElementById("loginBtn").addEventListener("click", async()=>{
+
+
+const btn = document.getElementById("loginBtn");
+
+
+const phone =
+document.querySelector("#loginForm input[type='tel']").value.trim();
+
+
+const password =
+document.getElementById("loginPassword").value;
+
+
+if(!phone || !password){
+
+alert("Please enter phone number and password.");
+
+return;
+
+}
+
+
+
+btn.classList.add("loading");
+btn.disabled=true;
+
+btn.innerHTML=`
+<span class="spinner"></span>
+LOGGING IN...
+`;
+
+
+
+try{
+
+
+const email = phone + "@skyrent.com";
+
+
+
+const userCredential =
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+
+const user =
+userCredential.user;
+
+
+
+console.log(
+"Login successful",
+user.uid
+);
+
+
+
+window.location.href =
+"dashboard.html";
+
+
+
+}
+
+catch(error){
+
+
+console.error(error);
+
+
+
+btn.classList.remove("loading");
+btn.disabled=false;
+
+btn.innerHTML="✈ LOGIN";
+
+
+
+if(error.code==="auth/invalid-credential"){
+
+alert(
+"Incorrect phone number or password."
+);
+
+}
+
+else{
+
+alert(
+"Login failed. Please try again."
+);
+
+}
+
+
+}
+
+
+});
+
 
 
 document.getElementById("registerBtn").addEventListener("click", async () => {
