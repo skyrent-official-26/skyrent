@@ -694,7 +694,7 @@ body {
         <div class="logo">
 
             <img
-                src="skyrent-logo.png"
+                src="skyrent.logo.png"
                 alt="SkyRent Logo">
 
         </div>
@@ -738,7 +738,7 @@ body {
         </div>
 
         <div class="balance" id="availableBalance">
-    ₱0.00
+    Loading...
 </div>
 
     </div>
@@ -1133,33 +1133,73 @@ onAuthStateChanged(
 ===================================================== */
 
 async function loadUserBalance(uid) {
-    try {
-        const userRef = doc(db, "users", uid);
-        const userSnap = await getDoc(userRef);
 
-        if (!userSnap.exists()) {
-            console.log("User document not found.");
-            document.getElementById("availableBalance").textContent = "₱0.00";
-            return;
+    const balanceElement =
+        document.getElementById("availableBalance");
+
+
+    try {
+
+        balanceElement.innerText =
+            "Loading...";
+
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                uid
+            );
+
+
+        const userSnap =
+            await getDoc(userRef);
+
+
+        if (userSnap.exists()) {
+
+            const userData =
+                userSnap.data();
+
+
+            const balance =
+                Number(
+                    userData.balance || 0
+                );
+
+
+            balanceElement.innerText =
+                "₱" +
+                balance.toLocaleString(
+                    "en-PH",
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }
+                );
+
+
+        } else {
+
+            balanceElement.innerText =
+                "₱0.00";
+
         }
 
-        const userData = userSnap.data();
 
-        // The registration system stores the ₱50 bonus here
-        const balance = Number(userData.balance || 0);
+    } catch(error) {
 
-        document.getElementById("availableBalance").textContent =
-            "₱" + balance.toLocaleString("en-PH", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
+        console.error(
+            "Balance loading error:",
+            error
+        );
 
-        console.log("Firebase balance:", balance);
 
-    } catch (error) {
-        console.error("Error loading balance:", error);
-        document.getElementById("availableBalance").textContent = "₱0.00";
+        balanceElement.innerText =
+            "₱0.00";
+
     }
+
 }
 
 
