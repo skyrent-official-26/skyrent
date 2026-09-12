@@ -910,6 +910,8 @@ body {
             </p>
 
 
+
+
             <img
                 src="images/deposit-qr.png"
                 class="qr"
@@ -1247,38 +1249,29 @@ function(amount, button) {
    SHOW PAYMENT
 ===================================================== */
 
-window.showPayment =
-function() {
+window.showPayment = function() {
 
-    if (
-        selectedDepositAmount <= 0
-    ) {
+    if (selectedDepositAmount <= 0) {
 
-        alert(
-            "Please select a deposit amount."
-        );
+        alert("Please select a deposit amount.");
 
         return;
+
     }
 
 
-    const paymentBox =
-        document.getElementById(
-            "paymentBox"
-        );
+    // Save only the selected amount temporarily
+
+    localStorage.setItem(
+        "selectedDepositAmount",
+        selectedDepositAmount
+    );
 
 
-    paymentBox.style.display =
-        "block";
-
-
-    paymentBox.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+    window.location.href =
+        "deposit-payment.html";
 
 };
-
 
 /* =====================================================
    SUBMIT DEPOSIT
