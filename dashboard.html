@@ -2,1123 +2,702 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>SkyRent Dashboard</title>
+<title>SkyRent Deposit</title>
 
 <style>
 
-/* =====================================================
+/* =========================
    RESET
-===================================================== */
+========================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-
-    font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-    background:#f3f7fc;
-
-    color:#172033;
-
-    padding-bottom:95px;
-
-    overflow-x:hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 
-/* =====================================================
-   LOADING SCREEN
-===================================================== */
+/* =========================
+   BODY
+========================= */
 
-.loading-screen{
-
-    position:fixed;
-
-    inset:0;
-
-    background:
-    linear-gradient(
-        135deg,
-        #052b78,
-        #0074d9,
-        #7edfff
-    );
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    z-index:99999;
-
-    color:white;
-
-    text-align:center;
-}
-
-.loading-logo{
-
-    width:180px;
-
-    max-width:70%;
-
-    height:auto;
-
-    object-fit:contain;
-
-    margin-bottom:25px;
-
-    filter:
-    drop-shadow(
-        0 5px 12px rgba(0,0,0,.25)
-    );
-}
-
-.loading-spinner{
-
-    width:42px;
-
-    height:42px;
-
-    border:
-    4px solid
-    rgba(255,255,255,.3);
-
-    border-top-color:white;
-
-    border-radius:50%;
-
-    animation:
-    loadingSpin .8s linear infinite;
-
-    margin-bottom:15px;
-}
-
-@keyframes loadingSpin{
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-.loading-screen p{
-
-    font-size:14px;
-
-    opacity:.9;
+body {
+    font-family: Arial, sans-serif;
+    background: #eaf5ff;
+    color: #173f68;
+    padding-bottom: 90px;
 }
 
 
-/* =====================================================
+/* =========================
    HERO
-===================================================== */
+========================= */
 
-.hero{
-
-    position:relative;
-
-    height:275px;
+.hero {
+    position: relative;
+    height: 430px;
 
     background-image:
-
         linear-gradient(
-            rgba(0,65,150,.18),
-            rgba(0,65,150,.38)
+            rgba(0, 105, 220, 0.15),
+            rgba(0, 160, 240, 0.08)
         ),
-
         url("skybg.jpg");
 
-    background-size:cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-    background-position:center;
+    border-radius: 0 0 48px 48px;
 
-    background-repeat:no-repeat;
-
-    border-bottom-left-radius:35px;
-
-    border-bottom-right-radius:35px;
-
-    overflow:hidden;
-}
-
-.hero::after{
-
-    content:"✈";
-
-    position:absolute;
-
-    right:18px;
-
-    bottom:25px;
-
-    font-size:70px;
-
-    color:
-    rgba(255,255,255,.30);
-
-    transform:rotate(-10deg);
+    color: white;
 }
 
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* =========================
+   TOP / LOGO
+========================= */
 
-.topbar{
-
-    position:relative;
-
-    z-index:5;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:22px 20px;
+.top {
+    display: flex;
+    align-items: center;
+    padding: 32px 30px 0;
 }
 
 
-/* =====================================================
-   LOGO
-===================================================== */
-
-.logo-img{
-
-    width:145px;
-
-    height:auto;
-
-    display:block;
-
-    object-fit:contain;
-
-    filter:
-    drop-shadow(
-        0 2px 5px rgba(0,0,0,.20)
-    );
+.logo img {
+    width: 195px;
+    height: auto;
+    display: block;
 }
 
 
-/* =====================================================
-   WELCOME
-===================================================== */
+/* =========================
+   HERO TEXT
+========================= */
 
-.welcome{
-
-    position:relative;
-
-    z-index:5;
-
-    padding:18px 22px;
-
-    color:white;
-}
-
-.welcome small{
-
-    font-size:14px;
-
-    opacity:.9;
-}
-
-.welcome h1{
-
-    margin-top:6px;
-
-    font-size:29px;
-
-    font-weight:900;
-
-    text-shadow:
-    0 2px 6px rgba(0,0,0,.25);
-}
-
-.welcome p{
-
-    margin-top:8px;
-
-    font-size:13px;
-
-    opacity:.92;
+.welcome {
+    position: absolute;
+    left: 30px;
+    bottom: 82px;
 }
 
 
-/* =====================================================
-   MAIN CONTAINER
-===================================================== */
-
-.container{
-
-    width:92%;
-
-    max-width:520px;
-
-    margin:-55px auto 0;
-
-    position:relative;
-
-    z-index:10;
+.welcome small {
+    display: block;
+    font-size: 16px;
+    color: white;
+    opacity: .96;
+    margin-bottom: 8px;
 }
 
 
-/* =====================================================
+.welcome h1 {
+    font-size: 38px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: white;
+}
+
+
+.line {
+    width: 150px;
+    height: 6px;
+    margin-top: 20px;
+    background: #61e7fa;
+    border-radius: 20px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    position: relative;
+    margin-top: -55px;
+    padding: 0 18px 30px;
+    z-index: 5;
+}
+
+
+/* =========================
    BALANCE CARD
-===================================================== */
+========================= */
 
-.balance-card{
-
-    background:white;
-
-    border-radius:25px;
-
-    padding:23px 20px;
+.balance-card {
+    background: white;
+    border-radius: 36px;
+    padding: 27px 28px;
+    min-height: 125px;
 
     box-shadow:
-    0 12px 30px
-    rgba(20,65,120,.13);
-}
-
-.balance-top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:flex-start;
-}
-
-.balance-title{
-
-    color:#7a8494;
-
-    font-size:13px;
-
-    font-weight:600;
-}
-
-.balance-label{
-
-    margin-top:3px;
-
-    font-size:12px;
-
-    color:#a0a7b2;
-}
-
-#accountBalance{
-
-    margin-top:7px;
-
-    color:#0757c9;
-
-    font-size:39px;
-
-    line-height:1.1;
-
-    font-weight:900;
-
-    letter-spacing:-.7px;
-}
-
-.balance-icon{
-
-    width:46px;
-
-    height:46px;
-
-    border-radius:14px;
-
-    background:#eaf2ff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:23px;
+        0 8px 25px
+        rgba(0, 80, 160, .13);
 }
 
 
-/* =====================================================
-   BALANCE BUTTONS
-===================================================== */
-
-.balance-actions{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:10px;
-
-    margin-top:20px;
+.balance-title {
+    color: #8095aa;
+    font-size: 17px;
+    margin-bottom: 9px;
 }
 
-.balance-actions button{
 
-    border:none;
-
-    padding:13px 10px;
-
-    border-radius:13px;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    cursor:pointer;
+.balance {
+    font-size: 37px;
+    font-weight: 700;
+    color: #073e87;
 }
 
-.deposit-btn{
 
-    background:#0757c9;
+/* =========================
+   DEPOSIT CARD
+========================= */
 
-    color:white;
+.card {
+    background: white;
+    border-radius: 36px;
+    padding: 28px;
+    margin-top: 30px;
 
     box-shadow:
-    0 5px 12px
-    rgba(7,87,201,.22);
-}
-
-.withdraw-btn{
-
-    background:#edf4ff;
-
-    color:#0757c9;
+        0 6px 24px
+        rgba(0, 0, 0, .07);
 }
 
 
-/* =====================================================
-   STATISTICS
-===================================================== */
+/* =========================
+   DEPOSIT HEADER
+========================= */
 
-.stats{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:9px;
-
-    margin-top:13px;
+.deposit-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
 }
 
-.stat{
 
-    background:white;
+.deposit-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    background: #e8f4ff;
 
-    border-radius:17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    padding:14px 7px;
+    font-size: 28px;
+}
 
-    text-align:center;
+
+.card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #123f82;
+}
+
+
+.deposit-subtitle {
+    color: #8193a5;
+    font-size: 16px;
+    margin-left: 74px;
+    margin-bottom: 27px;
+}
+
+
+/* =========================
+   AMOUNT LABEL
+========================= */
+
+.amount-label {
+    display: block;
+    color: #58718b;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+
+/* =========================
+   AMOUNT GRID
+========================= */
+
+.amount-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+
+/* =========================
+   AMOUNT BUTTON
+========================= */
+
+.amount-btn {
+    height: 70px;
+    border-radius: 18px;
+    border: 1.5px solid #c9e2f7;
+    background: #f8fcff;
+    color: #1767a8;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+
+.amount-btn:active {
+    transform: scale(.97);
+}
+
+
+.amount-btn.selected {
+    background: #087de0;
+    border-color: #087de0;
+    color: white;
 
     box-shadow:
-    0 5px 18px
-    rgba(30,70,120,.07);
-}
-
-.stat-icon{
-
-    font-size:18px;
-
-    margin-bottom:5px;
-}
-
-.stat p{
-
-    color:#858d99;
-
-    font-size:10px;
-
-    margin-bottom:5px;
-}
-
-.stat b{
-
-    color:#0757c9;
-
-    font-size:13px;
-
-    font-weight:800;
-
-    word-break:break-word;
+        0 5px 14px
+        rgba(8, 125, 224, .22);
 }
 
 
-/* =====================================================
-   SECTION TITLE
-===================================================== */
+/* =========================
+   SELECTED AMOUNT
+========================= */
 
-.section-header{
+.selected-box {
+    margin-top: 24px;
+    padding: 20px 22px;
+    min-height: 90px;
+    border-radius: 20px;
+    background: #f2f8fd;
+    border: 1px solid #dcecf8;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin:24px 3px 11px;
-}
-
-.section-header h2{
-
-    font-size:19px;
-
-    font-weight:900;
-}
-
-.section-header span{
-
-    font-size:11px;
-
-    color:#0757c9;
-
-    font-weight:bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
-/* =====================================================
-   INVESTMENT CARD
-===================================================== */
+.selected-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
-.investment-card{
 
-    position:relative;
+.selected-label {
+    color: #8498aa;
+    font-size: 15px;
+}
 
-    background:
-    linear-gradient(
-        135deg,
-        #ffffff,
-        #f5f9ff
-    );
 
-    border-radius:22px;
+.selected-hint {
+    color: #5d748a;
+    font-size: 14px;
+}
 
-    padding:19px;
+
+.selected-box h2 {
+    color: #073e87;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   CONTINUE BUTTON
+========================= */
+
+.continue-btn {
+    width: 100%;
+    height: 64px;
+    border: none;
+    border-radius: 18px;
+    background: #087de0;
+    color: white;
+    font-size: 19px;
+    font-weight: 700;
+    margin-top: 22px;
+    cursor: pointer;
 
     box-shadow:
-    0 7px 22px
-    rgba(30,70,120,.08);
-
-    cursor:pointer;
-
-    overflow:hidden;
-}
-
-.investment-card::after{
-
-    content:"✈";
-
-    position:absolute;
-
-    right:-10px;
-
-    bottom:-20px;
-
-    font-size:95px;
-
-    color:
-    rgba(7,87,201,.05);
-
-    transform:rotate(-12deg);
-}
-
-.investment-row{
-
-    position:relative;
-
-    z-index:2;
-
-    display:flex;
-
-    align-items:center;
-}
-
-.investment-icon{
-
-    width:57px;
-
-    height:57px;
-
-    border-radius:17px;
-
-    background:#e7f0ff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:29px;
-}
-
-.investment-info{
-
-    flex:1;
-
-    margin-left:13px;
-}
-
-.investment-info h3{
-
-    font-size:16px;
-
-    margin-bottom:5px;
-}
-
-.investment-info p{
-
-    color:#7b8490;
-
-    font-size:12px;
-
-    line-height:1.4;
-}
-
-.investment-arrow{
-
-    color:#0757c9;
-
-    font-size:29px;
-
-    font-weight:300;
+        0 6px 15px
+        rgba(8, 125, 224, .20);
 }
 
 
-/* =====================================================
-   QUICK ACTIONS
-===================================================== */
-
-.quick-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:9px;
+.continue-btn:active {
+    transform: scale(.98);
 }
 
 
-/* =====================================================
-   BASE LIST ITEM
-===================================================== */
+/* =========================
+   PAYMENT AREA
+========================= */
 
-.quick-list-item{
+.payment-box {
+    display: none;
+    margin-top: 22px;
+    text-align: center;
 
-    width:100%;
+    border-top: 1px solid #e6edf3;
 
-    border:none;
-
-    border-radius:17px;
-
-    padding:13px 14px;
-
-    display:flex;
-
-    align-items:center;
-
-    text-align:left;
-
-    cursor:pointer;
-
-    box-shadow:
-    0 5px 18px
-    rgba(30,70,120,.07);
-
-    transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-}
-
-.quick-list-item:active{
-
-    transform:scale(.98);
+    padding-top: 22px;
 }
 
 
-/* =====================================================
-   CRAFTS
-===================================================== */
-
-.quick-crafts{
-
-    background:
-    linear-gradient(
-        135deg,
-        #e8f2ff,
-        #dcecff
-    );
-}
-
-.quick-crafts .quick-list-icon{
-
-    background:#c9ddff;
-
-    color:#0757c9;
-}
-
-.quick-crafts .quick-list-arrow{
-
-    color:#0757c9;
+.payment-box h3 {
+    color: #123f82;
+    font-size: 21px;
+    margin-bottom: 9px;
 }
 
 
-/* =====================================================
-   TRANSACTIONS
-===================================================== */
-
-.quick-transactions{
-
-    background:
-    linear-gradient(
-        135deg,
-        #eef9f3,
-        #ddf3e8
-    );
-}
-
-.quick-transactions .quick-list-icon{
-
-    background:#c9ead8;
-
-    color:#17834d;
-}
-
-.quick-transactions .quick-list-arrow{
-
-    color:#17834d;
+.payment-box p {
+    color: #71869e;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 17px;
 }
 
 
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.quick-profile{
-
-    background:
-    linear-gradient(
-        135deg,
-        #f3edff,
-        #e8ddff
-    );
-}
-
-.quick-profile .quick-list-icon{
-
-    background:#daccf7;
-
-    color:#7044b8;
-}
-
-.quick-profile .quick-list-arrow{
-
-    color:#7044b8;
+.qr {
+    width: 210px;
+    max-width: 100%;
+    border-radius: 12px;
+    border: 1px solid #e3edf5;
 }
 
 
-/* =====================================================
-   GIFT CODES
-===================================================== */
+.submit-btn {
+    width: 100%;
+    height: 58px;
+    margin-top: 18px;
 
-.quick-gift{
+    border: none;
+    border-radius: 15px;
 
-    background:
-    linear-gradient(
-        135deg,
-        #fff1f5,
-        #ffe1ea
-    );
-}
+    background: #087de0;
+    color: white;
 
-.quick-gift .quick-list-icon{
+    font-size: 16px;
+    font-weight: 700;
 
-    background:#ffcbd9;
-
-    color:#d23f69;
-}
-
-.quick-gift .quick-list-arrow{
-
-    color:#d23f69;
+    cursor: pointer;
 }
 
 
-/* =====================================================
-   CUSTOMER SERVICE
-===================================================== */
-
-.quick-support{
-
-    background:
-    linear-gradient(
-        135deg,
-        #fff8e8,
-        #ffedc2
-    );
-}
-
-.quick-support .quick-list-icon{
-
-    background:#ffe1a0;
-
-    color:#b87800;
-}
-
-.quick-support .quick-list-arrow{
-
-    color:#b87800;
+.submit-btn:disabled {
+    opacity: .65;
+    cursor: not-allowed;
 }
 
 
-/* =====================================================
-   QUICK ICON
-===================================================== */
+.payment-note {
+    margin-top: 13px;
+    padding: 12px;
 
-.quick-list-icon{
+    background: #fff8e8;
+    border-radius: 10px;
 
-    width:43px;
-
-    height:43px;
-
-    flex-shrink:0;
-
-    border-radius:13px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:21px;
+    color: #8a6a22;
+    font-size: 11px;
+    line-height: 1.4;
 }
 
 
-/* =====================================================
-   QUICK INFO
-===================================================== */
+/* =========================
+   STATUS MESSAGE
+========================= */
 
-.quick-list-info{
+.status-message {
+    display: none;
 
-    flex:1;
+    margin-top: 15px;
+    padding: 14px;
 
-    min-width:0;
+    border-radius: 12px;
 
-    margin-left:12px;
-}
-
-.quick-list-info h3{
-
-    font-size:14px;
-
-    font-weight:800;
-
-    color:#172033;
-
-    margin-bottom:3px;
-}
-
-.quick-list-info p{
-
-    font-size:10px;
-
-    color:#697386;
-
-    line-height:1.3;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 
-/* =====================================================
-   QUICK ARROW
-===================================================== */
-
-.quick-list-arrow{
-
-    flex-shrink:0;
-
-    margin-left:8px;
-
-    font-size:25px;
-
-    font-weight:300;
+.status-message.success {
+    display: block;
+    background: #e8f8ef;
+    color: #18733d;
 }
 
 
-/* =====================================================
-   INFO BANNER
-===================================================== */
-
-.info-banner{
-
-    margin-top:15px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #0757c9,
-        #1475e8
-    );
-
-    border-radius:19px;
-
-    padding:17px;
-
-    color:white;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    box-shadow:
-    0 7px 20px
-    rgba(7,87,201,.18);
-}
-
-.info-icon{
-
-    font-size:28px;
-}
-
-.info-banner h3{
-
-    font-size:14px;
-
-    margin-bottom:4px;
-}
-
-.info-banner p{
-
-    font-size:11px;
-
-    line-height:1.4;
-
-    opacity:.9;
+.status-message.error {
+    display: block;
+    background: #fff0f0;
+    color: #b42323;
 }
 
 
-/* =====================================================
+/* =========================
    BOTTOM NAVIGATION
-===================================================== */
+========================= */
 
-.bottom-nav{
+.bottom-nav {
+    position: fixed;
 
-    position:fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
-    left:0;
+    height: 78px;
 
-    right:0;
+    background: white;
 
-    bottom:0;
-
-    height:78px;
-
-    background:
-    rgba(255,255,255,.97);
-
-    border-top:
-    1px solid #e8edf4;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 
     box-shadow:
-    0 -5px 20px
-    rgba(20,60,110,.10);
+        0 -5px 20px
+        rgba(0, 0, 0, .12);
 
-    display:grid;
-
-    grid-template-columns:
-    repeat(5,1fr);
-
-    z-index:9999;
-
-    backdrop-filter:blur(10px);
-
-    -webkit-backdrop-filter:blur(10px);
-}
-
-.nav-item{
-
-    border:none;
-
-    background:transparent;
-
-    color:#89919d;
-
-    cursor:pointer;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    padding-top:9px;
-}
-
-.nav-icon{
-
-    display:block;
-
-    font-size:21px;
-
-    margin-bottom:4px;
-}
-
-.nav-item.active{
-
-    color:#0757c9;
+    z-index: 9999;
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
+.bottom-nav button {
+    border: none;
+    background: white;
+    color: #71869e;
 
-@media(max-width:380px){
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
 
-    .hero{
+    cursor: pointer;
+}
 
-        height:255px;
+
+.bottom-nav button:hover {
+    color: #087de0;
+}
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 500px) {
+
+    .hero {
+        height: 370px;
     }
 
-    .welcome h1{
 
-        font-size:25px;
+    .top {
+        padding: 25px 25px 0;
     }
 
-    #accountBalance{
 
-        font-size:34px;
+    .logo img {
+        width: 180px;
     }
 
-    .stat{
 
-        padding:12px 4px;
+    .welcome {
+        left: 25px;
+        bottom: 65px;
     }
 
-    .stat b{
 
-        font-size:11px;
+    .welcome small {
+        font-size: 15px;
     }
 
-    .logo-img{
 
-        width:125px;
+    .welcome h1 {
+        font-size: 34px;
     }
 
-    .quick-list{
 
-        gap:8px;
+    .main {
+        margin-top: -45px;
+        padding: 0 14px 25px;
     }
 
-    .quick-list-item{
 
-        padding:11px 12px;
-
-        border-radius:15px;
+    .balance-card {
+        padding: 23px 24px;
+        border-radius: 30px;
     }
 
-    .quick-list-icon{
 
-        width:40px;
-
-        height:40px;
-
-        border-radius:12px;
-
-        font-size:19px;
+    .balance-title {
+        font-size: 15px;
     }
 
-    .quick-list-info{
 
-        margin-left:10px;
+    .balance {
+        font-size: 34px;
     }
 
-    .quick-list-info h3{
 
-        font-size:13px;
+    .card {
+        margin-top: 22px;
+        padding: 22px;
+        border-radius: 30px;
     }
 
-    .quick-list-info p{
 
-        font-size:9px;
+    .deposit-header {
+        gap: 13px;
     }
 
-    .quick-list-arrow{
 
-        font-size:23px;
+    .deposit-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 15px;
+        font-size: 24px;
     }
 
+
+    .card-title {
+        font-size: 21px;
+    }
+
+
+    .deposit-subtitle {
+        margin-left: 63px;
+        font-size: 14px;
+        margin-bottom: 22px;
+    }
+
+
+    .amount-label {
+        font-size: 14px;
+    }
+
+
+    .amount-grid {
+        gap: 9px;
+    }
+
+
+    .amount-btn {
+        height: 60px;
+        border-radius: 15px;
+        font-size: 16px;
+    }
+
+
+    .selected-box {
+        padding: 17px 18px;
+        min-height: 78px;
+        border-radius: 17px;
+    }
+
+
+    .selected-label {
+        font-size: 13px;
+    }
+
+
+    .selected-hint {
+        font-size: 12px;
+    }
+
+
+    .selected-box h2 {
+        font-size: 23px;
+    }
+
+
+    .continue-btn {
+        height: 58px;
+        border-radius: 15px;
+        font-size: 17px;
+    }
+
+
+    .bottom-nav {
+        height: 75px;
+    }
+
+
+    .bottom-nav button {
+        font-size: 11px;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 360px) {
+
+    .hero {
+        height: 350px;
+    }
+
+
+    .logo img {
+        width: 165px;
+    }
+
+
+    .welcome h1 {
+        font-size: 30px;
+    }
+
+
+    .amount-btn {
+        height: 54px;
+        font-size: 14px;
+    }
+
+
+    .card {
+        padding: 18px;
+    }
+
+
+    .deposit-subtitle {
+        margin-left: 0;
+        margin-top: 7px;
+    }
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
-     LOADING SCREEN
-===================================================== -->
-
-<div
-    id="loadingScreen"
-    class="loading-screen">
-
-    <img
-        src="skyrent-logo.png"
-        class="loading-logo"
-        alt="SkyRent">
-
-    <div class="loading-spinner"></div>
-
-    <p>
-        Loading your SkyRent account...
-    </p>
-
-</div>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <section class="hero">
 
-    <div class="topbar">
+    <div class="top">
 
-        <img
-            src="skyrent-logo.png"
-            class="logo-img"
-            alt="SkyRent">
+        <div class="logo">
+
+            <img
+                src="skyrent.logo.png"
+                alt="SkyRent Logo">
+
+        </div>
 
     </div>
 
@@ -1126,520 +705,348 @@ body{
     <div class="welcome">
 
         <small>
-            Welcome back
+            Secure Your Funds
         </small>
 
-        <h1 id="username">
-            User!
+        <h1>
+            Deposit
         </h1>
 
-        <p>
-            Manage your SkyRent investments
-            and earnings.
-        </p>
+        <div class="line"></div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     MAIN CONTENT
-===================================================== -->
 
-<main class="container">
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="main">
 
 
-<!-- =====================================================
-     BALANCE
-===================================================== -->
+    <!-- =========================
+         BALANCE
+    ========================= -->
 
-<div class="balance-card">
+    <div class="balance-card">
 
-    <div class="balance-top">
+        <div class="balance-title">
+            Available Balance
+        </div>
 
-        <div>
+        <div class="balance" id="availableBalance">
+    ₱0.00
+</div>
 
-            <div class="balance-title">
-                Available Balance
+    </div>
+
+
+
+    <!-- =========================
+         DEPOSIT CARD
+    ========================= -->
+
+    <div class="card">
+
+
+        <div class="deposit-header">
+
+            <div class="deposit-icon">
+                💰
             </div>
 
-            <div class="balance-label">
-                Your current account balance
-            </div>
-
-            <div id="accountBalance">
-                ₱0.00
+            <div class="card-title">
+                Make a Deposit
             </div>
 
         </div>
 
 
-        <div class="balance-icon">
-            💰
-        </div>
-
-    </div>
-
-
-    <div class="balance-actions">
-
-        <button
-            class="deposit-btn"
-            onclick="deposit()">
-
-            + Deposit
-
-        </button>
-
-
-        <button
-            class="withdraw-btn"
-            onclick="withdraw()">
-
-            ↔ Withdraw
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     STATISTICS
-===================================================== -->
-
-<div class="stats">
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            💵
-        </div>
-
-        <p>
-            Total Deposited
-        </p>
-
-        <b id="totalDeposited">
-            ₱0.00
-        </b>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            📈
-        </div>
-
-        <p>
-            Total Earnings
-        </p>
-
-        <b id="totalEarnings">
-            ₱0.00
-        </b>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            💸
-        </div>
-
-        <p>
-            Withdrawn
-        </p>
-
-        <b id="totalWithdrawn">
-            ₱0.00
-        </b>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     MY INVESTMENT
-===================================================== -->
-
-<div class="section-header">
-
-    <h2>
-        My Investment
-    </h2>
-
-    <span>
-        View All
-    </span>
-
-</div>
-
-
-<div
-    class="investment-card"
-    onclick="goMyInvestment()">
-
-    <div class="investment-row">
-
-        <div class="investment-icon">
-            ✈️
+        <div class="deposit-subtitle">
+            Choose the amount you want to add
         </div>
 
 
-        <div class="investment-info">
 
-            <h3 id="investmentCount">
-                No active investment
-            </h3>
+        <!-- AMOUNT LABEL -->
 
-            <p id="investmentMessage">
-                Start your journey by choosing
-                a SkyRent craft.
-            </p>
-
-        </div>
-
-
-        <div class="investment-arrow">
-            ›
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     QUICK ACTIONS
-===================================================== -->
-
-<div class="section-header">
-
-    <h2>
-        Quick Actions
-    </h2>
-
-</div>
-
-
-<div class="quick-list">
-
-
-<!-- CRAFTS -->
-
-<button
-    class="quick-list-item quick-crafts"
-    onclick="goCrafts()">
-
-    <div class="quick-list-icon">
-        ✈️
-    </div>
-
-    <div class="quick-list-info">
-
-        <h3>
-            Crafts
-        </h3>
-
-        <p>
-            Browse available aircraft
-            investment plans.
-        </p>
-
-    </div>
-
-    <div class="quick-list-arrow">
-        ›
-    </div>
-
-</button>
-
-
-<!-- TRANSACTIONS -->
-
-<button
-    class="quick-list-item quick-transactions"
-    onclick="goTransactions()">
-
-    <div class="quick-list-icon">
-        🧾
-    </div>
-
-    <div class="quick-list-info">
-
-        <h3>
-            Transactions
-        </h3>
-
-        <p>
-            View your deposit
-            transaction history.
-        </p>
-
-    </div>
-
-    <div class="quick-list-arrow">
-        ›
-    </div>
-
-</button>
-
-
-<!-- PROFILE -->
-
-<button
-    class="quick-list-item quick-profile"
-    onclick="goProfile()">
-
-    <div class="quick-list-icon">
-        👤
-    </div>
-
-    <div class="quick-list-info">
-
-        <h3>
-            Profile
-        </h3>
-
-        <p>
-            View and manage your
-            account profile.
-        </p>
-
-    </div>
-
-    <div class="quick-list-arrow">
-        ›
-    </div>
-
-</button>
-
-
-<!-- GIFT CODES -->
-
-<button
-    class="quick-list-item quick-gift"
-    onclick="goGiftCodes()">
-
-    <div class="quick-list-icon">
-        🎁
-    </div>
-
-    <div class="quick-list-info">
-
-        <h3>
-            Gift Codes
-        </h3>
-
-        <p>
-            Enter and redeem your
-            available gift codes.
-        </p>
-
-    </div>
-
-    <div class="quick-list-arrow">
-        ›
-    </div>
-
-</button>
-
-
-<!-- CUSTOMER SERVICE -->
-
-<button
-    class="quick-list-item quick-support"
-    onclick="goCustomerService()">
-
-    <div class="quick-list-icon">
-        🎧
-    </div>
-
-    <div class="quick-list-info">
-
-        <h3>
-            Customer Service
-        </h3>
-
-        <p>
-            Get help and contact
-            SkyRent support.
-        </p>
-
-    </div>
-
-    <div class="quick-list-arrow">
-        ›
-    </div>
-
-</button>
-
-
-</div>
-
-
-<!-- =====================================================
-     INFO
-===================================================== -->
-
-<div class="info-banner">
-
-    <div class="info-icon">
-        🛫
-    </div>
-
-    <div>
-
-        <h3>
-            Start Your SkyRent Journey
-        </h3>
-
-        <p>
-            Choose a craft and build your
-            investment portfolio.
-        </p>
-
-    </div>
-
-</div>
-
-
-</main>
-
-
-<!-- =====================================================
-     BOTTOM NAVIGATION
-===================================================== -->
-
-<nav class="bottom-nav">
-
-
-    <button
-        class="nav-item active"
-        onclick="goHome()">
-
-        <span class="nav-icon">
-            🏠
+        <span class="amount-label">
+            Select Amount
         </span>
 
+
+
+        <!-- AMOUNT OPTIONS -->
+
+        <div class="amount-grid">
+
+            <button
+                class="amount-btn"
+                onclick="selectAmount(500, this)">
+                ₱500
+            </button>
+
+
+            <button
+                class="amount-btn"
+                onclick="selectAmount(800, this)">
+                ₱800
+            </button>
+
+
+            <button
+                class="amount-btn"
+                onclick="selectAmount(1500, this)">
+                ₱1,500
+            </button>
+
+
+            <button
+                class="amount-btn"
+                onclick="selectAmount(3000, this)">
+                ₱3,000
+            </button>
+
+
+            <button
+                class="amount-btn"
+                onclick="selectAmount(5000, this)">
+                ₱5,000
+            </button>
+
+
+            <button
+                class="amount-btn"
+                onclick="selectAmount(10000, this)">
+                ₱10,000
+            </button>
+
+
+            <button
+                class="amount-btn"
+                onclick="selectAmount(15000, this)">
+                ₱15,000
+            </button>
+
+
+            <button
+                class="amount-btn"
+                onclick="selectAmount(25000, this)">
+                ₱25,000
+            </button>
+
+
+            <button
+                class="amount-btn"
+                onclick="selectAmount(50000, this)">
+                ₱50,000
+            </button>
+
+        </div>
+
+
+
+        <!-- =========================
+             SELECTED AMOUNT
+        ========================= -->
+
+        <div class="selected-box">
+
+            <div class="selected-info">
+
+                <span class="selected-label">
+                    Selected Amount
+                </span>
+
+                <span class="selected-hint">
+                    Review before continuing
+                </span>
+
+            </div>
+
+
+            <h2 id="selectedAmount">
+                ₱0
+            </h2>
+
+        </div>
+
+
+
+        <!-- =========================
+             CONTINUE
+        ========================= -->
+
+        <button
+            class="continue-btn"
+            id="continueBtn"
+            onclick="showPayment()">
+
+            Continue to Payment
+
+        </button>
+
+
+
+        <!-- =========================
+             PAYMENT
+        ========================= -->
+
+        <div
+            class="payment-box"
+            id="paymentBox">
+
+            <h3>
+                GCash Payment
+            </h3>
+
+
+            <p>
+                Send the selected amount using
+                the GCash QR code below.
+            </p>
+
+
+            <img
+                src="images/deposit-qr.png"
+                class="qr"
+                alt="GCash QR Code">
+
+
+            <button
+                class="submit-btn"
+                id="submitBtn"
+                onclick="submitDeposit()">
+
+                I Have Completed Payment
+
+            </button>
+
+
+            <div class="payment-note">
+
+                Please make sure the amount you
+                send matches your selected deposit
+                amount before submitting.
+
+            </div>
+
+
+            <div
+                class="status-message"
+                id="statusMessage">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
+
+<div class="bottom-nav">
+
+
+    <button onclick="goHome()">
+
+        🏠
+        <br>
         Home
 
     </button>
 
 
-    <button
-        class="nav-item"
-        onclick="goCrafts()">
+    <button onclick="goCrafts()">
 
-        <span class="nav-icon">
-            ✈️
-        </span>
-
+        ✈️
+        <br>
         Crafts
 
     </button>
 
 
-    <button
-        class="nav-item"
-        onclick="goNetwork()">
+    <button onclick="goNetwork()">
 
-        <span class="nav-icon">
-            👥
-        </span>
-
+        👥
+        <br>
         Network
 
     </button>
 
 
-    <button
-        class="nav-item"
-        onclick="goEarnings()">
+    <button onclick="goEarnings()">
 
-        <span class="nav-icon">
-            📊
-        </span>
-
+        📊
+        <br>
         Earnings
 
     </button>
 
 
-    <button
-        class="nav-item"
-        onclick="logout()">
+    <button onclick="logout()">
 
-        <span class="nav-icon">
-            🚪
-        </span>
-
+        🚪
+        <br>
         Logout
 
     </button>
 
 
-</nav>
+</div>
 
 
-<!-- =====================================================
+
+<!-- =========================
      FIREBASE
-===================================================== -->
+========================= -->
 
 <script type="module">
 
 import {
     initializeApp
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getAuth,
     onAuthStateChanged,
     signOut
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
     getFirestore,
     doc,
-    getDoc
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    getDoc,
+    addDoc,
+    collection,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 /* =====================================================
-   FIREBASE CONFIG
+   SKYRENT FIREBASE CONFIG
 ===================================================== */
 
 const firebaseConfig = {
 
-    apiKey:
-    "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+    apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
 
-    authDomain:
-    "skyrent-ea30c.firebaseapp.com",
+    authDomain: "skyrent-ea30c.firebaseapp.com",
 
-    projectId:
-    "skyrent-ea30c",
+    projectId: "skyrent-ea30c",
 
-    storageBucket:
-    "skyrent-ea30c.firebasestorage.app",
+    storageBucket: "skyrent-ea30c.firebasestorage.app",
 
-    messagingSenderId:
-    "572678456448",
+    messagingSenderId: "572678456448",
 
-    appId:
-    "1:572678456448:web:6b7132351515742dd09265"
+    appId: "1:572678456448:web:6b7132351515742dd09265"
 
 };
 
@@ -1651,47 +1058,249 @@ const firebaseConfig = {
 const app =
     initializeApp(firebaseConfig);
 
+
 const auth =
     getAuth(app);
+
 
 const db =
     getFirestore(app);
 
 
 /* =====================================================
-   FORMAT MONEY
+   VARIABLES
 ===================================================== */
 
-function formatMoney(amount){
+let selectedDepositAmount = 0;
 
-    const number =
-        Number(amount) || 0;
+let currentUser = null;
 
-    return "₱" +
-        number.toLocaleString(
-            "en-PH",
-            {
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            }
+
+/* =====================================================
+   CHECK FIREBASE LOGIN
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if (!user) {
+
+            console.log(
+                "No Firebase user is currently signed in."
+            );
+
+            alert(
+                "Please login first."
+            );
+
+            window.location.href =
+                "index.html";
+
+            return;
+        }
+
+
+        /* USER IS LOGGED IN */
+
+        currentUser = user;
+
+
+        console.log(
+            "Firebase user detected:",
+            user.uid
         );
 
+
+        console.log(
+            "Firebase email:",
+            user.email
+        );
+
+
+        /* LOAD CURRENT BALANCE */
+
+        await loadUserBalance(
+            user.uid
+        );
+
+    }
+);
+
+
+/* =====================================================
+   LOAD USER BALANCE
+===================================================== */
+
+async function loadUserBalance(uid) {
+    try {
+        const userRef = doc(db, "users", uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+            console.log("User document not found.");
+            document.getElementById("availableBalance").textContent = "₱0.00";
+            return;
+        }
+
+        const userData = userSnap.data();
+
+        // The registration system stores the ₱50 bonus here
+        const balance = Number(userData.balance || 0);
+
+        document.getElementById("availableBalance").textContent =
+            "₱" + balance.toLocaleString("en-PH", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+        console.log("Firebase balance:", balance);
+
+    } catch (error) {
+        console.error("Error loading balance:", error);
+        document.getElementById("availableBalance").textContent = "₱0.00";
+    }
 }
 
 
 /* =====================================================
-   UPDATE DASHBOARD FROM FIRESTORE
+   SELECT AMOUNT
 ===================================================== */
 
-async function loadUserDashboard(user){
+window.selectAmount =
+function(amount, button) {
 
-    try{
+    selectedDepositAmount =
+        Number(amount);
+
+
+    document.getElementById(
+        "selectedAmount"
+    ).innerText =
+        "₱" +
+        selectedDepositAmount.toLocaleString(
+            "en-PH"
+        );
+
+
+    document.querySelectorAll(
+        ".amount-btn"
+    ).forEach(
+        function(btn) {
+
+            btn.classList.remove(
+                "selected"
+            );
+
+        }
+    );
+
+
+    button.classList.add(
+        "selected"
+    );
+
+};
+
+
+/* =====================================================
+   SHOW PAYMENT
+===================================================== */
+
+window.showPayment =
+function() {
+
+    if (
+        selectedDepositAmount <= 0
+    ) {
+
+        alert(
+            "Please select a deposit amount."
+        );
+
+        return;
+    }
+
+
+    const paymentBox =
+        document.getElementById(
+            "paymentBox"
+        );
+
+
+    paymentBox.style.display =
+        "block";
+
+
+    paymentBox.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+};
+
+
+/* =====================================================
+   SUBMIT DEPOSIT
+===================================================== */
+
+window.submitDeposit =
+async function() {
+
+    /* CHECK LOGIN */
+
+    if (!currentUser) {
+
+        alert(
+            "Please login first."
+        );
+
+        window.location.href =
+            "index.html";
+
+        return;
+    }
+
+
+    /* CHECK AMOUNT */
+
+    if (
+        selectedDepositAmount <= 0
+    ) {
+
+        alert(
+            "Please select a deposit amount."
+        );
+
+        return;
+    }
+
+
+    const submitBtn =
+        document.getElementById(
+            "submitBtn"
+        );
+
+
+    submitBtn.disabled =
+        true;
+
+
+    submitBtn.innerText =
+        "Submitting...";
+
+
+    try {
+
+        /* =========================================
+           GET USER DATA
+        ========================================= */
 
         const userRef =
             doc(
                 db,
                 "users",
-                user.uid
+                currentUser.uid
             );
 
 
@@ -1699,252 +1308,118 @@ async function loadUserDashboard(user){
             await getDoc(userRef);
 
 
-        if(!userSnapshot.exists()){
+        let userData = {};
 
-            console.error(
-                "User document does not exist."
-            );
 
-            document.getElementById(
-                "username"
-            ).innerText =
-                "User!";
+        if (
+            userSnapshot.exists()
+        ) {
 
-            document.getElementById(
-                "accountBalance"
-            ).innerText =
-                "₱0.00";
-
-            return;
+            userData =
+                userSnapshot.data();
 
         }
 
 
-        const userData =
-            userSnapshot.data();
+        /* =========================================
+           CREATE PENDING DEPOSIT
+        ========================================= */
+
+        const depositData = {
+
+            userId:
+                currentUser.uid,
+
+            name:
+                userData.name ||
+                currentUser.displayName ||
+                "",
+
+            phone:
+                userData.phone ||
+                "",
+
+            email:
+                currentUser.email ||
+                "",
+
+            amount:
+                Number(
+                    selectedDepositAmount
+                ),
+
+            status:
+                "Pending Approval",
+
+            createdAt:
+                serverTimestamp(),
+
+            approvedAt:
+                null,
+
+            rejectedAt:
+                null
+
+        };
 
 
-        /* =============================================
-           USER NAME
-        ============================================= */
+        /* =========================================
+           SAVE TO FIRESTORE
+        ========================================= */
 
-        const name =
-            userData.name ||
-            "User";
-
-
-        document.getElementById(
-            "username"
-        ).innerText =
-            name + "!";
-
-
-        /* =============================================
-           BALANCE
-        ============================================= */
-
-        const balance =
-            Number(
-                userData.balance
-            ) || 0;
-
-
-        document.getElementById(
-            "accountBalance"
-        ).innerText =
-            formatMoney(balance);
-
-
-        /* =============================================
-           TOTAL DEPOSITED
-        ============================================= */
-
-        const totalDeposited =
-            Number(
-                userData.totalDeposited
-            ) || 0;
-
-
-        document.getElementById(
-            "totalDeposited"
-        ).innerText =
-            formatMoney(
-                totalDeposited
+        const depositReference =
+            await addDoc(
+                collection(
+                    db,
+                    "deposits"
+                ),
+                depositData
             );
 
 
-        /* =============================================
-           TOTAL EARNINGS
-        ============================================= */
-
-        const totalEarnings =
-            Number(
-                userData.totalEarnings
-            ) || 0;
-
-
-        document.getElementById(
-            "totalEarnings"
-        ).innerText =
-            formatMoney(
-                totalEarnings
-            );
-
-
-        /* =============================================
-           TOTAL WITHDRAWN
-        ============================================= */
-
-        const totalWithdrawn =
-            Number(
-                userData.totalWithdrawn
-            ) || 0;
-
-
-        document.getElementById(
-            "totalWithdrawn"
-        ).innerText =
-            formatMoney(
-                totalWithdrawn
-            );
-
-
-        /* =============================================
-           INVESTMENT COUNT
-        ============================================= */
-
-        const investmentCount =
-            Number(
-                userData.activeInvestments
-            ) || 0;
-
-
-        if(investmentCount <= 0){
-
-            document.getElementById(
-                "investmentCount"
-            ).innerText =
-                "No active investment";
-
-
-            document.getElementById(
-                "investmentMessage"
-            ).innerText =
-                "Start your journey by choosing a SkyRent craft.";
-
-        }
-        else{
-
-            document.getElementById(
-                "investmentCount"
-            ).innerText =
-                investmentCount +
-                (
-                    investmentCount === 1
-                    ? " Active Investment"
-                    : " Active Investments"
-                );
-
-
-            document.getElementById(
-                "investmentMessage"
-            ).innerText =
-                "Tap here to view your investment details.";
-
-        }
-
-
-    }
-    catch(error){
-
-        console.error(
-            "Error loading dashboard:",
-            error
+        console.log(
+            "Deposit successfully created:",
+            depositReference.id
         );
+
+
+        /* =========================================
+           IMPORTANT:
+           BALANCE IS NOT UPDATED HERE
+        ========================================= */
+
 
         alert(
-            "Unable to load your SkyRent account. Please try again."
+            "Deposit submitted successfully!\n\n" +
+            "Status: Pending Approval\n\n" +
+            "Your balance will be updated after your deposit is approved."
         );
 
-    }
-
-}
-
-
-/* =====================================================
-   AUTHENTICATION CHECK
-===================================================== */
-
-onAuthStateChanged(
-    auth,
-    async function(user){
-
-        if(!user){
-
-            /*
-             User is not logged in.
-             Send them back to index.html.
-            */
-
-            window.location.href =
-                "index.html";
-
-            return;
-
-        }
-
-
-        /*
-         User is authenticated.
-         Load Firestore account.
-        */
-
-        await loadUserDashboard(user);
-
-
-        /*
-         Hide loading screen.
-        */
-
-        const loadingScreen =
-            document.getElementById(
-                "loadingScreen"
-            );
-
-        if(loadingScreen){
-
-            loadingScreen.style.display =
-                "none";
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-window.logout = async function(){
-
-    try{
-
-        await signOut(auth);
 
         window.location.href =
-            "index.html";
+            "dashboard.html";
 
     }
-    catch(error){
+
+    catch (error) {
 
         console.error(
-            "Logout error:",
+            "Deposit error:",
             error
         );
 
+
+        submitBtn.disabled =
+            false;
+
+
+        submitBtn.innerText =
+            "I Have Completed Payment";
+
+
         alert(
-            "Unable to logout. Please try again."
+            "Deposit submission failed.\n\n" +
+            "Please try again."
         );
 
     }
@@ -1956,7 +1431,8 @@ window.logout = async function(){
    NAVIGATION
 ===================================================== */
 
-window.goHome = function(){
+window.goHome =
+function() {
 
     window.location.href =
         "dashboard.html";
@@ -1964,7 +1440,8 @@ window.goHome = function(){
 };
 
 
-window.goCrafts = function(){
+window.goCrafts =
+function() {
 
     window.location.href =
         "crafts.html";
@@ -1972,23 +1449,8 @@ window.goCrafts = function(){
 };
 
 
-window.goMyInvestment = function(){
-
-    window.location.href =
-        "my-aircraft.html";
-
-};
-
-
-window.goTransactions = function(){
-
-    window.location.href =
-        "transactions.html";
-
-};
-
-
-window.goNetwork = function(){
+window.goNetwork =
+function() {
 
     window.location.href =
         "network.html";
@@ -1996,7 +1458,8 @@ window.goNetwork = function(){
 };
 
 
-window.goEarnings = function(){
+window.goEarnings =
+function() {
 
     window.location.href =
         "earnings.html";
@@ -2004,48 +1467,40 @@ window.goEarnings = function(){
 };
 
 
-window.goProfile = function(){
+/* =====================================================
+   LOGOUT
+===================================================== */
 
-    window.location.href =
-        "profile.html";
+window.logout =
+async function() {
 
-};
+    try {
 
-
-window.goGiftCodes = function(){
-
-    window.location.href =
-        "gift-codes.html";
-
-};
+        await signOut(auth);
 
 
-window.goCustomerService = function(){
+        window.location.href =
+            "index.html";
 
-    window.location.href =
-        "customer-service.html";
+    }
 
-};
+    catch (error) {
 
-
-window.deposit = function(){
-
-    window.location.href =
-        "deposit.html";
-
-};
+        console.error(
+            "Logout error:",
+            error
+        );
 
 
-window.withdraw = function(){
+        alert(
+            "Logout failed. Please try again."
+        );
 
-    window.location.href =
-        "withdrawal.html";
+    }
 
 };
 
 </script>
 
-
 </body>
-
 </html>
