@@ -1,1 +1,1043 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkyRent - Deposit Payment</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        
+        /* OR DIVIDER */
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 10px 0 20px;
+    color: #888;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #dce3eb;
+}
+
+.or-divider span {
+    padding: 0 8px;
+}
+        
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f8fc;
+            color: #172b4d;
+        }
+
+        .payment-page {
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+
+        /* TOP HEADER */
+
+        .payment-header {
+            background:
+                linear-gradient(
+                    rgba(0, 91, 170, 0.85),
+                    rgba(0, 45, 90, 0.90)
+                ),
+                url("images/skybg.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+            padding: 25px 20px 35px;
+
+            border-radius: 0 0 28px 28px;
+        }
+
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+
+            background: rgba(255,255,255,0.18);
+            color: white;
+
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .header-title {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .header-space {
+            width: 40px;
+        }
+
+        .header-text {
+            margin-top: 25px;
+        }
+
+        .header-text small {
+            opacity: 0.85;
+        }
+
+        .header-text h1 {
+            margin: 5px 0 0;
+            font-size: 28px;
+        }
+
+
+        /* CONTENT */
+
+        .payment-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 18px;
+        }
+
+
+        /* AMOUNT CARD */
+
+        .amount-card {
+            background: white;
+            border-radius: 20px;
+
+            padding: 22px;
+
+            margin-top: -25px;
+
+            position: relative;
+
+            box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+
+            text-align: center;
+        }
+
+        .amount-label {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .amount {
+            margin-top: 7px;
+
+            font-size: 34px;
+            font-weight: bold;
+
+            color: #0879d1;
+        }
+
+
+        /* PAYMENT CARD */
+
+        .payment-card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 22px;
+
+            margin-top: 16px;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .payment-card h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .payment-description {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* QR */
+
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 15px;
+        }
+
+        .qr {
+            width: 250px;
+            height: 250px;
+
+            max-width: 100%;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+
+            border: 1px solid #e1e7ef;
+
+            background: white;
+        }
+
+
+        /* INSTRUCTIONS */
+
+        .instruction-box {
+            margin-top: 20px;
+
+            background: #f0f7ff;
+
+            border-radius: 14px;
+
+            padding: 16px;
+
+            border-left: 4px solid #0879d1;
+        }
+
+        .instruction-box h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+
+            font-size: 16px;
+        }
+
+        .instruction-box p {
+            margin: 7px 0;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        /* CONFIRM BUTTON */
+
+        .confirm-btn {
+            width: 100%;
+
+            height: 52px;
+
+            margin-top: 20px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background: #0879d1;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .confirm-btn:active {
+            transform: scale(0.98);
+        }
+
+
+        /* CANCEL BUTTON */
+
+        .cancel-btn {
+            width: 100%;
+
+            height: 48px;
+
+            margin-top: 10px;
+
+            border: 1px solid #d8e0ea;
+
+            border-radius: 13px;
+
+            background: white;
+
+            color: #555;
+
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+
+        /* BOTTOM NAV */
+
+        .bottom-nav {
+            position: fixed;
+
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            height: 70px;
+
+            background: white;
+
+            border-top: 1px solid #e5e9ef;
+
+            display: flex;
+
+            justify-content: space-around;
+            align-items: center;
+
+            z-index: 1000;
+        }
+
+        .nav-item {
+            background: none;
+
+            color: #777;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            cursor: pointer;
+        }
+
+        .nav-item .nav-icon {
+            display: block;
+
+            font-size: 21px;
+
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: #0879d1;
+
+            font-weight: bold;
+        }
+
+
+        /* ERROR */
+
+        .error-box {
+            display: none;
+
+            background: #fff1f1;
+
+            color: #c62828;
+
+            border: 1px solid #ffcaca;
+
+            border-radius: 12px;
+
+            padding: 15px;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+        }
+
+
+
+
+/* =========================================
+   SKYRENT MOBILE BOTTOM NAVIGATION
+========================================= */
+
+.sky-bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 72px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e7edf3;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 5px 6px;
+
+    box-sizing: border-box;
+
+    z-index: 99999;
+
+    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+/* EACH NAV BUTTON */
+
+.sky-nav-item {
+    appearance: none;
+    -webkit-appearance: none;
+
+    border: 0 !important;
+    outline: none;
+
+    background: transparent !important;
+
+    box-shadow: none !important;
+
+    flex: 1;
+
+    height: 62px;
+
+    max-width: 100px;
+
+    padding: 5px 2px;
+
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    color: #8b949e;
+
+    font-family: Arial, sans-serif;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+
+    transition: 0.2s ease;
+}
+
+
+/* ICON */
+
+.sky-nav-icon {
+    width: 36px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    border-radius: 10px;
+
+    transition: 0.2s ease;
+}
+
+
+/* TEXT */
+
+.sky-nav-label {
+    font-size: 10px;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    font-weight: 500;
+}
+
+
+/* ACTIVE */
+
+.sky-nav-item.active {
+    color: #0879d1;
+}
+
+
+/* ACTIVE ICON */
+
+.sky-nav-item.active .sky-nav-icon {
+    background: #e9f5ff;
+
+    color: #0879d1;
+}
+
+
+/* TOUCH EFFECT */
+
+.sky-nav-item:active {
+    transform: scale(0.94);
+
+    background: #f5f9fc !important;
+}
+
+
+/* REMOVE DEFAULT FOCUS BORDER */
+
+.sky-nav-item:focus {
+    outline: none !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+}
+
+
+/* EXTRA SPACE SO CONTENT IS NOT HIDDEN */
+
+.payment-page {
+    padding-bottom: 95px;
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+    .sky-bottom-nav {
+        height: 68px;
+        padding: 4px 2px;
+    }
+
+    .sky-nav-item {
+        height: 60px;
+    }
+
+    .sky-nav-icon {
+        font-size: 20px;
+        width: 32px;
+        height: 28px;
+    }
+
+    .sky-nav-label {
+        font-size: 9px;
+    }
+}
+
+
+
+
+
+
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="payment-page">
+
+
+    <!-- HEADER -->
+
+    <div class="payment-header">
+
+        <div class="header-row">
+
+            <button
+                class="back-btn"
+                onclick="goBack()"
+            >
+                ←
+            </button>
+
+            <div class="header-title">
+                SkyRent
+            </div>
+
+            <div class="header-space"></div>
+
+        </div>
+
+
+        <div class="header-text">
+
+            <small>Secure Payment</small>
+
+            <h1>Deposit Payment</h1>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CONTENT -->
+
+    <div class="payment-container">
+
+
+        <!-- AMOUNT -->
+
+        <div class="amount-card">
+
+            <div class="amount-label">
+                Deposit Amount
+            </div>
+
+            <div
+                class="amount"
+                id="depositAmount"
+            >
+                ₱0
+            </div>
+
+        </div>
+
+
+
+        <!-- PAYMENT -->
+
+        <div class="payment-card">
+
+            <h2>
+                Scan to Pay
+            </h2>
+
+            <p class="payment-description">
+                Scan the QR code below using your GCash/Maya
+                or supported payment application.
+            </p>
+
+
+           <!-- QR CODE -->
+
+<div class="qr-container">
+    <img
+        id="qrImage"
+        class="qr"
+        src=""
+        alt="Payment QR Code"
+    >
+</div>
+
+
+<!-- OR -->
+
+<div class="or-divider">
+    <span>OR</span>
+</div>
+
+
+<!-- PAYMENT INSTRUCTIONS -->
+
+<div class="instruction-box">
+
+    <h3>
+        Payment Instructions
+    </h3>
+
+    <p>
+        You may also complete your payment manually.
+    </p>
+
+    <p>
+        1. Open your GCash/Maya application.
+    </p>
+
+    <p>
+        2. Send exactly
+        <strong id="instructionAmount">
+            ₱0
+        </strong>.
+    </p>
+
+    <p>
+        3. Complete the payment.
+    </p>
+
+    <p>
+        4. Click the button below after payment.
+    </p>
+
+</div>
+
+
+            <!-- ERROR -->
+
+            <div
+                id="errorBox"
+                class="error-box"
+            >
+                Payment information could not be loaded.
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                class="confirm-btn"
+                onclick="submitDeposit()"
+            >
+                I Have Completed Payment
+            </button>
+
+
+            <button
+                class="cancel-btn"
+                onclick="goBack()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- BOTTOM NAV -->
+
+<!-- SKYRENT BOTTOM NAVIGATION -->
+
+<nav class="sky-bottom-nav">
+
+    <button class="sky-nav-item active" onclick="goHome()">
+        <span class="sky-nav-icon">⌂</span>
+        <span class="sky-nav-label">Home</span>
+    </button>
+
+    <button class="sky-nav-item" onclick="goCrafts()">
+        <span class="sky-nav-icon">✈</span>
+        <span class="sky-nav-label">Crafts</span>
+    </button>
+
+    <button class="sky-nav-item" onclick="goNetwork()">
+        <span class="sky-nav-icon">👥</span>
+        <span class="sky-nav-label">Network</span>
+    </button>
+
+    <button class="sky-nav-item" onclick="goEarnings()">
+        <span class="sky-nav-icon">💰</span>
+        <span class="sky-nav-label">Earnings</span>
+    </button>
+
+    <button class="sky-nav-item" onclick="logout()">
+        <span class="sky-nav-icon">↪</span>
+        <span class="sky-nav-label">Logout</span>
+    </button>
+
+</nav>
+
+<script>
+
+/* ================================
+   LOAD SELECTED DEPOSIT
+================================ */
+
+const savedAmount =
+    localStorage.getItem("selectedDepositAmount");
+
+
+if (!savedAmount) {
+
+    document.getElementById("errorBox").style.display =
+        "block";
+
+    document.getElementById("errorBox").innerText =
+        "Please select a deposit amount first.";
+
+} else {
+
+    const amount = Number(savedAmount);
+
+
+    /* FORMAT AMOUNT */
+
+    const formattedAmount =
+        "₱" + amount.toLocaleString();
+
+
+    document.getElementById("depositAmount").innerText =
+        formattedAmount;
+
+
+    document.getElementById("instructionAmount").innerText =
+        formattedAmount;
+
+
+
+    /* ================================
+       QR CODE ASSIGNMENT
+    ================================= */
+
+    const qrCodes = {
+
+        500:
+            "images/qr1.png",
+
+        800:
+            "images/qr2.png",
+
+        1500:
+            "images/qr3.png",
+
+        3000:
+            "images/qr4.png",
+
+        5000:
+            "images/qr5.png",
+
+        10000:
+            "images/qr6.png",
+
+        15000:
+            "images/qr7.png",
+
+        25000:
+            "images/qr8.png",
+
+        50000:
+            "images/qr9.png"
+
+    };
+
+
+    const qrImage =
+        document.getElementById("qrImage");
+
+
+    if (qrCodes[amount]) {
+
+        qrImage.src =
+            qrCodes[amount];
+
+    } else {
+
+        document.getElementById("errorBox").style.display =
+            "block";
+
+        document.getElementById("errorBox").innerText =
+            "QR code for this deposit amount was not found.";
+
+    }
+
+}
+
+
+
+/* ================================
+   SUBMIT DEPOSIT
+================================ */
+
+function submitDeposit() {
+
+    const savedAmount =
+        localStorage.getItem("selectedDepositAmount");
+
+    if (!savedAmount) {
+        alert("No deposit amount selected.");
+        window.location.href = "deposit.html";
+        return;
+    }
+
+    const amount = Number(savedAmount);
+
+
+    /* GET LOGGED-IN USER */
+
+    const savedUser =
+        localStorage.getItem("skyrentUser");
+
+    if (!savedUser) {
+
+        alert("Please login first.");
+
+        window.location.href =
+            "index.html";
+
+        return;
+    }
+
+
+    let user;
+
+    try {
+
+        user = JSON.parse(savedUser);
+
+    } catch (error) {
+
+        alert("User information is invalid.");
+
+        window.location.href =
+            "index.html";
+
+        return;
+    }
+
+
+    if (!user.phone) {
+
+        alert("User phone number not found.");
+
+        return;
+    }
+
+
+    /* ============================
+       CREATE DEPOSIT RECORD
+    ============================ */
+
+    const deposit = {
+
+        id: "DEP-" + Date.now(),
+
+        amount: amount,
+
+        phone: user.phone,
+
+        userName: user.name || "User",
+
+        status: "Pending Approval",
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    /* ============================
+       SAVE USING LOGIN PHONE
+    ============================ */
+
+    localStorage.setItem(
+        "deposit_" + user.phone,
+        JSON.stringify(deposit)
+    );
+
+
+    /* SAVE FOR TRANSACTION PAGE */
+
+   const depositKey = "deposits_" + user.phone;
+
+let deposits = [];
+
+const existingDeposits = localStorage.getItem(depositKey);
+
+if (existingDeposits) {
+    try {
+        deposits = JSON.parse(existingDeposits);
+
+        if (!Array.isArray(deposits)) {
+            deposits = [];
+        }
+
+    } catch (error) {
+        deposits = [];
+    }
+}
+
+deposits.push(deposit);
+
+localStorage.setItem(
+    depositKey,
+    JSON.stringify(deposits)
+);
+
+
+    /* REMOVE SELECTED AMOUNT */
+
+    localStorage.removeItem(
+        "selectedDepositAmount"
+    );
+
+
+    alert(
+        "Deposit submitted successfully!\n\nYour deposit is now waiting for approval."
+    );
+
+
+    /* GO TO TRANSACTION PAGE */
+
+    window.location.href =
+        "transactions.html";
+}
+
+
+/* ================================
+   NAVIGATION
+================================ */
+
+function goHome() {
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+function goCrafts() {
+
+    window.location.href =
+        "crafts.html";
+
+}
+
+
+function goNetwork() {
+
+    window.location.href =
+        "network.html";
+
+}
+
+
+function goEarnings() {
+
+    window.location.href =
+        "earnings.html";
+
+}
+
+
+function goBack() {
+
+    window.location.href =
+        "deposit.html";
+
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+function logout() {
+
+    localStorage.removeItem("username");
+
+    window.location.href =
+        "index.html";
+
+}
+
+</script>
+
+</body>
+</html>
