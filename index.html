@@ -920,6 +920,19 @@ placeholder="9XXXXXXXXX">
 </div>
 
 
+<div class="input-box">
+
+<label>
+Referral Code (Optional)
+</label>
+
+<input
+type="text"
+id="referralCode"
+placeholder="Enter referral code">
+
+</div>
+
 
 
 <div class="input-box">
@@ -1008,6 +1021,9 @@ Dream • Save • Fly • Earn
 
 
 <script>
+
+
+
 
 
 function showLogin(){
@@ -1115,6 +1131,25 @@ icon.innerHTML="👁";
 
 }
 
+// AUTO FILL REFERRAL CODE FROM LINK
+// Example: yoursite.com/?ref=ABC123
+
+window.onload = function(){
+
+    const params = new URLSearchParams(window.location.search);
+
+    const referral = params.get("ref");
+
+    if(referral){
+
+        document.getElementById("referralCode").value =
+        referral.toUpperCase();
+
+    }
+
+};
+
+
 
 </script>
 
@@ -1122,4 +1157,3 @@ icon.innerHTML="👁";
 </body>
 
 </html>
-
