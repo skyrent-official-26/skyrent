@@ -11,6 +11,33 @@
 
 <style>
 
+
+/* LOADING SPINNER */
+
+.spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(6,43,120,.25);
+    border-top-color: #062b78;
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.btn.loading {
+    opacity: .8;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 *{
     margin:0;
     padding:0;
@@ -25,7 +52,7 @@ body{
     Arial,
     sans-serif;
 
-    min-height:100vh;
+    micn-height:100vh;
 
     background:
     radial-gradient(
@@ -1384,93 +1411,138 @@ setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-document.getElementById("registerBtn").addEventListener("click", async()=>{
+document.getElementById("registerBtn").addEventListener("click", async () => {
 
-const name = document.getElementById("registerName").value;
+    const btn = document.getElementById("registerBtn");
 
-const phone = document.getElementById("registerPhone").value;
+    const name =
+        document.getElementById("registerName").value.trim();
 
-const password = document.getElementById("registerPassword").value;
+    const phone =
+        document.getElementById("registerPhone").value.trim();
 
-const referral = document.getElementById("referralCode").value;
+    const password =
+        document.getElementById("registerPassword").value;
 
-
-if(!name || !phone || !password){
-
-alert("Please complete all required fields");
-
-return;
-
-}
+    const referral =
+        document.getElementById("referralCode").value.trim().toUpperCase();
 
 
-try{
+    if (!name || !phone || !password) {
+
+        alert("Please complete all required fields.");
+
+        return;
+
+    }
 
 
-// Firebase requires email, so we create a hidden email from phone
+    /* START LOADING */
 
-const email = phone + "@skyrent.com";
+    btn.classList.add("loading");
+btn.disabled = true;
 
-
-const userCredential = await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-
-const user = userCredential.user;
+btn.innerHTML = `
+    <span class="spinner"></span>
+    CREATING ACCOUNT...
+`;
 
 
-// Save user data
+    try {
 
-await setDoc(doc(db,"users",user.uid),{
+        const email = phone + "@skyrent.com";
 
-name:name,
 
-phone:"+63"+phone,
+        /* CREATE FIREBASE ACCOUNT */
 
-referralCode:referral,
+        const userCredential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-bonus:50,
 
-balance:50,
+        const user = userCredential.user;
 
-createdAt:new Date()
+
+        /* SAVE USER TO FIRESTORE */
+
+        await setDoc(
+            doc(db, "users", user.uid),
+            {
+                name: name,
+                phone: "+63" + phone,
+                referralCode: referral,
+                bonus: 50,
+                balance: 50,
+                createdAt: new Date()
+            }
+        );
+
+
+        console.log("Registration complete");
+
+
+        /* RESTORE BUTTON */
+
+        btn.classList.remove("loading");
+
+        btn.disabled = false;
+
+        btn.innerHTML = "✈ CREATE ACCOUNT";
+
+
+        /* SHOW SUCCESS */
+
+        showSuccessAlert();
+
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+
+        /* RESTORE BUTTON */
+
+        btn.classList.remove("loading");
+
+        btn.disabled = false;
+
+        btn.innerHTML = "✈ CREATE ACCOUNT";
+
+
+        if (error.code === "auth/email-already-in-use") {
+
+            alert(
+                "This phone number is already registered. " +
+                "Please login or use another number."
+            );
+
+        }
+
+        else if (error.code === "auth/weak-password") {
+
+            alert(
+                "Password is too weak. " +
+                "Please use at least 6 characters."
+            );
+
+        }
+
+        else {
+
+            alert(
+                "Registration failed. Please try again."
+            );
+
+        }
+
+    }
 
 });
-
-console.log("Firestore user saved");
-
-showSuccessAlert();
-
-}
-
-catch(error){
-
-if(error.code === "auth/email-already-in-use"){
-
-alert("This phone number is already registered. Please login or use another number.");
-
-}
-
-else if(error.code === "auth/weak-password"){
-
-alert("Password is too weak. Please use at least 6 characters.");
-
-}
-
-else{
-
-alert("Registration failed. Please try again.");
-
-}
-
-}
-
-
-});
-
 
 
 console.log("Firebase Connected");
