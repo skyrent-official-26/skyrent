@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>SkyRent Dashboard</title>
 
@@ -16,21 +16,117 @@
    RESET
 ===================================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f3f7fc;
-    color: #172033;
-    padding-bottom: 95px;
+body{
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+    background:#f3f7fc;
+
+    color:#172033;
+
+    padding-bottom:95px;
+
+    overflow-x:hidden;
+}
+
+
+/* =====================================================
+   LOADING SCREEN
+===================================================== */
+
+.loading-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        #052b78,
+        #0074d9,
+        #7edfff
+    );
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:99999;
+
+    color:white;
+
+    text-align:center;
+}
+
+.loading-logo{
+
+    width:180px;
+
+    max-width:70%;
+
+    height:auto;
+
+    object-fit:contain;
+
+    margin-bottom:25px;
+
+    filter:
+    drop-shadow(
+        0 5px 12px rgba(0,0,0,.25)
+    );
+}
+
+.loading-spinner{
+
+    width:42px;
+
+    height:42px;
+
+    border:
+    4px solid
+    rgba(255,255,255,.3);
+
+    border-top-color:white;
+
+    border-radius:50%;
+
+    animation:
+    loadingSpin .8s linear infinite;
+
+    margin-bottom:15px;
+}
+
+@keyframes loadingSpin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.loading-screen p{
+
+    font-size:14px;
+
+    opacity:.9;
 }
 
 
@@ -38,65 +134,70 @@ body {
    HERO
 ===================================================== */
 
-.hero {
-    position: relative;
+.hero{
 
-    height: 275px;
+    position:relative;
+
+    height:275px;
 
     background-image:
+
         linear-gradient(
             rgba(0,65,150,.18),
             rgba(0,65,150,.38)
         ),
+
         url("skybg.jpg");
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size:cover;
 
-    border-bottom-left-radius: 35px;
-    border-bottom-right-radius: 35px;
+    background-position:center;
 
-    overflow: hidden;
+    background-repeat:no-repeat;
+
+    border-bottom-left-radius:35px;
+
+    border-bottom-right-radius:35px;
+
+    overflow:hidden;
 }
 
+.hero::after{
 
-/* Decorative airplane */
+    content:"✈";
 
-.hero::after {
-    content: "✈";
+    position:absolute;
 
-    position: absolute;
+    right:18px;
 
-    right: 18px;
-    bottom: 25px;
+    bottom:25px;
 
-    font-size: 70px;
+    font-size:70px;
 
-    color: rgba(255,255,255,.30);
+    color:
+    rgba(255,255,255,.30);
 
-    transform: rotate(-10deg);
-
-    pointer-events: none;
+    transform:rotate(-10deg);
 }
 
 
 /* =====================================================
-   TOP BAR
+   HEADER
 ===================================================== */
 
-.topbar {
-    position: relative;
+.topbar{
 
-    z-index: 5;
+    position:relative;
 
-    display: flex;
+    z-index:5;
 
-    align-items: center;
+    display:flex;
 
-    justify-content: space-between;
+    align-items:center;
 
-    padding: 22px 20px;
+    justify-content:space-between;
+
+    padding:22px 20px;
 }
 
 
@@ -104,18 +205,20 @@ body {
    LOGO
 ===================================================== */
 
-.logo-img {
-    width: 145px;
-    height: auto;
+.logo-img{
 
-    display: block;
+    width:145px;
 
-    object-fit: contain;
+    height:auto;
+
+    display:block;
+
+    object-fit:contain;
 
     filter:
-        drop-shadow(
-            0 2px 5px rgba(0,0,0,.20)
-        );
+    drop-shadow(
+        0 2px 5px rgba(0,0,0,.20)
+    );
 }
 
 
@@ -123,38 +226,43 @@ body {
    WELCOME
 ===================================================== */
 
-.welcome {
-    position: relative;
+.welcome{
 
-    z-index: 5;
+    position:relative;
 
-    padding: 18px 22px;
+    z-index:5;
 
-    color: white;
+    padding:18px 22px;
+
+    color:white;
 }
 
-.welcome small {
-    font-size: 14px;
-    opacity: .9;
+.welcome small{
+
+    font-size:14px;
+
+    opacity:.9;
 }
 
-.welcome h1 {
-    margin-top: 6px;
+.welcome h1{
 
-    font-size: 29px;
+    margin-top:6px;
 
-    font-weight: 900;
+    font-size:29px;
+
+    font-weight:900;
 
     text-shadow:
-        0 2px 6px rgba(0,0,0,.25);
+    0 2px 6px rgba(0,0,0,.25);
 }
 
-.welcome p {
-    margin-top: 8px;
+.welcome p{
 
-    font-size: 13px;
+    margin-top:8px;
 
-    opacity: .92;
+    font-size:13px;
+
+    opacity:.92;
 }
 
 
@@ -162,16 +270,17 @@ body {
    MAIN CONTAINER
 ===================================================== */
 
-.container {
-    width: 92%;
+.container{
 
-    max-width: 520px;
+    width:92%;
 
-    margin: -55px auto 0;
+    max-width:520px;
 
-    position: relative;
+    margin:-55px auto 0;
 
-    z-index: 10;
+    position:relative;
+
+    z-index:10;
 }
 
 
@@ -179,70 +288,78 @@ body {
    BALANCE CARD
 ===================================================== */
 
-.balance-card {
-    background: white;
+.balance-card{
 
-    border-radius: 25px;
+    background:white;
 
-    padding: 23px 20px;
+    border-radius:25px;
+
+    padding:23px 20px;
 
     box-shadow:
-        0 12px 30px rgba(20,65,120,.13);
+    0 12px 30px
+    rgba(20,65,120,.13);
 }
 
-.balance-top {
-    display: flex;
+.balance-top{
 
-    justify-content: space-between;
+    display:flex;
 
-    align-items: flex-start;
+    justify-content:space-between;
+
+    align-items:flex-start;
 }
 
-.balance-title {
-    color: #7a8494;
+.balance-title{
 
-    font-size: 13px;
+    color:#7a8494;
 
-    font-weight: 600;
+    font-size:13px;
+
+    font-weight:600;
 }
 
-.balance-label {
-    margin-top: 3px;
+.balance-label{
 
-    font-size: 12px;
+    margin-top:3px;
 
-    color: #a0a7b2;
+    font-size:12px;
+
+    color:#a0a7b2;
 }
 
-#accountBalance {
-    margin-top: 7px;
+#accountBalance{
 
-    color: #0757c9;
+    margin-top:7px;
 
-    font-size: 39px;
+    color:#0757c9;
 
-    line-height: 1.1;
+    font-size:39px;
 
-    font-weight: 900;
+    line-height:1.1;
 
-    letter-spacing: -.7px;
+    font-weight:900;
+
+    letter-spacing:-.7px;
 }
 
-.balance-icon {
-    width: 46px;
-    height: 46px;
+.balance-icon{
 
-    border-radius: 14px;
+    width:46px;
 
-    background: #eaf2ff;
+    height:46px;
 
-    display: flex;
+    border-radius:14px;
 
-    align-items: center;
+    background:#eaf2ff;
 
-    justify-content: center;
+    display:flex;
 
-    font-size: 23px;
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:23px;
 }
 
 
@@ -250,49 +367,48 @@ body {
    BALANCE BUTTONS
 ===================================================== */
 
-.balance-actions {
-    display: grid;
+.balance-actions{
 
-    grid-template-columns: 1fr 1fr;
+    display:grid;
 
-    gap: 10px;
+    grid-template-columns:1fr 1fr;
 
-    margin-top: 20px;
+    gap:10px;
+
+    margin-top:20px;
 }
 
-.balance-actions button {
-    border: none;
+.balance-actions button{
 
-    padding: 13px 10px;
+    border:none;
 
-    border-radius: 13px;
+    padding:13px 10px;
 
-    font-size: 14px;
+    border-radius:13px;
 
-    font-weight: bold;
+    font-size:14px;
 
-    cursor: pointer;
+    font-weight:bold;
 
-    transition: .2s;
+    cursor:pointer;
 }
 
-.balance-actions button:active {
-    transform: scale(.97);
-}
+.deposit-btn{
 
-.deposit-btn {
-    background: #0757c9;
+    background:#0757c9;
 
-    color: white;
+    color:white;
 
     box-shadow:
-        0 5px 12px rgba(7,87,201,.22);
+    0 5px 12px
+    rgba(7,87,201,.22);
 }
 
-.withdraw-btn {
-    background: #edf4ff;
+.withdraw-btn{
 
-    color: #0757c9;
+    background:#edf4ff;
+
+    color:#0757c9;
 }
 
 
@@ -300,83 +416,90 @@ body {
    STATISTICS
 ===================================================== */
 
-.stats {
-    display: grid;
+.stats{
+
+    display:grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+    repeat(3,1fr);
 
-    gap: 9px;
+    gap:9px;
 
-    margin-top: 13px;
+    margin-top:13px;
 }
 
-.stat {
-    background: white;
+.stat{
 
-    border-radius: 17px;
+    background:white;
 
-    padding: 14px 7px;
+    border-radius:17px;
 
-    text-align: center;
+    padding:14px 7px;
+
+    text-align:center;
 
     box-shadow:
-        0 5px 18px rgba(30,70,120,.07);
+    0 5px 18px
+    rgba(30,70,120,.07);
 }
 
-.stat-icon {
-    font-size: 18px;
+.stat-icon{
 
-    margin-bottom: 5px;
+    font-size:18px;
+
+    margin-bottom:5px;
 }
 
-.stat p {
-    color: #858d99;
+.stat p{
 
-    font-size: 10px;
+    color:#858d99;
 
-    margin-bottom: 5px;
+    font-size:10px;
+
+    margin-bottom:5px;
 }
 
-.stat b {
-    color: #0757c9;
+.stat b{
 
-    font-size: 13px;
+    color:#0757c9;
 
-    font-weight: 800;
+    font-size:13px;
 
-    word-break: break-word;
+    font-weight:800;
+
+    word-break:break-word;
 }
 
 
 /* =====================================================
-   SECTION HEADER
+   SECTION TITLE
 ===================================================== */
 
-.section-header {
-    display: flex;
+.section-header{
 
-    align-items: center;
+    display:flex;
 
-    justify-content: space-between;
+    align-items:center;
 
-    margin: 24px 3px 11px;
+    justify-content:space-between;
+
+    margin:24px 3px 11px;
 }
 
-.section-header h2 {
-    font-size: 19px;
+.section-header h2{
 
-    font-weight: 900;
+    font-size:19px;
+
+    font-weight:900;
 }
 
-.section-header span {
-    font-size: 11px;
+.section-header span{
 
-    color: #0757c9;
+    font-size:11px;
 
-    font-weight: bold;
+    color:#0757c9;
 
-    cursor: pointer;
+    font-weight:bold;
 }
 
 
@@ -384,102 +507,108 @@ body {
    INVESTMENT CARD
 ===================================================== */
 
-.investment-card {
-    position: relative;
+.investment-card{
+
+    position:relative;
 
     background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #f5f9ff
-        );
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #f5f9ff
+    );
 
-    border-radius: 22px;
+    border-radius:22px;
 
-    padding: 19px;
+    padding:19px;
 
     box-shadow:
-        0 7px 22px rgba(30,70,120,.08);
+    0 7px 22px
+    rgba(30,70,120,.08);
 
-    cursor: pointer;
+    cursor:pointer;
 
-    overflow: hidden;
-
-    transition: .2s;
+    overflow:hidden;
 }
 
-.investment-card:active {
-    transform: scale(.98);
+.investment-card::after{
+
+    content:"✈";
+
+    position:absolute;
+
+    right:-10px;
+
+    bottom:-20px;
+
+    font-size:95px;
+
+    color:
+    rgba(7,87,201,.05);
+
+    transform:rotate(-12deg);
 }
 
-.investment-card::after {
-    content: "✈";
+.investment-row{
 
-    position: absolute;
+    position:relative;
 
-    right: -10px;
-    bottom: -20px;
+    z-index:2;
 
-    font-size: 95px;
+    display:flex;
 
-    color: rgba(7,87,201,.05);
-
-    transform: rotate(-12deg);
+    align-items:center;
 }
 
-.investment-row {
-    position: relative;
+.investment-icon{
 
-    z-index: 2;
+    width:57px;
 
-    display: flex;
+    height:57px;
 
-    align-items: center;
+    border-radius:17px;
+
+    background:#e7f0ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:29px;
 }
 
-.investment-icon {
-    width: 57px;
-    height: 57px;
+.investment-info{
 
-    border-radius: 17px;
+    flex:1;
 
-    background: #e7f0ff;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 29px;
+    margin-left:13px;
 }
 
-.investment-info {
-    flex: 1;
+.investment-info h3{
 
-    margin-left: 13px;
+    font-size:16px;
+
+    margin-bottom:5px;
 }
 
-.investment-info h3 {
-    font-size: 16px;
+.investment-info p{
 
-    margin-bottom: 5px;
+    color:#7b8490;
+
+    font-size:12px;
+
+    line-height:1.4;
 }
 
-.investment-info p {
-    color: #7b8490;
+.investment-arrow{
 
-    font-size: 12px;
+    color:#0757c9;
 
-    line-height: 1.4;
-}
+    font-size:29px;
 
-.investment-arrow {
-    color: #0757c9;
-
-    font-size: 29px;
-
-    font-weight: 300;
+    font-weight:300;
 }
 
 
@@ -487,46 +616,50 @@ body {
    QUICK ACTIONS
 ===================================================== */
 
-.quick-list {
-    display: flex;
+.quick-list{
 
-    flex-direction: column;
+    display:flex;
 
-    gap: 9px;
+    flex-direction:column;
+
+    gap:9px;
 }
 
 
 /* =====================================================
-   QUICK ITEM
+   BASE LIST ITEM
 ===================================================== */
 
-.quick-list-item {
-    width: 100%;
+.quick-list-item{
 
-    border: none;
+    width:100%;
 
-    border-radius: 17px;
+    border:none;
 
-    padding: 13px 14px;
+    border-radius:17px;
 
-    display: flex;
+    padding:13px 14px;
 
-    align-items: center;
+    display:flex;
 
-    text-align: left;
+    align-items:center;
 
-    cursor: pointer;
+    text-align:left;
+
+    cursor:pointer;
 
     box-shadow:
-        0 5px 18px rgba(30,70,120,.07);
+    0 5px 18px
+    rgba(30,70,120,.07);
 
     transition:
-        transform .2s ease,
-        box-shadow .2s ease;
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
-.quick-list-item:active {
-    transform: scale(.98);
+.quick-list-item:active{
+
+    transform:scale(.98);
 }
 
 
@@ -534,23 +667,26 @@ body {
    CRAFTS
 ===================================================== */
 
-.quick-crafts {
+.quick-crafts{
+
     background:
-        linear-gradient(
-            135deg,
-            #e8f2ff,
-            #dcecff
-        );
+    linear-gradient(
+        135deg,
+        #e8f2ff,
+        #dcecff
+    );
 }
 
-.quick-crafts .quick-list-icon {
-    background: #c9ddff;
+.quick-crafts .quick-list-icon{
 
-    color: #0757c9;
+    background:#c9ddff;
+
+    color:#0757c9;
 }
 
-.quick-crafts .quick-list-arrow {
-    color: #0757c9;
+.quick-crafts .quick-list-arrow{
+
+    color:#0757c9;
 }
 
 
@@ -558,23 +694,26 @@ body {
    TRANSACTIONS
 ===================================================== */
 
-.quick-transactions {
+.quick-transactions{
+
     background:
-        linear-gradient(
-            135deg,
-            #eef9f3,
-            #ddf3e8
-        );
+    linear-gradient(
+        135deg,
+        #eef9f3,
+        #ddf3e8
+    );
 }
 
-.quick-transactions .quick-list-icon {
-    background: #c9ead8;
+.quick-transactions .quick-list-icon{
 
-    color: #17834d;
+    background:#c9ead8;
+
+    color:#17834d;
 }
 
-.quick-transactions .quick-list-arrow {
-    color: #17834d;
+.quick-transactions .quick-list-arrow{
+
+    color:#17834d;
 }
 
 
@@ -582,23 +721,26 @@ body {
    PROFILE
 ===================================================== */
 
-.quick-profile {
+.quick-profile{
+
     background:
-        linear-gradient(
-            135deg,
-            #f3edff,
-            #e8ddff
-        );
+    linear-gradient(
+        135deg,
+        #f3edff,
+        #e8ddff
+    );
 }
 
-.quick-profile .quick-list-icon {
-    background: #daccf7;
+.quick-profile .quick-list-icon{
 
-    color: #7044b8;
+    background:#daccf7;
+
+    color:#7044b8;
 }
 
-.quick-profile .quick-list-arrow {
-    color: #7044b8;
+.quick-profile .quick-list-arrow{
+
+    color:#7044b8;
 }
 
 
@@ -606,23 +748,26 @@ body {
    GIFT CODES
 ===================================================== */
 
-.quick-gift {
+.quick-gift{
+
     background:
-        linear-gradient(
-            135deg,
-            #fff1f5,
-            #ffe1ea
-        );
+    linear-gradient(
+        135deg,
+        #fff1f5,
+        #ffe1ea
+    );
 }
 
-.quick-gift .quick-list-icon {
-    background: #ffcbd9;
+.quick-gift .quick-list-icon{
 
-    color: #d23f69;
+    background:#ffcbd9;
+
+    color:#d23f69;
 }
 
-.quick-gift .quick-list-arrow {
-    color: #d23f69;
+.quick-gift .quick-list-arrow{
+
+    color:#d23f69;
 }
 
 
@@ -630,23 +775,26 @@ body {
    CUSTOMER SERVICE
 ===================================================== */
 
-.quick-support {
+.quick-support{
+
     background:
-        linear-gradient(
-            135deg,
-            #fff8e8,
-            #ffedc2
-        );
+    linear-gradient(
+        135deg,
+        #fff8e8,
+        #ffedc2
+    );
 }
 
-.quick-support .quick-list-icon {
-    background: #ffe1a0;
+.quick-support .quick-list-icon{
 
-    color: #b87800;
+    background:#ffe1a0;
+
+    color:#b87800;
 }
 
-.quick-support .quick-list-arrow {
-    color: #b87800;
+.quick-support .quick-list-arrow{
+
+    color:#b87800;
 }
 
 
@@ -654,21 +802,23 @@ body {
    QUICK ICON
 ===================================================== */
 
-.quick-list-icon {
-    width: 43px;
-    height: 43px;
+.quick-list-icon{
 
-    flex-shrink: 0;
+    width:43px;
 
-    border-radius: 13px;
+    height:43px;
 
-    display: flex;
+    flex-shrink:0;
 
-    align-items: center;
+    border-radius:13px;
 
-    justify-content: center;
+    display:flex;
 
-    font-size: 21px;
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:21px;
 }
 
 
@@ -676,30 +826,33 @@ body {
    QUICK INFO
 ===================================================== */
 
-.quick-list-info {
-    flex: 1;
+.quick-list-info{
 
-    min-width: 0;
+    flex:1;
 
-    margin-left: 12px;
+    min-width:0;
+
+    margin-left:12px;
 }
 
-.quick-list-info h3 {
-    font-size: 14px;
+.quick-list-info h3{
 
-    font-weight: 800;
+    font-size:14px;
 
-    color: #172033;
+    font-weight:800;
 
-    margin-bottom: 3px;
+    color:#172033;
+
+    margin-bottom:3px;
 }
 
-.quick-list-info p {
-    font-size: 10px;
+.quick-list-info p{
 
-    color: #697386;
+    font-size:10px;
 
-    line-height: 1.3;
+    color:#697386;
+
+    line-height:1.3;
 }
 
 
@@ -707,14 +860,15 @@ body {
    QUICK ARROW
 ===================================================== */
 
-.quick-list-arrow {
-    flex-shrink: 0;
+.quick-list-arrow{
 
-    margin-left: 8px;
+    flex-shrink:0;
 
-    font-size: 25px;
+    margin-left:8px;
 
-    font-weight: 300;
+    font-size:25px;
+
+    font-weight:300;
 }
 
 
@@ -722,50 +876,53 @@ body {
    INFO BANNER
 ===================================================== */
 
-.info-banner {
-    margin-top: 15px;
+.info-banner{
 
-    margin-bottom: 10px;
+    margin-top:15px;
 
     background:
-        linear-gradient(
-            135deg,
-            #0757c9,
-            #1475e8
-        );
+    linear-gradient(
+        135deg,
+        #0757c9,
+        #1475e8
+    );
 
-    border-radius: 19px;
+    border-radius:19px;
 
-    padding: 17px;
+    padding:17px;
 
-    color: white;
+    color:white;
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    gap: 12px;
+    gap:12px;
 
     box-shadow:
-        0 7px 20px rgba(7,87,201,.18);
+    0 7px 20px
+    rgba(7,87,201,.18);
 }
 
-.info-icon {
-    font-size: 28px;
+.info-icon{
+
+    font-size:28px;
 }
 
-.info-banner h3 {
-    font-size: 14px;
+.info-banner h3{
 
-    margin-bottom: 4px;
+    font-size:14px;
+
+    margin-bottom:4px;
 }
 
-.info-banner p {
-    font-size: 11px;
+.info-banner p{
 
-    line-height: 1.4;
+    font-size:11px;
 
-    opacity: .9;
+    line-height:1.4;
+
+    opacity:.9;
 }
 
 
@@ -773,65 +930,69 @@ body {
    BOTTOM NAVIGATION
 ===================================================== */
 
-.bottom-nav {
-    position: fixed;
+.bottom-nav{
 
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position:fixed;
 
-    height: 78px;
+    left:0;
 
-    background: rgba(255,255,255,.97);
+    right:0;
+
+    bottom:0;
+
+    height:78px;
+
+    background:
+    rgba(255,255,255,.97);
 
     border-top:
-        1px solid #e8edf4;
+    1px solid #e8edf4;
 
     box-shadow:
-        0 -5px 20px rgba(20,60,110,.10);
+    0 -5px 20px
+    rgba(20,60,110,.10);
 
-    display: grid;
+    display:grid;
 
     grid-template-columns:
-        repeat(5,1fr);
+    repeat(5,1fr);
 
-    z-index: 9999;
+    z-index:9999;
 
-    backdrop-filter: blur(10px);
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
 }
 
-.nav-item {
-    border: none;
+.nav-item{
 
-    background: transparent;
+    border:none;
 
-    color: #89919d;
+    background:transparent;
 
-    cursor: pointer;
+    color:#89919d;
 
-    font-size: 10px;
+    cursor:pointer;
 
-    font-weight: bold;
+    font-size:10px;
 
-    padding-top: 9px;
+    font-weight:bold;
 
-    transition: .2s;
+    padding-top:9px;
 }
 
-.nav-item:active {
-    transform: scale(.95);
+.nav-icon{
+
+    display:block;
+
+    font-size:21px;
+
+    margin-bottom:4px;
 }
 
-.nav-icon {
-    display: block;
+.nav-item.active{
 
-    font-size: 21px;
-
-    margin-bottom: 4px;
-}
-
-.nav-item.active {
-    color: #0757c9;
+    color:#0757c9;
 }
 
 
@@ -839,113 +1000,111 @@ body {
    MOBILE
 ===================================================== */
 
-@media (max-width: 380px) {
+@media(max-width:380px){
 
-    .hero {
-        height: 255px;
+    .hero{
+
+        height:255px;
     }
 
-    .welcome h1 {
-        font-size: 25px;
+    .welcome h1{
+
+        font-size:25px;
     }
 
-    #accountBalance {
-        font-size: 34px;
+    #accountBalance{
+
+        font-size:34px;
     }
 
-    .stat {
-        padding: 12px 4px;
+    .stat{
+
+        padding:12px 4px;
     }
 
-    .stat b {
-        font-size: 11px;
+    .stat b{
+
+        font-size:11px;
     }
 
-    .logo-img {
-        width: 125px;
+    .logo-img{
+
+        width:125px;
     }
 
-    .quick-list {
-        gap: 8px;
+    .quick-list{
+
+        gap:8px;
     }
 
-    .quick-list-item {
-        padding: 11px 12px;
+    .quick-list-item{
 
-        border-radius: 15px;
+        padding:11px 12px;
+
+        border-radius:15px;
     }
 
-    .quick-list-icon {
-        width: 40px;
-        height: 40px;
+    .quick-list-icon{
 
-        border-radius: 12px;
+        width:40px;
 
-        font-size: 19px;
+        height:40px;
+
+        border-radius:12px;
+
+        font-size:19px;
     }
 
-    .quick-list-info {
-        margin-left: 10px;
+    .quick-list-info{
+
+        margin-left:10px;
     }
 
-    .quick-list-info h3 {
-        font-size: 13px;
+    .quick-list-info h3{
+
+        font-size:13px;
     }
 
-    .quick-list-info p {
-        font-size: 9px;
+    .quick-list-info p{
+
+        font-size:9px;
     }
 
-    .quick-list-arrow {
-        font-size: 23px;
-    }
-}
+    .quick-list-arrow{
 
-
-/* =====================================================
-   EXTRA SMALL DEVICES
-===================================================== */
-
-@media (max-width: 330px) {
-
-    .container {
-        width: 94%;
+        font-size:23px;
     }
 
-    .balance-card {
-        padding: 19px 15px;
-    }
-
-    #accountBalance {
-        font-size: 30px;
-    }
-
-    .balance-actions {
-        gap: 7px;
-    }
-
-    .balance-actions button {
-        font-size: 12px;
-    }
-
-    .section-header h2 {
-        font-size: 17px;
-    }
-
-    .nav-item {
-        font-size: 9px;
-    }
-
-    .nav-icon {
-        font-size: 19px;
-    }
 }
 
 </style>
+
 </head>
 
 
 <body>
+
+
+<!-- =====================================================
+     LOADING SCREEN
+===================================================== -->
+
+<div
+    id="loadingScreen"
+    class="loading-screen">
+
+    <img
+        src="skyrent-logo.png"
+        class="loading-logo"
+        alt="SkyRent">
+
+    <div class="loading-spinner"></div>
+
+    <p>
+        Loading your SkyRent account...
+    </p>
+
+</div>
 
 
 <!-- =====================================================
@@ -955,12 +1114,6 @@ body {
 <section class="hero">
 
     <div class="topbar">
-
-        <!--
-            IMPORTANT:
-            skyrent.logo.png must be in the same
-            main folder as dashboard.html.
-        -->
 
         <img
             src="skyrent-logo.png"
@@ -976,9 +1129,8 @@ body {
             Welcome back
         </small>
 
-        <!-- Placeholder username -->
         <h1 id="username">
-            Ryah Casano!
+            User!
         </h1>
 
         <p>
@@ -991,7 +1143,6 @@ body {
 </section>
 
 
-
 <!-- =====================================================
      MAIN CONTENT
 ===================================================== -->
@@ -999,388 +1150,368 @@ body {
 <main class="container">
 
 
-    <!-- =================================================
-         BALANCE
-    ================================================== -->
+<!-- =====================================================
+     BALANCE
+===================================================== -->
 
-    <div class="balance-card">
+<div class="balance-card">
 
-        <div class="balance-top">
-
-            <div>
-
-                <div class="balance-title">
-                    Available Balance
-                </div>
-
-                <div class="balance-label">
-                    Your current account balance
-                </div>
-
-                <!-- Placeholder -->
-                <div id="accountBalance">
-                    ₱293.50
-                </div>
-
-            </div>
-
-
-            <div class="balance-icon">
-                💰
-            </div>
-
-        </div>
-
-
-        <div class="balance-actions">
-
-            <button
-                class="deposit-btn"
-                onclick="deposit()">
-
-                + Deposit
-
-            </button>
-
-
-            <button
-                class="withdraw-btn"
-                onclick="withdraw()">
-
-                ↔ Withdraw
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================================
-         STATISTICS
-    ================================================== -->
-
-    <div class="stats">
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                💵
-            </div>
-
-            <p>
-                Total Deposited
-            </p>
-
-            <b id="totalDeposited">
-                ₱2,000.00
-            </b>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                📈
-            </div>
-
-            <p>
-                Total Earnings
-            </p>
-
-            <b id="totalEarnings">
-                ₱178.50
-            </b>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                💸
-            </div>
-
-            <p>
-                Withdrawn
-            </p>
-
-            <b id="totalWithdrawn">
-                ₱170.00
-            </b>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================================
-         MY INVESTMENT
-    ================================================== -->
-
-    <div class="section-header">
-
-        <h2>
-            My Investment
-        </h2>
-
-        <span onclick="goMyInvestment()">
-            View All
-        </span>
-
-    </div>
-
-
-    <div
-        class="investment-card"
-        onclick="goMyInvestment()">
-
-        <div class="investment-row">
-
-            <div class="investment-icon">
-                ✈️
-            </div>
-
-
-            <div class="investment-info">
-
-                <!-- Placeholder -->
-                <h3 id="investmentCount">
-                    2 Active Investments
-                </h3>
-
-                <p id="investmentMessage">
-                    Tap here to view your
-                    investment details.
-                </p>
-
-            </div>
-
-
-            <div class="investment-arrow">
-                ›
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================================
-         QUICK ACTIONS
-    ================================================== -->
-
-    <div class="section-header">
-
-        <h2>
-            Quick Actions
-        </h2>
-
-    </div>
-
-
-    <div class="quick-list">
-
-
-        <!-- =============================================
-             CRAFTS
-        ============================================== -->
-
-        <button
-            class="quick-list-item quick-crafts"
-            onclick="goCrafts()">
-
-            <div class="quick-list-icon">
-                ✈️
-            </div>
-
-            <div class="quick-list-info">
-
-                <h3>
-                    Crafts
-                </h3>
-
-                <p>
-                    Browse available aircraft
-                    investment plans.
-                </p>
-
-            </div>
-
-            <div class="quick-list-arrow">
-                ›
-            </div>
-
-        </button>
-
-
-
-        <!-- =============================================
-             TRANSACTIONS
-        ============================================== -->
-
-        <button
-            class="quick-list-item quick-transactions"
-            onclick="goTransactions()">
-
-            <div class="quick-list-icon">
-                🧾
-            </div>
-
-            <div class="quick-list-info">
-
-                <h3>
-                    Transactions
-                </h3>
-
-                <p>
-                    View your deposit
-                    transaction history.
-                </p>
-
-            </div>
-
-            <div class="quick-list-arrow">
-                ›
-            </div>
-
-        </button>
-
-
-
-        <!-- =============================================
-             PROFILE
-        ============================================== -->
-
-        <button
-            class="quick-list-item quick-profile"
-            onclick="goProfile()">
-
-            <div class="quick-list-icon">
-                👤
-            </div>
-
-            <div class="quick-list-info">
-
-                <h3>
-                    Profile
-                </h3>
-
-                <p>
-                    View and manage your
-                    account profile.
-                </p>
-
-            </div>
-
-            <div class="quick-list-arrow">
-                ›
-            </div>
-
-        </button>
-
-
-
-        <!-- =============================================
-             GIFT CODES
-        ============================================== -->
-
-        <button
-            class="quick-list-item quick-gift"
-            onclick="goGiftCodes()">
-
-            <div class="quick-list-icon">
-                🎁
-            </div>
-
-            <div class="quick-list-info">
-
-                <h3>
-                    Gift Codes
-                </h3>
-
-                <p>
-                    Enter and redeem your
-                    available gift codes.
-                </p>
-
-            </div>
-
-            <div class="quick-list-arrow">
-                ›
-            </div>
-
-        </button>
-
-
-
-        <!-- =============================================
-             CUSTOMER SERVICE
-        ============================================== -->
-
-        <button
-            class="quick-list-item quick-support"
-            onclick="goCustomerService()">
-
-            <div class="quick-list-icon">
-                🎧
-            </div>
-
-            <div class="quick-list-info">
-
-                <h3>
-                    Customer Service
-                </h3>
-
-                <p>
-                    Get help and contact
-                    SkyRent support.
-                </p>
-
-            </div>
-
-            <div class="quick-list-arrow">
-                ›
-            </div>
-
-        </button>
-
-    </div>
-
-
-
-    <!-- =================================================
-         INFO BANNER
-    ================================================== -->
-
-    <div class="info-banner">
-
-        <div class="info-icon">
-            🛫
-        </div>
+    <div class="balance-top">
 
         <div>
 
-            <h3>
-                Start Your SkyRent Journey
-            </h3>
+            <div class="balance-title">
+                Available Balance
+            </div>
 
-            <p>
-                Choose a craft and build your
-                investment portfolio.
-            </p>
+            <div class="balance-label">
+                Your current account balance
+            </div>
 
+            <div id="accountBalance">
+                ₱0.00
+            </div>
+
+        </div>
+
+
+        <div class="balance-icon">
+            💰
         </div>
 
     </div>
 
 
-</main>
+    <div class="balance-actions">
 
+        <button
+            class="deposit-btn"
+            onclick="deposit()">
+
+            + Deposit
+
+        </button>
+
+
+        <button
+            class="withdraw-btn"
+            onclick="withdraw()">
+
+            ↔ Withdraw
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     STATISTICS
+===================================================== -->
+
+<div class="stats">
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            💵
+        </div>
+
+        <p>
+            Total Deposited
+        </p>
+
+        <b id="totalDeposited">
+            ₱0.00
+        </b>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            📈
+        </div>
+
+        <p>
+            Total Earnings
+        </p>
+
+        <b id="totalEarnings">
+            ₱0.00
+        </b>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            💸
+        </div>
+
+        <p>
+            Withdrawn
+        </p>
+
+        <b id="totalWithdrawn">
+            ₱0.00
+        </b>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MY INVESTMENT
+===================================================== -->
+
+<div class="section-header">
+
+    <h2>
+        My Investment
+    </h2>
+
+    <span>
+        View All
+    </span>
+
+</div>
+
+
+<div
+    class="investment-card"
+    onclick="goMyInvestment()">
+
+    <div class="investment-row">
+
+        <div class="investment-icon">
+            ✈️
+        </div>
+
+
+        <div class="investment-info">
+
+            <h3 id="investmentCount">
+                No active investment
+            </h3>
+
+            <p id="investmentMessage">
+                Start your journey by choosing
+                a SkyRent craft.
+            </p>
+
+        </div>
+
+
+        <div class="investment-arrow">
+            ›
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     QUICK ACTIONS
+===================================================== -->
+
+<div class="section-header">
+
+    <h2>
+        Quick Actions
+    </h2>
+
+</div>
+
+
+<div class="quick-list">
+
+
+<!-- CRAFTS -->
+
+<button
+    class="quick-list-item quick-crafts"
+    onclick="goCrafts()">
+
+    <div class="quick-list-icon">
+        ✈️
+    </div>
+
+    <div class="quick-list-info">
+
+        <h3>
+            Crafts
+        </h3>
+
+        <p>
+            Browse available aircraft
+            investment plans.
+        </p>
+
+    </div>
+
+    <div class="quick-list-arrow">
+        ›
+    </div>
+
+</button>
+
+
+<!-- TRANSACTIONS -->
+
+<button
+    class="quick-list-item quick-transactions"
+    onclick="goTransactions()">
+
+    <div class="quick-list-icon">
+        🧾
+    </div>
+
+    <div class="quick-list-info">
+
+        <h3>
+            Transactions
+        </h3>
+
+        <p>
+            View your deposit
+            transaction history.
+        </p>
+
+    </div>
+
+    <div class="quick-list-arrow">
+        ›
+    </div>
+
+</button>
+
+
+<!-- PROFILE -->
+
+<button
+    class="quick-list-item quick-profile"
+    onclick="goProfile()">
+
+    <div class="quick-list-icon">
+        👤
+    </div>
+
+    <div class="quick-list-info">
+
+        <h3>
+            Profile
+        </h3>
+
+        <p>
+            View and manage your
+            account profile.
+        </p>
+
+    </div>
+
+    <div class="quick-list-arrow">
+        ›
+    </div>
+
+</button>
+
+
+<!-- GIFT CODES -->
+
+<button
+    class="quick-list-item quick-gift"
+    onclick="goGiftCodes()">
+
+    <div class="quick-list-icon">
+        🎁
+    </div>
+
+    <div class="quick-list-info">
+
+        <h3>
+            Gift Codes
+        </h3>
+
+        <p>
+            Enter and redeem your
+            available gift codes.
+        </p>
+
+    </div>
+
+    <div class="quick-list-arrow">
+        ›
+    </div>
+
+</button>
+
+
+<!-- CUSTOMER SERVICE -->
+
+<button
+    class="quick-list-item quick-support"
+    onclick="goCustomerService()">
+
+    <div class="quick-list-icon">
+        🎧
+    </div>
+
+    <div class="quick-list-info">
+
+        <h3>
+            Customer Service
+        </h3>
+
+        <p>
+            Get help and contact
+            SkyRent support.
+        </p>
+
+    </div>
+
+    <div class="quick-list-arrow">
+        ›
+    </div>
+
+</button>
+
+
+</div>
+
+
+<!-- =====================================================
+     INFO
+===================================================== -->
+
+<div class="info-banner">
+
+    <div class="info-icon">
+        🛫
+    </div>
+
+    <div>
+
+        <h3>
+            Start Your SkyRent Journey
+        </h3>
+
+        <p>
+            Choose a craft and build your
+            investment portfolio.
+        </p>
+
+    </div>
+
+</div>
+
+
+</main>
 
 
 <!-- =====================================================
@@ -1389,8 +1520,6 @@ body {
 
 <nav class="bottom-nav">
 
-
-    <!-- HOME -->
 
     <button
         class="nav-item active"
@@ -1405,9 +1534,6 @@ body {
     </button>
 
 
-
-    <!-- CRAFTS -->
-
     <button
         class="nav-item"
         onclick="goCrafts()">
@@ -1420,9 +1546,6 @@ body {
 
     </button>
 
-
-
-    <!-- NETWORK -->
 
     <button
         class="nav-item"
@@ -1437,9 +1560,6 @@ body {
     </button>
 
 
-
-    <!-- EARNINGS -->
-
     <button
         class="nav-item"
         onclick="goEarnings()">
@@ -1453,9 +1573,6 @@ body {
     </button>
 
 
-
-    <!-- LOGOUT -->
-
     <button
         class="nav-item"
         onclick="logout()">
@@ -1468,156 +1585,467 @@ body {
 
     </button>
 
+
 </nav>
 
 
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
-<script>
+<script type="module">
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 /* =====================================================
-   NAVIGATION
+   FIREBASE CONFIG
 ===================================================== */
 
+const firebaseConfig = {
 
-/* HOME */
+    apiKey:
+    "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
 
-function goHome() {
+    authDomain:
+    "skyrent-ea30c.firebaseapp.com",
 
-    window.location.href =
-        "dashboard.html";
+    projectId:
+    "skyrent-ea30c",
 
-}
+    storageBucket:
+    "skyrent-ea30c.firebasestorage.app",
 
+    messagingSenderId:
+    "572678456448",
 
-/* CRAFTS */
+    appId:
+    "1:572678456448:web:6b7132351515742dd09265"
 
-function goCrafts() {
-
-    window.location.href =
-        "crafts.html";
-
-}
-
-
-/* MY INVESTMENT */
-
-function goMyInvestment() {
-
-    window.location.href =
-        "my-aircraft.html";
-
-}
+};
 
 
-/* TRANSACTIONS */
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
 
-function goTransactions() {
+const app =
+    initializeApp(firebaseConfig);
 
-    window.location.href =
-        "transactions.html";
+const auth =
+    getAuth(app);
 
-}
-
-
-/* NETWORK */
-
-function goNetwork() {
-
-    window.location.href =
-        "network.html";
-
-}
+const db =
+    getFirestore(app);
 
 
-/* EARNINGS */
+/* =====================================================
+   FORMAT MONEY
+===================================================== */
 
-function goEarnings() {
+function formatMoney(amount){
 
-    window.location.href =
-        "earnings.html";
+    const number =
+        Number(amount) || 0;
+
+    return "₱" +
+        number.toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
 
 }
 
 
-/* PROFILE */
+/* =====================================================
+   UPDATE DASHBOARD FROM FIRESTORE
+===================================================== */
 
-function goProfile() {
+async function loadUserDashboard(user){
 
-    window.location.href =
-        "profile.html";
+    try{
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                user.uid
+            );
+
+
+        const userSnapshot =
+            await getDoc(userRef);
+
+
+        if(!userSnapshot.exists()){
+
+            console.error(
+                "User document does not exist."
+            );
+
+            document.getElementById(
+                "username"
+            ).innerText =
+                "User!";
+
+            document.getElementById(
+                "accountBalance"
+            ).innerText =
+                "₱0.00";
+
+            return;
+
+        }
+
+
+        const userData =
+            userSnapshot.data();
+
+
+        /* =============================================
+           USER NAME
+        ============================================= */
+
+        const name =
+            userData.name ||
+            "User";
+
+
+        document.getElementById(
+            "username"
+        ).innerText =
+            name + "!";
+
+
+        /* =============================================
+           BALANCE
+        ============================================= */
+
+        const balance =
+            Number(
+                userData.balance
+            ) || 0;
+
+
+        document.getElementById(
+            "accountBalance"
+        ).innerText =
+            formatMoney(balance);
+
+
+        /* =============================================
+           TOTAL DEPOSITED
+        ============================================= */
+
+        const totalDeposited =
+            Number(
+                userData.totalDeposited
+            ) || 0;
+
+
+        document.getElementById(
+            "totalDeposited"
+        ).innerText =
+            formatMoney(
+                totalDeposited
+            );
+
+
+        /* =============================================
+           TOTAL EARNINGS
+        ============================================= */
+
+        const totalEarnings =
+            Number(
+                userData.totalEarnings
+            ) || 0;
+
+
+        document.getElementById(
+            "totalEarnings"
+        ).innerText =
+            formatMoney(
+                totalEarnings
+            );
+
+
+        /* =============================================
+           TOTAL WITHDRAWN
+        ============================================= */
+
+        const totalWithdrawn =
+            Number(
+                userData.totalWithdrawn
+            ) || 0;
+
+
+        document.getElementById(
+            "totalWithdrawn"
+        ).innerText =
+            formatMoney(
+                totalWithdrawn
+            );
+
+
+        /* =============================================
+           INVESTMENT COUNT
+        ============================================= */
+
+        const investmentCount =
+            Number(
+                userData.activeInvestments
+            ) || 0;
+
+
+        if(investmentCount <= 0){
+
+            document.getElementById(
+                "investmentCount"
+            ).innerText =
+                "No active investment";
+
+
+            document.getElementById(
+                "investmentMessage"
+            ).innerText =
+                "Start your journey by choosing a SkyRent craft.";
+
+        }
+        else{
+
+            document.getElementById(
+                "investmentCount"
+            ).innerText =
+                investmentCount +
+                (
+                    investmentCount === 1
+                    ? " Active Investment"
+                    : " Active Investments"
+                );
+
+
+            document.getElementById(
+                "investmentMessage"
+            ).innerText =
+                "Tap here to view your investment details.";
+
+        }
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Error loading dashboard:",
+            error
+        );
+
+        alert(
+            "Unable to load your SkyRent account. Please try again."
+        );
+
+    }
 
 }
 
 
-/* GIFT CODES */
+/* =====================================================
+   AUTHENTICATION CHECK
+===================================================== */
 
-function goGiftCodes() {
+onAuthStateChanged(
+    auth,
+    async function(user){
 
-    window.location.href =
-        "gift-codes.html";
+        if(!user){
 
-}
+            /*
+             User is not logged in.
+             Send them back to index.html.
+            */
 
+            window.location.href =
+                "index.html";
 
-/* CUSTOMER SERVICE */
+            return;
 
-function goCustomerService() {
-
-    window.location.href =
-        "customer-service.html";
-
-}
-
-
-/* DEPOSIT */
-
-function deposit() {
-
-    window.location.href =
-        "deposit.html";
-
-}
+        }
 
 
-/* WITHDRAW */
+        /*
+         User is authenticated.
+         Load Firestore account.
+        */
 
-function withdraw() {
+        await loadUserDashboard(user);
 
-    window.location.href =
-        "withdrawal.html";
 
-}
+        /*
+         Hide loading screen.
+        */
+
+        const loadingScreen =
+            document.getElementById(
+                "loadingScreen"
+            );
+
+        if(loadingScreen){
+
+            loadingScreen.style.display =
+                "none";
+
+        }
+
+    }
+);
 
 
 /* =====================================================
    LOGOUT
 ===================================================== */
 
-function logout() {
+window.logout = async function(){
 
-    /*
-       For now this only removes the old local
-       login information.
+    try{
 
-       Later we will replace this with:
+        await signOut(auth);
 
-       Firebase Authentication signOut()
-    */
+        window.location.href =
+            "index.html";
 
-    localStorage.removeItem(
-        "skyrentUser"
-    );
+    }
+    catch(error){
 
-    localStorage.removeItem(
-        "username"
-    );
+        console.error(
+            "Logout error:",
+            error
+        );
+
+        alert(
+            "Unable to logout. Please try again."
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+window.goHome = function(){
 
     window.location.href =
-        "index.html";
+        "dashboard.html";
 
-}
+};
+
+
+window.goCrafts = function(){
+
+    window.location.href =
+        "crafts.html";
+
+};
+
+
+window.goMyInvestment = function(){
+
+    window.location.href =
+        "my-aircraft.html";
+
+};
+
+
+window.goTransactions = function(){
+
+    window.location.href =
+        "transactions.html";
+
+};
+
+
+window.goNetwork = function(){
+
+    window.location.href =
+        "network.html";
+
+};
+
+
+window.goEarnings = function(){
+
+    window.location.href =
+        "earnings.html";
+
+};
+
+
+window.goProfile = function(){
+
+    window.location.href =
+        "profile.html";
+
+};
+
+
+window.goGiftCodes = function(){
+
+    window.location.href =
+        "gift-codes.html";
+
+};
+
+
+window.goCustomerService = function(){
+
+    window.location.href =
+        "customer-service.html";
+
+};
+
+
+window.deposit = function(){
+
+    window.location.href =
+        "deposit.html";
+
+};
+
+
+window.withdraw = function(){
+
+    window.location.href =
+        "withdrawal.html";
+
+};
 
 </script>
 
+
 </body>
+
 </html>
