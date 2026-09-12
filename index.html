@@ -3,15 +3,11 @@
 
 <head>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SkyRent Login</title>
-
-
+<title>SkyRent - Login</title>
 
 <style>
 
@@ -23,315 +19,613 @@
 
 body{
 
-font-family:'Inter', Arial, Helvetica, sans-serif;
+    font-family:
+    "Inter",
+    "Segoe UI",
+    Arial,
+    sans-serif;
 
-min-height:100vh;
+    min-height:100vh;
 
-background:
-linear-gradient(
-rgba(0,90,180,.65),
-rgba(0,90,180,.85)
-),
-url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80");
+    background:
+    radial-gradient(
+        circle at 20% 10%,
+        rgba(255,255,255,.8),
+        transparent 25%
+    ),
+    linear-gradient(
+        135deg,
+        #052b78,
+        #0074d9 55%,
+        #7edfff
+    );
 
-background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-background-position:center;
+    padding:20px;
+
+    overflow-x:hidden;
+}
+
+
+/* CLOUD GLOW */
+
+body::before,
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:320px;
+    height:160px;
+
+    background:
+    rgba(255,255,255,.25);
+
+    border-radius:50%;
+
+    filter:blur(30px);
+
+    z-index:0;
+}
+
+
+body::before{
+
+    top:5%;
+    left:-100px;
 
 }
 
 
-.hero{
+body::after{
 
-height:55vh;
-
-color:white;
-
-text-align:center;
-
-padding:35px 20px;
+    bottom:5%;
+    right:-100px;
 
 }
+
+
+
+/* MAIN GLASS CARD */
+
+.container{
+
+    width:100%;
+
+    max-width:950px;
+
+    min-height:600px;
+
+    display:flex;
+
+    background:
+    rgba(255,255,255,.96);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 30px 70px rgba(0,0,0,.28);
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+
+/* LEFT AIRCRAFT AREA */
+
+
+.left{
+
+    width:45%;
+
+    background:
+
+    linear-gradient(
+        rgba(0,50,130,.55),
+        rgba(0,120,220,.75)
+    ),
+
+    url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80");
+
+    background-size:cover;
+
+    background-position:center;
+
+
+    color:white;
+
+    padding:50px 40px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+
 
 .logo{
 
-font-size:48px;
+    font-size:38px;
 
-font-weight:600;
+    font-weight:700;
 
-letter-spacing:-1px;
+    letter-spacing:.5px;
 
 }
+
 
 .logo span{
 
-color:#63d5ff;
+    color:#6bd8ff;
 
 }
 
 
-.tag{
 
-letter-spacing:5px;
+.tagline{
 
-margin-top:10px;
+    margin-top:10px;
 
-font-size:14px;
+    letter-spacing:4px;
 
-}
+    font-size:12px;
 
-
-.hero h1{
-
-margin-top:70px;
-
-font-size:45px;
-
-font-weight:400;
-
-letter-spacing:-1px;
-
-}
-
-.hero h1 span{
-
-color:#ffd83d;
+    opacity:.9;
 
 }
 
 
-.hero p{
 
-font-size:20px;
+.left h1{
 
-margin-top:25px;
+    margin-top:45px;
 
-line-height:1.6;
+    font-size:40px;
+
+    line-height:1.15;
+
+    font-weight:600;
 
 }
+
+
+
+.left h1 span{
+
+    color:#ffd83d;
+
+}
+
+
+
+.left p{
+
+    margin-top:20px;
+
+    line-height:1.7;
+
+    font-size:16px;
+
+    font-weight:300;
+
+}
+
 
 
 .features{
 
-margin-top:40px;
-
-font-weight:bold;
-
-font-size:18px;
+    margin-top:35px;
 
 }
 
 
-.card{
+.features div{
 
-background:white;
+    margin:12px 0;
 
-border-radius:35px 35px 0 0;
+    font-size:15px;
 
-min-height:50vh;
-
-padding:35px 25px;
+    font-weight:500;
 
 }
 
 
-.title{
 
-text-align:center;
+/* RIGHT FORM */
 
-}
+.right{
 
+    width:55%;
 
-.title h2{
+    padding:45px 55px;
 
-font-size:38px;
+    display:flex;
 
-color:#06377d;
+    flex-direction:column;
 
-font-weight:500;
-
-letter-spacing:-0.5px;
+    justify-content:center;
 
 }
 
 
-.title p{
 
-color:#777;
+.form-title{
 
-font-size:20px;
+    text-align:center;
 
-margin-top:10px;
+    margin-bottom:25px;
 
 }
 
+
+.form-title h2{
+
+    color:#062b78;
+
+    font-size:32px;
+
+    font-weight:600;
+
+}
+
+
+
+.form-title p{
+
+    color:#777;
+
+    margin-top:8px;
+
+    font-size:15px;
+
+}
+
+
+
+/* TABS */
 
 
 .tabs{
 
-display:flex;
+    display:flex;
 
-background:#edf5ff;
+    background:#edf5ff;
 
-border-radius:15px;
+    border-radius:14px;
 
-padding:5px;
+    padding:5px;
 
-margin:35px 0;
-
-}
-
-
-.tabs button{
-
-flex:1;
-
-border:0;
-
-padding:18px;
-
-font-weight:500;
-
-font-size:18px;
-
-border-radius:12px;
-
-background:none;
-
-color:#12519a;
+    margin-bottom:25px;
 
 }
 
 
-.tabs .active{
+.tab{
 
-background:#0756ad;
+    flex:1;
 
-color:white;
+    border:0;
+
+    background:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    color:#14509b;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+
+.tab.active{
+
+    background:#0752a5;
+
+    color:white;
 
 }
 
 
 
-.input{
-
-margin-bottom:20px;
-
-}
-
-
-label{
-
-display:block;
-
-font-weight:500;
-
-color:#173d70;
-
-margin-bottom:8px;
-
-}
-
-
-.phone{
-
-display:flex;
-
-gap:10px;
-
-}
-
-
-input{
-
-width:100%;
-
-padding:18px;
-
-border-radius:15px;
-
-border:2px solid #dbe7f5;
-
-font-size:17px;
-
-outline:none;
-
-}
-
-
-.code{
-
-width:80px;
-
-background:#f4f8ff;
-
-text-align:center;
-
-font-weight:bold;
-
-}
-
-
-.password{
-
-position:relative;
-
-}
-
-
-.eye{
-
-position:absolute;
-
-right:20px;
-
-top:18px;
-
-cursor:pointer;
-
-}
-
-
-.btn{
-
-width:100%;
-
-padding:18px;
-
-border:0;
-
-border-radius:15px;
-
-background:linear-gradient(
-135deg,
-#06499b,
-#0095ff
-);
-
-color:white;
-
-font-size:18px;
-
-font-weight:bold;
-
-margin-top:10px;
-
-}
+/* FORMS */
 
 
 .form{
 
-display:none;
+    display:none;
 
 }
 
 
 .form.active{
 
-display:block;
+    display:block;
 
 }
 
+
+/* INPUTS */
+
+
+.input-box{
+
+    margin-bottom:18px;
+
+}
+
+
+.input-box label{
+
+    display:block;
+
+    color:#183c70;
+
+    margin-bottom:7px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+
+.input-box input{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:2px solid #dce7f5;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+
+
+.input-box input:focus{
+
+    border-color:#0874db;
+
+}
+
+
+
+.phone-input{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+
+.country-code{
+
+    width:75px!important;
+
+    background:#f1f6fc;
+
+    text-align:center;
+
+    font-weight:600;
+
+}
+
+
+
+/* PASSWORD */
+
+
+.password-wrap{
+
+    position:relative;
+
+}
+
+
+.password-wrap input{
+
+    padding-right:50px;
+
+}
+
+
+.eye{
+
+    position:absolute;
+
+    right:15px;
+
+    top:14px;
+
+    cursor:pointer;
+
+}
+
+
+
+/* BUTTON */
+
+
+.btn{
+
+    width:100%;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:12px;
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #06499b,
+        #0789e8
+    );
+
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+
+
+.gold-btn{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #e9aa00,
+        #ffd83d
+    );
+
+    color:#062b78;
+
+}
+
+
+ 
+/* FOOTER */
+
+.footer{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#888;
+
+    font-size:12px;
+
+}
+
+
+.footer strong{
+
+    color:#0755a8;
+
+}
+
+
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+
+body{
+
+    padding:12px;
+
+}
+
+
+.container{
+
+    flex-direction:column;
+
+    border-radius:22px;
+
+}
+
+
+.left{
+
+    width:100%;
+
+    min-height:300px;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+}
+
+
+.logo{
+
+    font-size:32px;
+
+}
+
+
+.left h1{
+
+    font-size:32px;
+
+}
+
+
+.features{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.features div{
+
+    font-size:12px;
+
+}
+
+
+.right{
+
+    width:100%;
+
+    padding:30px 22px;
+
+}
+
+
+.form-title h2{
+
+    font-size:27px;
+
+}
+
+
+}
 
 </style>
 
@@ -341,7 +635,12 @@ display:block;
 <body>
 
 
-<div class="hero">
+<div class="container">
+
+
+<!-- LEFT SIDE -->
+
+<div class="left">
 
 
 <div class="logo">
@@ -351,12 +650,11 @@ display:block;
 </div>
 
 
-<div class="tag">
+<div class="tagline">
 
 DREAM • SAVE • FLY • EARN
 
 </div>
-
 
 
 <h1>
@@ -374,34 +672,39 @@ Invest Today,
 
 Turn your savings into real opportunities.
 
-<br>
+Choose your craft and start your journey
 
-Choose your craft and start your journey with SkyRent.
+with SkyRent.
 
 </p>
 
 
+
 <div class="features">
 
-✓ Save &nbsp;&nbsp;
+<div>✓ Save</div>
 
-✓ Invest &nbsp;&nbsp;
+<div>✓ Invest</div>
 
-✓ Earn &nbsp;&nbsp;
+<div>✓ Earn</div>
 
-✓ Fly
-
-</div>
-
+<div>✓ Fly</div>
 
 </div>
 
 
+</div>
 
-<div class="card">
 
 
-<div class="title">
+<!-- RIGHT SIDE -->
+
+
+<div class="right">
+
+
+<div class="form-title">
+
 
 <h2 id="title">
 
@@ -421,10 +724,14 @@ Login to your SkyRent account
 
 
 
+
 <div class="tabs">
 
-<button 
-class="active"
+
+<button
+
+class="tab active"
+
 onclick="showLogin()">
 
 LOGIN
@@ -432,20 +739,31 @@ LOGIN
 </button>
 
 
-<button onclick="showRegister()">
+
+<button
+
+class="tab"
+
+onclick="showRegister()">
 
 REGISTER
 
 </button>
 
+
 </div>
 
 
 
-<div id="login" class="form active">
 
 
-<div class="input">
+<!-- LOGIN -->
+
+
+<form id="loginForm" class="form active">
+
+
+<div class="input-box">
 
 <label>
 
@@ -454,18 +772,35 @@ Phone Number
 </label>
 
 
-<div class="phone">
+<div class="phone-input">
 
-<input class="code" value="+63" readonly>
 
-<input placeholder="9XXXXXXXXX">
+<input
+
+class="country-code"
+
+value="+63"
+
+readonly>
+
+
+<input
+
+type="tel"
+
+placeholder="9XXXXXXXXX">
+
 
 </div>
 
+
 </div>
 
 
-<div class="input">
+
+
+<div class="input-box">
+
 
 <label>
 
@@ -474,11 +809,23 @@ Password
 </label>
 
 
-<div class="password">
+<div class="password-wrap">
 
-<input type="password" id="pass" placeholder="Enter your password">
 
-<span class="eye" onclick="eye()">
+<input
+
+type="password"
+
+id="loginPassword"
+
+placeholder="Enter password">
+
+
+<span
+
+class="eye"
+
+onclick="togglePassword('loginPassword',this)">
 
 👁
 
@@ -487,26 +834,37 @@ Password
 
 </div>
 
+
 </div>
 
 
 
-<button class="btn">
+
+<button
+
+type="button"
+
+class="btn">
 
 ✈ LOGIN
 
 </button>
 
 
-</div>
+</form>
 
 
 
 
-<div id="register" class="form">
+
+<!-- REGISTER -->
 
 
-<div class="input">
+<form id="registerForm" class="form">
+
+
+<div class="input-box">
+
 
 <label>
 
@@ -514,13 +872,21 @@ Full Name
 
 </label>
 
-<input placeholder="Enter your name">
+
+<input
+
+type="text"
+
+placeholder="Enter your name">
+
 
 </div>
 
 
 
-<div class="input">
+
+<div class="input-box">
+
 
 <label>
 
@@ -528,19 +894,36 @@ Phone Number
 
 </label>
 
-<div class="phone">
 
-<input class="code" value="+63" readonly>
+<div class="phone-input">
 
-<input placeholder="9XXXXXXXXX">
+
+<input
+
+class="country-code"
+
+value="+63"
+
+readonly>
+
+
+<input
+
+type="tel"
+
+placeholder="9XXXXXXXXX">
+
 
 </div>
 
+
 </div>
 
 
 
-<div class="input">
+
+<div class="input-box">
+
 
 <label>
 
@@ -548,24 +931,79 @@ Password
 
 </label>
 
-<input type="password" placeholder="Create password">
+
+<div class="password-wrap">
+
+
+<input
+
+type="password"
+
+id="registerPassword"
+
+placeholder="Create password">
+
+
+<span
+
+class="eye"
+
+onclick="togglePassword('registerPassword',this)">
+
+👁
+
+</span>
+
+
+</div>
+
 
 </div>
 
 
 
-<button class="btn">
+
+<button
+
+type="button"
+
+class="btn gold-btn">
 
 ✈ CREATE ACCOUNT
 
 </button>
 
 
+
+</form>
+
+
+
+
+<div class="footer">
+
+<strong>
+
+SkyRent
+
+</strong>
+
+© 2026
+
+<br>
+
+Dream • Save • Fly • Earn
+
 </div>
 
 
 
 </div>
+
+
+</div>
+
+
 
 
 
@@ -574,38 +1012,106 @@ Password
 
 function showLogin(){
 
-document.getElementById("login")
+
+document
+.getElementById("loginForm")
 .classList.add("active");
 
-document.getElementById("register")
+
+document
+.getElementById("registerForm")
 .classList.remove("active");
 
 
+document
+.querySelectorAll(".tab")[0]
+.classList.add("active");
+
+
+document
+.querySelectorAll(".tab")[1]
+.classList.remove("active");
+
+
+document
+.getElementById("title")
+.innerText="Welcome Back";
+
+
+document
+.getElementById("subtitle")
+.innerText="Login to your SkyRent account";
+
+
 }
+
 
 
 function showRegister(){
 
-document.getElementById("register")
+
+document
+.getElementById("registerForm")
 .classList.add("active");
 
-document.getElementById("login")
+
+document
+.getElementById("loginForm")
 .classList.remove("active");
+
+
+document
+.querySelectorAll(".tab")[1]
+.classList.add("active");
+
+
+document
+.querySelectorAll(".tab")[0]
+.classList.remove("active");
+
+
+document
+.getElementById("title")
+.innerText="Join SkyRent";
+
+
+document
+.getElementById("subtitle")
+.innerText="Create your account today";
 
 
 }
 
 
-function eye(){
 
-let p=document.getElementById("pass");
 
-p.type =
-p.type==="password"
-?
-"text"
-:
-"password";
+
+function togglePassword(id,icon){
+
+
+let input=document.getElementById(id);
+
+
+if(input.type==="password"){
+
+
+input.type="text";
+
+icon.innerHTML="🙈";
+
+
+}
+
+else{
+
+
+input.type="password";
+
+icon.innerHTML="👁";
+
+
+}
+
 
 }
 
