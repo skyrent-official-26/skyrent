@@ -875,8 +875,9 @@ Full Name
 
 <input
 
+<input
 type="text"
-
+id="registerName"
 placeholder="Enter your name">
 
 
@@ -908,9 +909,8 @@ readonly>
 
 
 <input
-
 type="tel"
-
+id="registerPhone"
 placeholder="9XXXXXXXXX">
 
 
@@ -977,9 +977,8 @@ onclick="togglePassword('registerPassword',this)">
 
 
 <button
-
 type="button"
-
+id="registerBtn"
 class="btn gold-btn">
 
 ✈ CREATE ACCOUNT
@@ -1183,6 +1182,92 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const db = getFirestore(app);
+
+
+import { 
+createUserWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+doc,
+setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+document.getElementById("registerBtn").addEventListener("click", async()=>{
+
+const name = document.getElementById("registerName").value;
+
+const phone = document.getElementById("registerPhone").value;
+
+const password = document.getElementById("registerPassword").value;
+
+const referral = document.getElementById("referralCode").value;
+
+
+if(!name || !phone || !password){
+
+alert("Please complete all required fields");
+
+return;
+
+}
+
+
+try{
+
+
+// Firebase requires email, so we create a hidden email from phone
+
+const email = phone + "@skyrent.com";
+
+
+const userCredential = await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+const user = userCredential.user;
+
+
+// Save user data
+
+await setDoc(doc(db,"users",user.uid),{
+
+name:name,
+
+phone:"+63"+phone,
+
+referralCode:referral,
+
+bonus:50,
+
+balance:50,
+
+createdAt:new Date()
+
+});
+
+
+alert("Account created successfully! ₱50 bonus added.");
+
+
+showLogin();
+
+
+}
+
+catch(error){
+
+alert(error.message);
+
+}
+
+
+});
+
 
 
 console.log("Firebase Connected");
