@@ -616,6 +616,186 @@ body{
 
 }
 
+
+/* =========================
+   SKYRENT CUSTOM ALERT
+========================= */
+
+.alert-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(3,20,55,.65);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+    z-index:9999;
+}
+
+.alert-overlay.show{
+    display:flex;
+}
+
+.alert-box{
+    width:100%;
+    max-width:390px;
+
+    background:#ffffff;
+    border-radius:26px;
+
+    padding:32px 25px 25px;
+
+    text-align:center;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.35);
+
+    animation:alertPop .28s ease-out;
+}
+
+@keyframes alertPop{
+
+    from{
+        opacity:0;
+        transform:scale(.85) translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+
+}
+
+.success-icon{
+
+    width:75px;
+    height:75px;
+
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0752a5,
+            #08a3ef
+        );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:36px;
+
+    box-shadow:
+        0 10px 25px rgba(7,82,165,.30);
+
+    animation:iconPop .45s ease-out;
+}
+
+@keyframes iconPop{
+
+    0%{
+        transform:scale(0);
+    }
+
+    70%{
+        transform:scale(1.15);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+.alert-box h3{
+
+    color:#062b78;
+
+    font-size:25px;
+
+    margin-bottom:8px;
+
+}
+
+.alert-box p{
+
+    color:#6d7480;
+
+    font-size:15px;
+
+    line-height:1.6;
+
+    margin-bottom:20px;
+
+}
+
+.bonus-badge{
+
+    display:inline-block;
+
+    padding:10px 18px;
+
+    border-radius:30px;
+
+    background:#fff7d6;
+
+    color:#a56a00;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    margin-bottom:22px;
+
+}
+
+.alert-btn{
+
+    width:100%;
+
+    border:none;
+
+    padding:15px;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #06499b,
+            #0789e8
+        );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px rgba(7,120,220,.25);
+
+}
+
+.alert-btn:active{
+
+    transform:scale(.98);
+
+}
+
+
 </style>
 
 </head>
@@ -1119,6 +1299,27 @@ icon.innerHTML="👁";
 
 }
 
+function showSuccessAlert(){
+
+    document
+        .getElementById("successAlert")
+        .classList.add("show");
+
+}
+
+
+function closeSuccessAlert(){
+
+    document
+        .getElementById("successAlert")
+        .classList.remove("show");
+
+    showLogin();
+
+}
+
+
+
 // AUTO FILL REFERRAL CODE FROM LINK
 // Example: yoursite.com/?ref=ABC123
 
@@ -1241,13 +1442,7 @@ createdAt:new Date()
 
 console.log("Firestore user saved");
 
-alert("🎉 Welcome to SkyRent!\n\nYour account has been created successfully.\n₱50 welcome bonus has been added.");
-
-setTimeout(()=>{
-
-showLogin();
-
-},500);
+showSuccessAlert();
 
 }
 
@@ -1281,6 +1476,42 @@ alert("Registration failed. Please try again.");
 console.log("Firebase Connected");
 
 </script>
+
+
+<!-- SKYRENT SUCCESS ALERT -->
+
+<div id="successAlert" class="alert-overlay">
+
+    <div class="alert-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h3>
+            Welcome to SkyRent!
+        </h3>
+
+        <p>
+            Your account has been created successfully.
+        </p>
+
+        <div class="bonus-badge">
+            🎁 ₱50 Welcome Bonus
+        </div>
+
+        <button
+            type="button"
+            class="alert-btn"
+            onclick="closeSuccessAlert()">
+
+            CONTINUE ✈
+
+        </button>
+
+    </div>
+
+</div>
 
 
 
