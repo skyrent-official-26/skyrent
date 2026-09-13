@@ -5,14 +5,15 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SkyRent - Network</title>
 
 <style>
 
-/* ================= RESET ================= */
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
     margin:0;
@@ -26,276 +27,188 @@ html{
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    color:#174b7d;
     background:#f4f9fd;
+    color:#174b7d;
     min-height:100vh;
-    padding-bottom:72px;
+    padding-bottom:75px;
 }
 
-/* ================= FIREBASE LOADING ================= */
 
-.firebase-loading{
-    position:fixed;
-    inset:0;
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
     background:
         linear-gradient(
             135deg,
-            #052b78,
-            #0074d9 55%,
-            #7edfff
+            #0754ae,
+            #0789df
         );
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:99999;
-    transition:.3s ease;
+
+    color:white;
+
+    padding:22px 18px 24px;
+
+    box-shadow:
+        0 4px 15px rgba(10,80,145,.15);
 }
 
-.firebase-loading.hidden{
-    opacity:0;
-    pointer-events:none;
+.header-inner{
+
+    width:94%;
+    max-width:650px;
+    margin:auto;
 }
 
-.loading-box{
-    width:88%;
-    max-width:330px;
-    background:rgba(255,255,255,.96);
-    border-radius:22px;
-    padding:30px 22px;
-    text-align:center;
-    box-shadow:0 20px 50px rgba(0,0,0,.25);
-}
+.logo{
 
-.loading-logo{
-    font-size:27px;
+    font-size:22px;
     font-weight:700;
-    color:#062b78;
     margin-bottom:18px;
 }
 
-.loading-logo span{
-    color:#0789e8;
+.logo span{
+    color:#75dcff;
 }
 
-.loading-spinner{
-    width:38px;
-    height:38px;
-    border:4px solid #dcecf8;
-    border-top-color:#0879d8;
-    border-radius:50%;
-    animation:networkSpin .8s linear infinite;
-    margin:0 auto 15px;
-}
+.header-title{
 
-@keyframes networkSpin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-.loading-title{
-    font-size:14px;
-    font-weight:700;
-    color:#174f83;
-}
-
-.loading-status{
-    margin-top:6px;
-    font-size:10px;
-    color:#7890a5;
-    min-height:15px;
-}
-
-/* ================= MEMBER DETAILS ================= */
-
-.member-phone-main{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    padding:5px 2px;
-    font-size:10px;
+    gap:8px;
 }
 
-.member-phone-main + .member-phone-main{
-    border-top:1px solid #dcecf7;
-}
+.header-title h1{
 
-.member-detail-label{
-    color:#6d8498;
-    font-size:9px;
-    font-weight:600;
-    white-space:nowrap;
-}
-
-.member-detail-value{
-    color:#174f83;
-    font-size:10px;
-    font-weight:700;
-    text-align:right;
-}
-
-.commission-row{
-    margin-top:1px;
-}
-
-.commission-value{
-    color:#16813d;
-    font-size:11px;
-    font-weight:800;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    position:relative;
-    overflow:hidden;
-    min-height:205px;
-    padding:20px 20px 25px;
-
-    background:
-        linear-gradient(
-            rgba(235,248,255,.12),
-            rgba(235,248,255,.20)
-        ),
-        url("skybg.jpg");
-
-    background-size:cover;
-    background-position:center center;
-
-    box-shadow:
-        0 3px 12px rgba(20,90,150,.12);
-}
-
-.logo-area{
-    position:relative;
-    z-index:5;
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-    width:100%;
-}
-
-.logo-area img{
-    display:block;
-    width:155px;
-    height:auto;
-    max-height:65px;
-    object-fit:contain;
-}
-
-.hero-content{
-    position:relative;
-    z-index:5;
-    margin-top:8px;
-}
-
-.hero-title{
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-}
-
-.hero h1{
-    font-size:25px;
-    font-weight:700;
-    color:#073d7b;
-    display:flex;
-    align-items:center;
-    gap:7px;
-    margin:0;
-}
-
-.hero-icon{
     font-size:23px;
+    font-weight:600;
 }
 
-.hero-description{
-    margin-top:8px;
-    position:relative;
-    z-index:5;
+.header-description{
+
+    margin-top:7px;
+
+    font-size:11px;
+
+    line-height:1.5;
+
+    color:rgba(255,255,255,.9);
 }
 
-.hero p{
-    font-size:13px;
-    line-height:1.55;
-    max-width:290px;
-    color:#194f83;
-}
 
-.hero p strong{
-    font-size:15px;
-}
-
-.hero-plane{
-    position:absolute;
-    right:5px;
-    top:48px;
-    font-size:65px;
-    transform:rotate(-8deg);
-    opacity:.82;
-    z-index:2;
-}
-
-/* ================= CONTAINER ================= */
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
 
 .container{
+
     width:94%;
     max-width:650px;
-    margin:-4px auto 25px;
-    position:relative;
-    z-index:5;
+
+    margin:15px auto 25px;
 }
 
-/* ================= SUMMARY ================= */
 
-.summary{
-    background:#fff;
-    border-radius:15px;
-    padding:8px;
-    box-shadow:0 4px 15px rgba(20,90,150,.10);
-    border:1px solid #e0edf6;
+/* =====================================================
+   GENERAL CARD
+===================================================== */
+
+.card{
+
+    background:white;
+
+    border:1px solid #dcecf7;
+
+    border-radius:14px;
+
+    padding:13px;
+
+    margin-bottom:12px;
+
+    box-shadow:
+        0 3px 12px rgba(20,90,150,.07);
 }
 
-.summary-top{
+.card-title{
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:#174f83;
+
+    margin-bottom:9px;
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid{
+
     display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:7px;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
 }
 
 .summary-card{
-    border-radius:11px;
-    padding:10px;
-    min-height:76px;
+
+    border-radius:10px;
+
+    padding:11px;
+
     border:1px solid #dcecf8;
-    background:#fbfdff;
+
+    background:#f9fcff;
 }
 
 .summary-card.main{
-    color:white;
-    border:none;
+
     background:
         linear-gradient(
             135deg,
-            #087fe3,
-            #0753b8
+            #0754ae,
+            #087edb
         );
+
+    color:white;
+
+    border:none;
 }
 
 .summary-icon{
-    font-size:17px;
-    margin-bottom:2px;
-}
 
-.summary-title{
-    font-size:9px;
-    font-weight:600;
+    font-size:16px;
+
     margin-bottom:3px;
 }
 
+.summary-label{
+
+    font-size:8px;
+
+    font-weight:600;
+
+    color:#6d8498;
+
+    margin-bottom:3px;
+}
+
+.summary-card.main .summary-label{
+    color:rgba(255,255,255,.85);
+}
+
 .summary-value{
-    font-size:18px;
+
+    font-size:17px;
+
     font-weight:700;
+
     white-space:nowrap;
 }
 
@@ -303,168 +216,200 @@ body{
     color:#15518a;
 }
 
-/* ================= REFERRAL ================= */
+
+/* =====================================================
+   REFERRAL CARD
+===================================================== */
 
 .referral-card{
-    margin-top:7px;
+
+    background:#f9fcff;
+
     border:1px solid #d5e9f8;
+
     border-radius:11px;
-    padding:10px;
-    background:#fbfdff;
+
+    padding:11px;
+
+    margin-top:9px;
 }
 
 .referral-title{
-    display:flex;
-    align-items:center;
-    gap:6px;
+
     font-size:11px;
+
     font-weight:700;
-    margin-bottom:7px;
+
+    color:#174f83;
+
+    margin-bottom:9px;
 }
 
-.link-icon{
-    width:25px;
-    height:25px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#073c7b;
-    color:white;
-    font-size:12px;
-}
+.referral-label{
 
-.referral-code-box{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background:#eaf5fd;
-    border:1px solid #d2e9f8;
-    border-radius:8px;
-    padding:7px 9px;
-    margin-bottom:6px;
-}
-
-.referral-code-label{
     font-size:8px;
-    color:#69849d;
-    margin-bottom:2px;
+
+    color:#7189a0;
+
+    margin-bottom:4px;
+}
+
+.referral-code-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    margin-bottom:9px;
 }
 
 .referral-code{
-    font-size:14px;
-    font-weight:700;
-    color:#0757b5;
-    letter-spacing:.7px;
-}
 
-.referral-input-row{
-    display:flex;
-    gap:5px;
-}
-
-.referral-input{
     flex:1;
+
     min-width:0;
-    border:none;
-    outline:none;
-    background:#e8f4fc;
-    color:#195385;
-    border-radius:7px;
-    padding:8px;
-    font-size:8px;
-}
 
-.copy-icon{
-    width:36px;
-    border:none;
-    border-radius:7px;
-    background:#dff5ff;
-    color:#087bd7;
-    font-size:15px;
-    cursor:pointer;
-}
+    padding:9px;
 
-.copy-button{
-    width:100%;
-    margin-top:6px;
-    border:none;
+    background:#eaf5fd;
+
+    border:1px solid #d1e8f7;
+
     border-radius:8px;
-    padding:8px;
-    background:
-        linear-gradient(
-            135deg,
-            #0755ba,
-            #087fe4
-        );
-    color:white;
-    font-size:10px;
-    font-weight:600;
+
+    color:#0757b5;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    letter-spacing:.6px;
+}
+
+.copy-small{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#dff3ff;
+
+    color:#075fb2;
+
+    font-size:15px;
+
     cursor:pointer;
 }
 
-/* ================= LANDING ================= */
+.link-row{
 
-.landing-area{
-    margin-top:19px;
-    text-align:center;
-    position:relative;
-    padding-bottom:3px;
+    display:flex;
+
+    gap:6px;
 }
 
-.runway{
-    position:absolute;
-    left:50%;
-    bottom:0;
-    transform:translateX(-50%);
-    width:90px;
-    height:55px;
+.referral-link{
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent 0 47%,
-            rgba(210,225,235,.8) 47% 53%,
-            transparent 53%
-        );
+    flex:1;
 
-    opacity:.65;
+    min-width:0;
 
-    clip-path:
-        polygon(
-            28% 0,
-            72% 0,
-            100% 100%,
-            0 100%
-        );
+    border:1px solid #d1e8f7;
+
+    background:#eaf5fd;
+
+    color:#52718c;
+
+    border-radius:8px;
+
+    padding:9px;
+
+    font-size:8px;
+
+    outline:none;
 }
 
-.landing-point{
-    position:relative;
-    z-index:3;
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-    padding:5px 13px 5px 5px;
+.copy-link{
+
+    width:38px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#0757b5;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+}
+
+.copy-all{
+
+    width:100%;
+
+    margin-top:7px;
+
+    padding:9px;
+
+    border:none;
+
+    border-radius:8px;
 
     background:
         linear-gradient(
             135deg,
             #0754ae,
-            #0a83dc
+            #087edb
         );
 
-    border-radius:35px;
     color:white;
-    border:2px solid white;
 
-    box-shadow:
-        0 5px 13px rgba(5,78,155,.18);
+    font-size:9px;
+
+    font-weight:600;
+
+    cursor:pointer;
 }
 
-.user-circle{
-    width:50px;
-    height:50px;
+
+/* =====================================================
+   YOU
+===================================================== */
+
+.you-card{
+
+    text-align:center;
+
+    padding:12px;
+
+    background:white;
+
+    border:1px solid #dcecf7;
+
+    border-radius:14px;
+
+    margin-bottom:10px;
+
+    box-shadow:
+        0 3px 12px rgba(20,90,150,.07);
+}
+
+.you-icon{
+
+    width:45px;
+    height:45px;
+
+    margin:0 auto 6px;
+
     border-radius:50%;
 
     background:
@@ -474,252 +419,231 @@ body{
             #ffc000
         );
 
-    border:3px solid white;
+    border:2px solid white;
 
     box-shadow:
         0 0 0 2px #ffca18;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
-    font-size:24px;
+
+    font-size:21px;
 }
 
-.landing-text{
-    text-align:left;
-}
+.you-name{
 
-.you{
-    font-size:17px;
+    font-size:13px;
+
     font-weight:700;
+
+    color:#174f83;
 }
 
-.landing-small{
-    font-size:8px;
-    margin-top:1px;
-}
+.you-label{
 
-.crown{
-    position:absolute;
-    top:-10px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:16px;
-    z-index:4;
-}
-
-.connector{
-    width:3px;
-    height:18px;
-    margin:0 auto;
-
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            #0864ba 0px,
-            #0864ba 5px,
-            transparent 5px,
-            transparent 10px
-        );
-}
-
-.arrow{
-    text-align:center;
-    color:#0755ad;
-    font-size:14px;
-    height:13px;
-}
-
-/* ================= LEVELS ================= */
-
-.level{
-    overflow:hidden;
-    border-radius:16px;
     margin-top:2px;
-    border:2px solid white;
-    box-shadow:0 5px 16px rgba(11,82,147,.15);
+
+    font-size:8px;
+
+    color:#7c91a5;
 }
 
-.level-a{
-    background:
-        linear-gradient(
-            125deg,
-            #0565cc,
-            #079ce8
-        );
-}
 
-.level-b{
-    background:
-        linear-gradient(
-            125deg,
-            #154dc0,
-            #1179e5
-        );
-}
+/* =====================================================
+   LEVEL CARD
+===================================================== */
 
-.level-c{
-    background:
-        linear-gradient(
-            125deg,
-            #008ea9,
-            #13b9c1
-        );
-}
+.level-card{
 
-.level-main{
-    min-height:116px;
-    padding:11px 10px;
+    background:white;
 
-    display:grid;
-    grid-template-columns:1fr 82px;
+    border:1px solid #dcecf7;
 
-    align-items:center;
-    position:relative;
+    border-radius:14px;
+
     overflow:hidden;
+
+    margin-bottom:11px;
+
+    box-shadow:
+        0 3px 12px rgba(20,90,150,.07);
 }
 
-.level-info{
-    position:relative;
-    z-index:3;
-}
+.level-header{
 
-.level-heading{
+    padding:12px;
+
     display:flex;
+
     align-items:center;
-    gap:6px;
+
+    justify-content:space-between;
+
+    color:white;
+}
+
+.level-a .level-header{
+    background:linear-gradient(135deg,#0565cc,#078bdc);
+}
+
+.level-b .level-header{
+    background:linear-gradient(135deg,#174fba,#147ce0);
+}
+
+.level-c .level-header{
+    background:linear-gradient(135deg,#008da8,#13b9c1);
+}
+
+.level-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
 }
 
 .level-icon{
+
     width:35px;
     height:35px;
-    flex-shrink:0;
+
     border-radius:50%;
 
+    background:rgba(255,255,255,.18);
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    background:#ffd42a;
-    color:#0751a7;
-    font-size:18px;
-}
-
-.level-b .level-icon,
-.level-c .level-icon{
-    background:white;
+    font-size:17px;
 }
 
 .level-name{
-    font-size:17px;
-    color:white;
+
+    font-size:14px;
+
     font-weight:700;
-    line-height:1;
 }
 
-.stage{
-    display:inline-block;
+.level-stage{
+
     margin-top:3px;
+
+    display:inline-block;
+
     padding:3px 7px;
-    border-radius:12px;
-    background:#13c8ee;
-    color:white;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.18);
+
     font-size:6px;
+
     font-weight:700;
+
     letter-spacing:.3px;
 }
 
-.description{
-    color:white;
-    font-size:8px;
-    line-height:1.4;
-    margin-top:6px;
-    max-width:170px;
-}
+.level-rate{
 
-.description strong{
-    display:block;
-    font-size:9px;
-    margin-bottom:1px;
-}
-
-.aircraft{
-    position:absolute;
-    right:52px;
-    top:34px;
-    font-size:34px;
-    opacity:.7;
-    transform:rotate(-5deg);
-    z-index:2;
-}
-
-.commission{
-    position:relative;
-    z-index:5;
     text-align:center;
-    padding:8px 4px;
-    border-radius:22px;
-    background:#ffd42a;
-    color:#0751a5;
+
+    min-width:58px;
+
+    padding:7px 6px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.15);
+
+    border:1px solid rgba(255,255,255,.55);
 }
 
-.level-b .commission,
-.level-c .commission{
-    background:rgba(255,255,255,.10);
-    color:white;
-    border:1px solid rgba(255,255,255,.8);
-}
+.rate-number{
 
-.percent{
-    font-size:22px;
-    line-height:1;
+    font-size:18px;
+
     font-weight:800;
+
+    line-height:1;
 }
 
-.commission-label{
-    font-size:7px;
-    font-weight:600;
+.rate-label{
+
     margin-top:2px;
+
+    font-size:6px;
 }
+
+
+/* =====================================================
+   MEMBERS BAR
+===================================================== */
 
 .members-bar{
-    background:white;
-    color:#124c85;
-    min-height:36px;
-    padding:6px 9px;
+
+    min-height:39px;
+
+    padding:7px 10px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     cursor:pointer;
+
+    background:#fff;
 }
 
 .members-left{
-    display:flex;
-    align-items:center;
-    gap:5px;
-    font-size:9px;
-    font-weight:600;
-}
 
-.members-icon{
-    font-size:14px;
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    font-size:9px;
+
+    font-weight:600;
+
+    color:#174f83;
 }
 
 .member-count{
-    color:#0756ad;
+
+    color:#0757b5;
 }
 
 .member-arrow{
+
     font-size:16px;
+
     color:#1261ac;
 }
 
+
+/* =====================================================
+   MEMBER LIST
+===================================================== */
+
 .member-list{
+
     display:none;
-    background:#f9fcff;
+
     padding:7px;
+
+    background:#f8fcff;
+
+    border-top:1px solid #e2eff8;
 }
 
 .member-list.open{
@@ -727,152 +651,304 @@ body{
 }
 
 .member{
-    padding:8px;
-    margin-bottom:4px;
-    border-radius:7px;
+
+    padding:9px;
+
+    margin-bottom:5px;
+
+    border-radius:8px;
+
     background:#edf7ff;
-    border:1px solid #d4eafa;
-    font-size:8px;
+
+    border:1px solid #d5eafa;
 }
 
 .member:last-child{
     margin-bottom:0;
 }
 
+.member-row{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:8px;
+
+    padding:4px 0;
+}
+
+.member-row + .member-row{
+
+    border-top:1px solid #dcecf7;
+}
+
+.member-label{
+
+    color:#71869a;
+
+    font-size:8px;
+
+    white-space:nowrap;
+}
+
+.member-value{
+
+    color:#174f83;
+
+    font-size:9px;
+
+    font-weight:600;
+
+    text-align:right;
+}
+
+.member-commission{
+
+    color:#16813d;
+
+    font-size:10px;
+
+    font-weight:700;
+}
+
 .empty{
+
     text-align:center;
-    padding:7px;
+
+    padding:10px;
+
     color:#8196aa;
+
     font-size:8px;
 }
 
-/* ================= BENEFITS ================= */
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-box{
+
+    text-align:center;
+
+    padding:20px 10px;
+
+    color:#6d8498;
+
+    font-size:9px;
+}
+
+.spinner{
+
+    width:22px;
+    height:22px;
+
+    margin:0 auto 7px;
+
+    border:3px solid #dcecf7;
+
+    border-top-color:#087edb;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   BENEFITS
+===================================================== */
 
 .benefits{
-    margin-top:16px;
+
     background:white;
-    border:1px solid #cbe5f8;
-    border-radius:13px;
-    padding:9px 4px;
+
+    border:1px solid #dcecf7;
+
+    border-radius:14px;
+
+    padding:9px 3px;
 
     display:grid;
+
     grid-template-columns:1fr 1fr 1fr;
-    gap:2px;
 
     box-shadow:
-        0 4px 12px rgba(30,100,150,.06);
+        0 3px 12px rgba(20,90,150,.06);
 }
 
 .benefit{
+
     text-align:center;
-    padding:3px 2px;
+
+    padding:3px;
 }
 
 .benefit + .benefit{
-    border-left:1px solid #d4e7f5;
+
+    border-left:1px solid #dcecf7;
 }
 
 .benefit-icon{
-    font-size:18px;
-    margin-bottom:2px;
+
+    font-size:17px;
+
+    margin-bottom:3px;
 }
 
 .benefit strong{
+
     display:block;
+
     font-size:8px;
+
     color:#073c7b;
 }
 
 .benefit span{
+
     display:block;
+
     margin-top:2px;
+
     font-size:7px;
+
     color:#7189a0;
 }
 
-/* ================= BOTTOM NAV ================= */
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
 
 .bottom-nav{
+
     position:fixed;
+
     bottom:0;
+
     left:0;
+
     right:0;
+
     height:65px;
 
     background:rgba(255,255,255,.98);
+
     border-top:1px solid #d7eafa;
 
     box-shadow:
         0 -4px 15px rgba(0,60,110,.10);
 
     display:grid;
+
     grid-template-columns:repeat(5,1fr);
 
     z-index:2000;
 }
 
 .bottom-nav a{
+
     text-decoration:none;
+
     color:#607991;
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
+
     justify-content:center;
 
     gap:2px;
+
     font-size:7px;
+
     position:relative;
 }
 
 .bottom-icon{
+
     font-size:18px;
+
     line-height:1;
 }
 
 .bottom-nav a.active{
+
     color:#0757b5;
+
     font-weight:700;
 }
 
 .bottom-nav a.active:before{
+
     content:"";
+
     position:absolute;
+
     top:0;
+
     width:35px;
+
     height:3px;
+
     border-radius:0 0 5px 5px;
+
     background:#087edb;
 }
 
-/* ================= TOAST ================= */
+
+/* =====================================================
+   TOAST
+===================================================== */
 
 .toast{
+
     position:fixed;
+
     left:50%;
-    bottom:80px;
+
+    bottom:78px;
 
     transform:
         translateX(-50%)
         translateY(15px);
 
     background:#073c7b;
+
     color:white;
 
     padding:8px 14px;
+
     border-radius:20px;
+
     font-size:9px;
 
     opacity:0;
+
     pointer-events:none;
 
     transition:.3s;
 
     z-index:3000;
+
     white-space:nowrap;
 }
 
 .toast.show{
+
     opacity:1;
 
     transform:
@@ -880,7 +956,10 @@ body{
         translateY(0);
 }
 
-/* ================= DESKTOP ================= */
+
+/* =====================================================
+   DESKTOP
+===================================================== */
 
 @media(min-width:700px){
 
@@ -892,245 +971,104 @@ body{
         max-width:850px;
     }
 
-    .hero{
-        padding-left:
-            calc((100% - 850px)/2);
-
-        min-height:230px;
-    }
-
-    .logo-area img{
-        width:185px;
-        max-height:70px;
-    }
-
-    .hero-content{
-        margin-top:10px;
-    }
-
-    .hero h1{
-        font-size:30px;
-    }
-
-    .hero p{
-        font-size:13px;
-        max-width:340px;
-    }
-
-    .hero p strong{
-        font-size:16px;
-    }
-
-    .hero-plane{
-        right:12%;
-        top:48px;
-        font-size:85px;
-    }
-
-    .level-main{
-        min-height:145px;
-        grid-template-columns:1fr 120px;
-    }
-
-    .level-name{
-        font-size:22px;
-    }
-
-    .description{
-        font-size:10px;
-    }
-
-    .aircraft{
-        font-size:48px;
-    }
-
-    .percent{
-        font-size:27px;
+    .header-inner{
+        max-width:850px;
     }
 
     .bottom-nav{
         display:none;
     }
+
+    .header{
+        padding-left:
+            calc((100% - 850px)/2);
+
+        padding-right:
+            calc((100% - 850px)/2);
+    }
+
 }
 
-/* ================= SMALL PHONES ================= */
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
 
 @media(max-width:360px){
 
-    .hero{
-        min-height:190px;
+    .header{
         padding:18px 15px 20px;
     }
 
-    .logo-area img{
-        width:125px;
-        max-height:52px;
-    }
-
-    .hero-content{
-        margin-top:6px;
-    }
-
-    .hero h1{
+    .header-title h1{
         font-size:21px;
-        gap:5px;
-    }
-
-    .hero-icon{
-        font-size:20px;
-    }
-
-    .hero p{
-        font-size:12px;
-        line-height:1.5;
-        max-width:260px;
-    }
-
-    .hero p strong{
-        font-size:14px;
-    }
-
-    .hero-plane{
-        right:-3px;
-        top:48px;
-        font-size:55px;
     }
 
     .summary-value{
-        font-size:16px;
-    }
-
-    .level-main{
-        grid-template-columns:1fr 76px;
+        font-size:15px;
     }
 
     .level-name{
-        font-size:16px;
+        font-size:13px;
     }
 
-    .level-icon{
-        width:33px;
-        height:33px;
+    .rate-number{
         font-size:17px;
     }
 
-    .aircraft{
-        right:48px;
-        font-size:30px;
-    }
-
-    .percent{
-        font-size:20px;
-    }
 }
 
 </style>
 
 </head>
 
+
 <body>
 
 
-<!-- ================= FIREBASE LOADING ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-<div
-    class="firebase-loading"
-    id="firebaseLoading"
->
+<header class="header">
 
-    <div class="loading-box">
+    <div class="header-inner">
 
-        <div class="loading-logo">
+        <div class="logo">
             ✈ Sky<span>Rent</span>
         </div>
 
-        <div class="loading-spinner"></div>
+        <div class="header-title">
 
-        <div
-            class="loading-title"
-            id="loadingTitle"
-        >
-            Connecting...
-        </div>
+            <span>👥</span>
 
-        <div
-            class="loading-status"
-            id="loadingStatus"
-        >
-            Checking your SkyRent account
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= HERO ================= -->
-
-<section class="hero">
-
-    <div class="logo-area">
-
-        <img
-            src="skyrent-logo.png"
-            alt="SkyRent Logo"
-        >
-
-    </div>
-
-
-    <div class="hero-content">
-
-        <div class="hero-title">
-
-            <h1>
-
-                <span class="hero-icon">
-                    👥
-                </span>
-
-                My Network
-
-            </h1>
+            <h1>My Network</h1>
 
         </div>
 
+        <div class="header-description">
 
-        <div class="hero-description">
-
-            <p>
-
-                <strong>
-                    Build your network. Earn more.
-                </strong>
-
-                <br>
-
-                Invite members and grow your
-                SkyRent flight network.
-
-            </p>
+            Build your network and track your referral activity.
 
         </div>
 
     </div>
 
-
-    <div class="hero-plane">
-        ✈️
-    </div>
-
-</section>
+</header>
 
 
-<!-- ================= CONTENT ================= -->
+<!-- =====================================================
+     CONTENT
+===================================================== -->
 
 <main class="container">
 
 
-<section class="summary">
+<!-- SUMMARY -->
 
-    <div class="summary-top">
+<section class="card">
+
+    <div class="summary-grid">
 
         <div class="summary-card main">
 
@@ -1138,7 +1076,7 @@ body{
                 🪙
             </div>
 
-            <div class="summary-title">
+            <div class="summary-label">
                 Total Commission
             </div>
 
@@ -1158,7 +1096,7 @@ body{
                 👥
             </div>
 
-            <div class="summary-title">
+            <div class="summary-label">
                 Total Invites
             </div>
 
@@ -1174,41 +1112,30 @@ body{
     </div>
 
 
-    <!-- ================= REFERRAL ================= -->
+    <!-- REFERRAL -->
 
     <div class="referral-card">
 
         <div class="referral-title">
-
-            <div class="link-icon">
-                🔗
-            </div>
-
-            Your Referral Information
-
+            🔗 Your Referral Information
         </div>
 
 
-        <div class="referral-code-box">
+        <div class="referral-label">
+            YOUR REFERRAL CODE
+        </div>
 
-            <div>
+        <div class="referral-code-row">
 
-                <div class="referral-code-label">
-                    YOUR REFERRAL CODE
-                </div>
-
-                <div
-                    class="referral-code"
-                    id="myReferralCode"
-                >
-                    LOADING...
-                </div>
-
+            <div
+                class="referral-code"
+                id="myReferralCode"
+            >
+                Loading...
             </div>
 
-
             <button
-                class="copy-icon"
+                class="copy-small"
                 onclick="copyReferralCode()"
             >
                 📋
@@ -1217,24 +1144,21 @@ body{
         </div>
 
 
-        <div
-            class="referral-code-label"
-            style="margin-bottom:4px;"
-        >
-            YOUR REFERRAL LINK
+        <div class="referral-label">
+            YOUR GITHUB REFERRAL LINK
         </div>
 
-
-        <div class="referral-input-row">
+        <div class="link-row">
 
             <input
-                class="referral-input"
+                class="referral-link"
                 id="referralLink"
                 readonly
+                value="Loading..."
             >
 
             <button
-                class="copy-icon"
+                class="copy-link"
                 onclick="copyReferral()"
             >
                 📋
@@ -1244,7 +1168,7 @@ body{
 
 
         <button
-            class="copy-button"
+            class="copy-all"
             onclick="copyReferral()"
         >
             📋 &nbsp; Copy Referral Link
@@ -1255,101 +1179,63 @@ body{
 </section>
 
 
-<!-- ================= YOU ================= -->
+<!-- YOU -->
 
-<section class="landing-area">
+<section class="you-card">
 
-    <div class="runway"></div>
-
-    <div class="crown">
-        👑
+    <div class="you-icon">
+        👤
     </div>
 
-    <div class="landing-point">
+    <div
+        class="you-name"
+        id="myName"
+    >
+        SkyRent Member
+    </div>
 
-        <div class="user-circle">
-            👤
-        </div>
-
-        <div class="landing-text">
-
-            <div class="you">
-                YOU
-            </div>
-
-            <div class="landing-small">
-                🛬 Landing Point
-            </div>
-
-        </div>
-
+    <div class="you-label">
+        You • Landing Point
     </div>
 
 </section>
 
 
-<div class="connector"></div>
+<!-- LEVEL A -->
 
-<div class="arrow">
-    ▼
-</div>
+<section class="level-card level-a">
 
+    <div class="level-header">
 
-<!-- ================= LEVEL A ================= -->
+        <div class="level-left">
 
-<section class="level level-a">
-
-    <div class="level-main">
-
-        <div class="level-info">
-
-            <div class="level-heading">
-
-                <div class="level-icon">
-                    ✈️
-                </div>
-
-                <div>
-
-                    <div class="level-name">
-                        LEVEL A
-                    </div>
-
-                    <span class="stage">
-                        BOARDING
-                    </span>
-
-                </div>
-
+            <div class="level-icon">
+                ✈️
             </div>
 
+            <div>
 
-            <div class="description">
+                <div class="level-name">
+                    LEVEL A
+                </div>
 
-                <strong>
-                    Direct Referrals
-                </strong>
-
-                Closest to you
+                <span class="level-stage">
+                    BOARDING
+                </span>
 
             </div>
 
         </div>
 
 
-        <div class="aircraft">
-            ✈️
-        </div>
+        <div class="level-rate">
 
-
-        <div class="commission">
-
-            <div class="percent">
+            <div class="rate-number">
                 25%
             </div>
 
-            <div class="commission-label">
-                Commission
+            <div class="rate-label">
+                COMMISSION
             </div>
 
         </div>
@@ -1364,7 +1250,7 @@ body{
 
         <div class="members-left">
 
-            <span class="members-icon">
+            <span>
                 👥
             </span>
 
@@ -1379,7 +1265,6 @@ body{
 
         </div>
 
-
         <div
             class="member-arrow"
             id="arrowA"
@@ -1393,73 +1278,56 @@ body{
     <div
         class="member-list"
         id="membersA"
-    ></div>
+    >
+
+        <div class="loading-box">
+
+            <div class="spinner"></div>
+
+            Loading members...
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<div class="connector"></div>
+<!-- LEVEL B -->
 
-<div class="arrow">
-    ▼
-</div>
+<section class="level-card level-b">
 
+    <div class="level-header">
 
-<!-- ================= LEVEL B ================= -->
+        <div class="level-left">
 
-<section class="level level-b">
-
-    <div class="level-main">
-
-        <div class="level-info">
-
-            <div class="level-heading">
-
-                <div class="level-icon">
-                    🛫
-                </div>
-
-                <div>
-
-                    <div class="level-name">
-                        LEVEL B
-                    </div>
-
-                    <span class="stage">
-                        TAKE OFF
-                    </span>
-
-                </div>
-
+            <div class="level-icon">
+                🛫
             </div>
 
+            <div>
 
-            <div class="description">
+                <div class="level-name">
+                    LEVEL B
+                </div>
 
-                <strong>
-                    2nd Level Referrals
-                </strong>
-
-                Referred by Level A
+                <span class="level-stage">
+                    TAKE OFF
+                </span>
 
             </div>
 
         </div>
 
 
-        <div class="aircraft">
-            🛫
-        </div>
+        <div class="level-rate">
 
-
-        <div class="commission">
-
-            <div class="percent">
+            <div class="rate-number">
                 3%
             </div>
 
-            <div class="commission-label">
-                Commission
+            <div class="rate-label">
+                COMMISSION
             </div>
 
         </div>
@@ -1474,7 +1342,7 @@ body{
 
         <div class="members-left">
 
-            <span class="members-icon">
+            <span>
                 👥
             </span>
 
@@ -1489,7 +1357,6 @@ body{
 
         </div>
 
-
         <div
             class="member-arrow"
             id="arrowB"
@@ -1503,73 +1370,56 @@ body{
     <div
         class="member-list"
         id="membersB"
-    ></div>
+    >
+
+        <div class="loading-box">
+
+            <div class="spinner"></div>
+
+            Loading members...
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<div class="connector"></div>
+<!-- LEVEL C -->
 
-<div class="arrow">
-    ▼
-</div>
+<section class="level-card level-c">
 
+    <div class="level-header">
 
-<!-- ================= LEVEL C ================= -->
+        <div class="level-left">
 
-<section class="level level-c">
-
-    <div class="level-main">
-
-        <div class="level-info">
-
-            <div class="level-heading">
-
-                <div class="level-icon">
-                    ☁️
-                </div>
-
-                <div>
-
-                    <div class="level-name">
-                        LEVEL C
-                    </div>
-
-                    <span class="stage">
-                        CRUISING
-                    </span>
-
-                </div>
-
+            <div class="level-icon">
+                ☁️
             </div>
 
+            <div>
 
-            <div class="description">
+                <div class="level-name">
+                    LEVEL C
+                </div>
 
-                <strong>
-                    3rd Level Referrals
-                </strong>
-
-                Referred by Level B
+                <span class="level-stage">
+                    CRUISING
+                </span>
 
             </div>
 
         </div>
 
 
-        <div class="aircraft">
-            ✈️
-        </div>
+        <div class="level-rate">
 
-
-        <div class="commission">
-
-            <div class="percent">
+            <div class="rate-number">
                 1%
             </div>
 
-            <div class="commission-label">
-                Commission
+            <div class="rate-label">
+                COMMISSION
             </div>
 
         </div>
@@ -1584,7 +1434,7 @@ body{
 
         <div class="members-left">
 
-            <span class="members-icon">
+            <span>
                 👥
             </span>
 
@@ -1599,7 +1449,6 @@ body{
 
         </div>
 
-
         <div
             class="member-arrow"
             id="arrowC"
@@ -1613,12 +1462,22 @@ body{
     <div
         class="member-list"
         id="membersC"
-    ></div>
+    >
+
+        <div class="loading-box">
+
+            <div class="spinner"></div>
+
+            Loading members...
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= BENEFITS ================= -->
+<!-- BENEFITS -->
 
 <section class="benefits">
 
@@ -1678,7 +1537,9 @@ body{
 </main>
 
 
-<!-- ================= BOTTOM NAV ================= -->
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
 
 <nav class="bottom-nav">
 
@@ -1742,7 +1603,7 @@ body{
 </nav>
 
 
-<!-- ================= TOAST ================= -->
+<!-- TOAST -->
 
 <div
     class="toast"
@@ -1752,41 +1613,38 @@ body{
 </div>
 
 
-<!-- =========================================================
+<!-- =====================================================
      FIREBASE
-========================================================= -->
+===================================================== -->
 
 <script type="module">
 
 import {
     initializeApp
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
 import {
     getAuth,
-    onAuthStateChanged,
-    setPersistence,
-    browserLocalPersistence
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 import {
     getFirestore,
-    collection,
-    getDocs,
     doc,
     getDoc,
-    updateDoc
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    collection,
+    getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =========================================================
+/* =====================================================
    FIREBASE CONFIG
-========================================================= */
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1807,522 +1665,576 @@ const firebaseConfig = {
 
     appId:
         "1:572678456448:web:6b7132351515742dd09265"
+
 };
 
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
 
 const app =
     initializeApp(firebaseConfig);
 
+
 const auth =
     getAuth(app);
+
 
 const db =
     getFirestore(app);
 
 
-/* =========================================================
-   FORCE LOCAL FIREBASE AUTH PERSISTENCE
-========================================================= */
+/* =====================================================
+   GITHUB PAGES ADDRESS
+===================================================== */
 
-await setPersistence(
-    auth,
-    browserLocalPersistence
-);
+/*
+   IMPORTANT:
 
+   Put your actual GitHub Pages website address here.
 
-/* =========================================================
-   COMMISSION RATES
-========================================================= */
+   Example:
 
-const COMMISSION_A = 0.25;
-const COMMISSION_B = 0.03;
-const COMMISSION_C = 0.01;
+   https://username.github.io/SkyRent/
 
+   Do NOT put network.html here.
 
-/* =========================================================
-   GITHUB PAGES URL
-========================================================= */
+   The code automatically adds:
+
+   index.html?ref=YOURCODE
+*/
 
 const GITHUB_SITE =
     "https://skyrent26.github.io/skyrent/";
 
 
-/* =========================================================
-   CURRENT USER
-========================================================= */
+/* =====================================================
+   GLOBAL DATA
+===================================================== */
 
-let firebaseUser = null;
+let currentFirebaseUser = null;
 
-let currentUserData = null;
+let myUser = null;
 
 let allUsers = [];
 
-let allCommissions = [];
+let myCommissions = [];
 
 
-/* =========================================================
-   LOADING SCREEN
-========================================================= */
+/* =====================================================
+   COMMISSION RATES
+===================================================== */
 
-function updateLoading(
-    title,
-    status
-){
+const COMMISSION_A = 0.25;
 
-    document.getElementById(
-        "loadingTitle"
-    ).textContent = title;
+const COMMISSION_B = 0.03;
 
-    document.getElementById(
-        "loadingStatus"
-    ).textContent = status;
-}
+const COMMISSION_C = 0.01;
 
 
-function hideLoading(){
-
-    const loading =
-        document.getElementById(
-            "firebaseLoading"
-        );
-
-    loading.classList.add("hidden");
-
-    setTimeout(
-        function(){
-
-            loading.style.display =
-                "none";
-
-        },
-        350
-    );
-}
-
-
-/* =========================================================
-   NORMALIZE REFERRAL CODE
-========================================================= */
+/* =====================================================
+   NORMALIZE
+===================================================== */
 
 function normalizeReferralCode(code){
 
-    return String(
-        code || ""
-    )
-    .trim()
-    .toUpperCase();
+    return String(code || "")
+        .trim()
+        .toUpperCase();
+
 }
 
 
-/* =========================================================
-   GENERATE REFERRAL CODE
-========================================================= */
+/* =====================================================
+   GET REFERRER CODE
+===================================================== */
 
-function generateReferralCode(){
+function getReferredByCode(user){
 
-    return (
-        "SKY" +
-        Math.random()
-            .toString(36)
-            .substring(2,8)
-            .toUpperCase()
+    if(!user){
+        return "";
+    }
+
+    return normalizeReferralCode(
+
+        user.referredByCode ||
+
+        user.referredBy ||
+
+        user.referralBy ||
+
+        user.parentReferralCode ||
+
+        ""
+
     );
-}
-
-
-/* =========================================================
-   GET UNIQUE REFERRAL CODE
-========================================================= */
-
-async function getOrCreateReferralCode(){
-
-    let code =
-        normalizeReferralCode(
-            currentUserData?.referralCode
-        );
-
-
-    if(code){
-
-        return code;
-
-    }
-
-
-    let exists = true;
-
-
-    while(exists){
-
-        code =
-            generateReferralCode();
-
-        exists =
-            allUsers.some(
-                user =>
-                    normalizeReferralCode(
-                        user.referralCode
-                    ) === code
-            );
-
-    }
-
-
-    try{
-
-        await updateDoc(
-
-            doc(
-                db,
-                "users",
-                firebaseUser.uid
-            ),
-
-            {
-                referralCode:code
-            }
-
-        );
-
-        currentUserData.referralCode =
-            code;
-
-    }
-    catch(error){
-
-        console.error(
-            "Could not save referral code:",
-            error
-        );
-
-    }
-
-
-    return code;
 
 }
 
 
-/* =========================================================
-   GET REFERRER
-========================================================= */
+/* =====================================================
+   PHONE NORMALIZATION
+===================================================== */
+
+function normalizePhone(phone){
+
+    return String(phone || "")
+        .replace(/\s+/g,"")
+        .trim();
+
+}
+
+
+/* =====================================================
+   GET DIRECT REFERRER
+===================================================== */
 
 function getDirectReferrer(user){
 
     if(!user){
-
         return null;
+    }
+
+
+    /*
+       First check UID if your future
+       registration system stores it.
+    */
+
+    if(user.referredByUid){
+
+        const byUid =
+            allUsers.find(
+                member =>
+                    member.uid ===
+                    user.referredByUid
+            );
+
+        if(byUid){
+            return byUid;
+        }
 
     }
 
+
+    /*
+       Then check phone.
+    */
+
+    if(user.referredByPhone){
+
+        const targetPhone =
+            normalizePhone(
+                user.referredByPhone
+            );
+
+        const byPhone =
+            allUsers.find(
+                member =>
+                    normalizePhone(
+                        member.phone
+                    ) === targetPhone
+            );
+
+        if(byPhone){
+            return byPhone;
+        }
+
+    }
+
+
+    /*
+       Finally check referral code.
+    */
 
     const referredByCode =
-        normalizeReferralCode(
-
-            user.referredByCode ||
-
-            user.referredBy ||
-
-            user.referralBy ||
-
-            user.parentReferralCode ||
-
-            ""
-
-        );
+        getReferredByCode(user);
 
 
-    if(!referredByCode){
+    if(referredByCode){
 
-        return null;
+        const byCode =
+            allUsers.find(
+                member =>
+                    normalizeReferralCode(
+                        member.referralCode
+                    ) ===
+                    referredByCode
+            );
+
+        if(byCode){
+            return byCode;
+        }
 
     }
 
 
-    return (
-        allUsers.find(
-            member =>
-                normalizeReferralCode(
-                    member.referralCode
-                ) === referredByCode
-        ) || null
-    );
+    return null;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    BUILD NETWORK
-========================================================= */
+===================================================== */
 
 function buildNetwork(){
-
-    const me =
-        currentUserData;
-
 
     const levelA = [];
     const levelB = [];
     const levelC = [];
 
 
-    if(!me){
-
+    if(!myUser){
         return {
             levelA,
             levelB,
             levelC
         };
+    }
+
+
+    const myUid =
+        currentFirebaseUser.uid;
+
+
+    const myPhone =
+        normalizePhone(myUser.phone);
+
+
+    /* =================================================
+       LEVEL A
+       Direct referrals
+    ================================================= */
+
+    allUsers.forEach(user => {
+
+        if(user.uid === myUid){
+            return;
+        }
+
+        if(
+            normalizePhone(user.phone) ===
+            myPhone
+        ){
+            return;
+        }
+
+
+        const referrer =
+            getDirectReferrer(user);
+
+
+        if(!referrer){
+            return;
+        }
+
+
+        const sameUid =
+            referrer.uid &&
+            referrer.uid === myUid;
+
+
+        const samePhone =
+            normalizePhone(
+                referrer.phone
+            ) === myPhone;
+
+
+        if(
+            sameUid ||
+            samePhone
+        ){
+
+            levelA.push(user);
+
+        }
+
+    });
+
+
+    /* =================================================
+       LEVEL B
+       Referred by Level A
+    ================================================= */
+
+    allUsers.forEach(user => {
+
+        if(user.uid === myUid){
+            return;
+        }
+
+
+        if(
+            levelA.some(
+                member =>
+                    member.uid === user.uid
+            )
+        ){
+            return;
+        }
+
+
+        const referrer =
+            getDirectReferrer(user);
+
+
+        if(!referrer){
+            return;
+        }
+
+
+        if(
+            levelA.some(
+                member =>
+                    member.uid ===
+                    referrer.uid
+            )
+        ){
+
+            levelB.push(user);
+
+        }
+
+    });
+
+
+    /* =================================================
+       LEVEL C
+       Referred by Level B
+    ================================================= */
+
+    allUsers.forEach(user => {
+
+        if(user.uid === myUid){
+            return;
+        }
+
+
+        if(
+            levelA.some(
+                member =>
+                    member.uid === user.uid
+            )
+        ){
+            return;
+        }
+
+
+        if(
+            levelB.some(
+                member =>
+                    member.uid === user.uid
+            )
+        ){
+            return;
+        }
+
+
+        const referrer =
+            getDirectReferrer(user);
+
+
+        if(!referrer){
+            return;
+        }
+
+
+        if(
+            levelB.some(
+                member =>
+                    member.uid ===
+                    referrer.uid
+            )
+        ){
+
+            levelC.push(user);
+
+        }
+
+    });
+
+
+    return {
+        levelA,
+        levelB,
+        levelC
+    };
+
+}
+
+
+/* =====================================================
+   LOAD ALL USERS
+===================================================== */
+
+async function loadAllUsers(){
+
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "users"
+            )
+        );
+
+
+    allUsers = [];
+
+
+    snapshot.forEach(docSnap => {
+
+        allUsers.push({
+
+            uid:docSnap.id,
+
+            ...docSnap.data()
+
+        });
+
+    });
+
+}
+
+
+/* =====================================================
+   LOAD MY USER
+===================================================== */
+
+async function loadMyUser(){
+
+    const userDoc =
+        await getDoc(
+            doc(
+                db,
+                "users",
+                currentFirebaseUser.uid
+            )
+        );
+
+
+    if(!userDoc.exists()){
+
+        throw new Error(
+            "SkyRent account record was not found."
+        );
 
     }
 
 
-    /* =====================================================
-       LEVEL A
-       Direct referrals
-    ===================================================== */
+    myUser = {
 
-    allUsers.forEach(
-        user => {
+        uid:currentFirebaseUser.uid,
 
-            if(
-                user.uid ===
-                firebaseUser.uid
-            ){
-
-                return;
-
-            }
-
-
-            const referrer =
-                getDirectReferrer(user);
-
-
-            if(!referrer){
-
-                return;
-
-            }
-
-
-            if(
-                referrer.uid ===
-                firebaseUser.uid
-            ){
-
-                levelA.push(user);
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       LEVEL B
-       Referred by Level A
-    ===================================================== */
-
-    allUsers.forEach(
-        user => {
-
-            if(
-                user.uid ===
-                firebaseUser.uid
-            ){
-
-                return;
-
-            }
-
-
-            if(
-                levelA.some(
-                    member =>
-                        member.uid ===
-                        user.uid
-                )
-            ){
-
-                return;
-
-            }
-
-
-            const referrer =
-                getDirectReferrer(user);
-
-
-            if(!referrer){
-
-                return;
-
-            }
-
-
-            if(
-                levelA.some(
-                    member =>
-                        member.uid ===
-                        referrer.uid
-                )
-            ){
-
-                levelB.push(user);
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       LEVEL C
-       Referred by Level B
-    ===================================================== */
-
-    allUsers.forEach(
-        user => {
-
-            if(
-                user.uid ===
-                firebaseUser.uid
-            ){
-
-                return;
-
-            }
-
-
-            if(
-                levelA.some(
-                    member =>
-                        member.uid ===
-                        user.uid
-                )
-            ){
-
-                return;
-
-            }
-
-
-            if(
-                levelB.some(
-                    member =>
-                        member.uid ===
-                        user.uid
-                )
-            ){
-
-                return;
-
-            }
-
-
-            const referrer =
-                getDirectReferrer(user);
-
-
-            if(!referrer){
-
-                return;
-
-            }
-
-
-            if(
-                levelB.some(
-                    member =>
-                        member.uid ===
-                        referrer.uid
-                )
-            ){
-
-                levelC.push(user);
-
-            }
-
-        }
-    );
-
-
-    return {
-
-        levelA,
-        levelB,
-        levelC
+        ...userDoc.data()
 
     };
 
 }
 
 
-/* =========================================================
-   GET COMMISSIONS FOR CURRENT USER
-========================================================= */
+/* =====================================================
+   LOAD COMMISSIONS
+===================================================== */
 
-function getMyCommissions(){
+async function loadMyCommissions(){
 
-    if(!firebaseUser){
+    /*
+       This supports a Firestore collection:
 
-        return [];
+       referralCommissions
 
-    }
+       Each document can contain:
+
+       ownerUid
+       ownerPhone
+       buyerUid
+       buyerPhone
+       level
+       commission
+       purchaseAmount
+       status
+       date
+
+       If you have not created commission
+       records yet, the page simply shows ₱0.00.
+    */
 
 
-    return allCommissions.filter(
-        commission => {
+    try{
 
-            const ownerUid =
-                commission.ownerUid ||
-                commission.ownerId ||
-                "";
-
-
-            const ownerPhone =
-                commission.ownerPhone ||
-                "";
-
-
-            return (
-
-                String(ownerUid) ===
-                String(firebaseUser.uid)
-
-            ) ||
-
-            (
-
-                String(ownerPhone) ===
-                String(
-                    currentUserData?.phone || ""
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "referralCommissions"
                 )
-
             );
 
-        }
-    );
+
+        myCommissions = [];
+
+
+        snapshot.forEach(docSnap => {
+
+            const data =
+                docSnap.data();
+
+
+            const ownerMatchesUid =
+                data.ownerUid &&
+                data.ownerUid ===
+                currentFirebaseUser.uid;
+
+
+            const ownerMatchesPhone =
+                data.ownerPhone &&
+                normalizePhone(
+                    data.ownerPhone
+                ) ===
+                normalizePhone(
+                    myUser.phone
+                );
+
+
+            if(
+                ownerMatchesUid ||
+                ownerMatchesPhone
+            ){
+
+                myCommissions.push({
+
+                    id:docSnap.id,
+
+                    ...data
+
+                });
+
+            }
+
+        });
+
+    }
+    catch(error){
+
+        console.warn(
+            "Commission collection could not be loaded:",
+            error
+        );
+
+        myCommissions = [];
+
+    }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    COMMISSION STATUS
-========================================================= */
+===================================================== */
 
-function isRejectedCommission(
-    commission
-){
+function isRejectedCommission(record){
 
     const status =
         String(
-            commission.status ||
+            record.status ||
             "Credited"
         )
         .toLowerCase()
@@ -2344,126 +2256,68 @@ function isRejectedCommission(
 }
 
 
-/* =========================================================
+/* =====================================================
    GET MEMBER COMMISSION
-========================================================= */
+===================================================== */
 
 function getMemberCommission(
-    uid,
-    phone,
+    member,
     level
 ){
 
-    const commissions =
-        getMyCommissions();
-
-
     let total = 0;
 
 
-    commissions.forEach(
-        commission => {
+    myCommissions.forEach(record => {
 
-            if(
-                isRejectedCommission(
-                    commission
-                )
-            ){
-
-                return;
-
-            }
-
-
-            const buyerUid =
-                commission.buyerUid ||
-                commission.buyerId ||
-                "";
-
-
-            const buyerPhone =
-                commission.buyerPhone ||
-                "";
-
-
-            const commissionLevel =
-                String(
-                    commission.level || ""
-                )
-                .toUpperCase();
-
-
-            const sameBuyer =
-
-                (
-                    String(buyerUid) ===
-                    String(uid)
-                )
-
-                ||
-
-                (
-                    String(buyerPhone) ===
-                    String(phone)
-                );
-
-
-            if(
-                sameBuyer &&
-                commissionLevel ===
-                String(level).toUpperCase()
-            ){
-
-                total +=
-                    Number(
-                        commission.commission
-                    ) || 0;
-
-            }
-
+        if(
+            isRejectedCommission(record)
+        ){
+            return;
         }
-    );
 
 
-    return total;
-
-}
-
-
-/* =========================================================
-   TOTAL COMMISSION
-========================================================= */
-
-function calculateMyTotalCommission(){
-
-    const commissions =
-        getMyCommissions();
+        const recordLevel =
+            String(
+                record.level || ""
+            )
+            .toUpperCase();
 
 
-    let total = 0;
+        if(recordLevel !== level){
+            return;
+        }
 
 
-    commissions.forEach(
-        commission => {
+        const buyerUid =
+            record.buyerUid &&
+            record.buyerUid ===
+            member.uid;
 
-            if(
-                isRejectedCommission(
-                    commission
-                )
-            ){
 
-                return;
+        const buyerPhone =
+            record.buyerPhone &&
+            normalizePhone(
+                record.buyerPhone
+            ) ===
+            normalizePhone(
+                member.phone
+            );
 
-            }
 
+        if(
+            buyerUid ||
+            buyerPhone
+        ){
 
             total +=
                 Number(
-                    commission.commission
+                    record.commission
                 ) || 0;
 
         }
-    );
+
+    });
 
 
     return total;
@@ -2471,9 +2325,40 @@ function calculateMyTotalCommission(){
 }
 
 
-/* =========================================================
+/* =====================================================
+   TOTAL COMMISSION
+===================================================== */
+
+function calculateTotalCommission(){
+
+    let total = 0;
+
+
+    myCommissions.forEach(record => {
+
+        if(
+            isRejectedCommission(record)
+        ){
+            return;
+        }
+
+
+        total +=
+            Number(
+                record.commission
+            ) || 0;
+
+    });
+
+
+    return total;
+
+}
+
+
+/* =====================================================
    MONEY
-========================================================= */
+===================================================== */
 
 function money(value){
 
@@ -2493,100 +2378,93 @@ function money(value){
 }
 
 
-/* =========================================================
-   FIREBASE DATE
-========================================================= */
+/* =====================================================
+   FIRESTORE DATE
+===================================================== */
 
-function convertFirebaseDate(value){
+function getDateValue(value){
 
     if(!value){
+        return null;
+    }
+
+
+    /*
+       Firebase Timestamp
+    */
+
+    if(
+        typeof value.toDate ===
+        "function"
+    ){
+
+        return value.toDate();
+
+    }
+
+
+    /*
+       JavaScript Date
+    */
+
+    if(value instanceof Date){
+
+        return value;
+
+    }
+
+
+    /*
+       Timestamp-like object
+    */
+
+    if(
+        value.seconds !== undefined
+    ){
+
+        return new Date(
+            Number(value.seconds) * 1000
+        );
+
+    }
+
+
+    /*
+       String / number
+    */
+
+    const date =
+        new Date(value);
+
+
+    if(
+        isNaN(
+            date.getTime()
+        )
+    ){
 
         return null;
 
     }
 
 
-    try{
-
-        if(
-            value &&
-            typeof value.toDate ===
-            "function"
-        ){
-
-            return value.toDate();
-
-        }
-
-
-        if(
-            value instanceof Date
-        ){
-
-            return value;
-
-        }
-
-
-        if(
-            typeof value ===
-            "number"
-        ){
-
-            return new Date(value);
-
-        }
-
-
-        if(
-            typeof value ===
-            "string"
-        ){
-
-            const d =
-                new Date(value);
-
-            if(
-                !isNaN(
-                    d.getTime()
-                )
-            ){
-
-                return d;
-
-            }
-
-        }
-
-
-        return null;
-
-    }
-    catch(error){
-
-        return null;
-
-    }
+    return date;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    FORMAT DATE
-========================================================= */
+===================================================== */
 
 function formatDate(value){
 
     const date =
-        convertFirebaseDate(
-            value
-        );
+        getDateValue(value);
 
 
     if(!date){
-
         return "";
-
     }
 
 
@@ -2602,213 +2480,93 @@ function formatDate(value){
 }
 
 
-/* =========================================================
+/* =====================================================
    GET PURCHASE DATE
-========================================================= */
+===================================================== */
 
-function getPurchaseDate(
-    user,
-    records
-){
+function getPurchaseDate(user){
 
-    /* First try commission record */
+    return (
 
-    if(records.length > 0){
+        user.purchaseDate ||
 
-        const sorted =
-            [...records].sort(
-                (a,b) => {
+        user.firstPurchaseDate ||
 
-                    const da =
-                        convertFirebaseDate(
-                            a.date ||
-                            a.createdAt
-                        );
+        user.lastPurchaseDate ||
 
-                    const db =
-                        convertFirebaseDate(
-                            b.date ||
-                            b.createdAt
-                        );
+        user.planPurchaseDate ||
 
+        user.investmentDate ||
 
-                    return (
-                        (db?.getTime() || 0) -
-                        (da?.getTime() || 0)
-                    );
+        user.purchasedAt ||
 
-                }
-            );
+        ""
 
-
-        const latest =
-            sorted[0];
-
-
-        const commissionDate =
-            latest.date ||
-            latest.createdAt;
-
-
-        if(commissionDate){
-
-            return formatDate(
-                commissionDate
-            );
-
-        }
-
-    }
-
-
-    /* Fallback to investment date */
-
-    if(user.purchaseDate){
-
-        return formatDate(
-            user.purchaseDate
-        );
-
-    }
-
-
-    if(user.investmentDate){
-
-        return formatDate(
-            user.investmentDate
-        );
-
-    }
-
-
-    if(user.planPurchasedAt){
-
-        return formatDate(
-            user.planPurchasedAt
-        );
-
-    }
-
-
-    return "No purchase yet";
-
-}
-
-
-/* =========================================================
-   GET MEMBER COMMISSION RECORDS
-========================================================= */
-
-function getMemberCommissionRecords(
-    user,
-    level
-){
-
-    const commissions =
-        getMyCommissions();
-
-
-    return commissions.filter(
-        commission => {
-
-            const buyerUid =
-                commission.buyerUid ||
-                commission.buyerId ||
-                "";
-
-
-            const buyerPhone =
-                commission.buyerPhone ||
-                "";
-
-
-            const sameBuyer =
-
-                (
-                    String(buyerUid) ===
-                    String(user.uid)
-                )
-
-                ||
-
-                (
-                    String(buyerPhone) ===
-                    String(user.phone || "")
-                );
-
-
-            return (
-
-                sameBuyer &&
-
-                String(
-                    commission.level || ""
-                )
-                .toUpperCase() ===
-                String(level).toUpperCase()
-
-            );
-
-        }
     );
 
 }
 
 
-/* =========================================================
-   DISPLAY PHONE
-========================================================= */
+/* =====================================================
+   GET REGISTRATION DATE
+===================================================== */
 
-function displayPhone(phone){
+function getRegistrationDate(user){
 
-    const value =
-        String(phone || "")
-        .trim();
+    return (
 
+        user.createdAt ||
 
-    if(!value){
+        user.registeredAt ||
 
-        return "";
+        user.registrationDate ||
 
-    }
+        ""
 
-
-    if(
-        value.startsWith("+63")
-    ){
-
-        return value;
-
-    }
-
-
-    if(
-        value.startsWith("63")
-    ){
-
-        return "+" + value;
-
-    }
-
-
-    if(
-        value.startsWith("0")
-    ){
-
-        return "+63" +
-            value.substring(1);
-
-    }
-
-
-    return "+63 " + value;
+    );
 
 }
 
 
-/* =========================================================
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(value || "")
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
    DISPLAY MEMBERS
-========================================================= */
+===================================================== */
 
 function displayMembers(
     elementId,
@@ -2857,373 +2615,233 @@ function displayMembers(
     }
 
 
-    members.forEach(
-        user => {
+    members.forEach(user => {
 
-            const member =
-                document.createElement(
-                    "div"
-                );
-
-
-            member.className =
-                "member";
+        const member =
+            document.createElement(
+                "div"
+            );
 
 
-            const records =
-                getMemberCommissionRecords(
-                    user,
-                    level
-                );
+        member.className =
+            "member";
 
 
-            const memberCommission =
-                getMemberCommission(
-                    user.uid,
-                    user.phone,
-                    level
-                );
+        const phone =
+            normalizePhone(
+                user.phone
+            );
 
 
-            const purchaseDate =
-                getPurchaseDate(
-                    user,
-                    records
-                );
+        const cleanPhone =
+            phone.startsWith("+63")
+                ? phone
+                : "+63 " + phone;
 
 
-            member.innerHTML = `
-
-                <div class="member-phone-main">
-
-                    <span class="member-detail-label">
-
-                        📱 Phone
-
-                    </span>
-
-                    <span class="member-detail-value">
-
-                        ${escapeHtml(
-                            displayPhone(
-                                user.phone
-                            )
-                        )}
-
-                    </span>
-
-                </div>
+        const registrationDate =
+            formatDate(
+                getRegistrationDate(user)
+            );
 
 
-                <div class="member-phone-main">
+        const purchaseDate =
+            formatDate(
+                getPurchaseDate(user)
+            );
 
-                    <span class="member-detail-label">
 
-                        🕐 Purchase
+        const commission =
+            getMemberCommission(
+                user,
+                level
+            );
 
-                    </span>
 
-                    <span class="member-detail-value">
+        member.innerHTML = `
 
-                        ${escapeHtml(
+            <div class="member-row">
+
+                <span class="member-label">
+                    📱 Phone
+                </span>
+
+                <span class="member-value">
+                    ${escapeHtml(cleanPhone)}
+                </span>
+
+            </div>
+
+
+            <div class="member-row">
+
+                <span class="member-label">
+                    📅 Registered
+                </span>
+
+                <span class="member-value">
+
+                    ${
+                        registrationDate
+                        ?
+                        escapeHtml(
+                            registrationDate
+                        )
+                        :
+                        "—"
+                    }
+
+                </span>
+
+            </div>
+
+
+            <div class="member-row">
+
+                <span class="member-label">
+                    🛒 Purchase
+                </span>
+
+                <span class="member-value">
+
+                    ${
+                        purchaseDate
+                        ?
+                        escapeHtml(
                             purchaseDate
-                        )}
+                        )
+                        :
+                        "No purchase yet"
+                    }
 
-                    </span>
+                </span>
 
-                </div>
-
-
-                <div class="member-phone-main commission-row">
-
-                    <span class="member-detail-label">
-
-                        🪙 Commission
-
-                    </span>
-
-                    <span class="member-detail-value commission-value">
-
-                        ${money(
-                            memberCommission
-                        )}
-
-                    </span>
-
-                </div>
-
-            `;
+            </div>
 
 
-            container.appendChild(
-                member
-            );
+            <div class="member-row">
 
-        }
-    );
+                <span class="member-label">
+                    🪙 Commission
+                </span>
+
+                <span class="member-value member-commission">
+
+                    ${money(commission)}
+
+                </span>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(
+            member
+        );
+
+    });
 
 }
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value){
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =========================================================
-   LOAD USERS
-========================================================= */
-
-async function loadUsers(){
-
-    updateLoading(
-        "Loading members...",
-        "Fetching SkyRent network members"
-    );
-
-
-    const snapshot =
-        await getDocs(
-            collection(
-                db,
-                "users"
-            )
-        );
-
-
-    allUsers =
-        snapshot.docs.map(
-            item => {
-
-                return {
-
-                    uid:item.id,
-
-                    ...item.data()
-
-                };
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   LOAD COMMISSIONS
-========================================================= */
-
-async function loadCommissions(){
-
-    updateLoading(
-        "Loading commissions...",
-        "Checking your referral earnings"
-    );
-
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "referralCommissions"
-                )
-            );
-
-
-        allCommissions =
-            snapshot.docs.map(
-                item => {
-
-                    return {
-
-                        id:item.id,
-
-                        ...item.data()
-
-                    };
-
-                }
-            );
-
-    }
-    catch(error){
-
-        console.warn(
-            "Commission collection unavailable:",
-            error
-        );
-
-        allCommissions = [];
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD CURRENT USER
-========================================================= */
-
-async function loadCurrentUser(){
-
-    updateLoading(
-        "Loading your account...",
-        "Reading your SkyRent profile"
-    );
-
-
-    const userRef =
-        doc(
-            db,
-            "users",
-            firebaseUser.uid
-        );
-
-
-    const snapshot =
-        await getDoc(
-            userRef
-        );
-
-
-    if(!snapshot.exists()){
-
-        throw new Error(
-            "SkyRent user profile was not found."
-        );
-
-    }
-
-
-    currentUserData = {
-
-        uid:firebaseUser.uid,
-
-        ...snapshot.data()
-
-    };
-
-}
-
-
-/* =========================================================
-   SET REFERRAL INFORMATION
-========================================================= */
-
-async function setupReferral(){
-
-    updateLoading(
-        "Preparing referral link...",
-        "Creating your personal SkyRent referral information"
-    );
-
-
-    const code =
-        await getOrCreateReferralCode();
-
-
-    document.getElementById(
-        "myReferralCode"
-    ).textContent =
-        code;
-
-
-    const referralUrl =
-        GITHUB_SITE +
-        "index.html?ref=" +
-        encodeURIComponent(
-            code
-        );
-
-
-    document.getElementById(
-        "referralLink"
-    ).value =
-        referralUrl;
-
-}
-
-
-/* =========================================================
+/* =====================================================
    LOAD NETWORK
-========================================================= */
+===================================================== */
 
 async function loadNetwork(){
 
     try{
 
-        updateLoading(
-            "Connecting to SkyRent...",
-            "Verifying your Firebase session"
-        );
+        await loadMyUser();
 
 
-        await loadCurrentUser();
+        document.getElementById(
+            "myName"
+        ).textContent =
+            myUser.name ||
+            "SkyRent Member";
 
 
-        await loadUsers();
+        let referralCode =
+            normalizeReferralCode(
+                myUser.referralCode
+            );
 
 
-        await loadCommissions();
+        /*
+           Your registration page already
+           saves referralCode.
+
+           If the account somehow does not
+           have one, we do NOT overwrite it
+           with a random code here.
+        */
+
+        if(!referralCode){
+
+            referralCode =
+                "NOT-SET";
+
+        }
 
 
-        await setupReferral();
+        document.getElementById(
+            "myReferralCode"
+        ).textContent =
+            referralCode;
 
 
-        updateLoading(
-            "Building your network...",
-            "Organizing Level A, B and C members"
-        );
+        /*
+           GITHUB REFERRAL LINK
+
+           index.html?ref=CODE
+        */
+
+        const base =
+            GITHUB_SITE.endsWith("/")
+                ? GITHUB_SITE
+                : GITHUB_SITE + "/";
+
+
+        const referralUrl =
+            base +
+            "index.html?ref=" +
+            encodeURIComponent(
+                referralCode
+            );
+
+
+        document.getElementById(
+            "referralLink"
+        ).value =
+            referralUrl;
+
+
+        await loadAllUsers();
+
+
+        await loadMyCommissions();
 
 
         const network =
             buildNetwork();
 
 
-        const totalCommission =
-            calculateMyTotalCommission();
-
-
         const totalInvites =
-
             network.levelA.length +
-
             network.levelB.length +
-
             network.levelC.length;
+
+
+        const totalCommission =
+            calculateTotalCommission();
+
+
+        document.getElementById(
+            "totalInvites"
+        ).textContent =
+            totalInvites;
 
 
         document.getElementById(
@@ -3232,12 +2850,6 @@ async function loadNetwork(){
             money(
                 totalCommission
             );
-
-
-        document.getElementById(
-            "totalInvites"
-        ).textContent =
-            totalInvites;
 
 
         displayMembers(
@@ -3264,17 +2876,6 @@ async function loadNetwork(){
         );
 
 
-        updateLoading(
-            "Network ready",
-            "Your SkyRent network is loaded"
-        );
-
-
-        setTimeout(
-            hideLoading,
-            350
-        );
-
     }
     catch(error){
 
@@ -3284,32 +2885,52 @@ async function loadNetwork(){
         );
 
 
-        updateLoading(
-            "Unable to load network",
-            error.message ||
-            "Please try again."
-        );
+        document.getElementById(
+            "membersA"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                Unable to load network data.
+
+            </div>
+
+        `;
 
 
-        setTimeout(
-            function(){
+        document.getElementById(
+            "membersB"
+        ).innerHTML = `
 
-                alert(
-                    "Unable to load your SkyRent network. Please try again."
-                );
+            <div class="empty">
 
-            },
-            300
-        );
+                Unable to load network data.
+
+            </div>
+
+        `;
+
+
+        document.getElementById(
+            "membersC"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                Unable to load network data.
+
+            </div>
+
+        `;
 
     }
 
 }
 
 
-/* =========================================================
-   FIREBASE AUTH STATE
-========================================================= */
+/* =====================================================
+   AUTH STATE
+===================================================== */
 
 onAuthStateChanged(
     auth,
@@ -3317,29 +2938,30 @@ onAuthStateChanged(
 
         if(!user){
 
-            updateLoading(
-                "Login required",
-                "Redirecting to SkyRent login..."
+            /*
+               IMPORTANT:
+
+               We are NOT using localStorage
+               to determine login status.
+
+               Firebase Auth is the source
+               of truth.
+
+               If Firebase says no user is
+               logged in, then and only then
+               redirect to index.html.
+            */
+
+            window.location.replace(
+                "index.html"
             );
-
-
-            setTimeout(
-                function(){
-
-                    window.location.href =
-                        "index.html";
-
-                },
-                800
-            );
-
 
             return;
 
         }
 
 
-        firebaseUser =
+        currentFirebaseUser =
             user;
 
 
@@ -3349,9 +2971,9 @@ onAuthStateChanged(
 );
 
 
-/* =========================================================
+/* =====================================================
    TOGGLE MEMBERS
-========================================================= */
+===================================================== */
 
 window.toggleMembers =
 function(
@@ -3396,9 +3018,9 @@ function(
 };
 
 
-/* =========================================================
+/* =====================================================
    COPY REFERRAL CODE
-========================================================= */
+===================================================== */
 
 window.copyReferralCode =
 function(){
@@ -3417,30 +3039,30 @@ function(){
 };
 
 
-/* =========================================================
+/* =====================================================
    COPY REFERRAL LINK
-========================================================= */
+===================================================== */
 
 window.copyReferral =
 function(){
 
-    const input =
+    const link =
         document.getElementById(
             "referralLink"
-        );
+        ).value;
 
 
     copyText(
-        input.value,
+        link,
         "Referral link copied!"
     );
 
 };
 
 
-/* =========================================================
+/* =====================================================
    COPY TEXT
-========================================================= */
+===================================================== */
 
 function copyText(
     text,
@@ -3487,9 +3109,9 @@ function copyText(
 }
 
 
-/* =========================================================
+/* =====================================================
    FALLBACK COPY
-========================================================= */
+===================================================== */
 
 function fallbackCopy(
     text,
@@ -3508,7 +3130,6 @@ function fallbackCopy(
 
     textarea.style.position =
         "fixed";
-
 
     textarea.style.opacity =
         "0";
@@ -3552,9 +3173,9 @@ function fallbackCopy(
 }
 
 
-/* =========================================================
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 function showToast(message){
 
@@ -3587,9 +3208,9 @@ function showToast(message){
 }
 
 
-/* =========================================================
+/* =====================================================
    REFRESH WHEN RETURNING TO PAGE
-========================================================= */
+===================================================== */
 
 document.addEventListener(
     "visibilitychange",
@@ -3597,7 +3218,7 @@ document.addEventListener(
 
         if(
             !document.hidden &&
-            firebaseUser
+            currentFirebaseUser
         ){
 
             loadNetwork();
