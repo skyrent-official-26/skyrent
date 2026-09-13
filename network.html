@@ -1,1 +1,3614 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>SkyRent - Network</title> <style> /* ================= MEMBER DETAILS ================= */ .member-phone-main{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:5px 2px; font-size:10px; } .member-phone-main + .member-phone-main{ border-top:1px solid #dcecf7; } .member-detail-label{ color:#6d8498; font-size:9px; font-weight:600; white-space:nowrap; } .member-detail-value{ color:#174f83; font-size:10px; font-weight:700; text-align:right; } .commission-row{ margin-top:1px; } .commission-value{ color:#16813d; font-size:11px; font-weight:800; } *{ margin:0; padding:0; box-sizing:border-box; } html{ scroll-behavior:smooth; } body{ font-family:Arial,Helvetica,sans-serif; color:#174b7d; background:#f4f9fd; min-height:100vh; padding-bottom:72px; } /* ================= HERO ================= */ .hero{ position:relative; overflow:hidden; min-height:205px; padding:20px 20px 25px; background: linear-gradient( rgba(235,248,255,.12), rgba(235,248,255,.20) ), url("skybg.jpg"); background-size:cover; background-position:center center; box-shadow: 0 3px 12px rgba(20,90,150,.12); } .logo-area{ position:relative; z-index:5; display:flex; align-items:center; justify-content:flex-start; width:100%; } .logo-area img{ display:block; width:155px; height:auto; max-height:65px; object-fit:contain; } .hero-content{ position:relative; z-index:5; margin-top:8px; } .hero-title{ display:flex; align-items:center; justify-content:flex-start; } .hero h1{ font-size:25px; font-weight:700; color:#073d7b; display:flex; align-items:center; gap:7px; margin:0; } .hero-icon{ font-size:23px; } .hero-description{ margin-top:8px; position:relative; z-index:5; } .hero p{ font-size:13px; line-height:1.55; max-width:290px; color:#194f83; } .hero p strong{ font-size:15px; } .hero-plane{ position:absolute; right:5px; top:48px; font-size:65px; transform:rotate(-8deg); opacity:.82; z-index:2; } /* ================= CONTAINER ================= */ .container{ width:94%; max-width:650px; margin:-4px auto 25px; position:relative; z-index:5; } /* ================= SUMMARY ================= */ .summary{ background:#fff; border-radius:15px; padding:8px; box-shadow:0 4px 15px rgba(20,90,150,.10); border:1px solid #e0edf6; } .summary-top{ display:grid; grid-template-columns:1.1fr .9fr; gap:7px; } .summary-card{ border-radius:11px; padding:10px; min-height:76px; border:1px solid #dcecf8; background:#fbfdff; } .summary-card.main{ color:white; border:none; background:linear-gradient(135deg,#087fe3,#0753b8); } .summary-icon{ font-size:17px; margin-bottom:2px; } .summary-title{ font-size:9px; font-weight:600; margin-bottom:3px; } .summary-value{ font-size:18px; font-weight:700; white-space:nowrap; } .summary-card:not(.main) .summary-value{ color:#15518a; } /* ================= REFERRAL ================= */ .referral-card{ margin-top:7px; border:1px solid #d5e9f8; border-radius:11px; padding:10px; background:#fbfdff; } .referral-title{ display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; margin-bottom:7px; } .link-icon{ width:25px; height:25px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#073c7b; color:white; font-size:12px; } .referral-code-box{ display:flex; align-items:center; justify-content:space-between; background:#eaf5fd; border:1px solid #d2e9f8; border-radius:8px; padding:7px 9px; margin-bottom:6px; } .referral-code-label{ font-size:8px; color:#69849d; margin-bottom:2px; } .referral-code{ font-size:14px; font-weight:700; color:#0757b5; letter-spacing:.7px; } .referral-input-row{ display:flex; gap:5px; } .referral-input{ flex:1; min-width:0; border:none; outline:none; background:#e8f4fc; color:#195385; border-radius:7px; padding:8px; font-size:8px; } .copy-icon{ width:36px; border:none; border-radius:7px; background:#dff5ff; color:#087bd7; font-size:15px; cursor:pointer; } .copy-button{ width:100%; margin-top:6px; border:none; border-radius:8px; padding:8px; background:linear-gradient(135deg,#0755ba,#087fe4); color:white; font-size:10px; font-weight:600; cursor:pointer; } /* ================= LANDING ================= */ .landing-area{ margin-top:19px; text-align:center; position:relative; padding-bottom:3px; } .runway{ position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:90px; height:55px; background: linear-gradient( 90deg, transparent 0 47%, rgba(210,225,235,.8) 47% 53%, transparent 53% ); opacity:.65; clip-path:polygon( 28% 0, 72% 0, 100% 100%, 0 100% ); } .landing-point{ position:relative; z-index:3; display:inline-flex; align-items:center; gap:7px; padding:5px 13px 5px 5px; background:linear-gradient(135deg,#0754ae,#0a83dc); border-radius:35px; color:white; border:2px solid white; box-shadow:0 5px 13px rgba(5,78,155,.18); } .user-circle{ width:50px; height:50px; border-radius:50%; background:linear-gradient(145deg,#ffdf39,#ffc000); border:3px solid white; box-shadow:0 0 0 2px #ffca18; display:flex; align-items:center; justify-content:center; font-size:24px; } .landing-text{ text-align:left; } .you{ font-size:17px; font-weight:700; } .landing-small{ font-size:8px; margin-top:1px; } .crown{ position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:16px; z-index:4; } .connector{ width:3px; height:18px; margin:0 auto; background: repeating-linear-gradient( to bottom, #0864ba 0px, #0864ba 5px, transparent 5px, transparent 10px ); } .arrow{ text-align:center; color:#0755ad; font-size:14px; height:13px; } /* ================= LEVELS ================= */ .level{ overflow:hidden; border-radius:16px; margin-top:2px; border:2px solid white; box-shadow:0 5px 16px rgba(11,82,147,.15); } .level-a{ background:linear-gradient(125deg,#0565cc,#079ce8); } .level-b{ background:linear-gradient(125deg,#154dc0,#1179e5); } .level-c{ background:linear-gradient(125deg,#008ea9,#13b9c1); } .level-main{ min-height:116px; padding:11px 10px; display:grid; grid-template-columns:1fr 82px; align-items:center; position:relative; overflow:hidden; } .level-info{ position:relative; z-index:3; } .level-heading{ display:flex; align-items:center; gap:6px; } .level-icon{ width:35px; height:35px; flex-shrink:0; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#ffd42a; color:#0751a7; font-size:18px; } .level-b .level-icon, .level-c .level-icon{ background:white; } .level-name{ font-size:17px; color:white; font-weight:700; line-height:1; } .stage{ display:inline-block; margin-top:3px; padding:3px 7px; border-radius:12px; background:#13c8ee; color:white; font-size:6px; font-weight:700; letter-spacing:.3px; } .description{ color:white; font-size:8px; line-height:1.4; margin-top:6px; max-width:170px; } .description strong{ display:block; font-size:9px; margin-bottom:1px; } .aircraft{ position:absolute; right:52px; top:34px; font-size:34px; opacity:.7; transform:rotate(-5deg); z-index:2; } .commission{ position:relative; z-index:5; text-align:center; padding:8px 4px; border-radius:22px; background:#ffd42a; color:#0751a5; } .level-b .commission, .level-c .commission{ background:rgba(255,255,255,.10); color:white; border:1px solid rgba(255,255,255,.8); } .percent{ font-size:22px; line-height:1; font-weight:800; } .commission-label{ font-size:7px; font-weight:600; margin-top:2px; } .members-bar{ background:white; color:#124c85; min-height:36px; padding:6px 9px; display:flex; align-items:center; justify-content:space-between; cursor:pointer; } .members-left{ display:flex; align-items:center; gap:5px; font-size:9px; font-weight:600; } .members-icon{ font-size:14px; } .member-count{ color:#0756ad; } .member-arrow{ font-size:16px; color:#1261ac; } .member-list{ display:none; background:#f9fcff; padding:7px; } .member-list.open{ display:block; } .member{ padding:8px; margin-bottom:4px; border-radius:7px; background:#edf7ff; border:1px solid #d4eafa; font-size:8px; } .member:last-child{ margin-bottom:0; } .member-name{ font-weight:600; color:#114d87; } .member-phone{ color:#7b91a7; font-size:7px; margin-top:1px; } .member-purchase{ color:#52718c; font-size:7px; margin-top:3px; } .member-commission{ color:#16813d; font-size:8px; font-weight:700; margin-top:3px; } .member-date{ color:#91a2b2; font-size:6.5px; margin-top:2px; } .empty{ text-align:center; padding:7px; color:#8196aa; font-size:8px; } /* ================= BENEFITS ================= */ .benefits{ margin-top:16px; background:white; border:1px solid #cbe5f8; border-radius:13px; padding:9px 4px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; box-shadow:0 4px 12px rgba(30,100,150,.06); } .benefit{ text-align:center; padding:3px 2px; } .benefit + .benefit{ border-left:1px solid #d4e7f5; } .benefit-icon{ font-size:18px; margin-bottom:2px; } .benefit strong{ display:block; font-size:8px; color:#073c7b; } .benefit span{ display:block; margin-top:2px; font-size:7px; color:#7189a0; } /* ================= BOTTOM NAV ================= */ .bottom-nav{ position:fixed; bottom:0; left:0; right:0; height:65px; background:rgba(255,255,255,.98); border-top:1px solid #d7eafa; box-shadow:0 -4px 15px rgba(0,60,110,.10); display:grid; grid-template-columns:repeat(5,1fr); z-index:2000; } .bottom-nav a{ text-decoration:none; color:#607991; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-size:7px; position:relative; } .bottom-icon{ font-size:18px; line-height:1; } .bottom-nav a.active{ color:#0757b5; font-weight:700; } .bottom-nav a.active:before{ content:""; position:absolute; top:0; width:35px; height:3px; border-radius:0 0 5px 5px; background:#087edb; } /* ================= TOAST ================= */ .toast{ position:fixed; left:50%; bottom:80px; transform: translateX(-50%) translateY(15px); background:#073c7b; color:white; padding:8px 14px; border-radius:20px; font-size:9px; opacity:0; pointer-events:none; transition:.3s; z-index:3000; white-space:nowrap; } .toast.show{ opacity:1; transform: translateX(-50%) translateY(0); } /* ================= LOADING ================= */ .firebase-loading{ position:fixed; inset:0; background:#f4f9fd; display:flex; align-items:center; justify-content:center; z-index:5000; } .firebase-loading-box{ text-align:center; color:#0755ad; } .firebase-spinner{ width:38px; height:38px; border:4px solid #dcecf8; border-top-color:#087fe3; border-radius:50%; animation:firebaseSpin .8s linear infinite; margin:0 auto 12px; } @keyframes firebaseSpin{ to{ transform:rotate(360deg); } } .firebase-loading-text{ font-size:12px; font-weight:600; } .firebase-loading-sub{ margin-top:5px; color:#7b91a7; font-size:9px; } /* ================= DESKTOP ================= */ @media(min-width:700px){ body{ padding-bottom:0; } .container{ max-width:850px; } .hero{ padding-left: calc((100% - 850px)/2); min-height:230px; } .logo-area img{ width:185px; max-height:70px; } .hero-content{ margin-top:10px; } .hero h1{ font-size:30px; } .hero p{ font-size:13px; max-width:340px; } .hero p strong{ font-size:16px; } .hero-plane{ right:12%; top:48px; font-size:85px; } .level-main{ min-height:145px; grid-template-columns:1fr 120px; } .level-name{ font-size:22px; } .description{ font-size:10px; } .aircraft{ font-size:48px; } .percent{ font-size:27px; } .bottom-nav{ display:none; } } /* ================= SMALL PHONES ================= */ @media(max-width:360px){ .hero{ min-height:190px; padding:18px 15px 20px; } .logo-area img{ width:125px; max-height:52px; } .hero-content{ margin-top:6px; } .hero h1{ font-size:21px; gap:5px; } .hero-icon{ font-size:20px; } .hero p{ font-size:12px; line-height:1.5; max-width:260px; } .hero p strong{ font-size:14px; } .hero-plane{ right:-3px; top:48px; font-size:55px; } .summary-value{ font-size:16px; } .level-main{ grid-template-columns:1fr 76px; } .level-name{ font-size:16px; } .level-icon{ width:33px; height:33px; font-size:17px; } .aircraft{ right:48px; font-size:30px; } .percent{ font-size:20px; } } </style> </head> <body> <!-- ================= FIREBASE LOADING ================= --> <div class="firebase-loading" id="firebaseLoading"> <div class="firebase-loading-box"> <div class="firebase-spinner"></div> <div class="firebase-loading-text" id="loadingText" > Checking your SkyRent account... </div> <div class="firebase-loading-sub"> Please wait </div> </div> </div> <!-- ================= HERO ================= --> <section class="hero"> <div class="logo-area"> <img src="skyrent-logo.png" alt="SkyRent Logo" > </div> <div class="hero-content"> <div class="hero-title"> <h1> <span class="hero-icon"> 👥 </span> My Network </h1> </div> <div class="hero-description"> <p> <strong> Build your network. Earn more. </strong> <br> Invite members and grow your SkyRent flight network. </p> </div> </div> <div class="hero-plane"> ✈️ </div> </section> <!-- ================= CONTENT ================= --> <main class="container"> <section class="summary"> <div class="summary-top"> <div class="summary-card main"> <div class="summary-icon"> 🪙 </div> <div class="summary-title"> Total Commission </div> <div class="summary-value" id="totalCommission" > ₱0.00 </div> </div> <div class="summary-card"> <div class="summary-icon"> 👥 </div> <div class="summary-title"> Total Invites </div> <div class="summary-value" id="totalInvites" > 0 </div> </div> </div> <!-- ================= REFERRAL ================= --> <div class="referral-card"> <div class="referral-title"> <div class="link-icon"> 🔗 </div> Your Referral Information </div> <div class="referral-code-box"> <div> <div class="referral-code-label"> YOUR REFERRAL CODE </div> <div class="referral-code" id="myReferralCode" > SKY------ </div> </div> <button class="copy-icon" onclick="copyReferralCode()" > 📋 </button> </div> <div class="referral-code-label" style="margin-bottom:4px;" > YOUR REFERRAL LINK </div> <div class="referral-input-row"> <input class="referral-input" id="referralLink" readonly > <button class="copy-icon" onclick="copyReferral()" > 📋 </button> </div> <button class="copy-button" onclick="copyReferral()" > 📋 &nbsp; Copy Referral Link </button> </div> </section> <!-- ================= YOU ================= --> <section class="landing-area"> <div class="runway"></div> <div class="crown"> 👑 </div> <div class="landing-point"> <div class="user-circle"> 👤 </div> <div class="landing-text"> <div class="you"> YOU </div> <div class="landing-small"> 🛬 Landing Point </div> </div> </div> </section> <div class="connector"></div> <div class="arrow"> ▼ </div> <!-- ================= LEVEL A ================= --> <section class="level level-a"> <div class="level-main"> <div class="level-info"> <div class="level-heading"> <div class="level-icon"> ✈️ </div> <div> <div class="level-name"> LEVEL A </div> <span class="stage"> BOARDING </span> </div> </div> <div class="description"> <strong> Direct Referrals </strong> Closest to you </div> </div> <div class="aircraft"> ✈️ </div> <div class="commission"> <div class="percent"> 25% </div> <div class="commission-label"> Commission </div> </div> </div> <div class="members-bar" onclick="toggleMembers('membersA','arrowA')" > <div class="members-left"> <span class="members-icon"> 👥 </span> A Members <span class="member-count" id="countA" > (0) </span> </div> <div class="member-arrow" id="arrowA" > › </div> </div> <div class="member-list" id="membersA" ></div> </section> <div class="connector"></div> <div class="arrow"> ▼ </div> <!-- ================= LEVEL B ================= --> <section class="level level-b"> <div class="level-main"> <div class="level-info"> <div class="level-heading"> <div class="level-icon"> 🛫 </div> <div> <div class="level-name"> LEVEL B </div> <span class="stage"> TAKE OFF </span> </div> </div> <div class="description"> <strong> 2nd Level Referrals </strong> Referred by Level A </div> </div> <div class="aircraft"> 🛫 </div> <div class="commission"> <div class="percent"> 3% </div> <div class="commission-label"> Commission </div> </div> </div> <div class="members-bar" onclick="toggleMembers('membersB','arrowB')" > <div class="members-left"> <span class="members-icon"> 👥 </span> B Members <span class="member-count" id="countB" > (0) </span> </div> <div class="member-arrow" id="arrowB" > › </div> </div> <div class="member-list" id="membersB" ></div> </section> <div class="connector"></div> <div class="arrow"> ▼ </div> <!-- ================= LEVEL C ================= --> <section class="level level-c"> <div class="level-main"> <div class="level-info"> <div class="level-heading"> <div class="level-icon"> ☁️ </div> <div> <div class="level-name"> LEVEL C </div> <span class="stage"> CRUISING </span> </div> </div> <div class="description"> <strong> 3rd Level Referrals </strong> Referred by Level B </div> </div> <div class="aircraft"> ✈️ </div> <div class="commission"> <div class="percent"> 1% </div> <div class="commission-label"> Commission </div> </div> </div> <div class="members-bar" onclick="toggleMembers('membersC','arrowC')" > <div class="members-left"> <span class="members-icon"> 👥 </span> C Members <span class="member-count" id="countC" > (0) </span> </div> <div class="member-arrow" id="arrowC" > › </div> </div> <div class="member-list" id="membersC" ></div> </section> <!-- ================= BENEFITS ================= --> <section class="benefits"> <div class="benefit"> <div class="benefit-icon"> ✈️ </div> <strong> More Invites </strong> <span> Build your team </span> </div> <div class="benefit"> <div class="benefit-icon"> 🪙 </div> <strong> Higher Earnings </strong> <span> Up to 25% </span> </div> <div class="benefit"> <div class="benefit-icon"> 🎯 </div> <strong> Reach Goals </strong> <span> Grow your network </span> </div> </section> </main> <!-- ================= BOTTOM NAV ================= --> <nav class="bottom-nav"> <a href="dashboard.html"> <div class="bottom-icon"> 🏠 </div> Home </a> <a href="deposit.html"> <div class="bottom-icon"> 💳 </div> Deposit </a> <a href="network.html" class="active" > <div class="bottom-icon"> ✈️ </div> Network </a> <a href="earnings.html"> <div class="bottom-icon"> 🪙 </div> Earnings </a> <a href="profile.html"> <div class="bottom-icon"> 👤 </div> Profile </a> </nav> <!-- ================= TOAST ================= --> <div class="toast" id="toast" > Copied! </div> <!-- ================= FIREBASE ================= --> <script type="module"> import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"; import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"; import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"; /* ===================================================== FIREBASE CONFIG ===================================================== */ const firebaseConfig = { apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8", authDomain: "skyrent-ea30c.firebaseapp.com", projectId: "skyrent-ea30c", storageBucket: "skyrent-ea30c.firebasestorage.app", messagingSenderId: "572678456448", appId: "1:572678456448:web:6b7132351515742dd09265" }; /* ===================================================== INITIALIZE FIREBASE ===================================================== */ const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app); /* ===================================================== GLOBAL DATA ===================================================== */ let currentFirebaseUser = null; let myUserRecord = null; let allUsers = []; let myCommissions = []; /* ===================================================== LOADING MESSAGE ===================================================== */ function setLoadingText(message){ const element = document.getElementById("loadingText"); if(element){ element.textContent = message; } } /* ===================================================== HIDE LOADING ===================================================== */ function hideLoading(){ const loading = document.getElementById("firebaseLoading"); if(loading){ loading.style.opacity = "0"; loading.style.transition = "opacity .25s ease"; setTimeout( function(){ loading.style.display = "none"; }, 250 ); } } /* ===================================================== NORMALIZE REFERRAL CODE ===================================================== */ function normalizeReferralCode(code){ return String(code || "") .trim() .toUpperCase(); } /* ===================================================== FORMAT MONEY ===================================================== */ function money(value){ return "₱" + ( Number(value) || 0 ) .toLocaleString( "en-PH", { minimumFractionDigits:2, maximumFractionDigits:2 } ); } /* ===================================================== FORMAT DATE ===================================================== */ function formatDate(value){ if(!value){ return ""; } try{ let date; if( value && typeof value.toDate === "function" ){ date = value.toDate(); } else if( value && typeof value === "object" && typeof value.seconds === "number" ){ date = new Date( value.seconds * 1000 ); } else{ date = new Date(value); } if( isNaN( date.getTime() ) ){ return ""; } return date.toLocaleDateString( "en-PH", { year:"numeric", month:"short", day:"numeric" } ); } catch(error){ return ""; } } /* ===================================================== ESCAPE HTML ===================================================== */ function escapeHtml(value){ return String(value || "") .replace(/&/g,"&amp;") .replace(/</g,"&lt;") .replace(/>/g,"&gt;") .replace(/"/g,"&quot;") .replace(/'/g,"&#039;"); } /* ===================================================== GET REFERRER ===================================================== */ function getDirectReferrer(user){ if(!user){ return null; } /* ------------------------------------------------- OPTION 1: referredByUid ------------------------------------------------- */ if(user.referredByUid){ const byUid = allUsers.find( member => String(member.id) === String(user.referredByUid) ); if(byUid){ return byUid; } } /* ------------------------------------------------- OPTION 2: referredByPhone ------------------------------------------------- */ if(user.referredByPhone){ const byPhone = allUsers.find( member => String(member.phone) === String(user.referredByPhone) ); if(byPhone){ return byPhone; } } /* ------------------------------------------------- OPTION 3: referredByCode ------------------------------------------------- */ const referredByCode = normalizeReferralCode( user.referredByCode || user.referredBy || user.referralBy || user.parentReferralCode || "" ); if(referredByCode){ const byCode = allUsers.find( member => normalizeReferralCode( member.referralCode ) === referredByCode ); if(byCode){ return byCode; } } return null; } /* ===================================================== BUILD NETWORK ===================================================== */ function buildNetwork(){ const me = myUserRecord; const levelA = []; const levelB = []; const levelC = []; if(!me){ return { levelA, levelB, levelC }; } /* ================================================= LEVEL A DIRECT REFERRALS ================================================= */ allUsers.forEach( user => { if( String(user.id) === String(me.id) ){ return; } const referrer = getDirectReferrer(user); if(!referrer){ return; } if( String(referrer.id) === String(me.id) ){ levelA.push(user); } } ); /* ================================================= LEVEL B REFERRED BY LEVEL A ================================================= */ allUsers.forEach( user => { if( String(user.id) === String(me.id) ){ return; } if( levelA.some( member => String(member.id) === String(user.id) ) ){ return; } const referrer = getDirectReferrer(user); if(!referrer){ return; } if( levelA.some( member => String(member.id) === String(referrer.id) ) ){ levelB.push(user); } } ); /* ================================================= LEVEL C REFERRED BY LEVEL B ================================================= */ allUsers.forEach( user => { if( String(user.id) === String(me.id) ){ return; } if( levelA.some( member => String(member.id) === String(user.id) ) ){ return; } if( levelB.some( member => String(member.id) === String(user.id) ) ){ return; } const referrer = getDirectReferrer(user); if(!referrer){ return; } if( levelB.some( member => String(member.id) === String(referrer.id) ) ){ levelC.push(user); } } ); return { levelA, levelB, levelC }; } /* ===================================================== LOAD COMMISSIONS ===================================================== */ async function loadCommissions(){ myCommissions = []; /* This expects a top-level Firestore collection named: referralCommissions */ try{ const snapshot = await getDocs( collection( db, "referralCommissions" ) ); snapshot.forEach( commissionDoc => { const data = commissionDoc.data(); if( String( data.ownerUid || "" ) === String( currentFirebaseUser.uid ) ){ myCommissions.push({ id: commissionDoc.id, ...data }); } } ); } catch(error){ console.warn( "Commission collection could not be loaded:", error ); /* Do not log the user out if the commission collection is unavailable. */ myCommissions = []; } } /* ===================================================== GET MEMBER COMMISSION ===================================================== */ function getMemberCommission( member, level ){ let total = 0; myCommissions.forEach( commission => { const buyerUid = commission.buyerUid || commission.buyerId || ""; const buyerPhone = commission.buyerPhone || ""; const matchesUser = ( buyerUid && String(buyerUid) === String(member.id) ) || ( buyerPhone && String(buyerPhone) === String(member.phone) ); const matchesLevel = String( commission.level || "" ) .toUpperCase() === String(level) .toUpperCase(); const status = String( commission.status || "Credited" ) .toLowerCase() .trim(); if( matchesUser && matchesLevel ){ if( status === "reversed" || status === "cancelled" || status === "canceled" ){ return; } total += Number( commission.commission ) || 0; } } ); return total; } /* ===================================================== TOTAL COMMISSION ===================================================== */ function calculateMyTotalCommission(){ let total = 0; myCommissions.forEach( commission => { const status = String( commission.status || "Credited" ) .toLowerCase() .trim(); if( status === "reversed" || status === "cancelled" || status === "canceled" ){ return; } total += Number( commission.commission ) || 0; } ); return total; } /* ===================================================== DISPLAY MEMBERS ===================================================== */ function displayMembers( elementId, countId, members, level ){ const container = document.getElementById( elementId ); const count = document.getElementById( countId ); count.textContent = "(" + members.length + ")"; container.innerHTML = ""; if( members.length === 0 ){ container.innerHTML = ` <div class="empty"> No members in this level yet. </div> `; return; } members.forEach( user => { const member = document.createElement( "div" ); member.className = "member"; const memberCommission = getMemberCommission( user, level ); /* Purchase information. The Network page does not create purchase records. It only reads fields that already exist in the user record / commission record. */ let purchaseDate = ""; if( user.firstPurchaseDate ){ purchaseDate = user.firstPurchaseDate; } else if( user.purchaseDate ){ purchaseDate = user.purchaseDate; } else if( user.planPurchasedAt ){ purchaseDate = user.planPurchasedAt; } member.innerHTML = ` <div class="member-phone-main"> <span class="member-detail-label"> 📱 Phone </span> <span class="member-detail-value"> ${escapeHtml( formatPhone( user.phone ) )} </span> </div> <div class="member-phone-main"> <span class="member-detail-label"> 🕐 Purchase </span> <span class="member-detail-value"> ${ purchaseDate ? escapeHtml( formatDate( purchaseDate ) ) : "No purchase yet" } </span> </div> <div class="member-phone-main commission-row"> <span class="member-detail-label"> 🪙 Commission </span> <span class="member-detail-value commission-value"> ${money(memberCommission)} </span> </div> `; container.appendChild( member ); } ); } /* ===================================================== FORMAT PHONE ===================================================== */ function formatPhone(phone){ if(!phone){ return ""; } const value = String(phone); if( value.startsWith("+63") ){ return value; } if( value.startsWith("63") ){ return "+" + value; } return "+63 " + value; } /* ===================================================== LOAD NETWORK ===================================================== */ function renderNetwork(){ if(!myUserRecord){ return; } const network = buildNetwork(); const totalCommission = calculateMyTotalCommission(); const totalInvites = network.levelA.length + network.levelB.length + network.levelC.length; document.getElementById( "totalCommission" ).textContent = money( totalCommission ); document.getElementById( "totalInvites" ).textContent = totalInvites; displayMembers( "membersA", "countA", network.levelA, "A" ); displayMembers( "membersB", "countB", network.levelB, "B" ); displayMembers( "membersC", "countC", network.levelC, "C" ); } /* ===================================================== LOAD REFERRAL INFORMATION ===================================================== */ function loadReferralInformation(){ if(!myUserRecord){ return; } /* IMPORTANT: referralCode = user's own referral code */ let myReferralCode = normalizeReferralCode( myUserRecord.referralCode ); /* If the user does not have a referral code, generate one locally for display. IMPORTANT: This does NOT write a random referral code into Firestore automatically. Your registration/admin system should assign the permanent code. */ if(!myReferralCode){ myReferralCode = "SKY" + String( currentFirebaseUser.uid ) .substring(0,6) .toUpperCase(); } document.getElementById( "myReferralCode" ).textContent = myReferralCode; const referralUrl = window.location.origin + window.location.pathname .replace( "network.html", "index.html" ) + "?ref=" + encodeURIComponent( myReferralCode ); document.getElementById( "referralLink" ).value = referralUrl; } /* ===================================================== TOGGLE MEMBERS ===================================================== */ window.toggleMembers = function( listId, arrowId ){ const list = document.getElementById( listId ); const arrow = document.getElementById( arrowId ); list.classList.toggle( "open" ); if( list.classList.contains( "open" ) ){ arrow.textContent = "⌄"; } else{ arrow.textContent = "›"; } }; /* ===================================================== COPY REFERRAL CODE ===================================================== */ window.copyReferralCode = function(){ const code = document.getElementById( "myReferralCode" ).textContent; copyText( code, "Referral code copied!" ); }; /* ===================================================== COPY REFERRAL LINK ===================================================== */ window.copyReferral = function(){ const input = document.getElementById( "referralLink" ); copyText( input.value, "Referral link copied!" ); }; /* ===================================================== COPY TEXT ===================================================== */ function copyText( text, message ){ if( navigator.clipboard && window.isSecureContext ){ navigator.clipboard .writeText(text) .then( function(){ showToast( message ); } ) .catch( function(){ fallbackCopy( text, message ); } ); } else{ fallbackCopy( text, message ); } } /* ===================================================== FALLBACK COPY ===================================================== */ function fallbackCopy( text, message ){ const textarea = document.createElement( "textarea" ); textarea.value = text; textarea.style.position = "fixed"; textarea.style.opacity = "0"; document.body.appendChild( textarea ); textarea.focus(); textarea.select(); try{ document.execCommand( "copy" ); showToast( message ); } catch(error){ showToast( "Please copy manually" ); } document.body.removeChild( textarea ); } /* ===================================================== TOAST ===================================================== */ function showToast(message){ const toast = document.getElementById( "toast" ); toast.textContent = message; toast.classList.add( "show" ); setTimeout( function(){ toast.classList.remove( "show" ); }, 2000 ); } /* ===================================================== FIREBASE AUTH ===================================================== */ onAuthStateChanged( auth, async function(user){ /* Firebase is still checking the session until this callback runs. We DO NOT redirect before this point. */ if(!user){ setLoadingText( "No active SkyRent session found." ); setTimeout( function(){ window.location.href = "index.html"; }, 700 ); return; } try{ currentFirebaseUser = user; /* ----------------------------------------- STEP 1 ----------------------------------------- */ setLoadingText( "Loading your SkyRent account..." ); const userRef = doc( db, "users", user.uid ); const userSnapshot = await getDoc( userRef ); if( !userSnapshot.exists() ){ throw new Error( "SkyRent user profile not found." ); } myUserRecord = { id: userSnapshot.id, ...userSnapshot.data() }; /* ----------------------------------------- STEP 2 ----------------------------------------- */ setLoadingText( "Loading network members..." ); const usersSnapshot = await getDocs( collection( db, "users" ) ); allUsers = []; usersSnapshot.forEach( userDoc => { allUsers.push({ id: userDoc.id, ...userDoc.data() }); } ); /* ----------------------------------------- STEP 3 ----------------------------------------- */ setLoadingText( "Loading referral commissions..." ); await loadCommissions(); /* ----------------------------------------- STEP 4 ----------------------------------------- */ setLoadingText( "Building your flight network..." ); loadReferralInformation(); renderNetwork(); /* ----------------------------------------- COMPLETE ----------------------------------------- */ setLoadingText( "Network ready ✈" ); setTimeout( function(){ hideLoading(); }, 250 ); } catch(error){ console.error( "Network loading error:", error ); setLoadingText( "Unable to load your network." ); /* IMPORTANT: Do NOT log the user out. If Firestore has a problem, keep the Firebase Auth session intact. */ setTimeout( function(){ hideLoading(); alert( "Your account is logged in, but the Network data could not be loaded. Please try again." ); }, 500 ); } } ); </script> </body> </html> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent - Network</title>
+
+<style>
+
+/* ================= RESET ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    color:#174b7d;
+    background:#f4f9fd;
+    min-height:100vh;
+    padding-bottom:72px;
+}
+
+/* ================= FIREBASE LOADING ================= */
+
+.firebase-loading{
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(
+            135deg,
+            #052b78,
+            #0074d9 55%,
+            #7edfff
+        );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    transition:.3s ease;
+}
+
+.firebase-loading.hidden{
+    opacity:0;
+    pointer-events:none;
+}
+
+.loading-box{
+    width:88%;
+    max-width:330px;
+    background:rgba(255,255,255,.96);
+    border-radius:22px;
+    padding:30px 22px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.loading-logo{
+    font-size:27px;
+    font-weight:700;
+    color:#062b78;
+    margin-bottom:18px;
+}
+
+.loading-logo span{
+    color:#0789e8;
+}
+
+.loading-spinner{
+    width:38px;
+    height:38px;
+    border:4px solid #dcecf8;
+    border-top-color:#0879d8;
+    border-radius:50%;
+    animation:networkSpin .8s linear infinite;
+    margin:0 auto 15px;
+}
+
+@keyframes networkSpin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.loading-title{
+    font-size:14px;
+    font-weight:700;
+    color:#174f83;
+}
+
+.loading-status{
+    margin-top:6px;
+    font-size:10px;
+    color:#7890a5;
+    min-height:15px;
+}
+
+/* ================= MEMBER DETAILS ================= */
+
+.member-phone-main{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:5px 2px;
+    font-size:10px;
+}
+
+.member-phone-main + .member-phone-main{
+    border-top:1px solid #dcecf7;
+}
+
+.member-detail-label{
+    color:#6d8498;
+    font-size:9px;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+.member-detail-value{
+    color:#174f83;
+    font-size:10px;
+    font-weight:700;
+    text-align:right;
+}
+
+.commission-row{
+    margin-top:1px;
+}
+
+.commission-value{
+    color:#16813d;
+    font-size:11px;
+    font-weight:800;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    min-height:205px;
+    padding:20px 20px 25px;
+
+    background:
+        linear-gradient(
+            rgba(235,248,255,.12),
+            rgba(235,248,255,.20)
+        ),
+        url("skybg.jpg");
+
+    background-size:cover;
+    background-position:center center;
+
+    box-shadow:
+        0 3px 12px rgba(20,90,150,.12);
+}
+
+.logo-area{
+    position:relative;
+    z-index:5;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    width:100%;
+}
+
+.logo-area img{
+    display:block;
+    width:155px;
+    height:auto;
+    max-height:65px;
+    object-fit:contain;
+}
+
+.hero-content{
+    position:relative;
+    z-index:5;
+    margin-top:8px;
+}
+
+.hero-title{
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+}
+
+.hero h1{
+    font-size:25px;
+    font-weight:700;
+    color:#073d7b;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin:0;
+}
+
+.hero-icon{
+    font-size:23px;
+}
+
+.hero-description{
+    margin-top:8px;
+    position:relative;
+    z-index:5;
+}
+
+.hero p{
+    font-size:13px;
+    line-height:1.55;
+    max-width:290px;
+    color:#194f83;
+}
+
+.hero p strong{
+    font-size:15px;
+}
+
+.hero-plane{
+    position:absolute;
+    right:5px;
+    top:48px;
+    font-size:65px;
+    transform:rotate(-8deg);
+    opacity:.82;
+    z-index:2;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    width:94%;
+    max-width:650px;
+    margin:-4px auto 25px;
+    position:relative;
+    z-index:5;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary{
+    background:#fff;
+    border-radius:15px;
+    padding:8px;
+    box-shadow:0 4px 15px rgba(20,90,150,.10);
+    border:1px solid #e0edf6;
+}
+
+.summary-top{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:7px;
+}
+
+.summary-card{
+    border-radius:11px;
+    padding:10px;
+    min-height:76px;
+    border:1px solid #dcecf8;
+    background:#fbfdff;
+}
+
+.summary-card.main{
+    color:white;
+    border:none;
+    background:
+        linear-gradient(
+            135deg,
+            #087fe3,
+            #0753b8
+        );
+}
+
+.summary-icon{
+    font-size:17px;
+    margin-bottom:2px;
+}
+
+.summary-title{
+    font-size:9px;
+    font-weight:600;
+    margin-bottom:3px;
+}
+
+.summary-value{
+    font-size:18px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.summary-card:not(.main) .summary-value{
+    color:#15518a;
+}
+
+/* ================= REFERRAL ================= */
+
+.referral-card{
+    margin-top:7px;
+    border:1px solid #d5e9f8;
+    border-radius:11px;
+    padding:10px;
+    background:#fbfdff;
+}
+
+.referral-title{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.link-icon{
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#073c7b;
+    color:white;
+    font-size:12px;
+}
+
+.referral-code-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#eaf5fd;
+    border:1px solid #d2e9f8;
+    border-radius:8px;
+    padding:7px 9px;
+    margin-bottom:6px;
+}
+
+.referral-code-label{
+    font-size:8px;
+    color:#69849d;
+    margin-bottom:2px;
+}
+
+.referral-code{
+    font-size:14px;
+    font-weight:700;
+    color:#0757b5;
+    letter-spacing:.7px;
+}
+
+.referral-input-row{
+    display:flex;
+    gap:5px;
+}
+
+.referral-input{
+    flex:1;
+    min-width:0;
+    border:none;
+    outline:none;
+    background:#e8f4fc;
+    color:#195385;
+    border-radius:7px;
+    padding:8px;
+    font-size:8px;
+}
+
+.copy-icon{
+    width:36px;
+    border:none;
+    border-radius:7px;
+    background:#dff5ff;
+    color:#087bd7;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.copy-button{
+    width:100%;
+    margin-top:6px;
+    border:none;
+    border-radius:8px;
+    padding:8px;
+    background:
+        linear-gradient(
+            135deg,
+            #0755ba,
+            #087fe4
+        );
+    color:white;
+    font-size:10px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* ================= LANDING ================= */
+
+.landing-area{
+    margin-top:19px;
+    text-align:center;
+    position:relative;
+    padding-bottom:3px;
+}
+
+.runway{
+    position:absolute;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:90px;
+    height:55px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0 47%,
+            rgba(210,225,235,.8) 47% 53%,
+            transparent 53%
+        );
+
+    opacity:.65;
+
+    clip-path:
+        polygon(
+            28% 0,
+            72% 0,
+            100% 100%,
+            0 100%
+        );
+}
+
+.landing-point{
+    position:relative;
+    z-index:3;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:5px 13px 5px 5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0754ae,
+            #0a83dc
+        );
+
+    border-radius:35px;
+    color:white;
+    border:2px solid white;
+
+    box-shadow:
+        0 5px 13px rgba(5,78,155,.18);
+}
+
+.user-circle{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffdf39,
+            #ffc000
+        );
+
+    border:3px solid white;
+
+    box-shadow:
+        0 0 0 2px #ffca18;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+}
+
+.landing-text{
+    text-align:left;
+}
+
+.you{
+    font-size:17px;
+    font-weight:700;
+}
+
+.landing-small{
+    font-size:8px;
+    margin-top:1px;
+}
+
+.crown{
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:16px;
+    z-index:4;
+}
+
+.connector{
+    width:3px;
+    height:18px;
+    margin:0 auto;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #0864ba 0px,
+            #0864ba 5px,
+            transparent 5px,
+            transparent 10px
+        );
+}
+
+.arrow{
+    text-align:center;
+    color:#0755ad;
+    font-size:14px;
+    height:13px;
+}
+
+/* ================= LEVELS ================= */
+
+.level{
+    overflow:hidden;
+    border-radius:16px;
+    margin-top:2px;
+    border:2px solid white;
+    box-shadow:0 5px 16px rgba(11,82,147,.15);
+}
+
+.level-a{
+    background:
+        linear-gradient(
+            125deg,
+            #0565cc,
+            #079ce8
+        );
+}
+
+.level-b{
+    background:
+        linear-gradient(
+            125deg,
+            #154dc0,
+            #1179e5
+        );
+}
+
+.level-c{
+    background:
+        linear-gradient(
+            125deg,
+            #008ea9,
+            #13b9c1
+        );
+}
+
+.level-main{
+    min-height:116px;
+    padding:11px 10px;
+
+    display:grid;
+    grid-template-columns:1fr 82px;
+
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.level-info{
+    position:relative;
+    z-index:3;
+}
+
+.level-heading{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.level-icon{
+    width:35px;
+    height:35px;
+    flex-shrink:0;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#ffd42a;
+    color:#0751a7;
+    font-size:18px;
+}
+
+.level-b .level-icon,
+.level-c .level-icon{
+    background:white;
+}
+
+.level-name{
+    font-size:17px;
+    color:white;
+    font-weight:700;
+    line-height:1;
+}
+
+.stage{
+    display:inline-block;
+    margin-top:3px;
+    padding:3px 7px;
+    border-radius:12px;
+    background:#13c8ee;
+    color:white;
+    font-size:6px;
+    font-weight:700;
+    letter-spacing:.3px;
+}
+
+.description{
+    color:white;
+    font-size:8px;
+    line-height:1.4;
+    margin-top:6px;
+    max-width:170px;
+}
+
+.description strong{
+    display:block;
+    font-size:9px;
+    margin-bottom:1px;
+}
+
+.aircraft{
+    position:absolute;
+    right:52px;
+    top:34px;
+    font-size:34px;
+    opacity:.7;
+    transform:rotate(-5deg);
+    z-index:2;
+}
+
+.commission{
+    position:relative;
+    z-index:5;
+    text-align:center;
+    padding:8px 4px;
+    border-radius:22px;
+    background:#ffd42a;
+    color:#0751a5;
+}
+
+.level-b .commission,
+.level-c .commission{
+    background:rgba(255,255,255,.10);
+    color:white;
+    border:1px solid rgba(255,255,255,.8);
+}
+
+.percent{
+    font-size:22px;
+    line-height:1;
+    font-weight:800;
+}
+
+.commission-label{
+    font-size:7px;
+    font-weight:600;
+    margin-top:2px;
+}
+
+.members-bar{
+    background:white;
+    color:#124c85;
+    min-height:36px;
+    padding:6px 9px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    cursor:pointer;
+}
+
+.members-left{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-size:9px;
+    font-weight:600;
+}
+
+.members-icon{
+    font-size:14px;
+}
+
+.member-count{
+    color:#0756ad;
+}
+
+.member-arrow{
+    font-size:16px;
+    color:#1261ac;
+}
+
+.member-list{
+    display:none;
+    background:#f9fcff;
+    padding:7px;
+}
+
+.member-list.open{
+    display:block;
+}
+
+.member{
+    padding:8px;
+    margin-bottom:4px;
+    border-radius:7px;
+    background:#edf7ff;
+    border:1px solid #d4eafa;
+    font-size:8px;
+}
+
+.member:last-child{
+    margin-bottom:0;
+}
+
+.empty{
+    text-align:center;
+    padding:7px;
+    color:#8196aa;
+    font-size:8px;
+}
+
+/* ================= BENEFITS ================= */
+
+.benefits{
+    margin-top:16px;
+    background:white;
+    border:1px solid #cbe5f8;
+    border-radius:13px;
+    padding:9px 4px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:2px;
+
+    box-shadow:
+        0 4px 12px rgba(30,100,150,.06);
+}
+
+.benefit{
+    text-align:center;
+    padding:3px 2px;
+}
+
+.benefit + .benefit{
+    border-left:1px solid #d4e7f5;
+}
+
+.benefit-icon{
+    font-size:18px;
+    margin-bottom:2px;
+}
+
+.benefit strong{
+    display:block;
+    font-size:8px;
+    color:#073c7b;
+}
+
+.benefit span{
+    display:block;
+    margin-top:2px;
+    font-size:7px;
+    color:#7189a0;
+}
+
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:65px;
+
+    background:rgba(255,255,255,.98);
+    border-top:1px solid #d7eafa;
+
+    box-shadow:
+        0 -4px 15px rgba(0,60,110,.10);
+
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+
+    z-index:2000;
+}
+
+.bottom-nav a{
+    text-decoration:none;
+    color:#607991;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    gap:2px;
+    font-size:7px;
+    position:relative;
+}
+
+.bottom-icon{
+    font-size:18px;
+    line-height:1;
+}
+
+.bottom-nav a.active{
+    color:#0757b5;
+    font-weight:700;
+}
+
+.bottom-nav a.active:before{
+    content:"";
+    position:absolute;
+    top:0;
+    width:35px;
+    height:3px;
+    border-radius:0 0 5px 5px;
+    background:#087edb;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:80px;
+
+    transform:
+        translateX(-50%)
+        translateY(15px);
+
+    background:#073c7b;
+    color:white;
+
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:9px;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:3000;
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* ================= DESKTOP ================= */
+
+@media(min-width:700px){
+
+    body{
+        padding-bottom:0;
+    }
+
+    .container{
+        max-width:850px;
+    }
+
+    .hero{
+        padding-left:
+            calc((100% - 850px)/2);
+
+        min-height:230px;
+    }
+
+    .logo-area img{
+        width:185px;
+        max-height:70px;
+    }
+
+    .hero-content{
+        margin-top:10px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .hero p{
+        font-size:13px;
+        max-width:340px;
+    }
+
+    .hero p strong{
+        font-size:16px;
+    }
+
+    .hero-plane{
+        right:12%;
+        top:48px;
+        font-size:85px;
+    }
+
+    .level-main{
+        min-height:145px;
+        grid-template-columns:1fr 120px;
+    }
+
+    .level-name{
+        font-size:22px;
+    }
+
+    .description{
+        font-size:10px;
+    }
+
+    .aircraft{
+        font-size:48px;
+    }
+
+    .percent{
+        font-size:27px;
+    }
+
+    .bottom-nav{
+        display:none;
+    }
+}
+
+/* ================= SMALL PHONES ================= */
+
+@media(max-width:360px){
+
+    .hero{
+        min-height:190px;
+        padding:18px 15px 20px;
+    }
+
+    .logo-area img{
+        width:125px;
+        max-height:52px;
+    }
+
+    .hero-content{
+        margin-top:6px;
+    }
+
+    .hero h1{
+        font-size:21px;
+        gap:5px;
+    }
+
+    .hero-icon{
+        font-size:20px;
+    }
+
+    .hero p{
+        font-size:12px;
+        line-height:1.5;
+        max-width:260px;
+    }
+
+    .hero p strong{
+        font-size:14px;
+    }
+
+    .hero-plane{
+        right:-3px;
+        top:48px;
+        font-size:55px;
+    }
+
+    .summary-value{
+        font-size:16px;
+    }
+
+    .level-main{
+        grid-template-columns:1fr 76px;
+    }
+
+    .level-name{
+        font-size:16px;
+    }
+
+    .level-icon{
+        width:33px;
+        height:33px;
+        font-size:17px;
+    }
+
+    .aircraft{
+        right:48px;
+        font-size:30px;
+    }
+
+    .percent{
+        font-size:20px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ================= FIREBASE LOADING ================= -->
+
+<div
+    class="firebase-loading"
+    id="firebaseLoading"
+>
+
+    <div class="loading-box">
+
+        <div class="loading-logo">
+            ✈ Sky<span>Rent</span>
+        </div>
+
+        <div class="loading-spinner"></div>
+
+        <div
+            class="loading-title"
+            id="loadingTitle"
+        >
+            Connecting...
+        </div>
+
+        <div
+            class="loading-status"
+            id="loadingStatus"
+        >
+            Checking your SkyRent account
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="logo-area">
+
+        <img
+            src="skyrent-logo.png"
+            alt="SkyRent Logo"
+        >
+
+    </div>
+
+
+    <div class="hero-content">
+
+        <div class="hero-title">
+
+            <h1>
+
+                <span class="hero-icon">
+                    👥
+                </span>
+
+                My Network
+
+            </h1>
+
+        </div>
+
+
+        <div class="hero-description">
+
+            <p>
+
+                <strong>
+                    Build your network. Earn more.
+                </strong>
+
+                <br>
+
+                Invite members and grow your
+                SkyRent flight network.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-plane">
+        ✈️
+    </div>
+
+</section>
+
+
+<!-- ================= CONTENT ================= -->
+
+<main class="container">
+
+
+<section class="summary">
+
+    <div class="summary-top">
+
+        <div class="summary-card main">
+
+            <div class="summary-icon">
+                🪙
+            </div>
+
+            <div class="summary-title">
+                Total Commission
+            </div>
+
+            <div
+                class="summary-value"
+                id="totalCommission"
+            >
+                ₱0.00
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                👥
+            </div>
+
+            <div class="summary-title">
+                Total Invites
+            </div>
+
+            <div
+                class="summary-value"
+                id="totalInvites"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= REFERRAL ================= -->
+
+    <div class="referral-card">
+
+        <div class="referral-title">
+
+            <div class="link-icon">
+                🔗
+            </div>
+
+            Your Referral Information
+
+        </div>
+
+
+        <div class="referral-code-box">
+
+            <div>
+
+                <div class="referral-code-label">
+                    YOUR REFERRAL CODE
+                </div>
+
+                <div
+                    class="referral-code"
+                    id="myReferralCode"
+                >
+                    LOADING...
+                </div>
+
+            </div>
+
+
+            <button
+                class="copy-icon"
+                onclick="copyReferralCode()"
+            >
+                📋
+            </button>
+
+        </div>
+
+
+        <div
+            class="referral-code-label"
+            style="margin-bottom:4px;"
+        >
+            YOUR REFERRAL LINK
+        </div>
+
+
+        <div class="referral-input-row">
+
+            <input
+                class="referral-input"
+                id="referralLink"
+                readonly
+            >
+
+            <button
+                class="copy-icon"
+                onclick="copyReferral()"
+            >
+                📋
+            </button>
+
+        </div>
+
+
+        <button
+            class="copy-button"
+            onclick="copyReferral()"
+        >
+            📋 &nbsp; Copy Referral Link
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= YOU ================= -->
+
+<section class="landing-area">
+
+    <div class="runway"></div>
+
+    <div class="crown">
+        👑
+    </div>
+
+    <div class="landing-point">
+
+        <div class="user-circle">
+            👤
+        </div>
+
+        <div class="landing-text">
+
+            <div class="you">
+                YOU
+            </div>
+
+            <div class="landing-small">
+                🛬 Landing Point
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="connector"></div>
+
+<div class="arrow">
+    ▼
+</div>
+
+
+<!-- ================= LEVEL A ================= -->
+
+<section class="level level-a">
+
+    <div class="level-main">
+
+        <div class="level-info">
+
+            <div class="level-heading">
+
+                <div class="level-icon">
+                    ✈️
+                </div>
+
+                <div>
+
+                    <div class="level-name">
+                        LEVEL A
+                    </div>
+
+                    <span class="stage">
+                        BOARDING
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="description">
+
+                <strong>
+                    Direct Referrals
+                </strong>
+
+                Closest to you
+
+            </div>
+
+        </div>
+
+
+        <div class="aircraft">
+            ✈️
+        </div>
+
+
+        <div class="commission">
+
+            <div class="percent">
+                25%
+            </div>
+
+            <div class="commission-label">
+                Commission
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="members-bar"
+        onclick="toggleMembers('membersA','arrowA')"
+    >
+
+        <div class="members-left">
+
+            <span class="members-icon">
+                👥
+            </span>
+
+            A Members
+
+            <span
+                class="member-count"
+                id="countA"
+            >
+                (0)
+            </span>
+
+        </div>
+
+
+        <div
+            class="member-arrow"
+            id="arrowA"
+        >
+            ›
+        </div>
+
+    </div>
+
+
+    <div
+        class="member-list"
+        id="membersA"
+    ></div>
+
+</section>
+
+
+<div class="connector"></div>
+
+<div class="arrow">
+    ▼
+</div>
+
+
+<!-- ================= LEVEL B ================= -->
+
+<section class="level level-b">
+
+    <div class="level-main">
+
+        <div class="level-info">
+
+            <div class="level-heading">
+
+                <div class="level-icon">
+                    🛫
+                </div>
+
+                <div>
+
+                    <div class="level-name">
+                        LEVEL B
+                    </div>
+
+                    <span class="stage">
+                        TAKE OFF
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="description">
+
+                <strong>
+                    2nd Level Referrals
+                </strong>
+
+                Referred by Level A
+
+            </div>
+
+        </div>
+
+
+        <div class="aircraft">
+            🛫
+        </div>
+
+
+        <div class="commission">
+
+            <div class="percent">
+                3%
+            </div>
+
+            <div class="commission-label">
+                Commission
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="members-bar"
+        onclick="toggleMembers('membersB','arrowB')"
+    >
+
+        <div class="members-left">
+
+            <span class="members-icon">
+                👥
+            </span>
+
+            B Members
+
+            <span
+                class="member-count"
+                id="countB"
+            >
+                (0)
+            </span>
+
+        </div>
+
+
+        <div
+            class="member-arrow"
+            id="arrowB"
+        >
+            ›
+        </div>
+
+    </div>
+
+
+    <div
+        class="member-list"
+        id="membersB"
+    ></div>
+
+</section>
+
+
+<div class="connector"></div>
+
+<div class="arrow">
+    ▼
+</div>
+
+
+<!-- ================= LEVEL C ================= -->
+
+<section class="level level-c">
+
+    <div class="level-main">
+
+        <div class="level-info">
+
+            <div class="level-heading">
+
+                <div class="level-icon">
+                    ☁️
+                </div>
+
+                <div>
+
+                    <div class="level-name">
+                        LEVEL C
+                    </div>
+
+                    <span class="stage">
+                        CRUISING
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="description">
+
+                <strong>
+                    3rd Level Referrals
+                </strong>
+
+                Referred by Level B
+
+            </div>
+
+        </div>
+
+
+        <div class="aircraft">
+            ✈️
+        </div>
+
+
+        <div class="commission">
+
+            <div class="percent">
+                1%
+            </div>
+
+            <div class="commission-label">
+                Commission
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="members-bar"
+        onclick="toggleMembers('membersC','arrowC')"
+    >
+
+        <div class="members-left">
+
+            <span class="members-icon">
+                👥
+            </span>
+
+            C Members
+
+            <span
+                class="member-count"
+                id="countC"
+            >
+                (0)
+            </span>
+
+        </div>
+
+
+        <div
+            class="member-arrow"
+            id="arrowC"
+        >
+            ›
+        </div>
+
+    </div>
+
+
+    <div
+        class="member-list"
+        id="membersC"
+    ></div>
+
+</section>
+
+
+<!-- ================= BENEFITS ================= -->
+
+<section class="benefits">
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+            ✈️
+        </div>
+
+        <strong>
+            More Invites
+        </strong>
+
+        <span>
+            Build your team
+        </span>
+
+    </div>
+
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+            🪙
+        </div>
+
+        <strong>
+            Higher Earnings
+        </strong>
+
+        <span>
+            Up to 25%
+        </span>
+
+    </div>
+
+
+    <div class="benefit">
+
+        <div class="benefit-icon">
+            🎯
+        </div>
+
+        <strong>
+            Reach Goals
+        </strong>
+
+        <span>
+            Grow your network
+        </span>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+    <a href="dashboard.html">
+
+        <div class="bottom-icon">
+            🏠
+        </div>
+
+        Home
+
+    </a>
+
+
+    <a href="deposit.html">
+
+        <div class="bottom-icon">
+            💳
+        </div>
+
+        Deposit
+
+    </a>
+
+
+    <a
+        href="network.html"
+        class="active"
+    >
+
+        <div class="bottom-icon">
+            ✈️
+        </div>
+
+        Network
+
+    </a>
+
+
+    <a href="earnings.html">
+
+        <div class="bottom-icon">
+            🪙
+        </div>
+
+        Earnings
+
+    </a>
+
+
+    <a href="profile.html">
+
+        <div class="bottom-icon">
+            👤
+        </div>
+
+        Profile
+
+    </a>
+
+</nav>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Copied!
+</div>
+
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    setPersistence,
+    browserLocalPersistence
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    getDoc,
+    updateDoc
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+};
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =========================================================
+   FORCE LOCAL FIREBASE AUTH PERSISTENCE
+========================================================= */
+
+await setPersistence(
+    auth,
+    browserLocalPersistence
+);
+
+
+/* =========================================================
+   COMMISSION RATES
+========================================================= */
+
+const COMMISSION_A = 0.25;
+const COMMISSION_B = 0.03;
+const COMMISSION_C = 0.01;
+
+
+/* =========================================================
+   GITHUB PAGES URL
+========================================================= */
+
+const GITHUB_SITE =
+    "https://skyrent26.github.io/skyrent/";
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+let firebaseUser = null;
+
+let currentUserData = null;
+
+let allUsers = [];
+
+let allCommissions = [];
+
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+function updateLoading(
+    title,
+    status
+){
+
+    document.getElementById(
+        "loadingTitle"
+    ).textContent = title;
+
+    document.getElementById(
+        "loadingStatus"
+    ).textContent = status;
+}
+
+
+function hideLoading(){
+
+    const loading =
+        document.getElementById(
+            "firebaseLoading"
+        );
+
+    loading.classList.add("hidden");
+
+    setTimeout(
+        function(){
+
+            loading.style.display =
+                "none";
+
+        },
+        350
+    );
+}
+
+
+/* =========================================================
+   NORMALIZE REFERRAL CODE
+========================================================= */
+
+function normalizeReferralCode(code){
+
+    return String(
+        code || ""
+    )
+    .trim()
+    .toUpperCase();
+}
+
+
+/* =========================================================
+   GENERATE REFERRAL CODE
+========================================================= */
+
+function generateReferralCode(){
+
+    return (
+        "SKY" +
+        Math.random()
+            .toString(36)
+            .substring(2,8)
+            .toUpperCase()
+    );
+}
+
+
+/* =========================================================
+   GET UNIQUE REFERRAL CODE
+========================================================= */
+
+async function getOrCreateReferralCode(){
+
+    let code =
+        normalizeReferralCode(
+            currentUserData?.referralCode
+        );
+
+
+    if(code){
+
+        return code;
+
+    }
+
+
+    let exists = true;
+
+
+    while(exists){
+
+        code =
+            generateReferralCode();
+
+        exists =
+            allUsers.some(
+                user =>
+                    normalizeReferralCode(
+                        user.referralCode
+                    ) === code
+            );
+
+    }
+
+
+    try{
+
+        await updateDoc(
+
+            doc(
+                db,
+                "users",
+                firebaseUser.uid
+            ),
+
+            {
+                referralCode:code
+            }
+
+        );
+
+        currentUserData.referralCode =
+            code;
+
+    }
+    catch(error){
+
+        console.error(
+            "Could not save referral code:",
+            error
+        );
+
+    }
+
+
+    return code;
+
+}
+
+
+/* =========================================================
+   GET REFERRER
+========================================================= */
+
+function getDirectReferrer(user){
+
+    if(!user){
+
+        return null;
+
+    }
+
+
+    const referredByCode =
+        normalizeReferralCode(
+
+            user.referredByCode ||
+
+            user.referredBy ||
+
+            user.referralBy ||
+
+            user.parentReferralCode ||
+
+            ""
+
+        );
+
+
+    if(!referredByCode){
+
+        return null;
+
+    }
+
+
+    return (
+        allUsers.find(
+            member =>
+                normalizeReferralCode(
+                    member.referralCode
+                ) === referredByCode
+        ) || null
+    );
+
+}
+
+
+/* =========================================================
+   BUILD NETWORK
+========================================================= */
+
+function buildNetwork(){
+
+    const me =
+        currentUserData;
+
+
+    const levelA = [];
+    const levelB = [];
+    const levelC = [];
+
+
+    if(!me){
+
+        return {
+            levelA,
+            levelB,
+            levelC
+        };
+
+    }
+
+
+    /* =====================================================
+       LEVEL A
+       Direct referrals
+    ===================================================== */
+
+    allUsers.forEach(
+        user => {
+
+            if(
+                user.uid ===
+                firebaseUser.uid
+            ){
+
+                return;
+
+            }
+
+
+            const referrer =
+                getDirectReferrer(user);
+
+
+            if(!referrer){
+
+                return;
+
+            }
+
+
+            if(
+                referrer.uid ===
+                firebaseUser.uid
+            ){
+
+                levelA.push(user);
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       LEVEL B
+       Referred by Level A
+    ===================================================== */
+
+    allUsers.forEach(
+        user => {
+
+            if(
+                user.uid ===
+                firebaseUser.uid
+            ){
+
+                return;
+
+            }
+
+
+            if(
+                levelA.some(
+                    member =>
+                        member.uid ===
+                        user.uid
+                )
+            ){
+
+                return;
+
+            }
+
+
+            const referrer =
+                getDirectReferrer(user);
+
+
+            if(!referrer){
+
+                return;
+
+            }
+
+
+            if(
+                levelA.some(
+                    member =>
+                        member.uid ===
+                        referrer.uid
+                )
+            ){
+
+                levelB.push(user);
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       LEVEL C
+       Referred by Level B
+    ===================================================== */
+
+    allUsers.forEach(
+        user => {
+
+            if(
+                user.uid ===
+                firebaseUser.uid
+            ){
+
+                return;
+
+            }
+
+
+            if(
+                levelA.some(
+                    member =>
+                        member.uid ===
+                        user.uid
+                )
+            ){
+
+                return;
+
+            }
+
+
+            if(
+                levelB.some(
+                    member =>
+                        member.uid ===
+                        user.uid
+                )
+            ){
+
+                return;
+
+            }
+
+
+            const referrer =
+                getDirectReferrer(user);
+
+
+            if(!referrer){
+
+                return;
+
+            }
+
+
+            if(
+                levelB.some(
+                    member =>
+                        member.uid ===
+                        referrer.uid
+                )
+            ){
+
+                levelC.push(user);
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        levelA,
+        levelB,
+        levelC
+
+    };
+
+}
+
+
+/* =========================================================
+   GET COMMISSIONS FOR CURRENT USER
+========================================================= */
+
+function getMyCommissions(){
+
+    if(!firebaseUser){
+
+        return [];
+
+    }
+
+
+    return allCommissions.filter(
+        commission => {
+
+            const ownerUid =
+                commission.ownerUid ||
+                commission.ownerId ||
+                "";
+
+
+            const ownerPhone =
+                commission.ownerPhone ||
+                "";
+
+
+            return (
+
+                String(ownerUid) ===
+                String(firebaseUser.uid)
+
+            ) ||
+
+            (
+
+                String(ownerPhone) ===
+                String(
+                    currentUserData?.phone || ""
+                )
+
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   COMMISSION STATUS
+========================================================= */
+
+function isRejectedCommission(
+    commission
+){
+
+    const status =
+        String(
+            commission.status ||
+            "Credited"
+        )
+        .toLowerCase()
+        .trim();
+
+
+    return (
+
+        status === "reversed" ||
+
+        status === "cancelled" ||
+
+        status === "canceled" ||
+
+        status === "rejected"
+
+    );
+
+}
+
+
+/* =========================================================
+   GET MEMBER COMMISSION
+========================================================= */
+
+function getMemberCommission(
+    uid,
+    phone,
+    level
+){
+
+    const commissions =
+        getMyCommissions();
+
+
+    let total = 0;
+
+
+    commissions.forEach(
+        commission => {
+
+            if(
+                isRejectedCommission(
+                    commission
+                )
+            ){
+
+                return;
+
+            }
+
+
+            const buyerUid =
+                commission.buyerUid ||
+                commission.buyerId ||
+                "";
+
+
+            const buyerPhone =
+                commission.buyerPhone ||
+                "";
+
+
+            const commissionLevel =
+                String(
+                    commission.level || ""
+                )
+                .toUpperCase();
+
+
+            const sameBuyer =
+
+                (
+                    String(buyerUid) ===
+                    String(uid)
+                )
+
+                ||
+
+                (
+                    String(buyerPhone) ===
+                    String(phone)
+                );
+
+
+            if(
+                sameBuyer &&
+                commissionLevel ===
+                String(level).toUpperCase()
+            ){
+
+                total +=
+                    Number(
+                        commission.commission
+                    ) || 0;
+
+            }
+
+        }
+    );
+
+
+    return total;
+
+}
+
+
+/* =========================================================
+   TOTAL COMMISSION
+========================================================= */
+
+function calculateMyTotalCommission(){
+
+    const commissions =
+        getMyCommissions();
+
+
+    let total = 0;
+
+
+    commissions.forEach(
+        commission => {
+
+            if(
+                isRejectedCommission(
+                    commission
+                )
+            ){
+
+                return;
+
+            }
+
+
+            total +=
+                Number(
+                    commission.commission
+                ) || 0;
+
+        }
+    );
+
+
+    return total;
+
+}
+
+
+/* =========================================================
+   MONEY
+========================================================= */
+
+function money(value){
+
+    return "₱" +
+
+        (
+            Number(value) || 0
+        )
+        .toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =========================================================
+   FIREBASE DATE
+========================================================= */
+
+function convertFirebaseDate(value){
+
+    if(!value){
+
+        return null;
+
+    }
+
+
+    try{
+
+        if(
+            value &&
+            typeof value.toDate ===
+            "function"
+        ){
+
+            return value.toDate();
+
+        }
+
+
+        if(
+            value instanceof Date
+        ){
+
+            return value;
+
+        }
+
+
+        if(
+            typeof value ===
+            "number"
+        ){
+
+            return new Date(value);
+
+        }
+
+
+        if(
+            typeof value ===
+            "string"
+        ){
+
+            const d =
+                new Date(value);
+
+            if(
+                !isNaN(
+                    d.getTime()
+                )
+            ){
+
+                return d;
+
+            }
+
+        }
+
+
+        return null;
+
+    }
+    catch(error){
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(value){
+
+    const date =
+        convertFirebaseDate(
+            value
+        );
+
+
+    if(!date){
+
+        return "";
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-PH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   GET PURCHASE DATE
+========================================================= */
+
+function getPurchaseDate(
+    user,
+    records
+){
+
+    /* First try commission record */
+
+    if(records.length > 0){
+
+        const sorted =
+            [...records].sort(
+                (a,b) => {
+
+                    const da =
+                        convertFirebaseDate(
+                            a.date ||
+                            a.createdAt
+                        );
+
+                    const db =
+                        convertFirebaseDate(
+                            b.date ||
+                            b.createdAt
+                        );
+
+
+                    return (
+                        (db?.getTime() || 0) -
+                        (da?.getTime() || 0)
+                    );
+
+                }
+            );
+
+
+        const latest =
+            sorted[0];
+
+
+        const commissionDate =
+            latest.date ||
+            latest.createdAt;
+
+
+        if(commissionDate){
+
+            return formatDate(
+                commissionDate
+            );
+
+        }
+
+    }
+
+
+    /* Fallback to investment date */
+
+    if(user.purchaseDate){
+
+        return formatDate(
+            user.purchaseDate
+        );
+
+    }
+
+
+    if(user.investmentDate){
+
+        return formatDate(
+            user.investmentDate
+        );
+
+    }
+
+
+    if(user.planPurchasedAt){
+
+        return formatDate(
+            user.planPurchasedAt
+        );
+
+    }
+
+
+    return "No purchase yet";
+
+}
+
+
+/* =========================================================
+   GET MEMBER COMMISSION RECORDS
+========================================================= */
+
+function getMemberCommissionRecords(
+    user,
+    level
+){
+
+    const commissions =
+        getMyCommissions();
+
+
+    return commissions.filter(
+        commission => {
+
+            const buyerUid =
+                commission.buyerUid ||
+                commission.buyerId ||
+                "";
+
+
+            const buyerPhone =
+                commission.buyerPhone ||
+                "";
+
+
+            const sameBuyer =
+
+                (
+                    String(buyerUid) ===
+                    String(user.uid)
+                )
+
+                ||
+
+                (
+                    String(buyerPhone) ===
+                    String(user.phone || "")
+                );
+
+
+            return (
+
+                sameBuyer &&
+
+                String(
+                    commission.level || ""
+                )
+                .toUpperCase() ===
+                String(level).toUpperCase()
+
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DISPLAY PHONE
+========================================================= */
+
+function displayPhone(phone){
+
+    const value =
+        String(phone || "")
+        .trim();
+
+
+    if(!value){
+
+        return "";
+
+    }
+
+
+    if(
+        value.startsWith("+63")
+    ){
+
+        return value;
+
+    }
+
+
+    if(
+        value.startsWith("63")
+    ){
+
+        return "+" + value;
+
+    }
+
+
+    if(
+        value.startsWith("0")
+    ){
+
+        return "+63" +
+            value.substring(1);
+
+    }
+
+
+    return "+63 " + value;
+
+}
+
+
+/* =========================================================
+   DISPLAY MEMBERS
+========================================================= */
+
+function displayMembers(
+    elementId,
+    countId,
+    members,
+    level
+){
+
+    const container =
+        document.getElementById(
+            elementId
+        );
+
+
+    const count =
+        document.getElementById(
+            countId
+        );
+
+
+    count.textContent =
+        "(" +
+        members.length +
+        ")";
+
+
+    container.innerHTML = "";
+
+
+    if(
+        members.length === 0
+    ){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                No members in this level yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    members.forEach(
+        user => {
+
+            const member =
+                document.createElement(
+                    "div"
+                );
+
+
+            member.className =
+                "member";
+
+
+            const records =
+                getMemberCommissionRecords(
+                    user,
+                    level
+                );
+
+
+            const memberCommission =
+                getMemberCommission(
+                    user.uid,
+                    user.phone,
+                    level
+                );
+
+
+            const purchaseDate =
+                getPurchaseDate(
+                    user,
+                    records
+                );
+
+
+            member.innerHTML = `
+
+                <div class="member-phone-main">
+
+                    <span class="member-detail-label">
+
+                        📱 Phone
+
+                    </span>
+
+                    <span class="member-detail-value">
+
+                        ${escapeHtml(
+                            displayPhone(
+                                user.phone
+                            )
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="member-phone-main">
+
+                    <span class="member-detail-label">
+
+                        🕐 Purchase
+
+                    </span>
+
+                    <span class="member-detail-value">
+
+                        ${escapeHtml(
+                            purchaseDate
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="member-phone-main commission-row">
+
+                    <span class="member-detail-label">
+
+                        🪙 Commission
+
+                    </span>
+
+                    <span class="member-detail-value commission-value">
+
+                        ${money(
+                            memberCommission
+                        )}
+
+                    </span>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                member
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   LOAD USERS
+========================================================= */
+
+async function loadUsers(){
+
+    updateLoading(
+        "Loading members...",
+        "Fetching SkyRent network members"
+    );
+
+
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "users"
+            )
+        );
+
+
+    allUsers =
+        snapshot.docs.map(
+            item => {
+
+                return {
+
+                    uid:item.id,
+
+                    ...item.data()
+
+                };
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   LOAD COMMISSIONS
+========================================================= */
+
+async function loadCommissions(){
+
+    updateLoading(
+        "Loading commissions...",
+        "Checking your referral earnings"
+    );
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "referralCommissions"
+                )
+            );
+
+
+        allCommissions =
+            snapshot.docs.map(
+                item => {
+
+                    return {
+
+                        id:item.id,
+
+                        ...item.data()
+
+                    };
+
+                }
+            );
+
+    }
+    catch(error){
+
+        console.warn(
+            "Commission collection unavailable:",
+            error
+        );
+
+        allCommissions = [];
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD CURRENT USER
+========================================================= */
+
+async function loadCurrentUser(){
+
+    updateLoading(
+        "Loading your account...",
+        "Reading your SkyRent profile"
+    );
+
+
+    const userRef =
+        doc(
+            db,
+            "users",
+            firebaseUser.uid
+        );
+
+
+    const snapshot =
+        await getDoc(
+            userRef
+        );
+
+
+    if(!snapshot.exists()){
+
+        throw new Error(
+            "SkyRent user profile was not found."
+        );
+
+    }
+
+
+    currentUserData = {
+
+        uid:firebaseUser.uid,
+
+        ...snapshot.data()
+
+    };
+
+}
+
+
+/* =========================================================
+   SET REFERRAL INFORMATION
+========================================================= */
+
+async function setupReferral(){
+
+    updateLoading(
+        "Preparing referral link...",
+        "Creating your personal SkyRent referral information"
+    );
+
+
+    const code =
+        await getOrCreateReferralCode();
+
+
+    document.getElementById(
+        "myReferralCode"
+    ).textContent =
+        code;
+
+
+    const referralUrl =
+        GITHUB_SITE +
+        "index.html?ref=" +
+        encodeURIComponent(
+            code
+        );
+
+
+    document.getElementById(
+        "referralLink"
+    ).value =
+        referralUrl;
+
+}
+
+
+/* =========================================================
+   LOAD NETWORK
+========================================================= */
+
+async function loadNetwork(){
+
+    try{
+
+        updateLoading(
+            "Connecting to SkyRent...",
+            "Verifying your Firebase session"
+        );
+
+
+        await loadCurrentUser();
+
+
+        await loadUsers();
+
+
+        await loadCommissions();
+
+
+        await setupReferral();
+
+
+        updateLoading(
+            "Building your network...",
+            "Organizing Level A, B and C members"
+        );
+
+
+        const network =
+            buildNetwork();
+
+
+        const totalCommission =
+            calculateMyTotalCommission();
+
+
+        const totalInvites =
+
+            network.levelA.length +
+
+            network.levelB.length +
+
+            network.levelC.length;
+
+
+        document.getElementById(
+            "totalCommission"
+        ).textContent =
+            money(
+                totalCommission
+            );
+
+
+        document.getElementById(
+            "totalInvites"
+        ).textContent =
+            totalInvites;
+
+
+        displayMembers(
+            "membersA",
+            "countA",
+            network.levelA,
+            "A"
+        );
+
+
+        displayMembers(
+            "membersB",
+            "countB",
+            network.levelB,
+            "B"
+        );
+
+
+        displayMembers(
+            "membersC",
+            "countC",
+            network.levelC,
+            "C"
+        );
+
+
+        updateLoading(
+            "Network ready",
+            "Your SkyRent network is loaded"
+        );
+
+
+        setTimeout(
+            hideLoading,
+            350
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Network loading error:",
+            error
+        );
+
+
+        updateLoading(
+            "Unable to load network",
+            error.message ||
+            "Please try again."
+        );
+
+
+        setTimeout(
+            function(){
+
+                alert(
+                    "Unable to load your SkyRent network. Please try again."
+                );
+
+            },
+            300
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FIREBASE AUTH STATE
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            updateLoading(
+                "Login required",
+                "Redirecting to SkyRent login..."
+            );
+
+
+            setTimeout(
+                function(){
+
+                    window.location.href =
+                        "index.html";
+
+                },
+                800
+            );
+
+
+            return;
+
+        }
+
+
+        firebaseUser =
+            user;
+
+
+        await loadNetwork();
+
+    }
+);
+
+
+/* =========================================================
+   TOGGLE MEMBERS
+========================================================= */
+
+window.toggleMembers =
+function(
+    listId,
+    arrowId
+){
+
+    const list =
+        document.getElementById(
+            listId
+        );
+
+
+    const arrow =
+        document.getElementById(
+            arrowId
+        );
+
+
+    list.classList.toggle(
+        "open"
+    );
+
+
+    if(
+        list.classList.contains(
+            "open"
+        )
+    ){
+
+        arrow.textContent =
+            "⌄";
+
+    }
+    else{
+
+        arrow.textContent =
+            "›";
+
+    }
+
+};
+
+
+/* =========================================================
+   COPY REFERRAL CODE
+========================================================= */
+
+window.copyReferralCode =
+function(){
+
+    const code =
+        document.getElementById(
+            "myReferralCode"
+        ).textContent;
+
+
+    copyText(
+        code,
+        "Referral code copied!"
+    );
+
+};
+
+
+/* =========================================================
+   COPY REFERRAL LINK
+========================================================= */
+
+window.copyReferral =
+function(){
+
+    const input =
+        document.getElementById(
+            "referralLink"
+        );
+
+
+    copyText(
+        input.value,
+        "Referral link copied!"
+    );
+
+};
+
+
+/* =========================================================
+   COPY TEXT
+========================================================= */
+
+function copyText(
+    text,
+    message
+){
+
+    if(
+        navigator.clipboard &&
+        window.isSecureContext
+    ){
+
+        navigator.clipboard
+            .writeText(text)
+            .then(
+                function(){
+
+                    showToast(
+                        message
+                    );
+
+                }
+            )
+            .catch(
+                function(){
+
+                    fallbackCopy(
+                        text,
+                        message
+                    );
+
+                }
+            );
+
+    }
+    else{
+
+        fallbackCopy(
+            text,
+            message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FALLBACK COPY
+========================================================= */
+
+function fallbackCopy(
+    text,
+    message
+){
+
+    const textarea =
+        document.createElement(
+            "textarea"
+        );
+
+
+    textarea.value =
+        text;
+
+
+    textarea.style.position =
+        "fixed";
+
+
+    textarea.style.opacity =
+        "0";
+
+
+    document.body.appendChild(
+        textarea
+    );
+
+
+    textarea.focus();
+
+    textarea.select();
+
+
+    try{
+
+        document.execCommand(
+            "copy"
+        );
+
+
+        showToast(
+            message
+        );
+
+    }
+    catch(error){
+
+        showToast(
+            "Please copy manually"
+        );
+
+    }
+
+
+    document.body.removeChild(
+        textarea
+    );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2000
+    );
+
+}
+
+
+/* =========================================================
+   REFRESH WHEN RETURNING TO PAGE
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function(){
+
+        if(
+            !document.hidden &&
+            firebaseUser
+        ){
+
+            loadNetwork();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
