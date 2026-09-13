@@ -1344,10 +1344,11 @@ function closeSuccessAlert(){
 
 
 
-// AUTO FILL REFERRAL CODE FROM LINK
-// Example: yoursite.com/?ref=ABC123
+// ================================
+// AUTO REFERRAL CODE FROM LINK
+// ================================
 
-window.onload = function(){
+window.addEventListener("DOMContentLoaded", function(){
 
     const params = new URLSearchParams(window.location.search);
 
@@ -1355,12 +1356,26 @@ window.onload = function(){
 
     if(referral){
 
-        document.getElementById("referralCode").value =
-        referral.toUpperCase();
+        const referralInput =
+            document.getElementById("referralCode");
 
+        if(referralInput){
+
+            // Fill referral code automatically
+            referralInput.value =
+                referral.trim().toUpperCase();
+
+            // Automatically open REGISTER
+            showRegister();
+
+            console.log(
+                "Referral code detected:",
+                referral.toUpperCase()
+            );
+        }
     }
 
-};
+});
 
 
 
