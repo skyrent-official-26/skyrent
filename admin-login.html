@@ -1,1 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent Admin Login</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #075985,
+            #0284c7,
+            #38bdf8
+        );
+
+    padding:20px;
+}
+
+
+/* =========================
+   LOGIN BOX
+========================= */
+
+.login-box{
+
+    width:100%;
+
+    max-width:380px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px 25px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.20);
+
+    text-align:center;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+
+    width:70px;
+
+    height:70px;
+
+    margin:
+        0 auto 15px;
+
+    border-radius:50%;
+
+    background:#075985;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:34px;
+
+    box-shadow:
+        0 5px 15px
+        rgba(7,89,133,.25);
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+h1{
+
+    color:#0f172a;
+
+    font-size:24px;
+
+    margin-bottom:5px;
+}
+
+
+.subtitle{
+
+    color:#64748b;
+
+    font-size:13px;
+
+    margin-bottom:25px;
+}
+
+
+/* =========================
+   INPUT GROUP
+========================= */
+
+.input-group{
+
+    text-align:left;
+
+    margin-bottom:15px;
+}
+
+
+.input-group label{
+
+    display:block;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    color:#334155;
+
+    margin-bottom:6px;
+}
+
+
+.input-group input{
+
+    width:100%;
+
+    padding:13px 12px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius:9px;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:.2s;
+}
+
+
+.input-group input:focus{
+
+    border-color:#0284c7;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(2,132,199,.12);
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-btn{
+
+    width:100%;
+
+    border:none;
+
+    background:#075985;
+
+    color:white;
+
+    padding:13px;
+
+    border-radius:9px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-top:5px;
+
+    transition:.2s;
+}
+
+
+.login-btn:hover{
+
+    background:#0369a1;
+}
+
+
+.login-btn:active{
+
+    transform:scale(.98);
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.login-btn.loading{
+
+    opacity:.75;
+
+    cursor:not-allowed;
+
+    pointer-events:none;
+}
+
+
+.spinner{
+
+    display:inline-block;
+
+    width:16px;
+
+    height:16px;
+
+    border:
+        3px solid
+        rgba(255,255,255,.35);
+
+    border-top-color:white;
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    vertical-align:middle;
+
+    margin-right:7px;
+}
+
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.error{
+
+    display:none;
+
+    margin-top:15px;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+    font-size:12px;
+
+    font-weight:bold;
+}
+
+
+.error.show{
+
+    display:block;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    margin-top:20px;
+
+    font-size:11px;
+
+    color:#94a3b8;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
+
+    .login-box{
+
+        padding:25px 20px;
+    }
+
+    h1{
+
+        font-size:22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     LOGIN BOX
+========================= -->
+
+<div class="login-box">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        ✈️
+
+    </div>
+
+
+    <!-- TITLE -->
+
+    <h1>
+
+        SkyRent Admin
+
+    </h1>
+
+
+    <div class="subtitle">
+
+        Administrator Login
+
+    </div>
+
+
+    <!-- =========================
+         LOGIN FORM
+    ========================= -->
+
+    <form id="loginForm">
+
+
+        <!-- USERNAME -->
+
+        <div class="input-group">
+
+            <label for="username">
+
+                Username
+
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                autocomplete="username"
+                required
+            >
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="input-group">
+
+            <label for="password">
+
+                Password
+
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+            >
+
+        </div>
+
+
+        <!-- LOGIN BUTTON -->
+
+        <button
+            type="submit"
+            class="login-btn"
+            id="loginBtn"
+        >
+
+            🔐 Login to Admin Panel
+
+        </button>
+
+
+    </form>
+
+
+    <!-- ERROR MESSAGE -->
+
+    <div
+        class="error"
+        id="errorMessage"
+    >
+
+        ❌ Incorrect username or password.
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        SkyRent Admin Panel
+
+    </div>
+
+
+</div>
+
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+/* =========================================
+   FIREBASE CONFIG
+========================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =========================================
+   INITIALIZE FIREBASE
+========================================= */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+/* =========================================
+   ADMIN DETAILS
+========================================= */
+
+const ADMIN_EMAIL =
+    "admin@skyrent.com";
+
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+/* =========================================
+   LOGIN FORM
+========================================= */
+
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+
+        /* ================================
+           GET INPUTS
+        ================================= */
+
+        const email =
+            document
+                .getElementById("username")
+                .value
+                .trim()
+                .toLowerCase();
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const loginButton =
+            document.querySelector(".login-btn");
+
+
+        /* ================================
+           HIDE OLD ERROR
+        ================================= */
+
+        errorMessage.style.display = "none";
+
+
+        /* ================================
+           CHECK EMAIL
+        ================================= */
+
+        if (!email || !password) {
+
+            errorMessage.textContent =
+                "❌ Please enter your email and password.";
+
+            errorMessage.style.display = "block";
+
+            return;
+        }
+
+
+        /* ================================
+           BUTTON LOADING
+        ================================= */
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+            "🔄 Logging in...";
+
+
+        try {
+
+            /* ================================
+               FIREBASE LOGIN
+            ================================= */
+
+            const userCredential =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            const user =
+                userCredential.user;
+
+
+            console.log(
+                "Firebase login successful:",
+                user.email
+            );
+
+            console.log(
+                "Firebase UID:",
+                user.uid
+            );
+
+
+            /* ================================
+               VERIFY ADMIN EMAIL
+            ================================= */
+
+            if (
+                user.email.toLowerCase()
+                !== ADMIN_EMAIL
+            ) {
+
+                errorMessage.textContent =
+                    "❌ Access denied. This account is not the administrator.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            /* ================================
+               VERIFY ADMIN UID
+            ================================= */
+
+            if (
+                user.uid !== ADMIN_UID
+            ) {
+
+                errorMessage.textContent =
+                    "❌ Access denied. This account is not the administrator.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            /* ================================
+               ADMIN VERIFIED
+            ================================= */
+
+            sessionStorage.setItem(
+                "skyRentAdminLoggedIn",
+                "true"
+            );
+
+
+            sessionStorage.setItem(
+                "skyRentAdminUID",
+                user.uid
+            );
+
+
+            console.log(
+                "✅ ADMIN VERIFIED"
+            );
+
+
+            /* ================================
+               REDIRECT
+            ================================= */
+
+            window.location.href =
+                "admin.html";
+
+
+        }
+
+        catch(error) {
+
+            console.error(
+                "Firebase admin login error:",
+                error
+            );
+
+
+            /* ================================
+               RESTORE BUTTON
+            ================================= */
+
+            loginButton.disabled =
+                false;
+
+            loginButton.textContent =
+                "🔐 Login to Admin Panel";
+
+
+            /* ================================
+               FIREBASE ERROR
+            ================================= */
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                errorMessage.textContent =
+                    "❌ Incorrect email or password.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                errorMessage.textContent =
+                    "❌ Admin account was not found in Firebase.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+
+                errorMessage.textContent =
+                    "❌ Incorrect password.";
+
+            }
+
+            else {
+
+                errorMessage.textContent =
+                    "❌ Login failed. Please try again.";
+
+            }
+
+
+            errorMessage.style.display =
+                "block";
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
