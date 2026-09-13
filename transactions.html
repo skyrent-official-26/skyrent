@@ -1,1 +1,1475 @@
+<!DOCTYPE html>
 
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent - Transactions</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f7fc;
+    color: #172033;
+    padding-bottom: 90px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background:
+        linear-gradient(
+            135deg,
+            #0757c9,
+            #1475e8
+        );
+
+    color: white;
+
+    padding:
+        22px
+        20px
+        32px;
+
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+
+    box-shadow:
+        0 10px 25px
+        rgba(7,87,201,.18);
+}
+
+.back-row {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.back-button {
+    width: 43px;
+    height: 43px;
+
+    border: none;
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    color: white;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.header-logo {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.header h1 {
+    margin-top: 22px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.header p {
+    margin-top: 6px;
+    font-size: 13px;
+    opacity: .9;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 92%;
+    max-width: 520px;
+
+    margin:
+        -20px
+        auto
+        0;
+
+    position: relative;
+    z-index: 5;
+}
+
+/* =========================
+   TOTAL DEPOSIT CARD
+========================= */
+
+.total-card {
+    background: white;
+    border-radius: 23px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 9px 25px
+        rgba(30,70,120,.10);
+}
+
+.total-label {
+    color: #8a929e;
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: .4px;
+
+    margin-bottom: 8px;
+}
+
+.total-amount {
+    color: #0757c9;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.total-count {
+    margin-top: 5px;
+    color: #858d99;
+    font-size: 12px;
+}
+
+/* =========================
+   WITHDRAWAL BUTTON
+========================= */
+
+.withdraw-history-btn {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0757c9,
+            #1475e8
+        );
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 17px
+        rgba(7,87,201,.18);
+}
+
+.withdraw-history-btn:active {
+    transform: scale(.98);
+}
+
+/* =========================
+   DEPOSIT HISTORY CARD
+========================= */
+
+.history-card {
+    margin-top: 14px;
+
+    background: white;
+
+    border-radius: 23px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 9px 25px
+        rgba(30,70,120,.08);
+}
+
+.history-title {
+    font-size: 21px;
+    font-weight: 900;
+
+    margin-bottom: 15px;
+}
+
+/* =========================
+   LISTING
+========================= */
+
+.deposit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.deposit-item {
+    background: #f7f9fc;
+
+    border: 1px solid #e7edf5;
+
+    border-radius: 15px;
+
+    padding: 15px;
+}
+
+.deposit-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.deposit-label {
+    color: #8a929e;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    margin-bottom: 4px;
+}
+
+.deposit-amount {
+    color: #0757c9;
+
+    font-size: 21px;
+    font-weight: 900;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    display: inline-block;
+
+    padding:
+        7px
+        11px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    white-space: nowrap;
+}
+
+.status.pending {
+    background: #fff4d6;
+    color: #a57400;
+}
+
+.status.approved {
+    background: #e5f8ed;
+    color: #188044;
+}
+
+.status.rejected {
+    background: #fff0f0;
+    color: #c62828;
+}
+
+/* =========================
+   TIME
+========================= */
+
+.deposit-time {
+    margin-top: 12px;
+
+    padding-top: 10px;
+
+    border-top:
+        1px solid #e3e8ef;
+
+    color: #687281;
+
+    font-size: 12px;
+}
+
+.deposit-time strong {
+    color: #172033;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+    text-align: center;
+
+    padding: 30px 10px;
+
+    color: #858d99;
+
+    font-size: 13px;
+}
+
+/* =========================
+   REFRESH
+========================= */
+
+.refresh-btn {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #eef5ff;
+
+    color: #0757c9;
+
+    font-size: 13px;
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 78px;
+
+    background:
+        rgba(255,255,255,.97);
+
+    border-top:
+        1px solid #e8edf4;
+
+    box-shadow:
+        0 -5px 20px
+        rgba(20,60,110,.10);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    z-index: 9999;
+
+    backdrop-filter: blur(10px);
+}
+
+.nav-item {
+    border: none;
+
+    background: transparent;
+
+    color: #89919d;
+
+    font-size: 10px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    padding-top: 9px;
+}
+
+.nav-icon {
+    display: block;
+
+    font-size: 21px;
+
+    margin-bottom: 4px;
+}
+
+.nav-item.active {
+    color: #0757c9;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="back-row">
+
+        <button
+            class="back-button"
+            onclick="goBack()">
+
+            ←
+
+        </button>
+
+        <div class="header-logo">
+
+            SkyRent
+
+        </div>
+
+    </div>
+
+
+    <h1>
+
+        Transactions
+
+    </h1>
+
+
+    <p>
+
+        Your deposit activity
+
+    </p>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =========================
+     TOTAL DEPOSIT
+========================= -->
+
+<div class="total-card">
+
+    <div class="total-label">
+
+        TOTAL DEPOSIT AMOUNT
+
+    </div>
+
+
+    <div
+        class="total-amount"
+        id="totalDeposit">
+
+        ₱0.00
+
+    </div>
+
+
+    <div
+        class="total-count"
+        id="depositCount">
+
+        0 deposit requests
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     WITHDRAWAL HISTORY
+========================= -->
+
+<button
+    class="withdraw-history-btn"
+    onclick="goWithdrawalHistory()">
+
+    💸 Withdrawal History
+
+</button>
+
+
+<!-- =========================
+     DEPOSIT HISTORY
+========================= -->
+
+<div class="history-card">
+
+    <div class="history-title">
+
+        Deposit History
+
+    </div>
+
+
+    <div
+        id="depositList"
+        class="deposit-list">
+
+    </div>
+
+
+    <button
+        class="refresh-btn"
+        onclick="loadDeposits()">
+
+        🔄 Refresh History
+
+    </button>
+
+</div>
+
+</main>
+
+
+<!-- =========================
+     BOTTOM NAV
+========================= -->
+
+<nav class="bottom-nav">
+
+
+    <button
+        class="nav-item"
+        onclick="goHome()">
+
+        <span class="nav-icon">
+
+            🏠
+
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="goCrafts()">
+
+        <span class="nav-icon">
+
+            ✈️
+
+        </span>
+
+        Crafts
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="goNetwork()">
+
+        <span class="nav-icon">
+
+            👥
+
+        </span>
+
+        Network
+
+    </button>
+
+
+    <button
+        class="nav-item active">
+
+        <span class="nav-icon">
+
+            💰
+
+        </span>
+
+        Earnings
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="logout()">
+
+        <span class="nav-icon">
+
+            ↪
+
+        </span>
+
+        Logout
+
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/* =====================================================
+   CURRENT USER
+===================================================== */
+
+let currentUser = null;
+
+
+/* =====================================================
+   FORMAT MONEY
+===================================================== */
+
+function formatMoney(amount) {
+
+    return "₱" +
+        Number(amount || 0).toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+/* =====================================================
+   GET DEPOSIT AMOUNT
+===================================================== */
+
+function getDepositAmount(deposit) {
+
+    if (!deposit) {
+        return 0;
+    }
+
+
+    const possibleValues = [
+
+        deposit.amount,
+
+        deposit.amountValue,
+
+        deposit.depositAmount,
+
+        deposit.value
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < possibleValues.length;
+        i++
+    ) {
+
+        if (
+            possibleValues[i] !== undefined &&
+            possibleValues[i] !== null
+        ) {
+
+            const number =
+                Number(
+                    String(
+                        possibleValues[i]
+                    ).replace(
+                        /[₱,\s]/g,
+                        ""
+                    )
+                );
+
+
+            if (!isNaN(number)) {
+
+                return number;
+
+            }
+
+        }
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =====================================================
+   GET FIRESTORE DATE
+===================================================== */
+
+function getDepositDate(deposit) {
+
+    if (!deposit) {
+        return null;
+    }
+
+
+    const possibleDates = [
+
+        deposit.createdAt,
+
+        deposit.requestedAt,
+
+        deposit.submittedAt,
+
+        deposit.depositTime,
+
+        deposit.depositedAt,
+
+        deposit.date,
+
+        deposit.time
+
+    ];
+
+
+    for (
+        let i = 0;
+        i < possibleDates.length;
+        i++
+    ) {
+
+        const value =
+            possibleDates[i];
+
+
+        if (!value) {
+            continue;
+        }
+
+
+        /*
+           FIRESTORE TIMESTAMP
+        */
+
+        if (
+            value &&
+            typeof value.toDate === "function"
+        ) {
+
+            return value.toDate();
+
+        }
+
+
+        /*
+           JAVASCRIPT DATE
+        */
+
+        if (
+            value instanceof Date
+        ) {
+
+            return value;
+
+        }
+
+
+        /*
+           STRING / NUMBER
+        */
+
+        const date =
+            new Date(value);
+
+
+        if (
+            !isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return date;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(date) {
+
+    if (!date) {
+
+        return "Date unavailable";
+
+    }
+
+
+    return date.toLocaleString(
+        "en-PH",
+        {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true
+        }
+    );
+
+}
+
+
+/* =====================================================
+   GET STATUS
+===================================================== */
+
+function getDepositStatus(deposit) {
+
+    if (!deposit) {
+
+        return "Pending";
+
+    }
+
+
+    const status =
+        deposit.status ||
+        deposit.depositStatus ||
+        "Pending";
+
+
+    return String(status);
+
+}
+
+
+/* =====================================================
+   STATUS CLASS
+===================================================== */
+
+function getStatusClass(status) {
+
+    const value =
+        String(status)
+            .toLowerCase();
+
+
+    if (
+        value.includes("approve") ||
+        value.includes("success")
+    ) {
+
+        return "approved";
+
+    }
+
+
+    if (
+        value.includes("reject") ||
+        value.includes("cancel")
+    ) {
+
+        return "rejected";
+
+    }
+
+
+    return "pending";
+
+}
+
+
+/* =====================================================
+   LOAD DEPOSITS FROM FIRESTORE
+===================================================== */
+
+window.loadDeposits = async function() {
+
+    /*
+       CHECK FIREBASE LOGIN
+    */
+
+    if (!currentUser) {
+
+        console.log(
+            "Waiting for Firebase authentication..."
+        );
+
+        return;
+
+    }
+
+
+    const list =
+        document.getElementById(
+            "depositList"
+        );
+
+
+    /*
+       SHOW LOADING
+    */
+
+    list.innerHTML = `
+
+        <div class="empty">
+
+            Loading deposit records...
+
+        </div>
+
+    `;
+
+
+    try {
+
+        /*
+           QUERY:
+
+           deposits
+           WHERE userId == currentUser.uid
+        */
+
+        const depositsRef =
+            collection(
+                db,
+                "deposits"
+            );
+
+
+        const depositsQuery =
+            query(
+                depositsRef,
+                where(
+                    "userId",
+                    "==",
+                    currentUser.uid
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(
+                depositsQuery
+            );
+
+
+        let deposits = [];
+
+
+        snapshot.forEach(
+            function(docSnapshot) {
+
+                const data =
+                    docSnapshot.data();
+
+
+                /*
+                   Keep document ID
+                */
+
+                deposits.push({
+
+                    id:
+                        docSnapshot.id,
+
+                    ...data
+
+                });
+
+            }
+        );
+
+
+        /*
+           SORT NEWEST FIRST
+
+           We sort in JavaScript so you
+           don't need a Firestore index.
+        */
+
+        deposits.sort(
+            function(a, b) {
+
+                const dateA =
+                    getDepositDate(a);
+
+                const dateB =
+                    getDepositDate(b);
+
+
+                if (
+                    !dateA &&
+                    !dateB
+                ) {
+
+                    return 0;
+
+                }
+
+
+                if (!dateA) {
+
+                    return 1;
+
+                }
+
+
+                if (!dateB) {
+
+                    return -1;
+
+                }
+
+
+                return (
+                    dateB.getTime() -
+                    dateA.getTime()
+                );
+
+            }
+        );
+
+
+        /*
+           TOTAL DEPOSIT
+        */
+
+        let total = 0;
+
+
+        deposits.forEach(
+            function(deposit) {
+
+                total +=
+                    getDepositAmount(
+                        deposit
+                    );
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalDeposit"
+        ).innerText =
+            formatMoney(total);
+
+
+        /*
+           DEPOSIT COUNT
+        */
+
+        document.getElementById(
+            "depositCount"
+        ).innerText =
+            deposits.length +
+            (
+                deposits.length === 1
+                    ? " deposit request"
+                    : " deposit requests"
+            );
+
+
+        /*
+           CLEAR LIST
+        */
+
+        list.innerHTML = "";
+
+
+        /*
+           NO RECORDS
+        */
+
+        if (
+            deposits.length === 0
+        ) {
+
+            list.innerHTML = `
+
+                <div class="empty">
+
+                    No deposit records found.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /*
+           DISPLAY DEPOSITS
+        */
+
+        deposits.forEach(
+            function(deposit) {
+
+                const amount =
+                    getDepositAmount(
+                        deposit
+                    );
+
+
+                const date =
+                    getDepositDate(
+                        deposit
+                    );
+
+
+                const status =
+                    getDepositStatus(
+                        deposit
+                    );
+
+
+                const statusClass =
+                    getStatusClass(
+                        status
+                    );
+
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "deposit-item";
+
+
+                item.innerHTML = `
+
+                    <div class="deposit-top">
+
+                        <div>
+
+                            <div class="deposit-label">
+
+                                DEPOSIT AMOUNT
+
+                            </div>
+
+                            <div class="deposit-amount">
+
+                                ${formatMoney(amount)}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="status ${statusClass}">
+
+                            ${status}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="deposit-time">
+
+                        <strong>
+
+                            Deposit Time:
+
+                        </strong>
+
+                        ${formatDate(date)}
+
+                    </div>
+
+                `;
+
+
+                list.appendChild(
+                    item
+                );
+
+            }
+        );
+
+
+    }
+    catch (error) {
+
+        console.error(
+            "Firestore deposit loading error:",
+            error
+        );
+
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                Unable to load deposit records.
+
+                <br><br>
+
+                Please check your internet connection.
+
+            </div>
+
+        `;
+
+    }
+
+};
+
+
+/* =====================================================
+   FIREBASE AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async function(user) {
+
+        /*
+           IMPORTANT:
+
+           DO NOT redirect to index.html
+           while Firebase is checking the
+           authentication session.
+        */
+
+        if (!user) {
+
+            console.log(
+                "No Firebase user is signed in."
+            );
+
+            /*
+               Only redirect after Firebase
+               has confirmed there is no user.
+            */
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        /*
+           SAVE CURRENT USER
+        */
+
+        currentUser = user;
+
+
+        console.log(
+            "Transactions Firebase user:",
+            user.uid
+        );
+
+
+        console.log(
+            "Transactions Firebase email:",
+            user.email
+        );
+
+
+        /*
+           LOAD FIRESTORE DEPOSITS
+        */
+
+        await loadDeposits();
+
+    }
+);
+
+
+/* =====================================================
+   WITHDRAWAL HISTORY
+===================================================== */
+
+window.goWithdrawalHistory =
+function() {
+
+    window.location.href =
+        "withdrawal-history.html";
+
+};
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+window.goHome =
+function() {
+
+    window.location.href =
+        "dashboard.html";
+
+};
+
+
+window.goCrafts =
+function() {
+
+    window.location.href =
+        "crafts.html";
+
+};
+
+
+window.goNetwork =
+function() {
+
+    window.location.href =
+        "network.html";
+
+};
+
+
+window.goBack =
+function() {
+
+    window.location.href =
+        "dashboard.html";
+
+};
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logout =
+async function() {
+
+    try {
+
+        /*
+           ACTUAL FIREBASE LOGOUT
+        */
+
+        await signOut(auth);
+
+
+        /*
+           AFTER SIGN OUT
+        */
+
+        window.location.href =
+            "index.html";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Firebase logout error:",
+            error
+        );
+
+
+        alert(
+            "Logout failed. Please try again."
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   FIREBASE CONNECTED
+===================================================== */
+
+console.log(
+    "SkyRent Transactions Firebase Connected"
+);
+
+</script>
+
+
+</body>
+
+</html>
