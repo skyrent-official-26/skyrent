@@ -27,7 +27,6 @@ html{
 }
 
 body{
-
     font-family:
     Arial,
     Helvetica,
@@ -119,7 +118,6 @@ body{
     to{
         transform:rotate(360deg);
     }
-
 }
 
 .loading-screen p{
@@ -138,7 +136,7 @@ body{
 
     position:relative;
 
-    height:275px;
+    height:245px;
 
     background-image:
 
@@ -232,37 +230,41 @@ body{
 
     z-index:5;
 
-    padding:18px 22px;
+    padding:18px 22px 28px;
 
     color:white;
 }
 
 .welcome small{
 
-    font-size:14px;
+    font-size:13px;
 
     opacity:.9;
 }
 
 .welcome h1{
 
-    margin-top:6px;
+    margin-top:4px;
 
-    font-size:29px;
+    font-size:23px;
 
-    font-weight:900;
+    font-weight:500;
+
+    line-height:1.2;
 
     text-shadow:
-    0 2px 6px rgba(0,0,0,.25);
+    0 2px 6px rgba(0,0,0,.20);
 }
 
 .welcome p{
 
-    margin-top:8px;
+    margin-top:7px;
 
-    font-size:13px;
+    font-size:12px;
 
     opacity:.92;
+
+    line-height:1.4;
 }
 
 
@@ -276,7 +278,7 @@ body{
 
     max-width:520px;
 
-    margin:-55px auto 0;
+    margin:-45px auto 0;
 
     position:relative;
 
@@ -285,23 +287,91 @@ body{
 
 
 /* =====================================================
-   BALANCE CARD
+   VIRTUAL ATM CARD
 ===================================================== */
 
-.balance-card{
+.atm-card{
 
-    background:white;
+    position:relative;
+
+    min-height:225px;
 
     border-radius:25px;
 
-    padding:23px 20px;
+    padding:22px;
+
+    overflow:hidden;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #052b78 0%,
+        #0757c9 48%,
+        #08a3ef 100%
+    );
 
     box-shadow:
-    0 12px 30px
-    rgba(20,65,120,.13);
+
+    0 15px 35px
+    rgba(7,70,150,.28);
 }
 
-.balance-top{
+
+/* CARD LIGHT EFFECT */
+
+.atm-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.10);
+
+    top:-120px;
+
+    right:-70px;
+}
+
+.atm-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.06);
+
+    bottom:-100px;
+
+    left:-50px;
+}
+
+
+/* =====================================================
+   CARD TOP
+===================================================== */
+
+.atm-card-top{
+
+    position:relative;
+
+    z-index:2;
 
     display:flex;
 
@@ -310,105 +380,282 @@ body{
     align-items:flex-start;
 }
 
-.balance-title{
+.card-brand{
 
-    color:#7a8494;
+    font-size:19px;
 
-    font-size:13px;
+    font-weight:900;
 
-    font-weight:600;
+    letter-spacing:.5px;
 }
 
-.balance-label{
+.card-brand span{
 
-    margin-top:3px;
+    color:#75dcff;
+}
 
-    font-size:12px;
+.card-type{
 
-    color:#a0a7b2;
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:1.5px;
+
+    opacity:.8;
+}
+
+
+/* =====================================================
+   CHIP
+===================================================== */
+
+.card-chip{
+
+    position:relative;
+
+    z-index:2;
+
+    width:48px;
+
+    height:35px;
+
+    margin-top:17px;
+
+    border-radius:8px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f6d879,
+        #c99b30
+    );
+
+    box-shadow:
+    0 3px 8px rgba(0,0,0,.20);
+}
+
+.card-chip::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    bottom:0;
+
+    width:1px;
+
+    background:
+    rgba(80,50,0,.35);
+}
+
+.card-chip::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:50%;
+
+    left:0;
+
+    right:0;
+
+    height:1px;
+
+    background:
+    rgba(80,50,0,.35);
+}
+
+
+/* =====================================================
+   CARD USER INFORMATION
+===================================================== */
+
+.card-user{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:13px;
+}
+
+.card-user-name{
+
+    font-size:15px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.card-user-phone{
+
+    margin-top:4px;
+
+    font-size:11px;
+
+    opacity:.78;
+
+    letter-spacing:.5px;
+}
+
+
+/* =====================================================
+   CARD BALANCE
+===================================================== */
+
+.card-balance{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:15px;
+}
+
+.card-balance-label{
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.3px;
+
+    opacity:.78;
 }
 
 #accountBalance{
 
-    margin-top:7px;
+    margin-top:3px;
 
-    color:#0757c9;
-
-    font-size:39px;
+    font-size:31px;
 
     line-height:1.1;
 
     font-weight:900;
 
-    letter-spacing:-.7px;
-}
-
-.balance-icon{
-
-    width:46px;
-
-    height:46px;
-
-    border-radius:14px;
-
-    background:#eaf2ff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:23px;
+    letter-spacing:-.5px;
 }
 
 
 /* =====================================================
-   BALANCE BUTTONS
+   CARD ACTIONS
 ===================================================== */
 
-.balance-actions{
+.card-actions{
+
+    position:relative;
+
+    z-index:3;
 
     display:grid;
 
     grid-template-columns:1fr 1fr;
 
-    gap:10px;
+    gap:9px;
 
-    margin-top:20px;
+    margin-top:15px;
 }
 
-.balance-actions button{
+.card-action{
 
     border:none;
 
-    padding:13px 10px;
+    padding:10px;
 
-    border-radius:13px;
+    border-radius:11px;
 
-    font-size:14px;
+    font-size:12px;
 
-    font-weight:bold;
+    font-weight:800;
 
     cursor:pointer;
 }
 
-.deposit-btn{
+.card-deposit{
 
-    background:#0757c9;
+    background:white;
+
+    color:#0757c9;
+
+    box-shadow:
+    0 4px 12px
+    rgba(0,0,0,.13);
+}
+
+.card-withdraw{
+
+    background:
+    rgba(255,255,255,.14);
 
     color:white;
 
-    box-shadow:
-    0 5px 12px
-    rgba(7,87,201,.22);
+    border:
+    1px solid
+    rgba(255,255,255,.35);
 }
 
-.withdraw-btn{
+.card-action:active{
 
-    background:#edf4ff;
+    transform:scale(.97);
+}
 
-    color:#0757c9;
+
+/* =====================================================
+   CARD NUMBER DECORATION
+===================================================== */
+
+.card-number{
+
+    position:absolute;
+
+    right:20px;
+
+    bottom:91px;
+
+    z-index:2;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    opacity:.35;
+}
+
+
+/* =====================================================
+   CARD CONTACTLESS
+===================================================== */
+
+.contactless{
+
+    position:absolute;
+
+    right:21px;
+
+    top:77px;
+
+    z-index:2;
+
+    font-size:20px;
+
+    transform:rotate(90deg);
+
+    opacity:.7;
 }
 
 
@@ -512,6 +759,7 @@ body{
     position:relative;
 
     background:
+
     linear-gradient(
         135deg,
         #ffffff,
@@ -881,6 +1129,7 @@ body{
     margin-top:15px;
 
     background:
+
     linear-gradient(
         135deg,
         #0757c9,
@@ -1004,17 +1253,51 @@ body{
 
     .hero{
 
-        height:255px;
+        height:225px;
+    }
+
+    .welcome{
+
+        padding-top:14px;
+
+        padding-bottom:24px;
     }
 
     .welcome h1{
 
-        font-size:25px;
+        font-size:21px;
+    }
+
+    .welcome p{
+
+        font-size:11px;
+    }
+
+    .container{
+
+        margin-top:-35px;
+    }
+
+    .atm-card{
+
+        min-height:220px;
+
+        padding:19px;
     }
 
     #accountBalance{
 
-        font-size:34px;
+        font-size:28px;
+    }
+
+    .card-user-name{
+
+        font-size:13px;
+    }
+
+    .stats{
+
+        gap:6px;
     }
 
     .stat{
@@ -1074,7 +1357,6 @@ body{
 
         font-size:23px;
     }
-
 }
 
 </style>
@@ -1129,8 +1411,8 @@ body{
             Welcome back
         </small>
 
-        <h1 id="username">
-            User!
+        <h1 id="welcomeUserName">
+            SkyRent Member
         </h1>
 
         <p>
@@ -1151,50 +1433,110 @@ body{
 
 
 <!-- =====================================================
-     BALANCE
+     VIRTUAL ATM CARD
 ===================================================== -->
 
-<div class="balance-card">
+<div class="atm-card">
 
-    <div class="balance-top">
 
-        <div>
+    <!-- CARD TOP -->
 
-            <div class="balance-title">
-                Available Balance
-            </div>
+    <div class="atm-card-top">
 
-            <div class="balance-label">
-                Your current account balance
-            </div>
+        <div class="card-brand">
 
-            <div id="accountBalance">
-                ₱0.00
-            </div>
+            ✈ Sky<span>Rent</span>
 
         </div>
 
+        <div class="card-type">
 
-        <div class="balance-icon">
-            💰
+            VIRTUAL ACCOUNT
+
         </div>
 
     </div>
 
 
-    <div class="balance-actions">
+    <!-- CHIP -->
+
+    <div class="card-chip"></div>
+
+
+    <!-- CONTACTLESS -->
+
+    <div class="contactless">
+
+        )))
+
+    </div>
+
+
+    <!-- USER -->
+
+    <div class="card-user">
+
+        <div
+            id="cardUserName"
+            class="card-user-name">
+
+            SKYRENT MEMBER
+
+        </div>
+
+        <div
+            id="cardUserPhone"
+            class="card-user-phone">
+
+            +63 000 000 0000
+
+        </div>
+
+    </div>
+
+
+    <!-- BALANCE -->
+
+    <div class="card-balance">
+
+        <div class="card-balance-label">
+
+            Available Balance
+
+        </div>
+
+        <div id="accountBalance">
+
+            ₱0.00
+
+        </div>
+
+    </div>
+
+
+    <!-- DECORATIVE CARD NUMBER -->
+
+    <div class="card-number">
+
+        SKY • RENT • 2026
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="card-actions">
 
         <button
-            class="deposit-btn"
+            class="card-action card-deposit"
             onclick="deposit()">
 
-            + Deposit
+            ＋ Deposit
 
         </button>
 
-
         <button
-            class="withdraw-btn"
+            class="card-action card-withdraw"
             onclick="withdraw()">
 
             ↔ Withdraw
@@ -1202,6 +1544,7 @@ body{
         </button>
 
     </div>
+
 
 </div>
 
@@ -1215,15 +1558,21 @@ body{
     <div class="stat">
 
         <div class="stat-icon">
+
             💵
+
         </div>
 
         <p>
+
             Total Deposited
+
         </p>
 
         <b id="totalDeposited">
+
             ₱0.00
+
         </b>
 
     </div>
@@ -1232,15 +1581,21 @@ body{
     <div class="stat">
 
         <div class="stat-icon">
+
             📈
+
         </div>
 
         <p>
+
             Total Earnings
+
         </p>
 
         <b id="totalEarnings">
+
             ₱0.00
+
         </b>
 
     </div>
@@ -1249,15 +1604,21 @@ body{
     <div class="stat">
 
         <div class="stat-icon">
+
             💸
+
         </div>
 
         <p>
+
             Withdrawn
+
         </p>
 
         <b id="totalWithdrawn">
+
             ₱0.00
+
         </b>
 
     </div>
@@ -1272,11 +1633,15 @@ body{
 <div class="section-header">
 
     <h2>
+
         My Investment
+
     </h2>
 
     <span>
+
         View All
+
     </span>
 
 </div>
@@ -1286,30 +1651,41 @@ body{
     class="investment-card"
     onclick="goMyInvestment()">
 
+
     <div class="investment-row">
 
+
         <div class="investment-icon">
+
             ✈️
+
         </div>
 
 
         <div class="investment-info">
 
             <h3 id="investmentCount">
+
                 No active investment
+
             </h3>
 
             <p id="investmentMessage">
+
                 Start your journey by choosing
                 a SkyRent craft.
+
             </p>
 
         </div>
 
 
         <div class="investment-arrow">
+
             ›
+
         </div>
+
 
     </div>
 
@@ -1323,7 +1699,9 @@ body{
 <div class="section-header">
 
     <h2>
+
         Quick Actions
+
     </h2>
 
 </div>
@@ -1339,24 +1717,32 @@ body{
     onclick="goCrafts()">
 
     <div class="quick-list-icon">
+
         ✈️
+
     </div>
 
     <div class="quick-list-info">
 
         <h3>
+
             Crafts
+
         </h3>
 
         <p>
+
             Browse available aircraft
             investment plans.
+
         </p>
 
     </div>
 
     <div class="quick-list-arrow">
+
         ›
+
     </div>
 
 </button>
@@ -1369,24 +1755,32 @@ body{
     onclick="goTransactions()">
 
     <div class="quick-list-icon">
+
         🧾
+
     </div>
 
     <div class="quick-list-info">
 
         <h3>
+
             Transactions
+
         </h3>
 
         <p>
+
             View your deposit
             transaction history.
+
         </p>
 
     </div>
 
     <div class="quick-list-arrow">
+
         ›
+
     </div>
 
 </button>
@@ -1399,24 +1793,32 @@ body{
     onclick="goProfile()">
 
     <div class="quick-list-icon">
+
         👤
+
     </div>
 
     <div class="quick-list-info">
 
         <h3>
+
             Profile
+
         </h3>
 
         <p>
+
             View and manage your
             account profile.
+
         </p>
 
     </div>
 
     <div class="quick-list-arrow">
+
         ›
+
     </div>
 
 </button>
@@ -1429,24 +1831,32 @@ body{
     onclick="goGiftCodes()">
 
     <div class="quick-list-icon">
+
         🎁
+
     </div>
 
     <div class="quick-list-info">
 
         <h3>
+
             Gift Codes
+
         </h3>
 
         <p>
+
             Enter and redeem your
             available gift codes.
+
         </p>
 
     </div>
 
     <div class="quick-list-arrow">
+
         ›
+
     </div>
 
 </button>
@@ -1459,24 +1869,32 @@ body{
     onclick="goCustomerService()">
 
     <div class="quick-list-icon">
+
         🎧
+
     </div>
 
     <div class="quick-list-info">
 
         <h3>
+
             Customer Service
+
         </h3>
 
         <p>
+
             Get help and contact
             SkyRent support.
+
         </p>
 
     </div>
 
     <div class="quick-list-arrow">
+
         ›
+
     </div>
 
 </button>
@@ -1492,18 +1910,24 @@ body{
 <div class="info-banner">
 
     <div class="info-icon">
+
         🛫
+
     </div>
 
     <div>
 
         <h3>
+
             Start Your SkyRent Journey
+
         </h3>
 
         <p>
+
             Choose a craft and build your
             investment portfolio.
+
         </p>
 
     </div>
@@ -1526,7 +1950,9 @@ body{
         onclick="goHome()">
 
         <span class="nav-icon">
+
             🏠
+
         </span>
 
         Home
@@ -1539,7 +1965,9 @@ body{
         onclick="goCrafts()">
 
         <span class="nav-icon">
+
             ✈️
+
         </span>
 
         Crafts
@@ -1552,7 +1980,9 @@ body{
         onclick="goNetwork()">
 
         <span class="nav-icon">
+
             👥
+
         </span>
 
         Network
@@ -1565,7 +1995,9 @@ body{
         onclick="goEarnings()">
 
         <span class="nav-icon">
+
             📊
+
         </span>
 
         Earnings
@@ -1578,7 +2010,9 @@ body{
         onclick="logout()">
 
         <span class="nav-icon">
+
             🚪
+
         </span>
 
         Logout
@@ -1680,7 +2114,7 @@ function formatMoney(amount){
 
 
 /* =====================================================
-   UPDATE DASHBOARD FROM FIRESTORE
+   UPDATE DASHBOARD
 ===================================================== */
 
 async function loadUserDashboard(user){
@@ -1705,15 +2139,30 @@ async function loadUserDashboard(user){
                 "User document does not exist."
             );
 
+
             document.getElementById(
-                "username"
+                "cardUserName"
             ).innerText =
-                "User!";
+                "SKYRENT MEMBER";
+
+
+            document.getElementById(
+                "welcomeUserName"
+            ).innerText =
+                "SkyRent Member";
+
+
+            document.getElementById(
+                "cardUserPhone"
+            ).innerText =
+                "+63 000 000 0000";
+
 
             document.getElementById(
                 "accountBalance"
             ).innerText =
                 "₱0.00";
+
 
             return;
 
@@ -1730,13 +2179,38 @@ async function loadUserDashboard(user){
 
         const name =
             userData.name ||
-            "User";
+            "SkyRent Member";
 
 
         document.getElementById(
-            "username"
+            "cardUserName"
         ).innerText =
-            name + "!";
+            name;
+
+
+        /* =============================================
+           WELCOME USER NAME
+        ============================================= */
+
+        document.getElementById(
+            "welcomeUserName"
+        ).innerText =
+            name;
+
+
+        /* =============================================
+           USER PHONE
+        ============================================= */
+
+        const phone =
+            userData.phone ||
+            "+63 000 000 0000";
+
+
+        document.getElementById(
+            "cardUserPhone"
+        ).innerText =
+            phone;
 
 
         /* =============================================
@@ -1833,12 +2307,15 @@ async function loadUserDashboard(user){
                 "Start your journey by choosing a SkyRent craft.";
 
         }
+
         else{
 
             document.getElementById(
                 "investmentCount"
             ).innerText =
+
                 investmentCount +
+
                 (
                     investmentCount === 1
                     ? " Active Investment"
@@ -1853,8 +2330,8 @@ async function loadUserDashboard(user){
 
         }
 
-
     }
+
     catch(error){
 
         console.error(
@@ -1876,15 +2353,12 @@ async function loadUserDashboard(user){
 ===================================================== */
 
 onAuthStateChanged(
+
     auth,
+
     async function(user){
 
         if(!user){
-
-            /*
-             User is not logged in.
-             Send them back to index.html.
-            */
 
             window.location.href =
                 "index.html";
@@ -1894,22 +2368,14 @@ onAuthStateChanged(
         }
 
 
-        /*
-         User is authenticated.
-         Load Firestore account.
-        */
-
         await loadUserDashboard(user);
 
-
-        /*
-         Hide loading screen.
-        */
 
         const loadingScreen =
             document.getElementById(
                 "loadingScreen"
             );
+
 
         if(loadingScreen){
 
@@ -1919,6 +2385,7 @@ onAuthStateChanged(
         }
 
     }
+
 );
 
 
@@ -1936,6 +2403,7 @@ window.logout = async function(){
             "index.html";
 
     }
+
     catch(error){
 
         console.error(
