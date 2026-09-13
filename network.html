@@ -5,1612 +5,2766 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<title>SkyRent - Network</title>
+<title>SkyRent - Aircraft Fleet</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
 
 <style>
 
-/* =====================================================
+/* =========================
    RESET
-===================================================== */
+========================= */
 
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f4f9fd;
-    color:#174b7d;
+    font-family:'Poppins',sans-serif;
+    background:#f5f8fc;
+    color:#17365d;
     min-height:100vh;
-    padding-bottom:75px;
+    padding-bottom:82px;
 }
 
-
-/* =====================================================
+/* =========================
    HEADER
-===================================================== */
+========================= */
 
 .header{
-
-    background:
-        linear-gradient(
-            135deg,
-            #0754ae,
-            #0789df
-        );
-
+    background:linear-gradient(135deg,#0757c9,#0a78e8);
     color:white;
-
-    padding:22px 18px 24px;
-
-    box-shadow:
-        0 4px 15px rgba(10,80,145,.15);
+    padding:18px 18px 25px;
+    border-radius:0 0 24px 24px;
+    box-shadow:0 8px 25px rgba(7,87,201,.20);
 }
 
-.header-inner{
-
-    width:94%;
-    max-width:650px;
-    margin:auto;
-}
-
-.logo{
-
-    font-size:22px;
-    font-weight:700;
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
     margin-bottom:18px;
 }
 
-.logo span{
-    color:#75dcff;
+.back-btn{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.30);
+    background:rgba(255,255,255,.12);
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .header-title{
-
-    display:flex;
-    align-items:center;
-    gap:8px;
+    flex:1;
 }
 
 .header-title h1{
+    font-size:17px;
+    font-weight:800;
+    letter-spacing:.4px;
+}
 
+.header-title p{
+    font-size:10px;
+    opacity:.85;
+    margin-top:2px;
+}
+
+.hero-text{
+    padding:4px 2px 0;
+}
+
+.hero-text h2{
     font-size:23px;
+    line-height:1.2;
+    font-weight:800;
+}
+
+.hero-text p{
+    font-size:11px;
+    opacity:.9;
+    margin-top:7px;
+    line-height:1.5;
+}
+
+/* =========================
+   BALANCE BAR
+========================= */
+
+.balance-bar{
+    margin-top:17px;
+    padding:11px 13px;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:13px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.balance-label{
+    font-size:9px;
+    opacity:.82;
     font-weight:600;
 }
 
-.header-description{
-
-    margin-top:7px;
-
-    font-size:11px;
-
-    line-height:1.5;
-
-    color:rgba(255,255,255,.9);
+.balance-value{
+    font-size:14px;
+    font-weight:800;
 }
 
-
-/* =====================================================
-   MAIN CONTAINER
-===================================================== */
+/* =========================
+   CONTENT
+========================= */
 
 .container{
-
-    width:94%;
+    width:100%;
     max-width:650px;
-
-    margin:15px auto 25px;
+    margin:0 auto;
+    padding:18px 14px;
 }
 
+.section-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:14px;
+}
 
-/* =====================================================
-   GENERAL CARD
-===================================================== */
+.section-heading h3{
+    font-size:15px;
+    font-weight:800;
+    color:#163c69;
+}
+
+.section-heading span{
+    font-size:10px;
+    color:#7d91a9;
+    font-weight:600;
+}
+
+/* =========================
+   AIRCRAFT LIST
+========================= */
+
+.crafts{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+/* =========================
+   MAIN CARD
+========================= */
 
 .card{
-
-    background:white;
-
-    border:1px solid #dcecf7;
-
-    border-radius:14px;
-
-    padding:13px;
-
-    margin-bottom:12px;
-
-    box-shadow:
-        0 3px 12px rgba(20,90,150,.07);
-}
-
-.card-title{
-
-    font-size:11px;
-
-    font-weight:700;
-
-    color:#174f83;
-
-    margin-bottom:9px;
-}
-
-
-/* =====================================================
-   SUMMARY
-===================================================== */
-
-.summary-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:8px;
-}
-
-.summary-card{
-
-    border-radius:10px;
-
-    padding:11px;
-
-    border:1px solid #dcecf8;
-
-    background:#f9fcff;
-}
-
-.summary-card.main{
-
-    background:
-        linear-gradient(
-            135deg,
-            #0754ae,
-            #087edb
-        );
-
-    color:white;
-
-    border:none;
-}
-
-.summary-icon{
-
-    font-size:16px;
-
-    margin-bottom:3px;
-}
-
-.summary-label{
-
-    font-size:8px;
-
-    font-weight:600;
-
-    color:#6d8498;
-
-    margin-bottom:3px;
-}
-
-.summary-card.main .summary-label{
-    color:rgba(255,255,255,.85);
-}
-
-.summary-value{
-
-    font-size:17px;
-
-    font-weight:700;
-
-    white-space:nowrap;
-}
-
-.summary-card:not(.main) .summary-value{
-    color:#15518a;
-}
-
-
-/* =====================================================
-   REFERRAL CARD
-===================================================== */
-
-.referral-card{
-
-    background:#f9fcff;
-
-    border:1px solid #d5e9f8;
-
-    border-radius:11px;
-
-    padding:11px;
-
-    margin-top:9px;
-}
-
-.referral-title{
-
-    font-size:11px;
-
-    font-weight:700;
-
-    color:#174f83;
-
-    margin-bottom:9px;
-}
-
-.referral-label{
-
-    font-size:8px;
-
-    color:#7189a0;
-
-    margin-bottom:4px;
-}
-
-.referral-code-row{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:6px;
-
-    margin-bottom:9px;
-}
-
-.referral-code{
-
-    flex:1;
-
-    min-width:0;
-
-    padding:9px;
-
-    background:#eaf5fd;
-
-    border:1px solid #d1e8f7;
-
-    border-radius:8px;
-
-    color:#0757b5;
-
-    font-size:14px;
-
-    font-weight:700;
-
-    letter-spacing:.6px;
-}
-
-.copy-small{
-
-    width:38px;
-
-    height:38px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#dff3ff;
-
-    color:#075fb2;
-
-    font-size:15px;
-
-    cursor:pointer;
-}
-
-.link-row{
-
-    display:flex;
-
-    gap:6px;
-}
-
-.referral-link{
-
-    flex:1;
-
-    min-width:0;
-
-    border:1px solid #d1e8f7;
-
-    background:#eaf5fd;
-
-    color:#52718c;
-
-    border-radius:8px;
-
-    padding:9px;
-
-    font-size:8px;
-
-    outline:none;
-}
-
-.copy-link{
-
-    width:38px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#0757b5;
-
-    color:white;
-
-    font-size:15px;
-
-    cursor:pointer;
-}
-
-.copy-all{
-
-    width:100%;
-
-    margin-top:7px;
-
-    padding:9px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0754ae,
-            #087edb
-        );
-
-    color:white;
-
-    font-size:9px;
-
-    font-weight:600;
-
-    cursor:pointer;
-}
-
-
-/* =====================================================
-   YOU
-===================================================== */
-
-.you-card{
-
-    text-align:center;
-
-    padding:12px;
-
-    background:white;
-
-    border:1px solid #dcecf7;
-
-    border-radius:14px;
-
-    margin-bottom:10px;
-
-    box-shadow:
-        0 3px 12px rgba(20,90,150,.07);
-}
-
-.you-icon{
-
-    width:45px;
-    height:45px;
-
-    margin:0 auto 6px;
-
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffdf39,
-            #ffc000
-        );
-
-    border:2px solid white;
-
-    box-shadow:
-        0 0 0 2px #ffca18;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:21px;
-}
-
-.you-name{
-
-    font-size:13px;
-
-    font-weight:700;
-
-    color:#174f83;
-}
-
-.you-label{
-
-    margin-top:2px;
-
-    font-size:8px;
-
-    color:#7c91a5;
-}
-
-
-/* =====================================================
-   LEVEL CARD
-===================================================== */
-
-.level-card{
-
-    background:white;
-
-    border:1px solid #dcecf7;
-
-    border-radius:14px;
-
+    position:relative;
     overflow:hidden;
-
-    margin-bottom:11px;
-
-    box-shadow:
-        0 3px 12px rgba(20,90,150,.07);
+    background:white;
+    border-radius:20px;
+    border:1px solid #e1eaf4;
+    box-shadow:0 8px 25px rgba(22,59,103,.09);
 }
 
-.level-header{
+/* =========================
+   AIRCRAFT IMAGE
+========================= */
 
-    padding:12px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    color:white;
+.plane-image{
+    position:relative;
+    width:100%;
+    height:245px;
+    overflow:hidden;
+    background:#eaf3ff;
 }
 
-.level-a .level-header{
-    background:linear-gradient(135deg,#0565cc,#078bdc);
-}
-
-.level-b .level-header{
-    background:linear-gradient(135deg,#174fba,#147ce0);
-}
-
-.level-c .level-header{
-    background:linear-gradient(135deg,#008da8,#13b9c1);
-}
-
-.level-left{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-}
-
-.level-icon{
-
-    width:35px;
-    height:35px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.18);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:17px;
-}
-
-.level-name{
-
-    font-size:14px;
-
-    font-weight:700;
-}
-
-.level-stage{
-
-    margin-top:3px;
-
-    display:inline-block;
-
-    padding:3px 7px;
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,.18);
-
-    font-size:6px;
-
-    font-weight:700;
-
-    letter-spacing:.3px;
-}
-
-.level-rate{
-
-    text-align:center;
-
-    min-width:58px;
-
-    padding:7px 6px;
-
-    border-radius:15px;
-
-    background:rgba(255,255,255,.15);
-
-    border:1px solid rgba(255,255,255,.55);
-}
-
-.rate-number{
-
-    font-size:18px;
-
-    font-weight:800;
-
-    line-height:1;
-}
-
-.rate-label{
-
-    margin-top:2px;
-
-    font-size:6px;
-}
-
-
-/* =====================================================
-   MEMBERS BAR
-===================================================== */
-
-.members-bar{
-
-    min-height:39px;
-
-    padding:7px 10px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    cursor:pointer;
-
-    background:#fff;
-}
-
-.members-left{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:5px;
-
-    font-size:9px;
-
-    font-weight:600;
-
-    color:#174f83;
-}
-
-.member-count{
-
-    color:#0757b5;
-}
-
-.member-arrow{
-
-    font-size:16px;
-
-    color:#1261ac;
-}
-
-
-/* =====================================================
-   MEMBER LIST
-===================================================== */
-
-.member-list{
-
-    display:none;
-
-    padding:7px;
-
-    background:#f8fcff;
-
-    border-top:1px solid #e2eff8;
-}
-
-.member-list.open{
+.plane-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
     display:block;
 }
 
-.member{
-
-    padding:9px;
-
-    margin-bottom:5px;
-
-    border-radius:8px;
-
-    background:#edf7ff;
-
-    border:1px solid #d5eafa;
+.plane-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.02),
+        rgba(0,0,0,.02) 50%,
+        rgba(0,0,0,.30)
+    );
+    pointer-events:none;
 }
 
-.member:last-child{
-    margin-bottom:0;
-}
-
-.member-row{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:8px;
-
-    padding:4px 0;
-}
-
-.member-row + .member-row{
-
-    border-top:1px solid #dcecf7;
-}
-
-.member-label{
-
-    color:#71869a;
-
-    font-size:8px;
-
-    white-space:nowrap;
-}
-
-.member-value{
-
-    color:#174f83;
-
+.plan-number{
+    position:absolute;
+    top:12px;
+    left:12px;
+    z-index:5;
+    background:rgba(5,48,105,.88);
+    color:white;
+    padding:6px 10px;
+    border-radius:9px;
     font-size:9px;
-
-    font-weight:600;
-
-    text-align:right;
+    font-weight:800;
+    letter-spacing:.5px;
 }
 
-.member-commission{
+.image-badge{
+    position:absolute;
+    right:12px;
+    bottom:12px;
+    z-index:5;
+    background:rgba(255,255,255,.96);
+    color:#0757c9;
+    padding:7px 10px;
+    border-radius:9px;
+    font-size:9px;
+    font-weight:800;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+}
 
-    color:#16813d;
+/* =========================
+   RIBBONS
+========================= */
 
+.top-ribbon{
+    position:absolute;
+    top:0;
+    right:0;
+    z-index:8;
+    background:linear-gradient(
+        135deg,
+        #ef5350,
+        #c62828
+    );
+    color:white;
+    padding:8px 13px;
+    border-radius:0 0 0 14px;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.4px;
+    box-shadow:0 3px 10px rgba(198,40,40,.25);
+}
+
+.elite-ribbon{
+    position:absolute;
+    top:0;
+    right:0;
+    z-index:8;
+    background:linear-gradient(
+        135deg,
+        #dfb83e,
+        #a97908
+    );
+    color:white;
+    padding:8px 13px;
+    border-radius:0 0 0 14px;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.4px;
+    box-shadow:0 3px 10px rgba(0,0,0,.10);
+}
+
+/* =========================
+   BOARDING PASS
+========================= */
+
+.boarding-pass{
+    position:relative;
+    background:#fff;
+}
+
+.pass-header{
+    padding:13px 15px 10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px dashed #d6e0eb;
+}
+
+.pass-brand{
     font-size:10px;
+    font-weight:800;
+    color:#0757c9;
+    letter-spacing:.7px;
+}
 
+.pass-type{
+    font-size:8px;
+    font-weight:700;
+    color:#8293a7;
+    letter-spacing:.5px;
+}
+
+/* =========================
+   PLAN INFORMATION
+========================= */
+
+.card-content{
+    padding:14px 15px 15px;
+}
+
+.title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.title-row h2{
+    font-size:18px;
+    line-height:1.25;
+    color:#123d70;
+    font-weight:800;
+}
+
+.aircraft-type{
+    font-size:10px;
+    color:#8495a8;
+    margin-top:3px;
+    font-weight:600;
+}
+
+/* =========================
+   PRICE
+========================= */
+
+.price-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:13px;
+    padding-bottom:12px;
+    border-bottom:1px dashed #d8e1eb;
+}
+
+.price-label{
+    font-size:9px;
+    color:#8293a6;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.3px;
+}
+
+.price{
+    font-size:22px;
+    color:#0757c9;
+    font-weight:800;
+    line-height:1.1;
+}
+
+/* =========================
+   DETAILS
+========================= */
+
+.flight-details{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    padding:13px 0;
+}
+
+.detail{
+    min-width:0;
+}
+
+.detail-label{
+    font-size:8px;
+    color:#94a2b2;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.3px;
+    margin-bottom:3px;
+}
+
+.detail-value{
+    font-size:12px;
+    color:#244c76;
+    font-weight:800;
+}
+
+.detail.income .detail-value{
+    color:#079447;
+}
+
+.detail.total .detail-value{
+    color:#a27a0d;
+}
+
+/* =========================
+   CYCLE
+========================= */
+
+.cycle-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 0;
+    border-top:1px dashed #d8e1eb;
+}
+
+.cycle-info{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:10px;
+    color:#71859c;
     font-weight:700;
 }
 
-.empty{
-
-    text-align:center;
-
-    padding:10px;
-
-    color:#8196aa;
-
-    font-size:8px;
+.cycle-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#0757c9;
+    box-shadow:0 0 0 4px #e8f1ff;
 }
 
+.plan-level{
+    font-size:9px;
+    font-weight:800;
+    color:#0757c9;
+    letter-spacing:.5px;
+}
 
-/* =====================================================
+/* =========================
+   BARCODE
+========================= */
+
+.barcode-section{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:12px 0 11px;
+    border-top:1px dashed #d8e1eb;
+}
+
+.barcode{
+    flex:1;
+    height:42px;
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+    gap:2px;
+    overflow:hidden;
+}
+
+.barcode span{
+    display:block;
+    height:100%;
+    background:#162b40;
+}
+
+.barcode span:nth-child(1){width:2px}
+.barcode span:nth-child(2){width:4px}
+.barcode span:nth-child(3){width:1px}
+.barcode span:nth-child(4){width:3px}
+.barcode span:nth-child(5){width:2px}
+.barcode span:nth-child(6){width:5px}
+.barcode span:nth-child(7){width:1px}
+.barcode span:nth-child(8){width:2px}
+.barcode span:nth-child(9){width:4px}
+.barcode span:nth-child(10){width:2px}
+.barcode span:nth-child(11){width:1px}
+.barcode span:nth-child(12){width:5px}
+.barcode span:nth-child(13){width:2px}
+.barcode span:nth-child(14){width:3px}
+.barcode span:nth-child(15){width:1px}
+.barcode span:nth-child(16){width:4px}
+.barcode span:nth-child(17){width:2px}
+.barcode span:nth-child(18){width:5px}
+.barcode span:nth-child(19){width:1px}
+.barcode span:nth-child(20){width:3px}
+.barcode span:nth-child(21){width:2px}
+.barcode span:nth-child(22){width:4px}
+.barcode span:nth-child(23){width:1px}
+.barcode span:nth-child(24){width:5px}
+.barcode span:nth-child(25){width:2px}
+.barcode span:nth-child(26){width:3px}
+.barcode span:nth-child(27){width:1px}
+.barcode span:nth-child(28){width:4px}
+.barcode span:nth-child(29){width:2px}
+.barcode span:nth-child(30){width:5px}
+
+.barcode-number{
+    width:60px;
+    text-align:right;
+    font-size:8px;
+    color:#8797a9;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* =========================
+   BUY BUTTON
+========================= */
+
+.details{
+    width:100%;
+    margin-top:4px;
+    border:none;
+    border-radius:11px;
+    padding:11px;
+    background:linear-gradient(
+        90deg,
+        #0757c9,
+        #0a74df
+    );
+    color:white;
+    font-family:inherit;
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 5px 14px rgba(7,87,201,.17);
+}
+
+.details:active{
+    transform:scale(.98);
+}
+
+.details:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* =========================
+   TOP PLAN
+========================= */
+
+.card.top-plan{
+    border:1px solid #e53935;
+    box-shadow:0 10px 30px rgba(229,57,53,.15);
+}
+
+.card.top-plan .title-row h2{
+    color:#c62828;
+}
+
+.card.top-plan .price{
+    color:#c62828;
+}
+
+.card.top-plan .details{
+    background:linear-gradient(
+        90deg,
+        #e53935,
+        #b71c1c
+    );
+    box-shadow:0 6px 15px rgba(198,40,40,.20);
+}
+
+.card.top-plan .cycle-dot{
+    background:#e53935;
+    box-shadow:0 0 0 4px #ffebee;
+}
+
+.card.top-plan .plan-level{
+    color:#c62828;
+}
+
+/* =========================
+   ELITE PLAN
+========================= */
+
+.card.elite{
+    border:1px solid #d9b63f;
+    box-shadow:0 10px 30px rgba(158,124,18,.15);
+}
+
+.card.elite .title-row h2{
+    color:#9a7107;
+}
+
+.card.elite .price{
+    color:#8b6709;
+}
+
+.card.elite .details{
+    background:linear-gradient(
+        90deg,
+        #c99b22,
+        #98700b
+    );
+    box-shadow:0 6px 15px rgba(157,116,10,.20);
+}
+
+.card.elite .cycle-dot{
+    background:#c99b22;
+    box-shadow:0 0 0 4px #fff5cf;
+}
+
+.card.elite .plan-level{
+    color:#9a7107;
+}
+
+/* =========================
    LOADING
-===================================================== */
+========================= */
+
+.loading-overlay{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background:rgba(245,248,252,.97);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 
 .loading-box{
-
+    width:85%;
+    max-width:320px;
+    background:white;
+    border-radius:18px;
+    padding:25px 20px;
     text-align:center;
-
-    padding:20px 10px;
-
-    color:#6d8498;
-
-    font-size:9px;
+    box-shaaydow:0 12px 35px rgba(16,47,81,.13);
 }
 
 .spinner{
-
-    width:22px;
-    height:22px;
-
-    margin:0 auto 7px;
-
-    border:3px solid #dcecf7;
-
-    border-top-color:#087edb;
-
+    width:34px;
+    height:34px;
+    border:3px solid #dceaff;
+    border-top:3px solid #0757c9;
     border-radius:50%;
-
+    margin:0 auto 14px;
     animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
-
     to{
         transform:rotate(360deg);
     }
 }
 
+.loading-title{
+    font-size:13px;
+    font-weight:800;
+    color:#163c69;
+}
 
-/* =====================================================
-   BENEFITS
-===================================================== */
+.loading-text{
+    margin-top:5px;
+    font-size:10px;
+    color:#8293a7;
+}
 
-.benefits{
+/* =========================
+   MODAL
+========================= */
 
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    z-index:300;
+    background:rgba(9,31,58,.58);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+}
+
+.modal{
+    width:100%;
+    max-width:360px;
     background:white;
-
-    border:1px solid #dcecf7;
-
-    border-radius:14px;
-
-    padding:9px 3px;
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr 1fr;
-
-    box-shadow:
-        0 3px 12px rgba(20,90,150,.06);
+    border-radius:20px;
+    padding:22px 18px 18px;
+    box-shadow:0 18px 45px rgba(0,0,0,.22);
 }
 
-.benefit{
+.modal-icon{
+    width:48px;
+    height:48px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    background:#eef5ff;
+    color:#0757c9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
 
+.modal h3{
     text-align:center;
-
-    padding:3px;
-}
-
-.benefit + .benefit{
-
-    border-left:1px solid #dcecf7;
-}
-
-.benefit-icon{
-
     font-size:17px;
-
-    margin-bottom:3px;
+    color:#163c69;
+    font-weight:800;
 }
 
-.benefit strong{
-
-    display:block;
-
-    font-size:8px;
-
-    color:#073c7b;
+.modal-plan{
+    margin-top:5px;
+    text-align:center;
+    font-size:10px;
+    color:#8495a8;
 }
 
-.benefit span{
-
-    display:block;
-
-    margin-top:2px;
-
-    font-size:7px;
-
-    color:#7189a0;
+.purchase-summary{
+    margin-top:17px;
+    border:1px solid #e2eaf3;
+    border-radius:13px;
+    overflow:hidden;
 }
 
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 12px;
+    border-bottom:1px solid #edf2f7;
+}
 
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
+.summary-row:last-child{
+    border-bottom:none;
+}
+
+.summary-label{
+    font-size:9px;
+    color:#8293a6;
+    font-weight:600;
+}
+
+.summary-value{
+    font-size:10px;
+    color:#244c76;
+    font-weight:800;
+}
+
+.summary-value.green{
+    color:#079447;
+}
+
+.modal-warning{
+    margin-top:12px;
+    padding:10px;
+    border-radius:10px;
+    background:#fff8e7;
+    color:#866516;
+    font-size:9px;
+    line-height:1.5;
+}
+
+.modal-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:16px;
+}
+
+.modal-btn{
+    flex:1;
+    border:none;
+    border-radius:11px;
+    padding:11px;
+    font-family:inherit;
+    font-size:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.cancel-btn{
+    background:#eef2f6;
+    color:#63768a;
+}
+
+.confirm-btn{
+    background:#0757c9;
+    color:white;
+}
+
+.confirm-btn:disabled{
+    opacity:.55;
+}
+
+/* =========================
+   STATUS MESSAGE
+========================= */
+
+.status-message{
+    position:fixed;
+    left:50%;
+    bottom:88px;
+    transform:translateX(-50%);
+    width:calc(100% - 28px);
+    max-width:500px;
+    z-index:400;
+    display:none;
+    padding:11px 14px;
+    border-radius:12px;
+    font-size:10px;
+    font-weight:700;
+    text-align:center;
+    box-shadow:0 7px 20px rgba(16,47,81,.15);
+}
+
+.status-success{
+    background:#e9f9f0;
+    color:#08743a;
+    border:1px solid #c5efd7;
+}
+
+.status-error{
+    background:#fff0f0;
+    color:#b32626;
+    border:1px solid #f2cccc;
+}
+
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
 
 .bottom-nav{
-
     position:fixed;
-
-    bottom:0;
-
     left:0;
-
     right:0;
-
-    height:65px;
-
-    background:rgba(255,255,255,.98);
-
-    border-top:1px solid #d7eafa;
-
-    box-shadow:
-        0 -4px 15px rgba(0,60,110,.10);
-
-    display:grid;
-
-    grid-template-columns:repeat(5,1fr);
-
-    z-index:2000;
-}
-
-.bottom-nav a{
-
-    text-decoration:none;
-
-    color:#607991;
-
+    bottom:0;
+    z-index:50;
+    height:72px;
+    background:rgba(255,255,255,.97);
+    border-top:1px solid #e6edf5;
+    box-shadow:0 -6px 22px rgba(16,47,81,.08);
     display:flex;
-
-    flex-direction:column;
-
+    justify-content:space-around;
     align-items:center;
-
-    justify-content:center;
-
-    gap:2px;
-
-    font-size:7px;
-
-    position:relative;
+    padding:5px 8px;
 }
 
-.bottom-icon{
+.sky-nav-item{
+    text-decoration:none;
+    color:#91a0b1;
+    min-width:62px;
+    height:60px;
+    border-radius:13px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:3px;
+    transition:.2s;
+}
 
-    font-size:18px;
-
+.sky-nav-icon{
+    font-size:20px;
     line-height:1;
 }
 
-.bottom-nav a.active{
-
-    color:#0757b5;
-
+.sky-nav-label{
+    font-size:8px;
     font-weight:700;
 }
 
-.bottom-nav a.active:before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    width:35px;
-
-    height:3px;
-
-    border-radius:0 0 5px 5px;
-
-    background:#087edb;
+.sky-nav-item.active{
+    color:#0757c9;
+    background:#eef5ff;
 }
 
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-.toast{
-
-    position:fixed;
-
-    left:50%;
-
-    bottom:78px;
-
-    transform:
-        translateX(-50%)
-        translateY(15px);
-
-    background:#073c7b;
-
-    color:white;
-
-    padding:8px 14px;
-
-    border-radius:20px;
-
-    font-size:9px;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:.3s;
-
-    z-index:3000;
-
-    white-space:nowrap;
+.sky-nav-item.active .sky-nav-icon{
+    transform:translateY(-1px);
 }
 
-.toast.show{
+/* =========================
+   RESPONSIVE
+========================= */
 
-    opacity:1;
-
-    transform:
-        translateX(-50%)
-        translateY(0);
-}
-
-
-/* =====================================================
-   DESKTOP
-===================================================== */
-
-@media(min-width:700px){
-
-    body{
-        padding-bottom:0;
-    }
+@media (min-width:700px){
 
     .container{
-        max-width:850px;
+        padding-left:20px;
+        padding-right:20px;
     }
 
-    .header-inner{
-        max-width:850px;
+    .plane-image{
+        height:290px;
     }
-
-    .bottom-nav{
-        display:none;
-    }
-
-    .header{
-        padding-left:
-            calc((100% - 850px)/2);
-
-        padding-right:
-            calc((100% - 850px)/2);
-    }
-
 }
 
+@media (max-width:380px){
 
-/* =====================================================
-   SMALL PHONES
-===================================================== */
-
-@media(max-width:360px){
-
-    .header{
-        padding:18px 15px 20px;
+    .plane-image{
+        height:215px;
     }
 
-    .header-title h1{
-        font-size:21px;
-    }
-
-    .summary-value{
-        font-size:15px;
-    }
-
-    .level-name{
-        font-size:13px;
-    }
-
-    .rate-number{
+    .title-row h2{
         font-size:17px;
     }
 
+    .price{
+        font-size:21px;
+    }
+
+    .detail-value{
+        font-size:11px;
+    }
+
+    .detail-label{
+        font-size:7.5px;
+    }
 }
 
 </style>
 
 </head>
 
-
 <body>
 
 
-<!-- =====================================================
+<!-- =========================
+     LOADING SCREEN
+========================= -->
+
+
+
+<!-- =========================
      HEADER
-===================================================== -->
+========================= -->
 
 <header class="header">
 
-    <div class="header-inner">
+    <div class="header-top">
 
-        <div class="logo">
-            ✈ Sky<span>Rent</span>
-        </div>
+        <button
+            class="back-btn"
+            onclick="goBack()"
+        >
+            ‹
+        </button>
 
         <div class="header-title">
 
-            <span>👥</span>
+            <h1>
+                SKYRENT FLEET
+            </h1>
 
-            <h1>My Network</h1>
-
-        </div>
-
-        <div class="header-description">
-
-            Build your network and track your referral activity.
+            <p>
+                Premium Aircraft Investment
+            </p>
 
         </div>
 
     </div>
+
+
+    <div class="hero-text">
+
+        <h2>
+            Choose Your Aircraft
+        </h2>
+
+        <p>
+            Explore our available aircraft investment plans
+            and select the plan that fits your goals.
+        </p>
+
+    </div>
+
+
+    
 
 </header>
 
 
-<!-- =====================================================
-     CONTENT
-===================================================== -->
+<!-- =========================
+     MAIN CONTENT
+========================= -->
 
 <main class="container">
 
+    <div class="section-heading">
 
-<!-- SUMMARY -->
+        <h3>
+            Available Aircraft
+        </h3>
 
-<section class="card">
+        <span>
+            9 Investment Plans
+        </span>
 
-    <div class="summary-grid">
+    </div>
 
-        <div class="summary-card main">
 
-            <div class="summary-icon">
-                🪙
-            </div>
+    <div class="crafts">
 
-            <div class="summary-label">
-                Total Commission
-            </div>
 
-            <div
-                class="summary-value"
-                id="totalCommission"
-            >
-                ₱0.00
-            </div>
+<!-- =====================================================
+     PLAN 1
+===================================================== -->
 
+<div class="card">
+
+    <div class="plane-image">
+
+        <div class="plan-number">
+            CRAFT 01
         </div>
 
+        <img
+            src="images/craft1.png"
+            alt="Phenom 300E"
+        >
 
-        <div class="summary-card">
-
-            <div class="summary-icon">
-                👥
-            </div>
-
-            <div class="summary-label">
-                Total Invites
-            </div>
-
-            <div
-                class="summary-value"
-                id="totalInvites"
-            >
-                0
-            </div>
-
+        <div class="image-badge">
+            ⭐ POPULAR
         </div>
 
     </div>
 
 
-    <!-- REFERRAL -->
+    <div class="boarding-pass">
 
-    <div class="referral-card">
+        <div class="pass-header">
 
-        <div class="referral-title">
-            🔗 Your Referral Information
-        </div>
-
-
-        <div class="referral-label">
-            YOUR REFERRAL CODE
-        </div>
-
-        <div class="referral-code-row">
-
-            <div
-                class="referral-code"
-                id="myReferralCode"
-            >
-                Loading...
+            <div class="pass-brand">
+                SKYRENT AIR
             </div>
 
+            <div class="pass-type">
+                BOARDING PASS
+            </div>
+
+        </div>
+
+
+        <div class="card-content">
+
+            <div class="title-row">
+
+                <div>
+
+                    <h2>
+                        AC1-Sky Starter Jet
+                    </h2>
+
+                    <div class="aircraft-type">
+                        Light Business Jet
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <div class="price-label">
+                    Investment Price
+                </div>
+
+                <div class="price">
+                    ₱500
+                </div>
+
+            </div>
+
+
+            <div class="flight-details">
+
+                <div class="detail income">
+
+                    <div class="detail-label">
+                        Daily Income
+                    </div>
+
+                    <div class="detail-value">
+                        ₱65
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Cycle
+                    </div>
+
+                    <div class="detail-value">
+                        30 Days
+                    </div>
+
+                </div>
+
+
+                <div class="detail total">
+
+                    <div class="detail-label">
+                        Total Return
+                    </div>
+
+                    <div class="detail-value">
+                        ₱1,950
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cycle-row">
+
+                <div class="cycle-info">
+
+                    <span class="cycle-dot"></span>
+
+                    30-Day Cycle
+
+                </div>
+
+                <div class="plan-level">
+                    STARTER
+                </div>
+
+            </div>
+
+
+            <div class="barcode-section">
+
+                <div class="barcode">
+
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span>
+
+                </div>
+
+                <div class="barcode-number">
+                    SR-001
+                </div>
+
+            </div>
+
+
             <button
-                class="copy-small"
-                onclick="copyReferralCode()"
+                class="details"
+                onclick="openCraft(1)"
             >
-                📋
+                Buy / Invest →
             </button>
 
         </div>
 
+    </div>
 
-        <div class="referral-label">
-            YOUR GITHUB REFERRAL LINK
+</div>
+
+
+<!-- =====================================================
+     PLAN 2
+===================================================== -->
+
+<div class="card">
+
+    <div class="plane-image">
+
+        <div class="plan-number">
+            CRAFT 02
         </div>
 
-        <div class="link-row">
+        <img
+            src="images/craft2.png"
+            alt="Airbus H135"
+        >
 
-            <input
-                class="referral-link"
-                id="referralLink"
-                readonly
-                value="Loading..."
-            >
+        <div class="image-badge">
+            🌎 GLOBAL
+        </div>
+
+    </div>
+
+
+    <div class="boarding-pass">
+
+        <div class="pass-header">
+
+            <div class="pass-brand">
+                SKYRENT AIR
+            </div>
+
+            <div class="pass-type">
+                BOARDING PASS
+            </div>
+
+        </div>
+
+
+        <div class="card-content">
+
+            <div class="title-row">
+
+                <div>
+
+                    <h2>
+                        AC2-Cloud Explorer
+                    </h2>
+
+                    <div class="aircraft-type">
+                        Light Twin-Engine Helicopter
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <div class="price-label">
+                    Investment Price
+                </div>
+
+                <div class="price">
+                    ₱800
+                </div>
+
+            </div>
+
+
+            <div class="flight-details">
+
+                <div class="detail income">
+
+                    <div class="detail-label">
+                        Daily Income
+                    </div>
+
+                    <div class="detail-value">
+                        ₱104
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Cycle
+                    </div>
+
+                    <div class="detail-value">
+                        30 Days
+                    </div>
+
+                </div>
+
+
+                <div class="detail total">
+
+                    <div class="detail-label">
+                        Total Return
+                    </div>
+
+                    <div class="detail-value">
+                        ₱3,120
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cycle-row">
+
+                <div class="cycle-info">
+
+                    <span class="cycle-dot"></span>
+
+                    30-Day Cycle
+
+                </div>
+
+                <div class="plan-level">
+                    GLOBAL
+                </div>
+
+            </div>
+
+
+            <div class="barcode-section">
+
+                <div class="barcode">
+
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span>
+
+                </div>
+
+                <div class="barcode-number">
+                    SR-002
+                </div>
+
+            </div>
+
 
             <button
-                class="copy-link"
-                onclick="copyReferral()"
+                class="details"
+                onclick="openCraft(2)"
             >
-                📋
+                Buy / Invest →
             </button>
 
         </div>
 
+    </div>
 
-        <button
-            class="copy-all"
-            onclick="copyReferral()"
+</div>
+
+
+<!-- =====================================================
+     PLAN 3
+===================================================== -->
+
+<div class="card top-plan">
+
+    <div class="plane-image">
+
+        <div class="plan-number">
+            CRAFT 03
+        </div>
+
+        <div class="top-ribbon">
+            🏆 TOP PLAN
+        </div>
+
+        <img
+            src="images/craft3.png"
+            alt="Embraer E190"
         >
-            📋 &nbsp; Copy Referral Link
-        </button>
 
     </div>
 
-</section>
 
+    <div class="boarding-pass">
 
-<!-- YOU -->
+        <div class="pass-header">
 
-<section class="you-card">
-
-    <div class="you-icon">
-        👤
-    </div>
-
-    <div
-        class="you-name"
-        id="myName"
-    >
-        SkyRent Member
-    </div>
-
-    <div class="you-label">
-        You • Landing Point
-    </div>
-
-</section>
-
-
-<!-- LEVEL A -->
-
-<section class="level-card level-a">
-
-    <div class="level-header">
-
-        <div class="level-left">
-
-            <div class="level-icon">
-                ✈️
+            <div class="pass-brand">
+                SKYRENT AIR
             </div>
 
-            <div>
+            <div class="pass-type">
+                BOARDING PASS
+            </div>
 
-                <div class="level-name">
-                    LEVEL A
+        </div>
+
+
+        <div class="card-content">
+
+            <div class="title-row">
+
+                <div>
+
+                    <h2>
+                        ACT3-Aviation Pro
+                    </h2>
+
+                    <div class="aircraft-type">
+                        Regional Passenger Jet
+                    </div>
+
                 </div>
 
-                <span class="level-stage">
-                    BOARDING
-                </span>
-
             </div>
 
-        </div>
 
+            <div class="price-row">
 
-        <div class="level-rate">
-
-            <div class="rate-number">
-                25%
-            </div>
-
-            <div class="rate-label">
-                COMMISSION
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="members-bar"
-        onclick="toggleMembers('membersA','arrowA')"
-    >
-
-        <div class="members-left">
-
-            <span>
-                👥
-            </span>
-
-            A Members
-
-            <span
-                class="member-count"
-                id="countA"
-            >
-                (0)
-            </span>
-
-        </div>
-
-        <div
-            class="member-arrow"
-            id="arrowA"
-        >
-            ›
-        </div>
-
-    </div>
-
-
-    <div
-        class="member-list"
-        id="membersA"
-    >
-
-        <div class="loading-box">
-
-            <div class="spinner"></div>
-
-            Loading members...
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- LEVEL B -->
-
-<section class="level-card level-b">
-
-    <div class="level-header">
-
-        <div class="level-left">
-
-            <div class="level-icon">
-                🛫
-            </div>
-
-            <div>
-
-                <div class="level-name">
-                    LEVEL B
+                <div class="price-label">
+                    Investment Price
                 </div>
 
-                <span class="level-stage">
-                    TAKE OFF
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="level-rate">
-
-            <div class="rate-number">
-                3%
-            </div>
-
-            <div class="rate-label">
-                COMMISSION
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="members-bar"
-        onclick="toggleMembers('membersB','arrowB')"
-    >
-
-        <div class="members-left">
-
-            <span>
-                👥
-            </span>
-
-            B Members
-
-            <span
-                class="member-count"
-                id="countB"
-            >
-                (0)
-            </span>
-
-        </div>
-
-        <div
-            class="member-arrow"
-            id="arrowB"
-        >
-            ›
-        </div>
-
-    </div>
-
-
-    <div
-        class="member-list"
-        id="membersB"
-    >
-
-        <div class="loading-box">
-
-            <div class="spinner"></div>
-
-            Loading members...
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- LEVEL C -->
-
-<section class="level-card level-c">
-
-    <div class="level-header">
-
-        <div class="level-left">
-
-            <div class="level-icon">
-                ☁️
-            </div>
-
-            <div>
-
-                <div class="level-name">
-                    LEVEL C
+                <div class="price">
+                    ₱1,500
                 </div>
 
-                <span class="level-stage">
-                    CRUISING
-                </span>
+            </div>
+
+
+            <div class="flight-details">
+
+                <div class="detail income">
+
+                    <div class="detail-label">
+                        Daily Income
+                    </div>
+
+                    <div class="detail-value">
+                        ₱220
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Cycle
+                    </div>
+
+                    <div class="detail-value">
+                        30 Days
+                    </div>
+
+                </div>
+
+
+                <div class="detail total">
+
+                    <div class="detail-label">
+                        Total Return
+                    </div>
+
+                    <div class="detail-value">
+                        ₱6,600
+                    </div>
+
+                </div>
 
             </div>
 
-        </div>
 
+            <div class="cycle-row">
 
-        <div class="level-rate">
+                <div class="cycle-info">
 
-            <div class="rate-number">
-                1%
+                    <span class="cycle-dot"></span>
+
+                    30-Day Cycle
+
+                </div>
+
+                <div class="plan-level">
+                    TOP PLAN
+                </div>
+
             </div>
 
-            <div class="rate-label">
-                COMMISSION
+
+            <div class="barcode-section">
+
+                <div class="barcode">
+
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span>
+
+                </div>
+
+                <div class="barcode-number">
+                    SR-003
+                </div>
+
             </div>
 
-        </div>
 
-    </div>
-
-
-    <div
-        class="members-bar"
-        onclick="toggleMembers('membersC','arrowC')"
-    >
-
-        <div class="members-left">
-
-            <span>
-                👥
-            </span>
-
-            C Members
-
-            <span
-                class="member-count"
-                id="countC"
+            <button
+                class="details"
+                onclick="openCraft(3)"
             >
-                (0)
-            </span>
+                Buy / Invest →
+            </button>
 
         </div>
 
-        <div
-            class="member-arrow"
-            id="arrowC"
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PLAN 4
+===================================================== -->
+
+<div class="card">
+
+    <div class="plane-image">
+
+        <div class="plan-number">
+            CRAFT 04
+        </div>
+
+        <img
+            src="images/craft4.png"
+            alt="Airbus A320neo"
         >
-            ›
+
+        <div class="image-badge">
+            ☁️ SKY CHOICE
         </div>
 
     </div>
 
 
-    <div
-        class="member-list"
-        id="membersC"
-    >
+    <div class="boarding-pass">
 
-        <div class="loading-box">
+        <div class="pass-header">
 
-            <div class="spinner"></div>
+            <div class="pass-brand">
+                SKYRENT AIR
+            </div>
 
-            Loading members...
+            <div class="pass-type">
+                BOARDING PASS
+            </div>
+
+        </div>
+
+
+        <div class="card-content">
+
+            <div class="title-row">
+
+                <div>
+
+                    <h2>
+                        AC4-Sky Voyager
+                    </h2>
+
+                    <div class="aircraft-type">
+                        Single-Aisle Commercial Jet
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <div class="price-label">
+                    Investment Price
+                </div>
+
+                <div class="price">
+                    ₱3,000
+                </div>
+
+            </div>
+
+
+            <div class="flight-details">
+
+                <div class="detail income">
+
+                    <div class="detail-label">
+                        Daily Income
+                    </div>
+
+                    <div class="detail-value">
+                        ₱465
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Cycle
+                    </div>
+
+                    <div class="detail-value">
+                        30 Days
+                    </div>
+
+                </div>
+
+
+                <div class="detail total">
+
+                    <div class="detail-label">
+                        Total Return
+                    </div>
+
+                    <div class="detail-value">
+                        ₱13,950
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cycle-row">
+
+                <div class="cycle-info">
+
+                    <span class="cycle-dot"></span>
+
+                    30-Day Cycle
+
+                </div>
+
+                <div class="plan-level">
+                    SKY CHOICE
+                </div>
+
+            </div>
+
+
+            <div class="barcode-section">
+
+                <div class="barcode">
+
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span>
+
+                </div>
+
+                <div class="barcode-number">
+                    SR-004
+                </div>
+
+            </div>
+
+
+            <button
+                class="details"
+                onclick="openCraft(4)"
+            >
+                Buy / Invest →
+            </button>
 
         </div>
 
     </div>
 
-</section>
+</div>
 
 
-<!-- BENEFITS -->
+<!-- =====================================================
+     PLAN 5
+===================================================== -->
 
-<section class="benefits">
+<div class="card">
 
-    <div class="benefit">
+    <div class="plane-image">
 
-        <div class="benefit-icon">
-            ✈️
+        <div class="plan-number">
+            CRAFT 05
         </div>
 
-        <strong>
-            More Invites
-        </strong>
+        <img
+            src="images/craft5.png"
+            alt="Boeing 787-9 Dreamliner"
+        >
 
-        <span>
-            Build your team
-        </span>
+        <div class="image-badge">
+            🚀 BEST VALUE
+        </div>
 
     </div>
 
 
-    <div class="benefit">
+    <div class="boarding-pass">
 
-        <div class="benefit-icon">
-            🪙
+        <div class="pass-header">
+
+            <div class="pass-brand">
+                SKYRENT AIR
+            </div>
+
+            <div class="pass-type">
+                BOARDING PASS
+            </div>
+
         </div>
 
-        <strong>
-            Higher Earnings
-        </strong>
 
-        <span>
-            Up to 25%
-        </span>
+        <div class="card-content">
+
+            <div class="title-row">
+
+                <div>
+
+                    <h2>
+                        AC5-Business Class Aircraft
+                    </h2>
+
+                    <div class="aircraft-type">
+                        Long-Haul Wide-Body Jet
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <div class="price-label">
+                    Investment Price
+                </div>
+
+                <div class="price">
+                    ₱5,000
+                </div>
+
+            </div>
+
+
+            <div class="flight-details">
+
+                <div class="detail income">
+
+                    <div class="detail-label">
+                        Daily Income
+                    </div>
+
+                    <div class="detail-value">
+                        ₱680
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Cycle
+                    </div>
+
+                    <div class="detail-value">
+                        30 Days
+                    </div>
+
+                </div>
+
+
+                <div class="detail total">
+
+                    <div class="detail-label">
+                        Total Return
+                    </div>
+
+                    <div class="detail-value">
+                        ₱20,400
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cycle-row">
+
+                <div class="cycle-info">
+
+                    <span class="cycle-dot"></span>
+
+                    30-Day Cycle
+
+                </div>
+
+                <div class="plan-level">
+                    BEST VALUE
+                </div>
+
+            </div>
+
+
+            <div class="barcode-section">
+
+                <div class="barcode">
+
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span>
+
+                </div>
+
+                <div class="barcode-number">
+                    SR-005
+                </div>
+
+            </div>
+
+
+            <button
+                class="details"
+                onclick="openCraft(5)"
+            >
+                Buy / Invest →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PLAN 6
+===================================================== -->
+
+<div class="card">
+
+    <div class="plane-image">
+
+        <div class="plan-number">
+            CRAFT 06
+        </div>
+
+        <img
+            src="images/craft6.png"
+            alt="Airbus A350-900"
+        >
+
+        <div class="image-badge">
+            🏆 PREMIUM
+        </div>
 
     </div>
 
 
-    <div class="benefit">
+    <div class="boarding-pass">
 
-        <div class="benefit-icon">
-            🎯
+        <div class="pass-header">
+
+            <div class="pass-brand">
+                SKYRENT AIR
+            </div>
+
+            <div class="pass-type">
+                BOARDING PASS
+            </div>
+
         </div>
 
-        <strong>
-            Reach Goals
-        </strong>
 
-        <span>
-            Grow your network
-        </span>
+        <div class="card-content">
+
+            <div class="title-row">
+
+                <div>
+
+                    <h2>
+                        AC6-Premium Airliner
+                    </h2>
+
+                    <div class="aircraft-type">
+                        Long-Haul Wide-Body Jet
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <div class="price-label">
+                    Investment Price
+                </div>
+
+                <div class="price">
+                    ₱10,000
+                </div>
+
+            </div>
+
+
+            <div class="flight-details">
+
+                <div class="detail income">
+
+                    <div class="detail-label">
+                        Daily Income
+                    </div>
+
+                    <div class="detail-value">
+                        ₱1,500
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Cycle
+                    </div>
+
+                    <div class="detail-value">
+                        30 Days
+                    </div>
+
+                </div>
+
+
+                <div class="detail total">
+
+                    <div class="detail-label">
+                        Total Return
+                    </div>
+
+                    <div class="detail-value">
+                        ₱45,000
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cycle-row">
+
+                <div class="cycle-info">
+
+                    <span class="cycle-dot"></span>
+
+                    30-Day Cycle
+
+                </div>
+
+                <div class="plan-level">
+                    PREMIUM
+                </div>
+
+            </div>
+
+
+            <div class="barcode-section">
+
+                <div class="barcode">
+
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span>
+
+                </div>
+
+                <div class="barcode-number">
+                    SR-006
+                </div>
+
+            </div>
+
+
+            <button
+                class="details"
+                onclick="openCraft(6)"
+            >
+                Buy / Invest →
+            </button>
+
+        </div>
 
     </div>
 
-</section>
+</div>
 
+
+<!-- =====================================================
+     PLAN 7
+===================================================== -->
+
+<div class="card">
+
+    <div class="plane-image">
+
+        <div class="plan-number">
+            CRAFT 07
+        </div>
+
+        <img
+            src="images/craft7.png"
+            alt="Boeing 777-300ER"
+        >
+
+        <div class="image-badge">
+            🛄 INVESTOR
+        </div>
+
+    </div>
+
+
+    <div class="boarding-pass">
+
+        <div class="pass-header">
+
+            <div class="pass-brand">
+                SKYRENT AIR
+            </div>
+
+            <div class="pass-type">
+                BOARDING PASS
+            </div>
+
+        </div>
+
+
+        <div class="card-content">
+
+            <div class="title-row">
+
+                <div>
+
+                    <h2>
+                        AC7-Executive Flight
+                    </h2>
+
+                    <div class="aircraft-type">
+                        Large Wide-Body Jet
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <div class="price-label">
+                    Investment Price
+                </div>
+
+                <div class="price">
+                    ₱15,000
+                </div>
+
+            </div>
+
+
+            <div class="flight-details">
+
+                <div class="detail income">
+
+                    <div class="detail-label">
+                        Daily Income
+                    </div>
+
+                    <div class="detail-value">
+                        ₱2,300
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Cycle
+                    </div>
+
+                    <div class="detail-value">
+                        30 Days
+                    </div>
+
+                </div>
+
+
+                <div class="detail total">
+
+                    <div class="detail-label">
+                        Total Return
+                    </div>
+
+                    <div class="detail-value">
+                        ₱69,000
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cycle-row">
+
+                <div class="cycle-info">
+
+                    <span class="cycle-dot"></span>
+
+                    30-Day Cycle
+
+                </div>
+
+                <div class="plan-level">
+                    INVESTOR
+                </div>
+
+            </div>
+
+
+            <div class="barcode-section">
+
+                <div class="barcode">
+
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span>
+
+                </div>
+
+                <div class="barcode-number">
+                    SR-007
+                </div>
+
+            </div>
+
+
+            <button
+                class="details"
+                onclick="openCraft(7)"
+            >
+                Buy / Invest →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PLAN 8
+===================================================== -->
+
+<div class="card">
+
+    <div class="plane-image">
+
+        <div class="plan-number">
+            CRAFT 08
+        </div>
+
+        <img
+            src="images/craft8.png"
+            alt="Airbus H155 VIP"
+        >
+
+        <div class="image-badge">
+            🚁 VIP
+        </div>
+
+    </div>
+
+
+    <div class="boarding-pass">
+
+        <div class="pass-header">
+
+            <div class="pass-brand">
+                SKYRENT AIR
+            </div>
+
+            <div class="pass-type">
+                BOARDING PASS
+            </div>
+
+        </div>
+
+
+        <div class="card-content">
+
+            <div class="title-row">
+
+                <div>
+
+                    <h2>
+                        AC8-Sky Royal VIP Helicopter
+                    </h2>
+
+                    <div class="aircraft-type">
+                        Executive VIP Helicopter
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <div class="price-label">
+                    Investment Price
+                </div>
+
+                <div class="price">
+                    ₱25,000
+                </div>
+
+            </div>
+
+
+            <div class="flight-details">
+
+                <div class="detail income">
+
+                    <div class="detail-label">
+                        Daily Income
+                    </div>
+
+                    <div class="detail-value">
+                        ₱3,700
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Cycle
+                    </div>
+
+                    <div class="detail-value">
+                        30 Days
+                    </div>
+
+                </div>
+
+
+                <div class="detail total">
+
+                    <div class="detail-label">
+                        Total Return
+                    </div>
+
+                    <div class="detail-value">
+                        ₱111,000
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cycle-row">
+
+                <div class="cycle-info">
+
+                    <span class="cycle-dot"></span>
+
+                    30-Day Cycle
+
+                </div>
+
+                <div class="plan-level">
+                    VIP
+                </div>
+
+            </div>
+
+
+            <div class="barcode-section">
+
+                <div class="barcode">
+
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span>
+
+                </div>
+
+                <div class="barcode-number">
+                    SR-008
+                </div>
+
+            </div>
+
+
+            <button
+                class="details"
+                onclick="openCraft(8)"
+            >
+                Buy / Invest →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PLAN 9
+===================================================== -->
+
+<div class="card elite">
+
+    <div class="plane-image">
+
+        <div class="plan-number">
+            CRAFT 09
+        </div>
+
+        <div class="elite-ribbon">
+            💎 ELITE
+        </div>
+
+        <img
+            src="images/craft9.png"
+            alt="Airbus A380 Luxury"
+        >
+
+    </div>
+
+
+    <div class="boarding-pass">
+
+        <div class="pass-header">
+
+            <div class="pass-brand">
+                SKYRENT AIR
+            </div>
+
+            <div class="pass-type">
+                BOARDING PASS
+            </div>
+
+        </div>
+
+
+        <div class="card-content">
+
+            <div class="title-row">
+
+                <div>
+
+                    <h2>
+                        AC9-Royal Aviation Elite
+                    </h2>
+
+                    <div class="aircraft-type">
+                        Luxury Superjumbo Passenger Jet
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <div class="price-label">
+                    Investment Price
+                </div>
+
+                <div class="price">
+                    ₱50,000
+                </div>
+
+            </div>
+
+
+            <div class="flight-details">
+
+                <div class="detail income">
+
+                    <div class="detail-label">
+                        Daily Income
+                    </div>
+
+                    <div class="detail-value">
+                        ₱7,500
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Cycle
+                    </div>
+
+                    <div class="detail-value">
+                        30 Days
+                    </div>
+
+                </div>
+
+
+                <div class="detail total">
+
+                    <div class="detail-label">
+                        Total Return
+                    </div>
+
+                    <div class="detail-value">
+                        ₱225,000
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="cycle-row">
+
+                <div class="cycle-info">
+
+                    <span class="cycle-dot"></span>
+
+                    30-Day Cycle
+
+                </div>
+
+                <div class="plan-level">
+                    ELITE
+                </div>
+
+            </div>
+
+
+            <div class="barcode-section">
+
+                <div class="barcode">
+
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                    <span></span><span></span>
+
+                </div>
+
+                <div class="barcode-number">
+                    SR-009
+                </div>
+
+            </div>
+
+
+            <button
+                class="details"
+                onclick="openCraft(9)"
+            >
+                Buy / Invest →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    </div>
 
 </main>
 
 
-<!-- =====================================================
-     BOTTOM NAV
-===================================================== -->
+<!-- =========================
+     PURCHASE MODAL
+========================= -->
+
+<div
+    class="modal-overlay"
+    id="purchaseModal"
+>
+
+    <div class="modal">
+
+        <div class="modal-icon">
+            ✈
+        </div>
+
+        <h3>
+            Confirm Investment
+        </h3>
+
+        <div
+            class="modal-plan"
+            id="modalPlanName"
+        >
+            SkyRent Aircraft
+        </div>
+
+
+        <div class="purchase-summary">
+
+            <div class="summary-row">
+
+                <div class="summary-label">
+                    Investment
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="modalPrice"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <div class="summary-label">
+                    Daily Income
+                </div>
+
+                <div
+                    class="summary-value green"
+                    id="modalDaily"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <div class="summary-label">
+                    Cycle
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="modalCycle"
+                >
+                    30 Days
+                </div>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <div class="summary-label">
+                    Total Return
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="modalTotal"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <div class="summary-label">
+                    Current Balance
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="modalBalance"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-warning">
+
+            Your investment amount will be deducted from
+            your available balance after confirmation.
+            The investment will then be recorded in your
+            SkyRent account.
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="modal-btn cancel-btn"
+                onclick="closePurchaseModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-btn confirm-btn"
+                id="confirmPurchaseButton"
+                onclick="confirmPurchase()"
+            >
+                Confirm Investment
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     STATUS
+========================= -->
+
+<div
+    class="status-message"
+    id="statusMessage"
+></div>
+
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
 
 <nav class="bottom-nav">
 
-    <a href="dashboard.html">
+    <a
+        href="dashboard.html"
+        class="sky-nav-item"
+    >
 
-        <div class="bottom-icon">
-            🏠
+        <div class="sky-nav-icon">
+            ⌂
         </div>
 
-        Home
+        <div class="sky-nav-label">
+            Home
+        </div>
 
     </a>
 
 
-    <a href="deposit.html">
+    <a
+        href="crafts.html"
+        class="sky-nav-item active"
+    >
 
-        <div class="bottom-icon">
-            💳
+        <div class="sky-nav-icon">
+            ✈
         </div>
 
-        Deposit
+        <div class="sky-nav-label">
+            Crafts
+        </div>
 
     </a>
 
 
     <a
         href="network.html"
-        class="active"
+        class="sky-nav-item"
     >
 
-        <div class="bottom-icon">
-            ✈️
+        <div class="sky-nav-icon">
+            ♧
         </div>
 
-        Network
+        <div class="sky-nav-label">
+            Network
+        </div>
 
     </a>
 
 
-    <a href="earnings.html">
+    <a
+        href="my-aircraft.html"
+        class="sky-nav-item"
+    >
 
-        <div class="bottom-icon">
-            🪙
+        <div class="sky-nav-icon">
+            🛫
         </div>
 
-        Earnings
-
-    </a>
-
-
-    <a href="profile.html">
-
-        <div class="bottom-icon">
-            👤
+        <div class="sky-nav-label">
+            Investment
         </div>
-
-        Profile
 
     </a>
 
 </nav>
-
-
-<!-- TOAST -->
-
-<div
-    class="toast"
-    id="toast"
->
-    Copied!
-</div>
 
 
 <!-- =====================================================
@@ -1637,1293 +2791,180 @@ import {
     doc,
     getDoc,
     collection,
-    getDocs
+    addDoc,
+    runTransaction,
+    serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 /* =====================================================
    FIREBASE CONFIG
+   USE THE SAME CONFIG FROM YOUR WORKING SKYRENT PAGES
 ===================================================== */
 
 const firebaseConfig = {
+    apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+    authDomain: "skyrent-ea30c.firebaseapp.com",
+    projectId: "skyrent-ea30c",
+    storageBucket: "skyrent-ea30c.firebasestorage.app",
+    messagingSenderId: "572678456448",
+    appId: "1:572678456448:web:6b7132351515742dd09265"
+};
 
-    apiKey:
-        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
 
-    authDomain:
-        "skyrent-ea30c.firebaseapp.com",
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
 
-    projectId:
-        "skyrent-ea30c",
+const app = initializeApp(firebaseConfig);
 
-    storageBucket:
-        "skyrent-ea30c.firebasestorage.app",
+const auth = getAuth(app);
 
-    messagingSenderId:
-        "572678456448",
+const db = getFirestore(app);
 
-    appId:
-        "1:572678456448:web:6b7132351515742dd09265"
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let currentUser = null;
+
+let currentUserData = null;
+
+let currentBalance = 0;
+
+let selectedPlan = null;
+
+
+/* =====================================================
+   PLAN DATA
+===================================================== */
+
+const SKYRENT_PLANS = {
+
+    1:{
+        id:"AC1",
+        name:"AC1-Sky Starter Jet",
+        type:"Light Business Jet",
+        price:500,
+        daily:65,
+        cycle:30,
+        total:1950
+    },
+
+    2:{
+        id:"AC2",
+        name:"AC2-Cloud Explorer",
+        type:"Light Twin-Engine Helicopter",
+        price:800,
+        daily:104,
+        cycle:30,
+        total:3120
+    },
+
+    3:{
+        id:"ACT3",
+        name:"ACT3-Aviation Pro",
+        type:"Regional Passenger Jet",
+        price:1500,
+        daily:220,
+        cycle:30,
+        total:6600
+    },
+
+    4:{
+        id:"AC4",
+        name:"AC4-Sky Voyager",
+        type:"Single-Aisle Commercial Jet",
+        price:3000,
+        daily:465,
+        cycle:30,
+        total:13950
+    },
+
+    5:{
+        id:"AC5",
+        name:"AC5-Business Class Aircraft",
+        type:"Long-Haul Wide-Body Jet",
+        price:5000,
+        daily:680,
+        cycle:30,
+        total:20400
+    },
+
+    6:{
+        id:"AC6",
+        name:"AC6-Premium Airliner",
+        type:"Long-Haul Wide-Body Jet",
+        price:10000,
+        daily:1500,
+        cycle:30,
+        total:45000
+    },
+
+    7:{
+        id:"AC7",
+        name:"AC7-Executive Flight",
+        type:"Large Wide-Body Jet",
+        price:15000,
+        daily:2300,
+        cycle:30,
+        total:69000
+    },
+
+    8:{
+        id:"AC8",
+        name:"AC8-Sky Royal VIP Helicopter",
+        type:"Executive VIP Helicopter",
+        price:25000,
+        daily:3700,
+        cycle:30,
+        total:111000
+    },
+
+    9:{
+        id:"AC9",
+        name:"AC9-Royal Aviation Elite",
+        type:"Luxury Superjumbo Passenger Jet",
+        price:50000,
+        daily:7500,
+        cycle:30,
+        total:225000
+    }
 
 };
 
 
-const app =
-    initializeApp(firebaseConfig);
-
-
-const auth =
-    getAuth(app);
-
-
-const db =
-    getFirestore(app);
-
-
 /* =====================================================
-   GITHUB PAGES ADDRESS
+   FORMAT PESO
 ===================================================== */
 
-/*
-   IMPORTANT:
+function peso(amount){
 
-   Put your actual GitHub Pages website address here.
-
-   Example:
-
-   https://username.github.io/SkyRent/
-
-   Do NOT put network.html here.
-
-   The code automatically adds:
-
-   index.html?ref=YOURCODE
-*/
-
-const GITHUB_SITE =
-    "https://skyrent26.github.io/skyrent/";
-
-
-/* =====================================================
-   GLOBAL DATA
-===================================================== */
-
-let currentFirebaseUser = null;
-
-let myUser = null;
-
-let allUsers = [];
-
-let myCommissions = [];
-
-
-/* =====================================================
-   COMMISSION RATES
-===================================================== */
-
-const COMMISSION_A = 0.25;
-
-const COMMISSION_B = 0.03;
-
-const COMMISSION_C = 0.01;
-
-
-/* =====================================================
-   NORMALIZE
-===================================================== */
-
-function normalizeReferralCode(code){
-
-    return String(code || "")
-        .trim()
-        .toUpperCase();
-
-}
-
-
-/* =====================================================
-   GET REFERRER CODE
-===================================================== */
-
-function getReferredByCode(user){
-
-    if(!user){
-        return "";
-    }
-
-    return normalizeReferralCode(
-
-        user.referredByCode ||
-
-        user.referredBy ||
-
-        user.referralBy ||
-
-        user.parentReferralCode ||
-
-        ""
-
-    );
-
-}
-
-
-/* =====================================================
-   PHONE NORMALIZATION
-===================================================== */
-
-function normalizePhone(phone){
-
-    return String(phone || "")
-        .replace(/\s+/g,"")
-        .trim();
-
-}
-
-
-/* =====================================================
-   GET DIRECT REFERRER
-===================================================== */
-
-function getDirectReferrer(user){
-
-    if(!user){
-        return null;
-    }
-
-
-    /*
-       First check UID if your future
-       registration system stores it.
-    */
-
-    if(user.referredByUid){
-
-        const byUid =
-            allUsers.find(
-                member =>
-                    member.uid ===
-                    user.referredByUid
-            );
-
-        if(byUid){
-            return byUid;
-        }
-
-    }
-
-
-    /*
-       Then check phone.
-    */
-
-    if(user.referredByPhone){
-
-        const targetPhone =
-            normalizePhone(
-                user.referredByPhone
-            );
-
-        const byPhone =
-            allUsers.find(
-                member =>
-                    normalizePhone(
-                        member.phone
-                    ) === targetPhone
-            );
-
-        if(byPhone){
-            return byPhone;
-        }
-
-    }
-
-
-    /*
-       Finally check referral code.
-    */
-
-    const referredByCode =
-        getReferredByCode(user);
-
-
-    if(referredByCode){
-
-        const byCode =
-            allUsers.find(
-                member =>
-                    normalizeReferralCode(
-                        member.referralCode
-                    ) ===
-                    referredByCode
-            );
-
-        if(byCode){
-            return byCode;
-        }
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =====================================================
-   BUILD NETWORK
-===================================================== */
-
-function buildNetwork(){
-
-    const levelA = [];
-    const levelB = [];
-    const levelC = [];
-
-
-    if(!myUser){
-        return {
-            levelA,
-            levelB,
-            levelC
-        };
-    }
-
-
-    const myUid =
-        currentFirebaseUser.uid;
-
-
-    const myPhone =
-        normalizePhone(myUser.phone);
-
-
-    /* =================================================
-       LEVEL A
-       Direct referrals
-    ================================================= */
-
-    allUsers.forEach(user => {
-
-        if(user.uid === myUid){
-            return;
-        }
-
-        if(
-            normalizePhone(user.phone) ===
-            myPhone
-        ){
-            return;
-        }
-
-
-        const referrer =
-            getDirectReferrer(user);
-
-
-        if(!referrer){
-            return;
-        }
-
-
-        const sameUid =
-            referrer.uid &&
-            referrer.uid === myUid;
-
-
-        const samePhone =
-            normalizePhone(
-                referrer.phone
-            ) === myPhone;
-
-
-        if(
-            sameUid ||
-            samePhone
-        ){
-
-            levelA.push(user);
-
-        }
-
-    });
-
-
-    /* =================================================
-       LEVEL B
-       Referred by Level A
-    ================================================= */
-
-    allUsers.forEach(user => {
-
-        if(user.uid === myUid){
-            return;
-        }
-
-
-        if(
-            levelA.some(
-                member =>
-                    member.uid === user.uid
-            )
-        ){
-            return;
-        }
-
-
-        const referrer =
-            getDirectReferrer(user);
-
-
-        if(!referrer){
-            return;
-        }
-
-
-        if(
-            levelA.some(
-                member =>
-                    member.uid ===
-                    referrer.uid
-            )
-        ){
-
-            levelB.push(user);
-
-        }
-
-    });
-
-
-    /* =================================================
-       LEVEL C
-       Referred by Level B
-    ================================================= */
-
-    allUsers.forEach(user => {
-
-        if(user.uid === myUid){
-            return;
-        }
-
-
-        if(
-            levelA.some(
-                member =>
-                    member.uid === user.uid
-            )
-        ){
-            return;
-        }
-
-
-        if(
-            levelB.some(
-                member =>
-                    member.uid === user.uid
-            )
-        ){
-            return;
-        }
-
-
-        const referrer =
-            getDirectReferrer(user);
-
-
-        if(!referrer){
-            return;
-        }
-
-
-        if(
-            levelB.some(
-                member =>
-                    member.uid ===
-                    referrer.uid
-            )
-        ){
-
-            levelC.push(user);
-
-        }
-
-    });
-
-
-    return {
-        levelA,
-        levelB,
-        levelC
-    };
-
-}
-
-
-/* =====================================================
-   LOAD ALL USERS
-===================================================== */
-
-async function loadAllUsers(){
-
-    const snapshot =
-        await getDocs(
-            collection(
-                db,
-                "users"
-            )
-        );
-
-
-    allUsers = [];
-
-
-    snapshot.forEach(docSnap => {
-
-        allUsers.push({
-
-            uid:docSnap.id,
-
-            ...docSnap.data()
-
-        });
-
-    });
-
-}
-
-
-/* =====================================================
-   LOAD MY USER
-===================================================== */
-
-async function loadMyUser(){
-
-    const userDoc =
-        await getDoc(
-            doc(
-                db,
-                "users",
-                currentFirebaseUser.uid
-            )
-        );
-
-
-    if(!userDoc.exists()){
-
-        throw new Error(
-            "SkyRent account record was not found."
-        );
-
-    }
-
-
-    myUser = {
-
-        uid:currentFirebaseUser.uid,
-
-        ...userDoc.data()
-
-    };
-
-}
-
-
-/* =====================================================
-   LOAD COMMISSIONS
-===================================================== */
-
-async function loadMyCommissions(){
-
-    /*
-       This supports a Firestore collection:
-
-       referralCommissions
-
-       Each document can contain:
-
-       ownerUid
-       ownerPhone
-       buyerUid
-       buyerPhone
-       level
-       commission
-       purchaseAmount
-       status
-       date
-
-       If you have not created commission
-       records yet, the page simply shows ₱0.00.
-    */
-
-
-    try{
-
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "referralCommissions"
-                )
-            );
-
-
-        myCommissions = [];
-
-
-        snapshot.forEach(docSnap => {
-
-            const data =
-                docSnap.data();
-
-
-            const ownerMatchesUid =
-                data.ownerUid &&
-                data.ownerUid ===
-                currentFirebaseUser.uid;
-
-
-            const ownerMatchesPhone =
-                data.ownerPhone &&
-                normalizePhone(
-                    data.ownerPhone
-                ) ===
-                normalizePhone(
-                    myUser.phone
-                );
-
-
-            if(
-                ownerMatchesUid ||
-                ownerMatchesPhone
-            ){
-
-                myCommissions.push({
-
-                    id:docSnap.id,
-
-                    ...data
-
-                });
-
-            }
-
-        });
-
-    }
-    catch(error){
-
-        console.warn(
-            "Commission collection could not be loaded:",
-            error
-        );
-
-        myCommissions = [];
-
-    }
-
-}
-
-
-/* =====================================================
-   COMMISSION STATUS
-===================================================== */
-
-function isRejectedCommission(record){
-
-    const status =
-        String(
-            record.status ||
-            "Credited"
-        )
-        .toLowerCase()
-        .trim();
-
-
-    return (
-
-        status === "reversed" ||
-
-        status === "cancelled" ||
-
-        status === "canceled" ||
-
-        status === "rejected"
-
-    );
-
-}
-
-
-/* =====================================================
-   GET MEMBER COMMISSION
-===================================================== */
-
-function getMemberCommission(
-    member,
-    level
-){
-
-    let total = 0;
-
-
-    myCommissions.forEach(record => {
-
-        if(
-            isRejectedCommission(record)
-        ){
-            return;
-        }
-
-
-        const recordLevel =
-            String(
-                record.level || ""
-            )
-            .toUpperCase();
-
-
-        if(recordLevel !== level){
-            return;
-        }
-
-
-        const buyerUid =
-            record.buyerUid &&
-            record.buyerUid ===
-            member.uid;
-
-
-        const buyerPhone =
-            record.buyerPhone &&
-            normalizePhone(
-                record.buyerPhone
-            ) ===
-            normalizePhone(
-                member.phone
-            );
-
-
-        if(
-            buyerUid ||
-            buyerPhone
-        ){
-
-            total +=
-                Number(
-                    record.commission
-                ) || 0;
-
-        }
-
-    });
-
-
-    return total;
-
-}
-
-
-/* =====================================================
-   TOTAL COMMISSION
-===================================================== */
-
-function calculateTotalCommission(){
-
-    let total = 0;
-
-
-    myCommissions.forEach(record => {
-
-        if(
-            isRejectedCommission(record)
-        ){
-            return;
-        }
-
-
-        total +=
-            Number(
-                record.commission
-            ) || 0;
-
-    });
-
-
-    return total;
-
-}
-
-
-/* =====================================================
-   MONEY
-===================================================== */
-
-function money(value){
-
-    return "₱" +
-
-        (
-            Number(value) || 0
-        )
-        .toLocaleString(
-            "en-PH",
-            {
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            }
-        );
-
-}
-
-
-/* =====================================================
-   FIRESTORE DATE
-===================================================== */
-
-function getDateValue(value){
-
-    if(!value){
-        return null;
-    }
-
-
-    /*
-       Firebase Timestamp
-    */
-
-    if(
-        typeof value.toDate ===
-        "function"
-    ){
-
-        return value.toDate();
-
-    }
-
-
-    /*
-       JavaScript Date
-    */
-
-    if(value instanceof Date){
-
-        return value;
-
-    }
-
-
-    /*
-       Timestamp-like object
-    */
-
-    if(
-        value.seconds !== undefined
-    ){
-
-        return new Date(
-            Number(value.seconds) * 1000
-        );
-
-    }
-
-
-    /*
-       String / number
-    */
-
-    const date =
-        new Date(value);
-
-
-    if(
-        isNaN(
-            date.getTime()
-        )
-    ){
-
-        return null;
-
-    }
-
-
-    return date;
-
-}
-
-
-/* =====================================================
-   FORMAT DATE
-===================================================== */
-
-function formatDate(value){
-
-    const date =
-        getDateValue(value);
-
-
-    if(!date){
-        return "";
-    }
-
-
-    return date.toLocaleDateString(
+    return new Intl.NumberFormat(
         "en-PH",
         {
-            year:"numeric",
-            month:"short",
-            day:"numeric"
+            style:"currency",
+            currency:"PHP",
+            minimumFractionDigits:2
         }
-    );
+    ).format(Number(amount) || 0);
 
 }
 
 
 /* =====================================================
-   GET PURCHASE DATE
+   LOADING
 ===================================================== */
 
-function getPurchaseDate(user){
+function updateLoading(title,text){
 
-    return (
+    document.getElementById("loadingTitle").textContent =
+        title;
 
-        user.purchaseDate ||
-
-        user.firstPurchaseDate ||
-
-        user.lastPurchaseDate ||
-
-        user.planPurchaseDate ||
-
-        user.investmentDate ||
-
-        user.purchasedAt ||
-
-        ""
-
-    );
-
-}
-
-
-/* =====================================================
-   GET REGISTRATION DATE
-===================================================== */
-
-function getRegistrationDate(user){
-
-    return (
-
-        user.createdAt ||
-
-        user.registeredAt ||
-
-        user.registrationDate ||
-
-        ""
-
-    );
-
-}
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHtml(value){
-
-    return String(value || "")
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =====================================================
-   DISPLAY MEMBERS
-===================================================== */
-
-function displayMembers(
-    elementId,
-    countId,
-    members,
-    level
-){
-
-    const container =
-        document.getElementById(
-            elementId
-        );
-
-
-    const count =
-        document.getElementById(
-            countId
-        );
-
-
-    count.textContent =
-        "(" +
-        members.length +
-        ")";
-
-
-    container.innerHTML = "";
-
-
-    if(
-        members.length === 0
-    ){
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                No members in this level yet.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    members.forEach(user => {
-
-        const member =
-            document.createElement(
-                "div"
-            );
-
-
-        member.className =
-            "member";
-
-
-        const phone =
-            normalizePhone(
-                user.phone
-            );
-
-
-        const cleanPhone =
-            phone.startsWith("+63")
-                ? phone
-                : "+63 " + phone;
-
-
-        const registrationDate =
-            formatDate(
-                getRegistrationDate(user)
-            );
-
-
-        const purchaseDate =
-            formatDate(
-                getPurchaseDate(user)
-            );
-
-
-        const commission =
-            getMemberCommission(
-                user,
-                level
-            );
-
-
-        member.innerHTML = `
-
-            <div class="member-row">
-
-                <span class="member-label">
-                    📱 Phone
-                </span>
-
-                <span class="member-value">
-                    ${escapeHtml(cleanPhone)}
-                </span>
-
-            </div>
-
-
-            <div class="member-row">
-
-                <span class="member-label">
-                    📅 Registered
-                </span>
-
-                <span class="member-value">
-
-                    ${
-                        registrationDate
-                        ?
-                        escapeHtml(
-                            registrationDate
-                        )
-                        :
-                        "—"
-                    }
-
-                </span>
-
-            </div>
-
-
-            <div class="member-row">
-
-                <span class="member-label">
-                    🛒 Purchase
-                </span>
-
-                <span class="member-value">
-
-                    ${
-                        purchaseDate
-                        ?
-                        escapeHtml(
-                            purchaseDate
-                        )
-                        :
-                        "No purchase yet"
-                    }
-
-                </span>
-
-            </div>
-
-
-            <div class="member-row">
-
-                <span class="member-label">
-                    🪙 Commission
-                </span>
-
-                <span class="member-value member-commission">
-
-                    ${money(commission)}
-
-                </span>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(
-            member
-        );
-
-    });
-
-}
-
-
-/* =====================================================
-   LOAD NETWORK
-===================================================== */
-
-async function loadNetwork(){
-
-    try{
-
-        await loadMyUser();
-
-
-        document.getElementById(
-            "myName"
-        ).textContent =
-            myUser.name ||
-            "SkyRent Member";
-
-
-        let referralCode =
-            normalizeReferralCode(
-                myUser.referralCode
-            );
-
-
-        /*
-           Your registration page already
-           saves referralCode.
-
-           If the account somehow does not
-           have one, we do NOT overwrite it
-           with a random code here.
-        */
-
-        if(!referralCode){
-
-            referralCode =
-                "NOT-SET";
-
-        }
-
-
-        document.getElementById(
-            "myReferralCode"
-        ).textContent =
-            referralCode;
-
-
-        /*
-           GITHUB REFERRAL LINK
-
-           index.html?ref=CODE
-        */
-
-        const base =
-            GITHUB_SITE.endsWith("/")
-                ? GITHUB_SITE
-                : GITHUB_SITE + "/";
-
-
-        const referralUrl =
-            base +
-            "index.html?ref=" +
-            encodeURIComponent(
-                referralCode
-            );
-
-
-        document.getElementById(
-            "referralLink"
-        ).value =
-            referralUrl;
-
-
-        await loadAllUsers();
-
-
-        await loadMyCommissions();
-
-
-        const network =
-            buildNetwork();
-
-
-        const totalInvites =
-            network.levelA.length +
-            network.levelB.length +
-            network.levelC.length;
-
-
-        const totalCommission =
-            calculateTotalCommission();
-
-
-        document.getElementById(
-            "totalInvites"
-        ).textContent =
-            totalInvites;
-
-
-        document.getElementById(
-            "totalCommission"
-        ).textContent =
-            money(
-                totalCommission
-            );
-
-
-        displayMembers(
-            "membersA",
-            "countA",
-            network.levelA,
-            "A"
-        );
-
-
-        displayMembers(
-            "membersB",
-            "countB",
-            network.levelB,
-            "B"
-        );
-
-
-        displayMembers(
-            "membersC",
-            "countC",
-            network.levelC,
-            "C"
-        );
-
-
-    }
-    catch(error){
-
-        console.error(
-            "Network loading error:",
-            error
-        );
-
-
-        document.getElementById(
-            "membersA"
-        ).innerHTML = `
-
-            <div class="empty">
-
-                Unable to load network data.
-
-            </div>
-
-        `;
-
-
-        document.getElementById(
-            "membersB"
-        ).innerHTML = `
-
-            <div class="empty">
-
-                Unable to load network data.
-
-            </div>
-
-        `;
-
-
-        document.getElementById(
-            "membersC"
-        ).innerHTML = `
-
-            <div class="empty">
-
-                Unable to load network data.
-
-            </div>
-
-        `;
-
-    }
+    document.getElementById("loadingText").textContent =
+        text;
 
 }
 
@@ -2932,296 +2973,612 @@ async function loadNetwork(){
    AUTH STATE
 ===================================================== */
 
-onAuthStateChanged(
-    auth,
-    async user => {
+onAuthStateChanged(auth, async (user)=>{
 
-        if(!user){
+    if(!user){
 
-            /*
-               IMPORTANT:
-
-               We are NOT using localStorage
-               to determine login status.
-
-               Firebase Auth is the source
-               of truth.
-
-               If Firebase says no user is
-               logged in, then and only then
-               redirect to index.html.
-            */
-
-            window.location.replace(
-                "index.html"
-            );
-
-            return;
-
-        }
-
-
-        currentFirebaseUser =
-            user;
-
-
-        await loadNetwork();
-
-    }
-);
-
-
-/* =====================================================
-   TOGGLE MEMBERS
-===================================================== */
-
-window.toggleMembers =
-function(
-    listId,
-    arrowId
-){
-
-    const list =
-        document.getElementById(
-            listId
+        updateLoading(
+            "Login required",
+            "Redirecting you to the SkyRent login..."
         );
 
+        setTimeout(()=>{
 
-    const arrow =
-        document.getElementById(
-            arrowId
-        );
+            window.location.href = "index.html";
 
+        },900);
 
-    list.classList.toggle(
-        "open"
-    );
-
-
-    if(
-        list.classList.contains(
-            "open"
-        )
-    ){
-
-        arrow.textContent =
-            "⌄";
-
-    }
-    else{
-
-        arrow.textContent =
-            "›";
+        return;
 
     }
 
-};
 
-
-/* =====================================================
-   COPY REFERRAL CODE
-===================================================== */
-
-window.copyReferralCode =
-function(){
-
-    const code =
-        document.getElementById(
-            "myReferralCode"
-        ).textContent;
-
-
-    copyText(
-        code,
-        "Referral code copied!"
-    );
-
-};
-
-
-/* =====================================================
-   COPY REFERRAL LINK
-===================================================== */
-
-window.copyReferral =
-function(){
-
-    const link =
-        document.getElementById(
-            "referralLink"
-        ).value;
-
-
-    copyText(
-        link,
-        "Referral link copied!"
-    );
-
-};
-
-
-/* =====================================================
-   COPY TEXT
-===================================================== */
-
-function copyText(
-    text,
-    message
-){
-
-    if(
-        navigator.clipboard &&
-        window.isSecureContext
-    ){
-
-        navigator.clipboard
-            .writeText(text)
-            .then(
-                function(){
-
-                    showToast(
-                        message
-                    );
-
-                }
-            )
-            .catch(
-                function(){
-
-                    fallbackCopy(
-                        text,
-                        message
-                    );
-
-                }
-            );
-
-    }
-    else{
-
-        fallbackCopy(
-            text,
-            message
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   FALLBACK COPY
-===================================================== */
-
-function fallbackCopy(
-    text,
-    message
-){
-
-    const textarea =
-        document.createElement(
-            "textarea"
-        );
-
-
-    textarea.value =
-        text;
-
-
-    textarea.style.position =
-        "fixed";
-
-    textarea.style.opacity =
-        "0";
-
-
-    document.body.appendChild(
-        textarea
-    );
-
-
-    textarea.focus();
-
-    textarea.select();
+    currentUser = user;
 
 
     try{
 
-        document.execCommand(
-            "copy"
+        updateLoading(
+            "Account connected",
+            "Loading your SkyRent account..."
         );
 
 
-        showToast(
-            message
+        const userRef =
+            doc(db,"users",user.uid);
+
+
+        updateLoading(
+            "Reading account",
+            "Fetching your available balance..."
         );
+
+
+        const userSnap =
+            await getDoc(userRef);
+
+
+        if(!userSnap.exists()){
+
+            throw new Error(
+                "SkyRent user account was not found."
+            );
+
+        }
+
+
+        currentUserData =
+            userSnap.data();
+
+
+        currentBalance =
+            Number(currentUserData.balance || 0);
+
+
+        document.getElementById(
+            "userBalance"
+        ).textContent =
+            peso(currentBalance);
+
+
+        updateLoading(
+            "Ready",
+            "Aircraft plans are ready."
+        );
+
+
+        setTimeout(()=>{
+
+            document.getElementById(
+                "loadingOverlay"
+            ).style.display = "none";
+
+        },300);
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        updateLoading(
+            "Unable to load account",
+            error.message || "Please try again."
+        );
+
+
+        setTimeout(()=>{
+
+            document.getElementById(
+                "loadingOverlay"
+            ).style.display = "none";
+
+
+            showStatus(
+                "Unable to load your SkyRent account.",
+                "error"
+            );
+
+        },1200);
 
     }
-    catch(error){
 
-        showToast(
-            "Please copy manually"
-        );
-
-    }
-
-
-    document.body.removeChild(
-        textarea
-    );
-
-}
+});
 
 
 /* =====================================================
-   TOAST
+   OPEN PURCHASE
 ===================================================== */
 
-function showToast(message){
+window.openCraft = function(number){
 
-    const toast =
+    if(!currentUser){
+
+        showStatus(
+            "Please login first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const plan =
+        SKYRENT_PLANS[number];
+
+
+    if(!plan){
+
+        showStatus(
+            "Aircraft plan not found.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    selectedPlan = plan;
+
+
+    document.getElementById(
+        "modalPlanName"
+    ).textContent =
+        plan.name;
+
+
+    document.getElementById(
+        "modalPrice"
+    ).textContent =
+        peso(plan.price);
+
+
+    document.getElementById(
+        "modalDaily"
+    ).textContent =
+        peso(plan.daily);
+
+
+    document.getElementById(
+        "modalCycle"
+    ).textContent =
+        plan.cycle + " Days";
+
+
+    document.getElementById(
+        "modalTotal"
+    ).textContent =
+        peso(plan.total);
+
+
+    document.getElementById(
+        "modalBalance"
+    ).textContent =
+        peso(currentBalance);
+
+
+    const confirmButton =
         document.getElementById(
-            "toast"
+            "confirmPurchaseButton"
         );
 
 
-    toast.textContent =
+    if(currentBalance < plan.price){
+
+        confirmButton.disabled = true;
+
+        confirmButton.textContent =
+            "Insufficient Balance";
+
+    }else{
+
+        confirmButton.disabled = false;
+
+        confirmButton.textContent =
+            "Confirm Investment";
+
+    }
+
+
+    document.getElementById(
+        "purchaseModal"
+    ).style.display = "flex";
+
+};
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+window.closePurchaseModal = function(){
+
+    document.getElementById(
+        "purchaseModal"
+    ).style.display = "none";
+
+    selectedPlan = null;
+
+};
+
+
+/* =====================================================
+   CONFIRM PURCHASE
+===================================================== */
+
+window.confirmPurchase = async function(){
+
+    if(!currentUser){
+
+        showStatus(
+            "Please login first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(!selectedPlan){
+
+        showStatus(
+            "Please select an aircraft plan.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "confirmPurchaseButton"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Processing...";
+
+
+    try{
+
+        updateLoading(
+            "Processing investment",
+            "Checking your available balance..."
+        );
+
+
+        document.getElementById(
+            "loadingOverlay"
+        ).style.display = "flex";
+
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+
+        const investmentRef =
+            doc(
+                collection(
+                    db,
+                    "investments"
+                )
+            );
+
+
+        await runTransaction(
+            db,
+            async (transaction)=>{
+
+                const userSnap =
+                    await transaction.get(
+                        userRef
+                    );
+
+
+                if(!userSnap.exists()){
+
+                    throw new Error(
+                        "User account not found."
+                    );
+
+                }
+
+
+                const userData =
+                    userSnap.data();
+
+
+                const balance =
+                    Number(
+                        userData.balance || 0
+                    );
+
+
+                if(balance < selectedPlan.price){
+
+                    throw new Error(
+                        "Insufficient balance for this investment."
+                    );
+
+                }
+
+
+                const newBalance =
+                    balance -
+                    selectedPlan.price;
+
+
+                const purchaseCount =
+                    Number(
+                        userData.purchaseCount || 0
+                    );
+
+
+                const isFirstPurchase =
+                    purchaseCount === 0;
+
+
+                transaction.update(
+                    userRef,
+                    {
+
+                        balance:newBalance,
+
+                        purchaseCount:
+                            purchaseCount + 1,
+
+                        firstPurchaseCompleted:
+                            true,
+
+                        lastPurchaseAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                transaction.set(
+                    investmentRef,
+                    {
+
+                        userId:
+                            currentUser.uid,
+
+                        userPhone:
+                            currentUserData.phone || "",
+
+                        userName:
+                            currentUserData.name || "",
+
+                        planId:
+                            selectedPlan.id,
+
+                        planName:
+                            selectedPlan.name,
+
+                        aircraftType:
+                            selectedPlan.type,
+
+                        amount:
+                            selectedPlan.price,
+
+                        dailyIncome:
+                            selectedPlan.daily,
+
+                        cycleDays:
+                            selectedPlan.cycle,
+
+                        totalReturn:
+                            selectedPlan.total,
+
+                        status:
+                            "active",
+
+                        purchaseDate:
+                            serverTimestamp(),
+
+                        startDate:
+                            serverTimestamp(),
+
+                        isFirstPurchase:
+                            isFirstPurchase,
+
+                        purchaseNumber:
+                            purchaseCount + 1,
+
+                        referralCommissionProcessed:
+                            false
+
+                    }
+
+                );
+
+            }
+        );
+
+
+        updateLoading(
+            "Investment successful",
+            "Saving your SkyRent investment..."
+        );
+
+
+        /* =============================================
+           REFRESH BALANCE
+        ============================================= */
+
+        const refreshedUser =
+            await getDoc(userRef);
+
+
+        if(refreshedUser.exists()){
+
+            currentUserData =
+                refreshedUser.data();
+
+            currentBalance =
+                Number(
+                    currentUserData.balance || 0
+                );
+
+
+            document.getElementById(
+                "userBalance"
+            ).textContent =
+                peso(currentBalance);
+
+        }
+
+
+        closePurchaseModal();
+
+
+        showStatus(
+            "Investment successful! Your aircraft is now active.",
+            "success"
+        );
+
+
+        /*
+         * IMPORTANT:
+         *
+         * Referral commission is NOT calculated
+         * directly from the browser here.
+         *
+         * The investment record contains:
+         *
+         * isFirstPurchase
+         * purchaseNumber
+         * referralCommissionProcessed
+         *
+         * These fields will allow the referral
+         * commission system to process:
+         *
+         * Level A = 25%
+         * Level B = 3%
+         * Level C = 1%
+         *
+         * after a successful purchase.
+         */
+
+
+    }catch(error){
+
+        console.error(
+            "Purchase error:",
+            error
+        );
+
+
+        showStatus(
+            error.message ||
+            "Investment failed. Please try again.",
+            "error"
+        );
+
+
+    }finally{
+
+        document.getElementById(
+            "loadingOverlay"
+        ).style.display = "none";
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "Confirm Investment";
+
+    }
+
+};
+
+
+/* =====================================================
+   STATUS MESSAGE
+===================================================== */
+
+function showStatus(message,type){
+
+    const box =
+        document.getElementById(
+            "statusMessage"
+        );
+
+
+    box.textContent =
         message;
 
 
-    toast.classList.add(
-        "show"
-    );
+    box.className =
+        "status-message " +
+        (
+            type === "success"
+            ? "status-success"
+            : "status-error"
+        );
 
 
-    setTimeout(
-        function(){
+    box.style.display =
+        "block";
 
-            toast.classList.remove(
-                "show"
-            );
 
-        },
-        2000
-    );
+    setTimeout(()=>{
+
+        box.style.display =
+            "none";
+
+    },4000);
 
 }
 
 
 /* =====================================================
-   REFRESH WHEN RETURNING TO PAGE
+   BACK BUTTON
 ===================================================== */
 
-document.addEventListener(
-    "visibilitychange",
-    function(){
+window.goBack = function(){
+
+    if(document.referrer){
+
+        history.back();
+
+    }else{
+
+        window.location.href =
+            "dashboard.html";
+
+    }
+
+};
+
+
+/* =====================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+===================================================== */
+
+document.getElementById(
+    "purchaseModal"
+).addEventListener(
+    "click",
+    function(event){
 
         if(
-            !document.hidden &&
-            currentFirebaseUser
+            event.target === this
         ){
 
-            loadNetwork();
+            closePurchaseModal();
 
         }
 
@@ -3229,6 +3586,9 @@ document.addEventListener(
 );
 
 </script>
+
+
+
 
 </body>
 
