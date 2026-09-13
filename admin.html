@@ -1759,7 +1759,51 @@ setInterval(
     10000
 );
 
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    // YOUR EXISTING FIREBASE CONFIG
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+// CHECK IF USER IS LOGGED IN
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+
+        // User is logged in
+        console.log("Logged in:", user.uid);
+
+        // Your existing page code goes here
+
+    } else {
+
+        // User is not logged in
+        window.location.href = "index.html";
+
+    }
+
+});
+
+</script>
+
+
+    
 </script>
 
 </body>
