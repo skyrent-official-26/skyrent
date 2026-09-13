@@ -1383,26 +1383,42 @@ window.addEventListener("DOMContentLoaded", function(){
 
 <script type="module">
 
-import { initializeApp } 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+/* =====================================================
+   FIREBASE
+===================================================== */
 
-import { 
-getAuth 
-} 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { 
-getFirestore 
-} 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
-  authDomain: "skyrent-ea30c.firebaseapp.com",
-  projectId: "skyrent-ea30c",
-  storageBucket: "skyrent-ea30c.firebasestorage.app",
-  messagingSenderId: "572678456448",
-  appId: "1:572678456448:web:6b7132351515742dd09265"
+
+    apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain: "skyrent-ea30c.firebaseapp.com",
+
+    projectId: "skyrent-ea30c",
+
+    storageBucket: "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId: "572678456448",
+
+    appId: "1:572678456448:web:6b7132351515742dd09265"
+
 };
 
 
@@ -1413,167 +1429,233 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-import { 
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+/* =====================================================
+   CREATE UNIQUE REFERRAL CODE
+===================================================== */
 
-import {
-doc,
-setDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+function createReferralCode(uid){
 
-
-document.getElementById("loginBtn").addEventListener("click", async()=>{
-
-
-const btn = document.getElementById("loginBtn");
-
-
-const phone =
-document.querySelector("#loginForm input[type='tel']").value.trim();
-
-
-const password =
-document.getElementById("loginPassword").value;
-
-
-if(!phone || !password){
-
-alert("Please enter phone number and password.");
-
-return;
+    return "SKY" +
+        uid
+        .substring(0, 8)
+        .toUpperCase();
 
 }
 
 
+/* =====================================================
+   NORMALIZE REFERRAL CODE
+===================================================== */
 
-btn.classList.add("loading");
-btn.disabled=true;
+function normalizeReferralCode(code){
 
-btn.innerHTML=`
-<span class="spinner"></span>
-LOGGING IN...
-`;
-
-
-
-try{
-
-
-const email = phone + "@skyrent.com";
-
-
-
-const userCredential =
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-
-
-const user =
-userCredential.user;
-
-
-
-console.log(
-"Login successful",
-user.uid
-);
-
-
-
-window.location.href =
-"dashboard.html";
-
-
-
-}
-
-catch(error){
-
-
-console.error(error);
-
-
-
-btn.classList.remove("loading");
-btn.disabled=false;
-
-btn.innerHTML="✈ LOGIN";
-
-
-
-if(error.code==="auth/invalid-credential"){
-
-alert(
-"Incorrect phone number or password."
-);
-
-}
-
-else{
-
-alert(
-"Login failed. Please try again."
-);
+    return String(code || "")
+        .trim()
+        .toUpperCase();
 
 }
 
 
-}
+/* =====================================================
+   LOGIN
+===================================================== */
 
+document
+.getElementById("loginBtn")
+.addEventListener("click", async () => {
+
+    const btn =
+        document.getElementById("loginBtn");
+
+    const phone =
+        document
+        .querySelector("#loginForm input[type='tel']")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("loginPassword")
+        .value;
+
+
+    if(!phone || !password){
+
+        alert(
+            "Please enter phone number and password."
+        );
+
+        return;
+    }
+
+
+    btn.classList.add("loading");
+
+    btn.disabled = true;
+
+    btn.innerHTML = `
+        <span class="spinner"></span>
+        LOGGING IN...
+    `;
+
+
+    try{
+
+        const email =
+            phone + "@skyrent.com";
+
+
+        const userCredential =
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user =
+            userCredential.user;
+
+
+        console.log(
+            "Login successful:",
+            user.uid
+        );
+
+
+        /*
+           Firebase Authentication keeps
+           the user signed in.
+
+           We do NOT use localStorage
+           for login anymore.
+        */
+
+        window.location.href =
+            "dashboard.html";
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        btn.classList.remove("loading");
+
+        btn.disabled = false;
+
+        btn.innerHTML =
+            "✈ LOGIN";
+
+
+        if(
+            error.code ===
+            "auth/invalid-credential"
+        ){
+
+            alert(
+                "Incorrect phone number or password."
+            );
+
+        }else{
+
+            alert(
+                "Login failed. Please try again."
+            );
+
+        }
+
+    }
 
 });
 
 
+/* =====================================================
+   REGISTER
+===================================================== */
 
-document.getElementById("registerBtn").addEventListener("click", async () => {
+document
+.getElementById("registerBtn")
+.addEventListener("click", async () => {
 
-    const btn = document.getElementById("registerBtn");
+    const btn =
+        document.getElementById("registerBtn");
+
 
     const name =
-        document.getElementById("registerName").value.trim();
+        document
+        .getElementById("registerName")
+        .value
+        .trim();
+
 
     const phone =
-        document.getElementById("registerPhone").value.trim();
+        document
+        .getElementById("registerPhone")
+        .value
+        .trim();
+
 
     const password =
-        document.getElementById("registerPassword").value;
+        document
+        .getElementById("registerPassword")
+        .value;
 
-    const referral =
-        document.getElementById("referralCode").value.trim().toUpperCase();
+
+    /*
+       IMPORTANT:
+
+       This is the referral code that
+       the NEW user entered.
+
+       It is NOT their own referral code.
+    */
+
+    const referredByCode =
+        normalizeReferralCode(
+            document
+            .getElementById("referralCode")
+            .value
+        );
 
 
-    if (!name || !phone || !password) {
+    if(
+        !name ||
+        !phone ||
+        !password
+    ){
 
-        alert("Please complete all required fields.");
+        alert(
+            "Please complete all required fields."
+        );
 
         return;
-
     }
 
 
-    /* START LOADING */
+    /* =================================================
+       LOADING
+    ================================================= */
 
     btn.classList.add("loading");
-btn.disabled = true;
 
-btn.innerHTML = `
-    <span class="spinner"></span>
-    CREATING ACCOUNT...
-`;
+    btn.disabled = true;
 
-
-    try {
-
-        const email = phone + "@skyrent.com";
+    btn.innerHTML = `
+        <span class="spinner"></span>
+        CREATING ACCOUNT...
+    `;
 
 
-        /* CREATE FIREBASE ACCOUNT */
+    try{
+
+        /* =============================================
+           FIREBASE AUTH ACCOUNT
+        ============================================= */
+
+        const email =
+            phone + "@skyrent.com";
+
 
         const userCredential =
             await createUserWithEmailAndPassword(
@@ -1583,58 +1665,124 @@ btn.innerHTML = `
             );
 
 
-        const user = userCredential.user;
+        const user =
+            userCredential.user;
 
 
-        /* SAVE USER TO FIRESTORE */
+        /* =============================================
+           CREATE THIS USER'S OWN REFERRAL CODE
+        ============================================= */
+
+        const myReferralCode =
+            createReferralCode(
+                user.uid
+            );
+
+
+        /* =============================================
+           SAVE USER TO FIRESTORE
+        ============================================= */
 
         await setDoc(
-            doc(db, "users", user.uid),
+
+            doc(
+                db,
+                "users",
+                user.uid
+            ),
+
             {
+
                 name: name,
+
                 phone: "+63" + phone,
-                referralCode: referral,
+
+                /*
+                   THIS USER'S OWN CODE
+                */
+                referralCode:
+                    myReferralCode,
+
+                /*
+                   WHO REFERRED THIS USER
+                */
+                referredByCode:
+                    referredByCode,
+
+                /*
+                   Useful for network display
+                */
+                referredBy:
+                    referredByCode,
+
                 bonus: 50,
+
                 balance: 50,
-                createdAt: new Date()
+
+                totalEarnings: 50,
+
+                createdAt:
+                    serverTimestamp()
+
             }
+
         );
 
 
-        console.log("Registration complete");
+        console.log(
+            "Registration complete"
+        );
+
+        console.log(
+            "Own referral code:",
+            myReferralCode
+        );
+
+        console.log(
+            "Referred by:",
+            referredByCode || "None"
+        );
 
 
-        /* RESTORE BUTTON */
+        /* =============================================
+           RESTORE BUTTON
+        ============================================= */
 
         btn.classList.remove("loading");
 
         btn.disabled = false;
 
-        btn.innerHTML = "✈ CREATE ACCOUNT";
+        btn.innerHTML =
+            "✈ CREATE ACCOUNT";
 
 
-        /* SHOW SUCCESS */
+        /* =============================================
+           SHOW SUCCESS
+        ============================================= */
 
         showSuccessAlert();
 
 
-    }
+    }catch(error){
 
-    catch (error) {
+        console.error(
+            "Registration error:",
+            error
+        );
 
-        console.error(error);
-
-
-        /* RESTORE BUTTON */
 
         btn.classList.remove("loading");
 
         btn.disabled = false;
 
-        btn.innerHTML = "✈ CREATE ACCOUNT";
+        btn.innerHTML =
+            "✈ CREATE ACCOUNT";
 
 
-        if (error.code === "auth/email-already-in-use") {
+        if(
+            error.code ===
+            "auth/email-already-in-use"
+        ){
 
             alert(
                 "This phone number is already registered. " +
@@ -1643,7 +1791,10 @@ btn.innerHTML = `
 
         }
 
-        else if (error.code === "auth/weak-password") {
+        else if(
+            error.code ===
+            "auth/weak-password"
+        ){
 
             alert(
                 "Password is too weak. " +
@@ -1652,7 +1803,7 @@ btn.innerHTML = `
 
         }
 
-        else {
+        else{
 
             alert(
                 "Registration failed. Please try again."
@@ -1665,7 +1816,9 @@ btn.innerHTML = `
 });
 
 
-console.log("Firebase Connected");
+console.log(
+    "SkyRent Firebase Connected"
+);
 
 </script>
 
