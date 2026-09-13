@@ -775,13 +775,11 @@ import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-
 import {
     getAuth,
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
 
 import {
     getFirestore,
@@ -824,14 +822,11 @@ const firebaseConfig = {
    INITIALIZE FIREBASE
 ===================================================== */
 
-const app =
-    initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const auth =
-    getAuth(app);
+const auth = getAuth(app);
 
-const db =
-    getFirestore(app);
+const db = getFirestore(app);
 
 
 /* =====================================================
@@ -901,7 +896,7 @@ function loadDepositAmount() {
     );
 
 
-    /* CHECK IF AMOUNT EXISTS */
+    /* CHECK AMOUNT */
 
     if (!amountParam) {
 
@@ -910,6 +905,7 @@ function loadDepositAmount() {
         );
 
         return;
+
     }
 
 
@@ -919,7 +915,7 @@ function loadDepositAmount() {
         Number(amountParam);
 
 
-    /* VALIDATE AMOUNT */
+    /* VALIDATE */
 
     if (
         !Number.isFinite(amount) ||
@@ -931,6 +927,7 @@ function loadDepositAmount() {
         );
 
         return;
+
     }
 
 
@@ -943,16 +940,17 @@ function loadDepositAmount() {
         );
 
         return;
+
     }
 
 
-    /* SAVE SELECTED AMOUNT */
+    /* SAVE AMOUNT */
 
     selectedDepositAmount =
         amount;
 
 
-    /* FORMAT */
+    /* FORMAT AMOUNT */
 
     const formattedAmount =
         "₱" +
@@ -988,12 +986,6 @@ function loadDepositAmount() {
     console.log(
         "Selected deposit amount:",
         selectedDepositAmount
-    );
-
-
-    console.log(
-        "QR:",
-        qrCodes[amount]
     );
 
 }
@@ -1036,9 +1028,7 @@ function showError(message) {
 ===================================================== */
 
 onAuthStateChanged(
-
     auth,
-
     async (user) => {
 
         if (!user) {
@@ -1047,18 +1037,27 @@ onAuthStateChanged(
                 "No Firebase user."
             );
 
+
             alert(
                 "Please login first."
             );
 
+
             window.location.href =
                 "index.html";
 
+
             return;
+
         }
 
 
-        /* USER IS LOGGED IN */
+        /*
+         * USER IS LOGGED IN.
+         *
+         * IMPORTANT:
+         * We DO NOT sign the user out here.
+         */
 
         currentUser =
             user;
@@ -1077,14 +1076,12 @@ onAuthStateChanged(
 
 
         /*
-         * IMPORTANT:
-         * Load the amount from the URL.
+         * Load amount from URL.
          */
 
         loadDepositAmount();
 
     }
-
 );
 
 
@@ -1095,19 +1092,16 @@ onAuthStateChanged(
 window.submitDeposit =
 async function() {
 
-
     /* CHECK LOGIN */
 
     if (!currentUser) {
 
         alert(
-            "Please login first."
+            "Your login session is not ready. Please wait a moment and try again."
         );
 
-        window.location.href =
-            "index.html";
-
         return;
+
     }
 
 
@@ -1126,6 +1120,7 @@ async function() {
             "deposit.html";
 
         return;
+
     }
 
 
@@ -1147,7 +1142,6 @@ async function() {
 
 
     try {
-
 
         /* =========================================
            GET USER PROFILE
@@ -1201,7 +1195,8 @@ async function() {
            CREATE PENDING DEPOSIT
            
            IMPORTANT:
-           This DOES NOT change balance.
+           
+           THIS DOES NOT CHANGE BALANCE.
         ========================================= */
 
         const depositData = {
@@ -1257,32 +1252,28 @@ async function() {
         /* =========================================
            SAVE TO FIRESTORE
            
-           TOP LEVEL COLLECTION:
+           COLLECTION:
            deposits
         ========================================= */
 
-        const depositsRef =
-            collection(
-                db,
-                "deposits"
-            );
-
-
         const depositRef =
             await addDoc(
-                depositsRef,
+                collection(
+                    db,
+                    "deposits"
+                ),
                 depositData
             );
 
 
         console.log(
-            "Deposit created:",
+            "Deposit successfully created:",
             depositRef.id
         );
 
 
         /* =========================================
-           SUCCESS MESSAGE
+           SHOW SUCCESS
         ========================================= */
 
         const successBox =
@@ -1296,13 +1287,19 @@ async function() {
 
 
         successBox.innerHTML =
+
             "Deposit submitted successfully!<br><br>" +
+
             "Amount: <strong>₱" +
+
             selectedDepositAmount.toLocaleString(
                 "en-PH"
             ) +
+
             "</strong><br>" +
+
             "Status: <strong>Pending Approval</strong><br><br>" +
+
             "Your balance will be updated after the deposit is approved.";
 
 
@@ -1310,8 +1307,21 @@ async function() {
             "Deposit Submitted";
 
 
+        /*
+         * IMPORTANT:
+         *
+         * DO NOT CALL:
+         *
+         * signOut(auth)
+         *
+         * here.
+         *
+         * The Firebase user remains logged in.
+         */
+
+
         /* =========================================
-           WAIT A LITTLE THEN GO TRANSACTIONS
+           REDIRECT TO TRANSACTIONS
         ========================================= */
 
         setTimeout(
@@ -1321,7 +1331,7 @@ async function() {
                     "transactions.html";
 
             },
-            1800
+            1200
         );
 
     }
@@ -1330,7 +1340,7 @@ async function() {
     catch (error) {
 
         console.error(
-            "Deposit error:",
+            "Deposit submission error:",
             error
         );
 
@@ -1345,7 +1355,7 @@ async function() {
 
         alert(
             "Payment submission failed.\n\n" +
-            "Please try again."
+            "Please check your internet connection and try again."
         );
 
     }
@@ -1411,6 +1421,11 @@ async function() {
 
     try {
 
+        /*
+         * This is the ONLY place
+         * where the user is signed out.
+         */
+
         await signOut(
             auth
         );
@@ -1420,6 +1435,7 @@ async function() {
             "index.html";
 
     }
+
 
     catch (error) {
 
@@ -1446,7 +1462,6 @@ console.log(
 );
 
 </script>
-
 
 </body>
 
