@@ -1,7 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,32 +11,31 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        
+
         /* OR DIVIDER */
 
-.or-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 10px 0 20px;
-    color: #888;
-    font-size: 13px;
-    font-weight: bold;
-}
+        .or-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 10px 0 20px;
+            color: #888;
+            font-size: 13px;
+            font-weight: bold;
+        }
 
-.or-divider::before,
-.or-divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #dce3eb;
-}
+        .or-divider::before,
+        .or-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #dce3eb;
+        }
 
-.or-divider span {
-    padding: 0 8px;
-}
-        
-        
+        .or-divider span {
+            padding: 0 8px;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -45,7 +45,7 @@
 
         .payment-page {
             min-height: 100vh;
-            padding-bottom: 90px;
+            padding-bottom: 95px;
         }
 
         /* TOP HEADER */
@@ -62,6 +62,7 @@
             background-position: center;
 
             color: white;
+
             padding: 25px 20px 35px;
 
             border-radius: 0 0 28px 28px;
@@ -76,13 +77,16 @@
         .back-btn {
             width: 40px;
             height: 40px;
+
             border-radius: 50%;
             border: none;
 
             background: rgba(255,255,255,0.18);
+
             color: white;
 
             font-size: 22px;
+
             cursor: pointer;
         }
 
@@ -108,7 +112,6 @@
             font-size: 28px;
         }
 
-
         /* CONTENT */
 
         .payment-container {
@@ -117,11 +120,11 @@
             padding: 18px;
         }
 
-
         /* AMOUNT CARD */
 
         .amount-card {
             background: white;
+
             border-radius: 20px;
 
             padding: 22px;
@@ -130,7 +133,8 @@
 
             position: relative;
 
-            box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+            box-shadow:
+                0 7px 25px rgba(0,0,0,0.08);
 
             text-align: center;
         }
@@ -144,11 +148,11 @@
             margin-top: 7px;
 
             font-size: 34px;
+
             font-weight: bold;
 
             color: #0879d1;
         }
-
 
         /* PAYMENT CARD */
 
@@ -161,30 +165,36 @@
 
             margin-top: 16px;
 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
         }
 
         .payment-card h2 {
             text-align: center;
+
             margin-top: 0;
             margin-bottom: 8px;
         }
 
         .payment-description {
             text-align: center;
+
             color: #777;
+
             font-size: 14px;
+
             line-height: 1.5;
 
             margin-bottom: 20px;
         }
 
-
         /* QR */
 
         .qr-container {
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
             padding: 15px;
@@ -204,7 +214,6 @@
 
             background: white;
         }
-
 
         /* INSTRUCTIONS */
 
@@ -235,7 +244,6 @@
             line-height: 1.5;
         }
 
-
         /* CONFIRM BUTTON */
 
         .confirm-btn {
@@ -264,6 +272,10 @@
             transform: scale(0.98);
         }
 
+        .confirm-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
 
         /* CANCEL BUTTON */
 
@@ -287,57 +299,6 @@
             cursor: pointer;
         }
 
-
-        /* BOTTOM NAV */
-
-        .bottom-nav {
-            position: fixed;
-
-            bottom: 0;
-            left: 0;
-            right: 0;
-
-            height: 70px;
-
-            background: white;
-
-            border-top: 1px solid #e5e9ef;
-
-            display: flex;
-
-            justify-content: space-around;
-            align-items: center;
-
-            z-index: 1000;
-        }
-
-        .nav-item {
-            background: none;
-
-            color: #777;
-
-            text-align: center;
-
-            font-size: 11px;
-
-            cursor: pointer;
-        }
-
-        .nav-item .nav-icon {
-            display: block;
-
-            font-size: 21px;
-
-            margin-bottom: 3px;
-        }
-
-        .nav-item.active {
-            color: #0879d1;
-
-            font-weight: bold;
-        }
-
-
         /* ERROR */
 
         .error-box {
@@ -360,197 +321,183 @@
             font-size: 14px;
         }
 
+        /* SUCCESS */
 
+        .success-box {
+            display: none;
 
+            background: #eaf8ef;
 
-/* =========================================
-   SKYRENT MOBILE BOTTOM NAVIGATION
-========================================= */
+            color: #18733d;
 
-.sky-bottom-nav {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+            border: 1px solid #bfe8cd;
 
-    width: 100%;
-    height: 72px;
+            border-radius: 12px;
 
-    background: #ffffff;
+            padding: 15px;
 
-    border-top: 1px solid #e7edf3;
+            text-align: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+            margin-top: 15px;
 
-    padding: 5px 6px;
+            font-size: 14px;
 
-    box-sizing: border-box;
+            line-height: 1.5;
+        }
 
-    z-index: 99999;
+        /* BOTTOM NAV */
 
-    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.08);
-}
+        .sky-bottom-nav {
+            position: fixed;
 
+            left: 0;
+            right: 0;
+            bottom: 0;
 
-/* EACH NAV BUTTON */
+            width: 100%;
 
-.sky-nav-item {
-    appearance: none;
-    -webkit-appearance: none;
+            height: 72px;
 
-    border: 0 !important;
-    outline: none;
+            background: #ffffff;
 
-    background: transparent !important;
+            border-top: 1px solid #e7edf3;
 
-    box-shadow: none !important;
+            display: flex;
 
-    flex: 1;
+            align-items: center;
 
-    height: 62px;
+            justify-content: space-around;
 
-    max-width: 100px;
+            padding: 5px 6px;
 
-    padding: 5px 2px;
+            box-sizing: border-box;
 
-    margin: 0;
+            z-index: 99999;
 
-    display: flex;
-    flex-direction: column;
+            box-shadow:
+                0 -3px 15px rgba(0, 0, 0, 0.08);
+        }
 
-    align-items: center;
-    justify-content: center;
+        .sky-nav-item {
+            appearance: none;
+            -webkit-appearance: none;
 
-    gap: 3px;
+            border: 0 !important;
 
-    color: #8b949e;
+            outline: none;
 
-    font-family: Arial, sans-serif;
+            background: transparent !important;
 
-    cursor: pointer;
+            box-shadow: none !important;
 
-    border-radius: 12px;
+            flex: 1;
 
-    transition: 0.2s ease;
-}
+            height: 62px;
 
+            max-width: 100px;
 
-/* ICON */
+            padding: 5px 2px;
 
-.sky-nav-icon {
-    width: 36px;
-    height: 30px;
+            margin: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            display: flex;
 
-    font-size: 22px;
+            flex-direction: column;
 
-    line-height: 1;
+            align-items: center;
 
-    border-radius: 10px;
+            justify-content: center;
 
-    transition: 0.2s ease;
-}
+            gap: 3px;
 
+            color: #8b949e;
 
-/* TEXT */
+            font-family: Arial, sans-serif;
 
-.sky-nav-label {
-    font-size: 10px;
+            cursor: pointer;
 
-    line-height: 1.2;
+            border-radius: 12px;
 
-    white-space: nowrap;
+            transition: 0.2s ease;
+        }
 
-    font-weight: 500;
-}
+        .sky-nav-icon {
+            width: 36px;
 
+            height: 30px;
 
-/* ACTIVE */
+            display: flex;
 
-.sky-nav-item.active {
-    color: #0879d1;
-}
+            align-items: center;
 
+            justify-content: center;
 
-/* ACTIVE ICON */
+            font-size: 22px;
 
-.sky-nav-item.active .sky-nav-icon {
-    background: #e9f5ff;
+            line-height: 1;
 
-    color: #0879d1;
-}
+            border-radius: 10px;
 
+            transition: 0.2s ease;
+        }
 
-/* TOUCH EFFECT */
+        .sky-nav-label {
+            font-size: 10px;
 
-.sky-nav-item:active {
-    transform: scale(0.94);
+            line-height: 1.2;
 
-    background: #f5f9fc !important;
-}
+            white-space: nowrap;
 
+            font-weight: 500;
+        }
 
-/* REMOVE DEFAULT FOCUS BORDER */
+        .sky-nav-item.active {
+            color: #0879d1;
+        }
 
-.sky-nav-item:focus {
-    outline: none !important;
+        .sky-nav-item.active .sky-nav-icon {
+            background: #e9f5ff;
 
-    border: none !important;
+            color: #0879d1;
+        }
 
-    box-shadow: none !important;
-}
+        .sky-nav-item:active {
+            transform: scale(0.94);
 
+            background: #f5f9fc !important;
+        }
 
-/* EXTRA SPACE SO CONTENT IS NOT HIDDEN */
+        @media (max-width: 380px) {
 
-.payment-page {
-    padding-bottom: 95px;
-}
+            .sky-bottom-nav {
+                height: 68px;
+                padding: 4px 2px;
+            }
 
+            .sky-nav-item {
+                height: 60px;
+            }
 
-/* SMALL PHONES */
+            .sky-nav-icon {
+                font-size: 20px;
 
-@media (max-width: 380px) {
+                width: 32px;
+                height: 28px;
+            }
 
-    .sky-bottom-nav {
-        height: 68px;
-        padding: 4px 2px;
-    }
-
-    .sky-nav-item {
-        height: 60px;
-    }
-
-    .sky-nav-icon {
-        font-size: 20px;
-        width: 32px;
-        height: 28px;
-    }
-
-    .sky-nav-label {
-        font-size: 9px;
-    }
-}
-
-
-
-
-
-
+            .sky-nav-label {
+                font-size: 9px;
+            }
+        }
 
     </style>
+
 </head>
 
 
 <body>
 
 <div class="payment-page">
-
 
     <!-- HEADER -->
 
@@ -576,20 +523,22 @@
 
         <div class="header-text">
 
-            <small>Secure Payment</small>
+            <small>
+                Secure Payment
+            </small>
 
-            <h1>Deposit Payment</h1>
+            <h1>
+                Deposit Payment
+            </h1>
 
         </div>
 
     </div>
 
 
-
     <!-- CONTENT -->
 
     <div class="payment-container">
-
 
         <!-- AMOUNT -->
 
@@ -609,7 +558,6 @@
         </div>
 
 
-
         <!-- PAYMENT -->
 
         <div class="payment-card">
@@ -618,63 +566,73 @@
                 Scan to Pay
             </h2>
 
+
             <p class="payment-description">
-                Scan the QR code below using your GCash/Maya
-                or supported payment application.
+
+                Scan the QR code below using your
+                GCash/Maya or supported payment application.
+
             </p>
 
 
-           <!-- QR CODE -->
+            <!-- QR CODE -->
 
-<div class="qr-container">
-    <img
-        id="qrImage"
-        class="qr"
-        src=""
-        alt="Payment QR Code"
-    >
-</div>
+            <div class="qr-container">
 
+                <img
+                    id="qrImage"
+                    class="qr"
+                    src=""
+                    alt="Payment QR Code"
+                >
 
-<!-- OR -->
-
-<div class="or-divider">
-    <span>OR</span>
-</div>
+            </div>
 
 
-<!-- PAYMENT INSTRUCTIONS -->
+            <!-- OR -->
 
-<div class="instruction-box">
+            <div class="or-divider">
 
-    <h3>
-        Payment Instructions
-    </h3>
+                <span>
+                    OR
+                </span>
 
-    <p>
-        You may also complete your payment manually.
-    </p>
+            </div>
 
-    <p>
-        1. Open your GCash/Maya application.
-    </p>
 
-    <p>
-        2. Send exactly
-        <strong id="instructionAmount">
-            ₱0
-        </strong>.
-    </p>
+            <!-- PAYMENT INSTRUCTIONS -->
 
-    <p>
-        3. Complete the payment.
-    </p>
+            <div class="instruction-box">
 
-    <p>
-        4. Click the button below after payment.
-    </p>
+                <h3>
+                    Payment Instructions
+                </h3>
 
-</div>
+                <p>
+                    You may also complete your payment manually.
+                </p>
+
+                <p>
+                    1. Open your GCash/Maya application.
+                </p>
+
+                <p>
+                    2. Send exactly
+
+                    <strong id="instructionAmount">
+                        ₱0
+                    </strong>.
+                </p>
+
+                <p>
+                    3. Complete the payment.
+                </p>
+
+                <p>
+                    4. Click the button below after payment.
+                </p>
+
+            </div>
 
 
             <!-- ERROR -->
@@ -687,9 +645,19 @@
             </div>
 
 
+            <!-- SUCCESS -->
+
+            <div
+                id="successBox"
+                class="success-box"
+            >
+            </div>
+
+
             <!-- SUBMIT -->
 
             <button
+                id="confirmDepositBtn"
                 class="confirm-btn"
                 onclick="submitDeposit()"
             >
@@ -711,333 +679,775 @@
 </div>
 
 
-
 <!-- BOTTOM NAV -->
-
-<!-- SKYRENT BOTTOM NAVIGATION -->
 
 <nav class="sky-bottom-nav">
 
-    <button class="sky-nav-item active" onclick="goHome()">
-        <span class="sky-nav-icon">⌂</span>
-        <span class="sky-nav-label">Home</span>
+    <button
+        class="sky-nav-item active"
+        onclick="goHome()"
+    >
+
+        <span class="sky-nav-icon">
+            ⌂
+        </span>
+
+        <span class="sky-nav-label">
+            Home
+        </span>
+
     </button>
 
-    <button class="sky-nav-item" onclick="goCrafts()">
-        <span class="sky-nav-icon">✈</span>
-        <span class="sky-nav-label">Crafts</span>
+
+    <button
+        class="sky-nav-item"
+        onclick="goCrafts()"
+    >
+
+        <span class="sky-nav-icon">
+            ✈
+        </span>
+
+        <span class="sky-nav-label">
+            Crafts
+        </span>
+
     </button>
 
-    <button class="sky-nav-item" onclick="goNetwork()">
-        <span class="sky-nav-icon">👥</span>
-        <span class="sky-nav-label">Network</span>
+
+    <button
+        class="sky-nav-item"
+        onclick="goNetwork()"
+    >
+
+        <span class="sky-nav-icon">
+            👥
+        </span>
+
+        <span class="sky-nav-label">
+            Network
+        </span>
+
     </button>
 
-    <button class="sky-nav-item" onclick="goEarnings()">
-        <span class="sky-nav-icon">💰</span>
-        <span class="sky-nav-label">Earnings</span>
+
+    <button
+        class="sky-nav-item"
+        onclick="goEarnings()"
+    >
+
+        <span class="sky-nav-icon">
+            💰
+        </span>
+
+        <span class="sky-nav-label">
+            Earnings
+        </span>
+
     </button>
 
-    <button class="sky-nav-item" onclick="logout()">
-        <span class="sky-nav-icon">↪</span>
-        <span class="sky-nav-label">Logout</span>
+
+    <button
+        class="sky-nav-item"
+        onclick="logout()"
+    >
+
+        <span class="sky-nav-icon">
+            ↪
+        </span>
+
+        <span class="sky-nav-label">
+            Logout
+        </span>
+
     </button>
 
 </nav>
 
-<script>
 
-/* ================================
-   LOAD SELECTED DEPOSIT
-================================ */
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
-const savedAmount =
-    localStorage.getItem("selectedDepositAmount");
+<script type="module">
 
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-if (!savedAmount) {
 
-    document.getElementById("errorBox").style.display =
-        "block";
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    document.getElementById("errorBox").innerText =
-        "Please select a deposit amount first.";
 
-} else {
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    const amount = Number(savedAmount);
 
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
 
-    /* FORMAT AMOUNT */
+const firebaseConfig = {
 
-    const formattedAmount =
-        "₱" + amount.toLocaleString();
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
 
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
 
-    document.getElementById("depositAmount").innerText =
-        formattedAmount;
+    projectId:
+        "skyrent-ea30c",
 
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
 
-    document.getElementById("instructionAmount").innerText =
-        formattedAmount;
+    messagingSenderId:
+        "572678456448",
 
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
 
+};
 
-    /* ================================
-       QR CODE ASSIGNMENT
-    ================================= */
 
-    const qrCodes = {
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
 
-        500:
-            "images/qr1.png",
+const app =
+    initializeApp(firebaseConfig);
 
-        800:
-            "images/qr2.png",
+const auth =
+    getAuth(app);
 
-        1500:
-            "images/qr3.png",
+const db =
+    getFirestore(app);
 
-        3000:
-            "images/qr4.png",
 
-        5000:
-            "images/qr5.png",
+/* =====================================================
+   VARIABLES
+===================================================== */
 
-        10000:
-            "images/qr6.png",
+let currentUser = null;
 
-        15000:
-            "images/qr7.png",
+let selectedDepositAmount = 0;
 
-        25000:
-            "images/qr8.png",
 
-        50000:
-            "images/qr9.png"
+/* =====================================================
+   QR CODE MAPPING
+===================================================== */
 
-    };
+const qrCodes = {
 
+    500:
+        "images/qr1.png",
 
-    const qrImage =
-        document.getElementById("qrImage");
+    800:
+        "images/qr2.png",
 
+    1500:
+        "images/qr3.png",
 
-    if (qrCodes[amount]) {
+    3000:
+        "images/qr4.png",
 
-        qrImage.src =
-            qrCodes[amount];
+    5000:
+        "images/qr5.png",
 
-    } else {
+    10000:
+        "images/qr6.png",
 
-        document.getElementById("errorBox").style.display =
-            "block";
+    15000:
+        "images/qr7.png",
 
-        document.getElementById("errorBox").innerText =
-            "QR code for this deposit amount was not found.";
+    25000:
+        "images/qr8.png",
 
-    }
+    50000:
+        "images/qr9.png"
 
-}
+};
 
 
+/* =====================================================
+   LOAD SELECTED DEPOSIT AMOUNT
+===================================================== */
 
-/* ================================
-   SUBMIT DEPOSIT
-================================ */
+function loadDepositAmount() {
 
-function submitDeposit() {
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
-    const savedAmount =
-        localStorage.getItem("selectedDepositAmount");
 
-    if (!savedAmount) {
-        alert("No deposit amount selected.");
-        window.location.href = "deposit.html";
-        return;
-    }
+    const amountParam =
+        params.get("amount");
 
-    const amount = Number(savedAmount);
 
-
-    /* GET LOGGED-IN USER */
-
-    const savedUser =
-        localStorage.getItem("skyrentUser");
-
-    if (!savedUser) {
-
-        alert("Please login first.");
-
-        window.location.href =
-            "index.html";
-
-        return;
-    }
-
-
-    let user;
-
-    try {
-
-        user = JSON.parse(savedUser);
-
-    } catch (error) {
-
-        alert("User information is invalid.");
-
-        window.location.href =
-            "index.html";
-
-        return;
-    }
-
-
-    if (!user.phone) {
-
-        alert("User phone number not found.");
-
-        return;
-    }
-
-
-    /* ============================
-       CREATE DEPOSIT RECORD
-    ============================ */
-
-    const deposit = {
-
-        id: "DEP-" + Date.now(),
-
-        amount: amount,
-
-        phone: user.phone,
-
-        userName: user.name || "User",
-
-        status: "Pending Approval",
-
-        date: new Date().toLocaleString()
-
-    };
-
-
-    /* ============================
-       SAVE USING LOGIN PHONE
-    ============================ */
-
-    localStorage.setItem(
-        "deposit_" + user.phone,
-        JSON.stringify(deposit)
+    console.log(
+        "Amount from URL:",
+        amountParam
     );
 
 
-    /* SAVE FOR TRANSACTION PAGE */
+    /* CHECK IF AMOUNT EXISTS */
 
-   const depositKey = "deposits_" + user.phone;
+    if (!amountParam) {
 
-let deposits = [];
+        showError(
+            "Please select a deposit amount first."
+        );
 
-const existingDeposits = localStorage.getItem(depositKey);
-
-if (existingDeposits) {
-    try {
-        deposits = JSON.parse(existingDeposits);
-
-        if (!Array.isArray(deposits)) {
-            deposits = [];
-        }
-
-    } catch (error) {
-        deposits = [];
+        return;
     }
+
+
+    /* CONVERT TO NUMBER */
+
+    const amount =
+        Number(amountParam);
+
+
+    /* VALIDATE AMOUNT */
+
+    if (
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ) {
+
+        showError(
+            "Invalid deposit amount."
+        );
+
+        return;
+    }
+
+
+    /* CHECK QR */
+
+    if (!qrCodes[amount]) {
+
+        showError(
+            "QR code for this deposit amount was not found."
+        );
+
+        return;
+    }
+
+
+    /* SAVE SELECTED AMOUNT */
+
+    selectedDepositAmount =
+        amount;
+
+
+    /* FORMAT */
+
+    const formattedAmount =
+        "₱" +
+        amount.toLocaleString(
+            "en-PH"
+        );
+
+
+    /* DISPLAY AMOUNT */
+
+    document.getElementById(
+        "depositAmount"
+    ).innerText =
+        formattedAmount;
+
+
+    /* DISPLAY INSTRUCTION AMOUNT */
+
+    document.getElementById(
+        "instructionAmount"
+    ).innerText =
+        formattedAmount;
+
+
+    /* DISPLAY QR */
+
+    document.getElementById(
+        "qrImage"
+    ).src =
+        qrCodes[amount];
+
+
+    console.log(
+        "Selected deposit amount:",
+        selectedDepositAmount
+    );
+
+
+    console.log(
+        "QR:",
+        qrCodes[amount]
+    );
+
 }
 
-deposits.push(deposit);
 
-localStorage.setItem(
-    depositKey,
-    JSON.stringify(deposits)
+/* =====================================================
+   SHOW ERROR
+===================================================== */
+
+function showError(message) {
+
+    const errorBox =
+        document.getElementById(
+            "errorBox"
+        );
+
+
+    errorBox.style.display =
+        "block";
+
+
+    errorBox.innerText =
+        message;
+
+
+    const button =
+        document.getElementById(
+            "confirmDepositBtn"
+        );
+
+
+    button.disabled =
+        true;
+
+}
+
+
+/* =====================================================
+   FIREBASE AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+
+    auth,
+
+    async (user) => {
+
+        if (!user) {
+
+            console.log(
+                "No Firebase user."
+            );
+
+            alert(
+                "Please login first."
+            );
+
+            window.location.href =
+                "index.html";
+
+            return;
+        }
+
+
+        /* USER IS LOGGED IN */
+
+        currentUser =
+            user;
+
+
+        console.log(
+            "Firebase user detected:",
+            user.uid
+        );
+
+
+        console.log(
+            "Firebase email:",
+            user.email
+        );
+
+
+        /*
+         * IMPORTANT:
+         * Load the amount from the URL.
+         */
+
+        loadDepositAmount();
+
+    }
+
 );
 
 
-    /* REMOVE SELECTED AMOUNT */
+/* =====================================================
+   SUBMIT DEPOSIT
+===================================================== */
 
-    localStorage.removeItem(
-        "selectedDepositAmount"
-    );
-
-
-    alert(
-        "Deposit submitted successfully!\n\nYour deposit is now waiting for approval."
-    );
+window.submitDeposit =
+async function() {
 
 
-    /* GO TO TRANSACTION PAGE */
+    /* CHECK LOGIN */
 
-    window.location.href =
-        "transactions.html";
-}
+    if (!currentUser) {
+
+        alert(
+            "Please login first."
+        );
+
+        window.location.href =
+            "index.html";
+
+        return;
+    }
 
 
-/* ================================
+    /* CHECK AMOUNT */
+
+    if (
+        !selectedDepositAmount ||
+        selectedDepositAmount <= 0
+    ) {
+
+        alert(
+            "No deposit amount selected."
+        );
+
+        window.location.href =
+            "deposit.html";
+
+        return;
+    }
+
+
+    /* GET BUTTON */
+
+    const button =
+        document.getElementById(
+            "confirmDepositBtn"
+        );
+
+
+    /* PREVENT DOUBLE CLICK */
+
+    button.disabled =
+        true;
+
+    button.innerText =
+        "Submitting...";
+
+
+    try {
+
+
+        /* =========================================
+           GET USER PROFILE
+        ========================================= */
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+
+        const userSnap =
+            await getDoc(
+                userRef
+            );
+
+
+        let userName =
+            currentUser.displayName ||
+            "User";
+
+
+        let phone =
+            "";
+
+
+        if (
+            userSnap.exists()
+        ) {
+
+            const userData =
+                userSnap.data();
+
+
+            userName =
+                userData.name ||
+                currentUser.displayName ||
+                "User";
+
+
+            phone =
+                userData.phone ||
+                "";
+
+        }
+
+
+        /* =========================================
+           CREATE PENDING DEPOSIT
+           
+           IMPORTANT:
+           This DOES NOT change balance.
+        ========================================= */
+
+        const depositData = {
+
+            userId:
+                currentUser.uid,
+
+            uid:
+                currentUser.uid,
+
+            name:
+                userName,
+
+            userName:
+                userName,
+
+            phone:
+                phone,
+
+            email:
+                currentUser.email ||
+                "",
+
+            amount:
+                Number(
+                    selectedDepositAmount
+                ),
+
+            status:
+                "Pending Approval",
+
+            paymentMethod:
+                "GCash/Maya",
+
+            approved:
+                false,
+
+            credited:
+                false,
+
+            createdAt:
+                serverTimestamp(),
+
+            approvedAt:
+                null,
+
+            rejectedAt:
+                null
+
+        };
+
+
+        /* =========================================
+           SAVE TO FIRESTORE
+           
+           TOP LEVEL COLLECTION:
+           deposits
+        ========================================= */
+
+        const depositsRef =
+            collection(
+                db,
+                "deposits"
+            );
+
+
+        const depositRef =
+            await addDoc(
+                depositsRef,
+                depositData
+            );
+
+
+        console.log(
+            "Deposit created:",
+            depositRef.id
+        );
+
+
+        /* =========================================
+           SUCCESS MESSAGE
+        ========================================= */
+
+        const successBox =
+            document.getElementById(
+                "successBox"
+            );
+
+
+        successBox.style.display =
+            "block";
+
+
+        successBox.innerHTML =
+            "Deposit submitted successfully!<br><br>" +
+            "Amount: <strong>₱" +
+            selectedDepositAmount.toLocaleString(
+                "en-PH"
+            ) +
+            "</strong><br>" +
+            "Status: <strong>Pending Approval</strong><br><br>" +
+            "Your balance will be updated after the deposit is approved.";
+
+
+        button.innerText =
+            "Deposit Submitted";
+
+
+        /* =========================================
+           WAIT A LITTLE THEN GO TRANSACTIONS
+        ========================================= */
+
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "transactions.html";
+
+            },
+            1800
+        );
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "Deposit error:",
+            error
+        );
+
+
+        button.disabled =
+            false;
+
+
+        button.innerText =
+            "I Have Completed Payment";
+
+
+        alert(
+            "Payment submission failed.\n\n" +
+            "Please try again."
+        );
+
+    }
+
+};
+
+
+/* =====================================================
    NAVIGATION
-================================ */
+===================================================== */
 
-function goHome() {
+window.goHome =
+function() {
 
     window.location.href =
         "dashboard.html";
 
-}
+};
 
 
-function goCrafts() {
+window.goCrafts =
+function() {
 
     window.location.href =
         "crafts.html";
 
-}
+};
 
 
-function goNetwork() {
+window.goNetwork =
+function() {
 
     window.location.href =
         "network.html";
 
-}
+};
 
 
-function goEarnings() {
+window.goEarnings =
+function() {
 
     window.location.href =
         "earnings.html";
 
-}
+};
 
 
-function goBack() {
+window.goBack =
+function() {
 
     window.location.href =
         "deposit.html";
 
-}
+};
 
 
-/* ================================
+/* =====================================================
    LOGOUT
-================================ */
+===================================================== */
 
-function logout() {
+window.logout =
+async function() {
 
-    localStorage.removeItem("username");
+    try {
 
-    window.location.href =
-        "index.html";
+        await signOut(
+            auth
+        );
 
-}
+
+        window.location.href =
+            "index.html";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Logout error:",
+            error
+        );
+
+
+        window.location.href =
+            "index.html";
+
+    }
+
+};
+
+
+/* =====================================================
+   FIREBASE CONNECTED
+===================================================== */
+
+console.log(
+    "SkyRent Deposit Payment Firebase Connected"
+);
 
 </script>
 
+
 </body>
+
 </html>
