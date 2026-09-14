@@ -1,1 +1,16 @@
 
+{
+  "name": "SkyRent",
+  "short_name": "SkyRent",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#087cff",
+  "icons": [
+    {
+      "src": "skyrent-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
