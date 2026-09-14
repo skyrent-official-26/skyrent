@@ -1664,18 +1664,16 @@ body{
 
         <div class="investment-info">
 
-            <h3 id="investmentCount">
+            
 
-                No active investment
-
-            </h3>
+           <h3 id="investmentCount">
+    View My Active Investment
+</h3>
+            
 
             <p id="investmentMessage">
-
-                Start your journey by choosing
-                a SkyRent craft.
-
-            </p>
+    View your active SkyRent investment.
+</p>
 
         </div>
 
@@ -1973,17 +1971,17 @@ body{
 
 
     <button
-    class="nav-item"
-    type="button"
-    onclick="window.location.assign('network.html')">
+        class="nav-item"
+        type="button"
+        onclick="window.location.href='network.html'">
 
-    <span class="nav-icon">
-        👥
-    </span>
+        <span class="nav-icon">
+            👥
+        </span>
 
-    Network
+        Network
 
-</button>
+    </button>
 
 
     <button
@@ -2291,7 +2289,7 @@ async function loadUserDashboard(user){
             document.getElementById(
                 "investmentCount"
             ).innerText =
-                "No active investment";
+                "My Active Investment";
 
 
             document.getElementById(
