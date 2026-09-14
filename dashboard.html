@@ -36,6 +36,66 @@ body{
 
 
 /* =====================================================
+   FULL FIRST-LOGIN LOADING SCREEN
+===================================================== */
+
+.loading-screen{
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(
+            135deg,
+            #052b78,
+            #0757c9 50%,
+            #08a3ef
+        );
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:100000;
+    color:white;
+    text-align:center;
+}
+
+.loading-logo{
+    width:175px;
+    max-width:70%;
+    height:auto;
+    object-fit:contain;
+    margin-bottom:28px;
+    filter:
+        drop-shadow(
+            0 5px 12px rgba(0,0,0,.25)
+        );
+}
+
+.loading-spinner{
+    width:42px;
+    height:42px;
+    border:4px solid rgba(255,255,255,.28);
+    border-top-color:#ffffff;
+    border-radius:50%;
+    animation:dashboardSpin .8s linear infinite;
+    margin-bottom:18px;
+}
+
+@keyframes dashboardSpin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.loading-screen p{
+    font-size:14px;
+    opacity:.9;
+    letter-spacing:.2px;
+}
+
+
+/* =====================================================
    HERO
 ===================================================== */
 
@@ -62,14 +122,11 @@ body{
 
 .hero::after{
     content:"✈";
-
     position:absolute;
     right:18px;
     bottom:25px;
-
     font-size:70px;
     color:rgba(255,255,255,.30);
-
     transform:rotate(-10deg);
 }
 
@@ -97,7 +154,6 @@ body{
 .logo-img{
     width:145px;
     height:auto;
-
     display:block;
     object-fit:contain;
 
@@ -128,7 +184,6 @@ body{
 
 .welcome h1{
     margin-top:4px;
-
     font-size:23px;
     font-weight:500;
     line-height:1.2;
@@ -139,7 +194,6 @@ body{
 
 .welcome p{
     margin-top:7px;
-
     font-size:12px;
     opacity:.92;
     line-height:1.4;
@@ -153,9 +207,7 @@ body{
 .container{
     width:92%;
     max-width:520px;
-
     margin:-45px auto 0;
-
     position:relative;
     z-index:10;
 }
@@ -239,7 +291,6 @@ body{
     z-index:2;
 
     display:flex;
-
     justify-content:space-between;
     align-items:flex-start;
 }
@@ -247,7 +298,6 @@ body{
 .card-brand{
     font-size:19px;
     font-weight:900;
-
     letter-spacing:.5px;
 }
 
@@ -258,9 +308,7 @@ body{
 .card-type{
     font-size:10px;
     font-weight:700;
-
     letter-spacing:1.5px;
-
     opacity:.8;
 }
 
@@ -338,6 +386,7 @@ body{
     font-weight:800;
 
     text-transform:uppercase;
+
     letter-spacing:.6px;
 
     white-space:nowrap;
@@ -349,6 +398,7 @@ body{
     margin-top:4px;
 
     font-size:11px;
+
     opacity:.78;
 
     letter-spacing:.5px;
@@ -370,6 +420,7 @@ body{
     font-size:10px;
 
     text-transform:uppercase;
+
     letter-spacing:1.3px;
 
     opacity:.78;
@@ -379,6 +430,7 @@ body{
     margin-top:3px;
 
     font-size:31px;
+
     line-height:1.1;
 
     font-weight:900;
@@ -453,6 +505,7 @@ body{
     z-index:2;
 
     font-size:9px;
+
     letter-spacing:2px;
 
     opacity:.35;
@@ -509,7 +562,6 @@ body{
 
 .stat-icon{
     font-size:18px;
-
     margin-bottom:5px;
 }
 
@@ -525,6 +577,7 @@ body{
     color:#0757c9;
 
     font-size:13px;
+
     font-weight:800;
 
     word-break:break-word;
@@ -988,7 +1041,6 @@ body{
     z-index:9999;
 
     backdrop-filter:blur(10px);
-
     -webkit-backdrop-filter:blur(10px);
 }
 
@@ -1083,16 +1135,13 @@ body{
 
     .quick-list-item{
         padding:11px 12px;
-
         border-radius:15px;
     }
 
     .quick-list-icon{
         width:40px;
         height:40px;
-
         border-radius:12px;
-
         font-size:19px;
     }
 
@@ -1112,6 +1161,28 @@ body{
         font-size:23px;
     }
 
+    .loading-logo{
+        width:145px;
+    }
+
+}
+
+
+/* =====================================================
+   EXTRA SMALL LOADING SCREEN
+===================================================== */
+
+@media(max-width:380px){
+
+    .loading-spinner{
+        width:38px;
+        height:38px;
+    }
+
+    .loading-screen p{
+        font-size:13px;
+    }
+
 }
 
 </style>
@@ -1120,6 +1191,26 @@ body{
 
 
 <body>
+
+
+<!-- =====================================================
+     FULL FIRST-LOGIN LOADING SCREEN
+===================================================== -->
+
+<div id="loadingScreen" class="loading-screen">
+
+    <img
+        src="skyrent-logo.png"
+        class="loading-logo"
+        alt="SkyRent">
+
+    <div class="loading-spinner"></div>
+
+    <p>
+        Loading your SkyRent account...
+    </p>
+
+</div>
 
 
 <!-- =====================================================
@@ -1173,11 +1264,15 @@ body{
     <div class="atm-card-top">
 
         <div class="card-brand">
+
             ✈ Sky<span>Rent</span>
+
         </div>
 
         <div class="card-type">
+
             VIRTUAL ACCOUNT
+
         </div>
 
     </div>
@@ -1187,7 +1282,9 @@ body{
 
 
     <div class="contactless">
+
         )))
+
     </div>
 
 
@@ -1215,7 +1312,9 @@ body{
     <div class="card-balance">
 
         <div class="card-balance-label">
+
             Available Balance
+
         </div>
 
         <div
@@ -1230,7 +1329,9 @@ body{
 
 
     <div class="card-number">
+
         SKY • RENT • 2026
+
     </div>
 
 
@@ -1657,26 +1758,19 @@ body{
 
 <script type="module">
 
-
 /* =====================================================
    FIREBASE IMPORTS
 ===================================================== */
 
 import {
     initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getAuth,
     onAuthStateChanged,
     signOut
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
     getFirestore,
@@ -1686,9 +1780,7 @@ import {
     query,
     where,
     getDocs
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 /* =====================================================
@@ -1749,6 +1841,7 @@ function formatMoney(amount){
                 maximumFractionDigits:2
             }
         );
+
 }
 
 
@@ -1843,84 +1936,31 @@ function isApprovedWithdrawal(data){
 function getTransactionAmount(data){
 
     return Number(
+
         data.amount ??
+
         data.amountValue ??
+
         data.netAmount ??
+
         0
+
     ) || 0;
 
 }
 
 
 /* =====================================================
-   SET REFRESH STATUS
-===================================================== */
-
-function setRefreshStatus(message){
-
-    const element =
-        document.getElementById(
-            "refreshStatus"
-        );
-
-    if(element){
-
-        element.innerText =
-            message || "";
-
-    }
-
-}
-
-
-/* =====================================================
-   REMOVE DATA LOADING STYLE
-===================================================== */
-
-function removeLoadingStyle(){
-
-    document
-        .querySelectorAll(".data-loading")
-        .forEach(function(element){
-
-            element.classList.remove(
-                "data-loading"
-            );
-
-        });
-
-}
-
-
-/* =====================================================
-   LOAD USER DASHBOARD
+   LOAD DASHBOARD DATA
 ===================================================== */
 
 async function loadUserDashboard(user){
 
-    /*
-       IMPORTANT:
-
-       This function runs in the background.
-
-       The dashboard is already visible.
-
-       We do NOT use a full-page loading screen.
-    */
-
-
-    setRefreshStatus(
-        "Updating your account..."
-    );
-
-
-    /* =================================================
-       USER DOCUMENT
-    ================================================= */
-
-    let userData = {};
-
     try{
+
+        /* =============================================
+           USER DOCUMENT
+        ============================================= */
 
         const userRef =
             doc(
@@ -1934,276 +1974,207 @@ async function loadUserDashboard(user){
             await getDoc(userRef);
 
 
-        if(
-            userSnapshot.exists()
-        ){
+        if(!userSnapshot.exists()){
 
-            userData =
-                userSnapshot.data();
-
-
-            /* =========================================
-               USER NAME
-            ========================================= */
-
-            const name =
-                userData.name ||
-                "SkyRent Member";
-
-
-            document
-                .getElementById(
-                    "cardUserName"
-                )
-                .innerText =
-                    name;
-
-
-            document
-                .getElementById(
-                    "welcomeUserName"
-                )
-                .innerText =
-                    name;
-
-
-            /* =========================================
-               PHONE
-            ========================================= */
-
-            const phone =
-                userData.phone ||
-                "+63 000 000 0000";
-
-
-            document
-                .getElementById(
-                    "cardUserPhone"
-                )
-                .innerText =
-                    phone;
-
-
-            /* =========================================
-               BALANCE
-            ========================================= */
-
-            const balance =
-                Number(
-                    userData.balance
-                ) || 0;
-
-
-            document
-                .getElementById(
-                    "accountBalance"
-                )
-                .innerText =
-                    formatMoney(balance);
-
-
-            /* =========================================
-               INVESTMENT
-            ========================================= */
-
-            const investmentCount =
-                Number(
-                    userData.activeInvestments
-                ) || 0;
-
-
-            if(
-                investmentCount <= 0
-            ){
-
-                document
-                    .getElementById(
-                        "investmentCount"
-                    )
-                    .innerText =
-                        "My Active Investment";
-
-
-                document
-                    .getElementById(
-                        "investmentMessage"
-                    )
-                    .innerText =
-                        "Start your journey by choosing a SkyRent craft.";
-
-            }
-            else{
-
-                document
-                    .getElementById(
-                        "investmentCount"
-                    )
-                    .innerText =
-                        investmentCount +
-                        (
-                            investmentCount === 1
-                            ? " Active Investment"
-                            : " Active Investments"
-                        );
-
-
-                document
-                    .getElementById(
-                        "investmentMessage"
-                    )
-                    .innerText =
-                        "Tap here to view your investment details.";
-
-            }
-
-        }
-        else{
-
-            console.warn(
+            console.error(
                 "User document does not exist."
             );
 
 
-            document
-                .getElementById(
-                    "accountBalance"
-                )
-                .innerText =
-                    "₱0.00";
+            document.getElementById(
+                "cardUserName"
+            ).innerText =
+                "SKYRENT MEMBER";
 
 
-            document
-                .getElementById(
-                    "investmentCount"
-                )
-                .innerText =
-                    "My Active Investment";
+            document.getElementById(
+                "welcomeUserName"
+            ).innerText =
+                "SkyRent Member";
 
 
-            document
-                .getElementById(
-                    "investmentMessage"
-                )
-                .innerText =
-                    "Start your journey by choosing a SkyRent craft.";
+            document.getElementById(
+                "cardUserPhone"
+            ).innerText =
+                "+63 000 000 0000";
+
+
+            document.getElementById(
+                "accountBalance"
+            ).innerText =
+                "₱0.00";
+
+
+            document.getElementById(
+                "accountBalance"
+            ).classList.remove(
+                "data-loading"
+            );
+
+
+            return;
 
         }
 
 
-    }
-    catch(error){
+        const userData =
+            userSnapshot.data();
 
-        console.error(
-            "User data error:",
-            error
+
+        /* =============================================
+           USER NAME
+        ============================================= */
+
+        const name =
+            userData.name ||
+            "SkyRent Member";
+
+
+        document.getElementById(
+            "cardUserName"
+        ).innerText =
+            name;
+
+
+        document.getElementById(
+            "welcomeUserName"
+        ).innerText =
+            name;
+
+
+        /* =============================================
+           PHONE
+        ============================================= */
+
+        const phone =
+            userData.phone ||
+            "+63 000 000 0000";
+
+
+        document.getElementById(
+            "cardUserPhone"
+        ).innerText =
+            phone;
+
+
+        /* =============================================
+           BALANCE
+        ============================================= */
+
+        const balance =
+            Number(
+                userData.balance
+            ) || 0;
+
+
+        document.getElementById(
+            "accountBalance"
+        ).innerText =
+            formatMoney(balance);
+
+
+        document.getElementById(
+            "accountBalance"
+        ).classList.remove(
+            "data-loading"
         );
 
 
-        /*
-           Do not freeze the page.
+        /* =============================================
+           LOAD TRANSACTIONS IN PARALLEL
+        ============================================= */
 
-           The dashboard remains usable.
-        */
+        const depositsPromise =
+            getDocs(
 
-        document
-            .getElementById(
-                "accountBalance"
-            )
-            .innerText =
-                "₱0.00";
+                query(
 
+                    collection(
+                        db,
+                        "deposits"
+                    ),
 
-        document
-            .getElementById(
-                "investmentCount"
-            )
-            .innerText =
-                "My Active Investment";
+                    where(
+                        "userId",
+                        "==",
+                        user.uid
+                    )
 
-
-        document
-            .getElementById(
-                "investmentMessage"
-            )
-            .innerText =
-                "Unable to refresh investment data.";
-
-    }
-
-
-    /* =================================================
-       FIRESTORE TRANSACTIONS
-    ================================================= */
-
-    /*
-       These are loaded AFTER the user information.
-
-       They are still fetched in parallel.
-    */
-
-
-    const depositsPromise =
-        getDocs(
-            query(
-                collection(
-                    db,
-                    "deposits"
-                ),
-                where(
-                    "userId",
-                    "==",
-                    user.uid
                 )
-            )
-        );
+
+            );
 
 
-    const earningsPromise =
-        getDocs(
-            query(
-                collection(
-                    db,
-                    "earnings"
-                ),
-                where(
-                    "userId",
-                    "==",
-                    user.uid
+        const earningsPromise =
+            getDocs(
+
+                query(
+
+                    collection(
+                        db,
+                        "earnings"
+                    ),
+
+                    where(
+                        "userId",
+                        "==",
+                        user.uid
+                    )
+
                 )
-            )
-        );
+
+            );
 
 
-    const withdrawalsPromise =
-        getDocs(
-            query(
-                collection(
-                    db,
-                    "withdrawals"
-                ),
-                where(
-                    "uid",
-                    "==",
-                    user.uid
+        const withdrawalsPromise =
+            getDocs(
+
+                query(
+
+                    collection(
+                        db,
+                        "withdrawals"
+                    ),
+
+                    where(
+                        "uid",
+                        "==",
+                        user.uid
+                    )
+
                 )
-            )
-        );
+
+            );
 
 
-    /* =================================================
-       PROCESS EACH COLLECTION INDEPENDENTLY
-    ================================================= */
+        const [
 
-    try{
+            depositsSnapshot,
 
-        const depositsSnapshot =
-            await depositsPromise;
+            earningsSnapshot,
 
+            withdrawalsSnapshot
+
+        ] = await Promise.all([
+
+            depositsPromise,
+
+            earningsPromise,
+
+            withdrawalsPromise
+
+        ]);
+
+
+        /* =============================================
+           TOTAL DEPOSITED
+        ============================================= */
 
         let totalDeposited = 0;
 
 
         depositsSnapshot.forEach(
+
             function(depositDoc){
 
                 const depositData =
@@ -2224,47 +2195,28 @@ async function loadUserDashboard(user){
                 }
 
             }
+
         );
 
 
-        document
-            .getElementById(
-                "totalDeposited"
-            )
-            .innerText =
-                formatMoney(
-                    totalDeposited
-                );
+        document.getElementById(
+            "totalDeposited"
+        ).innerText =
+            formatMoney(
+                totalDeposited
+            );
 
 
-    }
-    catch(error){
-
-        console.error(
-            "Deposits error:",
-            error
+        document.getElementById(
+            "totalDeposited"
+        ).classList.remove(
+            "data-loading"
         );
 
 
-        document
-            .getElementById(
-                "totalDeposited"
-            )
-            .innerText =
-                "₱0.00";
-
-    }
-
-
-    /* =================================================
-       EARNINGS
-    ================================================= */
-
-    try{
-
-        const earningsSnapshot =
-            await earningsPromise;
-
+        /* =============================================
+           TOTAL EARNINGS
+        ============================================= */
 
         const registrationBonus =
             Number(
@@ -2276,6 +2228,7 @@ async function loadUserDashboard(user){
 
 
         earningsSnapshot.forEach(
+
             function(earningDoc){
 
                 const earningData =
@@ -2292,6 +2245,7 @@ async function loadUserDashboard(user){
                     earningAmount;
 
             }
+
         );
 
 
@@ -2300,63 +2254,30 @@ async function loadUserDashboard(user){
             dailyEarnings;
 
 
-        document
-            .getElementById(
-                "totalEarnings"
-            )
-            .innerText =
-                formatMoney(
-                    totalEarnings
-                );
+        document.getElementById(
+            "totalEarnings"
+        ).innerText =
+            formatMoney(
+                totalEarnings
+            );
 
 
-    }
-    catch(error){
-
-        console.error(
-            "Earnings error:",
-            error
+        document.getElementById(
+            "totalEarnings"
+        ).classList.remove(
+            "data-loading"
         );
 
 
-        /*
-           If earnings cannot load,
-           keep the registration bonus
-           as the minimum displayed value.
-        */
-
-        const registrationBonus =
-            Number(
-                userData.bonus
-            ) || 0;
-
-
-        document
-            .getElementById(
-                "totalEarnings"
-            )
-            .innerText =
-                formatMoney(
-                    registrationBonus
-                );
-
-    }
-
-
-    /* =================================================
-       WITHDRAWALS
-    ================================================= */
-
-    try{
-
-        const withdrawalsSnapshot =
-            await withdrawalsPromise;
-
+        /* =============================================
+           TOTAL WITHDRAWN
+        ============================================= */
 
         let totalWithdrawn = 0;
 
 
         withdrawalsSnapshot.forEach(
+
             function(withdrawalDoc){
 
                 const withdrawalData =
@@ -2377,45 +2298,212 @@ async function loadUserDashboard(user){
                 }
 
             }
+
         );
 
 
-        document
-            .getElementById(
-                "totalWithdrawn"
-            )
-            .innerText =
-                formatMoney(
-                    totalWithdrawn
+        document.getElementById(
+            "totalWithdrawn"
+        ).innerText =
+            formatMoney(
+                totalWithdrawn
+            );
+
+
+        document.getElementById(
+            "totalWithdrawn"
+        ).classList.remove(
+            "data-loading"
+        );
+
+
+        /* =============================================
+           ACTIVE INVESTMENTS
+        ============================================= */
+
+        const investmentCount =
+            Number(
+                userData.activeInvestments
+            ) || 0;
+
+
+        if(investmentCount <= 0){
+
+            document.getElementById(
+                "investmentCount"
+            ).innerText =
+                "My Active Investment";
+
+
+            document.getElementById(
+                "investmentMessage"
+            ).innerText =
+                "Start your journey by choosing a SkyRent craft.";
+
+        }
+
+        else{
+
+            document.getElementById(
+                "investmentCount"
+            ).innerText =
+
+                investmentCount +
+
+                (
+
+                    investmentCount === 1
+
+                    ? " Active Investment"
+
+                    : " Active Investments"
+
                 );
 
 
+            document.getElementById(
+                "investmentMessage"
+            ).innerText =
+                "Tap here to view your investment details.";
+
+        }
+
+
+        /* =============================================
+           REFRESH STATUS
+        ============================================= */
+
+        const refreshStatus =
+            document.getElementById(
+                "refreshStatus"
+            );
+
+
+        if(refreshStatus){
+
+            refreshStatus.innerText =
+                "Account information updated";
+
+            setTimeout(
+
+                function(){
+
+                    refreshStatus.innerText = "";
+
+                },
+
+                2500
+
+            );
+
+        }
+
     }
+
     catch(error){
 
         console.error(
-            "Withdrawals error:",
+            "Error loading dashboard:",
             error
         );
 
 
-        document
-            .getElementById(
-                "totalWithdrawn"
-            )
-            .innerText =
-                "₱0.00";
+        /* =============================================
+           IMPORTANT
+
+           Do NOT redirect.
+
+           Do NOT logout.
+
+           Dashboard remains visible.
+        ============================================= */
+
+        const refreshStatus =
+            document.getElementById(
+                "refreshStatus"
+            );
+
+
+        if(refreshStatus){
+
+            refreshStatus.innerText =
+                "Unable to refresh some account information.";
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   HIDE FULL LOADING SCREEN
+===================================================== */
+
+function hideLoadingScreen(){
+
+    const loadingScreen =
+        document.getElementById(
+            "loadingScreen"
+        );
+
+
+    if(!loadingScreen){
+
+        return;
 
     }
 
 
-    /* =================================================
-       FINISH BACKGROUND UPDATE
-    ================================================= */
+    loadingScreen.style.opacity =
+        "0";
 
-    removeLoadingStyle();
 
-    setRefreshStatus("");
+    loadingScreen.style.transition =
+        "opacity .25s ease";
+
+
+    setTimeout(
+
+        function(){
+
+            loadingScreen.style.display =
+                "none";
+
+        },
+
+        250
+
+    );
+
+}
+
+
+/* =====================================================
+   SHOW FULL LOADING SCREEN
+===================================================== */
+
+function showLoadingScreen(){
+
+    const loadingScreen =
+        document.getElementById(
+            "loadingScreen"
+        );
+
+
+    if(!loadingScreen){
+
+        return;
+
+    }
+
+
+    loadingScreen.style.display =
+        "flex";
+
+
+    loadingScreen.style.opacity =
+        "1";
 
 }
 
@@ -2425,50 +2513,107 @@ async function loadUserDashboard(user){
 ===================================================== */
 
 onAuthStateChanged(
+
     auth,
-    function(user){
+
+    async function(user){
+
+        /* =============================================
+           NOT LOGGED IN
+        ============================================= */
 
         if(!user){
 
             /*
-               No Firebase user.
+             Remove session flag.
 
-               Send back to login.
+             This guarantees that after
+             the next successful login,
+             the full loading screen appears.
             */
+
+            sessionStorage.removeItem(
+                "skyRentDashboardReady"
+            );
+
 
             window.location.href =
                 "index.html";
+
 
             return;
 
         }
 
 
-        /*
-           IMPORTANT:
+        /* =============================================
+           CHECK DASHBOARD SESSION
+        ============================================= */
 
-           We DO NOT await this.
+        const dashboardReady =
+            sessionStorage.getItem(
+                "skyRentDashboardReady"
+            );
 
-           The dashboard is already visible.
 
-           Firebase data loads in the background.
-        */
+        /* =============================================
+           RETURNING USER
 
-        loadUserDashboard(user)
-            .catch(function(error){
+           Dashboard is already visible.
 
-                console.error(
-                    "Background dashboard error:",
-                    error
-                );
+           NO FULL LOADING SCREEN.
 
-                removeLoadingStyle();
+           Firebase refreshes in background.
+        ============================================= */
 
-                setRefreshStatus("");
+        if(
+            dashboardReady === "true"
+        ){
 
-            });
+            hideLoadingScreen();
+
+            loadUserDashboard(user);
+
+            return;
+
+        }
+
+
+        /* =============================================
+           FIRST DASHBOARD LOAD AFTER LOGIN
+
+           Keep full loading screen visible
+           while Firebase initializes and
+           dashboard data loads.
+        ============================================= */
+
+        showLoadingScreen();
+
+
+        await loadUserDashboard(user);
+
+
+        /* =============================================
+           MARK DASHBOARD AS READY
+
+           This lasts only for the current
+           browser tab/session.
+        ============================================= */
+
+        sessionStorage.setItem(
+            "skyRentDashboardReady",
+            "true"
+        );
+
+
+        /* =============================================
+           NOW REMOVE FULL LOADING SCREEN
+        ============================================= */
+
+        hideLoadingScreen();
 
     }
+
 );
 
 
@@ -2481,18 +2626,33 @@ window.logout =
 
         try{
 
+            /*
+             Remove the session flag first.
+
+             Next login will show the
+             full loading screen again.
+            */
+
+            sessionStorage.removeItem(
+                "skyRentDashboardReady"
+            );
+
+
             await signOut(auth);
+
 
             window.location.href =
                 "index.html";
 
         }
+
         catch(error){
 
             console.error(
                 "Logout error:",
                 error
             );
+
 
             alert(
                 "Unable to logout. Please try again."
@@ -2605,6 +2765,14 @@ window.withdraw =
 
     };
 
+
+/* =====================================================
+   FIREBASE CONNECTION MESSAGE
+===================================================== */
+
+console.log(
+    "SkyRent Dashboard Firebase Connected"
+);
 
 </script>
 
