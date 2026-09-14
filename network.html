@@ -31,7 +31,7 @@ body{
     background:#f4f9fd;
     color:#174b7d;
     min-height:100vh;
-    padding-bottom:75px;
+    padding-bottom:78px;
 }
 
 
@@ -46,8 +46,11 @@ body{
             #0754ae,
             #0789df
         );
+
     color:white;
-    padding:22px 18px 24px;
+
+    padding:22px 18px 25px;
+
     box-shadow:
         0 4px 15px rgba(10,80,145,.15);
 }
@@ -59,7 +62,7 @@ body{
 }
 
 .logo{
-    font-size:22px;
+    font-size:23px;
     font-weight:700;
     margin-bottom:18px;
 }
@@ -71,19 +74,23 @@ body{
 .header-title{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:9px;
+}
+
+.header-title span{
+    font-size:22px;
 }
 
 .header-title h1{
-    font-size:23px;
+    font-size:24px;
     font-weight:600;
 }
 
 .header-description{
-    margin-top:7px;
-    font-size:11px;
+    margin-top:8px;
+    font-size:13px;
     line-height:1.5;
-    color:rgba(255,255,255,.9);
+    color:rgba(255,255,255,.92);
 }
 
 
@@ -94,7 +101,7 @@ body{
 .container{
     width:94%;
     max-width:650px;
-    margin:15px auto 25px;
+    margin:16px auto 25px;
 }
 
 
@@ -105,18 +112,19 @@ body{
 .card{
     background:white;
     border:1px solid #dcecf7;
-    border-radius:14px;
-    padding:13px;
-    margin-bottom:12px;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:14px;
+
     box-shadow:
         0 3px 12px rgba(20,90,150,.07);
 }
 
 .card-title{
-    font-size:11px;
+    font-size:13px;
     font-weight:700;
     color:#174f83;
-    margin-bottom:9px;
+    margin-bottom:10px;
 }
 
 
@@ -127,12 +135,12 @@ body{
 .summary-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:8px;
+    gap:10px;
 }
 
 .summary-card{
-    border-radius:10px;
-    padding:11px;
+    border-radius:11px;
+    padding:13px;
     border:1px solid #dcecf8;
     background:#f9fcff;
 }
@@ -144,28 +152,29 @@ body{
             #0754ae,
             #087edb
         );
+
     color:white;
     border:none;
 }
 
 .summary-icon{
-    font-size:16px;
-    margin-bottom:3px;
+    font-size:19px;
+    margin-bottom:5px;
 }
 
 .summary-label{
-    font-size:8px;
+    font-size:11px;
     font-weight:600;
     color:#6d8498;
-    margin-bottom:3px;
+    margin-bottom:4px;
 }
 
 .summary-card.main .summary-label{
-    color:rgba(255,255,255,.85);
+    color:rgba(255,255,255,.88);
 }
 
 .summary-value{
-    font-size:17px;
+    font-size:20px;
     font-weight:700;
     white-space:nowrap;
 }
@@ -182,145 +191,183 @@ body{
 .referral-card{
     background:#f9fcff;
     border:1px solid #d5e9f8;
-    border-radius:11px;
-    padding:11px;
-    margin-top:9px;
+    border-radius:12px;
+    padding:13px;
+    margin-top:11px;
 }
 
 .referral-title{
-    font-size:11px;
+    font-size:14px;
     font-weight:700;
     color:#174f83;
-    margin-bottom:9px;
+    margin-bottom:12px;
 }
 
 .referral-label{
-    font-size:8px;
+    font-size:10px;
+    font-weight:600;
     color:#7189a0;
-    margin-bottom:4px;
+    margin-bottom:5px;
 }
 
 .referral-code-row{
     display:flex;
     align-items:center;
-    gap:6px;
-    margin-bottom:9px;
+    gap:7px;
+    margin-bottom:11px;
 }
 
 .referral-code{
     flex:1;
     min-width:0;
-    padding:9px;
+
+    padding:10px;
+
     background:#eaf5fd;
     border:1px solid #d1e8f7;
     border-radius:8px;
+
     color:#0757b5;
-    font-size:14px;
+
+    font-size:15px;
     font-weight:700;
+
     letter-spacing:.6px;
 }
 
 .copy-small{
-    width:38px;
-    height:38px;
+    width:40px;
+    height:40px;
+
     border:none;
     border-radius:8px;
+
     background:#dff3ff;
     color:#075fb2;
-    font-size:15px;
+
+    font-size:16px;
     cursor:pointer;
 }
 
 .link-row{
     display:flex;
-    gap:6px;
+    gap:7px;
 }
 
 .referral-link{
     flex:1;
     min-width:0;
+
     border:1px solid #d1e8f7;
     background:#eaf5fd;
+
     color:#52718c;
+
     border-radius:8px;
-    padding:9px;
-    font-size:8px;
+
+    padding:10px;
+
+    font-size:10px;
+
     outline:none;
 }
 
 .copy-link{
-    width:38px;
+    width:40px;
+
     border:none;
     border-radius:8px;
+
     background:#0757b5;
     color:white;
-    font-size:15px;
+
+    font-size:16px;
+
     cursor:pointer;
 }
 
 .copy-all{
     width:100%;
-    margin-top:7px;
-    padding:9px;
+
+    margin-top:8px;
+
+    padding:10px;
+
     border:none;
     border-radius:8px;
+
     background:
         linear-gradient(
             135deg,
             #0754ae,
             #087edb
         );
+
     color:white;
-    font-size:9px;
+
+    font-size:11px;
     font-weight:600;
+
     cursor:pointer;
 }
 
 
 /* =====================================================
-   YOU
+   YOU CARD
 ===================================================== */
 
 .you-card{
     text-align:center;
-    padding:12px;
+
+    padding:16px;
+
     background:white;
+
     border:1px solid #dcecf7;
-    border-radius:14px;
-    margin-bottom:10px;
+    border-radius:15px;
+
+    margin-bottom:14px;
+
     box-shadow:
         0 3px 12px rgba(20,90,150,.07);
 }
 
 .you-icon{
-    width:45px;
-    height:45px;
-    margin:0 auto 6px;
+    width:48px;
+    height:48px;
+
+    margin:0 auto 8px;
+
     border-radius:50%;
+
     background:
         linear-gradient(
             145deg,
             #ffdf39,
             #ffc000
         );
+
     border:2px solid white;
+
     box-shadow:
         0 0 0 2px #ffca18;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:21px;
+
+    font-size:22px;
 }
 
 .you-name{
-    font-size:13px;
+    font-size:15px;
     font-weight:700;
     color:#174f83;
 }
 
 .you-label{
-    margin-top:2px;
-    font-size:8px;
+    margin-top:3px;
+    font-size:11px;
     color:#7c91a5;
 }
 
@@ -331,85 +378,126 @@ body{
 
 .level-card{
     background:white;
+
     border:1px solid #dcecf7;
-    border-radius:14px;
+    border-radius:15px;
+
     overflow:hidden;
-    margin-bottom:11px;
+
+    margin-bottom:14px;
+
     box-shadow:
         0 3px 12px rgba(20,90,150,.07);
 }
 
+
+/* =====================================================
+   LEVEL HEADER
+===================================================== */
+
 .level-header{
-    padding:12px;
+    padding:14px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     color:white;
 }
 
 .level-a .level-header{
-    background:linear-gradient(135deg,#0565cc,#078bdc);
+    background:
+        linear-gradient(
+            135deg,
+            #0565cc,
+            #078bdc
+        );
 }
 
 .level-b .level-header{
-    background:linear-gradient(135deg,#174fba,#147ce0);
+    background:
+        linear-gradient(
+            135deg,
+            #174fba,
+            #147ce0
+        );
 }
 
 .level-c .level-header{
-    background:linear-gradient(135deg,#008da8,#13b9c1);
+    background:
+        linear-gradient(
+            135deg,
+            #008da8,
+            #13b9c1
+        );
 }
 
 .level-left{
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:10px;
 }
 
 .level-icon{
-    width:35px;
-    height:35px;
+    width:40px;
+    height:40px;
+
     border-radius:50%;
+
     background:rgba(255,255,255,.18);
+
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:17px;
+
+    font-size:19px;
 }
 
 .level-name{
-    font-size:14px;
+    font-size:16px;
     font-weight:700;
 }
 
 .level-stage{
-    margin-top:3px;
+    margin-top:4px;
+
     display:inline-block;
-    padding:3px 7px;
+
+    padding:4px 8px;
+
     border-radius:10px;
+
     background:rgba(255,255,255,.18);
-    font-size:6px;
+
+    font-size:9px;
     font-weight:700;
+
     letter-spacing:.3px;
 }
 
 .level-rate{
     text-align:center;
-    min-width:58px;
-    padding:7px 6px;
-    border-radius:15px;
+
+    min-width:66px;
+
+    padding:8px 7px;
+
+    border-radius:16px;
+
     background:rgba(255,255,255,.15);
+
     border:1px solid rgba(255,255,255,.55);
 }
 
 .rate-number{
-    font-size:18px;
+    font-size:20px;
     font-weight:800;
     line-height:1;
 }
 
 .rate-label{
-    margin-top:2px;
-    font-size:6px;
+    margin-top:3px;
+    font-size:8px;
 }
 
 
@@ -418,21 +506,27 @@ body{
 ===================================================== */
 
 .members-bar{
-    min-height:39px;
-    padding:7px 10px;
+    min-height:48px;
+
+    padding:10px 13px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     cursor:pointer;
+
     background:#fff;
 }
 
 .members-left{
     display:flex;
     align-items:center;
-    gap:5px;
-    font-size:9px;
+    gap:7px;
+
+    font-size:12px;
     font-weight:600;
+
     color:#174f83;
 }
 
@@ -441,8 +535,10 @@ body{
 }
 
 .member-arrow{
-    font-size:16px;
+    font-size:20px;
     color:#1261ac;
+
+    transition:.2s;
 }
 
 
@@ -452,8 +548,11 @@ body{
 
 .member-list{
     display:none;
-    padding:7px;
+
+    padding:9px;
+
     background:#f8fcff;
+
     border-top:1px solid #e2eff8;
 }
 
@@ -461,11 +560,20 @@ body{
     display:block;
 }
 
+
+/* =====================================================
+   MEMBER
+===================================================== */
+
 .member{
-    padding:9px;
-    margin-bottom:5px;
-    border-radius:8px;
+    padding:12px;
+
+    margin-bottom:7px;
+
+    border-radius:10px;
+
     background:#edf7ff;
+
     border:1px solid #d5eafa;
 }
 
@@ -475,10 +583,13 @@ body{
 
 .member-row{
     display:flex;
+
     align-items:center;
     justify-content:space-between;
-    gap:8px;
-    padding:4px 0;
+
+    gap:12px;
+
+    padding:7px 0;
 }
 
 .member-row + .member-row{
@@ -487,28 +598,45 @@ body{
 
 .member-label{
     color:#71869a;
-    font-size:8px;
+
+    font-size:11px;
+
     white-space:nowrap;
 }
 
 .member-value{
     color:#174f83;
-    font-size:9px;
+
+    font-size:12px;
+
     font-weight:600;
+
     text-align:right;
+
+    word-break:break-word;
 }
 
 .member-commission{
     color:#16813d;
-    font-size:10px;
+
+    font-size:13px;
+
     font-weight:700;
 }
 
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
 .empty{
     text-align:center;
-    padding:10px;
+
+    padding:16px 10px;
+
     color:#8196aa;
-    font-size:8px;
+
+    font-size:11px;
 }
 
 
@@ -518,25 +646,35 @@ body{
 
 .loading-box{
     text-align:center;
-    padding:20px 10px;
+
+    padding:22px 10px;
+
     color:#6d8498;
-    font-size:9px;
+
+    font-size:11px;
 }
 
 .spinner{
-    width:22px;
-    height:22px;
-    margin:0 auto 7px;
+    width:24px;
+    height:24px;
+
+    margin:0 auto 8px;
+
     border:3px solid #dcecf7;
+
     border-top-color:#087edb;
+
     border-radius:50%;
+
     animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
+
     to{
         transform:rotate(360deg);
     }
+
 }
 
 
@@ -546,18 +684,25 @@ body{
 
 .benefits{
     background:white;
+
     border:1px solid #dcecf7;
-    border-radius:14px;
-    padding:9px 3px;
+
+    border-radius:15px;
+
+    padding:11px 4px;
+
     display:grid;
+
     grid-template-columns:1fr 1fr 1fr;
+
     box-shadow:
         0 3px 12px rgba(20,90,150,.06);
 }
 
 .benefit{
     text-align:center;
-    padding:3px;
+
+    padding:5px;
 }
 
 .benefit + .benefit{
@@ -565,20 +710,26 @@ body{
 }
 
 .benefit-icon{
-    font-size:17px;
-    margin-bottom:3px;
+    font-size:19px;
+
+    margin-bottom:4px;
 }
 
 .benefit strong{
     display:block;
-    font-size:8px;
+
+    font-size:10px;
+
     color:#073c7b;
 }
 
 .benefit span{
     display:block;
-    margin-top:2px;
-    font-size:7px;
+
+    margin-top:3px;
+
+    font-size:9px;
+
     color:#7189a0;
 }
 
@@ -589,33 +740,48 @@ body{
 
 .bottom-nav{
     position:fixed;
+
     bottom:0;
     left:0;
     right:0;
-    height:65px;
+
+    height:68px;
+
     background:rgba(255,255,255,.98);
+
     border-top:1px solid #d7eafa;
+
     box-shadow:
         0 -4px 15px rgba(0,60,110,.10);
+
     display:grid;
+
     grid-template-columns:repeat(5,1fr);
+
     z-index:2000;
 }
 
 .bottom-nav a{
     text-decoration:none;
+
     color:#607991;
+
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
     justify-content:center;
-    gap:2px;
-    font-size:7px;
+
+    gap:3px;
+
+    font-size:9px;
+
     position:relative;
 }
 
 .bottom-icon{
-    font-size:18px;
+    font-size:19px;
     line-height:1;
 }
 
@@ -626,11 +792,16 @@ body{
 
 .bottom-nav a.active:before{
     content:"";
+
     position:absolute;
+
     top:0;
-    width:35px;
+
+    width:38px;
     height:3px;
+
     border-radius:0 0 5px 5px;
+
     background:#087edb;
 }
 
@@ -641,25 +812,38 @@ body{
 
 .toast{
     position:fixed;
+
     left:50%;
-    bottom:78px;
+    bottom:82px;
+
     transform:
         translateX(-50%)
         translateY(15px);
+
     background:#073c7b;
+
     color:white;
-    padding:8px 14px;
+
+    padding:9px 15px;
+
     border-radius:20px;
-    font-size:9px;
+
+    font-size:10px;
+
     opacity:0;
+
     pointer-events:none;
+
     transition:.3s;
+
     z-index:3000;
+
     white-space:nowrap;
 }
 
 .toast.show{
     opacity:1;
+
     transform:
         translateX(-50%)
         translateY(0);
@@ -691,9 +875,11 @@ body{
     .header{
         padding-left:
             calc((100% - 850px)/2);
+
         padding-right:
             calc((100% - 850px)/2);
     }
+
 }
 
 
@@ -704,15 +890,70 @@ body{
 @media(max-width:360px){
 
     .header{
-        padding:18px 15px 20px;
+        padding:19px 15px 22px;
     }
 
     .header-title h1{
-        font-size:21px;
+        font-size:22px;
+    }
+
+    .header-description{
+        font-size:12px;
+    }
+
+    .summary-value{
+        font-size:17px;
+    }
+
+    .level-name{
+        font-size:14px;
+    }
+
+    .level-stage{
+        font-size:8px;
+    }
+
+    .rate-number{
+        font-size:18px;
+    }
+
+    .member-label{
+        font-size:10px;
+    }
+
+    .member-value{
+        font-size:11px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media(max-width:320px){
+
+    .summary-grid{
+        gap:7px;
+    }
+
+    .summary-card{
+        padding:11px 9px;
     }
 
     .summary-value{
         font-size:15px;
+    }
+
+    .level-header{
+        padding:12px 10px;
+    }
+
+    .level-icon{
+        width:36px;
+        height:36px;
+        font-size:17px;
     }
 
     .level-name{
@@ -722,6 +963,11 @@ body{
     .rate-number{
         font-size:17px;
     }
+
+    .rate-label{
+        font-size:7px;
+    }
+
 }
 
 </style>
@@ -770,7 +1016,9 @@ body{
 <main class="container">
 
 
-<!-- SUMMARY -->
+<!-- =====================================================
+     SUMMARY
+===================================================== -->
 
 <section class="card">
 
@@ -818,7 +1066,9 @@ body{
     </div>
 
 
-    <!-- REFERRAL -->
+    <!-- =================================================
+         REFERRAL
+    ================================================== -->
 
     <div class="referral-card">
 
@@ -885,7 +1135,9 @@ body{
 </section>
 
 
-<!-- YOU -->
+<!-- =====================================================
+     YOU
+===================================================== -->
 
 <section class="you-card">
 
@@ -907,7 +1159,9 @@ body{
 </section>
 
 
-<!-- LEVEL A -->
+<!-- =====================================================
+     LEVEL A
+===================================================== -->
 
 <section class="level-card level-a">
 
@@ -960,7 +1214,9 @@ body{
                 👥
             </span>
 
-            A Members
+            <span>
+                A Members
+            </span>
 
             <span
                 class="member-count"
@@ -999,7 +1255,9 @@ body{
 </section>
 
 
-<!-- LEVEL B -->
+<!-- =====================================================
+     LEVEL B
+===================================================== -->
 
 <section class="level-card level-b">
 
@@ -1052,7 +1310,9 @@ body{
                 👥
             </span>
 
-            B Members
+            <span>
+                B Members
+            </span>
 
             <span
                 class="member-count"
@@ -1091,7 +1351,9 @@ body{
 </section>
 
 
-<!-- LEVEL C -->
+<!-- =====================================================
+     LEVEL C
+===================================================== -->
 
 <section class="level-card level-c">
 
@@ -1144,7 +1406,9 @@ body{
                 👥
             </span>
 
-            C Members
+            <span>
+                C Members
+            </span>
 
             <span
                 class="member-count"
@@ -1183,7 +1447,9 @@ body{
 </section>
 
 
-<!-- BENEFITS -->
+<!-- =====================================================
+     BENEFITS
+===================================================== -->
 
 <section class="benefits">
 
@@ -1309,7 +1575,9 @@ body{
 </nav>
 
 
-<!-- TOAST -->
+<!-- =====================================================
+     TOAST
+===================================================== -->
 
 <div
     class="toast"
@@ -1325,18 +1593,20 @@ body{
 
 <script type="module">
 
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
+
 import {
     initializeApp
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
 
 import {
     getAuth,
     onAuthStateChanged
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
 
 import {
     getFirestore,
@@ -1379,10 +1649,8 @@ const firebaseConfig = {
 const app =
     initializeApp(firebaseConfig);
 
-
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
@@ -1414,7 +1682,9 @@ let myCommissions = [];
 ===================================================== */
 
 const COMMISSION_A = 0.25;
+
 const COMMISSION_B = 0.03;
+
 const COMMISSION_C = 0.01;
 
 
@@ -1566,7 +1836,9 @@ function getDirectReferrer(user){
 function buildNetwork(){
 
     const levelA = [];
+
     const levelB = [];
+
     const levelC = [];
 
 
@@ -1751,9 +2023,11 @@ function buildNetwork(){
 
 
     return {
+
         levelA,
         levelB,
         levelC
+
     };
 
 }
@@ -1767,10 +2041,12 @@ async function loadAllUsers(){
 
     const snapshot =
         await getDocs(
+
             collection(
                 db,
                 "users"
             )
+
         );
 
 
@@ -1801,11 +2077,13 @@ async function loadMyUser(){
 
     const userDoc =
         await getDoc(
+
             doc(
                 db,
                 "users",
                 currentFirebaseUser.uid
             )
+
         );
 
 
@@ -1832,52 +2110,19 @@ async function loadMyUser(){
 
 /* =====================================================
    LOAD COMMISSIONS
-=====================================================
-
-   IMPORTANT:
-
-   Crafts.html writes to:
-
-       commissions
-
-   NOT:
-
-       referralCommissions
-
-   Fields created by Crafts:
-
-       referrerId
-       fromUserId
-       fromUserName
-       fromUserPhone
-       level
-       rate
-       purchaseAmount
-       commissionAmount
-       planId
-       planName
-       investmentId
-       purchaseNumber
-       status
-       createdAt
-
 ===================================================== */
 
 async function loadMyCommissions(){
 
     myCommissions = [];
 
+
     if(!currentFirebaseUser){
         return;
     }
 
-    try{
 
-        /*
-        =====================================================
-        GET COMMISSIONS BELONGING TO THIS USER
-        =====================================================
-        */
+    try{
 
         const commissionsRef =
             collection(
@@ -1885,25 +2130,22 @@ async function loadMyCommissions(){
                 "commissions"
             );
 
-        /*
-        Current Crafts commission field:
-
-            referrerId
-
-        This query asks Firebase only for commissions
-        where the logged-in user is the referrer.
-        */
 
         const snapshot =
             await getDocs(
+
                 query(
+
                     commissionsRef,
+
                     where(
                         "referrerId",
                         "==",
                         currentFirebaseUser.uid
                     )
+
                 )
+
             );
 
 
@@ -1911,6 +2153,7 @@ async function loadMyCommissions(){
 
             const data =
                 docSnap.data();
+
 
             myCommissions.push({
 
@@ -1929,8 +2172,8 @@ async function loadMyCommissions(){
             myCommissions
         );
 
-
     }
+
     catch(error){
 
         console.error(
@@ -1938,16 +2181,12 @@ async function loadMyCommissions(){
             error
         );
 
-        /*
-        Show the real Firebase error in console
-        instead of silently pretending the commission
-        total is zero.
-        */
-
         myCommissions = [];
 
     }
+
 }
+
 
 /* =====================================================
    COMMISSION STATUS
@@ -1957,8 +2196,10 @@ function isRejectedCommission(record){
 
     const status =
         String(
+
             record.status ||
             "credited"
+
         )
         .toLowerCase()
         .trim();
@@ -1984,13 +2225,6 @@ function isRejectedCommission(record){
 ===================================================== */
 
 function getCommissionAmount(record){
-
-    /*
-       Current Crafts field:
-           commissionAmount
-
-       Fallbacks are included for compatibility.
-    */
 
     return Number(
 
@@ -2045,21 +2279,11 @@ function getMemberCommission(
         }
 
 
-        /* -----------------------------------------
-           CURRENT CRAFTS FIELD:
-           fromUserId
-        ----------------------------------------- */
-
         const buyerUid =
             record.fromUserId &&
             record.fromUserId ===
             member.uid;
 
-
-        /* -----------------------------------------
-           FALLBACK:
-           buyerUid
-        ----------------------------------------- */
 
         const oldBuyerUid =
             record.buyerUid &&
@@ -2067,31 +2291,25 @@ function getMemberCommission(
             member.uid;
 
 
-        /* -----------------------------------------
-           CURRENT CRAFTS FIELD:
-           fromUserPhone
-        ----------------------------------------- */
-
         const buyerPhone =
             record.fromUserPhone &&
+
             normalizePhone(
                 record.fromUserPhone
             ) ===
+
             normalizePhone(
                 member.phone
             );
 
 
-        /* -----------------------------------------
-           FALLBACK:
-           buyerPhone
-        ----------------------------------------- */
-
         const oldBuyerPhone =
             record.buyerPhone &&
+
             normalizePhone(
                 record.buyerPhone
             ) ===
+
             normalizePhone(
                 member.phone
             );
@@ -2181,8 +2399,6 @@ function getDateValue(value){
     }
 
 
-    /* Firebase Timestamp */
-
     if(
         typeof value.toDate ===
         "function"
@@ -2193,16 +2409,12 @@ function getDateValue(value){
     }
 
 
-    /* JavaScript Date */
-
     if(value instanceof Date){
 
         return value;
 
     }
 
-
-    /* Timestamp-like object */
 
     if(
         value.seconds !== undefined
@@ -2214,8 +2426,6 @@ function getDateValue(value){
 
     }
 
-
-    /* String / number */
 
     const date =
         new Date(value);
@@ -2248,45 +2458,23 @@ function formatDate(value){
 
 
     if(!date){
-
         return "";
-
     }
 
 
     return date.toLocaleDateString(
+
         "en-PH",
+
         {
+
             year:"numeric",
+
             month:"short",
+
             day:"numeric"
+
         }
-    );
-
-}
-
-
-/* =====================================================
-   GET PURCHASE DATE
-===================================================== */
-
-function getPurchaseDate(user){
-
-    return (
-
-        user.purchaseDate ||
-
-        user.firstPurchaseDate ||
-
-        user.lastPurchaseDate ||
-
-        user.planPurchaseDate ||
-
-        user.investmentDate ||
-
-        user.purchasedAt ||
-
-        ""
 
     );
 
@@ -2421,19 +2609,15 @@ function displayMembers(
 
         const cleanPhone =
             phone.startsWith("+63")
+
                 ? phone
+
                 : "+63 " + phone;
 
 
         const registrationDate =
             formatDate(
                 getRegistrationDate(user)
-            );
-
-
-        const purchaseDate =
-            formatDate(
-                getPurchaseDate(user)
             );
 
 
@@ -2444,20 +2628,26 @@ function displayMembers(
             );
 
 
+        /*
+           IMPORTANT:
+           Only showing:
+           - Phone
+           - Registered
+           - Commission
+
+           Purchase information is NOT displayed.
+        */
+
         member.innerHTML = `
 
             <div class="member-row">
 
                 <span class="member-label">
-
                     📱 Phone
-
                 </span>
 
                 <span class="member-value">
-
                     ${escapeHtml(cleanPhone)}
-
                 </span>
 
             </div>
@@ -2466,20 +2656,22 @@ function displayMembers(
             <div class="member-row">
 
                 <span class="member-label">
-
                     📅 Registered
-
                 </span>
 
                 <span class="member-value">
 
                     ${
                         registrationDate
+
                         ?
+
                         escapeHtml(
                             registrationDate
                         )
+
                         :
+
                         "—"
                     }
 
@@ -2488,15 +2680,10 @@ function displayMembers(
             </div>
 
 
-            
-
-
             <div class="member-row">
 
                 <span class="member-label">
-
                     🪙 Commission
-
                 </span>
 
                 <span class="member-value member-commission">
@@ -2710,12 +2897,14 @@ async function loadNetwork(){
         document.getElementById(
             "totalCommission"
         ).textContent =
+
             "Unavailable";
 
 
         document.getElementById(
             "totalInvites"
         ).textContent =
+
             "—";
 
 
@@ -2852,7 +3041,6 @@ window.copyReferralCode =
 function(){
 
     const code =
-
         document.getElementById(
             "myReferralCode"
         ).textContent;
@@ -2878,7 +3066,6 @@ window.copyReferral =
 function(){
 
     const link =
-
         document.getElementById(
             "referralLink"
         ).value;
@@ -2917,6 +3104,7 @@ function copyText(
             .writeText(text)
 
             .then(
+
                 function(){
 
                     showToast(
@@ -2924,9 +3112,11 @@ function copyText(
                     );
 
                 }
+
             )
 
             .catch(
+
                 function(){
 
                     fallbackCopy(
@@ -2935,6 +3125,7 @@ function copyText(
                     );
 
                 }
+
             );
 
     }
@@ -2972,6 +3163,7 @@ function fallbackCopy(
 
     textarea.style.position =
         "fixed";
+
 
     textarea.style.opacity =
         "0";
@@ -3038,6 +3230,7 @@ function showToast(message){
 
 
     setTimeout(
+
         function(){
 
             toast.classList.remove(
@@ -3045,37 +3238,28 @@ function showToast(message){
             );
 
         },
+
         2000
+
     );
 
 }
 
 
 /* =====================================================
-   REFRESH WHEN RETURNING TO PAGE
+   IMPORTANT
+   NO AUTOMATIC VISIBILITY REFRESH
+
+   The previous visibilitychange listener has been
+   intentionally removed.
+
+   Network data now loads when:
+   - The page is opened
+   - Firebase authentication completes
+
+   It will NOT automatically reload simply because
+   the user leaves the page and comes back to it.
 ===================================================== */
-
-document.addEventListener(
-
-    "visibilitychange",
-
-    function(){
-
-        if(
-
-            !document.hidden &&
-
-            currentFirebaseUser
-
-        ){
-
-            loadNetwork();
-
-        }
-
-    }
-
-);
 
 </script>
 
