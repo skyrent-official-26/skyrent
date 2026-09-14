@@ -36,87 +36,23 @@ body{
 
 
 /* =====================================================
-   FULL FIRST-LOGIN LOADING SCREEN
-===================================================== */
-
-.loading-screen{
-    position:fixed;
-    inset:0;
-    background:
-        linear-gradient(
-            135deg,
-            #052b78,
-            #0757c9 50%,
-            #08a3ef
-        );
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    z-index:100000;
-    color:white;
-    text-align:center;
-}
-
-.loading-logo{
-    width:175px;
-    max-width:70%;
-    height:auto;
-    object-fit:contain;
-    margin-bottom:28px;
-    filter:
-        drop-shadow(
-            0 5px 12px rgba(0,0,0,.25)
-        );
-}
-
-.loading-spinner{
-    width:42px;
-    height:42px;
-    border:4px solid rgba(255,255,255,.28);
-    border-top-color:#ffffff;
-    border-radius:50%;
-    animation:dashboardSpin .8s linear infinite;
-    margin-bottom:18px;
-}
-
-@keyframes dashboardSpin{
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-.loading-screen p{
-    font-size:14px;
-    opacity:.9;
-    letter-spacing:.2px;
-}
-
-
-/* =====================================================
    HERO
 ===================================================== */
 
 .hero{
     position:relative;
     height:245px;
-
     background-image:
         linear-gradient(
             rgba(0,65,150,.18),
             rgba(0,65,150,.38)
         ),
         url("skybg.jpg");
-
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
-
     border-bottom-left-radius:35px;
     border-bottom-right-radius:35px;
-
     overflow:hidden;
 }
 
@@ -138,11 +74,9 @@ body{
 .topbar{
     position:relative;
     z-index:5;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     padding:22px 20px;
 }
 
@@ -156,7 +90,6 @@ body{
     height:auto;
     display:block;
     object-fit:contain;
-
     filter:
         drop-shadow(
             0 2px 5px rgba(0,0,0,.20)
@@ -171,9 +104,7 @@ body{
 .welcome{
     position:relative;
     z-index:5;
-
     padding:18px 22px 28px;
-
     color:white;
 }
 
@@ -187,7 +118,6 @@ body{
     font-size:23px;
     font-weight:500;
     line-height:1.2;
-
     text-shadow:
         0 2px 6px rgba(0,0,0,.20);
 }
@@ -219,17 +149,11 @@ body{
 
 .atm-card{
     position:relative;
-
     min-height:225px;
-
     border-radius:25px;
-
     padding:22px;
-
     overflow:hidden;
-
     color:white;
-
     background:
         linear-gradient(
             135deg,
@@ -237,7 +161,6 @@ body{
             #0757c9 48%,
             #08a3ef 100%
         );
-
     box-shadow:
         0 15px 35px rgba(7,70,150,.28);
 }
@@ -249,34 +172,24 @@ body{
 
 .atm-card::before{
     content:"";
-
     position:absolute;
-
     width:220px;
     height:220px;
-
     border-radius:50%;
-
     background:
         rgba(255,255,255,.10);
-
     top:-120px;
     right:-70px;
 }
 
 .atm-card::after{
     content:"";
-
     position:absolute;
-
     width:170px;
     height:170px;
-
     border-radius:50%;
-
     background:
         rgba(255,255,255,.06);
-
     bottom:-100px;
     left:-50px;
 }
@@ -289,7 +202,6 @@ body{
 .atm-card-top{
     position:relative;
     z-index:2;
-
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
@@ -320,51 +232,38 @@ body{
 .card-chip{
     position:relative;
     z-index:2;
-
     width:48px;
     height:35px;
-
     margin-top:17px;
-
     border-radius:8px;
-
     background:
         linear-gradient(
             135deg,
             #f6d879,
             #c99b30
         );
-
     box-shadow:
         0 3px 8px rgba(0,0,0,.20);
 }
 
 .card-chip::before{
     content:"";
-
     position:absolute;
-
     left:50%;
     top:0;
     bottom:0;
-
     width:1px;
-
     background:
         rgba(80,50,0,.35);
 }
 
 .card-chip::after{
     content:"";
-
     position:absolute;
-
     top:50%;
     left:0;
     right:0;
-
     height:1px;
-
     background:
         rgba(80,50,0,.35);
 }
@@ -377,18 +276,14 @@ body{
 .card-user{
     position:relative;
     z-index:2;
-
     margin-top:13px;
 }
 
 .card-user-name{
     font-size:15px;
     font-weight:800;
-
     text-transform:uppercase;
-
     letter-spacing:.6px;
-
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -396,11 +291,8 @@ body{
 
 .card-user-phone{
     margin-top:4px;
-
     font-size:11px;
-
     opacity:.78;
-
     letter-spacing:.5px;
 }
 
@@ -412,29 +304,21 @@ body{
 .card-balance{
     position:relative;
     z-index:2;
-
     margin-top:15px;
 }
 
 .card-balance-label{
     font-size:10px;
-
     text-transform:uppercase;
-
     letter-spacing:1.3px;
-
     opacity:.78;
 }
 
 #accountBalance{
     margin-top:3px;
-
     font-size:31px;
-
     line-height:1.1;
-
     font-weight:900;
-
     letter-spacing:-.5px;
 }
 
@@ -446,33 +330,24 @@ body{
 .card-actions{
     position:relative;
     z-index:3;
-
     display:grid;
-
     grid-template-columns:1fr 1fr;
-
     gap:9px;
-
     margin-top:15px;
 }
 
 .card-action{
     border:none;
-
     padding:10px;
-
     border-radius:11px;
-
     font-size:12px;
     font-weight:800;
-
     cursor:pointer;
 }
 
 .card-deposit{
     background:white;
     color:#0757c9;
-
     box-shadow:
         0 4px 12px rgba(0,0,0,.13);
 }
@@ -480,9 +355,7 @@ body{
 .card-withdraw{
     background:
         rgba(255,255,255,.14);
-
     color:white;
-
     border:
         1px solid rgba(255,255,255,.35);
 }
@@ -498,16 +371,11 @@ body{
 
 .card-number{
     position:absolute;
-
     right:20px;
     bottom:91px;
-
     z-index:2;
-
     font-size:9px;
-
     letter-spacing:2px;
-
     opacity:.35;
 }
 
@@ -518,16 +386,11 @@ body{
 
 .contactless{
     position:absolute;
-
     right:21px;
     top:77px;
-
     z-index:2;
-
     font-size:20px;
-
     transform:rotate(90deg);
-
     opacity:.7;
 }
 
@@ -538,24 +401,17 @@ body{
 
 .stats{
     display:grid;
-
     grid-template-columns:
         repeat(3,1fr);
-
     gap:9px;
-
     margin-top:13px;
 }
 
 .stat{
     background:white;
-
     border-radius:17px;
-
     padding:14px 7px;
-
     text-align:center;
-
     box-shadow:
         0 5px 18px rgba(30,70,120,.07);
 }
@@ -567,19 +423,14 @@ body{
 
 .stat p{
     color:#858d99;
-
     font-size:10px;
-
     margin-bottom:5px;
 }
 
 .stat b{
     color:#0757c9;
-
     font-size:13px;
-
     font-weight:800;
-
     word-break:break-word;
 }
 
@@ -599,10 +450,8 @@ body{
 
 .section-header{
     display:flex;
-
     align-items:center;
     justify-content:space-between;
-
     margin:24px 3px 11px;
 }
 
@@ -624,92 +473,68 @@ body{
 
 .investment-card{
     position:relative;
-
     background:
         linear-gradient(
             135deg,
             #ffffff,
             #f5f9ff
         );
-
     border-radius:22px;
-
     padding:19px;
-
     box-shadow:
         0 7px 22px rgba(30,70,120,.08);
-
     cursor:pointer;
-
     overflow:hidden;
 }
 
 .investment-card::after{
     content:"✈";
-
     position:absolute;
-
     right:-10px;
     bottom:-20px;
-
     font-size:95px;
-
     color:
         rgba(7,87,201,.05);
-
     transform:rotate(-12deg);
 }
 
 .investment-row{
     position:relative;
     z-index:2;
-
     display:flex;
-
     align-items:center;
 }
 
 .investment-icon{
     width:57px;
     height:57px;
-
     border-radius:17px;
-
     background:#e7f0ff;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:29px;
 }
 
 .investment-info{
     flex:1;
-
     margin-left:13px;
 }
 
 .investment-info h3{
     font-size:16px;
-
     margin-bottom:5px;
 }
 
 .investment-info p{
     color:#7b8490;
-
     font-size:12px;
-
     line-height:1.4;
 }
 
 .investment-arrow{
     color:#0757c9;
-
     font-size:29px;
-
     font-weight:300;
 }
 
@@ -720,9 +545,7 @@ body{
 
 .quick-list{
     display:flex;
-
     flex-direction:column;
-
     gap:9px;
 }
 
@@ -733,24 +556,15 @@ body{
 
 .quick-list-item{
     width:100%;
-
     border:none;
-
     border-radius:17px;
-
     padding:13px 14px;
-
     display:flex;
-
     align-items:center;
-
     text-align:left;
-
     cursor:pointer;
-
     box-shadow:
         0 5px 18px rgba(30,70,120,.07);
-
     transition:
         transform .2s ease,
         box-shadow .2s ease;
@@ -877,22 +691,40 @@ body{
 
 
 /* =====================================================
+   ABOUT SKYRENT
+===================================================== */
+
+.quick-about{
+    background:
+        linear-gradient(
+            135deg,
+            #eaf7ff,
+            #d9efff
+        );
+}
+
+.quick-about .quick-list-icon{
+    background:#c5e7ff;
+    color:#0757c9;
+}
+
+.quick-about .quick-list-arrow{
+    color:#0757c9;
+}
+
+
+/* =====================================================
    QUICK ICON
 ===================================================== */
 
 .quick-list-icon{
     width:43px;
     height:43px;
-
     flex-shrink:0;
-
     border-radius:13px;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     font-size:21px;
 }
 
@@ -903,27 +735,20 @@ body{
 
 .quick-list-info{
     flex:1;
-
     min-width:0;
-
     margin-left:12px;
 }
 
 .quick-list-info h3{
     font-size:14px;
-
     font-weight:800;
-
     color:#172033;
-
     margin-bottom:3px;
 }
 
 .quick-list-info p{
     font-size:10px;
-
     color:#697386;
-
     line-height:1.3;
 }
 
@@ -934,11 +759,8 @@ body{
 
 .quick-list-arrow{
     flex-shrink:0;
-
     margin-left:8px;
-
     font-size:25px;
-
     font-weight:300;
 }
 
@@ -949,26 +771,18 @@ body{
 
 .info-banner{
     margin-top:15px;
-
     background:
         linear-gradient(
             135deg,
             #0757c9,
             #1475e8
         );
-
     border-radius:19px;
-
     padding:17px;
-
     color:white;
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     box-shadow:
         0 7px 20px rgba(7,87,201,.18);
 }
@@ -979,15 +793,12 @@ body{
 
 .info-banner h3{
     font-size:14px;
-
     margin-bottom:4px;
 }
 
 .info-banner p{
     font-size:11px;
-
     line-height:1.4;
-
     opacity:.9;
 }
 
@@ -998,15 +809,10 @@ body{
 
 .refresh-status{
     text-align:center;
-
     margin-top:9px;
-
     font-size:9px;
-
     color:#8b94a3;
-
     min-height:12px;
-
     opacity:.8;
 }
 
@@ -1017,54 +823,37 @@ body{
 
 .bottom-nav{
     position:fixed;
-
     left:0;
     right:0;
     bottom:0;
-
     height:78px;
-
     background:
         rgba(255,255,255,.97);
-
     border-top:
         1px solid #e8edf4;
-
     box-shadow:
         0 -5px 20px rgba(20,60,110,.10);
-
     display:grid;
-
     grid-template-columns:
         repeat(5,1fr);
-
     z-index:9999;
-
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
 }
 
 .nav-item{
     border:none;
-
     background:transparent;
-
     color:#89919d;
-
     cursor:pointer;
-
     font-size:10px;
-
     font-weight:bold;
-
     padding-top:9px;
 }
 
 .nav-icon{
     display:block;
-
     font-size:21px;
-
     margin-bottom:4px;
 }
 
@@ -1161,28 +950,6 @@ body{
         font-size:23px;
     }
 
-    .loading-logo{
-        width:145px;
-    }
-
-}
-
-
-/* =====================================================
-   EXTRA SMALL LOADING SCREEN
-===================================================== */
-
-@media(max-width:380px){
-
-    .loading-spinner{
-        width:38px;
-        height:38px;
-    }
-
-    .loading-screen p{
-        font-size:13px;
-    }
-
 }
 
 </style>
@@ -1191,26 +958,6 @@ body{
 
 
 <body>
-
-
-<!-- =====================================================
-     FULL FIRST-LOGIN LOADING SCREEN
-===================================================== -->
-
-<div id="loadingScreen" class="loading-screen">
-
-    <img
-        src="skyrent-logo.png"
-        class="loading-logo"
-        alt="SkyRent">
-
-    <div class="loading-spinner"></div>
-
-    <p>
-        Loading your SkyRent account...
-    </p>
-
-</div>
 
 
 <!-- =====================================================
@@ -1499,7 +1246,9 @@ body{
 <div class="quick-list">
 
 
-<!-- CRAFTS -->
+<!-- =====================================================
+     CRAFTS
+===================================================== -->
 
 <button
     class="quick-list-item quick-crafts"
@@ -1528,7 +1277,9 @@ body{
 </button>
 
 
-<!-- TRANSACTIONS -->
+<!-- =====================================================
+     TRANSACTIONS
+===================================================== -->
 
 <button
     class="quick-list-item quick-transactions"
@@ -1557,7 +1308,9 @@ body{
 </button>
 
 
-<!-- PROFILE -->
+<!-- =====================================================
+     PROFILE
+===================================================== -->
 
 <button
     class="quick-list-item quick-profile"
@@ -1586,7 +1339,9 @@ body{
 </button>
 
 
-<!-- GIFT CODES -->
+<!-- =====================================================
+     GIFT CODES
+===================================================== -->
 
 <button
     class="quick-list-item quick-gift"
@@ -1615,7 +1370,9 @@ body{
 </button>
 
 
-<!-- CUSTOMER SERVICE -->
+<!-- =====================================================
+     CUSTOMER SERVICE
+===================================================== -->
 
 <button
     class="quick-list-item quick-support"
@@ -1642,6 +1399,38 @@ body{
     </div>
 
 </button>
+
+
+<!-- =====================================================
+     ABOUT SKYRENT
+===================================================== -->
+
+<button
+    class="quick-list-item quick-about"
+    onclick="goAbout()">
+
+    <div class="quick-list-icon">
+        ℹ️
+    </div>
+
+    <div class="quick-list-info">
+
+        <h3>
+            About SkyRent
+        </h3>
+
+        <p>
+            Learn about SkyRent, how it works, and your journey.
+        </p>
+
+    </div>
+
+    <div class="quick-list-arrow">
+        ›
+    </div>
+
+</button>
+
 
 </div>
 
@@ -1759,7 +1548,7 @@ body{
 <script type="module">
 
 /* =====================================================
-   FIREBASE IMPORTS
+   FIREBASE
 ===================================================== */
 
 import {
@@ -1841,7 +1630,6 @@ function formatMoney(amount){
                 maximumFractionDigits:2
             }
         );
-
 }
 
 
@@ -1852,38 +1640,25 @@ function formatMoney(amount){
 function isApprovedDeposit(data){
 
     const status =
-        String(
-            data.status || ""
-        )
+        String(data.status || "")
         .trim()
         .toLowerCase();
-
 
     if(
         status === "rejected" ||
         status === "cancelled" ||
         status === "declined"
     ){
-
         return false;
-
     }
 
-
     return (
-
         data.approved === true ||
-
         data.credited === true ||
-
         status === "approved" ||
-
         status === "deposit successful" ||
-
         status === "successful" ||
-
         status === "completed"
-
     );
 
 }
@@ -1896,34 +1671,23 @@ function isApprovedDeposit(data){
 function isApprovedWithdrawal(data){
 
     const status =
-        String(
-            data.status || ""
-        )
+        String(data.status || "")
         .trim()
         .toLowerCase();
-
 
     if(
         status === "rejected" ||
         status === "cancelled" ||
         status === "declined"
     ){
-
         return false;
-
     }
 
-
     return (
-
         status === "approved" ||
-
         status === "withdrawal successful" ||
-
         status === "successful" ||
-
         status === "completed"
-
     );
 
 }
@@ -1938,11 +1702,8 @@ function getTransactionAmount(data){
     return Number(
 
         data.amount ??
-
         data.amountValue ??
-
         data.netAmount ??
-
         0
 
     ) || 0;
@@ -1969,7 +1730,6 @@ async function loadUserDashboard(user){
                 user.uid
             );
 
-
         const userSnapshot =
             await getDoc(userRef);
 
@@ -1980,37 +1740,25 @@ async function loadUserDashboard(user){
                 "User document does not exist."
             );
 
-
             document.getElementById(
                 "cardUserName"
             ).innerText =
                 "SKYRENT MEMBER";
-
 
             document.getElementById(
                 "welcomeUserName"
             ).innerText =
                 "SkyRent Member";
 
-
             document.getElementById(
                 "cardUserPhone"
             ).innerText =
                 "+63 000 000 0000";
 
-
             document.getElementById(
                 "accountBalance"
             ).innerText =
                 "₱0.00";
-
-
-            document.getElementById(
-                "accountBalance"
-            ).classList.remove(
-                "data-loading"
-            );
-
 
             return;
 
@@ -2062,9 +1810,7 @@ async function loadUserDashboard(user){
         ============================================= */
 
         const balance =
-            Number(
-                userData.balance
-            ) || 0;
+            Number(userData.balance) || 0;
 
 
         document.getElementById(
@@ -2086,81 +1832,62 @@ async function loadUserDashboard(user){
 
         const depositsPromise =
             getDocs(
-
                 query(
-
                     collection(
                         db,
                         "deposits"
                     ),
-
                     where(
                         "userId",
                         "==",
                         user.uid
                     )
-
                 )
-
             );
 
 
         const earningsPromise =
             getDocs(
-
                 query(
-
                     collection(
                         db,
                         "earnings"
                     ),
-
                     where(
                         "userId",
                         "==",
                         user.uid
                     )
-
                 )
-
             );
 
 
         const withdrawalsPromise =
             getDocs(
-
                 query(
-
                     collection(
                         db,
                         "withdrawals"
                     ),
-
                     where(
                         "uid",
                         "==",
                         user.uid
                     )
-
                 )
-
             );
 
 
         const [
 
             depositsSnapshot,
-
             earningsSnapshot,
-
             withdrawalsSnapshot
 
         ] = await Promise.all([
 
             depositsPromise,
-
             earningsPromise,
-
             withdrawalsPromise
 
         ]);
@@ -2174,12 +1901,10 @@ async function loadUserDashboard(user){
 
 
         depositsSnapshot.forEach(
-
             function(depositDoc){
 
                 const depositData =
                     depositDoc.data();
-
 
                 if(
                     isApprovedDeposit(
@@ -2195,7 +1920,6 @@ async function loadUserDashboard(user){
                 }
 
             }
-
         );
 
 
@@ -2219,33 +1943,26 @@ async function loadUserDashboard(user){
         ============================================= */
 
         const registrationBonus =
-            Number(
-                userData.bonus
-            ) || 0;
-
+            Number(userData.bonus) || 0;
 
         let dailyEarnings = 0;
 
 
         earningsSnapshot.forEach(
-
             function(earningDoc){
 
                 const earningData =
                     earningDoc.data();
-
 
                 const earningAmount =
                     Number(
                         earningData.amount
                     ) || 0;
 
-
                 dailyEarnings +=
                     earningAmount;
 
             }
-
         );
 
 
@@ -2277,12 +1994,10 @@ async function loadUserDashboard(user){
 
 
         withdrawalsSnapshot.forEach(
-
             function(withdrawalDoc){
 
                 const withdrawalData =
                     withdrawalDoc.data();
-
 
                 if(
                     isApprovedWithdrawal(
@@ -2298,7 +2013,6 @@ async function loadUserDashboard(user){
                 }
 
             }
-
         );
 
 
@@ -2347,17 +2061,11 @@ async function loadUserDashboard(user){
             document.getElementById(
                 "investmentCount"
             ).innerText =
-
                 investmentCount +
-
                 (
-
                     investmentCount === 1
-
                     ? " Active Investment"
-
                     : " Active Investments"
-
                 );
 
 
@@ -2369,6 +2077,13 @@ async function loadUserDashboard(user){
         }
 
 
+        document.getElementById(
+            "investmentCount"
+        ).classList.remove(
+            "data-loading"
+        );
+
+
         /* =============================================
            REFRESH STATUS
         ============================================= */
@@ -2378,22 +2093,18 @@ async function loadUserDashboard(user){
                 "refreshStatus"
             );
 
-
         if(refreshStatus){
 
             refreshStatus.innerText =
                 "Account information updated";
 
             setTimeout(
-
                 function(){
 
                     refreshStatus.innerText = "";
 
                 },
-
-                2500
-
+                2000
             );
 
         }
@@ -2407,29 +2118,15 @@ async function loadUserDashboard(user){
             error
         );
 
+        /*
+         IMPORTANT:
 
-        /* =============================================
-           IMPORTANT
+         Do NOT redirect or logout here.
 
-           Do NOT redirect.
-
-           Do NOT logout.
-
-           Dashboard remains visible.
-        ============================================= */
-
-        const refreshStatus =
-            document.getElementById(
-                "refreshStatus"
-            );
-
-
-        if(refreshStatus){
-
-            refreshStatus.innerText =
-                "Unable to refresh some account information.";
-
-        }
+         The dashboard can remain visible
+         even if a background Firebase request
+         temporarily fails.
+        */
 
     }
 
@@ -2437,7 +2134,7 @@ async function loadUserDashboard(user){
 
 
 /* =====================================================
-   HIDE FULL LOADING SCREEN
+   LOADING SCREEN CONTROL
 ===================================================== */
 
 function hideLoadingScreen(){
@@ -2447,63 +2144,24 @@ function hideLoadingScreen(){
             "loadingScreen"
         );
 
+    if(loadingScreen){
 
-    if(!loadingScreen){
+        loadingScreen.style.opacity = "0";
 
-        return;
+        loadingScreen.style.transition =
+            "opacity .25s ease";
 
-    }
+        setTimeout(
+            function(){
 
+                loadingScreen.style.display =
+                    "none";
 
-    loadingScreen.style.opacity =
-        "0";
-
-
-    loadingScreen.style.transition =
-        "opacity .25s ease";
-
-
-    setTimeout(
-
-        function(){
-
-            loadingScreen.style.display =
-                "none";
-
-        },
-
-        250
-
-    );
-
-}
-
-
-/* =====================================================
-   SHOW FULL LOADING SCREEN
-===================================================== */
-
-function showLoadingScreen(){
-
-    const loadingScreen =
-        document.getElementById(
-            "loadingScreen"
+            },
+            250
         );
 
-
-    if(!loadingScreen){
-
-        return;
-
     }
-
-
-    loadingScreen.style.display =
-        "flex";
-
-
-    loadingScreen.style.opacity =
-        "1";
 
 }
 
@@ -2524,22 +2182,8 @@ onAuthStateChanged(
 
         if(!user){
 
-            /*
-             Remove session flag.
-
-             This guarantees that after
-             the next successful login,
-             the full loading screen appears.
-            */
-
-            sessionStorage.removeItem(
-                "skyRentDashboardReady"
-            );
-
-
             window.location.href =
                 "index.html";
-
 
             return;
 
@@ -2547,7 +2191,13 @@ onAuthStateChanged(
 
 
         /* =============================================
-           CHECK DASHBOARD SESSION
+           CHECK SESSION
+
+           First visit after login:
+           FULL LOADING SCREEN
+
+           Returning from another page:
+           DASHBOARD SHOWS IMMEDIATELY
         ============================================= */
 
         const dashboardReady =
@@ -2556,61 +2206,50 @@ onAuthStateChanged(
             );
 
 
-        /* =============================================
-           RETURNING USER
+        if(dashboardReady === "true"){
 
-           Dashboard is already visible.
+            /*
+             RETURNING USER
 
-           NO FULL LOADING SCREEN.
+             Do NOT show full loading screen.
 
-           Firebase refreshes in background.
-        ============================================= */
+             Dashboard HTML is already visible.
 
-        if(
-            dashboardReady === "true"
-        ){
-
-            hideLoadingScreen();
+             Firebase refreshes everything
+             in the background.
+            */
 
             loadUserDashboard(user);
 
-            return;
-
         }
 
+        else{
 
-        /* =============================================
-           FIRST DASHBOARD LOAD AFTER LOGIN
+            /*
+             FIRST DASHBOARD LOAD
 
-           Keep full loading screen visible
-           while Firebase initializes and
-           dashboard data loads.
-        ============================================= */
+             Keep the full SkyRent loading
+             screen visible until Firebase
+             finishes loading.
+            */
 
-        showLoadingScreen();
-
-
-        await loadUserDashboard(user);
+            await loadUserDashboard(user);
 
 
-        /* =============================================
-           MARK DASHBOARD AS READY
+            /*
+             Mark this browser session as
+             already initialized.
+            */
 
-           This lasts only for the current
-           browser tab/session.
-        ============================================= */
-
-        sessionStorage.setItem(
-            "skyRentDashboardReady",
-            "true"
-        );
+            sessionStorage.setItem(
+                "skyRentDashboardReady",
+                "true"
+            );
 
 
-        /* =============================================
-           NOW REMOVE FULL LOADING SCREEN
-        ============================================= */
+            hideLoadingScreen();
 
-        hideLoadingScreen();
+        }
 
     }
 
@@ -2621,158 +2260,155 @@ onAuthStateChanged(
    LOGOUT
 ===================================================== */
 
-window.logout =
-    async function(){
+window.logout = async function(){
 
-        try{
+    try{
 
-            /*
-             Remove the session flag first.
+        /*
+         Clear the dashboard session flag
+         so the next login gets the full
+         loading screen again.
+        */
 
-             Next login will show the
-             full loading screen again.
-            */
-
-            sessionStorage.removeItem(
-                "skyRentDashboardReady"
-            );
+        sessionStorage.removeItem(
+            "skyRentDashboardReady"
+        );
 
 
-            await signOut(auth);
+        await signOut(auth);
 
 
-            window.location.href =
-                "index.html";
+        window.location.href =
+            "index.html";
 
-        }
+    }
 
-        catch(error){
+    catch(error){
 
-            console.error(
-                "Logout error:",
-                error
-            );
+        console.error(
+            "Logout error:",
+            error
+        );
 
+        alert(
+            "Unable to logout. Please try again."
+        );
 
-            alert(
-                "Unable to logout. Please try again."
-            );
+    }
 
-        }
-
-    };
+};
 
 
 /* =====================================================
    NAVIGATION
 ===================================================== */
 
-window.goHome =
-    function(){
+window.goHome = function(){
 
-        window.location.href =
-            "dashboard.html";
+    window.location.href =
+        "dashboard.html";
 
-    };
-
-
-window.goCrafts =
-    function(){
-
-        window.location.href =
-            "crafts.html";
-
-    };
+};
 
 
-window.goMyInvestment =
-    function(){
+window.goCrafts = function(){
 
-        window.location.href =
-            "my-aircraft.html";
+    window.location.href =
+        "crafts.html";
 
-    };
-
-
-window.goTransactions =
-    function(){
-
-        window.location.href =
-            "transactions.html";
-
-    };
+};
 
 
-window.goNetwork =
-    function(){
+window.goMyInvestment = function(){
 
-        window.location.href =
-            "network.html";
+    window.location.href =
+        "my-aircraft.html";
 
-    };
-
-
-window.goEarnings =
-    function(){
-
-        window.location.href =
-            "earnings.html";
-
-    };
+};
 
 
-window.goProfile =
-    function(){
+window.goTransactions = function(){
 
-        window.location.href =
-            "profile.html";
+    window.location.href =
+        "transactions.html";
 
-    };
-
-
-window.goGiftCodes =
-    function(){
-
-        window.location.href =
-            "gift-codes.html";
-
-    };
+};
 
 
-window.goCustomerService =
-    function(){
+window.goNetwork = function(){
 
-        window.location.href =
-            "customer-service.html";
+    window.location.href =
+        "network.html";
 
-    };
-
-
-window.deposit =
-    function(){
-
-        window.location.href =
-            "deposit.html";
-
-    };
+};
 
 
-window.withdraw =
-    function(){
+window.goEarnings = function(){
 
-        window.location.href =
-            "withdrawal.html";
+    window.location.href =
+        "earnings.html";
 
-    };
+};
+
+
+window.goProfile = function(){
+
+    window.location.href =
+        "profile.html";
+
+};
+
+
+window.goGiftCodes = function(){
+
+    window.location.href =
+        "gift-codes.html";
+
+};
+
+
+window.goCustomerService = function(){
+
+    window.location.href =
+        "customer-service.html";
+
+};
 
 
 /* =====================================================
-   FIREBASE CONNECTION MESSAGE
+   ABOUT SKYRENT
 ===================================================== */
 
-console.log(
-    "SkyRent Dashboard Firebase Connected"
-);
+window.goAbout = function(){
+
+    window.location.href =
+        "about.html";
+
+};
+
+
+/* =====================================================
+   DEPOSIT
+===================================================== */
+
+window.deposit = function(){
+
+    window.location.href =
+        "deposit.html";
+
+};
+
+
+/* =====================================================
+   WITHDRAW
+===================================================== */
+
+window.withdraw = function(){
+
+    window.location.href =
+        "withdrawal.html";
+
+};
 
 </script>
 
