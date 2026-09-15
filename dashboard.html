@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,10 +21,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="SkyRent">
 
+
 <style>
 
 /* =====================================================
-  /DASHBOARD RESET
+   DASHBOARD RESET
 ===================================================== */
 
 *{
@@ -104,7 +106,6 @@ body{
     right:-100px;
 
 }
-
 
 #loadingScreen::after{
 
@@ -208,15 +209,12 @@ body{
     border-radius:50%;
 
     border:
-
         4px solid
-
         rgba(255,255,255,.25);
 
     border-top-color:white;
 
     animation:
-
         loadingSpin .8s linear infinite;
 
 }
@@ -461,9 +459,7 @@ body{
 }
 
 
-/* =====================================================
-   CARD LIGHT EFFECT
-===================================================== */
+/* CARD LIGHT EFFECT */
 
 .atm-card::before{
 
@@ -508,9 +504,7 @@ body{
 }
 
 
-/* =====================================================
-   CARD TOP
-===================================================== */
+/* CARD TOP */
 
 .atm-card-top{
 
@@ -555,9 +549,7 @@ body{
 }
 
 
-/* =====================================================
-   CHIP
-===================================================== */
+/* CHIP */
 
 .card-chip{
 
@@ -626,9 +618,7 @@ body{
 }
 
 
-/* =====================================================
-   CARD USER INFORMATION
-===================================================== */
+/* CARD USER INFORMATION */
 
 .card-user{
 
@@ -671,9 +661,7 @@ body{
 }
 
 
-/* =====================================================
-   CARD BALANCE
-===================================================== */
+/* CARD BALANCE */
 
 .card-balance{
 
@@ -712,9 +700,7 @@ body{
 }
 
 
-/* =====================================================
-   CARD ACTIONS
-===================================================== */
+/* CARD ACTIONS */
 
 .card-actions{
 
@@ -780,9 +766,7 @@ body{
 }
 
 
-/* =====================================================
-   CARD NUMBER
-===================================================== */
+/* CARD NUMBER */
 
 .card-number{
 
@@ -803,9 +787,7 @@ body{
 }
 
 
-/* =====================================================
-   CONTACTLESS
-===================================================== */
+/* CONTACTLESS */
 
 .contactless{
 
@@ -897,6 +879,131 @@ body{
 .data-loading{
 
     opacity:.65;
+
+}
+
+
+/* =====================================================
+   INSTALL SKYRENT APP
+===================================================== */
+
+.install-app-button{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:14px 15px;
+
+    margin-top:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0757c9,
+            #08a3ef
+        );
+
+    color:white;
+
+    display:none;
+
+    align-items:center;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 20px
+        rgba(7,87,201,.18);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+.install-app-button:active{
+
+    transform:scale(.98);
+
+}
+
+.install-app-icon{
+
+    width:45px;
+
+    height:45px;
+
+    flex-shrink:0;
+
+    border-radius:14px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+}
+
+.install-app-icon img{
+
+    width:34px;
+
+    height:34px;
+
+    object-fit:contain;
+
+    border-radius:8px;
+
+}
+
+.install-app-info{
+
+    flex:1;
+
+    min-width:0;
+
+    margin-left:12px;
+
+}
+
+.install-app-info h3{
+
+    font-size:14px;
+
+    font-weight:900;
+
+    margin-bottom:3px;
+
+}
+
+.install-app-info p{
+
+    font-size:10px;
+
+    line-height:1.35;
+
+    opacity:.88;
+
+}
+
+.install-app-arrow{
+
+    font-size:27px;
+
+    margin-left:8px;
+
+    opacity:.9;
 
 }
 
@@ -1069,9 +1176,7 @@ body{
 }
 
 
-/* =====================================================
-   BASE LIST ITEM
-===================================================== */
+/* BASE LIST ITEM */
 
 .quick-list-item{
 
@@ -1108,9 +1213,7 @@ body{
 }
 
 
-/* =====================================================
-   CRAFTS
-===================================================== */
+/* CRAFTS */
 
 .quick-crafts{
 
@@ -1139,9 +1242,7 @@ body{
 }
 
 
-/* =====================================================
-   TRANSACTIONS
-===================================================== */
+/* TRANSACTIONS */
 
 .quick-transactions{
 
@@ -1170,9 +1271,7 @@ body{
 }
 
 
-/* =====================================================
-   PROFILE
-===================================================== */
+/* PROFILE */
 
 .quick-profile{
 
@@ -1201,9 +1300,7 @@ body{
 }
 
 
-/* =====================================================
-   GIFT CODES
-===================================================== */
+/* GIFT CODES */
 
 .quick-gift{
 
@@ -1232,9 +1329,7 @@ body{
 }
 
 
-/* =====================================================
-   CUSTOMER SERVICE
-===================================================== */
+/* CUSTOMER SERVICE */
 
 .quick-support{
 
@@ -1263,9 +1358,7 @@ body{
 }
 
 
-/* =====================================================
-   ABOUT SKYRENT
-===================================================== */
+/* ABOUT SKYRENT */
 
 .quick-about{
 
@@ -1294,9 +1387,7 @@ body{
 }
 
 
-/* =====================================================
-   QUICK ICON
-===================================================== */
+/* QUICK ICON */
 
 .quick-list-icon{
 
@@ -1319,9 +1410,7 @@ body{
 }
 
 
-/* =====================================================
-   QUICK INFO
-===================================================== */
+/* QUICK INFO */
 
 .quick-list-info{
 
@@ -1356,9 +1445,7 @@ body{
 }
 
 
-/* =====================================================
-   QUICK ARROW
-===================================================== */
+/* QUICK ARROW */
 
 .quick-list-arrow{
 
@@ -1936,6 +2023,42 @@ body{
     id="refreshStatus"
     class="refresh-status">
 </div>
+
+
+<!-- =====================================================
+     INSTALL SKYRENT APP
+===================================================== -->
+
+<button
+    id="installAppButton"
+    class="install-app-button"
+    type="button">
+
+    <div class="install-app-icon">
+
+        <img
+            src="skyrent.png"
+            alt="SkyRent App">
+
+    </div>
+
+    <div class="install-app-info">
+
+        <h3>
+            Install SkyRent App
+        </h3>
+
+        <p>
+            Add SkyRent to your home screen for quick access.
+        </p>
+
+    </div>
+
+    <div class="install-app-arrow">
+        ›
+    </div>
+
+</button>
 
 
 <!-- =====================================================
@@ -3167,9 +3290,150 @@ window.withdraw = function(){
 
 };
 
+
+/* =====================================================
+   SKYRENT APP INSTALL
+===================================================== */
+
+let deferredInstallPrompt = null;
+
+const installAppButton =
+    document.getElementById(
+        "installAppButton"
+    );
+
+
+/*
+   Browser tells us that
+   SkyRent can be installed.
+*/
+
+window.addEventListener(
+    "beforeinstallprompt",
+    function(event){
+
+        /*
+           Stop Chrome from showing
+           its automatic prompt.
+        */
+
+        event.preventDefault();
+
+        deferredInstallPrompt =
+            event;
+
+
+        /*
+           Show our SkyRent
+           install button.
+        */
+
+        if(installAppButton){
+
+            installAppButton.style.display =
+                "flex";
+
+        }
+
+    }
+);
+
+
+/*
+   User taps Install SkyRent App.
+*/
+
+if(installAppButton){
+
+    installAppButton.addEventListener(
+        "click",
+        async function(){
+
+            /*
+               No prompt available.
+            */
+
+            if(!deferredInstallPrompt){
+
+                alert(
+                    "SkyRent is already installed, or your browser is not ready to install the app yet."
+                );
+
+                return;
+
+            }
+
+
+            /*
+               Show browser installation dialog.
+            */
+
+            deferredInstallPrompt.prompt();
+
+
+            /*
+               Wait for user's choice.
+            */
+
+            const result =
+                await deferredInstallPrompt.userChoice;
+
+
+            console.log(
+                "SkyRent installation result:",
+                result.outcome
+            );
+
+
+            /*
+               Installation prompt
+               can only be used once.
+            */
+
+            deferredInstallPrompt =
+                null;
+
+
+            /*
+               Hide button.
+            */
+
+            installAppButton.style.display =
+                "none";
+
+        }
+    );
+
+}
+
+
+/*
+   Successful installation.
+*/
+
+window.addEventListener(
+    "appinstalled",
+    function(){
+
+        console.log(
+            "SkyRent App installed successfully."
+        );
+
+
+        if(installAppButton){
+
+            installAppButton.style.display =
+                "none";
+
+        }
+
+    }
+);
+
 </script>
 
 
 </body>
 
 </html>
+```
