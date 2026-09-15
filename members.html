@@ -1,0 +1,4100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent - Manage Members</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f3f7ff;
+    color:#1e293b;
+    font-size:14px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #0757c9,
+        #0284c7
+    );
+    color:white;
+    padding:18px 15px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.back-btn{
+    display:inline-block;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.30);
+    color:white;
+    padding:8px 16px;
+    border-radius:10px;
+    font-size:13px;
+    text-decoration:none;
+    margin-bottom:11px;
+}
+
+.header h1{
+    margin:0;
+    font-size:23px;
+    font-weight:700;
+}
+
+.header p{
+    margin:6px 0 0;
+    font-size:12px;
+    opacity:.90;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container{
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:16px 12px 40px;
+}
+
+/* =========================================================
+   NORMAL LOADING
+========================================================= */
+
+.page-loading{
+    display:none;
+    text-align:center;
+    padding:13px;
+    margin-bottom:14px;
+    background:#eaf3ff;
+    color:#0757c9;
+    border-radius:12px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.page-loading.show{
+    display:block;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-card{
+    background:white;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+    margin-bottom:18px;
+}
+
+.search-card h2{
+    margin:0 0 13px;
+    font-size:18px;
+    font-weight:700;
+}
+
+.search-row{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.search-row input{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #cbd5e1;
+    border-radius:11px;
+    font-size:14px;
+    outline:none;
+}
+
+.search-row input:focus{
+    border-color:#0757c9;
+    box-shadow:0 0 0 3px rgba(7,87,201,.08);
+}
+
+.btn{
+    border:0;
+    border-radius:11px;
+    padding:12px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.search-btn{
+    background:#0757c9;
+    color:white;
+}
+
+.clear-btn{
+    background:#e7ecf3;
+    color:#334155;
+}
+
+.btn:active{
+    transform:scale(.98);
+}
+
+/* =========================================================
+   TOTAL MEMBERS
+========================================================= */
+
+.total-card{
+    background:white;
+    border-radius:16px;
+    padding:20px 15px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
+    margin-bottom:18px;
+}
+
+.total-card .number{
+    color:#0757c9;
+    font-size:34px;
+    font-weight:800;
+}
+
+.total-card .label{
+    color:#64748b;
+    font-size:13px;
+    margin-top:5px;
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section{
+    background:white;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
+    margin-bottom:18px;
+}
+
+.section-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.section-header h2{
+    margin:0;
+    font-size:18px;
+    font-weight:700;
+}
+
+.refresh-btn{
+    background:#e8f2ff;
+    color:#0757c9;
+    border:0;
+    padding:8px 12px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* =========================================================
+   MEMBER LIST
+========================================================= */
+
+.member-card{
+    border:1px solid #e1e7ef;
+    border-radius:13px;
+    padding:13px;
+    margin-bottom:9px;
+    background:#fbfdff;
+}
+
+.member-card:last-child{
+    margin-bottom:0;
+}
+
+.member-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.member-information{
+    flex:1;
+    min-width:0;
+}
+
+.member-name{
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:4px;
+    color:#172033;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.member-phone{
+    color:#64748b;
+    font-size:12px;
+}
+
+.member-referral{
+    color:#0757c9;
+    font-size:11px;
+    margin-top:5px;
+}
+
+/* =========================================================
+   ACTIVE INVESTMENT BOX
+========================================================= */
+
+.active-box{
+    flex-shrink:0;
+    text-align:center;
+    background:#e9f8ef;
+    border-radius:10px;
+    padding:7px 10px;
+    min-width:62px;
+}
+
+.active-number{
+    color:#159447;
+    font-size:18px;
+    font-weight:800;
+}
+
+.active-label{
+    color:#4b6353;
+    font-size:8px;
+}
+
+/* =========================================================
+   VIEW BUTTON
+   RIGHT SIDE
+========================================================= */
+
+.view-btn{
+    flex-shrink:0;
+    width:auto;
+    min-width:92px;
+    margin:0;
+    padding:10px 11px;
+    background:#0757c9;
+    color:white;
+    font-size:11px;
+    border-radius:10px;
+    white-space:nowrap;
+}
+
+.view-btn:hover{
+    background:#0648a8;
+}
+
+/* =========================================================
+   SEARCH RESULT
+========================================================= */
+
+#searchResult{
+    margin-bottom:18px;
+}
+
+.empty{
+    padding:18px;
+    text-align:center;
+    color:#64748b;
+    font-size:13px;
+}
+
+.error{
+    background:#fff0f0;
+    color:#c62828;
+    padding:15px;
+    border-radius:12px;
+    font-weight:500;
+}
+
+/* =========================================================
+   DETAIL CARD
+========================================================= */
+
+.detail-card{
+    background:white;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.detail-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:16px;
+}
+
+.detail-head h2{
+    margin:0;
+    font-size:20px;
+    font-weight:700;
+}
+
+.detail-head p{
+    margin:5px 0 0;
+    color:#64748b;
+    font-size:12px;
+}
+
+.detail-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:9px 0;
+    border-bottom:1px solid #edf0f4;
+}
+
+.detail-label{
+    color:#64748b;
+    font-weight:500;
+    font-size:12px;
+}
+
+.detail-value{
+    text-align:right;
+    font-weight:600;
+    font-size:12px;
+    word-break:break-word;
+}
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
+    margin:18px 0;
+}
+
+.summary-box{
+    background:#f7faff;
+    border:1px solid #e2eaf4;
+    border-radius:11px;
+    padding:12px 8px;
+    text-align:center;
+}
+
+.summary-label{
+    color:#64748b;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.summary-value{
+    color:#0757c9;
+    font-size:16px;
+    font-weight:800;
+}
+
+.summary-box.deposit .summary-value{
+    color:#168344;
+}
+
+.summary-box.withdrawal .summary-value{
+    color:#d43b3b;
+}
+
+.summary-box.investment .summary-value{
+    color:#7044b8;
+}
+
+.summary-box.earnings .summary-value{
+    color:#087c5a;
+}
+
+.summary-box.active .summary-value{
+    color:#159447;
+}
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+.history-title{
+    font-size:16px;
+    font-weight:700;
+    margin:20px 0 10px;
+}
+
+.history-card{
+    border:1px solid #e2e7ee;
+    border-radius:11px;
+    padding:12px;
+    margin-bottom:8px;
+    background:#fff;
+}
+
+.history-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.history-amount{
+    font-size:15px;
+    font-weight:800;
+}
+
+.deposit-amount{
+    color:#168344;
+}
+
+.withdrawal-amount{
+    color:#d43b3b;
+}
+
+.investment-amount{
+    color:#7044b8;
+}
+
+.earning-amount{
+    color:#087c5a;
+}
+
+.history-date{
+    margin-top:4px;
+    color:#64748b;
+    font-size:10px;
+}
+
+.status{
+    display:inline-block;
+    padding:4px 7px;
+    border-radius:6px;
+    font-size:9px;
+    font-weight:700;
+    margin-top:4px;
+}
+
+.status-approved{
+    background:#dff7e8;
+    color:#168344;
+}
+
+.status-pending{
+    background:#fff3cd;
+    color:#9a6b00;
+}
+
+.status-rejected{
+    background:#ffe2e2;
+    color:#c62828;
+}
+
+.status-default{
+    background:#e7edf5;
+    color:#526174;
+}
+
+.history-detail{
+    margin-top:8px;
+    color:#64748b;
+    line-height:1.5;
+    font-size:11px;
+}
+
+.no-history{
+    color:#64748b;
+    background:#f7f9fc;
+    padding:12px;
+    border-radius:9px;
+    font-size:12px;
+}
+
+/* =========================================================
+   INVESTMENT STATUS
+========================================================= */
+
+.investment-status{
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:7px;
+    background:#eee8ff;
+    color:#7044b8;
+    font-size:9px;
+    font-weight:700;
+}
+
+/* =========================================================
+   DANGER ZONE
+========================================================= */
+
+.delete-section{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid #f0d4d4;
+}
+
+.delete-warning{
+    background:#fff5f5;
+    border:1px solid #ffcaca;
+    color:#9f2020;
+    padding:12px;
+    border-radius:10px;
+    line-height:1.45;
+    font-size:11px;
+    margin-bottom:10px;
+}
+
+.delete-btn{
+    width:100%;
+    background:#dc2626;
+    color:white;
+    padding:11px;
+    font-size:13px;
+}
+
+.delete-btn:hover{
+    background:#b91c1c;
+}
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+.close-detail{
+    width:100%;
+    margin-top:14px;
+    background:#e7ecf3;
+    color:#334155;
+    padding:10px;
+}
+
+/* =========================================================
+   ADMIN STATUS
+========================================================= */
+
+.admin-status{
+    text-align:center;
+    color:#64748b;
+    font-size:10px;
+    margin-top:10px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    body{
+        font-size:13px;
+    }
+
+    .header{
+        padding:17px 12px;
+    }
+
+    .header h1{
+        font-size:21px;
+    }
+
+    .header p{
+        font-size:11px;
+    }
+
+    .container{
+        padding:13px 10px 35px;
+    }
+
+    .search-card,
+    .section,
+    .detail-card{
+        padding:15px;
+        border-radius:14px;
+    }
+
+    .summary-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .summary-box{
+        padding:11px 5px;
+    }
+
+    .summary-value{
+        font-size:15px;
+    }
+
+    .member-card{
+        padding:11px;
+    }
+
+    .member-top{
+        gap:7px;
+    }
+
+    .member-name{
+        font-size:14px;
+    }
+
+    .member-phone{
+        font-size:10px;
+    }
+
+    .member-referral{
+        font-size:9px;
+    }
+
+    .active-box{
+        min-width:52px;
+        padding:6px 7px;
+    }
+
+    .active-number{
+        font-size:16px;
+    }
+
+    .active-label{
+        font-size:7px;
+    }
+
+    .view-btn{
+        min-width:82px;
+        padding:9px 7px;
+        font-size:10px;
+    }
+
+    .detail-row{
+        padding:8px 0;
+    }
+
+    .detail-label,
+    .detail-value{
+        font-size:11px;
+    }
+
+    .history-title{
+        font-size:15px;
+    }
+
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media(max-width:360px){
+
+    .member-top{
+        flex-wrap:wrap;
+    }
+
+    .member-information{
+        min-width:calc(100% - 70px);
+    }
+
+    .view-btn{
+        min-width:100%;
+        margin-top:7px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<div class="header">
+
+    <a href="admin.html" class="back-btn">
+        ← Back to Admin
+    </a>
+
+    <h1>👥 Manage Members</h1>
+
+    <p>
+        SkyRent registered users
+    </p>
+
+</div>
+
+
+<div class="container">
+
+<!-- =========================================================
+     NORMAL PAGE LOADING
+========================================================= -->
+
+<div id="pageLoading" class="page-loading">
+    ⏳ Loading member information...
+</div>
+
+
+<!-- =========================================================
+     SEARCH
+========================================================= -->
+
+<div class="search-card">
+
+    <h2>
+        🔎 Search Member
+    </h2>
+
+    <div class="search-row">
+
+        <input
+            type="text"
+            id="phoneSearch"
+            placeholder="Enter phone number"
+            inputmode="tel"
+        >
+
+        <button
+            class="btn search-btn"
+            onclick="searchMember()"
+        >
+            Search
+        </button>
+
+        <button
+            class="btn clear-btn"
+            onclick="clearSearch()"
+        >
+            Clear
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOTAL MEMBERS
+========================================================= -->
+
+<div class="total-card">
+
+    <div
+        class="number"
+        id="totalMembers"
+    >
+        0
+    </div>
+
+    <div class="label">
+        Total Registered Members
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     SEARCH RESULT
+========================================================= -->
+
+<div id="searchResult"></div>
+
+
+<!-- =========================================================
+     ALL MEMBERS
+========================================================= -->
+
+<div class="section">
+
+    <div class="section-header">
+
+        <h2>
+            👥 All Members
+        </h2>
+
+        <button
+            class="refresh-btn"
+            onclick="loadMembers()"
+        >
+            🔄 Refresh
+        </button>
+
+    </div>
+
+    <div id="membersList">
+
+        <div class="empty">
+            Loading members...
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE IMPORTS
+========================================================= */
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    where,
+    deleteDoc,
+    doc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =========================================================
+   ADMIN UID
+========================================================= */
+
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
+
+let currentAdmin = null;
+
+let allMembers = [];
+
+let memberDataCache = {};
+
+
+/* =========================================================
+   NORMAL LOADING
+========================================================= */
+
+function showLoading(text){
+
+    const element =
+        document.getElementById("pageLoading");
+
+    if(!element){
+        return;
+    }
+
+    element.textContent =
+        "⏳ " +
+        (text || "Loading...");
+
+    element.classList.add("show");
+
+}
+
+
+function hideLoading(){
+
+    const element =
+        document.getElementById("pageLoading");
+
+    if(!element){
+        return;
+    }
+
+    element.classList.remove("show");
+
+}
+
+
+/* =========================================================
+   HTML SECURITY
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeJS(value){
+
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,'\\"')
+        .replace(/\n/g,"\\n")
+        .replace(/\r/g,"\\r");
+
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+function getNumber(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+        return 0;
+    }
+
+    return Number(
+        String(value)
+            .replace(/[₱,\s]/g,"")
+    ) || 0;
+
+}
+
+
+/* =========================================================
+   MONEY
+========================================================= */
+
+function formatMoney(amount){
+
+    return "₱" +
+        Number(amount || 0).toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =========================================================
+   PHONE NORMALIZATION
+========================================================= */
+
+function normalizePhone(phone){
+
+    let value =
+        String(phone || "")
+            .trim()
+            .replace(/[^\d+]/g,"");
+
+    if(value.startsWith("+63")){
+        return value.substring(1);
+    }
+
+    if(value.startsWith("63")){
+        return value;
+    }
+
+    if(value.startsWith("0")){
+        return "63" + value.substring(1);
+    }
+
+    return value;
+
+}
+
+
+/* =========================================================
+   USER HELPERS
+========================================================= */
+
+function getPhone(user){
+
+    return (
+        user?.phone ||
+        user?.mobile ||
+        user?.phoneNumber ||
+        ""
+    );
+
+}
+
+
+function getName(user){
+
+    return (
+        user?.name ||
+        user?.displayName ||
+        "SkyRent Member"
+    );
+
+}
+
+
+/* =========================================================
+   DATE HELPERS
+========================================================= */
+
+function getDateValue(data){
+
+    if(!data){
+        return null;
+    }
+
+    return (
+        data.createdAt ||
+        data.created_at ||
+        data.timestamp ||
+        data.date ||
+        data.requestedAt ||
+        data.time ||
+        null
+    );
+
+}
+
+
+function formatDate(data){
+
+    const value =
+        getDateValue(data);
+
+    if(!value){
+        return "Date not available";
+    }
+
+    try{
+
+        if(
+            typeof value === "object" &&
+            typeof value.toDate === "function"
+        ){
+
+            return value
+                .toDate()
+                .toLocaleString();
+
+        }
+
+        const date =
+            new Date(value);
+
+        if(!isNaN(date.getTime())){
+
+            return date.toLocaleString();
+
+        }
+
+    }
+    catch(error){}
+
+    return String(value);
+
+}
+
+
+/* =========================================================
+   STATUS HELPERS
+========================================================= */
+
+function getStatus(data){
+
+    return String(
+        data?.status || ""
+    )
+    .trim()
+    .toLowerCase();
+
+}
+
+
+function isRejectedStatus(status){
+
+    const s =
+        String(status || "")
+            .trim()
+            .toLowerCase();
+
+    return [
+        "rejected",
+        "cancelled",
+        "canceled",
+        "declined"
+    ].includes(s);
+
+}
+
+
+function isApprovedDeposit(data){
+
+    const status =
+        getStatus(data);
+
+    return (
+        data?.approved === true ||
+        data?.credited === true ||
+        status === "approved" ||
+        status === "deposit successful" ||
+        status === "successful" ||
+        status === "completed"
+    );
+
+}
+
+
+function isApprovedWithdrawal(data){
+
+    const status =
+        getStatus(data);
+
+    return (
+        status === "approved" ||
+        status === "withdrawal successful" ||
+        status === "successful" ||
+        status === "completed"
+    );
+
+}
+
+
+/* =========================================================
+   TRANSACTION AMOUNT
+========================================================= */
+
+function getTransactionAmount(data){
+
+    return getNumber(
+        data?.amount ??
+        data?.amountValue ??
+        data?.netAmount ??
+        0
+    );
+
+}
+
+
+/* =========================================================
+   INVESTMENT AMOUNT
+========================================================= */
+
+function getInvestmentAmount(data){
+
+    return getNumber(
+        data?.amount ??
+        data?.investmentAmount ??
+        data?.price ??
+        data?.principal ??
+        data?.capital ??
+        0
+    );
+
+}
+
+
+/* =========================================================
+   ACTIVE INVESTMENT
+========================================================= */
+
+function isActiveInvestment(data){
+
+    const status =
+        getStatus(data);
+
+    if(
+        status === "active" ||
+        status === "running" ||
+        status === "approved" ||
+        status === "ongoing"
+    ){
+        return true;
+    }
+
+    if(
+        status === "completed" ||
+        status === "expired" ||
+        status === "closed" ||
+        status === "cancelled" ||
+        status === "canceled" ||
+        status === "rejected"
+    ){
+        return false;
+    }
+
+    if(data?.active === true){
+        return true;
+    }
+
+    return false;
+
+}
+
+
+/* =========================================================
+   GET MEMBER RECORDS
+========================================================= */
+
+async function getMemberRecords(user){
+
+    const uid =
+        user.uid;
+
+    /* =====================================================
+       DEPOSITS
+    ===================================================== */
+
+    let deposits = [];
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                query(
+                    collection(db,"deposits"),
+                    where(
+                        "userId",
+                        "==",
+                        uid
+                    )
+                )
+            );
+
+        snapshot.forEach(
+            snap => {
+
+                deposits.push({
+                    id:snap.id,
+                    ...snap.data()
+                });
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Deposit records error:",
+            error
+        );
+
+    }
+
+
+    /* =====================================================
+       WITHDRAWALS
+    ===================================================== */
+
+    let withdrawals = [];
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                query(
+                    collection(db,"withdrawals"),
+                    where(
+                        "uid",
+                        "==",
+                        uid
+                    )
+                )
+            );
+
+        snapshot.forEach(
+            snap => {
+
+                withdrawals.push({
+                    id:snap.id,
+                    ...snap.data()
+                });
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Withdrawal records error:",
+            error
+        );
+
+    }
+
+
+    /* =====================================================
+       WITHDRAWAL FALLBACK userId
+    ===================================================== */
+
+    if(withdrawals.length === 0){
+
+        try{
+
+            const snapshot =
+                await getDocs(
+                    query(
+                        collection(db,"withdrawals"),
+                        where(
+                            "userId",
+                            "==",
+                            uid
+                        )
+                    )
+                );
+
+            snapshot.forEach(
+                snap => {
+
+                    withdrawals.push({
+                        id:snap.id,
+                        ...snap.data()
+                    });
+
+                }
+            );
+
+        }
+        catch(error){
+
+            console.log(
+                "No userId withdrawal records."
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       EARNINGS
+    ===================================================== */
+
+    let earnings = [];
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                query(
+                    collection(db,"earnings"),
+                    where(
+                        "userId",
+                        "==",
+                        uid
+                    )
+                )
+            );
+
+        snapshot.forEach(
+            snap => {
+
+                earnings.push({
+                    id:snap.id,
+                    ...snap.data()
+                });
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Earnings records error:",
+            error
+        );
+
+    }
+
+
+    /* =====================================================
+       INVESTMENTS
+    ===================================================== */
+
+    let investments = [];
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                query(
+                    collection(db,"investments"),
+                    where(
+                        "userId",
+                        "==",
+                        uid
+                    )
+                )
+            );
+
+        snapshot.forEach(
+            snap => {
+
+                investments.push({
+                    id:snap.id,
+                    ...snap.data()
+                });
+
+            }
+        );
+
+    }
+    catch(error){
+
+        console.log(
+            "userId investment query failed."
+        );
+
+    }
+
+
+    /* =====================================================
+       INVESTMENT UID FALLBACK
+    ===================================================== */
+
+    if(investments.length === 0){
+
+        try{
+
+            const snapshot =
+                await getDocs(
+                    query(
+                        collection(db,"investments"),
+                        where(
+                            "uid",
+                            "==",
+                            uid
+                        )
+                    )
+                );
+
+            snapshot.forEach(
+                snap => {
+
+                    investments.push({
+                        id:snap.id,
+                        ...snap.data()
+                    });
+
+                }
+            );
+
+        }
+        catch(error){
+
+            console.log(
+                "No uid investment records."
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       TOTAL DEPOSIT
+    ===================================================== */
+
+    let totalDeposit = 0;
+
+    deposits.forEach(
+        deposit => {
+
+            if(
+                isApprovedDeposit(deposit)
+            ){
+
+                totalDeposit +=
+                    getTransactionAmount(
+                        deposit
+                    );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       TOTAL WITHDRAWAL
+    ===================================================== */
+
+    let totalWithdrawal = 0;
+
+    withdrawals.forEach(
+        withdrawal => {
+
+            if(
+                isApprovedWithdrawal(
+                    withdrawal
+                )
+            ){
+
+                totalWithdrawal +=
+                    getTransactionAmount(
+                        withdrawal
+                    );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       TOTAL INVESTMENT
+    ===================================================== */
+
+    let totalInvestment = 0;
+
+    investments.forEach(
+        investment => {
+
+            totalInvestment +=
+                getInvestmentAmount(
+                    investment
+                );
+
+        }
+    );
+
+
+    /* =====================================================
+       ACTIVE INVESTMENTS
+    ===================================================== */
+
+    let activeInvestments = 0;
+
+    investments.forEach(
+        investment => {
+
+            if(
+                isActiveInvestment(
+                    investment
+                )
+            ){
+
+                activeInvestments++;
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       TOTAL EARNINGS
+    ===================================================== */
+
+    let totalEarnings = 0;
+
+    earnings.forEach(
+        earning => {
+
+            totalEarnings +=
+                getNumber(
+                    earning.amount
+                );
+
+        }
+    );
+
+
+    /* =====================================================
+       REGISTRATION BONUS
+    ===================================================== */
+
+    const registrationBonus =
+        getNumber(user.bonus);
+
+    totalEarnings +=
+        registrationBonus;
+
+
+    return {
+
+        deposits,
+        withdrawals,
+        earnings,
+        investments,
+
+        totalDeposit,
+        totalWithdrawal,
+        totalInvestment,
+        activeInvestments,
+        totalEarnings
+
+    };
+
+}
+
+
+/* =========================================================
+   MEMBER LIST CARD
+========================================================= */
+
+function createMemberCard(
+    user,
+    index
+){
+
+    const name =
+        getName(user);
+
+    const phone =
+        getPhone(user);
+
+    const referral =
+        user.referralCode ||
+        "—";
+
+    const cached =
+        memberDataCache[user.uid];
+
+    const active =
+        cached
+        ? cached.activeInvestments
+        : Number(user.activeInvestments) || 0;
+
+
+    return `
+
+        <div class="member-card">
+
+            <div class="member-top">
+
+                <div class="member-information">
+
+                    <div class="member-name">
+
+                        ${escapeHTML(name)}
+
+                    </div>
+
+                    <div class="member-phone">
+
+                        ${escapeHTML(phone)}
+
+                    </div>
+
+                    <div class="member-referral">
+
+                        Referral:
+                        ${escapeHTML(referral)}
+
+                    </div>
+
+                </div>
+
+
+                <div class="active-box">
+
+                    <div class="active-number">
+
+                        ${active}
+
+                    </div>
+
+                    <div class="active-label">
+
+                        ACTIVE
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn view-btn"
+                    onclick="showMember(${index})"
+                >
+
+                    View Member
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   LOAD MEMBERS
+========================================================= */
+
+async function loadMembers(){
+
+    if(
+        !currentAdmin ||
+        currentAdmin.uid !== ADMIN_UID
+    ){
+        return;
+    }
+
+    showLoading(
+        "Loading registered members..."
+    );
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "users"
+                )
+            );
+
+
+        allMembers = [];
+
+
+        snapshot.forEach(
+            snap => {
+
+                allMembers.push({
+
+                    uid:snap.id,
+                    ...snap.data()
+
+                });
+
+            }
+        );
+
+
+        /* =================================================
+           NEWEST FIRST
+        ================================================= */
+
+        allMembers.sort(
+            (a,b) => {
+
+                const dateA =
+                    getDateValue(a);
+
+                const dateB =
+                    getDateValue(b);
+
+                if(!dateA && !dateB){
+                    return 0;
+                }
+
+                if(!dateA){
+                    return 1;
+                }
+
+                if(!dateB){
+                    return -1;
+                }
+
+                try{
+
+                    const timeA =
+                        dateA?.toDate
+                        ? dateA.toDate().getTime()
+                        : new Date(dateA).getTime();
+
+                    const timeB =
+                        dateB?.toDate
+                        ? dateB.toDate().getTime()
+                        : new Date(dateB).getTime();
+
+                    return timeB - timeA;
+
+                }
+                catch(error){
+
+                    return 0;
+
+                }
+
+            }
+        );
+
+
+        document.getElementById(
+            "totalMembers"
+        ).textContent =
+            allMembers.length;
+
+
+        const list =
+            document.getElementById(
+                "membersList"
+            );
+
+
+        if(allMembers.length === 0){
+
+            list.innerHTML = `
+
+                <div class="empty">
+
+                    No registered members found.
+
+                </div>
+
+            `;
+
+            hideLoading();
+
+            return;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        /* =================================================
+           LOAD EACH MEMBER'S RECORDS
+        ================================================= */
+
+        for(
+            let i = 0;
+            i < allMembers.length;
+            i++
+        ){
+
+            const user =
+                allMembers[i];
+
+            try{
+
+                const records =
+                    await getMemberRecords(
+                        user
+                    );
+
+                memberDataCache[user.uid] =
+                    records;
+
+            }
+            catch(error){
+
+                memberDataCache[user.uid] = {
+
+                    activeInvestments:
+                        Number(
+                            user.activeInvestments
+                        ) || 0
+
+                };
+
+            }
+
+
+            list.innerHTML +=
+                createMemberCard(
+                    user,
+                    i
+                );
+
+        }
+
+
+        hideLoading();
+
+
+        const status =
+            document.getElementById(
+                "adminStatus"
+            );
+
+        if(status){
+
+            status.textContent =
+                "Members loaded: " +
+                allMembers.length;
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Load members error:",
+            error
+        );
+
+
+        document.getElementById(
+            "membersList"
+        ).innerHTML = `
+
+            <div class="error">
+
+                ❌ Unable to load members.
+
+                <br><br>
+
+                Please check your Firebase
+                connection and Firestore rules.
+
+            </div>
+
+        `;
+
+        hideLoading();
+
+    }
+
+}
+
+
+/* =========================================================
+   SHOW MEMBER FROM LIST
+========================================================= */
+
+window.showMember =
+    async function(index){
+
+        const user =
+            allMembers[index];
+
+        if(!user){
+            return;
+        }
+
+
+        showLoading(
+            "Loading member record..."
+        );
+
+
+        try{
+
+            let stats =
+                memberDataCache[user.uid];
+
+
+            if(!stats){
+
+                stats =
+                    await getMemberRecords(
+                        user
+                    );
+
+                memberDataCache[user.uid] =
+                    stats;
+
+            }
+
+
+            document.getElementById(
+                "searchResult"
+            ).innerHTML =
+                createFullMemberRecord(
+                    user,
+                    stats
+                );
+
+
+            hideLoading();
+
+
+            document.getElementById(
+                "searchResult"
+            ).scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+        }
+        catch(error){
+
+            console.error(
+                "Show member error:",
+                error
+            );
+
+            hideLoading();
+
+            document.getElementById(
+                "searchResult"
+            ).innerHTML = `
+
+                <div class="error">
+
+                    ❌ Unable to load member record.
+
+                    <br><br>
+
+                    ${escapeHTML(
+                        error.message ||
+                        "Firebase error"
+                    )}
+
+                </div>
+
+            `;
+
+        }
+
+    };
+
+
+/* =========================================================
+   SEARCH MEMBER
+========================================================= */
+
+window.searchMember =
+    async function(){
+
+        const input =
+            document.getElementById(
+                "phoneSearch"
+            );
+
+        const value =
+            input.value.trim();
+
+        const target =
+            normalizePhone(value);
+
+        const result =
+            document.getElementById(
+                "searchResult"
+            );
+
+
+        if(!target){
+
+            result.innerHTML = `
+
+                <div class="error">
+
+                    Please enter a phone number.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        showLoading(
+            "Searching member..."
+        );
+
+
+        try{
+
+            /* =============================================
+               SEARCH LOADED MEMBERS FIRST
+            ============================================= */
+
+            let user =
+                allMembers.find(
+                    member => {
+
+                        return (
+                            normalizePhone(
+                                getPhone(member)
+                            ) === target
+                        );
+
+                    }
+                );
+
+
+            /* =============================================
+               FIREBASE EXACT SEARCH
+            ============================================= */
+
+            if(!user){
+
+                try{
+
+                    const snapshot =
+                        await getDocs(
+                            query(
+                                collection(
+                                    db,
+                                    "users"
+                                ),
+                                where(
+                                    "phone",
+                                    "==",
+                                    value
+                                )
+                            )
+                        );
+
+
+                    if(!snapshot.empty){
+
+                        const snap =
+                            snapshot.docs[0];
+
+                        user = {
+
+                            uid:snap.id,
+                            ...snap.data()
+
+                        };
+
+                    }
+
+                }
+                catch(error){
+
+                    console.log(
+                        "Exact phone query failed."
+                    );
+
+                }
+
+            }
+
+
+            /* =============================================
+               PHONE VARIATIONS
+            ============================================= */
+
+            if(!user){
+
+                const variations = [
+
+                    value,
+                    "+" + target,
+                    target,
+                    "0" +
+                    target.substring(2)
+
+                ];
+
+
+                for(
+                    const phoneVariation
+                    of variations
+                ){
+
+                    try{
+
+                        const snapshot =
+                            await getDocs(
+                                query(
+                                    collection(
+                                        db,
+                                        "users"
+                                    ),
+                                    where(
+                                        "phone",
+                                        "==",
+                                        phoneVariation
+                                    )
+                                )
+                            );
+
+
+                        if(!snapshot.empty){
+
+                            const snap =
+                                snapshot.docs[0];
+
+                            user = {
+
+                                uid:snap.id,
+                                ...snap.data()
+
+                            };
+
+                            break;
+
+                        }
+
+                    }
+                    catch(error){}
+
+                }
+
+            }
+
+
+            /* =============================================
+               NOT FOUND
+            ============================================= */
+
+            if(!user){
+
+                result.innerHTML = `
+
+                    <div class="error">
+
+                        ❌ No member found for:
+
+                        <br><br>
+
+                        <strong>
+                            ${escapeHTML(value)}
+                        </strong>
+
+                    </div>
+
+                `;
+
+                hideLoading();
+
+                return;
+
+            }
+
+
+            /* =============================================
+               LOAD RECORDS
+            ============================================= */
+
+            const stats =
+                await getMemberRecords(
+                    user
+                );
+
+
+            memberDataCache[user.uid] =
+                stats;
+
+
+            result.innerHTML =
+                createFullMemberRecord(
+                    user,
+                    stats
+                );
+
+
+            hideLoading();
+
+
+            result.scrollIntoView({
+
+                behavior:"smooth",
+                block:"start"
+
+            });
+
+        }
+        catch(error){
+
+            console.error(
+                "Search member error:",
+                error
+            );
+
+
+            result.innerHTML = `
+
+                <div class="error">
+
+                    ❌ Unable to search member.
+
+                    <br><br>
+
+                    ${escapeHTML(
+                        error.message ||
+                        "Firebase error"
+                    )}
+
+                </div>
+
+            `;
+
+            hideLoading();
+
+        }
+
+    };
+
+
+/* =========================================================
+   CREATE FULL MEMBER RECORD
+========================================================= */
+
+function createFullMemberRecord(
+    user,
+    stats
+){
+
+    const name =
+        getName(user);
+
+    const phone =
+        getPhone(user);
+
+    const referralCode =
+        user.referralCode ||
+        "—";
+
+    const bonus =
+        getNumber(user.bonus);
+
+    const balance =
+        getNumber(user.balance);
+
+    const created =
+        formatDate(user);
+
+
+    /* =====================================================
+       DEPOSITS
+    ===================================================== */
+
+    let depositHTML = "";
+
+
+    if(
+        !stats.deposits ||
+        stats.deposits.length === 0
+    ){
+
+        depositHTML = `
+
+            <div class="no-history">
+
+                No deposit records found.
+
+            </div>
+
+        `;
+
+    }
+    else{
+
+        const deposits =
+            [...stats.deposits].sort(
+                sortNewestFirst
+            );
+
+
+        deposits.forEach(
+            deposit => {
+
+                const amount =
+                    getTransactionAmount(
+                        deposit
+                    );
+
+                const status =
+                    getStatus(deposit);
+
+
+                depositHTML += `
+
+                    <div class="history-card">
+
+                        <div class="history-top">
+
+                            <div>
+
+                                <div class="
+                                    history-amount
+                                    deposit-amount
+                                ">
+
+                                    ${formatMoney(
+                                        amount
+                                    )}
+
+                                </div>
+
+                                <div class="history-date">
+
+                                    ${escapeHTML(
+                                        formatDate(
+                                            deposit
+                                        )
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <span class="
+                                    status
+                                    ${getStatusClass(
+                                        status
+                                    )}
+                                ">
+
+                                    ${escapeHTML(
+                                        getDisplayStatus(
+                                            status
+                                        )
+                                    )}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="history-detail">
+
+                            ${
+                                getReference(
+                                    deposit
+                                )
+                                ? "Reference: " +
+                                  escapeHTML(
+                                      getReference(
+                                          deposit
+                                      )
+                                  )
+                                : ""
+                            }
+
+                            ${
+                                getPaymentMethod(
+                                    deposit
+                                )
+                                ? "<br>Method: " +
+                                  escapeHTML(
+                                      getPaymentMethod(
+                                          deposit
+                                      )
+                                  )
+                                : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       WITHDRAWALS
+    ===================================================== */
+
+    let withdrawalHTML = "";
+
+
+    if(
+        !stats.withdrawals ||
+        stats.withdrawals.length === 0
+    ){
+
+        withdrawalHTML = `
+
+            <div class="no-history">
+
+                No withdrawal records found.
+
+            </div>
+
+        `;
+
+    }
+    else{
+
+        const withdrawals =
+            [...stats.withdrawals].sort(
+                sortNewestFirst
+            );
+
+
+        withdrawals.forEach(
+            withdrawal => {
+
+                const amount =
+                    getTransactionAmount(
+                        withdrawal
+                    );
+
+                const netAmount =
+                    getNumber(
+                        withdrawal.netAmount
+                    );
+
+                const status =
+                    getStatus(withdrawal);
+
+
+                withdrawalHTML += `
+
+                    <div class="history-card">
+
+                        <div class="history-top">
+
+                            <div>
+
+                                <div class="
+                                    history-amount
+                                    withdrawal-amount
+                                ">
+
+                                    ${formatMoney(
+                                        amount
+                                    )}
+
+                                </div>
+
+                                <div class="history-date">
+
+                                    ${escapeHTML(
+                                        formatDate(
+                                            withdrawal
+                                        )
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <span class="
+                                    status
+                                    ${getStatusClass(
+                                        status
+                                    )}
+                                ">
+
+                                    ${escapeHTML(
+                                        getDisplayStatus(
+                                            status
+                                        )
+                                    )}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="history-detail">
+
+                            ${
+                                netAmount > 0
+                                ? "Net amount: " +
+                                  formatMoney(
+                                      netAmount
+                                  ) +
+                                  "<br>"
+                                : ""
+                            }
+
+                            ${
+                                getAccountDetails(
+                                    withdrawal
+                                )
+                                ? "Account: " +
+                                  escapeHTML(
+                                      getAccountDetails(
+                                          withdrawal
+                                      )
+                                  )
+                                : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       INVESTMENTS
+    ===================================================== */
+
+    let investmentHTML = "";
+
+
+    if(
+        !stats.investments ||
+        stats.investments.length === 0
+    ){
+
+        investmentHTML = `
+
+            <div class="no-history">
+
+                No investment records found.
+
+            </div>
+
+        `;
+
+    }
+    else{
+
+        const investments =
+            [...stats.investments].sort(
+                sortNewestFirst
+            );
+
+
+        investments.forEach(
+            investment => {
+
+                const amount =
+                    getInvestmentAmount(
+                        investment
+                    );
+
+                const status =
+                    getStatus(
+                        investment
+                    );
+
+                const plan =
+                    investment.planName ||
+                    investment.plan ||
+                    investment.aircraft ||
+                    investment.craft ||
+                    "SkyRent Investment";
+
+
+                const displayStatus =
+                    status ||
+                    (
+                        isActiveInvestment(
+                            investment
+                        )
+                        ? "Active"
+                        : "Recorded"
+                    );
+
+
+                investmentHTML += `
+
+                    <div class="history-card">
+
+                        <div class="history-top">
+
+                            <div>
+
+                                <div class="
+                                    history-amount
+                                    investment-amount
+                                ">
+
+                                    ${formatMoney(
+                                        amount
+                                    )}
+
+                                </div>
+
+                                <div class="history-date">
+
+                                    ${escapeHTML(
+                                        formatDate(
+                                            investment
+                                        )
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <span class="
+                                    investment-status
+                                ">
+
+                                    ${escapeHTML(
+                                        getDisplayStatus(
+                                            displayStatus
+                                        )
+                                    )}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="history-detail">
+
+                            Plan/Craft:
+                            ${escapeHTML(
+                                plan
+                            )}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       EARNINGS
+    ===================================================== */
+
+    let earningsHTML = "";
+
+
+    if(
+        !stats.earnings ||
+        stats.earnings.length === 0
+    ){
+
+        earningsHTML = `
+
+            <div class="no-history">
+
+                No generated earnings records found.
+
+                ${
+                    bonus > 0
+                    ? "<br>Registration bonus: " +
+                      formatMoney(bonus)
+                    : ""
+                }
+
+            </div>
+
+        `;
+
+    }
+    else{
+
+        const earnings =
+            [...stats.earnings].sort(
+                sortNewestFirst
+            );
+
+
+        earnings.forEach(
+            earning => {
+
+                const amount =
+                    getNumber(
+                        earning.amount
+                    );
+
+                const type =
+                    earning.type ||
+                    earning.category ||
+                    earning.source ||
+                    "Investment Earnings";
+
+
+                earningsHTML += `
+
+                    <div class="history-card">
+
+                        <div class="history-top">
+
+                            <div>
+
+                                <div class="
+                                    history-amount
+                                    earning-amount
+                                ">
+
+                                    ${formatMoney(
+                                        amount
+                                    )}
+
+                                </div>
+
+                                <div class="history-date">
+
+                                    ${escapeHTML(
+                                        formatDate(
+                                            earning
+                                        )
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="history-detail">
+
+                            Type:
+                            ${escapeHTML(
+                                type
+                            )}
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       COMPLETE MEMBER RECORD
+    ===================================================== */
+
+    return `
+
+        <div class="detail-card">
+
+
+            <div class="detail-head">
+
+                <div>
+
+                    <h2>
+
+                        👤
+                        ${escapeHTML(name)}
+
+                    </h2>
+
+                    <p>
+                        Member account record
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- BASIC INFORMATION -->
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Name
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHTML(name)}
+                </div>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Phone
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHTML(phone)}
+                </div>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Referral Code
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHTML(
+                        referralCode
+                    )}
+                </div>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Firebase UID
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHTML(
+                        user.uid
+                    )}
+                </div>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Registration Date
+                </div>
+
+                <div class="detail-value">
+                    ${escapeHTML(
+                        created
+                    )}
+                </div>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Current Balance
+                </div>
+
+                <div class="detail-value">
+                    ${formatMoney(
+                        balance
+                    )}
+                </div>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <div class="detail-label">
+                    Registration Bonus
+                </div>
+
+                <div class="detail-value">
+                    ${formatMoney(
+                        bonus
+                    )}
+                </div>
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="summary-grid">
+
+
+                <div class="
+                    summary-box
+                    deposit
+                ">
+
+                    <div class="summary-label">
+                        Total Deposited
+                    </div>
+
+                    <div class="summary-value">
+                        ${formatMoney(
+                            stats.totalDeposit
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="
+                    summary-box
+                    withdrawal
+                ">
+
+                    <div class="summary-label">
+                        Total Withdrawn
+                    </div>
+
+                    <div class="summary-value">
+                        ${formatMoney(
+                            stats.totalWithdrawal
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="
+                    summary-box
+                    investment
+                ">
+
+                    <div class="summary-label">
+                        Total Investment
+                    </div>
+
+                    <div class="summary-value">
+                        ${formatMoney(
+                            stats.totalInvestment
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="
+                    summary-box
+                    active
+                ">
+
+                    <div class="summary-label">
+                        Active Investments
+                    </div>
+
+                    <div class="summary-value">
+                        ${stats.activeInvestments}
+                    </div>
+
+                </div>
+
+
+                <div class="
+                    summary-box
+                    earnings
+                ">
+
+                    <div class="summary-label">
+                        Total Earnings
+                    </div>
+
+                    <div class="summary-value">
+                        ${formatMoney(
+                            stats.totalEarnings
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <div class="summary-label">
+                        Deposit Records
+                    </div>
+
+                    <div class="summary-value">
+                        ${stats.deposits.length}
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- DEPOSITS -->
+
+            <div class="history-title">
+                💰 Deposit Records
+            </div>
+
+            ${depositHTML}
+
+
+            <!-- WITHDRAWALS -->
+
+            <div class="history-title">
+                💸 Withdrawal Records
+            </div>
+
+            ${withdrawalHTML}
+
+
+            <!-- INVESTMENTS -->
+
+            <div class="history-title">
+                ✈️ Investment Records
+            </div>
+
+            ${investmentHTML}
+
+
+            <!-- EARNINGS -->
+
+            <div class="history-title">
+                📈 Earnings Records
+            </div>
+
+            ${earningsHTML}
+
+
+            <!-- DELETE MEMBER -->
+
+            <div class="delete-section">
+
+                <div class="delete-warning">
+
+                    ⚠️
+                    <strong>Danger Zone</strong>
+
+                    <br><br>
+
+                    Deleting this member will permanently
+                    remove the Firebase user document and
+                    associated SkyRent records that belong
+                    to this member.
+
+                    <br><br>
+
+                    <strong>
+                        This action cannot be undone.
+                    </strong>
+
+                </div>
+
+
+                <button
+                    class="btn delete-btn"
+                    onclick="deleteMember(
+                        '${escapeJS(user.uid)}',
+                        '${escapeJS(name)}'
+                    )"
+                >
+
+                    🗑️ Delete Member & Records
+
+                </button>
+
+            </div>
+
+
+            <!-- CLOSE -->
+
+            <button
+                class="btn close-detail"
+                onclick="clearSearch()"
+            >
+
+                Close Member Record
+
+            </button>
+
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SORT NEWEST FIRST
+========================================================= */
+
+function sortNewestFirst(a,b){
+
+    const dateA =
+        getDateValue(a);
+
+    const dateB =
+        getDateValue(b);
+
+    if(!dateA && !dateB){
+        return 0;
+    }
+
+    if(!dateA){
+        return 1;
+    }
+
+    if(!dateB){
+        return -1;
+    }
+
+    try{
+
+        const timeA =
+            dateA?.toDate
+            ? dateA.toDate().getTime()
+            : new Date(dateA).getTime();
+
+        const timeB =
+            dateB?.toDate
+            ? dateB.toDate().getTime()
+            : new Date(dateB).getTime();
+
+        return timeB - timeA;
+
+    }
+    catch(error){
+
+        return 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   STATUS DISPLAY
+========================================================= */
+
+function getDisplayStatus(status){
+
+    if(!status){
+        return "Pending";
+    }
+
+    return String(status)
+        .replace(
+            /\b\w/g,
+            char =>
+                char.toUpperCase()
+        );
+
+}
+
+
+function getStatusClass(status){
+
+    const s =
+        String(status || "")
+            .toLowerCase()
+            .trim();
+
+
+    if(
+        s === "approved" ||
+        s === "deposit successful" ||
+        s === "withdrawal successful" ||
+        s === "successful" ||
+        s === "success" ||
+        s === "completed"
+    ){
+
+        return "status-approved";
+
+    }
+
+
+    if(
+        s === "pending" ||
+        s === "pending approval" ||
+        s === "pending for approval" ||
+        s === "waiting" ||
+        s === "processing" ||
+        s === ""
+    ){
+
+        return "status-pending";
+
+    }
+
+
+    if(
+        s === "rejected" ||
+        s === "cancelled" ||
+        s === "canceled" ||
+        s === "declined"
+    ){
+
+        return "status-rejected";
+
+    }
+
+
+    return "status-default";
+
+}
+
+
+/* =========================================================
+   REFERENCE
+========================================================= */
+
+function getReference(record){
+
+    return (
+        record?.reference ||
+        record?.referenceNumber ||
+        record?.ref ||
+        record?.transactionId ||
+        record?.id ||
+        ""
+    );
+
+}
+
+
+/* =========================================================
+   PAYMENT METHOD
+========================================================= */
+
+function getPaymentMethod(record){
+
+    return (
+        record?.paymentMethod ||
+        record?.method ||
+        record?.channel ||
+        ""
+    );
+
+}
+
+
+/* =========================================================
+   ACCOUNT DETAILS
+========================================================= */
+
+function getAccountDetails(record){
+
+    return (
+        record?.accountName ||
+        record?.accountNumber ||
+        record?.account ||
+        record?.bankAccount ||
+        record?.wallet ||
+        record?.gcash ||
+        ""
+    );
+
+}
+
+
+/* =========================================================
+   DELETE MEMBER
+========================================================= */
+
+window.deleteMember =
+    async function(
+        uid,
+        name
+    ){
+
+        if(
+            !currentAdmin ||
+            currentAdmin.uid !== ADMIN_UID
+        ){
+
+            alert(
+                "Admin access required."
+            );
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+
+                "⚠️ WARNING\n\n" +
+
+                "You are about to permanently delete:\n\n" +
+
+                "Member: " +
+                name +
+
+                "\n\n" +
+
+                "The member Firebase document and associated " +
+                "SkyRent records will also be deleted.\n\n" +
+
+                "THIS ACTION CANNOT BE UNDONE.\n\n" +
+
+                "Do you want to continue?"
+
+            );
+
+
+        if(!confirmed){
+            return;
+        }
+
+
+        showLoading(
+            "Deleting member records..."
+        );
+
+
+        try{
+
+            /* =============================================
+               DELETE DEPOSITS
+            ============================================= */
+
+            let depositDocs = [];
+
+
+            try{
+
+                const snapshot =
+                    await getDocs(
+                        query(
+                            collection(
+                                db,
+                                "deposits"
+                            ),
+                            where(
+                                "userId",
+                                "==",
+                                uid
+                            )
+                        )
+                    );
+
+
+                snapshot.forEach(
+                    snap => {
+
+                        depositDocs.push(
+                            snap.id
+                        );
+
+                    }
+                );
+
+            }
+            catch(error){
+
+                console.log(
+                    "Deposit deletion query error:",
+                    error
+                );
+
+            }
+
+
+            for(
+                const id
+                of depositDocs
+            ){
+
+                await deleteDoc(
+                    doc(
+                        db,
+                        "deposits",
+                        id
+                    )
+                );
+
+            }
+
+
+            /* =============================================
+               DELETE WITHDRAWALS BY UID
+            ============================================= */
+
+            let withdrawalDocs = [];
+
+
+            try{
+
+                const snapshot =
+                    await getDocs(
+                        query(
+                            collection(
+                                db,
+                                "withdrawals"
+                            ),
+                            where(
+                                "uid",
+                                "==",
+                                uid
+                            )
+                        )
+                    );
+
+
+                snapshot.forEach(
+                    snap => {
+
+                        withdrawalDocs.push(
+                            snap.id
+                        );
+
+                    }
+                );
+
+            }
+            catch(error){
+
+                console.log(
+                    "UID withdrawal query error:",
+                    error
+                );
+
+            }
+
+
+            /* =============================================
+               WITHDRAWALS BY userId
+            ============================================= */
+
+            try{
+
+                const snapshot =
+                    await getDocs(
+                        query(
+                            collection(
+                                db,
+                                "withdrawals"
+                            ),
+                            where(
+                                "userId",
+                                "==",
+                                uid
+                            )
+                        )
+                    );
+
+
+                snapshot.forEach(
+                    snap => {
+
+                        if(
+                            !withdrawalDocs.includes(
+                                snap.id
+                            )
+                        ){
+
+                            withdrawalDocs.push(
+                                snap.id
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+            catch(error){
+
+                console.log(
+                    "userId withdrawal query error."
+                );
+
+            }
+
+
+            for(
+                const id
+                of withdrawalDocs
+            ){
+
+                await deleteDoc(
+                    doc(
+                        db,
+                        "withdrawals",
+                        id
+                    )
+                );
+
+            }
+
+
+            /* =============================================
+               DELETE EARNINGS
+            ============================================= */
+
+            let earningDocs = [];
+
+
+            try{
+
+                const snapshot =
+                    await getDocs(
+                        query(
+                            collection(
+                                db,
+                                "earnings"
+                            ),
+                            where(
+                                "userId",
+                                "==",
+                                uid
+                            )
+                        )
+                    );
+
+
+                snapshot.forEach(
+                    snap => {
+
+                        earningDocs.push(
+                            snap.id
+                        );
+
+                    }
+                );
+
+            }
+            catch(error){
+
+                console.log(
+                    "Earnings deletion error:",
+                    error
+                );
+
+            }
+
+
+            for(
+                const id
+                of earningDocs
+            ){
+
+                await deleteDoc(
+                    doc(
+                        db,
+                        "earnings",
+                        id
+                    )
+                );
+
+            }
+
+
+            /* =============================================
+               DELETE INVESTMENTS
+            ============================================= */
+
+            let investmentDocs = [];
+
+
+            try{
+
+                const snapshot =
+                    await getDocs(
+                        query(
+                            collection(
+                                db,
+                                "investments"
+                            ),
+                            where(
+                                "userId",
+                                "==",
+                                uid
+                            )
+                        )
+                    );
+
+
+                snapshot.forEach(
+                    snap => {
+
+                        investmentDocs.push(
+                            snap.id
+                        );
+
+                    }
+                );
+
+            }
+            catch(error){
+
+                console.log(
+                    "userId investment deletion error."
+                );
+
+            }
+
+
+            /* =============================================
+               INVESTMENTS BY UID
+            ============================================= */
+
+            try{
+
+                const snapshot =
+                    await getDocs(
+                        query(
+                            collection(
+                                db,
+                                "investments"
+                            ),
+                            where(
+                                "uid",
+                                "==",
+                                uid
+                            )
+                        )
+                    );
+
+
+                snapshot.forEach(
+                    snap => {
+
+                        if(
+                            !investmentDocs.includes(
+                                snap.id
+                            )
+                        ){
+
+                            investmentDocs.push(
+                                snap.id
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+            catch(error){
+
+                console.log(
+                    "uid investment deletion error."
+                );
+
+            }
+
+
+            for(
+                const id
+                of investmentDocs
+            ){
+
+                await deleteDoc(
+                    doc(
+                        db,
+                        "investments",
+                        id
+                    )
+                );
+
+            }
+
+
+            /* =============================================
+               DELETE USER DOCUMENT
+            ============================================= */
+
+            await deleteDoc(
+                doc(
+                    db,
+                    "users",
+                    uid
+                )
+            );
+
+
+            /* =============================================
+               CLEAR LOCAL PAGE DATA
+            ============================================= */
+
+            allMembers =
+                allMembers.filter(
+                    member =>
+                        member.uid !== uid
+                );
+
+
+            delete memberDataCache[uid];
+
+
+            document.getElementById(
+                "totalMembers"
+            ).textContent =
+                allMembers.length;
+
+
+            document.getElementById(
+                "searchResult"
+            ).innerHTML = "";
+
+
+            document.getElementById(
+                "phoneSearch"
+            ).value = "";
+
+
+            /* =============================================
+               REBUILD CURRENT LIST WITHOUT
+               AUTOMATIC FIREBASE REFRESH
+            ============================================= */
+
+            const list =
+                document.getElementById(
+                    "membersList"
+                );
+
+
+            list.innerHTML = "";
+
+
+            for(
+                let i = 0;
+                i < allMembers.length;
+                i++
+            ){
+
+                const user =
+                    allMembers[i];
+
+                list.innerHTML +=
+                    createMemberCard(
+                        user,
+                        i
+                    );
+
+            }
+
+
+            hideLoading();
+
+
+            alert(
+
+                "✅ Member deleted successfully.\n\n" +
+
+                name +
+
+                " and the associated Firebase " +
+
+                "SkyRent records have been removed."
+
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                "Delete member error:",
+                error
+            );
+
+
+            hideLoading();
+
+
+            alert(
+
+                "❌ Unable to delete the member.\n\n" +
+
+                (
+                    error.message ||
+                    "Please check your Firestore rules."
+                )
+
+            );
+
+        }
+
+    };
+
+
+/* =========================================================
+   CLEAR SEARCH
+========================================================= */
+
+window.clearSearch =
+    function(){
+
+        document.getElementById(
+            "phoneSearch"
+        ).value = "";
+
+
+        document.getElementById(
+            "searchResult"
+        ).innerHTML = "";
+
+    };
+
+
+/* =========================================================
+   ENTER KEY SEARCH
+========================================================= */
+
+document.getElementById(
+    "phoneSearch"
+).addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            searchMember();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AUTHENTICATION / ADMIN PROTECTION
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async function(user){
+
+        if(!user){
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        currentAdmin =
+            user;
+
+
+        if(
+            user.uid !== ADMIN_UID
+        ){
+
+            alert(
+                "❌ Access denied. " +
+                "This Firebase account is not an administrator."
+            );
+
+
+            await signOut(auth);
+
+
+            window.location.href =
+                "index.html";
+
+
+            return;
+
+        }
+
+
+        /*
+           ADMIN VERIFIED.
+
+           IMPORTANT:
+           This page uses NORMAL loading only.
+
+           The full-page SkyRent logo spinner
+           belongs to admin.html after successful
+           admin login.
+
+           There is NO automatic refresh here.
+        */
+
+        await loadMembers();
+
+    }
+);
+
+
+/* =========================================================
+   NO AUTOMATIC REFRESH
+=========================================================
+
+   IMPORTANT:
+
+   The old 30-second setInterval() has been
+   intentionally removed.
+
+   Members are refreshed ONLY when the admin
+   presses the "🔄 Refresh" button.
+
+========================================================= */
+
+
+/* =========================================================
+   MAKE LOAD MEMBERS AVAILABLE
+========================================================= */
+
+window.loadMembers =
+    loadMembers;
+
+</script>
+
+</body>
+</html>
