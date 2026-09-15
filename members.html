@@ -2664,30 +2664,46 @@ function createFullMemberRecord(
 
                         <div class="history-detail">
 
-                            ${
-                                netAmount > 0
-                                ? "Net amount: " +
-                                  formatMoney(
-                                      netAmount
-                                  ) +
-                                  "<br>"
-                                : ""
-                            }
+    ${
+        netAmount > 0
+        ? "Net amount: " +
+          formatMoney(
+              netAmount
+          ) +
+          "<br>"
+        : ""
+    }
 
-                            ${
-                                getAccountDetails(
-                                    withdrawal
-                                )
-                                ? "Account: " +
-                                  escapeHTML(
-                                      getAccountDetails(
-                                          withdrawal
-                                      )
-                                  )
-                                : ""
-                            }
+    ${
+        getAccountDetails(withdrawal).type
+        ? "Withdrawal Type: " +
+          escapeHTML(
+              getAccountDetails(withdrawal).type
+          ) +
+          "<br>"
+        : ""
+    }
 
-                        </div>
+    ${
+        getAccountDetails(withdrawal).name
+        ? "Account Name: " +
+          escapeHTML(
+              getAccountDetails(withdrawal).name
+          ) +
+          "<br>"
+        : ""
+    }
+
+    ${
+        getAccountDetails(withdrawal).number
+        ? "Account Number: " +
+          escapeHTML(
+              getAccountDetails(withdrawal).number
+          )
+        : ""
+    }
+
+</div>
 
                     </div>
 
@@ -3434,15 +3450,30 @@ function getPaymentMethod(record){
 
 function getAccountDetails(record){
 
-    return (
-        record?.accountName ||
-        record?.accountNumber ||
-        record?.account ||
-        record?.bankAccount ||
-        record?.wallet ||
-        record?.gcash ||
-        ""
-    );
+    return {
+        type:
+            record?.withdrawalType ||
+            record?.accountType ||
+            record?.paymentMethod ||
+            record?.method ||
+            record?.channel ||
+            "",
+
+        name:
+            record?.accountName ||
+            record?.withdrawalAccountName ||
+            record?.name ||
+            "",
+
+        number:
+            record?.accountNumber ||
+            record?.withdrawalAccountNumber ||
+            record?.number ||
+            record?.phoneNumber ||
+            record?.gcashNumber ||
+            record?.mayaNumber ||
+            ""
+    };
 
 }
 
