@@ -9,7 +9,7 @@
   "description": "SkyRent",
   "icons": [
     {
-      "src": "./skyrent-logo.png",
+      "src": "./skyrent.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
