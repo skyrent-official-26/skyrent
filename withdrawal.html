@@ -1,1 +1,2559 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>SkyRent Withdrawal</title> <style> /* ===================================================== RESET ===================================================== */ *{ margin:0; padding:0; box-sizing:border-box; } html{ scroll-behavior:smooth; } body{ font-family:Arial, sans-serif; background:linear-gradient( 180deg, #eaf6ff 0%, #f7fbff 45%, #ffffff 100% ); color:#123; min-height:100vh; padding-bottom:90px; } /* ===================================================== HEADER ===================================================== */ .header{ background:linear-gradient( 135deg, #007bff, #00a8ff ); color:white; padding:20px 18px 25px; border-radius:0 0 25px 25px; box-shadow:0 8px 25px rgba(0,123,255,.18); } .header-top{ display:flex; align-items:center; justify-content:space-between; } .back-btn{ border:none; background:rgba(255,255,255,.18); color:white; width:40px; height:40px; border-radius:12px; font-size:20px; cursor:pointer; } .header-title{ font-size:21px; font-weight:700; } .header-space{ width:40px; } /* ===================================================== CONTAINER ===================================================== */ .container{ width:100%; max-width:600px; margin:auto; padding:18px 15px; } /* ===================================================== VIRTUAL WITHDRAWAL CARD ===================================================== */ .virtual-card{ position:relative; overflow:hidden; background:linear-gradient( 135deg, #006eff 0%, #008dff 50%, #00b7ff 100% ); color:white; border-radius:23px; padding:20px; margin-bottom:18px; min-height:205px; box-shadow: 0 12px 30px rgba(0,123,255,.25); } /* decorative circles */ .virtual-card::before{ content:""; position:absolute; width:170px; height:170px; border-radius:50%; background:rgba(255,255,255,.08); right:-65px; top:-75px; } .virtual-card::after{ content:""; position:absolute; width:130px; height:130px; border-radius:50%; background:rgba(255,255,255,.06); left:-70px; bottom:-70px; } .card-top{ position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center; } .card-brand{ display:flex; align-items:center; gap:9px; } .card-icon{ width:38px; height:38px; border-radius:12px; background:rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; font-size:20px; } .card-title{ font-size:13px; font-weight:700; letter-spacing:.4px; } .card-subtitle{ font-size:9px; opacity:.75; margin-top:2px; } .card-status{ font-size:9px; background:rgba(255,255,255,.16); padding:6px 9px; border-radius:20px; } .card-balance-label{ position:relative; z-index:2; margin-top:22px; font-size:10px; opacity:.78; letter-spacing:.5px; } .card-balance{ position:relative; z-index:2; font-size:28px; font-weight:700; margin-top:4px; } .card-bottom{ position:absolute; z-index:2; left:20px; right:20px; bottom:17px; display:flex; justify-content:space-between; align-items:flex-end; } .card-account{ min-width:0; } .card-account-label{ font-size:9px; opacity:.68; margin-bottom:4px; } .card-account-name{ font-size:13px; font-weight:700; max-width:190px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .card-account-number{ font-size:11px; opacity:.85; letter-spacing:1px; margin-top:2px; } .card-type{ text-align:right; } .card-type-label{ font-size:9px; opacity:.68; margin-bottom:4px; } .card-type-value{ font-size:12px; font-weight:700; } /* ===================================================== CHANGE ACCOUNT ===================================================== */ .change-account{ width:100%; margin-top:10px; border:none; background:rgba(255,255,255,.18); color:white; padding:10px 12px; border-radius:11px; font-size:11px; font-weight:700; cursor:pointer; position:relative; z-index:3; } .change-account:active{ transform:scale(.99); } /* ===================================================== NO ACCOUNT CARD ===================================================== */ .no-account-card{ position:relative; overflow:hidden; background:linear-gradient( 135deg, #006eff, #00a9ff ); color:white; border-radius:23px; padding:20px; margin-bottom:18px; box-shadow: 0 12px 30px rgba(0,123,255,.22); } .no-account-title{ font-size:13px; font-weight:700; margin-bottom:6px; } .no-account-text{ font-size:11px; opacity:.85; line-height:1.5; } .no-account-button{ width:100%; margin-top:15px; border:none; background:white; color:#007bff; padding:12px; border-radius:12px; font-size:12px; font-weight:700; cursor:pointer; } /* ===================================================== FORM CARD ===================================================== */ .form-card{ background:white; border-radius:20px; padding:18px; box-shadow: 0 5px 20px rgba(0,80,150,.08); border:1px solid #e4f1ff; margin-bottom:16px; } .form-title{ font-size:17px; font-weight:700; margin-bottom:15px; } .input-label{ font-size:12px; color:#789; margin-bottom:7px; display:block; } .amount-input{ width:100%; padding:15px; border:1px solid #d9e9f7; border-radius:13px; outline:none; font-size:17px; color:#123; background:#fbfdff; } .amount-input:focus{ border-color:#008cff; box-shadow: 0 0 0 3px rgba(0,140,255,.08); } /* ===================================================== SUMMARY ===================================================== */ .summary{ margin-top:15px; background:#f4f9ff; border-radius:15px; padding:15px; } .summary-row{ display:flex; justify-content:space-between; align-items:center; padding:7px 0; font-size:13px; } .summary-row span:first-child{ color:#789; } .summary-row strong{ color:#123; } .summary-row.total{ border-top:1px solid #dcecf9; margin-top:5px; padding-top:12px; } .summary-row.total strong{ color:#007bff; font-size:16px; } /* ===================================================== WITHDRAW BUTTON ===================================================== */ .withdraw-btn{ width:100%; border:none; background:linear-gradient( 135deg, #007bff, #00a8ff ); color:white; padding:16px; border-radius:14px; margin-top:16px; font-size:15px; font-weight:700; cursor:pointer; box-shadow: 0 8px 20px rgba(0,123,255,.18); } .withdraw-btn:disabled{ opacity:.65; cursor:not-allowed; } /* ===================================================== MESSAGE ===================================================== */ .message{ display:none; padding:13px; border-radius:12px; margin-bottom:15px; font-size:13px; line-height:1.5; } .message.success{ display:block; background:#eafaf0; color:#16803a; border:1px solid #c9efd7; } .message.error{ display:block; background:#fff0f0; color:#c62828; border:1px solid #ffd0d0; } /* ===================================================== NOTICE ===================================================== */ .notice{ background:#fffdf1; border:1px solid #f4e7a5; border-radius:18px; padding:16px; margin-bottom:16px; } .notice-title{ font-size:14px; font-weight:700; color:#806900; margin-bottom:9px; } .notice ul{ padding-left:18px; } .notice li{ font-size:12px; color:#675f35; margin-bottom:6px; line-height:1.4; } /* ===================================================== HISTORY BUTTON ===================================================== */ .history-btn{ width:100%; border:1px solid #cfe7fb; background:white; color:#007bff; padding:14px; border-radius:14px; font-weight:700; font-size:13px; cursor:pointer; margin-bottom:16px; } /* ===================================================== BOTTOM NAV ===================================================== */ .bottom-nav{ position:fixed; left:0; right:0; bottom:0; height:72px; background:rgba(255,255,255,.97); border-top:1px solid #e4eef7; display:flex; justify-content:space-around; align-items:center; z-index:1000; box-shadow: 0 -5px 20px rgba(0,80,150,.08); } .nav-item{ flex:1; text-align:center; color:#7b8b99; font-size:10px; cursor:pointer; } .nav-icon{ display:block; font-size:21px; margin-bottom:4px; } .nav-item.active{ color:#007bff; } </style> </head> <body> <!-- ===================================================== HEADER ===================================================== --> <div class="header"> <div class="header-top"> <button class="back-btn" onclick="goBack()"> ‹ </button> <div class="header-title"> Withdrawal </div> <div class="header-space"></div> </div> </div> <!-- ===================================================== MAIN ===================================================== --> <div class="container"> <!-- ================================================= MESSAGE ================================================== --> <div id="statusMessage" class="message"> </div> <!-- ================================================= VIRTUAL WITHDRAWAL CARD ================================================== --> <div id="virtualCard" class="virtual-card"> <div class="card-top"> <div class="card-brand"> <div class="card-icon"> 💳 </div> <div> <div class="card-title"> SKYRENT WITHDRAWAL </div> <div class="card-subtitle"> Secure Withdrawal Account </div> </div> </div> <div class="card-status"> ACTIVE </div> </div> <div class="card-balance-label"> AVAILABLE BALANCE </div> <div class="card-balance" id="availableBalance"> ₱0.00 </div> <div class="card-bottom"> <div class="card-account"> <div class="card-account-label"> ACCOUNT HOLDER </div> <div class="card-account-name" id="accountName"> No account selected </div> <div class="card-account-number" id="accountNumber"> •••• •••• •••• </div> </div> <div class="card-type"> <div class="card-type-label"> ACCOUNT TYPE </div> <div class="card-type-value" id="accountType"> - </div> </div> </div> <button class="change-account" onclick="changeAccount()"> ⚙️ Change Withdrawal Account </button> </div> <!-- ================================================= FORM CARD ================================================== --> <div class="form-card"> <div class="form-title"> Request Withdrawal </div> <label class="input-label"> Withdrawal Amount </label> <input type="number" id="withdrawAmount" class="amount-input" placeholder="Enter amount" min="100" step="1"> <!-- SUMMARY --> <div class="summary"> <div class="summary-row"> <span> Withdrawal Amount </span> <strong id="withdrawDisplay"> ₱0.00 </strong> </div> <div class="summary-row"> <span> Processing Fee (10%) </span> <strong id="processingFee"> ₱0.00 </strong> </div> <div class="summary-row total"> <span> You Receive </span> <strong id="netAmount"> ₱0.00 </strong> </div> </div> <!-- REQUEST BUTTON --> <button class="withdraw-btn" id="withdrawButton" onclick="submitWithdrawal()"> Request Withdrawal </button> </div> <!-- ================================================= NOTICE ================================================== --> <div class="notice"> <div class="notice-title"> Withdrawal Information </div> <ul> <li> Minimum withdrawal amount is ₱100. </li> <li> Withdrawal requests are available from 9:00 AM to 6:00 PM. </li> <li> Processing time is approximately 1–4 hours. </li> <li> A 10% processing fee is deducted. </li> <li> Only 1 withdrawal request is allowed per day. </li> <li> You must have an active investment. </li> <li> You must register a withdrawal account before submitting a request. </li> <li> Withdrawal requests remain Pending until reviewed by admin. </li> <li> Please make sure your withdrawal account information is correct. </li> </ul> </div> <!-- ================================================= HISTORY ================================================== --> <button class="history-btn" onclick="goWithdrawalHistory()"> 📋 Withdrawal History </button> </div> <!-- ===================================================== BOTTOM NAV ===================================================== --> <div class="bottom-nav"> <div class="nav-item active" onclick="goHome()"> <span class="nav-icon"> 🏠 </span> Home </div> <div class="nav-item" onclick="goCrafts()"> <span class="nav-icon"> ✈️ </span> Crafts </div> <div class="nav-item" onclick="goNetwork()"> <span class="nav-icon"> 👥 </span> Network </div> <div class="nav-item" onclick="goEarnings()"> <span class="nav-icon"> 💰 </span> Earnings </div> <div class="nav-item" onclick="logoutUser()"> <span class="nav-icon"> 🚪 </span> Logout </div> </div> <!-- ===================================================== FIREBASE ===================================================== --> <script type="module"> /* ===================================================== FIREBASE IMPORTS ===================================================== */ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"; import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"; import { getFirestore, doc, getDoc, collection, query, where, limit, getDocs, runTransaction, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"; /* ===================================================== FIREBASE CONFIG ===================================================== */ const firebaseConfig = { apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8", authDomain: "skyrent-ea30c.firebaseapp.com", projectId: "skyrent-ea30c", storageBucket: "skyrent-ea30c.firebasestorage.app", messagingSenderId: "572678456448", appId: "1:572678456448:web:6b7132351515742dd09265" }; /* ===================================================== INITIALIZE ===================================================== */ const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app); /* ===================================================== GLOBAL VARIABLES ===================================================== */ let currentUser = null; let currentUserData = null; let currentWithdrawalAccount = null; let currentBalance = 0; let loadingPage = false; /* ===================================================== FORMAT MONEY ===================================================== */ function formatMoney(value){ return Number(value || 0).toLocaleString( "en-PH", { style:"currency", currency:"PHP", minimumFractionDigits:2 } ); } /* ===================================================== MASK ACCOUNT NUMBER ===================================================== */ function maskAccountNumber(accountNumber){ if(!accountNumber){ return "•••• •••• ••••"; } const value = String(accountNumber).trim(); if(value.length <= 4){ return "•••• " + value; } const lastFour = value.slice(-4); return "•••• •••• " + lastFour; } /* ===================================================== SHOW MESSAGE ===================================================== */ function showMessage(type, message){ const box = document.getElementById( "statusMessage" ); box.className = "message " + type; box.innerText = message; window.scrollTo({ top:0, behavior:"smooth" }); } /* ===================================================== CLEAR MESSAGE ===================================================== */ function clearMessage(){ const box = document.getElementById( "statusMessage" ); box.className = "message"; box.innerText = ""; } /* ===================================================== CALCULATE WITHDRAWAL ===================================================== */ function calculateWithdrawal(){ const input = document.getElementById( "withdrawAmount" ); const amount = Number(input.value || 0); const fee = amount * 0.10; const net = amount - fee; document.getElementById( "withdrawDisplay" ).innerText = formatMoney(amount); document.getElementById( "processingFee" ).innerText = formatMoney(fee); document.getElementById( "netAmount" ).innerText = formatMoney(net); } /* ===================================================== CHECK WITHDRAWAL TIME ===================================================== */ function isWithdrawalTime(){ const now = new Date(); const hour = now.getHours(); return hour >= 9 && hour < 18; } /* ===================================================== TODAY RANGE ===================================================== */ function getTodayRange(){ const now = new Date(); const start = new Date( now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0 ); const end = new Date( now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999 ); return { start, end }; } /* ===================================================== LOAD WITHDRAWAL ACCOUNT ===================================================== */ async function loadWithdrawalAccount(){ if(!currentUser){ return false; } try{ const userRef = doc( db, "users", currentUser.uid ); const snapshot = await getDoc(userRef); if(!snapshot.exists()){ showMessage( "error", "Your SkyRent user account could not be found." ); return false; } currentUserData = snapshot.data(); const account = currentUserData.withdrawalAccount; if( account && account.accountName && account.accountType && account.accountNumber ){ currentWithdrawalAccount = account; document.getElementById( "accountName" ).innerText = account.accountName; document.getElementById( "accountType" ).innerText = account.accountType; document.getElementById( "accountNumber" ).innerText = maskAccountNumber( account.accountNumber ); }else{ currentWithdrawalAccount = null; document.getElementById( "accountName" ).innerText = "No withdrawal account"; document.getElementById( "accountType" ).innerText = "-"; document.getElementById( "accountNumber" ).innerText = "•••• •••• ••••"; } return true; }catch(error){ console.error( "Load withdrawal account error:", error ); showMessage( "error", "Unable to load your withdrawal account." ); return false; } } /* ===================================================== REFRESH ACCOUNT BEFORE SUBMIT ===================================================== */ async function refreshWithdrawalAccountBeforeSubmit(){ if(!currentUser){ return false; } try{ const userRef = doc( db, "users", currentUser.uid ); const snapshot = await getDoc(userRef); if(!snapshot.exists()){ currentWithdrawalAccount = null; return false; } const data = snapshot.data(); currentUserData = data; const account = data.withdrawalAccount; if( !account || !account.accountName || !account.accountType || !account.accountNumber ){ currentWithdrawalAccount = null; return false; } currentWithdrawalAccount = account; document.getElementById( "accountName" ).innerText = account.accountName; document.getElementById( "accountType" ).innerText = account.accountType; document.getElementById( "accountNumber" ).innerText = maskAccountNumber( account.accountNumber ); return true; }catch(error){ console.error( "Refresh account error:", error ); return false; } } /* ===================================================== LOAD BALANCE ===================================================== */ async function loadBalance(){ if(!currentUser){ return false; } try{ const userRef = doc( db, "users", currentUser.uid ); const snapshot = await getDoc(userRef); if(!snapshot.exists()){ showMessage( "error", "Your SkyRent user account could not be found." ); return false; } const data = snapshot.data(); currentUserData = data; currentBalance = Number( data.balance || 0 ); document.getElementById( "availableBalance" ).innerText = formatMoney( currentBalance ); return true; }catch(error){ console.error( "Load balance error:", error ); showMessage( "error", "Unable to load your balance." ); return false; } } /* ===================================================== CHECK ACTIVE INVESTMENT ===================================================== */ async function hasActiveInvestment(){ if(!currentUser){ return false; } try{ const investmentsRef = collection( db, "investments" ); const activeQuery = query( investmentsRef, where( "userId", "==", currentUser.uid ), where( "status", "==", "active" ), limit(1) ); const activeSnapshot = await getDocs( activeQuery ); if(!activeSnapshot.empty){ return true; } const capitalQuery = query( investmentsRef, where( "userId", "==", currentUser.uid ), where( "status", "==", "Active" ), limit(1) ); const capitalSnapshot = await getDocs( capitalQuery ); if(!capitalSnapshot.empty){ return true; } return false; }catch(error){ console.error( "Active investment check error:", error ); return false; } } /* ===================================================== CHECK ONE WITHDRAWAL PER DAY ===================================================== */ async function hasWithdrawalToday(){ if(!currentUser){ return false; } try{ const withdrawalsRef = collection( db, "withdrawals" ); const withdrawalQuery = query( withdrawalsRef, where( "uid", "==", currentUser.uid ), limit(100) ); const snapshot = await getDocs( withdrawalQuery ); const { start, end } = getTodayRange(); let foundToday = false; snapshot.forEach( withdrawalDoc => { const data = withdrawalDoc.data(); let date = null; if( data.requestedAt && typeof data.requestedAt.toDate === "function" ){ date = data.requestedAt.toDate(); }else if( data.createdAt && typeof data.createdAt.toDate === "function" ){ date = data.createdAt.toDate(); } if( date && date >= start && date <= end ){ foundToday = true; } } ); return foundToday; }catch(error){ console.error( "Withdrawal daily check error:", error ); return true; } } /* ===================================================== LOAD PAGE ===================================================== */ async function loadWithdrawalPage(){ if(loadingPage){ return; } loadingPage = true; try{ await loadWithdrawalAccount(); await loadBalance(); calculateWithdrawal(); }catch(error){ console.error( "Load withdrawal page error:", error ); }finally{ loadingPage = false; } } /* ===================================================== SUBMIT WITHDRAWAL ===================================================== */ async function submitWithdrawal(){ clearMessage(); const button = document.getElementById( "withdrawButton" ); const input = document.getElementById( "withdrawAmount" ); /* ================================================= AUTH CHECK ================================================= */ if(!currentUser){ window.location.href = "index.html"; return; } /* ================================================= AMOUNT CHECK ================================================= */ const amount = Number(input.value); if( !Number.isFinite(amount) || amount < 100 ){ showMessage( "error", "Minimum withdrawal amount is ₱100." ); return; } if(!Number.isInteger(amount)){ showMessage( "error", "Withdrawal amount must be a whole number." ); return; } /* ================================================= TIME CHECK ================================================= */ if(!isWithdrawalTime()){ showMessage( "error", "Withdrawals are available only from 9:00 AM to 6:00 PM." ); return; } /* ================================================= DISABLE BUTTON ================================================= */ button.disabled = true; button.innerText = "Checking Account..."; /* ================================================= ALWAYS CHECK LATEST ACCOUNT ================================================= */ const accountReady = await refreshWithdrawalAccountBeforeSubmit(); if(!accountReady){ button.disabled = false; button.innerText = "Request Withdrawal"; showMessage( "error", "Please register your withdrawal account first." ); return; } /* ================================================= ACTIVE INVESTMENT ================================================= */ button.innerText = "Checking Investment..."; const activeInvestment = await hasActiveInvestment(); if(!activeInvestment){ button.disabled = false; button.innerText = "Request Withdrawal"; showMessage( "error", "You need an active investment before you can withdraw." ); return; } /* ================================================= ONE WITHDRAWAL PER DAY ================================================= */ button.innerText = "Checking Daily Limit..."; const alreadyWithdrawn = await hasWithdrawalToday(); if(alreadyWithdrawn){ button.disabled = false; button.innerText = "Request Withdrawal"; showMessage( "error", "You can only make 1 withdrawal request per day." ); return; } /* ================================================= CALCULATE FEE ================================================= */ const processingFee = amount * 0.10; const netAmount = amount - processingFee; /* ================================================= FINAL ACCOUNT CHECK ================================================= */ if( !currentWithdrawalAccount || !currentWithdrawalAccount.accountName || !currentWithdrawalAccount.accountType || !currentWithdrawalAccount.accountNumber ){ button.disabled = false; button.innerText = "Request Withdrawal"; showMessage( "error", "Please register your withdrawal account first." ); return; } /* ================================================= FIRESTORE TRANSACTION ================================================= */ button.innerText = "Submitting Request..."; try{ await runTransaction( db, async transaction => { /* ------------------------------------- USER DOCUMENT ------------------------------------- */ const userRef = doc( db, "users", currentUser.uid ); const userSnapshot = await transaction.get( userRef ); if(!userSnapshot.exists()){ throw new Error( "USER_NOT_FOUND" ); } const latestUser = userSnapshot.data(); /* ------------------------------------- LATEST BALANCE ------------------------------------- */ const latestBalance = Number( latestUser.balance || 0 ); /* ------------------------------------- LATEST WITHDRAWAL ACCOUNT ------------------------------------- */ const latestAccount = latestUser.withdrawalAccount; if( !latestAccount || !latestAccount.accountName || !latestAccount.accountType || !latestAccount.accountNumber ){ throw new Error( "WITHDRAWAL_ACCOUNT_REQUIRED" ); } /* ------------------------------------- BALANCE CHECK ------------------------------------- */ if( latestBalance < amount ){ throw new Error( "INSUFFICIENT_BALANCE" ); } /* ------------------------------------- CREATE WITHDRAWAL ------------------------------------- */ const withdrawalRef = doc( collection( db, "withdrawals" ) ); const withdrawalData = { id: withdrawalRef.id, uid: currentUser.uid, phone: latestUser.phone || "", userName: latestUser.name || "", amount: amount, amountValue: amount, processingFee: processingFee, processingFeeRate: 10, netAmount: netAmount, processingTime: "1-4 hours", withdrawalTime: "9:00 AM - 6:00 PM", accountName: latestAccount.accountName, accountType: latestAccount.accountType, accountNumber: latestAccount.accountNumber, status: "Pending", requestedAt: serverTimestamp(), createdAt: serverTimestamp() }; /* ------------------------------------- SAVE WITHDRAWAL ------------------------------------- */ transaction.set( withdrawalRef, withdrawalData ); /* ------------------------------------- DEDUCT BALANCE ------------------------------------- */ transaction.update( userRef, { balance: latestBalance - amount } ); } ); /* ================================================= UPDATE PAGE BALANCE ================================================= */ currentBalance = currentBalance - amount; document.getElementById( "availableBalance" ).innerText = formatMoney( currentBalance ); input.value = ""; calculateWithdrawal(); button.disabled = false; button.innerText = "Request Withdrawal"; showMessage( "success", "Withdrawal request submitted successfully. Your request is now Pending and will be reviewed by admin." ); }catch(error){ console.error( "Withdrawal submission error:", error ); button.disabled = false; button.innerText = "Request Withdrawal"; if( error.message === "WITHDRAWAL_ACCOUNT_REQUIRED" ){ showMessage( "error", "Please register your withdrawal account first." ); }else if( error.message === "INSUFFICIENT_BALANCE" ){ showMessage( "error", "Insufficient balance for this withdrawal." ); }else if( error.message === "USER_NOT_FOUND" ){ showMessage( "error", "Your SkyRent user account could not be found." ); }else{ showMessage( "error", "Unable to submit your withdrawal request. Please try again." ); } } } /* ===================================================== MAKE MODULE FUNCTIONS AVAILABLE TO HTML ===================================================== */ window.submitWithdrawal = submitWithdrawal; /* ===================================================== NAVIGATION ===================================================== */ window.goBack = function(){ window.location.href = "dashboard.html"; }; window.changeAccount = function(){ window.location.href = "withdrawal-account.html"; }; window.goWithdrawalHistory = function(){ window.location.href = "withdrawal-history.html"; }; window.goHome = function(){ window.location.href = "dashboard.html"; }; window.goCrafts = function(){ window.location.href = "crafts.html"; }; window.goNetwork = function(){ window.location.href = "network.html"; }; window.goEarnings = function(){ window.location.href = "earnings.html"; }; /* ===================================================== LOGOUT ===================================================== */ window.logoutUser = async function(){ try{ await signOut(auth); window.location.href = "index.html"; }catch(error){ console.error( "Logout error:", error ); showMessage( "error", "Unable to logout. Please try again." ); } }; /* ===================================================== INPUT LISTENER ===================================================== */ document .getElementById( "withdrawAmount" ) .addEventListener( "input", calculateWithdrawal ); /* ===================================================== AUTH STATE ===================================================== */ onAuthStateChanged( auth, async user => { if(!user){ currentUser = null; window.location.href = "index.html"; return; } currentUser = user; await loadWithdrawalPage(); } ); </script> </body> </html> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent Withdrawal</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(
+        180deg,
+        #eaf6ff 0%,
+        #f7fbff 45%,
+        #ffffff 100%
+    );
+    color:#123;
+    min-height:100vh;
+    padding-bottom:90px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #007bff,
+        #00a8ff
+    );
+    color:white;
+    padding:20px 18px 25px;
+    border-radius:0 0 25px 25px;
+    box-shadow:0 8px 25px rgba(0,123,255,.18);
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.back-btn{
+    border:none;
+    background:rgba(255,255,255,.18);
+    color:white;
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.header-title{
+    font-size:21px;
+    font-weight:700;
+}
+
+.header-space{
+    width:40px;
+}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+    width:100%;
+    max-width:600px;
+    margin:auto;
+    padding:18px 15px;
+}
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+    display:none;
+    padding:13px;
+    border-radius:12px;
+    margin-bottom:15px;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.message.success{
+    display:block;
+    background:#eafaf0;
+    color:#16803a;
+    border:1px solid #c9efd7;
+}
+
+.message.error{
+    display:block;
+    background:#fff0f0;
+    color:#c62828;
+    border:1px solid #ffd0d0;
+}
+
+/* =====================================================
+   VIRTUAL WITHDRAWAL CARD
+===================================================== */
+
+.virtual-card{
+    position:relative;
+    overflow:hidden;
+
+    background:linear-gradient(
+        135deg,
+        #003b88 0%,
+        #005fc9 50%,
+        #008ee8 100%
+    );
+
+    color:white;
+    border-radius:23px;
+    padding:20px;
+    margin-bottom:10px;
+    min-height:205px;
+
+    box-shadow:
+        0 12px 30px rgba(0,80,180,.25);
+}
+
+/* Decorative circles */
+
+.virtual-card::before{
+    content:"";
+    position:absolute;
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    right:-65px;
+    top:-75px;
+}
+
+.virtual-card::after{
+    content:"";
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.06);
+
+    left:-70px;
+    bottom:-70px;
+}
+
+/* =====================================================
+   CARD TOP
+===================================================== */
+
+.card-top{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.card-brand{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.card-icon{
+    width:38px;
+    height:38px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.18);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+}
+
+.card-title{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.4px;
+}
+
+.card-subtitle{
+    font-size:9px;
+    opacity:.75;
+    margin-top:2px;
+}
+
+.card-status{
+    font-size:9px;
+
+    background:rgba(255,255,255,.16);
+
+    padding:6px 9px;
+
+    border-radius:20px;
+}
+
+/* =====================================================
+   CARD BALANCE
+===================================================== */
+
+.card-balance-label{
+    position:relative;
+    z-index:2;
+
+    margin-top:22px;
+
+    font-size:10px;
+
+    opacity:.78;
+
+    letter-spacing:.5px;
+}
+
+.card-balance{
+    position:relative;
+    z-index:2;
+
+    font-size:28px;
+    font-weight:700;
+
+    margin-top:4px;
+}
+
+/* =====================================================
+   CARD BOTTOM
+===================================================== */
+
+.card-bottom{
+    position:absolute;
+    z-index:2;
+
+    left:20px;
+    right:20px;
+    bottom:17px;
+
+    display:flex;
+
+    justify-content:space-between;
+    align-items:flex-end;
+}
+
+.card-account{
+    min-width:0;
+}
+
+.card-account-label{
+    font-size:9px;
+    opacity:.68;
+    margin-bottom:4px;
+}
+
+.card-account-name{
+    font-size:13px;
+    font-weight:700;
+
+    max-width:190px;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.card-account-number{
+    font-size:11px;
+
+    opacity:.85;
+
+    letter-spacing:1px;
+
+    margin-top:2px;
+}
+
+.card-type{
+    text-align:right;
+}
+
+.card-type-label{
+    font-size:9px;
+    opacity:.68;
+    margin-bottom:4px;
+}
+
+.card-type-value{
+    font-size:12px;
+    font-weight:700;
+}
+
+/* =====================================================
+   CHANGE ACCOUNT OUTSIDE CARD
+===================================================== */
+
+.change-account-wrapper{
+    width:100%;
+    margin-bottom:18px;
+}
+
+.change-account{
+    width:100%;
+
+    border:1px solid #cfe7fb;
+
+    background:white;
+
+    color:#007bff;
+
+    padding:12px;
+
+    border-radius:13px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 14px rgba(0,80,150,.07);
+}
+
+.change-account:active{
+    transform:scale(.99);
+}
+
+/* =====================================================
+   FORM CARD
+===================================================== */
+
+.form-card{
+    background:white;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    box-shadow:
+        0 5px 20px rgba(0,80,150,.08);
+
+    border:1px solid #e4f1ff;
+
+    margin-bottom:16px;
+}
+
+.form-title{
+    font-size:17px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.input-label{
+    font-size:12px;
+
+    color:#789;
+
+    margin-bottom:7px;
+
+    display:block;
+}
+
+.amount-input{
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #d9e9f7;
+
+    border-radius:13px;
+
+    outline:none;
+
+    font-size:17px;
+
+    color:#123;
+
+    background:#fbfdff;
+}
+
+.amount-input:focus{
+    border-color:#008cff;
+
+    box-shadow:
+        0 0 0 3px rgba(0,140,255,.08);
+}
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary{
+    margin-top:15px;
+
+    background:#f4f9ff;
+
+    border-radius:15px;
+
+    padding:15px;
+}
+
+.summary-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:7px 0;
+
+    font-size:13px;
+}
+
+.summary-row span:first-child{
+    color:#789;
+}
+
+.summary-row strong{
+    color:#123;
+}
+
+.summary-row.total{
+    border-top:1px solid #dcecf9;
+
+    margin-top:5px;
+
+    padding-top:12px;
+}
+
+.summary-row.total strong{
+    color:#007bff;
+
+    font-size:16px;
+}
+
+/* =====================================================
+   WITHDRAW BUTTON
+===================================================== */
+
+.withdraw-btn{
+    width:100%;
+
+    border:none;
+
+    background:linear-gradient(
+        135deg,
+        #007bff,
+        #00a8ff
+    );
+
+    color:white;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    margin-top:16px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0,123,255,.18);
+}
+
+.withdraw-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
+/* =====================================================
+   NOTICE
+===================================================== */
+
+.notice{
+    background:#fffdf1;
+
+    border:1px solid #f4e7a5;
+
+    border-radius:18px;
+
+    padding:16px;
+
+    margin-bottom:16px;
+}
+
+.notice-title{
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#806900;
+
+    margin-bottom:9px;
+}
+
+.notice ul{
+    padding-left:18px;
+}
+
+.notice li{
+    font-size:12px;
+
+    color:#675f35;
+
+    margin-bottom:6px;
+
+    line-height:1.4;
+}
+
+/* =====================================================
+   HISTORY BUTTON
+===================================================== */
+
+.history-btn{
+    width:100%;
+
+    border:1px solid #cfe7fb;
+
+    background:white;
+
+    color:#007bff;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+    font-size:13px;
+
+    cursor:pointer;
+
+    margin-bottom:16px;
+
+    display:block;
+
+    text-align:center;
+
+    box-shadow:
+        0 4px 12px rgba(0,80,150,.05);
+}
+
+.history-btn:active{
+    transform:scale(.99);
+}
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottom-nav{
+    position:fixed;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:72px;
+
+    background:rgba(255,255,255,.97);
+
+    border-top:1px solid #e4eef7;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    z-index:1000;
+
+    box-shadow:
+        0 -5px 20px rgba(0,80,150,.08);
+}
+
+.nav-item{
+    flex:1;
+
+    text-align:center;
+
+    color:#7b8b99;
+
+    font-size:10px;
+
+    cursor:pointer;
+}
+
+.nav-icon{
+    display:block;
+
+    font-size:21px;
+
+    margin-bottom:4px;
+}
+
+.nav-item.active{
+    color:#007bff;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header">
+
+    <div class="header-top">
+
+        <button
+            class="back-btn"
+            onclick="goBack()">
+
+            ‹
+
+        </button>
+
+        <div class="header-title">
+
+            Withdrawal
+
+        </div>
+
+        <div class="header-space"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="container">
+
+
+    <!-- =================================================
+         MESSAGE
+    ================================================== -->
+
+    <div
+        id="statusMessage"
+        class="message">
+    </div>
+
+
+    <!-- =================================================
+         VIRTUAL WITHDRAWAL CARD
+    ================================================== -->
+
+    <div
+        id="virtualCard"
+        class="virtual-card">
+
+        <div class="card-top">
+
+            <div class="card-brand">
+
+                <div class="card-icon">
+                    💳
+                </div>
+
+                <div>
+
+                    <div class="card-title">
+                        SKYRENT WITHDRAWAL
+                    </div>
+
+                    <div class="card-subtitle">
+                        Secure Withdrawal Account
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card-status">
+                ACTIVE
+            </div>
+
+        </div>
+
+
+        <div class="card-balance-label">
+            AVAILABLE BALANCE
+        </div>
+
+        <div
+            class="card-balance"
+            id="availableBalance">
+
+            ₱0.00
+
+        </div>
+
+
+        <div class="card-bottom">
+
+            <div class="card-account">
+
+                <div class="card-account-label">
+                    ACCOUNT HOLDER
+                </div>
+
+                <div
+                    class="card-account-name"
+                    id="accountName">
+
+                    No account selected
+
+                </div>
+
+                <div
+                    class="card-account-number"
+                    id="accountNumber">
+
+                    •••• •••• ••••
+
+                </div>
+
+            </div>
+
+
+            <div class="card-type">
+
+                <div class="card-type-label">
+                    ACCOUNT TYPE
+                </div>
+
+                <div
+                    class="card-type-value"
+                    id="accountType">
+
+                    -
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CHANGE ACCOUNT OUTSIDE CARD
+    ================================================== -->
+
+    <div class="change-account-wrapper">
+
+        <button
+            class="change-account"
+            onclick="changeAccount()">
+
+            ⚙️ Change Withdrawal Account
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         FORM CARD
+    ================================================== -->
+
+    <div class="form-card">
+
+        <div class="form-title">
+            Request Withdrawal
+        </div>
+
+
+        <label class="input-label">
+            Withdrawal Amount
+        </label>
+
+
+        <input
+            type="number"
+            id="withdrawAmount"
+            class="amount-input"
+            placeholder="Enter amount"
+            min="100"
+            step="1">
+
+
+        <!-- =================================================
+             SUMMARY
+        ================================================== -->
+
+        <div class="summary">
+
+            <div class="summary-row">
+
+                <span>
+                    Withdrawal Amount
+                </span>
+
+                <strong id="withdrawDisplay">
+                    ₱0.00
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Processing Fee (10%)
+                </span>
+
+                <strong id="processingFee">
+                    ₱0.00
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row total">
+
+                <span>
+                    You Receive
+                </span>
+
+                <strong id="netAmount">
+                    ₱0.00
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             REQUEST BUTTON
+        ================================================== -->
+
+        <button
+            class="withdraw-btn"
+            id="withdrawButton"
+            onclick="submitWithdrawal()">
+
+            Request Withdrawal
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         NOTICE
+    ================================================== -->
+
+    <div class="notice">
+
+        <div class="notice-title">
+            Withdrawal Information
+        </div>
+
+        <ul>
+
+            <li>
+                Minimum withdrawal amount is ₱100.
+            </li>
+
+            <li>
+                Withdrawal requests are available from
+                9:00 AM to 6:00 PM.
+            </li>
+
+            <li>
+                Processing time is approximately 1–4 hours.
+            </li>
+
+            <li>
+                A 10% processing fee is deducted.
+            </li>
+
+            <li>
+                Only 1 withdrawal request is allowed per day.
+            </li>
+
+            <li>
+                You must have an active investment.
+            </li>
+
+            <li>
+                You must register a withdrawal account
+                before submitting a request.
+            </li>
+
+            <li>
+                Withdrawal requests remain Pending until
+                reviewed by admin.
+            </li>
+
+            <li>
+                Please make sure your withdrawal account
+                information is correct.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- =================================================
+         HISTORY
+    ================================================== -->
+
+    <button
+        class="history-btn"
+        onclick="goWithdrawalHistory()">
+
+        📋 Withdrawal History
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<div class="bottom-nav">
+
+    <div
+        class="nav-item active"
+        onclick="goHome()">
+
+        <span class="nav-icon">
+            🏠
+        </span>
+
+        Home
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="goCrafts()">
+
+        <span class="nav-icon">
+            ✈️
+        </span>
+
+        Crafts
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="goNetwork()">
+
+        <span class="nav-icon">
+            👥
+        </span>
+
+        Network
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="goEarnings()">
+
+        <span class="nav-icon">
+            💰
+        </span>
+
+        Earnings
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="logoutUser()">
+
+        <span class="nav-icon">
+            🚪
+        </span>
+
+        Logout
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    query,
+    where,
+    limit,
+    getDocs,
+    runTransaction,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let currentUser = null;
+
+let currentUserData = null;
+
+let currentWithdrawalAccount = null;
+
+let currentBalance = 0;
+
+let loadingPage = false;
+
+
+/* =====================================================
+   FORMAT MONEY
+===================================================== */
+
+function formatMoney(value){
+
+    return Number(value || 0).toLocaleString(
+        "en-PH",
+        {
+            style:"currency",
+            currency:"PHP",
+            minimumFractionDigits:2
+        }
+    );
+
+}
+
+
+/* =====================================================
+   MASK ACCOUNT NUMBER
+===================================================== */
+
+function maskAccountNumber(accountNumber){
+
+    if(!accountNumber){
+
+        return "•••• •••• ••••";
+
+    }
+
+    const value =
+        String(accountNumber).trim();
+
+    if(value.length <= 4){
+
+        return "•••• " + value;
+
+    }
+
+    const lastFour =
+        value.slice(-4);
+
+    return "•••• •••• " + lastFour;
+
+}
+
+
+/* =====================================================
+   SHOW MESSAGE
+===================================================== */
+
+function showMessage(type, message){
+
+    const box =
+        document.getElementById(
+            "statusMessage"
+        );
+
+    box.className =
+        "message " + type;
+
+    box.innerText =
+        message;
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   CLEAR MESSAGE
+===================================================== */
+
+function clearMessage(){
+
+    const box =
+        document.getElementById(
+            "statusMessage"
+        );
+
+    box.className =
+        "message";
+
+    box.innerText =
+        "";
+
+}
+
+
+/* =====================================================
+   CALCULATE WITHDRAWAL
+===================================================== */
+
+function calculateWithdrawal(){
+
+    const input =
+        document.getElementById(
+            "withdrawAmount"
+        );
+
+    const amount =
+        Number(input.value || 0);
+
+    const fee =
+        amount * 0.10;
+
+    const net =
+        amount - fee;
+
+
+    document.getElementById(
+        "withdrawDisplay"
+    ).innerText =
+        formatMoney(amount);
+
+
+    document.getElementById(
+        "processingFee"
+    ).innerText =
+        formatMoney(fee);
+
+
+    document.getElementById(
+        "netAmount"
+    ).innerText =
+        formatMoney(net);
+
+}
+
+
+/* =====================================================
+   CHECK WITHDRAWAL TIME
+===================================================== */
+
+function isWithdrawalTime(){
+
+    const now =
+        new Date();
+
+    const hour =
+        now.getHours();
+
+    return hour >= 9 && hour < 18;
+
+}
+
+
+/* =====================================================
+   TODAY RANGE
+===================================================== */
+
+function getTodayRange(){
+
+    const now =
+        new Date();
+
+    const start =
+        new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            0,
+            0,
+            0,
+            0
+        );
+
+    const end =
+        new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            23,
+            59,
+            59,
+            999
+        );
+
+    return {
+        start,
+        end
+    };
+
+}
+
+
+/* =====================================================
+   LOAD WITHDRAWAL ACCOUNT
+===================================================== */
+
+async function loadWithdrawalAccount(){
+
+    if(!currentUser){
+
+        return false;
+
+    }
+
+    try{
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+        const snapshot =
+            await getDoc(userRef);
+
+
+        if(!snapshot.exists()){
+
+            showMessage(
+                "error",
+                "Your SkyRent user account could not be found."
+            );
+
+            return false;
+
+        }
+
+
+        currentUserData =
+            snapshot.data();
+
+
+        const account =
+            currentUserData.withdrawalAccount;
+
+
+        if(
+            account &&
+            account.accountName &&
+            account.accountType &&
+            account.accountNumber
+        ){
+
+            currentWithdrawalAccount =
+                account;
+
+
+            document.getElementById(
+                "accountName"
+            ).innerText =
+                account.accountName;
+
+
+            document.getElementById(
+                "accountType"
+            ).innerText =
+                account.accountType;
+
+
+            document.getElementById(
+                "accountNumber"
+            ).innerText =
+                maskAccountNumber(
+                    account.accountNumber
+                );
+
+        }else{
+
+            currentWithdrawalAccount =
+                null;
+
+
+            document.getElementById(
+                "accountName"
+            ).innerText =
+                "No withdrawal account";
+
+
+            document.getElementById(
+                "accountType"
+            ).innerText =
+                "-";
+
+
+            document.getElementById(
+                "accountNumber"
+            ).innerText =
+                "•••• •••• ••••";
+
+        }
+
+
+        return true;
+
+    }catch(error){
+
+        console.error(
+            "Load withdrawal account error:",
+            error
+        );
+
+        showMessage(
+            "error",
+            "Unable to load your withdrawal account."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =====================================================
+   REFRESH ACCOUNT BEFORE SUBMIT
+===================================================== */
+
+async function refreshWithdrawalAccountBeforeSubmit(){
+
+    if(!currentUser){
+
+        return false;
+
+    }
+
+    try{
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+
+        const snapshot =
+            await getDoc(userRef);
+
+
+        if(!snapshot.exists()){
+
+            currentWithdrawalAccount =
+                null;
+
+            return false;
+
+        }
+
+
+        const data =
+            snapshot.data();
+
+
+        currentUserData =
+            data;
+
+
+        const account =
+            data.withdrawalAccount;
+
+
+        if(
+            !account ||
+            !account.accountName ||
+            !account.accountType ||
+            !account.accountNumber
+        ){
+
+            currentWithdrawalAccount =
+                null;
+
+            return false;
+
+        }
+
+
+        currentWithdrawalAccount =
+            account;
+
+
+        document.getElementById(
+            "accountName"
+        ).innerText =
+            account.accountName;
+
+
+        document.getElementById(
+            "accountType"
+        ).innerText =
+            account.accountType;
+
+
+        document.getElementById(
+            "accountNumber"
+        ).innerText =
+            maskAccountNumber(
+                account.accountNumber
+            );
+
+
+        return true;
+
+    }catch(error){
+
+        console.error(
+            "Refresh account error:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD BALANCE
+===================================================== */
+
+async function loadBalance(){
+
+    if(!currentUser){
+
+        return false;
+
+    }
+
+    try{
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+
+        const snapshot =
+            await getDoc(userRef);
+
+
+        if(!snapshot.exists()){
+
+            showMessage(
+                "error",
+                "Your SkyRent user account could not be found."
+            );
+
+            return false;
+
+        }
+
+
+        const data =
+            snapshot.data();
+
+
+        currentUserData =
+            data;
+
+
+        currentBalance =
+            Number(
+                data.balance || 0
+            );
+
+
+        document.getElementById(
+            "availableBalance"
+        ).innerText =
+            formatMoney(
+                currentBalance
+            );
+
+
+        return true;
+
+    }catch(error){
+
+        console.error(
+            "Load balance error:",
+            error
+        );
+
+        showMessage(
+            "error",
+            "Unable to load your balance."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =====================================================
+   CHECK ACTIVE INVESTMENT
+===================================================== */
+
+async function hasActiveInvestment(){
+
+    if(!currentUser){
+
+        return false;
+
+    }
+
+    try{
+
+        const investmentsRef =
+            collection(
+                db,
+                "investments"
+            );
+
+
+        const activeQuery =
+            query(
+                investmentsRef,
+                where(
+                    "userId",
+                    "==",
+                    currentUser.uid
+                ),
+                where(
+                    "status",
+                    "==",
+                    "active"
+                ),
+                limit(1)
+            );
+
+
+        const activeSnapshot =
+            await getDocs(
+                activeQuery
+            );
+
+
+        if(!activeSnapshot.empty){
+
+            return true;
+
+        }
+
+
+        const capitalQuery =
+            query(
+                investmentsRef,
+                where(
+                    "userId",
+                    "==",
+                    currentUser.uid
+                ),
+                where(
+                    "status",
+                    "==",
+                    "Active"
+                ),
+                limit(1)
+            );
+
+
+        const capitalSnapshot =
+            await getDocs(
+                capitalQuery
+            );
+
+
+        if(!capitalSnapshot.empty){
+
+            return true;
+
+        }
+
+
+        return false;
+
+    }catch(error){
+
+        console.error(
+            "Active investment check error:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =====================================================
+   CHECK ONE WITHDRAWAL PER DAY
+===================================================== */
+
+async function hasWithdrawalToday(){
+
+    if(!currentUser){
+
+        return false;
+
+    }
+
+    try{
+
+        const withdrawalsRef =
+            collection(
+                db,
+                "withdrawals"
+            );
+
+
+        const withdrawalQuery =
+            query(
+                withdrawalsRef,
+                where(
+                    "uid",
+                    "==",
+                    currentUser.uid
+                ),
+                limit(100)
+            );
+
+
+        const snapshot =
+            await getDocs(
+                withdrawalQuery
+            );
+
+
+        const {
+            start,
+            end
+        } =
+            getTodayRange();
+
+
+        let foundToday =
+            false;
+
+
+        snapshot.forEach(
+            withdrawalDoc => {
+
+                const data =
+                    withdrawalDoc.data();
+
+
+                let date =
+                    null;
+
+
+                if(
+                    data.requestedAt &&
+                    typeof data.requestedAt.toDate ===
+                    "function"
+                ){
+
+                    date =
+                        data.requestedAt.toDate();
+
+                }else if(
+                    data.createdAt &&
+                    typeof data.createdAt.toDate ===
+                    "function"
+                ){
+
+                    date =
+                        data.createdAt.toDate();
+
+                }
+
+
+                if(
+                    date &&
+                    date >= start &&
+                    date <= end
+                ){
+
+                    foundToday =
+                        true;
+
+                }
+
+            }
+        );
+
+
+        return foundToday;
+
+    }catch(error){
+
+        console.error(
+            "Withdrawal daily check error:",
+            error
+        );
+
+        return true;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD PAGE
+===================================================== */
+
+async function loadWithdrawalPage(){
+
+    if(loadingPage){
+
+        return;
+
+    }
+
+    loadingPage =
+        true;
+
+
+    try{
+
+        await loadWithdrawalAccount();
+
+        await loadBalance();
+
+        calculateWithdrawal();
+
+    }catch(error){
+
+        console.error(
+            "Load withdrawal page error:",
+            error
+        );
+
+    }finally{
+
+        loadingPage =
+            false;
+
+    }
+
+}
+
+
+/* =====================================================
+   SUBMIT WITHDRAWAL
+===================================================== */
+
+async function submitWithdrawal(){
+
+    clearMessage();
+
+
+    const button =
+        document.getElementById(
+            "withdrawButton"
+        );
+
+
+    const input =
+        document.getElementById(
+            "withdrawAmount"
+        );
+
+
+    /* =================================================
+       AUTH CHECK
+    ================================================= */
+
+    if(!currentUser){
+
+        window.location.href =
+            "index.html";
+
+        return;
+
+    }
+
+
+    /* =================================================
+       AMOUNT CHECK
+    ================================================= */
+
+    const amount =
+        Number(input.value);
+
+
+    if(
+        !Number.isFinite(amount) ||
+        amount < 100
+    ){
+
+        showMessage(
+            "error",
+            "Minimum withdrawal amount is ₱100."
+        );
+
+        return;
+
+    }
+
+
+    if(!Number.isInteger(amount)){
+
+        showMessage(
+            "error",
+            "Withdrawal amount must be a whole number."
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       TIME CHECK
+    ================================================= */
+
+    if(!isWithdrawalTime()){
+
+        showMessage(
+            "error",
+            "Withdrawals are available only from 9:00 AM to 6:00 PM."
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       DISABLE BUTTON
+    ================================================= */
+
+    button.disabled =
+        true;
+
+    button.innerText =
+        "Checking Account...";
+
+
+    /* =================================================
+       ALWAYS CHECK LATEST ACCOUNT
+    ================================================= */
+
+    const accountReady =
+        await refreshWithdrawalAccountBeforeSubmit();
+
+
+    if(!accountReady){
+
+        button.disabled =
+            false;
+
+        button.innerText =
+            "Request Withdrawal";
+
+
+        showMessage(
+            "error",
+            "Please register your withdrawal account first."
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       ACTIVE INVESTMENT
+    ================================================= */
+
+    button.innerText =
+        "Checking Investment...";
+
+
+    const activeInvestment =
+        await hasActiveInvestment();
+
+
+    if(!activeInvestment){
+
+        button.disabled =
+            false;
+
+        button.innerText =
+            "Request Withdrawal";
+
+
+        showMessage(
+            "error",
+            "You need an active investment before you can withdraw."
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       ONE WITHDRAWAL PER DAY
+    ================================================= */
+
+    button.innerText =
+        "Checking Daily Limit...";
+
+
+    const alreadyWithdrawn =
+        await hasWithdrawalToday();
+
+
+    if(alreadyWithdrawn){
+
+        button.disabled =
+            false;
+
+        button.innerText =
+            "Request Withdrawal";
+
+
+        showMessage(
+            "error",
+            "You can only make 1 withdrawal request per day."
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       CALCULATE FEE
+    ================================================= */
+
+    const processingFee =
+        amount * 0.10;
+
+
+    const netAmount =
+        amount - processingFee;
+
+
+    /* =================================================
+       FINAL ACCOUNT CHECK
+    ================================================= */
+
+    if(
+        !currentWithdrawalAccount ||
+        !currentWithdrawalAccount.accountName ||
+        !currentWithdrawalAccount.accountType ||
+        !currentWithdrawalAccount.accountNumber
+    ){
+
+        button.disabled =
+            false;
+
+        button.innerText =
+            "Request Withdrawal";
+
+
+        showMessage(
+            "error",
+            "Please register your withdrawal account first."
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       FIRESTORE TRANSACTION
+    ================================================= */
+
+    button.innerText =
+        "Submitting Request...";
+
+
+    try{
+
+        await runTransaction(
+            db,
+            async transaction => {
+
+
+                /* -------------------------------------
+                   USER DOCUMENT
+                ------------------------------------- */
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        currentUser.uid
+                    );
+
+
+                const userSnapshot =
+                    await transaction.get(
+                        userRef
+                    );
+
+
+                if(!userSnapshot.exists()){
+
+                    throw new Error(
+                        "USER_NOT_FOUND"
+                    );
+
+                }
+
+
+                const latestUser =
+                    userSnapshot.data();
+
+
+                /* -------------------------------------
+                   LATEST BALANCE
+                ------------------------------------- */
+
+                const latestBalance =
+                    Number(
+                        latestUser.balance || 0
+                    );
+
+
+                /* -------------------------------------
+                   LATEST WITHDRAWAL ACCOUNT
+                ------------------------------------- */
+
+                const latestAccount =
+                    latestUser.withdrawalAccount;
+
+
+                if(
+                    !latestAccount ||
+                    !latestAccount.accountName ||
+                    !latestAccount.accountType ||
+                    !latestAccount.accountNumber
+                ){
+
+                    throw new Error(
+                        "WITHDRAWAL_ACCOUNT_REQUIRED"
+                    );
+
+                }
+
+
+                /* -------------------------------------
+                   BALANCE CHECK
+                ------------------------------------- */
+
+                if(
+                    latestBalance < amount
+                ){
+
+                    throw new Error(
+                        "INSUFFICIENT_BALANCE"
+                    );
+
+                }
+
+
+                /* -------------------------------------
+                   CREATE WITHDRAWAL
+                ------------------------------------- */
+
+                const withdrawalRef =
+                    doc(
+                        collection(
+                            db,
+                            "withdrawals"
+                        )
+                    );
+
+
+                const withdrawalData = {
+
+                    id:
+                        withdrawalRef.id,
+
+                    uid:
+                        currentUser.uid,
+
+                    phone:
+                        latestUser.phone || "",
+
+                    userName:
+                        latestUser.name || "",
+
+                    amount:
+                        amount,
+
+                    amountValue:
+                        amount,
+
+                    processingFee:
+                        processingFee,
+
+                    processingFeeRate:
+                        10,
+
+                    netAmount:
+                        netAmount,
+
+                    processingTime:
+                        "1-4 hours",
+
+                    withdrawalTime:
+                        "9:00 AM - 6:00 PM",
+
+                    accountName:
+                        latestAccount.accountName,
+
+                    accountType:
+                        latestAccount.accountType,
+
+                    accountNumber:
+                        latestAccount.accountNumber,
+
+                    status:
+                        "Pending",
+
+                    requestedAt:
+                        serverTimestamp(),
+
+                    createdAt:
+                        serverTimestamp()
+
+                };
+
+
+                /* -------------------------------------
+                   SAVE WITHDRAWAL
+                ------------------------------------- */
+
+                transaction.set(
+                    withdrawalRef,
+                    withdrawalData
+                );
+
+
+                /* -------------------------------------
+                   DEDUCT BALANCE
+                ------------------------------------- */
+
+                transaction.update(
+                    userRef,
+                    {
+                        balance:
+                            latestBalance - amount
+                    }
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           UPDATE PAGE BALANCE
+        ================================================= */
+
+        currentBalance =
+            currentBalance - amount;
+
+
+        document.getElementById(
+            "availableBalance"
+        ).innerText =
+            formatMoney(
+                currentBalance
+            );
+
+
+        input.value =
+            "";
+
+
+        calculateWithdrawal();
+
+
+        button.disabled =
+            false;
+
+
+        button.innerText =
+            "Request Withdrawal";
+
+
+        /* =================================================
+           SUCCESS MESSAGE
+        ================================================= */
+
+        showMessage(
+            "success",
+            "Withdrawal request submitted successfully. Redirecting to Withdrawal History..."
+        );
+
+
+        /* =================================================
+           REDIRECT TO WITHDRAWAL HISTORY
+        ================================================= */
+
+        setTimeout(
+            () => {
+
+                window.location.href =
+                    "withdrawal-history.html";
+
+            },
+            1200
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Withdrawal submission error:",
+            error
+        );
+
+
+        button.disabled =
+            false;
+
+
+        button.innerText =
+            "Request Withdrawal";
+
+
+        if(
+            error.message ===
+            "WITHDRAWAL_ACCOUNT_REQUIRED"
+        ){
+
+            showMessage(
+                "error",
+                "Please register your withdrawal account first."
+            );
+
+        }else if(
+            error.message ===
+            "INSUFFICIENT_BALANCE"
+        ){
+
+            showMessage(
+                "error",
+                "Insufficient balance for this withdrawal."
+            );
+
+        }else if(
+            error.message ===
+            "USER_NOT_FOUND"
+        ){
+
+            showMessage(
+                "error",
+                "Your SkyRent user account could not be found."
+            );
+
+        }else{
+
+            showMessage(
+                "error",
+                "Unable to submit your withdrawal request. Please try again."
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   MAKE MODULE FUNCTIONS AVAILABLE TO HTML
+===================================================== */
+
+window.submitWithdrawal =
+    submitWithdrawal;
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+window.goBack =
+    function(){
+
+        window.location.href =
+            "dashboard.html";
+
+    };
+
+
+window.changeAccount =
+    function(){
+
+        window.location.href =
+            "withdrawal-account.html";
+
+    };
+
+
+window.goWithdrawalHistory =
+    function(){
+
+        window.location.href =
+            "withdrawal-history.html";
+
+    };
+
+
+window.goHome =
+    function(){
+
+        window.location.href =
+            "dashboard.html";
+
+    };
+
+
+window.goCrafts =
+    function(){
+
+        window.location.href =
+            "crafts.html";
+
+    };
+
+
+window.goNetwork =
+    function(){
+
+        window.location.href =
+            "network.html";
+
+    };
+
+
+window.goEarnings =
+    function(){
+
+        window.location.href =
+            "earnings.html";
+
+    };
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logoutUser =
+    async function(){
+
+        try{
+
+            await signOut(auth);
+
+            window.location.href =
+                "index.html";
+
+        }catch(error){
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+            showMessage(
+                "error",
+                "Unable to logout. Please try again."
+            );
+
+        }
+
+    };
+
+
+/* =====================================================
+   INPUT LISTENER
+===================================================== */
+
+document
+    .getElementById(
+        "withdrawAmount"
+    )
+    .addEventListener(
+        "input",
+        calculateWithdrawal
+    );
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            currentUser =
+                null;
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+
+        await loadWithdrawalPage();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
