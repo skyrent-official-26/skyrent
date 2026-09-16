@@ -1,11 +1,3133 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>SkyRent - Profile</title> <style> /* ===================================================== RESET ===================================================== */ *{ margin:0; padding:0; box-sizing:border-box; } /* ===================================================== BODY ===================================================== */ body{ font-family:Arial, Helvetica, sans-serif; background:#eef4f9; color:#172033; min-height:100vh; } /* ===================================================== HEADER ===================================================== */ .header{ height:72px; background: linear-gradient( 135deg, #071b35, #0d355f, #1673a8 ); display:flex; align-items:center; justify-content:space-between; padding:0 22px; box-shadow:0 3px 14px rgba(0,0,0,.12); } .logo{ display:flex; align-items:center; } .logo img{ width:145px; max-height:48px; object-fit:contain; } .header-right{ text-align:right; color:white; } .header-small{ font-size:10px; letter-spacing:1.4px; opacity:.72; margin-bottom:3px; } .header-title{ font-size:14px; font-weight:600; } .home-button{ color:white; text-decoration:none; font-size:18px; display:inline-block; margin-bottom:2px; } /* ===================================================== MAIN ===================================================== */ .container{ width:100%; max-width:850px; margin:0 auto; padding:20px 14px 35px; } .page-heading{ margin-bottom:15px; } .page-heading h1{ font-size:21px; font-weight:700; color:#10243d; margin-bottom:4px; } .page-heading p{ font-size:12px; color:#718096; } /* ===================================================== PROFILE CARD ===================================================== */ .profile-card{ background:#ffffff; border-radius:15px; overflow:hidden; box-shadow:0 7px 22px rgba(15,45,70,.09); border:1px solid #e1eaf1; margin-bottom:17px; } /* ===================================================== PROFILE TOP ===================================================== */ .profile-top{ position:relative; background: linear-gradient( 135deg, #071b35, #0b416d, #1383b6 ); padding:22px 20px; color:white; overflow:hidden; } .profile-top:before{ content:""; position:absolute; width:180px; height:180px; border-radius:50%; right:-65px; top:-80px; background:rgba(255,255,255,.06); } .profile-top:after{ content:""; position:absolute; width:100px; height:100px; border-radius:50%; right:55px; bottom:-70px; background:rgba(255,255,255,.04); } .profile-top-content{ position:relative; z-index:2; display:flex; align-items:center; gap:15px; } .profile-avatar{ width:64px; height:64px; border-radius:50%; background: linear-gradient( 135deg, #ffffff, #dceef8 ); display:flex; align-items:center; justify-content:center; color:#0b4e7c; font-size:27px; font-weight:700; border:3px solid rgba(255,255,255,.45); flex-shrink:0; } .profile-name{ font-size:20px; font-weight:700; margin-bottom:5px; } .profile-member{ font-size:10px; letter-spacing:.8px; opacity:.75; } .status-badge{ margin-left:auto; padding:6px 10px; border-radius:20px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18); font-size:9px; font-weight:700; letter-spacing:.6px; white-space:nowrap; } /* ===================================================== BOARDING PASS ===================================================== */ .boarding-pass{ margin:17px 0; background:#fff; border:1px solid #dce7ef; border-radius:14px; overflow:hidden; box-shadow:0 5px 16px rgba(15,45,70,.06); } .pass-header{ background: linear-gradient( 135deg, #f7fafc, #edf5fa ); padding:13px 15px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #e2ebf1; } .pass-title{ font-size:11px; font-weight:800; color:#17476b; letter-spacing:1px; } .pass-flight{ font-size:9px; color:#8291a0; letter-spacing:.7px; } .pass-body{ display:grid; grid-template-columns:1fr 125px; min-height:145px; } .pass-details{ padding:16px; } .pass-label{ font-size:8px; color:#8b98a6; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; } .pass-value{ font-size:13px; color:#20364c; font-weight:700; margin-bottom:13px; word-break:break-word; } .pass-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px; } /* ===================================================== BARCODE ===================================================== */ .code-side{ border-left:1px dashed #ccd9e2; padding:15px 12px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#fafcfd; } .barcode{ width:92px; height:72px; display:flex; align-items:stretch; justify-content:center; gap:2px; overflow:hidden; } .barcode span{ display:block; height:100%; background:#162b3d; } .barcode span:nth-child(1){width:2px;} .barcode span:nth-child(2){width:4px;} .barcode span:nth-child(3){width:1px;} .barcode span:nth-child(4){width:3px;} .barcode span:nth-child(5){width:5px;} .barcode span:nth-child(6){width:2px;} .barcode span:nth-child(7){width:1px;} .barcode span:nth-child(8){width:4px;} .barcode span:nth-child(9){width:2px;} .barcode span:nth-child(10){width:5px;} .barcode span:nth-child(11){width:1px;} .barcode span:nth-child(12){width:3px;} .barcode span:nth-child(13){width:4px;} .barcode span:nth-child(14){width:2px;} .barcode span:nth-child(15){width:1px;} .barcode span:nth-child(16){width:5px;} .barcode span:nth-child(17){width:2px;} .barcode span:nth-child(18){width:3px;} .barcode span:nth-child(19){width:1px;} .barcode span:nth-child(20){width:4px;} .code-text{ margin-top:8px; font-size:7px; letter-spacing:2px; color:#718394; } /* ===================================================== SECTION CARD ===================================================== */ .section-card{ background:#ffffff; border-radius:14px; border:1px solid #e1eaf1; box-shadow:0 5px 18px rgba(15,45,70,.07); overflow:hidden; margin-bottom:17px; } .section-header{ padding:15px 16px; border-bottom:1px solid #edf1f5; } .section-title{ font-size:15px; font-weight:700; color:#172b45; } .section-subtitle{ font-size:10px; color:#8491a3; margin-top:3px; } /* ===================================================== INFORMATION GRID ===================================================== */ .info-grid{ display:grid; grid-template-columns:1fr 1fr; } .info-item{ padding:14px 16px; border-bottom:1px solid #edf1f5; } .info-item:nth-child(odd){ border-right:1px solid #edf1f5; } .info-label{ font-size:8px; color:#8a97a5; text-transform:uppercase; letter-spacing:.8px; margin-bottom:5px; } .info-value{ font-size:12px; color:#263b51; font-weight:700; word-break:break-word; } /* ===================================================== WITHDRAWAL ACCOUNT ===================================================== */ .withdrawal-card{ background: linear-gradient( 135deg, #ffffff, #f7fbfd ); border-radius:14px; border:1px solid #dce7ef; overflow:hidden; margin-bottom:17px; } .withdrawal-header{ background: linear-gradient( 135deg, #071b35, #0c4a72 ); color:white; padding:16px; position:relative; } .withdrawal-header-title{ font-size:15px; font-weight:700; } .withdrawal-header-subtitle{ font-size:9px; opacity:.7; margin-top:4px; } .withdrawal-status{ position:absolute; right:15px; top:15px; padding:5px 8px; border-radius:15px; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.16); font-size:8px; font-weight:700; } .withdrawal-body{ padding:4px 0; } .withdrawal-row{ display:flex; justify-content:space-between; align-items:center; gap:15px; padding:14px 16px; border-bottom:1px solid #edf1f5; } .withdrawal-row:last-child{ border-bottom:none; } .withdrawal-label{ font-size:9px; color:#8794a2; text-transform:uppercase; letter-spacing:.7px; } .withdrawal-value{ font-size:12px; color:#20364c; font-weight:700; text-align:right; word-break:break-word; } .account-type{ display:inline-flex; align-items:center; padding:5px 9px; border-radius:15px; background:#edf5fa; color:#17608b; font-size:10px; font-weight:700; } .manage-withdrawal-button{ display:block; width:calc(100% - 32px); margin:12px 16px 16px; padding:11px 14px; border:none; border-radius:9px; background:#0b5d8c; color:white; font-size:11px; font-weight:700; letter-spacing:.3px; text-align:center; text-decoration:none; cursor:pointer; transition:.2s ease; } .manage-withdrawal-button:hover{ background:#084d75; } .manage-withdrawal-button:active{ transform:scale(.98); } /* ===================================================== BALANCE ===================================================== */ .balance-card{ position:relative; overflow:hidden; background: linear-gradient( 135deg, #071b35, #0b416d, #1383b6 ); border-radius:14px; padding:19px; color:white; box-shadow:0 7px 20px rgba(12,57,91,.15); margin-bottom:17px; } .balance-label{ position:relative; z-index:2; font-size:9px; text-transform:uppercase; letter-spacing:1.2px; opacity:.7; margin-bottom:5px; } .balance-amount{ position:relative; z-index:2; font-size:27px; font-weight:700; } .balance-note{ position:relative; z-index:2; font-size:9px; opacity:.65; margin-top:5px; } /* ===================================================== ACCOUNT SUMMARY ===================================================== */ .account-summary{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:17px; } .summary-card{ background:#ffffff; border:1px solid #e1eaf1; border-radius:12px; padding:14px 12px; box-shadow:0 5px 16px rgba(15,45,70,.06); min-width:0; } .summary-label{ font-size:8px; color:#8997a5; text-transform:uppercase; letter-spacing:.7px; margin-bottom:6px; } .summary-value{ font-size:15px; color:#173c5b; font-weight:800; word-break:break-word; } .summary-note{ font-size:8px; color:#9aa7b4; margin-top:4px; } /* ===================================================== REFERRAL ===================================================== */ .referral-box{ padding:16px; } .referral-code-box{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 13px; background:#f5f9fc; border:1px dashed #bfd0dc; border-radius:10px; } .referral-code{ font-size:15px; font-weight:800; color:#14577f; letter-spacing:1.5px; } .referral-label{ font-size:8px; color:#8997a5; margin-bottom:4px; } .copy-button{ border:none; background:#0b5d8c; color:white; padding:7px 10px; border-radius:7px; font-size:9px; font-weight:700; cursor:pointer; } .copy-button:active{ transform:scale(.97); } /* ===================================================== BACK BUTTON ===================================================== */ .back-button{ display:block; width:100%; margin-top:17px; padding:12px; border:none; border-radius:9px; background:#ffffff; color:#24506f; border:1px solid #dce6ee; font-size:12px; font-weight:600; cursor:pointer; } /* ===================================================== LOADING ===================================================== */ .loading{ opacity:.55; } /* ===================================================== MOBILE ===================================================== */ @media(max-width:600px){ .header{ height:65px; padding:0 14px; } .logo img{ width:125px; } .header-small{ font-size:9px; } .header-title{ font-size:12px; } .container{ padding:16px 10px 28px; } .page-heading h1{ font-size:19px; } .page-heading p{ font-size:11px; } .profile-top{ padding:18px 16px; } .profile-avatar{ width:57px; height:57px; font-size:24px; } .profile-name{ font-size:17px; } .status-badge{ font-size:8px; padding:5px 7px; } .pass-body{ grid-template-columns:1fr 100px; } .pass-details{ padding:13px; } .pass-value{ font-size:11px; } .barcode{ width:72px; height:65px; } .code-side{ padding:10px 7px; } .info-grid{ grid-template-columns:1fr; } .info-item:nth-child(odd){ border-right:none; } .info-item{ padding:12px 14px; } .withdrawal-row{ padding:13px 14px; } .withdrawal-value{ font-size:11px; } .manage-withdrawal-button{ width:calc(100% - 28px); margin:11px 14px 14px; } .balance-card{ padding:17px; } .balance-amount{ font-size:25px; } .account-summary{ grid-template-columns:1fr; gap:9px; } .summary-card{ padding:13px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; } .summary-label{ margin-bottom:0; } .summary-value{ font-size:14px; text-align:right; } .summary-note{ display:none; } .referral-code{ font-size:13px; } } </style> </head> <body> <!-- ===================================================== HEADER ===================================================== --> <header class="header"> <div class="logo"> <img src="skyrent-logo.png" alt="SkyRent Logo" > </div> <div class="header-right"> <div class="header-small"> MEMBER AREA </div> <a href="dashboard.html" class="home-button" > 🏠 </a> <div class="header-title"> Home </div> </div> </header> <!-- ===================================================== MAIN ===================================================== --> <main class="container"> <div class="page-heading"> <h1> Member Profile </h1> <p> Your SkyRent Member and account record </p> </div> <!-- ================================================= PROFILE HEADER ================================================== --> <section class="profile-card"> <div class="profile-top"> <div class="profile-top-content"> <div class="profile-avatar" id="profileAvatar" > S </div> <div> <div class="profile-name" id="profileName" > Loading... </div> <div class="profile-member" id="profileMember" > MEMBER ID: — </div> </div> <div class="status-badge" id="accountStatus" > ACTIVE </div> </div> </div> <!-- ================================================= BOARDING PASS ================================================== --> <div class="boarding-pass"> <div class="pass-header"> <div class="pass-title"> SKYRENT MEMBER PASS </div> <div class="pass-flight"> MEMBER RECORD </div> </div> <div class="pass-body"> <div class="pass-details"> <div class="pass-label"> Member Name </div> <div class="pass-value" id="passengerName" > — </div> <div class="pass-row"> <div> <div class="pass-label"> Member ID </div> <div class="pass-value" id="passMemberId" > — </div> </div> <div> <div class="pass-label"> Referral Code </div> <div class="pass-value" id="passReferralCode" > — </div> </div> </div> </div> <!-- DECORATIVE CODE --> <div class="code-side"> <div class="barcode"> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> </div> <div class="code-text" id="codeText" > SKYRENT </div> </div> </div> </div> </section> <!-- ================================================= AVAILABLE BALANCE ================================================== --> <section class="balance-card"> <div class="balance-label"> Available Balance </div> <div class="balance-amount" id="balanceAmount" > ₱0.00 </div> <div class="balance-note"> Current account balance </div> </section> <!-- ================================================= ACCOUNT SUMMARY ================================================== --> <section class="account-summary"> <div class="summary-card"> <div> <div class="summary-label"> Total Deposit </div> <div class="summary-note"> Lifetime deposits </div> </div> <div class="summary-value" id="totalDeposit" > ₱0.00 </div> </div> <div class="summary-card"> <div> <div class="summary-label"> Total Earnings </div> <div class="summary-note"> Lifetime earnings </div> </div> <div class="summary-value" id="totalEarnings" > ₱0.00 </div> </div> <div class="summary-card"> <div> <div class="summary-label"> Total Withdraw </div> <div class="summary-note"> Lifetime withdrawals </div> </div> <div class="summary-value" id="totalWithdraw" > ₱0.00 </div> </div> </section> <!-- ================================================= PERSONAL INFORMATION ================================================== --> <section class="section-card"> <div class="section-header"> <div class="section-title"> Member's Information </div> <div class="section-subtitle"> Information stored in your SkyRent account </div> </div> <div class="info-grid"> <div class="info-item"> <div class="info-label"> Full Name </div> <div class="info-value" id="infoName" > — </div> </div> <div class="info-item"> <div class="info-label"> Phone Number </div> <div class="info-value" id="infoPhone" > — </div> </div> <div class="info-item"> <div class="info-label"> Member ID </div> <div class="info-value" id="infoMemberId" > — </div> </div> <div class="info-item"> <div class="info-label"> Registration Date </div> <div class="info-value" id="infoRegistrationDate" > — </div> </div> <div class="info-item"> <div class="info-label"> Referral Code </div> <div class="info-value" id="infoReferralCode" > — </div> </div> <div class="info-item"> <div class="info-label"> Referred By </div> <div class="info-value" id="infoReferredBy" > — </div> </div> <div class="info-item"> <div class="info-label"> Purchase Count </div> <div class="info-value" id="infoPurchaseCount" > 0 </div> </div> <div class="info-item"> <div class="info-label"> Account Status </div> <div class="info-value" id="infoStatus" > ACTIVE </div> </div> </div> </section> <!-- ================================================= WITHDRAWAL ACCOUNT ================================================== --> <section class="withdrawal-card"> <div class="withdrawal-header"> <div class="withdrawal-header-title"> Withdrawal Account </div> <div class="withdrawal-header-subtitle"> Account used for receiving withdrawals </div> <div class="withdrawal-status"> ACCOUNT </div> </div> <div class="withdrawal-body"> <div class="withdrawal-row"> <div class="withdrawal-label"> Account Name </div> <div class="withdrawal-value" id="withdrawalName" > Not Set </div> </div> <div class="withdrawal-row"> <div class="withdrawal-label"> Account Number </div> <div class="withdrawal-value" id="withdrawalNumber" > Not Set </div> </div> <div class="withdrawal-row"> <div class="withdrawal-label"> Account Type </div> <div class="withdrawal-value" id="withdrawalType" > <span class="account-type"> Not Set </span> </div> </div> </div> <a href="withdrawal-account.html" class="manage-withdrawal-button" > MANAGE WITHDRAWAL ACCOUNT </a> </section> <!-- ================================================= REFERRAL CODE ================================================== --> <section class="section-card"> <div class="section-header"> <div class="section-title"> Your Referral Code </div> <div class="section-subtitle"> Share your code with new SkyRent members </div> </div> <div class="referral-box"> <div class="referral-code-box"> <div> <div class="referral-label"> PERSONAL REFERRAL CODE </div> <div class="referral-code" id="referralCodeDisplay" > — </div> </div> <button class="copy-button" type="button" onclick="copyReferralCode()" > COPY </button> </div> </div> </section> <!-- ================================================= BACK ================================================== --> <button class="back-button" onclick="goBack()" > ← Back </button> </main> <!-- ===================================================== FIREBASE ===================================================== --> <script type="module"> /* ===================================================== FIREBASE IMPORTS ===================================================== */ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"; import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"; import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"; /* ===================================================== FIREBASE CONFIG ===================================================== */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent - Profile</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 
- const firebaseConfig = {
-    apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
-    authDomain: "skyrent-ea30c.firebaseapp.com",
-    projectId: "skyrent-ea30c",
-    storageBucket: "skyrent-ea30c.firebasestorage.app",
-    messagingSenderId: "572678456448",
-    appId: "1:572678456448:web:6b7132351515742dd09265"
-};/* ===================================================== INITIALIZE FIREBASE ===================================================== */ const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app); /* ===================================================== HELPERS ===================================================== */ function money(value){ return "₱" + ( Number(value) || 0 ).toLocaleString( "en-PH", { minimumFractionDigits:2, maximumFractionDigits:2 } ); } function escapeHTML(value){ return String( value ?? "" ) .replace(/&/g,"&amp;") .replace(/</g,"&lt;") .replace(/>/g,"&gt;") .replace(/"/g,"&quot;") .replace(/'/g,"&#039;"); } /* ===================================================== FIREBASE DATE FORMAT ===================================================== */ function formatDate(value){ if(!value){ return "—"; } try{ let date; if( value && typeof value.toDate === "function" ){ date = value.toDate(); }else if( value && typeof value === "object" && typeof value.seconds === "number" ){ date = new Date( value.seconds * 1000 ); }else if( typeof value === "number" ){ date = new Date(value); }else{ date = new Date(value); } if( !date || Number.isNaN( date.getTime() ) ){ return "—"; } return date.toLocaleDateString( "en-PH", { month:"short", day:"2-digit", year:"numeric" } ); }catch(error){ return "—"; } } /* ===================================================== GET PHONE ===================================================== */ function getPhone(user){ if(!user){ return ""; } return String( user.phone || user.mobile || user.number || "" ).trim(); } /* ===================================================== GET REFERRER ===================================================== */ async function getReferrerName(user){ if(!user){ return "None"; } if( user.referredByName && String(user.referredByName).trim() ){ return String( user.referredByName ); } const referredByPhone = String( user.referredByPhone || "" ).trim(); if(!referredByPhone){ return "None"; } try{ const q = query( collection(db,"users"), where( "phone", "==", referredByPhone ) ); const snapshot = await getDocs(q); if( !snapshot.empty ){ const referrer = snapshot.docs[0].data(); return String( referrer.name || "SkyRent Member" ); } }catch(error){ console.log( "Unable to load referrer:", error ); } return "None"; } /* ===================================================== WITHDRAWAL ACCOUNT ===================================================== */ function getWithdrawalAccount(user){ if(!user){ return { name:"", number:"", type:"" }; } const phone = getPhone(user); /* Keep compatibility with the current withdrawal-account.html localStorage system. */ if(phone){ const key = "withdrawalAccount_" + phone; const saved = localStorage.getItem(key); if(saved){ try{ const account = JSON.parse(saved); if( account && typeof account === "object" ){ return { name: String( account.accountName || "" ).trim(), number: String( account.accountNumber || "" ).trim(), type: String( account.accountType || "" ).trim() }; } }catch(error){ console.log( "Unable to read withdrawal account:", error ); } } } /* Firebase fallback. */ const withdrawal = user.withdrawalAccount || user.withdrawal || user.payoutAccount || user.paymentAccount || null; if( withdrawal && typeof withdrawal === "object" ){ return { name: withdrawal.accountName || withdrawal.name || withdrawal.accountHolder || "", number: withdrawal.accountNumber || withdrawal.number || withdrawal.accountNo || withdrawal.phone || "", type: withdrawal.accountType || withdrawal.type || withdrawal.method || withdrawal.provider || "" }; } return { name: user.withdrawalAccountName || user.accountName || "", number: user.withdrawalAccountNumber || user.accountNumber || "", type: user.withdrawalAccountType || user.accountType || "" }; } /* ===================================================== LOAD TRANSACTION TOTALS ===================================================== */ async function loadTransactionTotals(uid){ const totals = { deposits:0, withdrawals:0, earnings:0 }; /* These queries are intentionally flexible. They support collections where the user is identified by either uid or userId. If your current collection uses only one structure, the unused query simply returns no matching documents. */ async function readCollection( collectionName, type ){ try{ let snapshot = null; /* First try uid. */ try{ const q = query( collection( db, collectionName ), where( "uid", "==", uid ) ); snapshot = await getDocs(q); }catch(error){} /* If no documents were found, try userId. */ if( !snapshot || snapshot.empty ){ try{ const q2 = query( collection( db, collectionName ), where( "userId", "==", uid ) ); snapshot = await getDocs(q2); }catch(error){} } if( !snapshot || snapshot.empty ){ return; } snapshot.forEach( function(item){ const data = item.data() || {}; const status = String( data.status || "" ) .trim() .toLowerCase(); /* Rejected/cancelled records are not included. */ if( status === "rejected" || status === "cancelled" || status === "canceled" || status === "declined" || status === "reversed" ){ return; } /* Deposit */ if(type === "deposit"){ /* Only approved/successful deposits count toward lifetime deposits. */ const approved = status === "" || status === "approved" || status === "deposit successful" || status === "successful" || status === "completed"; if(!approved){ return; } } /* Withdrawal */ if(type === "withdrawal"){ /* Only approved/successful withdrawals count. */ const approved = status === "" || status === "approved" || status === "withdrawal successful" || status === "successful" || status === "completed"; if(!approved){ return; } } /* Earnings can be stored with different amount field names. */ const amount = Number( data.amount ?? data.depositAmount ?? data.withdrawalAmount ?? data.withdrawAmount ?? data.earning ?? data.earnings ?? data.commission ?? data.income ?? data.daily ?? 0 ) || 0; if(type === "deposit"){ totals.deposits += amount; } if(type === "withdrawal"){ /* For withdrawals, use the actual withdrawal amount, not the processing fee. */ const withdrawalAmount = Number( data.amount ?? data.withdrawalAmount ?? data.withdrawAmount ?? 0 ) || 0; totals.withdrawals += withdrawalAmount; } if(type === "earnings"){ totals.earnings += amount; } } ); }catch(error){ console.log( "Unable to read " + collectionName + ":", error ); } } /* Common SkyRent collection names. */ await readCollection( "deposits", "deposit" ); await readCollection( "withdrawals", "withdrawal" ); await readCollection( "earnings", "earnings" ); await readCollection( "earningsHistory", "earnings" ); return totals; } /* ===================================================== LOAD PROFILE ===================================================== */ async function loadProfile(firebaseUser){ if(!firebaseUser){ document.getElementById( "profileName" ).textContent = "No Account Found"; document.getElementById( "infoName" ).textContent = "Please log in."; return; } try{ /* Main Firebase user document. */ const userRef = doc( db, "users", firebaseUser.uid ); const userSnap = await getDoc(userRef); if(!userSnap.exists()){ document.getElementById( "profileName" ).textContent = "Profile Not Found"; document.getElementById( "infoName" ).textContent = "Your account record could not be found."; return; } const user = userSnap.data(); /* Firebase Auth phone-style email accounts still use the phone stored in Firestore. */ const name = String( user.name || firebaseUser.displayName || "SkyRent Member" ).trim(); const phone = getPhone(user); /* UID is the actual Firebase member ID. */ const memberId = firebaseUser.uid; const referralCode = String( user.referralCode || "—" ).trim(); const status = String( user.status || user.accountStatus || "ACTIVE" ) .trim() .toUpperCase(); const purchaseCount = Number( user.purchaseCount || 0 ) || 0; /* Firebase registration timestamp. */ const registrationDate = formatDate( user.createdAt || user.registrationDate || user.registeredAt ); /* Referred by. */ const referredBy = await getReferrerName(user); /* ================================================= PROFILE HEADER ================================================= */ document.getElementById( "profileName" ).textContent = name; document.getElementById( "profileMember" ).textContent = "MEMBER ID: " + memberId; document.getElementById( "accountStatus" ).textContent = status; /* ================================================= AVATAR ================================================= */ const firstLetter = name .trim() .charAt(0) .toUpperCase() || "S"; document.getElementById( "profileAvatar" ).textContent = firstLetter; /* ================================================= BOARDING PASS ================================================= */ document.getElementById( "passengerName" ).textContent = name; document.getElementById( "passMemberId" ).textContent = memberId; document.getElementById( "passReferralCode" ).textContent = referralCode; document.getElementById( "codeText" ).textContent = memberId .replace( /[^A-Z0-9]/gi, "" ) .substring(0,18); /* ================================================= PERSONAL INFORMATION ================================================= */ document.getElementById( "infoName" ).textContent = name; document.getElementById( "infoPhone" ).textContent = phone ? formatPhone(phone) : "—"; document.getElementById( "infoMemberId" ).textContent = memberId; document.getElementById( "infoRegistrationDate" ).textContent = registrationDate; document.getElementById( "infoReferralCode" ).textContent = referralCode; document.getElementById( "infoReferredBy" ).textContent = referredBy; document.getElementById( "infoPurchaseCount" ).textContent = purchaseCount; document.getElementById( "infoStatus" ).textContent = status; /* ================================================= BALANCE ================================================= */ /* Current Firebase balance. Your registration system currently creates: bonus: 50 balance: 50 */ const balance = Number( user.balance || 0 ) || 0; document.getElementById( "balanceAmount" ).textContent = money(balance); /* ================================================= TRANSACTION TOTALS ================================================= */ const totals = await loadTransactionTotals( firebaseUser.uid ); /* If the user document already contains lifetime totals, use those values when available. Otherwise use Firestore transaction totals. */ const totalDeposit = Number( user.totalDeposit ?? user.totalDeposits ?? totals.deposits ?? 0 ) || 0; const totalEarnings = Number( user.totalEarnings ?? user.earnings ?? totals.earnings ?? 0 ) || 0; const totalWithdraw = Number( user.totalWithdraw ?? user.totalWithdrawal ?? user.totalWithdrawals ?? user.withdrawnAmount ?? totals.withdrawals ?? 0 ) || 0; document.getElementById( "totalDeposit" ).textContent = money(totalDeposit); document.getElementById( "totalEarnings" ).textContent = money(totalEarnings); document.getElementById( "totalWithdraw" ).textContent = money(totalWithdraw); /* ================================================= WITHDRAWAL ACCOUNT ================================================= */ const withdrawal = getWithdrawalAccount(user); document.getElementById( "withdrawalName" ).textContent = withdrawal.name || "Not Set"; document.getElementById( "withdrawalNumber" ).textContent = withdrawal.number || "Not Set"; const typeElement = document.getElementById( "withdrawalType" ); if(withdrawal.type){ typeElement.innerHTML = '<span class="account-type">' + escapeHTML( withdrawal.type ) + '</span>'; }else{ typeElement.innerHTML = '<span class="account-type">' + 'Not Set' + '</span>'; } /* ================================================= REFERRAL CODE ================================================= */ document.getElementById( "referralCodeDisplay" ).textContent = referralCode; }catch(error){ console.error( "SkyRent Profile Error:", error ); document.getElementById( "profileName" ).textContent = "Unable to Load"; document.getElementById( "infoName" ).textContent = "Please refresh the page."; } } /* ===================================================== PHONE FORMAT ===================================================== */ function formatPhone(phone){ let value = String(phone).trim(); /* If Firestore already stores +63, don't add another +63. */ if( value.startsWith("+63") ){ return value; } /* Convert Philippine local number 09XXXXXXXXX -> +63 9XXXXXXXXX */ if( value.startsWith("09") ){ return ( "+63 " + value.substring(1) ); } return value; } /* ===================================================== COPY REFERRAL CODE ===================================================== */ window.copyReferralCode = async function(){ try{ const element = document.getElementById( "referralCodeDisplay" ); const code = String( element.textContent || "" ).trim(); if( !code || code === "—" ){ return; } if( navigator.clipboard && navigator.clipboard.writeText ){ await navigator.clipboard.writeText( code ); }else{ const textarea = document.createElement( "textarea" ); textarea.value = code; textarea.style.position = "fixed"; textarea.style.opacity = "0"; document.body.appendChild( textarea ); textarea.select(); document.execCommand( "copy" ); document.body.removeChild( textarea ); } const button = document.querySelector( ".copy-button" ); if(!button){ return; } const original = button.textContent; button.textContent = "COPIED"; setTimeout( function(){ button.textContent = original; }, 1200 ); }catch(error){ console.log( "Copy failed:", error ); } }; /* ===================================================== BACK ===================================================== */ window.goBack = function(){ if( window.history.length > 1 ){ window.history.back(); return; } window.location.href = "dashboard.html"; }; /* ===================================================== AUTH STATE ===================================================== */ onAuthStateChanged( auth, async function(firebaseUser){ if(!firebaseUser){ window.location.href = "index.html"; return; } await loadProfile( firebaseUser ); } ); </script> </body> </html> 
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:#eef4f9;
+  color:#172033;
+  min-height:100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+  height:64px;
+  background:
+    linear-gradient(
+      135deg,
+      #071b35,
+      #0d355f,
+      #1673a8
+    );
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  box-shadow:0 3px 14px rgba(0,0,0,.12);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+}
+
+.logo img{
+  width:135px;
+  max-height:44px;
+  object-fit:contain;
+}
+
+.header-right{
+  text-align:right;
+  color:white;
+}
+
+.header-small{
+  font-size:9px;
+  letter-spacing:1.2px;
+  opacity:.7;
+  margin-bottom:1px;
+}
+
+.header-title{
+  font-size:12px;
+  font-weight:600;
+}
+
+.home-button{
+  color:white;
+  text-decoration:none;
+  font-size:17px;
+  display:inline-block;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.container{
+  width:100%;
+  max-width:850px;
+  margin:0 auto;
+  padding:15px 14px 25px;
+}
+
+.page-heading{
+  margin-bottom:11px;
+}
+
+.page-heading h1{
+  font-size:20px;
+  font-weight:700;
+  color:#10243d;
+  margin-bottom:2px;
+}
+
+.page-heading p{
+  font-size:11px;
+  color:#718096;
+}
+
+
+/* =====================================================
+   PROFILE CARD
+===================================================== */
+
+.profile-card{
+  background:#ffffff;
+  border-radius:13px;
+  overflow:hidden;
+  box-shadow:0 5px 18px rgba(15,45,70,.08);
+  border:1px solid #e1eaf1;
+  margin-bottom:11px;
+}
+
+
+/* =====================================================
+   PROFILE TOP
+===================================================== */
+
+.profile-top{
+  position:relative;
+  background:
+    linear-gradient(
+      135deg,
+      #071b35,
+      #0b416d,
+      #1383b6
+    );
+  padding:15px 17px;
+  color:white;
+  overflow:hidden;
+}
+
+.profile-top:before{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  right:-60px;
+  top:-75px;
+  background:rgba(255,255,255,.06);
+}
+
+.profile-top:after{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  right:55px;
+  bottom:-60px;
+  background:rgba(255,255,255,.04);
+}
+
+.profile-top-content{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.profile-avatar{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #dceef8
+    );
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#0b4e7c;
+  font-size:23px;
+  font-weight:700;
+  border:2px solid rgba(255,255,255,.45);
+  flex-shrink:0;
+}
+
+.profile-name{
+  font-size:17px;
+  font-weight:700;
+  margin-bottom:3px;
+  max-width:260px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.profile-member{
+  font-size:9px;
+  letter-spacing:.7px;
+  opacity:.75;
+}
+
+.status-badge{
+  margin-left:auto;
+  padding:5px 8px;
+  border-radius:20px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.18);
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.5px;
+  white-space:nowrap;
+}
+
+
+/* =====================================================
+   BOARDING PASS
+===================================================== */
+
+.boarding-pass{
+  margin:11px 0;
+  background:#fff;
+  border:1px solid #dce7ef;
+  border-radius:11px;
+  overflow:hidden;
+  box-shadow:0 3px 11px rgba(15,45,70,.05);
+}
+
+.pass-header{
+  background:
+    linear-gradient(
+      135deg,
+      #f7fafc,
+      #edf5fa
+    );
+  padding:9px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #e2ebf1;
+}
+
+.pass-title{
+  font-size:9px;
+  font-weight:800;
+  color:#17476b;
+  letter-spacing:.9px;
+}
+
+.pass-flight{
+  font-size:8px;
+  color:#8291a0;
+  letter-spacing:.5px;
+}
+
+.pass-body{
+  display:grid;
+  grid-template-columns:1fr 105px;
+  min-height:105px;
+}
+
+.pass-details{
+  padding:11px 13px;
+}
+
+.pass-label{
+  font-size:7px;
+  color:#8b98a6;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  margin-bottom:3px;
+}
+
+.pass-value{
+  font-size:11px;
+  color:#20364c;
+  font-weight:700;
+  margin-bottom:9px;
+  word-break:break-word;
+}
+
+.pass-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+
+/* =====================================================
+   BARCODE
+===================================================== */
+
+.code-side{
+  border-left:1px dashed #ccd9e2;
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:#fafcfd;
+}
+
+.barcode{
+  width:70px;
+  height:52px;
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  gap:1px;
+  overflow:hidden;
+}
+
+.barcode span{
+  display:block;
+  height:100%;
+  background:#162b3d;
+}
+
+.barcode span:nth-child(1){width:2px;}
+.barcode span:nth-child(2){width:4px;}
+.barcode span:nth-child(3){width:1px;}
+.barcode span:nth-child(4){width:3px;}
+.barcode span:nth-child(5){width:5px;}
+.barcode span:nth-child(6){width:2px;}
+.barcode span:nth-child(7){width:1px;}
+.barcode span:nth-child(8){width:4px;}
+.barcode span:nth-child(9){width:2px;}
+.barcode span:nth-child(10){width:5px;}
+.barcode span:nth-child(11){width:1px;}
+.barcode span:nth-child(12){width:3px;}
+.barcode span:nth-child(13){width:4px;}
+.barcode span:nth-child(14){width:2px;}
+.barcode span:nth-child(15){width:1px;}
+.barcode span:nth-child(16){width:5px;}
+.barcode span:nth-child(17){width:2px;}
+.barcode span:nth-child(18){width:3px;}
+.barcode span:nth-child(19){width:1px;}
+.barcode span:nth-child(20){width:4px;}
+
+.code-text{
+  margin-top:5px;
+  font-size:6px;
+  letter-spacing:1.5px;
+  color:#718394;
+}
+
+
+/* =====================================================
+   SECTION CARD
+===================================================== */
+
+.section-card{
+  background:#ffffff;
+  border-radius:12px;
+  border:1px solid #e1eaf1;
+  box-shadow:0 4px 14px rgba(15,45,70,.06);
+  overflow:hidden;
+  margin-bottom:11px;
+}
+
+.section-header{
+  padding:11px 13px;
+  border-bottom:1px solid #edf1f5;
+}
+
+.section-title{
+  font-size:13px;
+  font-weight:700;
+  color:#172b45;
+}
+
+.section-subtitle{
+  font-size:9px;
+  color:#8491a3;
+  margin-top:2px;
+}
+
+
+/* =====================================================
+   INFORMATION GRID
+===================================================== */
+
+.info-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+
+.info-item{
+  padding:10px 13px;
+  border-bottom:1px solid #edf1f5;
+}
+
+.info-item:nth-child(odd){
+  border-right:1px solid #edf1f5;
+}
+
+.info-label{
+  font-size:7px;
+  color:#8a97a5;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+  margin-bottom:3px;
+}
+
+.info-value{
+  font-size:11px;
+  color:#263b51;
+  font-weight:700;
+  word-break:break-word;
+  line-height:1.35;
+}
+
+
+/* =====================================================
+   BALANCE
+===================================================== */
+
+.balance-card{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(
+      135deg,
+      #071b35,
+      #0b416d,
+      #1383b6
+    );
+  border-radius:12px;
+  padding:14px 16px;
+  color:white;
+  box-shadow:0 5px 16px rgba(12,57,91,.13);
+  margin-bottom:11px;
+}
+
+.balance-label{
+  position:relative;
+  z-index:2;
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  opacity:.7;
+  margin-bottom:3px;
+}
+
+.balance-amount{
+  position:relative;
+  z-index:2;
+  font-size:23px;
+  font-weight:700;
+}
+
+.balance-note{
+  position:relative;
+  z-index:2;
+  font-size:8px;
+  opacity:.6;
+  margin-top:2px;
+}
+
+
+/* =====================================================
+   ACCOUNT SUMMARY
+===================================================== */
+
+.account-summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-bottom:11px;
+}
+
+.summary-card{
+  background:#ffffff;
+  border:1px solid #e1eaf1;
+  border-radius:10px;
+  padding:11px 10px;
+  box-shadow:0 3px 12px rgba(15,45,70,.05);
+  min-width:0;
+}
+
+.summary-label{
+  font-size:7px;
+  color:#8997a5;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  margin-bottom:4px;
+}
+
+.summary-value{
+  font-size:13px;
+  color:#173c5b;
+  font-weight:800;
+  word-break:break-word;
+}
+
+.summary-note{
+  font-size:7px;
+  color:#9aa7b4;
+  margin-top:2px;
+}
+
+
+/* =====================================================
+   WITHDRAWAL ACCOUNT
+===================================================== */
+
+.withdrawal-card{
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f7fbfd
+    );
+  border-radius:12px;
+  border:1px solid #dce7ef;
+  overflow:hidden;
+  margin-bottom:11px;
+}
+
+.withdrawal-header{
+  background:
+    linear-gradient(
+      135deg,
+      #071b35,
+      #0c4a72
+    );
+  color:white;
+  padding:12px 13px;
+  position:relative;
+}
+
+.withdrawal-header-title{
+  font-size:13px;
+  font-weight:700;
+}
+
+.withdrawal-header-subtitle{
+  font-size:8px;
+  opacity:.7;
+  margin-top:2px;
+}
+
+.withdrawal-status{
+  position:absolute;
+  right:12px;
+  top:12px;
+  padding:4px 7px;
+  border-radius:15px;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.16);
+  font-size:7px;
+  font-weight:700;
+}
+
+.withdrawal-body{
+  padding:0;
+}
+
+.withdrawal-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:10px 13px;
+  border-bottom:1px solid #edf1f5;
+}
+
+.withdrawal-row:last-child{
+  border-bottom:none;
+}
+
+.withdrawal-label{
+  font-size:7px;
+  color:#8794a2;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+}
+
+.withdrawal-value{
+  font-size:11px;
+  color:#20364c;
+  font-weight:700;
+  text-align:right;
+  word-break:break-word;
+}
+
+.account-type{
+  display:inline-flex;
+  align-items:center;
+  padding:4px 7px;
+  border-radius:12px;
+  background:#edf5fa;
+  color:#17608b;
+  font-size:8px;
+  font-weight:700;
+}
+
+.manage-withdrawal-button{
+  display:block;
+  width:calc(100% - 26px);
+  margin:10px 13px 12px;
+  padding:9px 12px;
+  border:none;
+  border-radius:8px;
+  background:#0b5d8c;
+  color:white;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.3px;
+  text-align:center;
+  text-decoration:none;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.manage-withdrawal-button:hover{
+  background:#084d75;
+}
+
+.manage-withdrawal-button:active{
+  transform:scale(.98);
+}
+
+
+/* =====================================================
+   REFERRAL
+===================================================== */
+
+.referral-box{
+  padding:11px 13px;
+}
+
+.referral-code-box{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding:9px 10px;
+  background:#f5f9fc;
+  border:1px dashed #bfd0dc;
+  border-radius:8px;
+}
+
+.referral-code{
+  font-size:13px;
+  font-weight:800;
+  color:#14577f;
+  letter-spacing:1.2px;
+}
+
+.referral-label{
+  font-size:7px;
+  color:#8997a5;
+  margin-bottom:3px;
+}
+
+.copy-button{
+  border:none;
+  background:#0b5d8c;
+  color:white;
+  padding:6px 9px;
+  border-radius:6px;
+  font-size:8px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.copy-button:active{
+  transform:scale(.97);
+}
+
+
+/* =====================================================
+   BACK BUTTON
+===================================================== */
+
+.back-button{
+  display:block;
+  width:100%;
+  margin-top:11px;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#ffffff;
+  color:#24506f;
+  border:1px solid #dce6ee;
+  font-size:10px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+  opacity:.55;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+  .header{
+    height:58px;
+    padding:0 12px;
+  }
+
+  .logo img{
+    width:112px;
+  }
+
+  .header-small{
+    font-size:8px;
+  }
+
+  .header-title{
+    font-size:10px;
+  }
+
+  .home-button{
+    font-size:15px;
+  }
+
+  .container{
+    padding:12px 9px 20px;
+  }
+
+  .page-heading{
+    margin-bottom:9px;
+  }
+
+  .page-heading h1{
+    font-size:18px;
+  }
+
+  .page-heading p{
+    font-size:10px;
+  }
+
+  .profile-top{
+    padding:13px 13px;
+  }
+
+  .profile-top-content{
+    gap:9px;
+  }
+
+  .profile-avatar{
+    width:48px;
+    height:48px;
+    font-size:20px;
+  }
+
+  .profile-name{
+    font-size:15px;
+    max-width:185px;
+  }
+
+  .profile-member{
+    font-size:8px;
+  }
+
+  .status-badge{
+    font-size:7px;
+    padding:4px 6px;
+  }
+
+  .boarding-pass{
+    margin:9px 0;
+  }
+
+  .pass-header{
+    padding:8px 10px;
+  }
+
+  .pass-title{
+    font-size:8px;
+  }
+
+  .pass-flight{
+    font-size:7px;
+  }
+
+  .pass-body{
+    grid-template-columns:1fr 82px;
+    min-height:91px;
+  }
+
+  .pass-details{
+    padding:9px 10px;
+  }
+
+  .pass-label{
+    font-size:6px;
+  }
+
+  .pass-value{
+    font-size:10px;
+    margin-bottom:7px;
+  }
+
+  .pass-row{
+    gap:7px;
+  }
+
+  .barcode{
+    width:58px;
+    height:45px;
+  }
+
+  .code-side{
+    padding:7px 4px;
+  }
+
+  .code-text{
+    font-size:5px;
+    letter-spacing:1px;
+  }
+
+  .balance-card{
+    padding:12px 14px;
+  }
+
+  .balance-amount{
+    font-size:21px;
+  }
+
+  .account-summary{
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+  }
+
+  .summary-card{
+    padding:9px 7px;
+  }
+
+  .summary-label{
+    font-size:6px;
+    letter-spacing:.3px;
+  }
+
+  .summary-value{
+    font-size:10px;
+  }
+
+  .summary-note{
+    display:none;
+  }
+
+  .section-header{
+    padding:10px 11px;
+  }
+
+  .section-title{
+    font-size:12px;
+  }
+
+  .section-subtitle{
+    font-size:8px;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .info-item{
+    padding:8px 10px;
+  }
+
+  .info-item:nth-child(odd){
+    border-right:1px solid #edf1f5;
+  }
+
+  .info-label{
+    font-size:6px;
+    letter-spacing:.5px;
+  }
+
+  .info-value{
+    font-size:9px;
+  }
+
+  .withdrawal-header{
+    padding:11px;
+  }
+
+  .withdrawal-header-title{
+    font-size:12px;
+  }
+
+  .withdrawal-header-subtitle{
+    font-size:7px;
+  }
+
+  .withdrawal-status{
+    right:10px;
+    top:10px;
+    font-size:6px;
+  }
+
+  .withdrawal-row{
+    padding:9px 11px;
+  }
+
+  .withdrawal-label{
+    font-size:6px;
+  }
+
+  .withdrawal-value{
+    font-size:9px;
+  }
+
+  .account-type{
+    font-size:7px;
+    padding:3px 6px;
+  }
+
+  .manage-withdrawal-button{
+    width:calc(100% - 22px);
+    margin:9px 11px 10px;
+    padding:8px;
+    font-size:8px;
+  }
+
+  .referral-box{
+    padding:9px 10px;
+  }
+
+  .referral-code-box{
+    padding:8px 9px;
+  }
+
+  .referral-code{
+    font-size:11px;
+  }
+
+  .referral-label{
+    font-size:6px;
+  }
+
+  .copy-button{
+    font-size:7px;
+    padding:5px 7px;
+  }
+
+  .back-button{
+    margin-top:9px;
+    padding:9px;
+    font-size:9px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media(max-width:380px){
+
+  .profile-name{
+    max-width:150px;
+  }
+
+  .profile-avatar{
+    width:44px;
+    height:44px;
+  }
+
+  .profile-member{
+    font-size:7px;
+  }
+
+  .status-badge{
+    padding:3px 5px;
+  }
+
+  .account-summary{
+    gap:4px;
+  }
+
+  .summary-card{
+    padding:8px 5px;
+  }
+
+  .summary-value{
+    font-size:9px;
+  }
+
+  .info-item{
+    padding:7px 8px;
+  }
+
+  .info-value{
+    font-size:8px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+  <div class="logo">
+
+    <img
+      src="skyrent-logo.png"
+      alt="SkyRent Logo"
+    >
+
+  </div>
+
+
+  <div class="header-right">
+
+    <div class="header-small">
+      MEMBER AREA
+    </div>
+
+    <a
+      href="dashboard.html"
+      class="home-button"
+    >
+      🏠
+    </a>
+
+    <div class="header-title">
+      Home
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+  <div class="page-heading">
+
+    <h1>
+      Member Profile
+    </h1>
+
+    <p>
+      Your SkyRent Member and account record
+    </p>
+
+  </div>
+
+
+  <!-- =================================================
+       PROFILE HEADER
+  ================================================== -->
+
+  <section class="profile-card">
+
+    <div class="profile-top">
+
+      <div class="profile-top-content">
+
+        <div
+          class="profile-avatar"
+          id="profileAvatar"
+        >
+          S
+        </div>
+
+
+        <div>
+
+          <div
+            class="profile-name"
+            id="profileName"
+          >
+            Loading...
+          </div>
+
+          <div
+            class="profile-member"
+            id="profileMember"
+          >
+            MEMBER ID: —
+          </div>
+
+        </div>
+
+
+        <div
+          class="status-badge"
+          id="accountStatus"
+        >
+          ACTIVE
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         BOARDING PASS
+    ================================================== -->
+
+    <div class="boarding-pass">
+
+      <div class="pass-header">
+
+        <div class="pass-title">
+          SKYRENT MEMBER PASS
+        </div>
+
+        <div class="pass-flight">
+          MEMBER RECORD
+        </div>
+
+      </div>
+
+
+      <div class="pass-body">
+
+        <div class="pass-details">
+
+          <div class="pass-label">
+            Member Name
+          </div>
+
+          <div
+            class="pass-value"
+            id="passengerName"
+          >
+            —
+          </div>
+
+
+          <div class="pass-row">
+
+            <div>
+
+              <div class="pass-label">
+                Member ID
+              </div>
+
+              <div
+                class="pass-value"
+                id="passMemberId"
+              >
+                —
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <div class="pass-label">
+                Referral Code
+              </div>
+
+              <div
+                class="pass-value"
+                id="passReferralCode"
+              >
+                —
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- DECORATIVE CODE -->
+
+        <div class="code-side">
+
+          <div class="barcode">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+          </div>
+
+          <div
+            class="code-text"
+            id="codeText"
+          >
+            SKYRENT
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       AVAILABLE BALANCE
+  ================================================== -->
+
+  <section class="balance-card">
+
+    <div class="balance-label">
+      Available Balance
+    </div>
+
+    <div
+      class="balance-amount"
+      id="balanceAmount"
+    >
+      ₱0.00
+    </div>
+
+    <div class="balance-note">
+      Current account balance
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       ACCOUNT SUMMARY
+  ================================================== -->
+
+  <section class="account-summary">
+
+
+    <div class="summary-card">
+
+      <div>
+
+        <div class="summary-label">
+          Total Deposit
+        </div>
+
+        <div class="summary-note">
+          Lifetime deposits
+        </div>
+
+      </div>
+
+      <div
+        class="summary-value"
+        id="totalDeposit"
+      >
+        ₱0.00
+      </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div>
+
+        <div class="summary-label">
+          Total Earnings
+        </div>
+
+        <div class="summary-note">
+          Lifetime earnings
+        </div>
+
+      </div>
+
+      <div
+        class="summary-value"
+        id="totalEarnings"
+      >
+        ₱0.00
+      </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div>
+
+        <div class="summary-label">
+          Total Withdraw
+        </div>
+
+        <div class="summary-note">
+          Lifetime withdrawals
+        </div>
+
+      </div>
+
+      <div
+        class="summary-value"
+        id="totalWithdraw"
+      >
+        ₱0.00
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       PERSONAL INFORMATION
+  ================================================== -->
+
+  <section class="section-card">
+
+    <div class="section-header">
+
+      <div class="section-title">
+        Member's Information
+      </div>
+
+      <div class="section-subtitle">
+        Information stored in your SkyRent account
+      </div>
+
+    </div>
+
+
+    <div class="info-grid">
+
+
+      <div class="info-item">
+
+        <div class="info-label">
+          Full Name
+        </div>
+
+        <div
+          class="info-value"
+          id="infoName"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <div class="info-label">
+          Phone Number
+        </div>
+
+        <div
+          class="info-value"
+          id="infoPhone"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <div class="info-label">
+          Email Address
+        </div>
+
+        <div
+          class="info-value"
+          id="infoEmail"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <div class="info-label">
+          Member ID
+        </div>
+
+        <div
+          class="info-value"
+          id="infoMemberId"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <div class="info-label">
+          Registration Date
+        </div>
+
+        <div
+          class="info-value"
+          id="infoRegistrationDate"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <div class="info-label">
+          Referral Code
+        </div>
+
+        <div
+          class="info-value"
+          id="infoReferralCode"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <div class="info-label">
+          Referred By
+        </div>
+
+        <div
+          class="info-value"
+          id="infoReferredBy"
+        >
+          —
+        </div>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <div class="info-label">
+          Purchase Count
+        </div>
+
+        <div
+          class="info-value"
+          id="infoPurchaseCount"
+        >
+          0
+        </div>
+
+      </div>
+
+
+      <div class="info-item">
+
+        <div class="info-label">
+          Account Status
+        </div>
+
+        <div
+          class="info-value"
+          id="infoStatus"
+        >
+          ACTIVE
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       WITHDRAWAL ACCOUNT
+  ================================================== -->
+
+  <section class="withdrawal-card">
+
+
+    <div class="withdrawal-header">
+
+      <div class="withdrawal-header-title">
+        Withdrawal Account
+      </div>
+
+      <div class="withdrawal-header-subtitle">
+        Account used for receiving withdrawals
+      </div>
+
+      <div class="withdrawal-status">
+        ACCOUNT
+      </div>
+
+    </div>
+
+
+    <div class="withdrawal-body">
+
+
+      <div class="withdrawal-row">
+
+        <div class="withdrawal-label">
+          Account Name
+        </div>
+
+        <div
+          class="withdrawal-value"
+          id="withdrawalName"
+        >
+          Not Set
+        </div>
+
+      </div>
+
+
+      <div class="withdrawal-row">
+
+        <div class="withdrawal-label">
+          Account Number
+        </div>
+
+        <div
+          class="withdrawal-value"
+          id="withdrawalNumber"
+        >
+          Not Set
+        </div>
+
+      </div>
+
+
+      <div class="withdrawal-row">
+
+        <div class="withdrawal-label">
+          Account Type
+        </div>
+
+        <div
+          class="withdrawal-value"
+          id="withdrawalType"
+        >
+          <span class="account-type">
+            Not Set
+          </span>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <a
+      href="withdrawal-account.html"
+      class="manage-withdrawal-button"
+    >
+      MANAGE WITHDRAWAL ACCOUNT
+    </a>
+
+  </section>
+
+
+  <!-- =================================================
+       REFERRAL CODE
+  ================================================== -->
+
+  <section class="section-card">
+
+
+    <div class="section-header">
+
+      <div class="section-title">
+        Your Referral Code
+      </div>
+
+      <div class="section-subtitle">
+        Share your code with new SkyRent members
+      </div>
+
+    </div>
+
+
+    <div class="referral-box">
+
+      <div class="referral-code-box">
+
+        <div>
+
+          <div class="referral-label">
+            PERSONAL REFERRAL CODE
+          </div>
+
+          <div
+            class="referral-code"
+            id="referralCodeDisplay"
+          >
+            —
+          </div>
+
+        </div>
+
+
+        <button
+          class="copy-button"
+          type="button"
+          onclick="copyReferralCode()"
+        >
+          COPY
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       BACK
+  ================================================== -->
+
+  <button
+    class="back-button"
+    onclick="goBack()"
+  >
+    ← Back
+  </button>
+
+
+</main>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+  authDomain:
+    "skyrent-ea30c.firebaseapp.com",
+
+  projectId:
+    "skyrent-ea30c",
+
+  storageBucket:
+    "skyrent-ea30c.firebasestorage.app",
+
+  messagingSenderId:
+    "572678456448",
+
+  appId:
+    "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
+
+const app =
+  initializeApp(firebaseConfig);
+
+const auth =
+  getAuth(app);
+
+const db =
+  getFirestore(app);
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function money(value){
+
+  return "₱" +
+    (
+      Number(value) || 0
+    ).toLocaleString(
+      "en-PH",
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      }
+    );
+
+}
+
+
+function escapeHTML(value){
+
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   FIREBASE DATE FORMAT
+===================================================== */
+
+function formatDate(value){
+
+  if(!value){
+    return "—";
+  }
+
+  try{
+
+    let date;
+
+    if(
+      value &&
+      typeof value.toDate === "function"
+    ){
+
+      date =
+        value.toDate();
+
+    }
+
+    else if(
+      value &&
+      typeof value === "object" &&
+      typeof value.seconds === "number"
+    ){
+
+      date =
+        new Date(
+          value.seconds * 1000
+        );
+
+    }
+
+    else if(
+      typeof value === "number"
+    ){
+
+      date =
+        new Date(value);
+
+    }
+
+    else{
+
+      date =
+        new Date(value);
+
+    }
+
+    if(
+      !date ||
+      Number.isNaN(
+        date.getTime()
+      )
+    ){
+
+      return "—";
+
+    }
+
+    return date.toLocaleDateString(
+      "en-PH",
+      {
+        month:"short",
+        day:"2-digit",
+        year:"numeric"
+      }
+    );
+
+  }
+  catch(error){
+
+    return "—";
+
+  }
+
+}
+
+
+/* =====================================================
+   GET PHONE
+===================================================== */
+
+function getPhone(user){
+
+  if(!user){
+    return "";
+  }
+
+  return String(
+    user.phone ||
+    user.mobile ||
+    user.number ||
+    ""
+  ).trim();
+
+}
+
+
+/* =====================================================
+   GET REFERRER
+===================================================== */
+
+async function getReferrerName(user){
+
+  if(!user){
+    return "None";
+  }
+
+  if(
+    user.referredByName &&
+    String(
+      user.referredByName
+    ).trim()
+  ){
+
+    return String(
+      user.referredByName
+    );
+
+  }
+
+  const referredByPhone =
+    String(
+      user.referredByPhone || ""
+    ).trim();
+
+  if(!referredByPhone){
+    return "None";
+  }
+
+  try{
+
+    const q =
+      query(
+        collection(
+          db,
+          "users"
+        ),
+        where(
+          "phone",
+          "==",
+          referredByPhone
+        )
+      );
+
+    const snapshot =
+      await getDocs(q);
+
+    if(
+      !snapshot.empty
+    ){
+
+      const referrer =
+        snapshot.docs[0].data();
+
+      return String(
+        referrer.name ||
+        "SkyRent Member"
+      );
+
+    }
+
+  }
+  catch(error){
+
+    console.log(
+      "Unable to load referrer:",
+      error
+    );
+
+  }
+
+  return "None";
+
+}
+
+
+/* =====================================================
+   WITHDRAWAL ACCOUNT
+===================================================== */
+
+function getWithdrawalAccount(user){
+
+  if(!user){
+
+    return {
+      name:"",
+      number:"",
+      type:""
+    };
+
+  }
+
+  const phone =
+    getPhone(user);
+
+
+  /*
+    Existing localStorage compatibility.
+  */
+
+  if(phone){
+
+    const key =
+      "withdrawalAccount_" +
+      phone;
+
+    const saved =
+      localStorage.getItem(key);
+
+    if(saved){
+
+      try{
+
+        const account =
+          JSON.parse(saved);
+
+        if(
+          account &&
+          typeof account === "object"
+        ){
+
+          return {
+
+            name:String(
+              account.accountName ||
+              ""
+            ).trim(),
+
+            number:String(
+              account.accountNumber ||
+              ""
+            ).trim(),
+
+            type:String(
+              account.accountType ||
+              ""
+            ).trim()
+
+          };
+
+        }
+
+      }
+      catch(error){
+
+        console.log(
+          "Unable to read withdrawal account:",
+          error
+        );
+
+      }
+
+    }
+
+  }
+
+
+  /*
+    Firebase fallback.
+  */
+
+  const withdrawal =
+    user.withdrawalAccount ||
+    user.withdrawal ||
+    user.payoutAccount ||
+    user.paymentAccount ||
+    null;
+
+
+  if(
+    withdrawal &&
+    typeof withdrawal === "object"
+  ){
+
+    return {
+
+      name:
+        withdrawal.accountName ||
+        withdrawal.name ||
+        withdrawal.accountHolder ||
+        "",
+
+      number:
+        withdrawal.accountNumber ||
+        withdrawal.number ||
+        withdrawal.accountNo ||
+        withdrawal.phone ||
+        "",
+
+      type:
+        withdrawal.accountType ||
+        withdrawal.type ||
+        withdrawal.method ||
+        withdrawal.provider ||
+        ""
+
+    };
+
+  }
+
+
+  return {
+
+    name:
+      user.withdrawalAccountName ||
+      user.accountName ||
+      "",
+
+    number:
+      user.withdrawalAccountNumber ||
+      user.accountNumber ||
+      "",
+
+    type:
+      user.withdrawalAccountType ||
+      user.accountType ||
+      ""
+
+  };
+
+}
+
+
+/* =====================================================
+   LOAD TRANSACTION TOTALS
+===================================================== */
+
+async function loadTransactionTotals(uid){
+
+  const totals = {
+
+    deposits:0,
+    withdrawals:0,
+    earnings:0
+
+  };
+
+
+  async function readCollection(
+    collectionName,
+    type
+  ){
+
+    try{
+
+      let snapshot = null;
+
+
+      /*
+        First try uid.
+      */
+
+      try{
+
+        const q =
+          query(
+            collection(
+              db,
+              collectionName
+            ),
+            where(
+              "uid",
+              "==",
+              uid
+            )
+          );
+
+        snapshot =
+          await getDocs(q);
+
+      }
+      catch(error){}
+
+
+      /*
+        If no documents were found,
+        try userId.
+      */
+
+      if(
+        !snapshot ||
+        snapshot.empty
+      ){
+
+        try{
+
+          const q2 =
+            query(
+              collection(
+                db,
+                collectionName
+              ),
+              where(
+                "userId",
+                "==",
+                uid
+              )
+            );
+
+          snapshot =
+            await getDocs(q2);
+
+        }
+        catch(error){}
+
+      }
+
+
+      if(
+        !snapshot ||
+        snapshot.empty
+      ){
+
+        return;
+
+      }
+
+
+      snapshot.forEach(
+        function(item){
+
+          const data =
+            item.data() || {};
+
+
+          const status =
+            String(
+              data.status || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+          /*
+            Rejected records are ignored.
+          */
+
+          if(
+            status === "rejected" ||
+            status === "cancelled" ||
+            status === "canceled" ||
+            status === "declined" ||
+            status === "reversed"
+          ){
+
+            return;
+
+          }
+
+
+          /*
+            Deposit status.
+          */
+
+          if(
+            type === "deposit"
+          ){
+
+            const approved =
+              status === "" ||
+              status === "approved" ||
+              status === "deposit successful" ||
+              status === "successful" ||
+              status === "completed";
+
+            if(!approved){
+              return;
+            }
+
+          }
+
+
+          /*
+            Withdrawal status.
+          */
+
+          if(
+            type === "withdrawal"
+          ){
+
+            const approved =
+              status === "" ||
+              status === "approved" ||
+              status === "withdrawal successful" ||
+              status === "successful" ||
+              status === "completed";
+
+            if(!approved){
+              return;
+            }
+
+          }
+
+
+          /*
+            Amount.
+          */
+
+          const amount =
+            Number(
+              data.amount ??
+              data.depositAmount ??
+              data.withdrawalAmount ??
+              data.withdrawAmount ??
+              data.earning ??
+              data.earnings ??
+              data.commission ??
+              data.income ??
+              data.daily ??
+              0
+            ) || 0;
+
+
+          if(
+            type === "deposit"
+          ){
+
+            totals.deposits +=
+              amount;
+
+          }
+
+
+          if(
+            type === "withdrawal"
+          ){
+
+            const withdrawalAmount =
+              Number(
+                data.amount ??
+                data.withdrawalAmount ??
+                data.withdrawAmount ??
+                0
+              ) || 0;
+
+            totals.withdrawals +=
+              withdrawalAmount;
+
+          }
+
+
+          if(
+            type === "earnings"
+          ){
+
+            totals.earnings +=
+              amount;
+
+          }
+
+        }
+      );
+
+    }
+    catch(error){
+
+      console.log(
+        "Unable to read " +
+        collectionName +
+        ":",
+        error
+      );
+
+    }
+
+  }
+
+
+  await readCollection(
+    "deposits",
+    "deposit"
+  );
+
+
+  await readCollection(
+    "withdrawals",
+    "withdrawal"
+  );
+
+
+  await readCollection(
+    "earnings",
+    "earnings"
+  );
+
+
+  await readCollection(
+    "earningsHistory",
+    "earnings"
+  );
+
+
+  return totals;
+
+}
+
+
+/* =====================================================
+   FORMATTED MEMBER ID
+===================================================== */
+
+function createFallbackMemberId(uid){
+
+  const text =
+    String(uid || "");
+
+  let hash = 0;
+
+
+  for(
+    let i = 0;
+    i < text.length;
+    i++
+  ){
+
+    hash =
+      ((hash << 5) - hash) +
+      text.charCodeAt(i);
+
+    hash |= 0;
+
+  }
+
+
+  const number =
+    Math.abs(hash) % 1000000;
+
+
+  return "SKY-" +
+    String(number)
+      .padStart(6,"0");
+
+}
+
+
+function getMemberId(
+  user,
+  firebaseUser
+){
+
+  const savedId =
+    String(
+      user.memberId || ""
+    ).trim();
+
+
+  if(savedId){
+
+    if(
+      savedId
+        .toUpperCase()
+        .startsWith("SKY-")
+    ){
+
+      return savedId.toUpperCase();
+
+    }
+
+
+    if(
+      /^\d+$/.test(savedId)
+    ){
+
+      return "SKY-" +
+        savedId.padStart(
+          6,
+          "0"
+        );
+
+    }
+
+
+    return savedId;
+
+  }
+
+
+  return createFallbackMemberId(
+    firebaseUser.uid
+  );
+
+}
+
+
+/* =====================================================
+   LOAD PROFILE
+===================================================== */
+
+async function loadProfile(
+  firebaseUser
+){
+
+  if(!firebaseUser){
+
+    document.getElementById(
+      "profileName"
+    ).textContent =
+      "No Account Found";
+
+    document.getElementById(
+      "infoName"
+    ).textContent =
+      "Please log in.";
+
+    return;
+
+  }
+
+
+  try{
+
+    /*
+      Main Firebase user document.
+    */
+
+    const userRef =
+      doc(
+        db,
+        "users",
+        firebaseUser.uid
+      );
+
+
+    const userSnap =
+      await getDoc(userRef);
+
+
+    if(
+      !userSnap.exists()
+    ){
+
+      document.getElementById(
+        "profileName"
+      ).textContent =
+        "Profile Not Found";
+
+      document.getElementById(
+        "infoName"
+      ).textContent =
+        "Your account record could not be found.";
+
+      return;
+
+    }
+
+
+    const user =
+      userSnap.data();
+
+
+    /* =================================================
+       BASIC USER DATA
+    ================================================= */
+
+    const name =
+      String(
+        user.name ||
+        firebaseUser.displayName ||
+        "SkyRent Member"
+      ).trim();
+
+
+    const phone =
+      getPhone(user);
+
+
+    /*
+      Real email address.
+    */
+
+    const email =
+      String(
+        user.email ||
+        firebaseUser.email ||
+        ""
+      ).trim();
+
+
+    /*
+      SkyRent Member ID.
+    */
+
+    const memberId =
+      getMemberId(
+        user,
+        firebaseUser
+      );
+
+
+    const referralCode =
+      String(
+        user.referralCode ||
+        "—"
+      ).trim();
+
+
+    const status =
+      String(
+        user.status ||
+        user.accountStatus ||
+        "ACTIVE"
+      )
+      .trim()
+      .toUpperCase();
+
+
+    const purchaseCount =
+      Number(
+        user.purchaseCount || 0
+      ) || 0;
+
+
+    const registrationDate =
+      formatDate(
+        user.createdAt ||
+        user.registrationDate ||
+        user.registeredAt
+      );
+
+
+    const referredBy =
+      await getReferrerName(
+        user
+      );
+
+
+    /* =================================================
+       PROFILE HEADER
+    ================================================= */
+
+    document.getElementById(
+      "profileName"
+    ).textContent =
+      name;
+
+
+    document.getElementById(
+      "profileMember"
+    ).textContent =
+      "MEMBER ID: " +
+      memberId;
+
+
+    document.getElementById(
+      "accountStatus"
+    ).textContent =
+      status;
+
+
+    /* =================================================
+       AVATAR
+    ================================================= */
+
+    const firstLetter =
+      name
+        .trim()
+        .charAt(0)
+        .toUpperCase() ||
+      "S";
+
+
+    document.getElementById(
+      "profileAvatar"
+    ).textContent =
+      firstLetter;
+
+
+    /* =================================================
+       BOARDING PASS
+    ================================================= */
+
+    document.getElementById(
+      "passengerName"
+    ).textContent =
+      name;
+
+
+    document.getElementById(
+      "passMemberId"
+    ).textContent =
+      memberId;
+
+
+    document.getElementById(
+      "passReferralCode"
+    ).textContent =
+      referralCode;
+
+
+    document.getElementById(
+      "codeText"
+    ).textContent =
+      memberId
+        .replace(
+          /[^A-Z0-9]/gi,
+          ""
+        )
+        .substring(
+          0,
+          18
+        );
+
+
+    /* =================================================
+       PERSONAL INFORMATION
+    ================================================= */
+
+    document.getElementById(
+      "infoName"
+    ).textContent =
+      name;
+
+
+    document.getElementById(
+      "infoPhone"
+    ).textContent =
+      phone
+        ? formatPhone(phone)
+        : "—";
+
+
+    document.getElementById(
+      "infoEmail"
+    ).textContent =
+      email ||
+      "Not Available";
+
+
+    document.getElementById(
+      "infoMemberId"
+    ).textContent =
+      memberId;
+
+
+    document.getElementById(
+      "infoRegistrationDate"
+    ).textContent =
+      registrationDate;
+
+
+    document.getElementById(
+      "infoReferralCode"
+    ).textContent =
+      referralCode;
+
+
+    document.getElementById(
+      "infoReferredBy"
+    ).textContent =
+      referredBy;
+
+
+    document.getElementById(
+      "infoPurchaseCount"
+    ).textContent =
+      purchaseCount;
+
+
+    document.getElementById(
+      "infoStatus"
+    ).textContent =
+      status;
+
+
+    /* =================================================
+       BALANCE
+    ================================================= */
+
+    const balance =
+      Number(
+        user.balance || 0
+      ) || 0;
+
+
+    document.getElementById(
+      "balanceAmount"
+    ).textContent =
+      money(balance);
+
+
+    /* =================================================
+       TRANSACTION TOTALS
+    ================================================= */
+
+    const totals =
+      await loadTransactionTotals(
+        firebaseUser.uid
+      );
+
+
+    const totalDeposit =
+      Number(
+        user.totalDeposit ??
+        user.totalDeposits ??
+        totals.deposits ??
+        0
+      ) || 0;
+
+
+    const totalEarnings =
+      Number(
+        user.totalEarnings ??
+        user.earnings ??
+        totals.earnings ??
+        0
+      ) || 0;
+
+
+    const totalWithdraw =
+      Number(
+        user.totalWithdraw ??
+        user.totalWithdrawal ??
+        user.totalWithdrawals ??
+        user.withdrawnAmount ??
+        totals.withdrawals ??
+        0
+      ) || 0;
+
+
+    document.getElementById(
+      "totalDeposit"
+    ).textContent =
+      money(totalDeposit);
+
+
+    document.getElementById(
+      "totalEarnings"
+    ).textContent =
+      money(totalEarnings);
+
+
+    document.getElementById(
+      "totalWithdraw"
+    ).textContent =
+      money(totalWithdraw);
+
+
+    /* =================================================
+       WITHDRAWAL ACCOUNT
+    ================================================= */
+
+    const withdrawal =
+      getWithdrawalAccount(
+        user
+      );
+
+
+    document.getElementById(
+      "withdrawalName"
+    ).textContent =
+      withdrawal.name ||
+      "Not Set";
+
+
+    document.getElementById(
+      "withdrawalNumber"
+    ).textContent =
+      withdrawal.number ||
+      "Not Set";
+
+
+    const typeElement =
+      document.getElementById(
+        "withdrawalType"
+      );
+
+
+    if(
+      withdrawal.type
+    ){
+
+      typeElement.innerHTML =
+        '<span class="account-type">' +
+        escapeHTML(
+          withdrawal.type
+        ) +
+        '</span>';
+
+    }
+    else{
+
+      typeElement.innerHTML =
+        '<span class="account-type">' +
+        'Not Set' +
+        '</span>';
+
+    }
+
+
+    /* =================================================
+       REFERRAL CODE
+    ================================================= */
+
+    document.getElementById(
+      "referralCodeDisplay"
+    ).textContent =
+      referralCode;
+
+
+  }
+  catch(error){
+
+    console.error(
+      "SkyRent Profile Error:",
+      error
+    );
+
+
+    document.getElementById(
+      "profileName"
+    ).textContent =
+      "Unable to Load";
+
+
+    document.getElementById(
+      "infoName"
+    ).textContent =
+      "Please refresh the page.";
+
+  }
+
+}
+
+
+/* =====================================================
+   PHONE FORMAT
+===================================================== */
+
+function formatPhone(phone){
+
+  let value =
+    String(phone).trim();
+
+
+  if(
+    value.startsWith("+63")
+  ){
+
+    return value;
+
+  }
+
+
+  if(
+    value.startsWith("09")
+  ){
+
+    return (
+      "+63 " +
+      value.substring(1)
+    );
+
+  }
+
+
+  return value;
+
+}
+
+
+/* =====================================================
+   COPY REFERRAL CODE
+===================================================== */
+
+window.copyReferralCode =
+  async function(){
+
+    try{
+
+      const element =
+        document.getElementById(
+          "referralCodeDisplay"
+        );
+
+
+      const code =
+        String(
+          element.textContent || ""
+        ).trim();
+
+
+      if(
+        !code ||
+        code === "—"
+      ){
+
+        return;
+
+      }
+
+
+      if(
+        navigator.clipboard &&
+        navigator.clipboard.writeText
+      ){
+
+        await navigator.clipboard.writeText(
+          code
+        );
+
+      }
+      else{
+
+        const textarea =
+          document.createElement(
+            "textarea"
+          );
+
+
+        textarea.value =
+          code;
+
+
+        textarea.style.position =
+          "fixed";
+
+        textarea.style.opacity =
+          "0";
+
+
+        document.body.appendChild(
+          textarea
+        );
+
+
+        textarea.select();
+
+
+        document.execCommand(
+          "copy"
+        );
+
+
+        document.body.removeChild(
+          textarea
+        );
+
+      }
+
+
+      const button =
+        document.querySelector(
+          ".copy-button"
+        );
+
+
+      if(!button){
+        return;
+      }
+
+
+      const original =
+        button.textContent;
+
+
+      button.textContent =
+        "COPIED";
+
+
+      setTimeout(
+        function(){
+
+          button.textContent =
+            original;
+
+        },
+        1200
+      );
+
+
+    }
+    catch(error){
+
+      console.log(
+        "Copy failed:",
+        error
+      );
+
+    }
+
+  };
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+window.goBack =
+  function(){
+
+    if(
+      window.history.length > 1
+    ){
+
+      window.history.back();
+      return;
+
+    }
+
+
+    window.location.href =
+      "dashboard.html";
+
+  };
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+  auth,
+  async function(firebaseUser){
+
+    if(!firebaseUser){
+
+      window.location.href =
+        "index.html";
+
+      return;
+
+    }
+
+
+    await loadProfile(
+      firebaseUser
+    );
+
+  }
+);
+
+</script>
+
+</body>
+</html>
