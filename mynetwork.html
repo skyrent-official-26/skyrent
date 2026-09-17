@@ -1101,7 +1101,7 @@ body{
 
 
         <div class="referral-label">
-            YOUR GITHUB REFERRAL LINK
+            YOUR REFERRAL LINK
         </div>
 
         <div class="link-row">
@@ -1654,14 +1654,6 @@ const auth =
 
 const db =
     getFirestore(app);
-
-
-/* =====================================================
-   GITHUB PAGES ADDRESS
-===================================================== */
-
-const GITHUB_SITE =
-    "https://skyrent26.github.io/skyrent/";
 
 
 /* =====================================================
@@ -2758,23 +2750,12 @@ async function loadNetwork(){
 
         /* -----------------------------------------
            REFERRAL LINK
+           
+           NEW SKYRENT DOMAIN
         ----------------------------------------- */
 
-        const base =
-
-            GITHUB_SITE.endsWith("/")
-
-                ? GITHUB_SITE
-
-                : GITHUB_SITE + "/";
-
-
         const referralUrl =
-
-            base +
-
-            "index.html?ref=" +
-
+            "https://skyrent.uk/?ref=" +
             encodeURIComponent(
                 referralCode
             );
@@ -3250,14 +3231,11 @@ function showToast(message){
    IMPORTANT
    NO AUTOMATIC VISIBILITY REFRESH
 
-   The previous visibilitychange listener has been
-   intentionally removed.
-
-   Network data now loads when:
+   Network data loads when:
    - The page is opened
    - Firebase authentication completes
 
-   It will NOT automatically reload simply because
+   It does NOT automatically reload simply because
    the user leaves the page and comes back to it.
 ===================================================== */
 
@@ -3266,4 +3244,3 @@ function showToast(message){
 </body>
 
 </html>
-
