@@ -605,6 +605,83 @@ body{
 }
 
 /* =========================
+   PAYMENT FILTER
+========================= */
+
+.payment-filter{
+    background:white;
+    padding:12px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    margin-bottom:15px;
+}
+
+.payment-filter-title{
+    font-size:13px;
+    font-weight:bold;
+    color:#075985;
+    margin-bottom:9px;
+}
+
+.payment-filter-buttons{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.payment-filter-btn{
+    border:1px solid #cbd5e1;
+    background:#f8fafc;
+    color:#475569;
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.payment-filter-btn:hover{
+    background:#e0f2fe;
+    border-color:#7dd3fc;
+}
+
+.payment-filter-btn.active{
+    background:#0284c7;
+    color:white;
+    border-color:#0284c7;
+}
+
+.payment-filter-info{
+    margin-top:8px;
+    font-size:11px;
+    color:#64748b;
+}
+
+.payment-badge{
+    display:inline-block;
+    margin-top:5px;
+    padding:4px 8px;
+    border-radius:12px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.payment-1-badge{
+    background:#e0f2fe;
+    color:#075985;
+}
+
+.payment-2-badge{
+    background:#ede9fe;
+    color:#6d28d9;
+}
+
+.payment-unknown-badge{
+    background:#f1f5f9;
+    color:#64748b;
+}
+
+/* =========================
    MOBILE
 ========================= */
 
@@ -910,6 +987,53 @@ body{
 </div>
 
 <!-- =========================
+     PAYMENT FILTER
+========================= -->
+
+<div class="payment-filter">
+
+    <div class="payment-filter-title">
+        💳 Filter Pending Deposits by Payment
+    </div>
+
+    <div class="payment-filter-buttons">
+
+        <button
+            type="button"
+            class="payment-filter-btn"
+            id="filterAll"
+            onclick="setPaymentFilter('all')"
+        >
+            All Pending
+        </button>
+
+        <button
+            type="button"
+            class="payment-filter-btn"
+            id="filterPayment1"
+            onclick="setPaymentFilter('1')"
+        >
+            Payment 1
+        </button>
+
+        <button
+            type="button"
+            class="payment-filter-btn"
+            id="filterPayment2"
+            onclick="setPaymentFilter('2')"
+        >
+            Payment 2
+        </button>
+
+    </div>
+
+    <div class="payment-filter-info" id="paymentFilterInfo">
+        Showing all pending deposits.
+    </div>
+
+</div>
+
+<!-- =========================
      PENDING APPROVAL
 ========================= -->
 
@@ -1014,6 +1138,13 @@ let currentAdmin = null;
 ===================================================== */
 
 let allDeposits = [];
+
+/* Active payment filter from dashboard or filter buttons */
+let activePaymentFilter = new URLSearchParams(window.location.search).get("payment") || "all";
+
+if(activePaymentFilter !== "1" && activePaymentFilter !== "2"){
+    activePaymentFilter = "all";
+}
 
 
 /* =====================================================
@@ -1193,6 +1324,108 @@ function getPaymentMethod(deposit){
     );
 }
 
+
+/* =====================================================
+   PAYMENT OPTION DETECTION
+===================================================== */
+
+function getPaymentOption(deposit){
+
+    if(!deposit){
+        return null;
+    }
+
+    /*
+       Prefer explicit numeric payment-option fields.
+       These are checked before text fields such as
+       paymentType because paymentType may contain the
+       actual receiving account in existing records.
+    */
+
+    const directFields = [
+        deposit.paymentOption,
+        deposit.paymentNumber,
+        deposit.paymentOptionNumber,
+        deposit.paymentTypeNumber,
+        deposit.selectedPayment,
+        deposit.selectedPaymentOption,
+        deposit.paymentMethodNumber,
+        deposit.paymentChannelNumber
+    ];
+
+    for(const value of directFields){
+
+        if(value === 1 || String(value).trim() === "1"){
+            return "1";
+        }
+
+        if(value === 2 || String(value).trim() === "2"){
+            return "2";
+        }
+    }
+
+    /* Boolean compatibility */
+
+    if(deposit.payment1 === true){
+        return "1";
+    }
+
+    if(deposit.payment2 === true){
+        return "2";
+    }
+
+    /* Text fields are only accepted when they explicitly
+       say Payment 1 or Payment 2. */
+
+    const textFields = [
+        deposit.payment,
+        deposit.paymentType,
+        deposit.paymentMethod,
+        deposit.paymentChannel,
+        deposit.selectedPayment,
+        deposit.selectedPaymentOption,
+        deposit.paymentAccount,
+        deposit.receivingAccount
+    ];
+
+    for(const value of textFields){
+
+        const text = String(value ?? "")
+            .trim()
+            .toLowerCase()
+            .replace(/[_-]+/g," ")
+            .replace(/\s+/g," ");
+
+        if(
+            /^(payment\s*1|payment\s*option\s*1|option\s*1)$/.test(text)
+        ){
+            return "1";
+        }
+
+        if(
+            /^(payment\s*2|payment\s*option\s*2|option\s*2)$/.test(text)
+        ){
+            return "2";
+        }
+    }
+
+    return null;
+}
+
+function paymentBadgeHTML(deposit){
+
+    const option = getPaymentOption(deposit);
+
+    if(option === "1"){
+        return `<span class="payment-badge payment-1-badge">Payment 1</span>`;
+    }
+
+    if(option === "2"){
+        return `<span class="payment-badge payment-2-badge">Payment 2</span>`;
+    }
+
+    return `<span class="payment-badge payment-unknown-badge">Payment Not Set</span>`;
+}
 
 /* =====================================================
    STATUS HELPERS
@@ -1819,11 +2052,23 @@ function renderPendingDeposits(){
         allDeposits.filter(
             function(deposit){
 
-                return isPending(
-                    deposit.status
-                );
+                if(!isPending(deposit.status)){
+                    return false;
+                }
+
+                if(activePaymentFilter === "1"){
+                    return getPaymentOption(deposit) === "1";
+                }
+
+                if(activePaymentFilter === "2"){
+                    return getPaymentOption(deposit) === "2";
+                }
+
+                return true;
             }
         );
+
+    updatePaymentFilterUI(pending.length);
 
     if(
         pending.length === 0
@@ -1986,6 +2231,8 @@ function createPendingCard(deposit){
                         ${statusHTML(
                             deposit.status
                         )}
+                        <br>
+                        ${paymentBadgeHTML(deposit)}
                     </div>
 
                 </div>
@@ -3648,6 +3895,70 @@ function normalizePhone(phone){
     return value;
 }
 
+
+/* =====================================================
+   PAYMENT FILTER CONTROLS
+===================================================== */
+
+function updatePaymentFilterUI(filteredCount){
+
+    const buttons = {
+        all: document.getElementById("filterAll"),
+        "1": document.getElementById("filterPayment1"),
+        "2": document.getElementById("filterPayment2")
+    };
+
+    Object.keys(buttons).forEach(function(key){
+        if(buttons[key]){
+            buttons[key].classList.toggle(
+                "active",
+                activePaymentFilter === key
+            );
+        }
+    });
+
+    const info = document.getElementById("paymentFilterInfo");
+
+    if(!info){
+        return;
+    }
+
+    if(activePaymentFilter === "1"){
+        info.textContent =
+            "Showing " + filteredCount + " pending Payment 1 deposit" +
+            (filteredCount === 1 ? "" : "s") + ".";
+    }else if(activePaymentFilter === "2"){
+        info.textContent =
+            "Showing " + filteredCount + " pending Payment 2 deposit" +
+            (filteredCount === 1 ? "" : "s") + ".";
+    }else{
+        info.textContent =
+            "Showing all " + filteredCount + " pending deposit" +
+            (filteredCount === 1 ? "" : "s") + ".";
+    }
+}
+
+window.setPaymentFilter =
+    function(filter){
+
+        if(filter !== "1" && filter !== "2"){
+            filter = "all";
+        }
+
+        activePaymentFilter = filter;
+
+        const url = new URL(window.location.href);
+
+        if(filter === "all"){
+            url.searchParams.delete("payment");
+        }else{
+            url.searchParams.set("payment",filter);
+        }
+
+        window.history.replaceState({},"",url);
+
+        renderPendingDeposits();
+    };
 
 /* =====================================================
    CLEAR PHONE SEARCH
