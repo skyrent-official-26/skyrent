@@ -48,9 +48,10 @@ SKYRENT LINK PREVIEW / SOCIAL SHARING
 >
 
 <meta
-    name="twitter:image"
-    content="https://skyrent.uk/skyrent.png"
+    name="twitter:card"
+    content="summary_large_image"
 >
+
 <meta
     name="twitter:title"
     content="SkyRent"
@@ -58,82 +59,35 @@ SKYRENT LINK PREVIEW / SOCIAL SHARING
 
 <meta
     name="twitter:description"
-    content="Dream • Save • Fly • Earn"
+    content="Invest • Save • Earn • Fly"
 >
 
 <meta
     name="twitter:image"
-    content="https://skyrent.uk/skyrent/skyrent.png"
+    content="https://skyrent.uk/skyrent.png"
 >
 
 
 <style>
 
 /* =====================================================
-LOADING SPINNER
-===================================================== */
-
-.spinner{
-
-    display:inline-block;
-
-    width:18px;
-
-    height:18px;
-
-    border:3px solid rgba(6,43,120,.25);
-
-    border-top-color:#062b78;
-
-    border-radius:50%;
-
-    animation:spin .8s linear infinite;
-
-    vertical-align:middle;
-
-    margin-right:8px;
-
-}
-
-@keyframes spin{
-
-    to{
-
-        transform:rotate(360deg);
-
-    }
-
-}
-
-.btn.loading{
-
-    opacity:.8;
-
-    cursor:not-allowed;
-
-    pointer-events:none;
-
-}
-
-
-/* =====================================================
 RESET
 ===================================================== */
 
 *{
-
     margin:0;
-
     padding:0;
-
     box-sizing:border-box;
-
 }
 
 
 /* =====================================================
 BODY
 ===================================================== */
+
+html{
+    min-height:100%;
+}
 
 body{
 
@@ -146,264 +100,371 @@ body{
     min-height:100vh;
 
     background:
-
-        radial-gradient(
-            circle at 20% 10%,
-            rgba(255,255,255,.8),
-            transparent 25%
-        ),
-
         linear-gradient(
-            135deg,
-            #052b78,
-            #0074d9 55%,
-            #7edfff
-        );
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    padding:20px;
-
-    overflow-x:hidden;
-
-}
-
-
-/* =====================================================
-CLOUD GLOW
-===================================================== */
-
-body::before,
-body::after{
-
-    content:"";
-
-    position:fixed;
-
-    width:320px;
-
-    height:160px;
-
-    background:
-        rgba(255,255,255,.25);
-
-    border-radius:50%;
-
-    filter:blur(30px);
-
-    z-index:0;
-
-}
-
-body::before{
-
-    top:5%;
-
-    left:-100px;
-
-}
-
-body::after{
-
-    bottom:5%;
-
-    right:-100px;
-
-}
-
-
-/* =====================================================
-MAIN GLASS CARD
-===================================================== */
-
-.container{
-
-    width:100%;
-
-    max-width:950px;
-
-    min-height:600px;
-
-    display:flex;
-
-    background:
-        rgba(255,255,255,.96);
-
-    border-radius:30px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 30px 70px rgba(0,0,0,.28);
-
-    position:relative;
-
-    z-index:1;
-
-}
-
-
-/* =====================================================
-LEFT AIRCRAFT AREA
-===================================================== */
-
-.left{
-
-    width:45%;
-
-    background:
-
-        linear-gradient(
-            rgba(0,50,130,.55),
-            rgba(0,120,220,.75)
+            rgba(0,38,105,.30),
+            rgba(0,80,150,.30)
         ),
-
         url("skybg.jpg");
 
     background-size:cover;
 
     background-position:center;
 
-    color:white;
+    background-attachment:fixed;
 
-    padding:50px 40px;
+    color:#fff;
 
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
+    overflow-x:hidden;
 }
 
-.logo{
 
-    font-size:38px;
+/* =====================================================
+BACKGROUND OVERLAY
+===================================================== */
 
-    font-weight:700;
+.page-overlay{
 
-    letter-spacing:.5px;
+    position:fixed;
 
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,37,92,.20),
+            rgba(0,65,125,.12) 45%,
+            rgba(0,22,65,.48)
+        );
+
+    pointer-events:none;
+
+    z-index:0;
 }
 
-.logo span{
 
-    color:#6bd8ff;
+/* =====================================================
+MAIN PAGE
+===================================================== */
 
+.page{
+
+    position:relative;
+
+    z-index:1;
+
+    width:100%;
+
+    max-width:600px;
+
+    margin:0 auto;
+
+    padding:
+
+        28px
+        18px
+        35px;
 }
 
-.tagline{
 
-    margin-top:10px;
+/* =====================================================
+LOGO AREA
+===================================================== */
 
-    letter-spacing:4px;
+.brand{
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    animation:
+        fadeDown .7s ease-out;
+}
+
+.brand img{
+
+    width:
+
+        min(
+            220px,
+            65vw
+        );
+
+    max-height:95px;
+
+    object-fit:contain;
+
+    display:block;
+
+    margin:0 auto 8px;
+
+    filter:
+
+        drop-shadow(
+            0 5px 15px
+            rgba(0,0,0,.20)
+        );
+}
+
+.brand-tagline{
 
     font-size:12px;
 
-    opacity:.9;
-
-}
-
-.left h1{
-
-    margin-top:45px;
-
-    font-size:40px;
-
-    line-height:1.15;
-
-    font-weight:600;
-
-}
-
-.left h1 span{
-
-    color:#ffd83d;
-
-}
-
-.left p{
-
-    margin-top:20px;
-
-    line-height:1.7;
-
-    font-size:16px;
-
-    font-weight:300;
-
-}
-
-.features{
-
-    margin-top:35px;
-
-}
-
-.features div{
-
-    margin:12px 0;
-
-    font-size:15px;
+    letter-spacing:4px;
 
     font-weight:500;
 
+    color:#fff;
+
+    text-shadow:
+        0 2px 8px
+        rgba(0,0,0,.35);
+
+    opacity:.95;
 }
 
 
 /* =====================================================
-RIGHT FORM
+HERO
 ===================================================== */
 
-.right{
+.hero{
 
-    width:55%;
+    text-align:center;
 
-    padding:45px 55px;
+    margin-top:25px;
+
+    margin-bottom:28px;
+
+    animation:
+        fadeUp .8s ease-out;
+}
+
+.hero-small{
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style:italic;
+
+    font-size:28px;
+
+    line-height:1.1;
+
+    text-shadow:
+        0 3px 12px
+        rgba(0,0,0,.30);
+}
+
+.hero-title{
+
+    font-size:
+
+        clamp(
+            42px,
+            12vw,
+            64px
+        );
+
+    line-height:.98;
+
+    font-weight:800;
+
+    letter-spacing:-1.5px;
+
+    margin-top:4px;
+
+    text-shadow:
+        0 5px 18px
+        rgba(0,0,0,.30);
+}
+
+.hero-subtitle{
+
+    margin-top:15px;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    letter-spacing:2px;
+
+    font-weight:500;
+
+    text-shadow:
+        0 2px 8px
+        rgba(0,0,0,.35);
+}
+
+
+/* =====================================================
+DECORATIVE LINE
+===================================================== */
+
+.hero-line{
+
+    width:70px;
+
+    height:2px;
+
+    background:#fff;
+
+    margin:20px auto 0;
+
+    border-radius:20px;
+
+    opacity:.9;
+}
+
+
+/* =====================================================
+FEATURES
+===================================================== */
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:8px;
+
+    margin:
+
+        0
+        auto
+        28px;
+
+    max-width:560px;
+}
+
+.feature{
+
+    text-align:center;
+
+    min-width:0;
+}
+
+.feature-icon{
+
+    width:48px;
+
+    height:48px;
+
+    margin:0 auto 8px;
+
+    border-radius:15px;
 
     display:flex;
 
-    flex-direction:column;
+    align-items:center;
 
     justify-content:center;
 
+    font-size:25px;
+
+    background:
+        rgba(255,255,255,.16);
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.12);
+}
+
+.feature-title{
+
+    font-size:10px;
+
+    line-height:1.35;
+
+    letter-spacing:1.2px;
+
+    font-weight:600;
+
+    text-shadow:
+        0 2px 6px
+        rgba(0,0,0,.35);
 }
 
 
 /* =====================================================
-FORM TITLE
+MAIN GLASS PANEL
+===================================================== */
+
+.glass-panel{
+
+    width:100%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(2,48,105,.70),
+            rgba(3,91,155,.55)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    border-radius:28px;
+
+    padding:25px 20px 22px;
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 25px 65px
+        rgba(0,0,0,.30);
+
+    animation:
+        panelUp .8s ease-out;
+}
+
+
+/* =====================================================
+FORM HEADER
 ===================================================== */
 
 .form-title{
 
-    text-align:center;
+    margin-bottom:20px;
 
-    margin-bottom:25px;
-
+    text-align:left;
 }
 
 .form-title h2{
 
-    color:#062b78;
+    font-size:28px;
 
-    font-size:32px;
+    font-weight:750;
 
-    font-weight:600;
-
+    letter-spacing:-.4px;
 }
 
 .form-title p{
 
-    color:#777;
+    margin-top:5px;
 
-    margin-top:8px;
+    font-size:14px;
 
-    font-size:15px;
-
+    color:
+        rgba(255,255,255,.75);
 }
 
 
@@ -415,44 +476,57 @@ TABS
 
     display:flex;
 
-    background:#edf5ff;
-
-    border-radius:14px;
+    gap:6px;
 
     padding:5px;
 
-    margin-bottom:25px;
+    border-radius:16px;
 
+    background:
+        rgba(0,20,65,.35);
+
+    margin-bottom:22px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
 }
 
 .tab{
 
     flex:1;
 
-    border:0;
+    border:none;
 
-    background:none;
+    padding:12px 8px;
 
-    padding:14px;
+    border-radius:12px;
 
-    border-radius:10px;
+    background:transparent;
 
-    color:#14509b;
+    color:
+        rgba(255,255,255,.72);
 
-    font-size:14px;
+    font-size:13px;
 
-    font-weight:600;
+    font-weight:700;
+
+    letter-spacing:.5px;
 
     cursor:pointer;
 
+    transition:.2s;
 }
 
 .tab.active{
 
-    background:#0752a5;
+    background:#fff;
 
-    color:white;
+    color:#0757c9;
 
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.15);
 }
 
 
@@ -463,62 +537,87 @@ FORMS
 .form{
 
     display:none;
-
 }
 
 .form.active{
 
     display:block;
 
+    animation:
+        formFade .25s ease-out;
 }
 
 
 /* =====================================================
-INPUTS
+INPUT
 ===================================================== */
 
 .input-box{
 
-    margin-bottom:18px;
-
+    margin-bottom:15px;
 }
 
 .input-box label{
 
     display:block;
 
-    color:#183c70;
-
     margin-bottom:7px;
 
-    font-size:14px;
+    color:
+        rgba(255,255,255,.90);
 
-    font-weight:600;
+    font-size:12px;
 
+    font-weight:650;
+
+    letter-spacing:.3px;
 }
 
 .input-box input{
 
     width:100%;
 
-    padding:14px;
+    height:51px;
 
-    border-radius:12px;
+    padding:
+        0
+        14px;
 
-    border:2px solid #dce7f5;
+    border-radius:14px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.20);
 
     outline:none;
 
-    font-size:15px;
+    background:
+        rgba(0,34,78,.43);
 
-    background:#fff;
+    color:#fff;
 
+    font-size:14px;
+
+    transition:.2s;
+}
+
+.input-box input::placeholder{
+
+    color:
+        rgba(255,255,255,.50);
 }
 
 .input-box input:focus{
 
-    border-color:#0874db;
+    border-color:
+        rgba(255,255,255,.75);
 
+    background:
+        rgba(0,34,78,.58);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,255,255,.08);
 }
 
 
@@ -531,21 +630,20 @@ PHONE
     display:flex;
 
     gap:8px;
-
 }
 
 .country-code{
 
-    width:75px!important;
+    width:68px!important;
 
-    background:#f1f6fc!important;
+    flex:none!important;
 
     text-align:center;
 
-    font-weight:600;
+    font-weight:700;
 
-    flex:none;
-
+    background:
+        rgba(255,255,255,.16)!important;
 }
 
 
@@ -556,13 +654,11 @@ PASSWORD
 .password-wrap{
 
     position:relative;
-
 }
 
 .password-wrap input{
 
-    padding-right:50px;
-
+    padding-right:52px;
 }
 
 .eye{
@@ -571,7 +667,10 @@ PASSWORD
 
     right:15px;
 
-    top:14px;
+    top:50%;
+
+    transform:
+        translateY(-50%);
 
     cursor:pointer;
 
@@ -579,39 +678,37 @@ PASSWORD
 
     font-size:18px;
 
+    opacity:.85;
 }
 
 
 /* =====================================================
-PASSWORD MATCH MESSAGE
+PASSWORD MATCH
 ===================================================== */
 
 .password-match{
 
     margin-top:6px;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:600;
 
     display:none;
-
 }
 
 .password-match.match{
 
     display:block;
 
-    color:#188044;
-
+    color:#9dffca;
 }
 
 .password-match.no-match{
 
     display:block;
 
-    color:#c62828;
-
+    color:#ffb0b0;
 }
 
 
@@ -623,42 +720,245 @@ BUTTON
 
     width:100%;
 
+    height:53px;
+
     border:none;
 
-    padding:15px;
-
-    border-radius:12px;
+    border-radius:15px;
 
     background:
-
         linear-gradient(
             135deg,
-            #06499b,
-            #0789e8
+            #0789ef,
+            #0068dc
         );
 
-    color:white;
+    color:#fff;
 
-    font-size:16px;
+    font-size:15px;
 
-    font-weight:600;
+    font-weight:750;
+
+    letter-spacing:.2px;
 
     cursor:pointer;
 
+    box-shadow:
+        0 10px 25px
+        rgba(0,100,220,.25);
+
+    transition:
+        transform .15s,
+        box-shadow .15s;
+}
+
+.btn:active{
+
+    transform:
+        scale(.985);
+}
+
+.btn:hover{
+
+    box-shadow:
+        0 12px 28px
+        rgba(0,100,220,.38);
 }
 
 .gold-btn{
 
     background:
-
         linear-gradient(
             135deg,
-            #e9aa00,
-            #ffd83d
+            #dca900,
+            #f8d64d
         );
 
     color:#062b78;
 
+    box-shadow:
+        0 10px 25px
+        rgba(220,170,0,.20);
+}
+
+
+/* =====================================================
+FORGOT PASSWORD
+===================================================== */
+
+.forgot{
+
+    display:block;
+
+    margin-top:15px;
+
+    text-align:center;
+
+    color:
+        rgba(255,255,255,.78);
+
+    font-size:12px;
+
+    text-decoration:none;
+
+    cursor:pointer;
+}
+
+.forgot:hover{
+
+    color:#fff;
+}
+
+
+/* =====================================================
+OR DIVIDER
+===================================================== */
+
+.or-section{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:
+        22px
+        0;
+}
+
+.or-line{
+
+    flex:1;
+
+    height:1px;
+
+    background:
+        rgba(255,255,255,.55);
+}
+
+.or-text{
+
+    font-size:12px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+}
+
+
+/* =====================================================
+REGISTER PROMO
+===================================================== */
+
+.register-promo{
+
+    padding:20px;
+
+    border-radius:23px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.38);
+
+    background:
+        rgba(0,35,80,.48);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.18);
+}
+
+.register-promo-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    margin-bottom:15px;
+}
+
+.register-icon{
+
+    width:48px;
+
+    height:48px;
+
+    flex:none;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(255,255,255,.13);
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    font-size:22px;
+}
+
+.register-promo h3{
+
+    font-size:17px;
+
+    margin-bottom:4px;
+}
+
+.register-promo p{
+
+    color:
+        rgba(255,255,255,.72);
+
+    font-size:12px;
+
+    line-height:1.45;
+}
+
+.register-now{
+
+    width:100%;
+
+    height:49px;
+
+    border-radius:14px;
+
+    border:
+        1.5px solid
+        rgba(255,255,255,.85);
+
+    background:
+        transparent;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.register-now:hover{
+
+    background:
+        rgba(255,255,255,.10);
 }
 
 
@@ -670,106 +970,82 @@ FOOTER
 
     text-align:center;
 
-    margin-top:25px;
+    margin-top:23px;
 
-    color:#888;
+    font-size:11px;
 
-    font-size:12px;
+    line-height:1.8;
 
+    color:
+        rgba(255,255,255,.70);
+
+    text-shadow:
+        0 2px 5px
+        rgba(0,0,0,.3);
 }
 
 .footer strong{
 
-    color:#0755a8;
+    color:#fff;
 
+    font-size:12px;
+}
+
+.footer-trust{
+
+    margin-top:5px;
+
+    letter-spacing:1px;
 }
 
 
 /* =====================================================
-MOBILE
+SPINNER
 ===================================================== */
 
-@media(max-width:750px){
+.spinner{
 
-    body{
+    display:inline-block;
 
-        padding:12px;
+    width:17px;
 
-        align-items:flex-start;
+    height:17px;
 
+    border:
+        3px solid
+        rgba(255,255,255,.30);
+
+    border-top-color:#fff;
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    vertical-align:middle;
+
+    margin-right:8px;
+}
+
+.btn.loading{
+
+    opacity:.80;
+
+    cursor:not-allowed;
+
+    pointer-events:none;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
     }
-
-    .container{
-
-        flex-direction:column;
-
-        border-radius:22px;
-
-        margin:10px 0;
-
-    }
-
-    .left{
-
-        width:100%;
-
-        min-height:300px;
-
-        padding:35px 25px;
-
-        text-align:center;
-
-    }
-
-    .logo{
-
-        font-size:32px;
-
-    }
-
-    .left h1{
-
-        font-size:32px;
-
-    }
-
-    .features{
-
-        display:flex;
-
-        justify-content:center;
-
-        gap:12px;
-
-        flex-wrap:wrap;
-
-    }
-
-    .features div{
-
-        font-size:12px;
-
-    }
-
-    .right{
-
-        width:100%;
-
-        padding:30px 22px 35px;
-
-    }
-
-    .form-title h2{
-
-        font-size:27px;
-
-    }
-
 }
 
 
 /* =====================================================
-SKYRENT CUSTOM ALERT
+SUCCESS ALERT
 ===================================================== */
 
 .alert-overlay{
@@ -779,11 +1055,13 @@ SKYRENT CUSTOM ALERT
     inset:0;
 
     background:
-        rgba(3,20,55,.65);
+        rgba(2,20,55,.72);
 
-    backdrop-filter:blur(6px);
+    backdrop-filter:
+        blur(8px);
 
-    -webkit-backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:
+        blur(8px);
 
     display:none;
 
@@ -794,13 +1072,11 @@ SKYRENT CUSTOM ALERT
     padding:20px;
 
     z-index:9999;
-
 }
 
 .alert-overlay.show{
 
     display:flex;
-
 }
 
 .alert-box{
@@ -809,65 +1085,65 @@ SKYRENT CUSTOM ALERT
 
     max-width:390px;
 
-    background:#ffffff;
+    background:#fff;
 
-    border-radius:26px;
+    border-radius:27px;
 
-    padding:32px 25px 25px;
+    padding:
+        32px
+        24px
+        25px;
 
     text-align:center;
 
+    color:#062b78;
+
     box-shadow:
-        0 25px 70px rgba(0,0,0,.35);
+        0 30px 80px
+        rgba(0,0,0,.40);
 
     animation:
         alertPop .28s ease-out;
-
 }
 
 @keyframes alertPop{
 
     from{
-
         opacity:0;
-
         transform:
             scale(.85)
             translateY(20px);
-
     }
 
     to{
-
         opacity:1;
-
         transform:
             scale(1)
             translateY(0);
-
     }
-
 }
 
 .success-icon{
 
-    width:75px;
+    width:76px;
 
-    height:75px;
+    height:76px;
 
-    margin:0 auto 18px;
+    margin:
+        0
+        auto
+        18px;
 
     border-radius:50%;
 
     background:
-
         linear-gradient(
             135deg,
             #0752a5,
             #08a3ef
         );
 
-    color:white;
+    color:#fff;
 
     display:flex;
 
@@ -875,7 +1151,7 @@ SKYRENT CUSTOM ALERT
 
     justify-content:center;
 
-    font-size:36px;
+    font-size:37px;
 
     box-shadow:
         0 10px 25px
@@ -883,58 +1159,48 @@ SKYRENT CUSTOM ALERT
 
     animation:
         iconPop .45s ease-out;
-
 }
 
 @keyframes iconPop{
 
     0%{
-
         transform:scale(0);
-
     }
 
     70%{
-
         transform:scale(1.15);
-
     }
 
     100%{
-
         transform:scale(1);
-
     }
-
 }
 
 .alert-box h3{
 
-    color:#062b78;
-
-    font-size:25px;
+    font-size:24px;
 
     margin-bottom:8px;
-
 }
 
 .alert-box p{
 
     color:#6d7480;
 
-    font-size:15px;
+    font-size:14px;
 
     line-height:1.6;
 
-    margin-bottom:20px;
-
+    margin-bottom:18px;
 }
 
 .bonus-badge{
 
     display:inline-block;
 
-    padding:10px 18px;
+    padding:
+        10px
+        18px;
 
     border-radius:30px;
 
@@ -942,12 +1208,11 @@ SKYRENT CUSTOM ALERT
 
     color:#a56a00;
 
-    font-size:18px;
+    font-size:17px;
 
     font-weight:700;
 
-    margin-bottom:22px;
-
+    margin-bottom:21px;
 }
 
 .alert-btn{
@@ -961,31 +1226,181 @@ SKYRENT CUSTOM ALERT
     border-radius:13px;
 
     background:
-
         linear-gradient(
             135deg,
             #06499b,
             #0789e8
         );
 
-    color:white;
+    color:#fff;
 
-    font-size:16px;
+    font-size:15px;
 
     font-weight:700;
 
     cursor:pointer;
-
-    box-shadow:
-        0 8px 20px
-        rgba(7,120,220,.25);
-
 }
 
-.alert-btn:active{
 
-    transform:scale(.98);
+/* =====================================================
+ANIMATIONS
+===================================================== */
 
+@keyframes fadeDown{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(-18px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(18px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes panelUp{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes formFade{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+MOBILE
+===================================================== */
+
+@media(max-width:420px){
+
+    .page{
+
+        padding:
+            22px
+            14px
+            30px;
+    }
+
+    .brand img{
+
+        width:190px;
+    }
+
+    .brand-tagline{
+
+        font-size:10px;
+
+        letter-spacing:3px;
+    }
+
+    .hero-small{
+
+        font-size:24px;
+    }
+
+    .hero-title{
+
+        font-size:42px;
+    }
+
+    .hero-subtitle{
+
+        font-size:11px;
+
+        letter-spacing:1.5px;
+    }
+
+    .feature-icon{
+
+        width:42px;
+
+        height:42px;
+
+        font-size:21px;
+    }
+
+    .feature-title{
+
+        font-size:9px;
+
+        letter-spacing:.8px;
+    }
+
+    .glass-panel{
+
+        padding:
+            21px
+            15px
+            20px;
+
+        border-radius:24px;
+    }
+
+    .form-title h2{
+
+        font-size:25px;
+    }
+}
+
+
+/* =====================================================
+LARGER SCREENS
+===================================================== */
+
+@media(min-width:700px){
+
+    .page{
+
+        padding-top:45px;
+    }
+
+    .glass-panel{
+
+        padding:
+            30px
+            28px
+            25px;
+    }
 }
 
 </style>
@@ -996,44 +1411,113 @@ SKYRENT CUSTOM ALERT
 <body>
 
 
-<div class="container">
+<div class="page-overlay"></div>
+
+
+<div class="page">
 
 
 <!-- =====================================================
-LEFT SIDE
+SKYRENT BRAND
 ===================================================== -->
 
-<div class="left">
+<div class="brand">
 
-    <div class="logo">
-        ✈ Sky<span>Rent</span>
-    </div>
+    <img
+        src="skyrent-logo.png"
+        alt="SkyRent"
+    >
 
-    <div class="tagline">
+    <div class="brand-tagline">
         INVEST • EARN • SAVE • FLY
     </div>
 
-    <h1>
-        Invest Today,
+</div>
+
+
+<!-- =====================================================
+HERO
+===================================================== -->
+
+<div class="hero">
+
+    <div class="hero-small">
+        Welcome to
+    </div>
+
+    <div class="hero-title">
+        SkyRent
+    </div>
+
+    <div class="hero-subtitle">
+        TURN YOUR SAVINGS INTO REAL OPPORTUNITIIES
         <br>
-        <span>Fly Tomorrow</span>
-    </h1>
+        Choose your craft and start your journey with Skyrent.
+    </div>
 
-    <p>
-        Turn your savings into real opportunities.
-        Choose your craft and start your journey
-        with SkyRent.
-    </p>
+    <div class="hero-line"></div>
 
-    <div class="features">
+</div>
 
-        <div>✓ Invest</div>
 
-        <div>✓ Earn</div>
+<!-- =====================================================
+FEATURES
+===================================================== -->
 
-        <div>✓ Save</div>
+<div class="features">
 
-        <div>✓ Fly</div>
+    <div class="feature">
+
+        <div class="feature-icon">
+            ✈
+        </div>
+
+        <div class="feature-title">
+            AIRCRAFT<br>
+            INVESTMENTS
+        </div>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            📈
+        </div>
+
+        <div class="feature-title">
+            PASSIVE<br>
+            INCOME
+        </div>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            🛡
+        </div>
+
+        <div class="feature-title">
+            SECURE<br>
+            PLATFORM
+        </div>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            🌐
+        </div>
+
+        <div class="feature-title">
+            GLOBAL<br>
+            OPPORTUNITY
+        </div>
 
     </div>
 
@@ -1041,11 +1525,15 @@ LEFT SIDE
 
 
 <!-- =====================================================
-RIGHT SIDE
+MAIN GLASS PANEL
 ===================================================== -->
 
-<div class="right">
+<div class="glass-panel">
 
+
+<!-- =====================================================
+FORM TITLE
+===================================================== -->
 
 <div class="form-title">
 
@@ -1070,20 +1558,18 @@ TABS
         type="button"
         class="tab active"
         id="loginTab"
-        onclick="showLogin()">
-
+        onclick="showLogin()"
+    >
         LOGIN
-
     </button>
 
     <button
         type="button"
         class="tab"
         id="registerTab"
-        onclick="showRegister()">
-
+        onclick="showRegister()"
+    >
         REGISTER
-
     </button>
 
 </div>
@@ -1096,7 +1582,11 @@ LOGIN
 <form
     id="loginForm"
     class="form active"
-    onsubmit="return false;">
+    onsubmit="return false;"
+>
+
+
+    <!-- PHONE -->
 
     <div class="input-box">
 
@@ -1126,6 +1616,8 @@ LOGIN
     </div>
 
 
+    <!-- PASSWORD -->
+
     <div class="input-box">
 
         <label>
@@ -1143,13 +1635,14 @@ LOGIN
 
             <span
                 class="eye"
-                onclick="togglePassword(
-                    'loginPassword',
-                    this
-                )">
-
+                onclick="
+                    togglePassword(
+                        'loginPassword',
+                        this
+                    )
+                "
+            >
                 👁
-
             </span>
 
         </div>
@@ -1157,14 +1650,25 @@ LOGIN
     </div>
 
 
+    <!-- LOGIN BUTTON -->
+
     <button
         type="button"
         id="loginBtn"
-        class="btn">
-
+        class="btn"
+    >
         ✈ LOGIN
-
     </button>
+
+
+    <!-- FORGOT PASSWORD -->
+
+    <a
+        class="forgot"
+        href="forgot-password.html"
+    >
+        Forgot password?
+    </a>
 
 </form>
 
@@ -1176,7 +1680,8 @@ REGISTER
 <form
     id="registerForm"
     class="form"
-    onsubmit="return false;">
+    onsubmit="return false;"
+>
 
 
     <!-- FULL NAME -->
@@ -1227,9 +1732,7 @@ REGISTER
     </div>
 
 
-    <!-- =================================================
-    REAL EMAIL ADDRESS
-    ================================================= -->
+    <!-- EMAIL -->
 
     <div class="input-box">
 
@@ -1284,13 +1787,14 @@ REGISTER
 
             <span
                 class="eye"
-                onclick="togglePassword(
-                    'registerPassword',
-                    this
-                )">
-
+                onclick="
+                    togglePassword(
+                        'registerPassword',
+                        this
+                    )
+                "
+            >
                 👁
-
             </span>
 
         </div>
@@ -1317,21 +1821,22 @@ REGISTER
 
             <span
                 class="eye"
-                onclick="togglePassword(
-                    'confirmPassword',
-                    this
-                )">
-
+                onclick="
+                    togglePassword(
+                        'confirmPassword',
+                        this
+                    )
+                "
+            >
                 👁
-
             </span>
 
         </div>
 
         <div
             id="passwordMatch"
-            class="password-match">
-        </div>
+            class="password-match"
+        ></div>
 
     </div>
 
@@ -1341,13 +1846,75 @@ REGISTER
     <button
         type="button"
         id="registerBtn"
-        class="btn gold-btn">
-
+        class="btn gold-btn"
+    >
         ✈ CREATE ACCOUNT
-
     </button>
 
 </form>
+
+
+</div>
+
+
+<!-- =====================================================
+OR
+===================================================== -->
+
+<div class="or-section">
+
+    <div class="or-line"></div>
+
+    <div class="or-text">
+        OR
+    </div>
+
+    <div class="or-line"></div>
+
+</div>
+
+
+<!-- =====================================================
+REGISTER PROMO
+===================================================== -->
+
+<div
+    class="register-promo"
+    id="registerPromo"
+>
+
+
+    <div class="register-promo-top">
+
+        <div class="register-icon">
+            ♙
+        </div>
+
+        <div>
+
+            <h3>
+                New to SkyRent?
+            </h3>
+
+            <p>
+                Create your account and be part
+                of our growing community.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="register-now"
+        onclick="showRegister()"
+    >
+        Register Now&nbsp; →
+    </button>
+
+</div>
 
 
 <!-- =====================================================
@@ -1362,14 +1929,12 @@ FOOTER
 
     © 2026
 
-    <br>
-
-    Invest • Save • Earn • Fly
-
-</div>
-
+    <div class="footer-trust">
+        🛡 Safe • Secure • Trusted
+    </div>
 
 </div>
+
 
 </div>
 
@@ -1380,7 +1945,8 @@ SKYRENT SUCCESS ALERT
 
 <div
     id="successAlert"
-    class="alert-overlay">
+    class="alert-overlay"
+>
 
     <div class="alert-box">
 
@@ -1403,10 +1969,9 @@ SKYRENT SUCCESS ALERT
         <button
             type="button"
             class="alert-btn"
-            onclick="closeSuccessAlert()">
-
+            onclick="closeSuccessAlert()"
+        >
             CONTINUE ✈
-
         </button>
 
     </div>
@@ -1454,12 +2019,16 @@ function showLogin(){
         .innerText =
         "Welcome Back";
 
-
     document
         .getElementById("subtitle")
         .innerText =
         "Login to your SkyRent account";
 
+
+    document
+        .getElementById("registerPromo")
+        .style.display =
+        "block";
 }
 
 
@@ -1496,12 +2065,16 @@ function showRegister(){
         .innerText =
         "Join SkyRent";
 
-
     document
         .getElementById("subtitle")
         .innerText =
         "Create your account today";
 
+
+    document
+        .getElementById("registerPromo")
+        .style.display =
+        "none";
 }
 
 
@@ -1514,8 +2087,9 @@ function togglePassword(id,icon){
     const input =
         document.getElementById(id);
 
-
-    if(input.type === "password"){
+    if(
+        input.type === "password"
+    ){
 
         input.type = "text";
 
@@ -1530,7 +2104,6 @@ function togglePassword(id,icon){
         icon.innerHTML = "👁";
 
     }
-
 }
 
 
@@ -1571,11 +2144,13 @@ function checkPasswordMatch(){
         message.innerText = "";
 
         return false;
-
     }
 
 
-    if(password === confirmPassword){
+    if(
+        password ===
+        confirmPassword
+    ){
 
         message.className =
             "password-match match";
@@ -1584,7 +2159,6 @@ function checkPasswordMatch(){
             "✓ Passwords match";
 
         return true;
-
     }
 
 
@@ -1595,7 +2169,6 @@ function checkPasswordMatch(){
         "✕ Passwords do not match";
 
     return false;
-
 }
 
 
@@ -1673,7 +2246,6 @@ function showSuccessAlert(){
         )
         .classList
         .add("show");
-
 }
 
 
@@ -1687,7 +2259,6 @@ function closeSuccessAlert(){
         .remove("show");
 
     showLogin();
-
 }
 
 
@@ -1824,10 +2395,10 @@ CREATE REFERRAL CODE
 function createReferralCode(uid){
 
     return "SKY" +
+
         uid
             .substring(0,8)
             .toUpperCase();
-
 }
 
 
@@ -1869,14 +2440,20 @@ function createMemberId(uid){
 
 
     return (
-        "SKY-" +
-        year +
-        month +
-        day +
-        "-" +
-        unique
-    );
 
+        "SKY-" +
+
+        year +
+
+        month +
+
+        day +
+
+        "-" +
+
+        unique
+
+    );
 }
 
 
@@ -1887,9 +2464,10 @@ NORMALIZE REFERRAL
 function normalizeReferralCode(code){
 
     return String(code || "")
-        .trim()
-        .toUpperCase();
 
+        .trim()
+
+        .toUpperCase();
 }
 
 
@@ -1900,7 +2478,9 @@ NORMALIZE PHONE
 function normalizePhone(phone){
 
     let digits =
+
         String(phone || "")
+
             .replace(/\D/g,"");
 
 
@@ -1934,7 +2514,6 @@ function normalizePhone(phone){
 
 
     return digits;
-
 }
 
 
@@ -1946,7 +2525,6 @@ function makeFullPhone(phone){
 
     return "+63" +
         normalizePhone(phone);
-
 }
 
 
@@ -1998,7 +2576,6 @@ document
                 );
 
                 return;
-
             }
 
 
@@ -2009,7 +2586,6 @@ document
                 );
 
                 return;
-
             }
 
 
@@ -2138,8 +2714,8 @@ document
                 window.location.href =
                     "dashboard.html";
 
-
             }
+
 
             catch(error){
 
@@ -2196,8 +2772,10 @@ document
 
                     alert(
                         "Login failed.\n\n" +
+
                         (
                             error.message ||
+
                             "Please try again."
                         )
                     );
@@ -2322,7 +2900,6 @@ document
                 );
 
                 return;
-
             }
 
 
@@ -2339,7 +2916,6 @@ document
                 );
 
                 return;
-
             }
 
 
@@ -2362,7 +2938,6 @@ document
                 );
 
                 return;
-
             }
 
 
@@ -2379,7 +2954,6 @@ document
                 );
 
                 return;
-
             }
 
 
@@ -2397,7 +2971,6 @@ document
                 );
 
                 return;
-
             }
 
 
@@ -2462,8 +3035,7 @@ document
 
                 /* -----------------------------------------
                 CREATE AUTH ACCOUNT
-
-                REAL EMAIL IS USED HERE
+                REAL EMAIL IS USED
                 ----------------------------------------- */
 
                 const userCredential =
@@ -2503,11 +3075,13 @@ document
                 ----------------------------------------- */
 
                 await setDoc(
+
                     doc(
                         db,
                         "users",
                         user.uid
                     ),
+
                     {
 
                         name:
@@ -2544,6 +3118,7 @@ document
                             serverTimestamp()
 
                     }
+
                 );
 
 
@@ -2682,8 +3257,10 @@ document
 
                     alert(
                         "Registration failed.\n\n" +
+
                         (
                             error.message ||
+
                             "Please try again."
                         )
                     );
@@ -2704,4 +3281,5 @@ console.log(
 
 
 </body>
+
 </html>
