@@ -247,6 +247,32 @@ body{
 
 
 /* =========================
+   PAYMENT 1
+========================= */
+
+.payment1-card{
+    border-left-color:#2563eb;
+}
+
+.payment1-card .value{
+    color:#2563eb;
+}
+
+
+/* =========================
+   PAYMENT 2
+========================= */
+
+.payment2-card{
+    border-left-color:#7c3aed;
+}
+
+.payment2-card .value{
+    color:#7c3aed;
+}
+
+
+/* =========================
    PENDING WITHDRAWAL
 ========================= */
 
@@ -766,7 +792,57 @@ body{
         </div>
 
         <div class="small">
-            Waiting for approval → View Deposits
+            All pending deposits → View
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT 1 PENDING -->
+
+    <div
+        class="summary-card clickable payment1-card"
+        onclick="location.href='admin-deposits.html?payment=1'"
+    >
+
+        <h3>
+            Payment 1 Pending
+        </h3>
+
+        <div
+            class="value"
+            id="pendingPayment1"
+        >
+            0
+        </div>
+
+        <div class="small">
+            Payment 1 → View Deposits
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT 2 PENDING -->
+
+    <div
+        class="summary-card clickable payment2-card"
+        onclick="location.href='admin-deposits.html?payment=2'"
+    >
+
+        <h3>
+            Payment 2 Pending
+        </h3>
+
+        <div
+            class="value"
+            id="pendingPayment2"
+        >
+            0
+        </div>
+
+        <div class="small">
+            Payment 2 → View Deposits
         </div>
 
     </div>
@@ -791,7 +867,7 @@ body{
         </div>
 
         <div class="small">
-            Waiting for approval → View Withdrawals
+            Waiting for approval → View
         </div>
 
     </div>
@@ -1064,11 +1140,10 @@ body{
 
 </div>
 
+
 <!-- =====================================================
      PASSWORD RESET
 ===================================================== -->
-
-
 
 <button
     type="button"
@@ -1486,6 +1561,179 @@ function isPendingWithdrawal(status){
 
 
 /* =========================================================
+   PAYMENT OPTION DETECTOR
+========================================================= */
+
+/*
+   This checks several possible field names so the
+   dashboard can identify Payment 1 / Payment 2.
+
+   If your deposit documents contain a dedicated field
+   such as:
+
+       paymentOption: 1
+
+   or
+
+       paymentOption: "Payment 1"
+
+   it will be detected.
+
+   It also checks other common names.
+*/
+
+function getPaymentOption(deposit){
+
+    if(!deposit){
+
+        return "";
+
+    }
+
+
+    const possibleValues = [
+
+        deposit.paymentOption,
+
+        deposit.paymentNumber,
+
+        deposit.paymentOptionNumber,
+
+        deposit.paymentTypeNumber,
+
+        deposit.selectedPayment,
+
+        deposit.selectedPaymentOption,
+
+        deposit.paymentMethodNumber,
+
+        deposit.paymentChannelNumber,
+
+        deposit.payment,
+
+        deposit.paymentMethod,
+
+        deposit.paymentChannel
+
+    ];
+
+
+    for(
+        const value of possibleValues
+    ){
+
+        if(
+            value !== undefined &&
+            value !== null &&
+            String(value).trim() !== ""
+        ){
+
+            const normalized =
+                String(value)
+                    .toLowerCase()
+                    .trim();
+
+
+            /*
+             * Payment 1
+             */
+
+            if(
+
+                normalized === "1" ||
+
+                normalized === "payment 1" ||
+
+                normalized === "payment1" ||
+
+                normalized === "payment-1" ||
+
+                normalized === "payment_1"
+
+            ){
+
+                return "1";
+
+            }
+
+
+            /*
+             * Payment 2
+             */
+
+            if(
+
+                normalized === "2" ||
+
+                normalized === "payment 2" ||
+
+                normalized === "payment2" ||
+
+                normalized === "payment-2" ||
+
+                normalized === "payment_2"
+
+            ){
+
+                return "2";
+
+            }
+
+        }
+
+    }
+
+
+    /*
+     * Some versions may store the payment
+     * selection as a nested object/string.
+     */
+
+    const allText = [
+
+        deposit.paymentType,
+        deposit.receivingAccount,
+        deposit.paymentAccount
+
+    ]
+    .filter(
+        value =>
+            value !== undefined &&
+            value !== null
+    )
+    .map(
+        value =>
+            String(value)
+                .toLowerCase()
+                .trim()
+    )
+    .join(" ");
+
+
+    if(
+        /\bpayment\s*1\b/.test(allText)
+    ){
+
+        return "1";
+
+    }
+
+
+    if(
+        /\bpayment\s*2\b/.test(allText)
+    ){
+
+        return "2";
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
    AUTHENTICATION / ADMIN PROTECTION
 ========================================================= */
 
@@ -1617,20 +1865,6 @@ onAuthStateChanged(
             "✅ Admin access verified";
 
 
-        /*
-         * IMPORTANT:
-         *
-         * This flag works the same way as the
-         * dashboard loading system.
-         *
-         * false / missing:
-         * Full SkyRent loading screen is shown.
-         *
-         * true:
-         * Admin is returning from another admin page.
-         * The full loading screen is skipped.
-         */
-
         const adminDashboardReady =
             sessionStorage.getItem(
                 "skyRentAdminDashboardReady"
@@ -1645,32 +1879,11 @@ onAuthStateChanged(
             adminDashboardReady !== "true"
         ){
 
-            /*
-             * Keep full loading screen visible
-             * while the first dashboard loads.
-             */
-
             showAdminLoading();
 
 
             await loadDashboard();
 
-
-            /*
-             * Mark admin dashboard as ready.
-             *
-             * This means moving between:
-             *
-             * admin.html
-             * admin-deposits.html
-             * admin-withdrawals.html
-             * members.html
-             * admin-investments.html
-             * admin-gift-codes.html
-             *
-             * and returning to admin.html will NOT
-             * show the full logo loading screen again.
-             */
 
             sessionStorage.setItem(
                 "skyRentAdminDashboardReady",
@@ -1689,17 +1902,8 @@ onAuthStateChanged(
 
         else{
 
-            /*
-             * Immediately hide the full loading screen.
-             */
-
             hideAdminLoading();
 
-
-            /*
-             * Load Firebase data normally
-             * in the background.
-             */
 
             loadDashboard();
 
@@ -1738,6 +1942,10 @@ async function loadDashboard(){
         let approvedWithdrawal = 0;
 
         let pendingDeposits = 0;
+
+        let pendingPayment1 = 0;
+
+        let pendingPayment2 = 0;
 
         let pendingWithdrawals = 0;
 
@@ -1821,6 +2029,11 @@ async function loadDashboard(){
                     deposit.status || "";
 
 
+                /*
+                 * Total deposit:
+                 * rejected deposits are excluded.
+                 */
+
                 if(
                     !isRejected(status)
                 ){
@@ -1831,11 +2044,43 @@ async function loadDashboard(){
                 }
 
 
+                /*
+                 * Pending deposit.
+                 */
+
                 if(
                     isPendingDeposit(status)
                 ){
 
                     pendingDeposits++;
+
+
+                    /*
+                     * Detect Payment 1 / Payment 2.
+                     */
+
+                    const paymentOption =
+                        getPaymentOption(
+                            deposit
+                        );
+
+
+                    if(
+                        paymentOption === "1"
+                    ){
+
+                        pendingPayment1++;
+
+                    }
+
+
+                    if(
+                        paymentOption === "2"
+                    ){
+
+                        pendingPayment2++;
+
+                    }
 
                 }
 
@@ -2003,13 +2248,25 @@ async function loadDashboard(){
 
 
         /* =================================================
-           PENDING COUNTS
+           DISPLAY PENDING COUNTS
         ================================================= */
 
         document.getElementById(
             "pendingDeposits"
         ).textContent =
             pendingDeposits;
+
+
+        document.getElementById(
+            "pendingPayment1"
+        ).textContent =
+            pendingPayment1;
+
+
+        document.getElementById(
+            "pendingPayment2"
+        ).textContent =
+            pendingPayment2;
 
 
         document.getElementById(
@@ -2101,18 +2358,6 @@ async function loadDashboard(){
         ).textContent =
             "✅ Admin dashboard loaded";
 
-
-        /*
-         * IMPORTANT:
-         *
-         * We DO NOT hide the loading screen here
-         * immediately on every refresh.
-         *
-         * The authentication section decides whether
-         * this is the first dashboard entry or a return
-         * from another admin page.
-         */
-
     }
 
 
@@ -2163,13 +2408,6 @@ window.adminLogout =
         try{
 
 
-            /*
-             * Clear the admin dashboard session flag.
-             *
-             * Therefore, after the admin logs in again,
-             * the full SkyRent logo + spinner will appear.
-             */
-
             sessionStorage.removeItem(
                 "skyRentAdminDashboardReady"
             );
@@ -2181,8 +2419,8 @@ window.adminLogout =
             window.location.href =
                 "index.html";
 
-
         }
+
 
         catch(error){
 
@@ -2212,13 +2450,6 @@ setInterval(
             currentAdmin &&
             currentAdmin.uid === ADMIN_UID
         ){
-
-            /*
-             * This refreshes Firebase data only.
-             *
-             * It will NOT show the full-page loading
-             * screen again.
-             */
 
             loadDashboard();
 
