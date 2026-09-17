@@ -14,19 +14,11 @@
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
-
-/* =====================================================
-   BODY
-===================================================== */
 
 body{
     font-family:Arial,Helvetica,sans-serif;
@@ -35,9 +27,7 @@ body{
     min-height:100vh;
 }
 
-/* =====================================================
-   LOADING SCREEN
-===================================================== */
+/* LOADING */
 
 #loadingScreen{
     position:fixed;
@@ -47,7 +37,7 @@ body{
     align-items:center;
     justify-content:center;
     flex-direction:column;
-    z-index:9999;
+    z-index:99999;
 }
 
 #loadingScreen img{
@@ -67,21 +57,19 @@ body{
     margin-bottom:15px;
 }
 
-#loadingText{
-    color:#1976ff;
-    font-size:14px;
-    font-weight:600;
-}
-
 @keyframes spin{
     to{
         transform:rotate(360deg);
     }
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
+#loadingText{
+    color:#1976ff;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* HEADER */
 
 .header{
     background:linear-gradient(
@@ -89,18 +77,18 @@ body{
         #0866ff,
         #00a8ff
     );
+
     color:white;
+
     padding:22px 18px;
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.12);
 }
 
 .headerInner{
     max-width:1100px;
     margin:auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
 }
 
 .headerTitle{
@@ -114,9 +102,7 @@ body{
     margin-top:5px;
 }
 
-/* =====================================================
-   CONTAINER
-===================================================== */
+/* CONTAINER */
 
 .container{
     max-width:1100px;
@@ -124,16 +110,17 @@ body{
     padding:20px 15px 40px;
 }
 
-/* =====================================================
-   STATUS
-===================================================== */
+/* STATUS */
 
 .statusBox{
     background:white;
     border-radius:14px;
     padding:14px 16px;
     margin-bottom:18px;
-    box-shadow:0 3px 12px rgba(0,0,0,.06);
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.06);
+
     font-size:13px;
 }
 
@@ -147,70 +134,7 @@ body{
     font-weight:700;
 }
 
-/* =====================================================
-   NOTIFICATION CARD
-===================================================== */
-
-.notificationCard{
-    background:linear-gradient(
-        135deg,
-        #ffffff,
-        #eef7ff
-    );
-
-    border:1px solid #d8eaff;
-
-    border-radius:16px;
-
-    padding:18px;
-
-    margin-bottom:20px;
-
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
-}
-
-.notificationTitle{
-    font-size:17px;
-    font-weight:700;
-    margin-bottom:7px;
-}
-
-.notificationText{
-    font-size:13px;
-    color:#667085;
-    line-height:1.5;
-    margin-bottom:14px;
-}
-
-#enableNotificationsBtn{
-    width:100%;
-    border:0;
-    background:linear-gradient(
-        135deg,
-        #0866ff,
-        #00a8ff
-    );
-    color:white;
-    padding:13px 15px;
-    border-radius:11px;
-    font-size:14px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-#enableNotificationsBtn:active{
-    transform:scale(.98);
-}
-
-#notificationStatus{
-    font-size:12px;
-    margin-top:10px;
-    line-height:1.4;
-}
-
-/* =====================================================
-   SUMMARY GRID
-===================================================== */
+/* SUMMARY */
 
 .summaryGrid{
     display:grid;
@@ -223,7 +147,9 @@ body{
     background:white;
     border-radius:15px;
     padding:18px;
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,.06);
 }
 
 .summaryLabel{
@@ -235,16 +161,13 @@ body{
 .summaryValue{
     font-size:22px;
     font-weight:700;
-    color:#172033;
 }
 
 .summaryPending{
     color:#f59e0b;
 }
 
-/* =====================================================
-   SECTION TITLE
-===================================================== */
+/* SECTION */
 
 .sectionTitle{
     font-size:18px;
@@ -252,9 +175,7 @@ body{
     margin:22px 0 12px;
 }
 
-/* =====================================================
-   MANAGEMENT GRID
-===================================================== */
+/* MANAGEMENT */
 
 .managementGrid{
     display:grid;
@@ -266,8 +187,12 @@ body{
     background:white;
     border-radius:16px;
     padding:18px;
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,.06);
+
     cursor:pointer;
+
     transition:.2s;
 }
 
@@ -292,47 +217,16 @@ body{
     line-height:1.5;
 }
 
-/* =====================================================
-   REFRESH / LOGOUT
-===================================================== */
-
-.actionArea{
-    margin-top:22px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.actionButton{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:14px;
-    font-size:14px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.refreshButton{
-    background:#e8f2ff;
-    color:#0866ff;
-}
-
-.logoutButton{
-    background:#ffecec;
-    color:#d93025;
-}
-
-/* =====================================================
-   COMPARISON
-===================================================== */
+/* COMPARISON */
 
 .comparisonCard{
     background:white;
     border-radius:16px;
     padding:18px;
     margin-top:20px;
-    box-shadow:0 4px 14px rgba(0,0,0,.06);
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,.06);
 }
 
 .comparisonRow{
@@ -342,7 +236,9 @@ body{
 .comparisonHeader{
     display:flex;
     justify-content:space-between;
+
     font-size:12px;
+
     margin-bottom:7px;
 }
 
@@ -357,18 +253,56 @@ body{
 .bar{
     height:100%;
     width:0%;
-    background:linear-gradient(
-        90deg,
-        #0866ff,
-        #00a8ff
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            #0866ff,
+            #00a8ff
+        );
+
     border-radius:20px;
+
     transition:.4s;
 }
 
-/* =====================================================
-   MOBILE
-===================================================== */
+/* ACTIONS */
+
+.actionArea{
+    margin-top:22px;
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.actionButton{
+    width:100%;
+
+    border:0;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.refreshButton{
+    background:#e8f2ff;
+    color:#0866ff;
+}
+
+.logoutButton{
+    background:#ffecec;
+    color:#d93025;
+}
+
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -381,7 +315,6 @@ body{
 @media(max-width:520px){
 
     .summaryGrid{
-        grid-template-columns:repeat(2,1fr);
         gap:10px;
     }
 
@@ -439,16 +372,12 @@ body{
 
     <div class="headerInner">
 
-        <div>
+        <div class="headerTitle">
+            SkyRent Admin Dashboard
+        </div>
 
-            <div class="headerTitle">
-                SkyRent Admin Dashboard
-            </div>
-
-            <div class="headerSub">
-                Administrator Control Center
-            </div>
-
+        <div class="headerSub">
+            Administrator Control Center
         </div>
 
     </div>
@@ -463,11 +392,10 @@ body{
 <main class="container">
 
 
-    <!-- STATUS -->
-
     <div class="statusBox">
 
         System Status:
+
         <span
             id="adminStatus"
             class="statusOnline"
@@ -479,39 +407,7 @@ body{
 
 
     <!-- =================================================
-         PUSH NOTIFICATION
-    ================================================== -->
-
-    <div class="notificationCard">
-
-        <div class="notificationTitle">
-            🔔 Admin Push Notifications
-        </div>
-
-        <div class="notificationText">
-
-            Enable notifications on this device to receive
-            alerts when a new deposit or withdrawal request
-            is submitted for approval.
-
-        </div>
-
-        <button
-            id="enableNotificationsBtn"
-            type="button"
-        >
-            🔔 Enable Admin Notifications
-        </button>
-
-        <div id="notificationStatus">
-            Notifications are not enabled yet.
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         FINANCIAL SUMMARY
+         SUMMARY
     ================================================== -->
 
     <div class="summaryGrid">
@@ -610,8 +506,7 @@ body{
             </div>
 
             <div class="managementDescription">
-                View registered members and their account
-                records.
+                View registered members and account records.
             </div>
 
         </div>
@@ -631,7 +526,7 @@ body{
             </div>
 
             <div class="managementDescription">
-                Review and approve pending deposit requests.
+                Review and approve pending deposits.
             </div>
 
         </div>
@@ -651,8 +546,7 @@ body{
             </div>
 
             <div class="managementDescription">
-                Review pending, approved and rejected
-                withdrawals.
+                Review pending, approved and rejected withdrawals.
             </div>
 
         </div>
@@ -672,7 +566,7 @@ body{
             </div>
 
             <div class="managementDescription">
-                Manage user investments and active plans.
+                Manage investments and active plans.
             </div>
 
         </div>
@@ -692,7 +586,7 @@ body{
             </div>
 
             <div class="managementDescription">
-                Create and manage promotional gift codes.
+                Create and manage gift codes.
             </div>
 
         </div>
@@ -712,7 +606,7 @@ body{
             </div>
 
             <div class="managementDescription">
-                Manage administrator password reset functions.
+                Manage password reset functions.
             </div>
 
         </div>
@@ -746,6 +640,7 @@ body{
 
             </div>
 
+
             <div class="barBackground">
 
                 <div
@@ -772,6 +667,7 @@ body{
 
             </div>
 
+
             <div class="barBackground">
 
                 <div
@@ -782,7 +678,6 @@ body{
             </div>
 
         </div>
-
 
     </div>
 
@@ -820,28 +715,42 @@ body{
 
 <script type="module">
 
+
 /* =====================================================
-   FIREBASE IMPORTS
+   FIREBASE APP
 ===================================================== */
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+
+/* =====================================================
+   FIREBASE AUTH
+===================================================== */
 
 import {
     getAuth,
     onAuthStateChanged,
     signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+
+/* =====================================================
+   FIRESTORE
+===================================================== */
 
 import {
     getFirestore,
     collection,
-    getDocs,
-    addDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    getDocs
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 /* =====================================================
@@ -872,14 +781,16 @@ const firebaseConfig = {
 
 
 /* =====================================================
-   INITIALIZE FIREBASE
+   INITIALIZE
 ===================================================== */
 
 const app =
     initializeApp(firebaseConfig);
 
+
 const auth =
     getAuth(app);
+
 
 const db =
     getFirestore(app);
@@ -894,30 +805,14 @@ const ADMIN_UID =
 
 
 /* =====================================================
-   VAPID PUBLIC KEY
-===================================================== */
-
-const VAPID_KEY =
-    "BC390oYXhlNUfxELpth0-roQQe_RubAfu_TupX0i0xN63GlEyXB69XQkpcPwtgUY6h35rZMVy83QIbjxxRFR-Ds";
-
-
-/* =====================================================
-   CURRENT ADMIN
-===================================================== */
-
-let currentAdmin = null;
-
-
-/* =====================================================
-   HELPERS
+   FORMAT PESO
 ===================================================== */
 
 function formatPeso(value){
 
-    const number =
-        Number(value || 0);
-
-    return number.toLocaleString(
+    return Number(
+        value || 0
+    ).toLocaleString(
         "en-PH",
         {
             style:"currency",
@@ -928,23 +823,31 @@ function formatPeso(value){
 }
 
 
+/* =====================================================
+   NORMALIZE STATUS
+===================================================== */
+
 function normalizeStatus(value){
 
-    return String(value || "")
-        .trim()
-        .toLowerCase();
+    return String(
+        value || ""
+    )
+    .trim()
+    .toLowerCase();
 
 }
 
 
 /* =====================================================
-   STATUS HELPERS
+   REJECTED
 ===================================================== */
 
 function isRejected(data){
 
     const status =
-        normalizeStatus(data.status);
+        normalizeStatus(
+            data.status
+        );
 
     return [
         "rejected",
@@ -956,10 +859,16 @@ function isRejected(data){
 }
 
 
+/* =====================================================
+   APPROVED DEPOSIT
+===================================================== */
+
 function isApprovedDeposit(data){
 
     const status =
-        normalizeStatus(data.status);
+        normalizeStatus(
+            data.status
+        );
 
     return [
         "approved",
@@ -971,18 +880,30 @@ function isApprovedDeposit(data){
 }
 
 
+/* =====================================================
+   PENDING DEPOSIT
+===================================================== */
+
 function isPendingDeposit(data){
 
-    return !isRejected(data)
-        && !isApprovedDeposit(data);
+    return (
+        !isRejected(data) &&
+        !isApprovedDeposit(data)
+    );
 
 }
 
 
+/* =====================================================
+   APPROVED WITHDRAWAL
+===================================================== */
+
 function isApprovedWithdrawal(data){
 
     const status =
-        normalizeStatus(data.status);
+        normalizeStatus(
+            data.status
+        );
 
     return [
         "approved",
@@ -994,10 +915,16 @@ function isApprovedWithdrawal(data){
 }
 
 
+/* =====================================================
+   PENDING WITHDRAWAL
+===================================================== */
+
 function isPendingWithdrawal(data){
 
-    return !isRejected(data)
-        && !isApprovedWithdrawal(data);
+    return (
+        !isRejected(data) &&
+        !isApprovedWithdrawal(data)
+    );
 
 }
 
@@ -1010,44 +937,51 @@ async function loadDashboard(){
 
     try{
 
-        const depositSnapshot =
+        console.log(
+            "Loading SkyRent admin dashboard..."
+        );
+
+
+        /* =============================================
+           LOAD COLLECTIONS
+        ============================================= */
+
+        const depositsSnapshot =
             await getDocs(
-                collection(db,"deposits")
+                collection(
+                    db,
+                    "deposits"
+                )
             );
 
 
-        const withdrawalSnapshot =
+        const withdrawalsSnapshot =
             await getDocs(
-                collection(db,"withdrawals")
+                collection(
+                    db,
+                    "withdrawals"
+                )
             );
 
 
-        const usersSnapshot =
-            await getDocs(
-                collection(db,"users")
-            );
-
-
-        const investmentSnapshot =
-            await getDocs(
-                collection(db,"investments")
-            );
-
+        /* =============================================
+           VARIABLES
+        ============================================= */
 
         let totalDeposit = 0;
 
         let approvedWithdrawal = 0;
 
-        let pendingDepositCount = 0;
+        let pendingDeposits = 0;
 
-        let pendingWithdrawalCount = 0;
+        let pendingWithdrawals = 0;
 
 
         /* =============================================
            DEPOSITS
         ============================================= */
 
-        depositSnapshot.forEach(
+        depositsSnapshot.forEach(
             (docSnap) => {
 
                 const data =
@@ -1058,21 +992,25 @@ async function loadDashboard(){
                     Number(
                         data.amount ||
                         data.depositAmount ||
-                        data.value ||
                         0
                     );
 
 
-                if(!isRejected(data)){
+                if(
+                    !isRejected(data)
+                ){
 
-                    totalDeposit += amount;
+                    totalDeposit +=
+                        amount;
 
                 }
 
 
-                if(isPendingDeposit(data)){
+                if(
+                    isPendingDeposit(data)
+                ){
 
-                    pendingDepositCount++;
+                    pendingDeposits++;
 
                 }
 
@@ -1084,7 +1022,7 @@ async function loadDashboard(){
            WITHDRAWALS
         ============================================= */
 
-        withdrawalSnapshot.forEach(
+        withdrawalsSnapshot.forEach(
             (docSnap) => {
 
                 const data =
@@ -1099,16 +1037,21 @@ async function loadDashboard(){
                     );
 
 
-                if(isApprovedWithdrawal(data)){
+                if(
+                    isApprovedWithdrawal(data)
+                ){
 
-                    approvedWithdrawal += amount;
+                    approvedWithdrawal +=
+                        amount;
 
                 }
 
 
-                if(isPendingWithdrawal(data)){
+                if(
+                    isPendingWithdrawal(data)
+                ){
 
-                    pendingWithdrawalCount++;
+                    pendingWithdrawals++;
 
                 }
 
@@ -1117,31 +1060,35 @@ async function loadDashboard(){
 
 
         /* =============================================
-           UPDATE SUMMARY
+           UPDATE SCREEN
         ============================================= */
 
         document.getElementById(
             "totalDeposit"
         ).textContent =
-            formatPeso(totalDeposit);
+            formatPeso(
+                totalDeposit
+            );
 
 
         document.getElementById(
             "approvedWithdrawal"
         ).textContent =
-            formatPeso(approvedWithdrawal);
+            formatPeso(
+                approvedWithdrawal
+            );
 
 
         document.getElementById(
             "pendingDeposits"
         ).textContent =
-            pendingDepositCount;
+            pendingDeposits;
 
 
         document.getElementById(
             "pendingWithdrawals"
         ).textContent =
-            pendingWithdrawalCount;
+            pendingWithdrawals;
 
 
         /* =============================================
@@ -1151,16 +1098,20 @@ async function loadDashboard(){
         document.getElementById(
             "depositComparisonText"
         ).textContent =
-            formatPeso(totalDeposit);
+            formatPeso(
+                totalDeposit
+            );
 
 
         document.getElementById(
             "withdrawalComparisonText"
         ).textContent =
-            formatPeso(approvedWithdrawal);
+            formatPeso(
+                approvedWithdrawal
+            );
 
 
-        const maxValue =
+        const maximum =
             Math.max(
                 totalDeposit,
                 approvedWithdrawal,
@@ -1173,7 +1124,7 @@ async function loadDashboard(){
         ).style.width =
             (
                 totalDeposit /
-                maxValue *
+                maximum *
                 100
             ) + "%";
 
@@ -1183,31 +1134,20 @@ async function loadDashboard(){
         ).style.width =
             (
                 approvedWithdrawal /
-                maxValue *
+                maximum *
                 100
             ) + "%";
 
 
-        /* =============================================
-           ADMIN STATUS
-        ============================================= */
-
-        document.getElementById(
-            "adminStatus"
-        ).textContent =
-            "Online";
-
-
-        document.getElementById(
-            "adminStatus"
-        ).className =
-            "statusOnline";
+        console.log(
+            "Dashboard loaded successfully."
+        );
 
 
     }catch(error){
 
         console.error(
-            "Dashboard error:",
+            "LOAD DASHBOARD ERROR:",
             error
         );
 
@@ -1215,7 +1155,7 @@ async function loadDashboard(){
         document.getElementById(
             "adminStatus"
         ).textContent =
-            "Dashboard Error";
+            "Database Error";
 
 
         document.getElementById(
@@ -1229,341 +1169,31 @@ async function loadDashboard(){
 
 
 /* =====================================================
-   ENABLE ADMIN NOTIFICATIONS
-===================================================== */
-
-async function enableAdminNotifications(){
-
-    const button =
-        document.getElementById(
-            "enableNotificationsBtn"
-        );
-
-
-    const status =
-        document.getElementById(
-            "notificationStatus"
-        );
-
-
-    try{
-
-        if(!currentAdmin){
-
-            status.textContent =
-                "Please wait until administrator access is verified.";
-
-            return;
-
-        }
-
-
-        if(
-            !("Notification" in window)
-        ){
-
-            status.textContent =
-                "This browser does not support notifications.";
-
-            return;
-
-        }
-
-
-        if(
-            !("serviceWorker" in navigator)
-        ){
-
-            status.textContent =
-                "This browser does not support service workers.";
-
-            return;
-
-        }
-
-
-        button.disabled = true;
-
-        button.textContent =
-            "⏳ Enabling Notifications...";
-
-
-        status.textContent =
-            "Requesting notification permission...";
-
-
-        /* =============================================
-           REQUEST PERMISSION
-        ============================================= */
-
-        const permission =
-            await Notification.requestPermission();
-
-
-        if(permission !== "granted"){
-
-            status.textContent =
-                "❌ Notification permission was not granted.";
-
-            button.disabled = false;
-
-            button.textContent =
-                "🔔 Enable Admin Notifications";
-
-            return;
-
-        }
-
-
-        /* =============================================
-           REGISTER SERVICE WORKER
-        ============================================= */
-
-        const registration =
-            await navigator.serviceWorker.register(
-                "/firebase-messaging-sw.js"
-            );
-
-
-        await navigator.serviceWorker.ready;
-
-
-        console.log(
-            "Firebase messaging service worker registered:",
-            registration
-        );
-
-
-        /* =============================================
-           LOAD MESSAGING ONLY NOW
-        ============================================= */
-
-        const {
-            getMessaging,
-            getToken,
-            onMessage
-        } = await import(
-            "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js"
-        );
-
-
-        const messaging =
-            getMessaging(app);
-
-
-        /* =============================================
-           GET FCM TOKEN
-        ============================================= */
-
-        const token =
-            await getToken(
-                messaging,
-                {
-                    vapidKey:
-                        VAPID_KEY,
-
-                    serviceWorkerRegistration:
-                        registration
-                }
-            );
-
-
-        if(!token){
-
-            throw new Error(
-                "No FCM registration token was returned."
-            );
-
-        }
-
-
-        console.log(
-            "FCM token:",
-            token
-        );
-
-
-        /* =============================================
-           SAVE TOKEN TO FIRESTORE
-        ============================================= */
-
-        await addDoc(
-            collection(
-                db,
-                "adminNotificationTokens"
-            ),
-            {
-
-                token: token,
-
-                adminUid:
-                    currentAdmin.uid,
-
-                enabled: true,
-
-                createdAt:
-                    new Date(),
-
-                userAgent:
-                    navigator.userAgent
-
-            }
-        );
-
-
-        /* =============================================
-           FOREGROUND MESSAGE
-        ============================================= */
-
-        onMessage(
-            messaging,
-            (payload) => {
-
-                console.log(
-                    "Foreground notification:",
-                    payload
-                );
-
-
-                const title =
-                    payload.notification?.title ||
-                    "SkyRent Admin";
-
-
-                const body =
-                    payload.notification?.body ||
-                    "You have a new notification.";
-
-
-                status.textContent =
-                    "🔔 " +
-                    title +
-                    ": " +
-                    body;
-
-
-                if(
-                    Notification.permission ===
-                    "granted"
-                ){
-
-                    new Notification(
-                        title,
-                        {
-                            body: body,
-                            icon:
-                                "/skyrent-logo.png"
-                        }
-                    );
-
-                }
-
-            }
-        );
-
-
-        /* =============================================
-           SUCCESS
-        ============================================= */
-
-        status.textContent =
-            "✅ Admin notifications are enabled on this device.";
-
-
-        button.textContent =
-            "✅ Notifications Enabled";
-
-
-        button.disabled = true;
-
-
-    }catch(error){
-
-        console.error(
-            "Notification setup error:",
-            error
-        );
-
-
-        status.textContent =
-            "❌ Notification setup failed: " +
-            (
-                error.message ||
-                error
-            );
-
-
-        button.disabled = false;
-
-        button.textContent =
-            "🔔 Enable Admin Notifications";
-
-    }
-
-}
-
-
-/* =====================================================
-   BUTTON EVENT
-===================================================== */
-
-document
-    .getElementById(
-        "enableNotificationsBtn"
-    )
-    .addEventListener(
-        "click",
-        enableAdminNotifications
-    );
-
-
-/* =====================================================
-   AUTHENTICATION
+   AUTH STATE
 ===================================================== */
 
 onAuthStateChanged(
     auth,
     async (user) => {
 
+        console.log(
+            "Firebase auth state:",
+            user
+        );
+
+
         try{
+
+            /* =========================================
+               NO USER
+            ========================================= */
 
             if(!user){
 
                 document.getElementById(
                     "loadingText"
                 ).textContent =
-                    "Please login...";
-
-
-                window.location.href =
-                    "index.html";
-
-
-                return;
-
-            }
-
-
-            currentAdmin =
-                user;
-
-
-            /* =========================================
-               CHECK ADMIN UID
-            ========================================= */
-
-            if(
-                user.uid !==
-                ADMIN_UID
-            ){
-
-                document.getElementById(
-                    "loadingText"
-                ).textContent =
-                    "Administrator access denied.";
-
-
-                await signOut(auth);
+                    "Not logged in. Redirecting...";
 
 
                 setTimeout(
@@ -1582,9 +1212,59 @@ onAuthStateChanged(
             }
 
 
+            console.log(
+                "Logged in UID:",
+                user.uid
+            );
+
+
+            /* =========================================
+               CHECK ADMIN
+            ========================================= */
+
+            if(
+                user.uid !==
+                ADMIN_UID
+            ){
+
+                document.getElementById(
+                    "loadingText"
+                ).textContent =
+                    "Administrator access denied.";
+
+
+                console.error(
+                    "UID does not match ADMIN_UID."
+                );
+
+
+                await signOut(auth);
+
+
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "index.html";
+
+                    },
+                    1200
+                );
+
+
+                return;
+
+            }
+
+
             /* =========================================
                ADMIN VERIFIED
             ========================================= */
+
+            console.log(
+                "ADMIN VERIFIED"
+            );
+
 
             document.getElementById(
                 "adminStatus"
@@ -1598,11 +1278,21 @@ onAuthStateChanged(
                 "statusOnline";
 
 
+            document.getElementById(
+                "loadingText"
+            ).textContent =
+                "Loading dashboard...";
+
+
+            /* =========================================
+               LOAD DATA
+            ========================================= */
+
             await loadDashboard();
 
 
             /* =========================================
-               HIDE LOADING SCREEN
+               HIDE LOADING
             ========================================= */
 
             document.getElementById(
@@ -1620,7 +1310,7 @@ onAuthStateChanged(
         }catch(error){
 
             console.error(
-                "Admin authentication error:",
+                "ADMIN AUTH ERROR:",
                 error
             );
 
@@ -1628,8 +1318,11 @@ onAuthStateChanged(
             document.getElementById(
                 "loadingText"
             ).textContent =
-                "Admin dashboard error. Check console.";
-
+                "Error: " +
+                (
+                    error.message ||
+                    "Unknown error"
+                );
 
         }
 
@@ -1644,11 +1337,7 @@ onAuthStateChanged(
 setInterval(
     () => {
 
-        if(currentAdmin){
-
-            loadDashboard();
-
-        }
+        loadDashboard();
 
     },
     10000
@@ -1656,12 +1345,8 @@ setInterval(
 
 
 /* =====================================================
-   GLOBAL FUNCTIONS
+   LOGOUT
 ===================================================== */
-
-window.loadDashboard =
-    loadDashboard;
-
 
 window.adminLogout =
     async function(){
@@ -1678,7 +1363,6 @@ window.adminLogout =
             window.location.href =
                 "index.html";
 
-
         }catch(error){
 
             console.error(
@@ -1689,6 +1373,14 @@ window.adminLogout =
         }
 
     };
+
+
+/* =====================================================
+   GLOBAL LOAD FUNCTION
+===================================================== */
+
+window.loadDashboard =
+    loadDashboard;
 
 
 </script>
