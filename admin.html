@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,9 +74,11 @@ body{
 }
 
 @keyframes spin{
+
     to{
         transform:rotate(360deg);
     }
+
 }
 
 /* =====================================================
@@ -90,17 +91,23 @@ body{
         #0866ff,
         #00a8ff
     );
+
     color:white;
+
     padding:22px 18px;
+
     box-shadow:0 3px 12px rgba(0,0,0,.12);
 }
 
 .headerInner{
     max-width:1100px;
     margin:auto;
+
     display:flex;
+
     justify-content:space-between;
     align-items:center;
+
     gap:15px;
 }
 
@@ -122,6 +129,7 @@ body{
 .container{
     max-width:1100px;
     margin:auto;
+
     padding:20px 15px 40px;
 }
 
@@ -131,10 +139,15 @@ body{
 
 .statusBox{
     background:white;
+
     border-radius:14px;
+
     padding:14px 16px;
+
     margin-bottom:18px;
+
     box-shadow:0 3px 12px rgba(0,0,0,.06);
+
     font-size:13px;
 }
 
@@ -153,6 +166,7 @@ body{
 ===================================================== */
 
 .notificationCard{
+
     background:linear-gradient(
         135deg,
         #ffffff,
@@ -179,23 +193,34 @@ body{
 .notificationText{
     font-size:13px;
     color:#667085;
+
     line-height:1.5;
+
     margin-bottom:14px;
 }
 
 #enableNotificationsBtn{
+
     width:100%;
+
     border:0;
+
     background:linear-gradient(
         135deg,
         #0866ff,
         #00a8ff
     );
+
     color:white;
+
     padding:13px 15px;
+
     border-radius:11px;
+
     font-size:14px;
+
     font-weight:700;
+
     cursor:pointer;
 }
 
@@ -209,9 +234,14 @@ body{
 }
 
 #notificationStatus{
+
     font-size:12px;
+
     margin-top:10px;
-    line-height:1.4;
+
+    line-height:1.5;
+
+    word-break:break-word;
 }
 
 /* =====================================================
@@ -219,28 +249,42 @@ body{
 ===================================================== */
 
 .summaryGrid{
+
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
+
     gap:14px;
+
     margin-bottom:22px;
 }
 
 .summaryCard{
+
     background:white;
+
     border-radius:15px;
+
     padding:18px;
+
     box-shadow:0 4px 14px rgba(0,0,0,.06);
 }
 
 .summaryLabel{
+
     font-size:12px;
+
     color:#718096;
+
     margin-bottom:8px;
 }
 
 .summaryValue{
+
     font-size:22px;
+
     font-weight:700;
+
     color:#172033;
 }
 
@@ -253,8 +297,11 @@ body{
 ===================================================== */
 
 .sectionTitle{
+
     font-size:18px;
+
     font-weight:700;
+
     margin:22px 0 12px;
 }
 
@@ -263,69 +310,102 @@ body{
 ===================================================== */
 
 .managementGrid{
+
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
     gap:14px;
 }
 
 .managementCard{
+
     background:white;
+
     border-radius:16px;
+
     padding:18px;
+
     box-shadow:0 4px 14px rgba(0,0,0,.06);
+
     cursor:pointer;
+
     transition:.2s;
 }
 
 .managementCard:hover{
+
     transform:translateY(-2px);
 }
 
 .managementIcon{
+
     font-size:27px;
+
     margin-bottom:10px;
 }
 
 .managementTitle{
+
     font-size:16px;
+
     font-weight:700;
+
     margin-bottom:5px;
 }
 
 .managementDescription{
+
     font-size:12px;
+
     color:#718096;
+
     line-height:1.5;
 }
 
 /* =====================================================
-   REFRESH / LOGOUT
+   ACTIONS
 ===================================================== */
 
 .actionArea{
+
     margin-top:22px;
+
     display:flex;
+
     flex-direction:column;
+
     gap:10px;
 }
 
 .actionButton{
+
     width:100%;
+
     border:0;
+
     border-radius:12px;
+
     padding:14px;
+
     font-size:14px;
+
     font-weight:700;
+
     cursor:pointer;
 }
 
 .refreshButton{
+
     background:#e8f2ff;
+
     color:#0866ff;
 }
 
 .logoutButton{
+
     background:#ffecec;
+
     color:#d93025;
 }
 
@@ -334,41 +414,61 @@ body{
 ===================================================== */
 
 .comparisonCard{
+
     background:white;
+
     border-radius:16px;
+
     padding:18px;
+
     margin-top:20px;
+
     box-shadow:0 4px 14px rgba(0,0,0,.06);
 }
 
 .comparisonRow{
+
     margin-bottom:16px;
 }
 
 .comparisonHeader{
+
     display:flex;
+
     justify-content:space-between;
+
     font-size:12px;
+
     margin-bottom:7px;
 }
 
 .barBackground{
+
     width:100%;
+
     height:9px;
+
     background:#edf2f7;
+
     border-radius:20px;
+
     overflow:hidden;
 }
 
 .bar{
+
     height:100%;
+
     width:0%;
+
     background:linear-gradient(
         90deg,
         #0866ff,
         #00a8ff
     );
+
     border-radius:20px;
+
     transition:.4s;
 }
 
@@ -379,7 +479,9 @@ body{
 @media(max-width:800px){
 
     .summaryGrid{
+
         grid-template-columns:repeat(2,1fr);
+
     }
 
 }
@@ -387,24 +489,35 @@ body{
 @media(max-width:520px){
 
     .summaryGrid{
+
         grid-template-columns:repeat(2,1fr);
+
         gap:10px;
+
     }
 
     .summaryCard{
+
         padding:14px;
+
     }
 
     .summaryValue{
+
         font-size:18px;
+
     }
 
     .managementGrid{
+
         grid-template-columns:1fr;
+
     }
 
     .headerTitle{
+
         font-size:18px;
+
     }
 
 }
@@ -412,7 +525,6 @@ body{
 </style>
 
 </head>
-
 
 <body>
 
@@ -469,7 +581,9 @@ body{
 <main class="container">
 
 
-    <!-- STATUS -->
+    <!-- =================================================
+         SYSTEM STATUS
+    ================================================== -->
 
     <div class="statusBox">
 
@@ -827,31 +941,34 @@ body{
 
 <script type="module">
 
+
 /* =====================================================
    FIREBASE IMPORTS
 ===================================================== */
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
 import {
     getAuth,
     onAuthStateChanged,
     signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 import {
     getFirestore,
     collection,
     getDocs,
-    addDoc,
-    query,
-    where,
-    limit
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    doc,
+    setDoc,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 /* =====================================================
@@ -928,7 +1045,7 @@ let foregroundListenerStarted = false;
 
 
 /* =====================================================
-   HELPERS
+   HELPER
 ===================================================== */
 
 function formatPeso(value){
@@ -947,6 +1064,10 @@ function formatPeso(value){
 }
 
 
+/* =====================================================
+   STATUS NORMALIZER
+===================================================== */
+
 function normalizeStatus(value){
 
     return String(value || "")
@@ -957,7 +1078,7 @@ function normalizeStatus(value){
 
 
 /* =====================================================
-   STATUS HELPERS
+   REJECTED
 ===================================================== */
 
 function isRejected(data){
@@ -975,6 +1096,10 @@ function isRejected(data){
 }
 
 
+/* =====================================================
+   APPROVED DEPOSIT
+===================================================== */
+
 function isApprovedDeposit(data){
 
     const status =
@@ -990,6 +1115,10 @@ function isApprovedDeposit(data){
 }
 
 
+/* =====================================================
+   PENDING DEPOSIT
+===================================================== */
+
 function isPendingDeposit(data){
 
     return !isRejected(data)
@@ -997,6 +1126,10 @@ function isPendingDeposit(data){
 
 }
 
+
+/* =====================================================
+   APPROVED WITHDRAWAL
+===================================================== */
 
 function isApprovedWithdrawal(data){
 
@@ -1012,6 +1145,10 @@ function isApprovedWithdrawal(data){
 
 }
 
+
+/* =====================================================
+   PENDING WITHDRAWAL
+===================================================== */
 
 function isPendingWithdrawal(data){
 
@@ -1031,13 +1168,19 @@ async function loadDashboard(){
 
         const depositSnapshot =
             await getDocs(
-                collection(db,"deposits")
+                collection(
+                    db,
+                    "deposits"
+                )
             );
 
 
         const withdrawalSnapshot =
             await getDocs(
-                collection(db,"withdrawals")
+                collection(
+                    db,
+                    "withdrawals"
+                )
             );
 
 
@@ -1124,7 +1267,7 @@ async function loadDashboard(){
 
 
         /* =============================================
-           UPDATE SUMMARY
+           SUMMARY
         ============================================= */
 
         document.getElementById(
@@ -1236,51 +1379,6 @@ async function loadDashboard(){
 
 
 /* =====================================================
-   CHECK EXISTING TOKEN
-===================================================== */
-
-async function tokenAlreadySaved(token){
-
-    try{
-
-        const tokenQuery =
-            query(
-                collection(
-                    db,
-                    "adminNotificationTokens"
-                ),
-
-                where(
-                    "token",
-                    "==",
-                    token
-                ),
-
-                limit(1)
-            );
-
-
-        const snapshot =
-            await getDocs(tokenQuery);
-
-
-        return !snapshot.empty;
-
-    }catch(error){
-
-        console.error(
-            "Token lookup error:",
-            error
-        );
-
-        return false;
-
-    }
-
-}
-
-
-/* =====================================================
    SAVE FCM TOKEN
 ===================================================== */
 
@@ -1295,28 +1393,25 @@ async function saveAdminNotificationToken(token){
     }
 
 
-    const exists =
-        await tokenAlreadySaved(token);
+    /*
+       IMPORTANT:
 
+       We use the Admin UID as the document ID.
 
-    if(exists){
+       This prevents duplicate token documents
+       every time the admin refreshes the page.
+    */
 
-        console.log(
-            "FCM token already exists in Firestore."
+    const tokenRef =
+        doc(
+            db,
+            "adminNotificationTokens",
+            currentAdmin.uid
         );
 
-        return;
 
-    }
-
-
-    await addDoc(
-
-        collection(
-            db,
-            "adminNotificationTokens"
-        ),
-
+    await setDoc(
+        tokenRef,
         {
 
             token:
@@ -1328,19 +1423,21 @@ async function saveAdminNotificationToken(token){
             enabled:
                 true,
 
-            createdAt:
-                new Date(),
+            updatedAt:
+                serverTimestamp(),
 
             userAgent:
                 navigator.userAgent
 
+        },
+        {
+            merge:true
         }
-
     );
 
 
     console.log(
-        "New admin FCM token saved."
+        "Admin FCM token saved successfully."
     );
 
 }
@@ -1368,9 +1465,10 @@ async function startForegroundListener(){
 
     const {
         onMessage
-    } = await import(
-        "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js"
-    );
+    } =
+        await import(
+            "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js"
+        );
 
 
     onMessage(
@@ -1386,15 +1484,15 @@ async function startForegroundListener(){
 
 
             const title =
-                payload.notification?.title ||
                 payload.data?.title ||
+                payload.notification?.title ||
                 "SkyRent Admin";
 
 
             const body =
-                payload.notification?.body ||
                 payload.data?.body ||
-                "You have a new notification.";
+                payload.notification?.body ||
+                "You have a new SkyRent notification.";
 
 
             const status =
@@ -1408,11 +1506,16 @@ async function startForegroundListener(){
                 status.textContent =
                     "🔔 " +
                     title +
-                    ": " +
+                    " — " +
                     body;
 
             }
 
+
+            /*
+               When admin dashboard is open,
+               display the browser notification.
+            */
 
             if(
                 Notification.permission ===
@@ -1431,10 +1534,10 @@ async function startForegroundListener(){
                                 body,
 
                             icon:
-                                "/skyrent-logo.png",
+                                "./skyrent-logo.png",
 
                             badge:
-                                "/skyrent-logo.png"
+                                "./skyrent-logo.png"
 
                         }
 
@@ -1443,7 +1546,7 @@ async function startForegroundListener(){
                 }catch(error){
 
                     console.error(
-                        "Browser notification error:",
+                        "Foreground notification error:",
                         error
                     );
 
@@ -1462,7 +1565,143 @@ async function startForegroundListener(){
 
 
 /* =====================================================
-   INITIALIZE NOTIFICATIONS WITHOUT ASKING AGAIN
+   CONNECT TO FIREBASE MESSAGING
+===================================================== */
+
+async function connectFirebaseMessaging(){
+
+    if(!currentAdmin){
+
+        throw new Error(
+            "Administrator is not authenticated."
+        );
+
+    }
+
+
+    if(
+        !("Notification" in window)
+    ){
+
+        throw new Error(
+            "This browser does not support notifications."
+        );
+
+    }
+
+
+    if(
+        !("serviceWorker" in navigator)
+    ){
+
+        throw new Error(
+            "This browser does not support Service Workers."
+        );
+
+    }
+
+
+    /*
+       IMPORTANT FOR GITHUB PAGES:
+
+       ./ means the current SkyRent project folder.
+
+       DO NOT use /firebase-messaging-sw.js
+    */
+
+    const registration =
+        await navigator.serviceWorker.register(
+            "./firebase-messaging-sw.js"
+        );
+
+
+    console.log(
+        "SkyRent Firebase Service Worker registered:",
+        registration.scope
+    );
+
+
+    await navigator.serviceWorker.ready;
+
+
+    /*
+       Import Firebase Messaging
+    */
+
+    const {
+        getMessaging,
+        getToken
+    } =
+        await import(
+            "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js"
+        );
+
+
+    messagingInstance =
+        getMessaging(app);
+
+
+    /*
+       Get FCM registration token
+    */
+
+    const token =
+        await getToken(
+
+            messagingInstance,
+
+            {
+
+                vapidKey:
+                    VAPID_KEY,
+
+                serviceWorkerRegistration:
+                    registration
+
+            }
+
+        );
+
+
+    if(!token){
+
+        throw new Error(
+            "Firebase did not return an FCM registration token."
+        );
+
+    }
+
+
+    console.log(
+        "FCM token received:",
+        token
+    );
+
+
+    /*
+       Save token to Firestore
+    */
+
+    await saveAdminNotificationToken(
+        token
+    );
+
+
+    /*
+       Listen for notifications while
+       admin dashboard is open.
+    */
+
+    await startForegroundListener();
+
+
+    return token;
+
+}
+
+
+/* =====================================================
+   RESTORE EXISTING NOTIFICATIONS
 ===================================================== */
 
 async function initializeExistingNotifications(){
@@ -1486,11 +1725,13 @@ async function initializeExistingNotifications(){
     }
 
 
-    /* =============================================
-       BROWSER SUPPORT
-    ============================================= */
+    /*
+       Browser support
+    */
 
-    if(!("Notification" in window)){
+    if(
+        !("Notification" in window)
+    ){
 
         button.disabled = true;
 
@@ -1505,7 +1746,13 @@ async function initializeExistingNotifications(){
     }
 
 
-    if(!("serviceWorker" in navigator)){
+    /*
+       Service Worker support
+    */
+
+    if(
+        !("serviceWorker" in navigator)
+    ){
 
         button.disabled = true;
 
@@ -1520,9 +1767,9 @@ async function initializeExistingNotifications(){
     }
 
 
-    /* =============================================
-       PERMISSION NOT YET REQUESTED
-    ============================================= */
+    /*
+       Permission not requested
+    */
 
     if(
         Notification.permission ===
@@ -1542,9 +1789,9 @@ async function initializeExistingNotifications(){
     }
 
 
-    /* =============================================
-       PERMISSION BLOCKED
-    ============================================= */
+    /*
+       Permission denied
+    */
 
     if(
         Notification.permission ===
@@ -1564,9 +1811,9 @@ async function initializeExistingNotifications(){
     }
 
 
-    /* =============================================
-       PERMISSION GRANTED
-    ============================================= */
+    /*
+       Permission granted
+    */
 
     if(
         Notification.permission ===
@@ -1578,102 +1825,14 @@ async function initializeExistingNotifications(){
             button.disabled = true;
 
             button.textContent =
-                "⏳ Checking Notifications...";
+                "⏳ Restoring Notifications...";
 
             status.textContent =
-                "Restoring notification connection...";
+                "Connecting to Firebase notifications...";
 
 
-            /* =========================================
-               REGISTER / GET SERVICE WORKER
-            ========================================= */
+            await connectFirebaseMessaging();
 
-            const registration =
-                await navigator.serviceWorker.register(
-                    "/firebase-messaging-sw.js"
-                );
-
-
-            await navigator.serviceWorker.ready;
-
-
-            console.log(
-                "Existing messaging service worker:",
-                registration
-            );
-
-
-            /* =========================================
-               LOAD FIREBASE MESSAGING
-            ========================================= */
-
-            const {
-                getMessaging,
-                getToken
-            } = await import(
-                "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js"
-            );
-
-
-            messagingInstance =
-                getMessaging(app);
-
-
-            /* =========================================
-               GET CURRENT FCM TOKEN
-            ========================================= */
-
-            const token =
-                await getToken(
-
-                    messagingInstance,
-
-                    {
-
-                        vapidKey:
-                            VAPID_KEY,
-
-                        serviceWorkerRegistration:
-                            registration
-
-                    }
-
-                );
-
-
-            if(!token){
-
-                throw new Error(
-                    "No FCM registration token was returned."
-                );
-
-            }
-
-
-            console.log(
-                "Existing FCM token restored."
-            );
-
-
-            /* =========================================
-               MAKE SURE TOKEN EXISTS IN FIRESTORE
-            ========================================= */
-
-            await saveAdminNotificationToken(
-                token
-            );
-
-
-            /* =========================================
-               START FOREGROUND LISTENER
-            ========================================= */
-
-            await startForegroundListener();
-
-
-            /* =========================================
-               SUCCESS
-            ========================================= */
 
             button.disabled = true;
 
@@ -1682,6 +1841,7 @@ async function initializeExistingNotifications(){
 
             status.textContent =
                 "✅ Admin notifications are enabled on this device.";
+
 
         }catch(error){
 
@@ -1696,8 +1856,9 @@ async function initializeExistingNotifications(){
             button.textContent =
                 "🔔 Enable Admin Notifications";
 
+
             status.textContent =
-                "⚠️ Notification permission is allowed, but the Firebase notification connection could not be restored: " +
+                "⚠️ Firebase notification connection failed: " +
                 (
                     error.message ||
                     error
@@ -1740,7 +1901,9 @@ async function enableAdminNotifications(){
         }
 
 
-        if(!("Notification" in window)){
+        if(
+            !("Notification" in window)
+        ){
 
             status.textContent =
                 "This browser does not support notifications.";
@@ -1750,7 +1913,9 @@ async function enableAdminNotifications(){
         }
 
 
-        if(!("serviceWorker" in navigator)){
+        if(
+            !("serviceWorker" in navigator)
+        ){
 
             status.textContent =
                 "This browser does not support service workers.";
@@ -1769,9 +1934,10 @@ async function enableAdminNotifications(){
             "Requesting notification permission...";
 
 
-        /* =============================================
-           REQUEST PERMISSION ONLY WHEN NECESSARY
-        ============================================= */
+        /*
+           Request permission
+           only when necessary.
+        */
 
         let permission =
             Notification.permission;
@@ -1813,106 +1979,28 @@ async function enableAdminNotifications(){
         }
 
 
-        /* =============================================
-           REGISTER SERVICE WORKER
-        ============================================= */
-
         status.textContent =
             "Connecting to Firebase notifications...";
 
 
-        const registration =
-            await navigator.serviceWorker.register(
-                "/firebase-messaging-sw.js"
-            );
+        /*
+           Connect Firebase Messaging
+        */
+
+        await connectFirebaseMessaging();
 
 
-        await navigator.serviceWorker.ready;
-
-
-        console.log(
-            "Firebase messaging service worker registered:",
-            registration
-        );
-
-
-        /* =============================================
-           LOAD FIREBASE MESSAGING
-        ============================================= */
-
-        const {
-            getMessaging,
-            getToken
-        } = await import(
-            "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js"
-        );
-
-
-        messagingInstance =
-            getMessaging(app);
-
-
-        /* =============================================
-           GET FCM TOKEN
-        ============================================= */
-
-        const token =
-            await getToken(
-
-                messagingInstance,
-
-                {
-
-                    vapidKey:
-                        VAPID_KEY,
-
-                    serviceWorkerRegistration:
-                        registration
-
-                }
-
-            );
-
-
-        if(!token){
-
-            throw new Error(
-                "Firebase did not return an FCM registration token."
-            );
-
-        }
-
-
-        console.log(
-            "FCM token received."
-        );
-
-
-        /* =============================================
-           SAVE TOKEN ONLY ONCE
-        ============================================= */
-
-        await saveAdminNotificationToken(
-            token
-        );
-
-
-        /* =============================================
-           START FOREGROUND LISTENER
-        ============================================= */
-
-        await startForegroundListener();
-
-
-        /* =============================================
-           SUCCESS
-        ============================================= */
+        /*
+           Success
+        */
 
         status.textContent =
             "✅ Admin notifications are enabled on this device.";
 
+
         button.textContent =
             "✅ Notifications Enabled";
+
 
         button.disabled = true;
 
@@ -1990,9 +2078,9 @@ onAuthStateChanged(
                 user;
 
 
-            /* =========================================
-               CHECK ADMIN UID
-            ========================================= */
+            /*
+               Check Admin UID
+            */
 
             if(
                 user.uid !==
@@ -2024,9 +2112,9 @@ onAuthStateChanged(
             }
 
 
-            /* =========================================
-               ADMIN VERIFIED
-            ========================================= */
+            /*
+               Admin verified
+            */
 
             document.getElementById(
                 "adminStatus"
@@ -2040,23 +2128,23 @@ onAuthStateChanged(
                 "statusOnline";
 
 
-            /* =========================================
-               LOAD DASHBOARD
-            ========================================= */
+            /*
+               Load dashboard
+            */
 
             await loadDashboard();
 
 
-            /* =========================================
-               RESTORE NOTIFICATIONS
-            ========================================= */
+            /*
+               Restore notifications
+            */
 
             await initializeExistingNotifications();
 
 
-            /* =========================================
-               HIDE LOADING SCREEN
-            ========================================= */
+            /*
+               Hide loading screen
+            */
 
             document.getElementById(
                 "loadingScreen"
@@ -2151,8 +2239,6 @@ window.adminLogout =
 
 </script>
 
-
 </body>
 
 </html>
-```
