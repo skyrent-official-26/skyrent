@@ -10,6 +10,106 @@
 
 <style>
 
+
+/* =========================
+   ADMIN NOTIFICATIONS
+========================= */
+
+.notification-section{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.notification-card{
+    background:white;
+    border-radius:14px;
+    padding:16px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.07);
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    flex-wrap:wrap;
+}
+
+.notification-icon{
+    width:48px;
+    height:48px;
+
+    border-radius:12px;
+
+    background:#eff6ff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+
+    flex-shrink:0;
+}
+
+.notification-content{
+    flex:1;
+    min-width:160px;
+}
+
+.notification-content h2{
+    margin:0;
+    font-size:16px;
+    color:#0f172a;
+}
+
+.notification-content p{
+    margin:5px 0 0;
+    font-size:12px;
+    color:#64748b;
+}
+
+.notification-btn{
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #075985,
+            #0284c7
+        );
+
+    color:white;
+
+    padding:10px 14px;
+
+    border-radius:9px;
+
+    font-size:12px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.notification-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+@media(max-width:600px){
+
+    .notification-card{
+        align-items:flex-start;
+    }
+
+    .notification-btn{
+        width:100%;
+        margin-top:5px;
+    }
+
+}
+
+
 /* =========================
    RESET
 ========================= */
@@ -1091,6 +1191,46 @@ body{
 
 
 <!-- =========================================================
+     ADMIN PUSH NOTIFICATIONS
+========================================================= -->
+
+<div class="notification-section">
+
+    <div class="section-title">
+        Admin Notifications
+    </div>
+
+    <div class="notification-card">
+
+        <div class="notification-icon">
+            🔔
+        </div>
+
+        <div class="notification-content">
+
+            <h2>
+                Push Notifications
+            </h2>
+
+            <p id="notificationStatus">
+                Notifications are not enabled.
+            </p>
+
+        </div>
+
+        <button
+            id="enableNotificationsBtn"
+            type="button"
+            class="notification-btn"
+        >
+            Enable Notifications
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
      REFRESH / LOGOUT
 ========================================================= -->
 
@@ -1153,13 +1293,12 @@ from
 
 
 import {
-    getFirestore,
-    collection,
-    getDocs
+    getMessaging,
+    getToken,
+    onMessage
 }
 from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
 
 /* =========================================================
    FIREBASE CONFIG
@@ -1201,6 +1340,9 @@ const auth =
 const db =
     getFirestore(app);
 
+const messaging =
+    getMessaging(app);
+
 
 /* =========================================================
    ADMIN UID
@@ -1208,6 +1350,9 @@ const db =
 
 const ADMIN_UID =
     "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+const VAPID_KEY =
+    "BC390oYXhlNUfxELpth0-roQQe_RubAfu_TupX0i0xN63GlEyXB69XQkpcPwtgUY6h35rZMVy83QIbjxxRFR-Ds";
 
 
 /* =========================================================
@@ -1575,6 +1720,208 @@ onAuthStateChanged(
 
         }
 
+
+/* =========================================================
+   ADMIN PUSH NOTIFICATIONS
+========================================================= */
+
+async function enableAdminNotifications(){
+
+    if(
+        !currentAdmin ||
+        currentAdmin.uid !== ADMIN_UID
+    ){
+
+        alert("Admin access is required.");
+
+        return;
+
+    }
+
+    const button =
+        document.getElementById(
+            "enableNotificationsBtn"
+        );
+
+    const status =
+        document.getElementById(
+            "notificationStatus"
+        );
+
+    try{
+
+        button.disabled = true;
+
+        button.textContent =
+            "Enabling...";
+
+        status.textContent =
+            "Requesting notification permission...";
+
+
+        /* =================================================
+           CHECK BROWSER SUPPORT
+        ================================================= */
+
+        if(
+            !("Notification" in window)
+        ){
+
+            throw new Error(
+                "This browser does not support notifications."
+            );
+
+        }
+
+
+        /* =================================================
+           REQUEST PERMISSION
+        ================================================= */
+
+        const permission =
+            await Notification.requestPermission();
+
+
+        if(permission !== "granted"){
+
+            status.textContent =
+                "Notification permission was not granted.";
+
+            button.disabled = false;
+
+            button.textContent =
+                "Enable Notifications";
+
+            return;
+
+        }
+
+
+        /* =================================================
+           REGISTER SERVICE WORKER
+        ================================================= */
+
+        const registration =
+            await navigator.serviceWorker.register(
+                "/firebase-messaging-sw.js"
+            );
+
+
+        console.log(
+            "FCM service worker registered:",
+            registration
+        );
+
+
+        /* =================================================
+           GET FCM TOKEN
+        ================================================= */
+
+        const token =
+            await getToken(
+                messaging,
+                {
+                    vapidKey: VAPID_KEY,
+                    serviceWorkerRegistration:
+                        registration
+                }
+            );
+
+
+        if(!token){
+
+            throw new Error(
+                "Firebase did not return a notification token."
+            );
+
+        }
+
+
+        console.log(
+            "Admin FCM token:",
+            token
+        );
+
+
+        /* =================================================
+           SAVE TOKEN TO FIRESTORE
+        ================================================= */
+
+        const tokenCollection =
+            collection(
+                db,
+                "adminNotificationTokens"
+            );
+
+
+        const tokenDocument =
+            await addDoc(
+                tokenCollection,
+                {
+                    token: token,
+
+                    adminUid:
+                        currentAdmin.uid,
+
+                    createdAt:
+                        new Date(),
+
+                    platform:
+                        navigator.userAgent,
+
+                    active:
+                        true
+                }
+            );
+
+
+        console.log(
+            "Notification token saved:",
+            tokenDocument.id
+        );
+
+
+        status.textContent =
+            "✅ Admin notifications are enabled.";
+
+        button.textContent =
+            "🔔 Notifications Enabled";
+
+        button.disabled = true;
+
+
+        alert(
+            "✅ Admin notifications are now enabled."
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Admin notification error:",
+            error
+        );
+
+
+        status.textContent =
+            "❌ Unable to enable notifications.";
+
+
+        button.disabled = false;
+
+        button.textContent =
+            "Enable Notifications";
+
+
+        alert(
+            "Unable to enable notifications.\n\n" +
+            error.message
+        );
+
+    }
+
+}
 
         /* =================================================
            ADMIN ACCESS CHECK
