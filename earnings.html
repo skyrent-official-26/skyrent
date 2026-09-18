@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SkyRent</title>
+<title>SkyRent - Earnings</title>
 
-<!-- SKYRENT APP ICON/ EARNINGS -->
 <link rel="icon" type="image/png" href="skyrent.png">
 <link rel="apple-touch-icon" href="skyrent.png">
 <link rel="manifest" href="manifest.json">
@@ -16,7 +17,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="SkyRent">
-   
+
+
 <style>
 
 /* =====================================================
@@ -29,80 +31,114 @@
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     margin:0;
     padding:0;
     font-family:Arial, Helvetica, sans-serif;
-    background:#f3f5f9;
-    color:#202124;
+    background:#eef3f8;
+    color:#172033;
 }
 
 
 /* =====================================================
-   TOP HEADER
+   HEADER
 ===================================================== */
 
 .header{
-    background:linear-gradient(135deg,#061d3d,#0a315d);
+    background:linear-gradient(
+        135deg,
+        #061d3d,
+        #0757c9,
+        #087be1
+    );
+
     color:white;
-    padding:22px 18px 25px;
-    border-radius:0 0 25px 25px;
+
+    padding:22px 18px 28px;
+
+    border-radius:0 0 27px 27px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.15);
 }
 
 .header-top{
     display:flex;
     align-items:center;
-    gap:13px;
+    gap:14px;
 }
 
 .header-icon{
-    width:50px;
-    height:50px;
-    border-radius:15px;
-    background:rgba(255,255,255,.10);
+    width:54px;
+    height:54px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.13);
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    font-size:27px;
+    font-size:29px;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.10);
 }
 
 .header-text h1{
     margin:0;
-    font-size:21px;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    letter-spacing:.2px;
 }
 
 .header-text p{
-    margin:5px 0 0;
-    font-size:12px;
-    color:#a9c9e9;
+    margin:6px 0 0;
+
+    font-size:13px;
+
+    color:#d5e9ff;
+
+    line-height:18px;
 }
 
 
 /* =====================================================
-   TOTAL EARNINGS CARD
+   TOTAL EARNINGS
 ===================================================== */
 
 .total-card{
-    margin:18px 14px 20px;
+    margin:-5px 14px 22px;
+
+    position:relative;
 
     background:white;
 
     border-radius:23px;
 
-    padding:20px;
+    padding:21px;
 
-    box-shadow:0 5px 18px rgba(0,0,0,.07);
+    box-shadow:
+        0 6px 20px rgba(0,0,0,.08);
 
-    border:1px solid #e5e7eb;
+    border:1px solid #e0e6ed;
 }
 
 .total-label{
-    color:#777;
-    font-size:12px;
+    color:#6b7280;
+
+    font-size:13px;
+
+    font-weight:700;
+
     text-transform:uppercase;
-    letter-spacing:.5px;
+
+    letter-spacing:.6px;
 }
 
 .total-amount{
@@ -110,28 +146,341 @@ html,body{
 
     color:#0757c9;
 
-    font-size:30px;
+    font-size:34px;
+
     font-weight:800;
+
+    line-height:40px;
 }
 
 .total-sub{
     margin-top:7px;
 
-    color:#999;
-    font-size:11px;
+    color:#8a94a3;
+
+    font-size:13px;
 }
 
 
 /* =====================================================
-   EARNINGS TITLE
+   FLIGHT BOARD WRAPPER
 ===================================================== */
 
-.section-title{
-    margin:0 18px 12px;
+.flight-board-wrapper{
+    margin:0 14px 110px;
 
-    font-size:18px;
+    background:#ffffff;
 
-    color:#333;
+    border-radius:22px;
+
+    overflow:hidden;
+
+    border:1px solid #dfe5ec;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.06);
+}
+
+
+/* =====================================================
+   FLIGHT BOARD HEADER
+===================================================== */
+
+.flight-board-header{
+    background:
+        linear-gradient(
+            135deg,
+            #061d3d,
+            #0a315d
+        );
+
+    color:white;
+
+    padding:17px 16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.board-title{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.board-icon{
+    width:38px;
+    height:38px;
+
+    border-radius:11px;
+
+    background:rgba(255,255,255,.12);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:21px;
+}
+
+.board-title-text h2{
+    font-size:17px;
+
+    font-weight:800;
+
+    margin:0;
+}
+
+.board-title-text p{
+    margin-top:3px;
+
+    font-size:11px;
+
+    color:#b8d4ef;
+}
+
+.board-status{
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:.7px;
+
+    background:rgba(255,255,255,.12);
+
+    padding:6px 8px;
+
+    border-radius:8px;
+
+    white-space:nowrap;
+}
+
+
+/* =====================================================
+   TABLE HEADER
+===================================================== */
+
+.flight-table-head{
+
+    display:grid;
+
+    grid-template-columns:
+        95px
+        1fr
+        88px;
+
+    gap:8px;
+
+    padding:12px 14px;
+
+    background:#f3f6fa;
+
+    border-bottom:1px solid #dfe5ec;
+
+    color:#657184;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    text-transform:uppercase;
+}
+
+.flight-table-head div:last-child{
+    text-align:right;
+}
+
+
+/* =====================================================
+   FLIGHT ROW
+===================================================== */
+
+.flight-row{
+
+    display:grid;
+
+    grid-template-columns:
+        95px
+        1fr
+        88px;
+
+    gap:8px;
+
+    align-items:center;
+
+    padding:15px 14px;
+
+    min-height:68px;
+
+    border-bottom:1px solid #edf0f4;
+
+    background:white;
+}
+
+.flight-row:last-child{
+    border-bottom:none;
+}
+
+
+/* =====================================================
+   DATE COLUMN
+===================================================== */
+
+.flight-date{
+    color:#687487;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    line-height:17px;
+}
+
+
+/* =====================================================
+   TYPE COLUMN
+===================================================== */
+
+.flight-type{
+    min-width:0;
+}
+
+.flight-type-main{
+    color:#1e293b;
+
+    font-size:13px;
+
+    font-weight:750;
+
+    line-height:18px;
+}
+
+.flight-type-badge{
+    display:inline-block;
+
+    margin-top:5px;
+
+    padding:4px 7px;
+
+    border-radius:7px;
+
+    font-size:9px;
+
+    font-weight:800;
+
+    line-height:12px;
+}
+
+
+/* =====================================================
+   BADGE TYPES
+===================================================== */
+
+.badge-registration{
+    background:#e8f1ff;
+
+    color:#0757c9;
+}
+
+.badge-daily{
+    background:#e7f8ed;
+
+    color:#16803c;
+}
+
+.badge-gift{
+    background:#fff3d5;
+
+    color:#a96500;
+}
+
+.badge-commission{
+    background:#eee9ff;
+
+    color:#6342b5;
+}
+
+.badge-other{
+    background:#edf0f3;
+
+    color:#667085;
+}
+
+
+/* =====================================================
+   AMOUNT COLUMN
+===================================================== */
+
+.flight-amount{
+    text-align:right;
+
+    color:#159447;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-state{
+    padding:45px 20px;
+
+    text-align:center;
+
+    background:white;
+}
+
+.empty-icon{
+    width:58px;
+    height:58px;
+
+    margin:0 auto 13px;
+
+    border-radius:18px;
+
+    background:#edf5ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:29px;
+}
+
+.empty-state h3{
+    margin:0 0 8px;
+
+    color:#4b5563;
+
+    font-size:19px;
+}
+
+.empty-state p{
+    margin:0;
+
+    color:#7b8492;
+
+    font-size:13px;
+
+    line-height:19px;
 }
 
 
@@ -142,28 +491,23 @@ html,body{
 .loading{
     display:none;
 
-    margin:0 14px 20px;
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:25px 20px;
+    padding:35px 20px;
 
     text-align:center;
 
-    color:#777;
+    color:#667085;
 
     font-size:13px;
 }
 
 .loading-spinner{
-    width:27px;
-    height:27px;
+    width:30px;
+    height:30px;
 
-    margin:0 auto 10px;
+    margin:0 auto 11px;
 
-    border:3px solid #e5edf7;
+    border:3px solid #e3ebf5;
+
     border-top:3px solid #087be1;
 
     border-radius:50%;
@@ -181,192 +525,29 @@ html,body{
 
 
 /* =====================================================
-   EARNING LIST
-===================================================== */
-
-.earnings-list{
-    padding:0 14px 105px;
-}
-
-
-/* =====================================================
-   EARNING CARD
-===================================================== */
-
-.earning-card{
-    background:white;
-
-    border-radius:19px;
-
-    padding:16px;
-
-    margin-bottom:11px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:12px;
-
-    box-shadow:0 3px 12px rgba(0,0,0,.05);
-
-    border:1px solid #e8ebef;
-}
-
-.earning-left{
-    min-width:0;
-    flex:1;
-}
-
-.earning-name{
-    color:#222;
-
-    font-size:14px;
-
-    font-weight:700;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-}
-
-.earning-type{
-    margin-top:5px;
-
-    color:#888;
-
-    font-size:11px;
-
-    line-height:16px;
-}
-
-.earning-date{
-    margin-top:3px;
-
-    color:#aaa;
-
-    font-size:10px;
-}
-
-.earning-right{
-    text-align:right;
-
-    flex-shrink:0;
-}
-
-.earning-amount{
-    color:#159447;
-
-    font-size:16px;
-
-    font-weight:800;
-}
-
-
-/* =====================================================
-   TYPE BADGES
-===================================================== */
-
-.type-badge{
-    display:inline-block;
-
-    margin-top:6px;
-
-    padding:4px 8px;
-
-    border-radius:8px;
-
-    font-size:9px;
-
-    font-weight:700;
-}
-
-.type-registration{
-    background:#eaf3ff;
-    color:#0757c9;
-}
-
-.type-daily{
-    background:#e9f9ef;
-    color:#16803c;
-}
-
-.type-gift{
-    background:#fff3cd;
-    color:#a96500;
-}
-
-.type-other{
-    background:#f1f3f5;
-    color:#666;
-}
-
-
-/* =====================================================
-   EMPTY STATE
-===================================================== */
-
-.empty{
-    background:white;
-
-    border-radius:23px;
-
-    padding:42px 20px;
-
-    text-align:center;
-
-    margin-bottom:20px;
-}
-
-.empty-icon{
-    font-size:48px;
-
-    margin-bottom:10px;
-}
-
-.empty h3{
-    margin:5px 0 8px;
-
-    font-size:19px;
-
-    color:#666;
-}
-
-.empty p{
-    margin:0;
-
-    color:#888;
-
-    font-size:13px;
-}
-
-
-/* =====================================================
    ERROR
 ===================================================== */
 
 .error-box{
     display:none;
 
+    margin:0 14px 18px;
+
+    padding:15px;
+
     background:#feecec;
 
     color:#c62828;
 
-    border:1px solid #f5c2c2;
+    border:1px solid #f3c4c4;
 
-    border-radius:17px;
-
-    padding:15px;
-
-    margin:0 14px 18px;
+    border-radius:16px;
 
     text-align:center;
 
-    font-size:12px;
+    font-size:13px;
+
+    line-height:18px;
 }
 
 
@@ -385,13 +566,17 @@ html,body{
 
     background:white;
 
-    border-top:1px solid #ddd;
+    border-top:1px solid #dfe3e8;
 
     display:grid;
 
-    grid-template-columns:repeat(5,1fr);
+    grid-template-columns:
+        repeat(5,1fr);
 
     z-index:1000;
+
+    box-shadow:
+        0 -3px 12px rgba(0,0,0,.05);
 }
 
 .nav-item{
@@ -399,7 +584,7 @@ html,body{
 
     background:white;
 
-    color:#999;
+    color:#8b94a3;
 
     display:flex;
 
@@ -409,17 +594,19 @@ html,body{
 
     align-items:center;
 
-    font-size:10px;
+    font-size:11px;
+
+    font-weight:600;
 
     cursor:pointer;
+
+    gap:2px;
 }
 
 .nav-icon{
     font-size:23px;
 
-    line-height:25px;
-
-    margin-bottom:3px;
+    line-height:26px;
 }
 
 .nav-item.active{
@@ -432,25 +619,88 @@ html,body{
 
 
 /* =====================================================
-   MOBILE
+   SMALL MOBILE
 ===================================================== */
 
-@media(max-width:380px){
+@media(max-width:390px){
+
+    .flight-table-head,
+    .flight-row{
+
+        grid-template-columns:
+            82px
+            1fr
+            78px;
+
+        gap:6px;
+
+    }
+
+    .flight-table-head{
+        padding:11px 10px;
+
+        font-size:9px;
+    }
+
+    .flight-row{
+        padding:14px 10px;
+    }
+
+    .flight-date{
+        font-size:11px;
+    }
+
+    .flight-type-main{
+        font-size:12px;
+    }
+
+    .flight-amount{
+        font-size:15px;
+    }
 
     .header-text h1{
-        font-size:19px;
+        font-size:22px;
     }
 
     .total-amount{
-        font-size:27px;
+        font-size:31px;
     }
 
-    .earning-name{
-        font-size:13px;
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width:340px){
+
+    .flight-table-head,
+    .flight-row{
+
+        grid-template-columns:
+            70px
+            1fr
+            72px;
+
     }
 
-    .earning-amount{
-        font-size:15px;
+    .flight-type-badge{
+        font-size:8px;
+
+        padding:3px 5px;
+    }
+
+    .flight-date{
+        font-size:10px;
+    }
+
+    .flight-type-main{
+        font-size:11px;
+    }
+
+    .flight-amount{
+        font-size:14px;
     }
 
 }
@@ -472,7 +722,7 @@ html,body{
     <div class="header-top">
 
         <div class="header-icon">
-            💰
+            ✈
         </div>
 
         <div class="header-text">
@@ -520,31 +770,6 @@ html,body{
 
 
 <!-- =====================================================
-     SECTION TITLE
-===================================================== -->
-
-<h2 class="section-title">
-    Earnings History
-</h2>
-
-
-<!-- =====================================================
-     LOADING
-===================================================== -->
-
-<div
-    id="loading"
-    class="loading"
->
-
-    <div class="loading-spinner"></div>
-
-    Loading your earnings...
-
-</div>
-
-
-<!-- =====================================================
      ERROR
 ===================================================== -->
 
@@ -552,18 +777,91 @@ html,body{
     id="errorBox"
     class="error-box"
 >
-    Unable to load your earnings. Please try again.
+    Unable to load your earnings.
+    Please try again.
 </div>
 
 
 <!-- =====================================================
-     EARNINGS LIST
+     FLIGHT BOARD
 ===================================================== -->
 
-<main
-    id="earningsList"
-    class="earnings-list"
-></main>
+<section class="flight-board-wrapper">
+
+
+    <!-- BOARD HEADER -->
+
+    <div class="flight-board-header">
+
+        <div class="board-title">
+
+            <div class="board-icon">
+                ✈
+            </div>
+
+            <div class="board-title-text">
+
+                <h2>
+                    Earnings Board
+                </h2>
+
+                <p>
+                    SkyRent earning record
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="board-status">
+            EARNINGS
+        </div>
+
+    </div>
+
+
+    <!-- TABLE HEADER -->
+
+    <div class="flight-table-head">
+
+        <div>
+            Date
+        </div>
+
+        <div>
+            Earning Type
+        </div>
+
+        <div>
+            Amount
+        </div>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        id="loading"
+        class="loading"
+    >
+
+        <div class="loading-spinner"></div>
+
+        Loading earnings...
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <main
+        id="earningsList"
+    ></main>
+
+
+</section>
 
 
 <!-- =====================================================
@@ -572,14 +870,18 @@ html,body{
 
 <nav class="bottom-nav">
 
+
     <button
         class="nav-item"
         onclick="goHome()"
     >
+
         <span class="nav-icon">
             ⌂
         </span>
+
         Home
+
     </button>
 
 
@@ -587,10 +889,13 @@ html,body{
         class="nav-item"
         onclick="goCrafts()"
     >
+
         <span class="nav-icon">
             ✈
         </span>
+
         Crafts
+
     </button>
 
 
@@ -598,10 +903,13 @@ html,body{
         class="nav-item"
         onclick="goInvestment()"
     >
+
         <span class="nav-icon">
             ▤
         </span>
+
         Investment
+
     </button>
 
 
@@ -609,10 +917,13 @@ html,body{
         class="nav-item"
         onclick="goNetwork()"
     >
+
         <span class="nav-icon">
             ➤
         </span>
+
         Network
+
     </button>
 
 
@@ -620,14 +931,16 @@ html,body{
         class="nav-item active"
         onclick="goMine()"
     >
+
         <span class="nav-icon">
             •••
         </span>
+
         Mine
+
     </button>
 
 </nav>
-
 
 
 <!-- =====================================================
@@ -669,7 +982,6 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-
 /* =====================================================
    FIREBASE CONFIG
 ===================================================== */
@@ -697,7 +1009,6 @@ const firebaseConfig = {
 };
 
 
-
 /* =====================================================
    INITIALIZE FIREBASE
 ===================================================== */
@@ -712,7 +1023,6 @@ const db =
     getFirestore(app);
 
 
-
 /* =====================================================
    GLOBAL
 ===================================================== */
@@ -724,17 +1034,19 @@ let currentUserData = null;
 let allEarnings = [];
 
 
-
 /* =====================================================
    MONEY FORMAT
 ===================================================== */
 
 function formatMoney(value){
 
-    let number = Number(value);
+    let number =
+        Number(value);
 
     if(!Number.isFinite(number)){
+
         number = 0;
+
     }
 
     return "₱" +
@@ -747,7 +1059,6 @@ function formatMoney(value){
         );
 
 }
-
 
 
 /* =====================================================
@@ -776,7 +1087,6 @@ function numberValue(value){
 }
 
 
-
 /* =====================================================
    TIMESTAMP VALUE
 ===================================================== */
@@ -784,7 +1094,9 @@ function numberValue(value){
 function timestampValue(value){
 
     if(!value){
+
         return 0;
+
     }
 
 
@@ -828,7 +1140,6 @@ function timestampValue(value){
 }
 
 
-
 /* =====================================================
    FORMAT DATE
 ===================================================== */
@@ -838,6 +1149,7 @@ function formatDate(value){
     const time =
         timestampValue(value);
 
+
     if(!time){
 
         return "Processing";
@@ -846,20 +1158,16 @@ function formatDate(value){
 
 
     return new Date(time)
-        .toLocaleString(
+        .toLocaleDateString(
             "en-PH",
             {
                 year:"numeric",
                 month:"short",
-                day:"numeric",
-                hour:"2-digit",
-                minute:"2-digit",
-                hour12:true
+                day:"numeric"
             }
         );
 
 }
-
 
 
 /* =====================================================
@@ -869,7 +1177,10 @@ function formatDate(value){
 function showLoading(){
 
     const loading =
-        document.getElementById("loading");
+        document.getElementById(
+            "loading"
+        );
+
 
     if(loading){
 
@@ -881,7 +1192,6 @@ function showLoading(){
 }
 
 
-
 /* =====================================================
    HIDE LOADING
 ===================================================== */
@@ -889,7 +1199,10 @@ function showLoading(){
 function hideLoading(){
 
     const loading =
-        document.getElementById("loading");
+        document.getElementById(
+            "loading"
+        );
+
 
     if(loading){
 
@@ -901,7 +1214,6 @@ function hideLoading(){
 }
 
 
-
 /* =====================================================
    SHOW ERROR
 ===================================================== */
@@ -909,7 +1221,10 @@ function hideLoading(){
 function showError(){
 
     const errorBox =
-        document.getElementById("errorBox");
+        document.getElementById(
+            "errorBox"
+        );
+
 
     if(errorBox){
 
@@ -919,7 +1234,6 @@ function showError(){
     }
 
 }
-
 
 
 /* =====================================================
@@ -950,7 +1264,7 @@ function normalizeType(type){
         value.includes("investment")
     ){
 
-        return "Daily Investment Earning";
+        return "Daily Investment";
 
     }
 
@@ -964,15 +1278,24 @@ function normalizeType(type){
     }
 
 
+    if(
+        value.includes("commission") ||
+        value.includes("referral")
+    ){
+
+        return "Referral Commission";
+
+    }
+
+
     return type ||
         "Earning";
 
 }
 
 
-
 /* =====================================================
-   GET EARNING BADGE CLASS
+   GET BADGE CLASS
 ===================================================== */
 
 function getBadgeClass(type){
@@ -985,16 +1308,16 @@ function getBadgeClass(type){
         normalized === "Registration Bonus"
     ){
 
-        return "type-registration";
+        return "badge-registration";
 
     }
 
 
     if(
-        normalized === "Daily Investment Earning"
+        normalized === "Daily Investment"
     ){
 
-        return "type-daily";
+        return "badge-daily";
 
     }
 
@@ -1003,15 +1326,23 @@ function getBadgeClass(type){
         normalized === "Gift Code"
     ){
 
-        return "type-gift";
+        return "badge-gift";
 
     }
 
 
-    return "type-other";
+    if(
+        normalized === "Referral Commission"
+    ){
+
+        return "badge-commission";
+
+    }
+
+
+    return "badge-other";
 
 }
-
 
 
 /* =====================================================
@@ -1047,7 +1378,6 @@ async function loadUserData(){
 }
 
 
-
 /* =====================================================
    ADD REGISTRATION BONUS
 ===================================================== */
@@ -1060,16 +1390,6 @@ function addRegistrationBonus(){
 
     }
 
-
-    /*
-       Your registration code currently
-       stores the welcome bonus as:
-
-       bonus: 50
-
-       We display that bonus here as the
-       first earning.
-    */
 
     const bonus =
         numberValue(
@@ -1085,9 +1405,8 @@ function addRegistrationBonus(){
 
 
     /*
-       If a real registration bonus record
-       already exists in the earnings
-       collection, don't display it twice.
+       Prevent duplicate registration bonus
+       if it already exists in earnings.
     */
 
     const alreadyExists =
@@ -1099,6 +1418,7 @@ function addRegistrationBonus(){
                         item.type || ""
                     )
                     .toLowerCase();
+
 
                 return (
                     type.includes("registration") ||
@@ -1141,9 +1461,8 @@ function addRegistrationBonus(){
 }
 
 
-
 /* =====================================================
-   LOAD FIRESTORE EARNINGS
+   LOAD NORMAL EARNINGS
 ===================================================== */
 
 async function loadFirestoreEarnings(){
@@ -1158,6 +1477,7 @@ async function loadFirestoreEarnings(){
     const earningsQuery =
         query(
             earningsRef,
+
             where(
                 "userId",
                 "==",
@@ -1194,6 +1514,124 @@ async function loadFirestoreEarnings(){
 }
 
 
+/* =====================================================
+   LOAD REFERRAL COMMISSIONS
+===================================================== */
+
+async function loadReferralCommissions(){
+
+    const commissionsRef =
+        collection(
+            db,
+            "commissions"
+        );
+
+
+    /*
+       IMPORTANT:
+
+       We are reading the existing commission
+       records created by Crafts.
+
+       We do NOT create or modify any records.
+    */
+
+    const commissionsQuery =
+        query(
+            commissionsRef,
+
+            where(
+                "referrerId",
+                "==",
+                currentUser.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(
+            commissionsQuery
+        );
+
+
+    snapshot.forEach(
+        function(docSnap){
+
+            const data =
+                docSnap.data();
+
+
+            const status =
+                String(
+                    data.status || ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            /*
+               Only credited commissions
+               are counted.
+            */
+
+            if(status !== "credited"){
+
+                return;
+
+            }
+
+
+            const amount =
+                numberValue(
+                    data.commissionAmount ??
+                    data.amount ??
+                    data.commission ??
+                    0
+                );
+
+
+            if(amount <= 0){
+
+                return;
+
+            }
+
+
+            /*
+               Only store the information
+               needed by the Earnings page.
+            */
+
+            allEarnings.push({
+
+                id:
+                    "commission-" +
+                    docSnap.id,
+
+                type:
+                    "Referral Commission",
+
+                name:
+                    "Referral Commission",
+
+                amount:
+                    amount,
+
+                createdAt:
+                    data.createdAt ||
+                    data.date ||
+                    null,
+
+                isReferralCommission:
+                    true
+
+            });
+
+        }
+    );
+
+}
+
 
 /* =====================================================
    SORT EARNINGS
@@ -1205,13 +1643,17 @@ function sortEarnings(){
         function(a,b){
 
             return (
+
                 timestampValue(
                     b.createdAt
                 )
+
                 -
+
                 timestampValue(
                     a.createdAt
                 )
+
             );
 
         }
@@ -1220,19 +1662,18 @@ function sortEarnings(){
 }
 
 
-
 /* =====================================================
-   CREATE EARNING CARD
+   CREATE FLIGHT BOARD ROW
 ===================================================== */
 
-function createEarningCard(earning){
+function createEarningRow(earning){
 
-    const card =
+    const row =
         document.createElement("div");
 
 
-    card.className =
-        "earning-card";
+    row.className =
+        "flight-row";
 
 
     const type =
@@ -1241,10 +1682,19 @@ function createEarningCard(earning){
         );
 
 
-    const name =
-        earning.name ||
-        earning.planName ||
-        type;
+    /*
+       Referral commissions only show:
+       Referral Commission + amount.
+    */
+
+    const displayName =
+        earning.isReferralCommission
+            ? "Referral Commission"
+            : (
+                earning.name ||
+                earning.planName ||
+                type
+            );
 
 
     const amount =
@@ -1263,50 +1713,47 @@ function createEarningCard(earning){
         );
 
 
-    card.innerHTML = `
+    row.innerHTML = `
 
-        <div class="earning-left">
+        <div class="flight-date">
 
-            <div class="earning-name">
-                ${escapeHTML(name)}
-            </div>
-
-            <div class="earning-type">
-
-                <span
-                    class="type-badge ${badgeClass}"
-                >
-                    ${escapeHTML(type)}
-                </span>
-
-            </div>
-
-            <div class="earning-date">
-
-                ${dateText}
-
-            </div>
+            ${escapeHTML(dateText)}
 
         </div>
 
 
-        <div class="earning-right">
+        <div class="flight-type">
 
-            <div class="earning-amount">
+            <div class="flight-type-main">
 
-                +${formatMoney(amount)}
+                ${escapeHTML(displayName)}
 
             </div>
+
+
+            <span
+                class="flight-type-badge ${badgeClass}"
+            >
+
+                ${escapeHTML(type)}
+
+            </span>
+
+        </div>
+
+
+        <div class="flight-amount">
+
+            +${formatMoney(amount)}
 
         </div>
 
     `;
 
 
-    return card;
+    return row;
 
 }
-
 
 
 /* =====================================================
@@ -1316,14 +1763,18 @@ function createEarningCard(earning){
 function escapeHTML(value){
 
     return String(value ?? "")
+
         .replace(/&/g,"&amp;")
+
         .replace(/</g,"&lt;")
+
         .replace(/>/g,"&gt;")
+
         .replace(/"/g,"&quot;")
+
         .replace(/'/g,"&#039;");
 
 }
-
 
 
 /* =====================================================
@@ -1352,10 +1803,10 @@ function renderEarnings(){
 
         list.innerHTML = `
 
-            <div class="empty">
+            <div class="empty-state">
 
                 <div class="empty-icon">
-                    💰
+                    ✈
                 </div>
 
                 <h3>
@@ -1371,6 +1822,7 @@ function renderEarnings(){
 
         `;
 
+
         updateSummary();
 
         return;
@@ -1381,12 +1833,13 @@ function renderEarnings(){
     allEarnings.forEach(
         function(earning){
 
-            const card =
-                createEarningCard(
+            const row =
+                createEarningRow(
                     earning
                 );
 
-            list.appendChild(card);
+
+            list.appendChild(row);
 
         }
     );
@@ -1395,7 +1848,6 @@ function renderEarnings(){
     updateSummary();
 
 }
-
 
 
 /* =====================================================
@@ -1458,7 +1910,6 @@ function updateSummary(){
 }
 
 
-
 /* =====================================================
    LOAD EVERYTHING
 ===================================================== */
@@ -1491,55 +1942,67 @@ async function loadEarnings(){
     try{
 
         /*
-           Start with a clean array
+           Always start clean.
         */
 
         allEarnings = [];
 
 
         /*
-           Load user information first
-           so we can display the registration
-           bonus.
+           Load user data.
         */
 
         await loadUserData();
 
 
         /*
-           Load all existing earning records.
+           Load normal earnings.
+
+           Includes:
+           - Daily Investment
+           - Gift Code
+           - Other existing earnings
         */
 
         await loadFirestoreEarnings();
 
 
         /*
-           Add the registration bonus
-           if it exists.
+           Load existing referral commissions.
+
+           This does NOT modify Crafts,
+           Network, or Firestore commission records.
+        */
+
+        await loadReferralCommissions();
+
+
+        /*
+           Add registration bonus.
         */
 
         addRegistrationBonus();
 
 
         /*
-           Sort newest first.
+           Newest earnings first.
         */
 
         sortEarnings();
 
 
         /*
-           Display everything.
+           Display Flight Board.
         */
 
         renderEarnings();
 
-
     }
+
     catch(error){
 
         console.error(
-            "Earnings loading error:",
+            "SkyRent Earnings loading error:",
             error
         );
 
@@ -1551,7 +2014,7 @@ async function loadEarnings(){
 
             list.innerHTML = `
 
-                <div class="empty">
+                <div class="empty-state">
 
                     <div class="empty-icon">
                         ⚠️
@@ -1573,6 +2036,7 @@ async function loadEarnings(){
         }
 
     }
+
     finally{
 
         hideLoading();
@@ -1580,7 +2044,6 @@ async function loadEarnings(){
     }
 
 }
-
 
 
 /* =====================================================
@@ -1627,7 +2090,6 @@ function goMine(){
 }
 
 
-
 /* =====================================================
    MAKE NAVIGATION AVAILABLE
 ===================================================== */
@@ -1646,7 +2108,6 @@ window.goNetwork =
 
 window.goMine =
     goMine;
-
 
 
 /* =====================================================
@@ -1697,8 +2158,9 @@ document.addEventListener(
     }
 );
 
-
 </script>
 
+
 </body>
+
 </html>
