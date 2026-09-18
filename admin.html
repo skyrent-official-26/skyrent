@@ -38,6 +38,7 @@ body{
 .admin-loading-screen{
     position:fixed;
     inset:0;
+
     background:
         linear-gradient(
             135deg,
@@ -45,13 +46,17 @@ body{
             #0074d9,
             #7edfff
         );
+
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
+
     z-index:99999;
+
     color:white;
     text-align:center;
+
     padding:25px;
 }
 
@@ -60,6 +65,7 @@ body{
     max-width:65%;
     height:auto;
     object-fit:contain;
+
     margin-bottom:22px;
 
     filter:
@@ -104,15 +110,21 @@ body{
 .admin-loading-text{
     font-size:14px;
     font-weight:600;
+
     min-height:20px;
+
     opacity:.95;
+
     transition:opacity .2s ease;
 }
 
 .admin-loading-subtext{
     margin-top:7px;
+
     font-size:11px;
+
     opacity:.75;
+
     min-height:16px;
 }
 
@@ -170,6 +182,7 @@ body{
 .section-title{
     font-size:19px;
     font-weight:bold;
+
     margin:5px 0 12px;
 }
 
@@ -180,14 +193,20 @@ body{
 
 .summary{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:10px;
+
     margin-bottom:20px;
 }
 
 .summary-card{
     background:white;
+
     border-radius:12px;
+
     padding:15px;
 
     box-shadow:
@@ -215,20 +234,27 @@ body{
 
 .summary-card h3{
     margin:0;
+
     font-size:13px;
+
     color:#64748b;
 }
 
 .summary-card .value{
     margin-top:7px;
+
     font-size:21px;
+
     font-weight:bold;
+
     color:#075985;
 }
 
 .summary-card .small{
     margin-top:4px;
+
     font-size:12px;
+
     color:#64748b;
 }
 
@@ -291,7 +317,9 @@ body{
 
 .comparison{
     background:white;
+
     padding:15px;
+
     border-radius:12px;
 
     box-shadow:
@@ -302,6 +330,7 @@ body{
 
 .comparison h3{
     margin:0 0 12px;
+
     font-size:15px;
 }
 
@@ -315,23 +344,33 @@ body{
 
 .bar-label{
     display:flex;
+
     justify-content:space-between;
+
     font-size:12px;
+
     margin-bottom:5px;
 }
 
 .bar-bg{
     width:100%;
+
     height:10px;
+
     background:#e2e8f0;
+
     border-radius:20px;
+
     overflow:hidden;
 }
 
 .bar{
     height:100%;
+
     border-radius:20px;
+
     width:0%;
+
     transition:.4s;
 }
 
@@ -350,23 +389,31 @@ body{
 
 .management-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:12px;
+
     margin-bottom:20px;
 }
 
 .manage-card{
     background:white;
+
     border-radius:14px;
+
     padding:17px;
 
     box-shadow:
         0 3px 12px rgba(0,0,0,.07);
 
     cursor:pointer;
+
     transition:.2s;
 
     position:relative;
+
     overflow:hidden;
 }
 
@@ -383,18 +430,23 @@ body{
 
 .manage-icon{
     font-size:30px;
+
     margin-bottom:8px;
 }
 
 .manage-card h2{
     margin:0;
+
     font-size:17px;
+
     color:#0f172a;
 }
 
 .manage-card p{
     margin:5px 0 0;
+
     font-size:12px;
+
     color:#64748b;
 }
 
@@ -407,11 +459,13 @@ body{
     margin-top:12px;
 
     display:inline-flex;
+
     align-items:center;
 
     gap:5px;
 
     background:#eff6ff;
+
     color:#075985;
 
     border-radius:20px;
@@ -419,6 +473,7 @@ body{
     padding:6px 11px;
 
     font-size:13px;
+
     font-weight:bold;
 }
 
@@ -458,16 +513,20 @@ body{
 
 .gift-code-card{
     background:white;
+
     border-radius:14px;
+
     padding:17px;
 
     box-shadow:
         0 3px 12px rgba(0,0,0,.07);
 
     cursor:pointer;
+
     transition:.2s;
 
     position:relative;
+
     overflow:hidden;
 
     border-left:
@@ -492,14 +551,179 @@ body{
 
 .gift-code-card h2{
     margin:0;
+
     font-size:17px;
+
     color:#0f172a;
 }
 
 .gift-code-card p{
     margin:5px 0 0;
+
     font-size:12px;
+
     color:#64748b;
+}
+
+
+/* =========================
+   DANGER ZONE
+========================= */
+
+.danger-section{
+    margin-top:25px;
+    margin-bottom:20px;
+}
+
+.danger-title{
+    font-size:19px;
+
+    font-weight:700;
+
+    color:#b91c1c;
+
+    margin:5px 0 12px;
+}
+
+.danger-card{
+    background:#fff;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    border:
+        2px solid #fecaca;
+
+    border-left:
+        5px solid #dc2626;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.07);
+}
+
+.danger-icon{
+    font-size:30px;
+
+    margin-bottom:8px;
+}
+
+.danger-card h2{
+    margin:0;
+
+    font-size:17px;
+
+    color:#991b1b;
+}
+
+.danger-card p{
+    margin:7px 0 12px;
+
+    font-size:12px;
+
+    line-height:1.5;
+
+    color:#64748b;
+}
+
+.danger-warning{
+    background:#fef2f2;
+
+    border:
+        1px solid #fecaca;
+
+    border-radius:9px;
+
+    padding:10px;
+
+    color:#b91c1c;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    margin-bottom:13px;
+}
+
+.danger-reset-btn{
+    width:100%;
+
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dc2626,
+            #991b1b
+        );
+
+    color:white;
+
+    padding:13px 15px;
+
+    border-radius:9px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 5px 12px rgba(220,38,38,.20);
+
+    transition:.2s;
+}
+
+.danger-reset-btn:hover{
+    transform:translateY(-1px);
+}
+
+.danger-reset-btn:active{
+    transform:scale(.98);
+}
+
+.danger-reset-btn:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    transform:none;
+}
+
+.reset-status{
+    display:none;
+
+    margin-top:12px;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    text-align:center;
+}
+
+.reset-status.show{
+    display:block;
+}
+
+.reset-status.loading{
+    background:#eff6ff;
+    color:#075985;
+}
+
+.reset-status.success{
+    background:#ecfdf5;
+    color:#047857;
+}
+
+.reset-status.error{
+    background:#fef2f2;
+    color:#b91c1c;
 }
 
 
@@ -509,6 +733,7 @@ body{
 
 .refresh-box{
     text-align:center;
+
     margin:20px 0 10px;
 }
 
@@ -516,6 +741,7 @@ body{
     border:none;
 
     background:#075985;
+
     color:white;
 
     padding:10px 18px;
@@ -535,6 +761,7 @@ body{
     border:none;
 
     background:#64748b;
+
     color:white;
 
     padding:10px 18px;
@@ -554,8 +781,11 @@ body{
 
 .admin-status{
     text-align:center;
+
     font-size:12px;
+
     color:#64748b;
+
     margin-top:10px;
 }
 
@@ -579,7 +809,9 @@ body{
     }
 
     .summary{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
+
         gap:8px;
     }
 
@@ -596,8 +828,11 @@ body{
     }
 
     .management-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
+
         gap:9px;
+
         margin-bottom:18px;
     }
 
@@ -619,6 +854,7 @@ body{
 
     .count-box{
         font-size:11px;
+
         padding:5px 8px;
     }
 
@@ -642,9 +878,26 @@ body{
         font-size:11px;
     }
 
+    .danger-card{
+        padding:14px;
+    }
+
+    .danger-card h2{
+        font-size:15px;
+    }
+
+    .danger-card p{
+        font-size:11px;
+    }
+
+    .danger-reset-btn{
+        font-size:12px;
+    }
+
     .refresh-btn,
     .logout-btn{
         width:90%;
+
         max-width:320px;
     }
 
@@ -901,7 +1154,6 @@ body{
 
         </div>
 
-
         <div class="bar-bg">
 
             <div
@@ -928,7 +1180,6 @@ body{
             </span>
 
         </div>
-
 
         <div class="bar-bg">
 
@@ -1166,6 +1417,60 @@ body{
 
 
 <!-- =========================================================
+     DANGER ZONE
+========================================================= -->
+
+<div class="danger-section">
+
+    <div class="danger-title">
+        ⚠️ Danger Zone
+    </div>
+
+
+    <div class="danger-card">
+
+        <div class="danger-icon">
+            🗑️
+        </div>
+
+        <h2>
+            Reset All Member Data
+        </h2>
+
+        <p>
+            Permanently delete all registered member accounts,
+            deposits, withdrawals, investments, purchases,
+            earnings and referral records.
+        </p>
+
+
+        <div class="danger-warning">
+            ⚠️ This action cannot be undone.
+        </div>
+
+
+        <button
+            type="button"
+            class="danger-reset-btn"
+            id="resetAllDataBtn"
+            onclick="resetAllMemberData()"
+        >
+            🗑️ RESET ALL MEMBER DATA
+        </button>
+
+
+        <div
+            id="resetStatus"
+            class="reset-status"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
      REFRESH / LOGOUT
 ========================================================= -->
 
@@ -1236,6 +1541,18 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+/*
+ * Firebase Cloud Functions
+ */
+
+import {
+    getFunctions,
+    httpsCallable
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js";
+
+
 /* =========================================================
    FIREBASE CONFIG
 ========================================================= */
@@ -1275,6 +1592,9 @@ const auth =
 
 const db =
     getFirestore(app);
+
+const functions =
+    getFunctions(app);
 
 
 /* =========================================================
@@ -1321,7 +1641,8 @@ function updateAdminLoading(
             text.textContent =
                 mainText;
 
-            text.style.opacity = "1";
+            text.style.opacity =
+                "1";
 
         },120);
 
@@ -1352,7 +1673,8 @@ function hideAdminLoading(){
 
     if(screen){
 
-        screen.style.opacity = "0";
+        screen.style.opacity =
+            "0";
 
         screen.style.transition =
             "opacity .35s ease";
@@ -1564,24 +1886,6 @@ function isPendingWithdrawal(status){
    PAYMENT OPTION DETECTOR
 ========================================================= */
 
-/*
-   This checks several possible field names so the
-   dashboard can identify Payment 1 / Payment 2.
-
-   If your deposit documents contain a dedicated field
-   such as:
-
-       paymentOption: 1
-
-   or
-
-       paymentOption: "Payment 1"
-
-   it will be detected.
-
-   It also checks other common names.
-*/
-
 function getPaymentOption(deposit){
 
     if(!deposit){
@@ -1634,10 +1938,6 @@ function getPaymentOption(deposit){
                     .trim();
 
 
-            /*
-             * Payment 1
-             */
-
             if(
 
                 normalized === "1" ||
@@ -1656,10 +1956,6 @@ function getPaymentOption(deposit){
 
             }
 
-
-            /*
-             * Payment 2
-             */
 
             if(
 
@@ -1684,15 +1980,12 @@ function getPaymentOption(deposit){
     }
 
 
-    /*
-     * Some versions may store the payment
-     * selection as a nested object/string.
-     */
-
     const allText = [
 
         deposit.paymentType,
+
         deposit.receivingAccount,
+
         deposit.paymentAccount
 
     ]
@@ -1748,10 +2041,6 @@ onAuthStateChanged(
     async (user) => {
 
 
-        /* =================================================
-           NOT LOGGED IN
-        ================================================= */
-
         if(!user){
 
             updateAdminLoading(
@@ -1772,10 +2061,6 @@ onAuthStateChanged(
         }
 
 
-        /* =================================================
-           CURRENT ADMIN
-        ================================================= */
-
         currentAdmin =
             user;
 
@@ -1785,10 +2070,6 @@ onAuthStateChanged(
             "Checking admin permissions..."
         );
 
-
-        /* =================================================
-           ADMIN UID CHECK
-        ================================================= */
 
         if(
             ADMIN_UID ===
@@ -1824,10 +2105,6 @@ onAuthStateChanged(
         }
 
 
-        /* =================================================
-           ADMIN ACCESS CHECK
-        ================================================= */
-
         if(
             user.uid !== ADMIN_UID
         ){
@@ -1855,10 +2132,6 @@ onAuthStateChanged(
         }
 
 
-        /* =================================================
-           ADMIN VERIFIED
-        ================================================= */
-
         document.getElementById(
             "adminStatus"
         ).textContent =
@@ -1870,10 +2143,6 @@ onAuthStateChanged(
                 "skyRentAdminDashboardReady"
             );
 
-
-        /* =================================================
-           FIRST ADMIN DASHBOARD ENTRY
-        ================================================= */
 
         if(
             adminDashboardReady !== "true"
@@ -1895,15 +2164,9 @@ onAuthStateChanged(
 
         }
 
-
-        /* =================================================
-           RETURNING ADMIN PAGE
-        ================================================= */
-
         else{
 
             hideAdminLoading();
-
 
             loadDashboard();
 
@@ -1932,11 +2195,6 @@ async function loadDashboard(){
 
     try{
 
-
-        /* =================================================
-           VARIABLES
-        ================================================= */
-
         let totalDeposit = 0;
 
         let approvedWithdrawal = 0;
@@ -1956,9 +2214,7 @@ async function loadDashboard(){
         let investmentRecords = 0;
 
 
-        /* =================================================
-           USERS
-        ================================================= */
+        /* USERS */
 
         updateAdminLoading(
             "Loading members...",
@@ -1981,9 +2237,7 @@ async function loadDashboard(){
             usersSnapshot.size;
 
 
-        /* =================================================
-           DEPOSITS
-        ================================================= */
+        /* DEPOSITS */
 
         updateAdminLoading(
             "Loading deposits...",
@@ -2007,7 +2261,6 @@ async function loadDashboard(){
         depositsSnapshot.forEach(
             (docSnap) => {
 
-
                 const deposit =
                     docSnap.data();
 
@@ -2029,11 +2282,6 @@ async function loadDashboard(){
                     deposit.status || "";
 
 
-                /*
-                 * Total deposit:
-                 * rejected deposits are excluded.
-                 */
-
                 if(
                     !isRejected(status)
                 ){
@@ -2044,20 +2292,12 @@ async function loadDashboard(){
                 }
 
 
-                /*
-                 * Pending deposit.
-                 */
-
                 if(
                     isPendingDeposit(status)
                 ){
 
                     pendingDeposits++;
 
-
-                    /*
-                     * Detect Payment 1 / Payment 2.
-                     */
 
                     const paymentOption =
                         getPaymentOption(
@@ -2088,9 +2328,7 @@ async function loadDashboard(){
         );
 
 
-        /* =================================================
-           WITHDRAWALS
-        ================================================= */
+        /* WITHDRAWALS */
 
         updateAdminLoading(
             "Loading withdrawals...",
@@ -2113,7 +2351,6 @@ async function loadDashboard(){
 
         withdrawalsSnapshot.forEach(
             (docSnap) => {
-
 
                 const withdrawal =
                     docSnap.data();
@@ -2162,9 +2399,7 @@ async function loadDashboard(){
         );
 
 
-        /* =================================================
-           INVESTMENTS
-        ================================================= */
+        /* INVESTMENTS */
 
         updateAdminLoading(
             "Loading investments...",
@@ -2195,15 +2430,12 @@ async function loadDashboard(){
                 error
             );
 
-
             investmentRecords = 0;
 
         }
 
 
-        /* =================================================
-           DISPLAY TOTAL DEPOSIT
-        ================================================= */
+        /* DISPLAY TOTAL DEPOSIT */
 
         updateAdminLoading(
             "Preparing dashboard...",
@@ -2227,9 +2459,7 @@ async function loadDashboard(){
             "₱" + depositFormatted;
 
 
-        /* =================================================
-           DISPLAY APPROVED WITHDRAWAL
-        ================================================= */
+        /* DISPLAY APPROVED WITHDRAWAL */
 
         const withdrawalFormatted =
             approvedWithdrawal.toLocaleString(
@@ -2247,9 +2477,7 @@ async function loadDashboard(){
             "₱" + withdrawalFormatted;
 
 
-        /* =================================================
-           DISPLAY PENDING COUNTS
-        ================================================= */
+        /* PENDING */
 
         document.getElementById(
             "pendingDeposits"
@@ -2275,9 +2503,7 @@ async function loadDashboard(){
             pendingWithdrawals;
 
 
-        /* =================================================
-           MANAGEMENT COUNTS
-        ================================================= */
+        /* MANAGEMENT COUNTS */
 
         document.getElementById(
             "depositCount"
@@ -2297,9 +2523,7 @@ async function loadDashboard(){
             investmentRecords;
 
 
-        /* =================================================
-           BAR TEXT
-        ================================================= */
+        /* BAR TEXT */
 
         document.getElementById(
             "depositBarText"
@@ -2313,9 +2537,7 @@ async function loadDashboard(){
             "₱" + withdrawalFormatted;
 
 
-        /* =================================================
-           BAR WIDTH
-        ================================================= */
+        /* BAR WIDTH */
 
         const highest =
             Math.max(
@@ -2342,10 +2564,6 @@ async function loadDashboard(){
                 * 100
             ) + "%";
 
-
-        /* =================================================
-           DASHBOARD READY
-        ================================================= */
 
         updateAdminLoading(
             "Dashboard ready",
@@ -2391,11 +2609,236 @@ async function loadDashboard(){
 
 
 /* =========================================================
-   MAKE LOAD DASHBOARD AVAILABLE TO BUTTON
+   MAKE LOAD DASHBOARD AVAILABLE
 ========================================================= */
 
 window.loadDashboard =
     loadDashboard;
+
+
+/* =========================================================
+   RESET ALL MEMBER DATA
+========================================================= */
+
+window.resetAllMemberData =
+    async function(){
+
+        /*
+         * Verify that the current browser session
+         * belongs to the configured administrator.
+         */
+
+        if(
+            !currentAdmin ||
+            currentAdmin.uid !== ADMIN_UID
+        ){
+
+            alert(
+                "❌ Administrator access is required."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * FIRST CONFIRMATION
+         */
+
+        const firstConfirm =
+            confirm(
+                "⚠️ WARNING!\n\n" +
+
+                "This will permanently delete ALL registered " +
+                "member data, including:\n\n" +
+
+                "• Member accounts\n" +
+                "• Deposits\n" +
+                "• Withdrawals\n" +
+                "• Investments\n" +
+                "• Purchases\n" +
+                "• Earnings\n" +
+                "• Referral commissions\n\n" +
+
+                "Your admin account will NOT be deleted.\n\n" +
+
+                "Do you want to continue?"
+            );
+
+
+        if(!firstConfirm){
+
+            return;
+
+        }
+
+
+        /*
+         * SECOND CONFIRMATION
+         */
+
+        const secondConfirm =
+            confirm(
+                "FINAL CONFIRMATION\n\n" +
+
+                "This action CANNOT be undone.\n\n" +
+
+                "All member accounts and their data will be deleted.\n\n" +
+
+                "Are you absolutely sure?"
+            );
+
+
+        if(!secondConfirm){
+
+            return;
+
+        }
+
+
+        const button =
+            document.getElementById(
+                "resetAllDataBtn"
+            );
+
+        const status =
+            document.getElementById(
+                "resetStatus"
+            );
+
+
+        if(button){
+
+            button.disabled = true;
+
+            button.textContent =
+                "⏳ RESETTING DATA...";
+
+        }
+
+
+        if(status){
+
+            status.className =
+                "reset-status show loading";
+
+            status.textContent =
+                "⏳ Resetting member data. Please do not close this page.";
+
+        }
+
+
+        try{
+
+            /*
+             * Call the protected Cloud Function.
+             */
+
+            const resetFunction =
+                httpsCallable(
+                    functions,
+                    "resetAllMemberData"
+                );
+
+
+            const result =
+                await resetFunction();
+
+
+            console.log(
+                "SkyRent reset result:",
+                result.data
+            );
+
+
+            if(status){
+
+                status.className =
+                    "reset-status show success";
+
+                status.textContent =
+                    "✅ All member data has been reset successfully.";
+
+            }
+
+
+            if(button){
+
+                button.textContent =
+                    "✅ MEMBER DATA RESET";
+
+            }
+
+
+            /*
+             * Refresh dashboard counters.
+             */
+
+            await loadDashboard();
+
+
+            alert(
+                "✅ SkyRent member data has been reset.\n\n" +
+                "Your administrator account was kept.\n\n" +
+                "You can now register new members."
+            );
+
+        }
+
+
+        catch(error){
+
+            console.error(
+                "Reset member data error:",
+                error
+            );
+
+
+            let message =
+                "Unable to reset member data.";
+
+
+            if(
+                error &&
+                error.message
+            ){
+
+                message =
+                    error.message;
+
+            }
+
+
+            if(status){
+
+                status.className =
+                    "reset-status show error";
+
+                status.textContent =
+                    "❌ " + message;
+
+            }
+
+
+            if(button){
+
+                button.disabled = false;
+
+                button.textContent =
+                    "🗑️ RESET ALL MEMBER DATA";
+
+            }
+
+
+            alert(
+                "❌ Reset failed.\n\n" +
+                message
+            );
+
+        }
+
+    };
 
 
 /* =========================================================
@@ -2406,7 +2849,6 @@ window.adminLogout =
     async function(){
 
         try{
-
 
             sessionStorage.removeItem(
                 "skyRentAdminDashboardReady"
