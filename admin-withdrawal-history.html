@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent Admin - Withdrawal History</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f7fc;
+    color:#172033;
+    padding-bottom:30px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #0757c9,
+        #1475e8
+    );
+
+    color:white;
+
+    padding:20px;
+
+    border-bottom-left-radius:28px;
+    border-bottom-right-radius:28px;
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-bottom:18px;
+}
+
+.back-btn{
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:12px;
+
+    background:rgba(255,255,255,.18);
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+.header-title{
+    font-size:18px;
+    font-weight:900;
+}
+
+.header h1{
+    font-size:25px;
+    font-weight:900;
+}
+
+.header p{
+    margin-top:5px;
+
+    font-size:13px;
+
+    opacity:.9;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+    width:94%;
+    max-width:620px;
+
+    margin:15px auto;
+}
+
+
+/* =====================================================
+   ADMIN PANEL BUTTON
+===================================================== */
+
+.admin-panel-btn{
+    width:100%;
+
+    border:none;
+
+    background:white;
+
+    color:#0757c9;
+
+    border:1px solid #dce7f5;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    margin-bottom:14px;
+
+    font-size:14px;
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 14px rgba(30,70,120,.06);
+}
+
+.admin-panel-btn:active{
+    transform:scale(.98);
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-box{
+    background:white;
+
+    border-radius:16px;
+
+    padding:13px;
+
+    margin-bottom:14px;
+
+    border:1px solid #dce7f5;
+
+    box-shadow:
+        0 5px 18px rgba(30,70,120,.06);
+}
+
+.search-title{
+    font-size:11px;
+
+    color:#858d99;
+
+    font-weight:900;
+
+    margin-bottom:8px;
+}
+
+.search-row{
+    display:flex;
+
+    gap:8px;
+}
+
+.search-input{
+    flex:1;
+
+    min-width:0;
+
+    border:1px solid #dce7f5;
+
+    background:#f8fbff;
+
+    border-radius:11px;
+
+    padding:12px 13px;
+
+    font-size:14px;
+
+    color:#172033;
+
+    outline:none;
+}
+
+.search-input:focus{
+    border-color:#0757c9;
+
+    background:white;
+}
+
+.search-input::placeholder{
+    color:#9aa3af;
+}
+
+.clear-btn{
+    border:none;
+
+    background:#eef4fc;
+
+    color:#0757c9;
+
+    border-radius:11px;
+
+    padding:0 14px;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    margin-bottom:14px;
+}
+
+.summary{
+    background:white;
+
+    border-radius:16px;
+
+    padding:15px;
+
+    border:1px solid #e9eef5;
+
+    box-shadow:
+        0 5px 18px rgba(30,70,120,.07);
+}
+
+.summary-title{
+    font-size:10px;
+
+    color:#858d99;
+
+    font-weight:900;
+
+    line-height:1.3;
+}
+
+.summary-value{
+    margin-top:6px;
+
+    font-size:19px;
+
+    color:#0757c9;
+
+    font-weight:900;
+
+    word-break:break-word;
+}
+
+.summary.approved .summary-value{
+    color:#188044;
+}
+
+
+/* =====================================================
+   REFRESH
+===================================================== */
+
+.refresh-btn{
+    width:100%;
+
+    border:none;
+
+    border-radius:13px;
+
+    padding:13px;
+
+    margin-bottom:14px;
+
+    background:#eaf2ff;
+
+    color:#0757c9;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.refresh-btn:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section-title{
+    font-size:15px;
+
+    font-weight:900;
+
+    margin:8px 2px 4px;
+}
+
+.section-subtitle{
+    font-size:11px;
+
+    color:#858d99;
+
+    margin:0 2px 12px;
+}
+
+
+/* =====================================================
+   SEARCH NOTICE
+===================================================== */
+
+.search-notice{
+    background:#eaf2ff;
+
+    color:#0757c9;
+
+    border-radius:12px;
+
+    padding:11px 13px;
+
+    margin-bottom:12px;
+
+    font-size:12px;
+
+    font-weight:900;
+}
+
+
+/* =====================================================
+   RECORD
+===================================================== */
+
+.record{
+    background:white;
+
+    border-radius:18px;
+
+    padding:16px;
+
+    margin-bottom:12px;
+
+    border:1px solid #e9eef5;
+
+    box-shadow:
+        0 5px 18px rgba(30,70,120,.07);
+}
+
+.record-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:10px;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #edf0f4;
+}
+
+.record-title{
+    font-size:14px;
+
+    font-weight:900;
+
+    color:#172033;
+}
+
+.record-subtitle{
+    margin-top:3px;
+
+    font-size:10px;
+
+    color:#858d99;
+
+    word-break:break-all;
+}
+
+
+/* =====================================================
+   ROW
+===================================================== */
+
+.row{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    padding:9px 0;
+
+    border-bottom:1px solid #edf0f4;
+}
+
+.row:last-child{
+    border-bottom:none;
+}
+
+.label{
+    color:#858d99;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    flex:0 0 43%;
+}
+
+.value{
+    color:#172033;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    text-align:right;
+
+    word-break:break-word;
+}
+
+
+/* =====================================================
+   AMOUNTS
+===================================================== */
+
+.amount{
+    color:#0757c9;
+
+    font-size:17px;
+
+    font-weight:900;
+}
+
+.received{
+    color:#188044;
+
+    font-size:16px;
+
+    font-weight:900;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status{
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:#e8f8ee;
+
+    color:#188044;
+
+    font-size:10px;
+
+    font-weight:900;
+}
+
+
+/* =====================================================
+   PAYMENT CHANNEL
+===================================================== */
+
+.payment-channel{
+    display:inline-block;
+
+    padding:6px 10px;
+
+    border-radius:9px;
+
+    background:#eaf2ff;
+
+    color:#0757c9;
+
+    font-size:11px;
+
+    font-weight:900;
+}
+
+
+/* =====================================================
+   TRANSACTION ID
+===================================================== */
+
+.transaction-id{
+    display:inline-block;
+
+    max-width:100%;
+
+    padding:6px 8px;
+
+    border-radius:8px;
+
+    background:#f3f5f8;
+
+    color:#475569;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    word-break:break-all;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+    background:white;
+
+    border-radius:18px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    color:#858d99;
+
+    font-size:14px;
+
+    border:1px solid #e9eef5;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+    background:white;
+
+    border-radius:18px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    color:#858d99;
+
+    font-size:14px;
+
+    border:1px solid #e9eef5;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-box{
+    background:#fff0f0;
+
+    color:#c62828;
+
+    border:1px solid #ffd4d4;
+
+    border-radius:15px;
+
+    padding:16px;
+
+    font-size:12px;
+
+    line-height:1.5;
+
+    text-align:center;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:380px){
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:22px;
+    }
+
+    .search-row{
+        flex-direction:column;
+    }
+
+    .clear-btn{
+        padding:11px;
+    }
+
+    .row{
+        gap:8px;
+    }
+
+    .label{
+        flex-basis:40%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="header-top">
+
+        <button
+            class="back-btn"
+            onclick="goAdminPanel()"
+        >
+            ←
+        </button>
+
+        <div class="header-title">
+            SkyRent Admin
+        </div>
+
+    </div>
+
+
+    <h1>
+        Withdrawal History
+    </h1>
+
+    <p>
+        View all successfully approved withdrawal transactions.
+    </p>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     ADMIN PANEL
+===================================================== -->
+
+<button
+    class="admin-panel-btn"
+    onclick="goAdminPanel()"
+>
+    ← Back to Admin Panel
+</button>
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<div class="search-box">
+
+    <div class="search-title">
+        SEARCH WITHDRAWAL HISTORY BY USER PHONE
+    </div>
+
+    <div class="search-row">
+
+        <input
+            type="text"
+            id="phoneSearch"
+            class="search-input"
+            placeholder="Enter user phone number..."
+            autocomplete="off"
+            inputmode="tel"
+        >
+
+        <button
+            id="clearSearch"
+            class="clear-btn"
+            onclick="clearSearch()"
+        >
+            Clear
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SUMMARY
+===================================================== -->
+
+<div class="summary-grid">
+
+
+    <div class="summary">
+
+        <div class="summary-title">
+            TOTAL TRANSACTIONS
+        </div>
+
+        <div
+            id="totalCount"
+            class="summary-value"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="summary approved">
+
+        <div class="summary-title">
+            TOTAL APPROVED AMOUNT
+        </div>
+
+        <div
+            id="totalAmount"
+            class="summary-value"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     REFRESH
+===================================================== -->
+
+<button
+    id="refreshButton"
+    class="refresh-btn"
+    onclick="loadHistory()"
+>
+    🔄 Refresh Withdrawal History
+</button>
+
+
+<!-- =====================================================
+     SECTION TITLE
+===================================================== -->
+
+<div
+    id="sectionTitle"
+    class="section-title"
+>
+    All Approved Withdrawals
+</div>
+
+<div
+    id="sectionSubtitle"
+    class="section-subtitle"
+>
+    Showing all completed withdrawal transaction records.
+</div>
+
+
+<!-- =====================================================
+     LIST
+===================================================== -->
+
+<div id="historyList"></div>
+
+
+</main>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    orderBy
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+    "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+    "skyrent-ea30c",
+
+    storageBucket:
+    "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+    "572678456448",
+
+    appId:
+    "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================================
+   ADMIN UID
+===================================================== */
+
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let currentAdmin = null;
+
+let allHistory = [];
+
+let loadingHistory = false;
+
+
+/* =====================================================
+   FORMAT MONEY
+===================================================== */
+
+function formatMoney(amount){
+
+    return Number(amount || 0)
+        .toLocaleString(
+            "en-PH",
+            {
+                style:"currency",
+                currency:"PHP",
+                minimumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =====================================================
+   GET NUMBER
+===================================================== */
+
+function getNumber(value){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
+
+        return 0;
+
+    }
+
+
+    return Number(
+        String(value)
+            .replace(/[₱,\s]/g,"")
+    ) || 0;
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(value){
+
+    if(!value){
+
+        return "-";
+
+    }
+
+
+    let date;
+
+
+    if(
+        value &&
+        typeof value.toDate === "function"
+    ){
+
+        date =
+            value.toDate();
+
+    }
+
+    else if(
+        value instanceof Date
+    ){
+
+        date =
+            value;
+
+    }
+
+    else{
+
+        date =
+            new Date(value);
+
+    }
+
+
+    if(
+        !date ||
+        isNaN(date.getTime())
+    ){
+
+        return "-";
+
+    }
+
+
+    return date.toLocaleString(
+        "en-PH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric",
+            hour:"numeric",
+            minute:"2-digit",
+            second:"2-digit"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   LOAD HISTORY
+===================================================== */
+
+async function loadHistory(){
+
+    if(loadingHistory){
+
+        return;
+
+    }
+
+
+    loadingHistory = true;
+
+
+    const list =
+        document.getElementById(
+            "historyList"
+        );
+
+
+    const refreshButton =
+        document.getElementById(
+            "refreshButton"
+        );
+
+
+    try{
+
+        refreshButton.disabled =
+            true;
+
+        refreshButton.innerText =
+            "⏳ Loading History...";
+
+
+        list.innerHTML = `
+
+            <div class="loading">
+
+                Loading withdrawal transaction history...
+
+            </div>
+
+        `;
+
+
+        const transactionsRef =
+            collection(
+                db,
+                "withdrawalTransactions"
+            );
+
+
+        let snapshot;
+
+
+        /* =================================================
+           TRY ORDERED QUERY
+        ================================================== */
+
+        try{
+
+            const historyQuery =
+                query(
+                    transactionsRef,
+                    orderBy(
+                        "approvedAt",
+                        "desc"
+                    )
+                );
+
+
+            snapshot =
+                await getDocs(
+                    historyQuery
+                );
+
+        }
+
+        catch(error){
+
+            console.warn(
+                "Ordered history query failed. Loading all records.",
+                error
+            );
+
+
+            snapshot =
+                await getDocs(
+                    transactionsRef
+                );
+
+        }
+
+
+        allHistory = [];
+
+
+        snapshot.forEach(
+            transactionDoc => {
+
+                const data =
+                    transactionDoc.data();
+
+
+                /*
+                   Only display withdrawal
+                   transactions.
+                */
+
+                const transactionType =
+                    String(
+                        data.transactionType ||
+                        "Withdrawal"
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                const status =
+                    String(
+                        data.status ||
+                        ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                if(
+                    transactionType !==
+                    "withdrawal"
+                ){
+
+                    return;
+
+                }
+
+
+                /*
+                   The approval page creates
+                   status = Approved.
+                */
+
+                if(
+                    status &&
+                    status !== "approved" &&
+                    status !== "completed" &&
+                    status !== "successful" &&
+                    status !== "withdrawal successful"
+                ){
+
+                    return;
+
+                }
+
+
+                allHistory.push({
+
+                    ...data,
+
+                    id:
+                        transactionDoc.id
+
+                });
+
+            }
+        );
+
+
+        /* =================================================
+           SORT
+        ================================================== */
+
+        allHistory.sort(
+            (a,b) => {
+
+                const valueA =
+                    a.approvedAt ||
+                    a.createdAt ||
+                    a.requestedAt;
+
+
+                const valueB =
+                    b.approvedAt ||
+                    b.createdAt ||
+                    b.requestedAt;
+
+
+                const timeA =
+                    valueA &&
+                    typeof valueA.toMillis ===
+                    "function"
+
+                        ? valueA.toMillis()
+
+                        : new Date(
+                            valueA || 0
+                        ).getTime();
+
+
+                const timeB =
+                    valueB &&
+                    typeof valueB.toMillis ===
+                    "function"
+
+                        ? valueB.toMillis()
+
+                        : new Date(
+                            valueB || 0
+                        ).getTime();
+
+
+                return timeB - timeA;
+
+            }
+        );
+
+
+        updateSummary();
+
+
+        renderHistory();
+
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Load withdrawal history error:",
+            error
+        );
+
+
+        list.innerHTML = `
+
+            <div class="error-box">
+
+                <strong>
+                    Unable to load withdrawal history.
+                </strong>
+
+                <br><br>
+
+                Please check your Firebase
+                connection and Firestore rules.
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message ||
+                    "Unknown error"
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+    finally{
+
+        loadingHistory = false;
+
+        refreshButton.disabled =
+            false;
+
+        refreshButton.innerText =
+            "🔄 Refresh Withdrawal History";
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE SUMMARY
+===================================================== */
+
+function updateSummary(){
+
+    let totalCount = 0;
+
+    let totalAmount = 0;
+
+
+    allHistory.forEach(
+        transaction => {
+
+            const amount =
+                getNumber(
+                    transaction.amount ??
+                    transaction.amountValue
+                );
+
+
+            totalCount++;
+
+            totalAmount +=
+                amount;
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalCount"
+    ).innerText =
+        totalCount;
+
+
+    document.getElementById(
+        "totalAmount"
+    ).innerText =
+        formatMoney(
+            totalAmount
+        );
+
+}
+
+
+/* =====================================================
+   RENDER HISTORY
+===================================================== */
+
+function renderHistory(){
+
+    const list =
+        document.getElementById(
+            "historyList"
+        );
+
+
+    const searchInput =
+        document.getElementById(
+            "phoneSearch"
+        );
+
+
+    const searchPhone =
+        String(
+            searchInput.value || ""
+        )
+        .replace(/\s/g,"")
+        .toLowerCase();
+
+
+    let records;
+
+
+    if(
+        searchPhone === ""
+    ){
+
+        records =
+            allHistory;
+
+        document.getElementById(
+            "sectionTitle"
+        ).innerText =
+            "All Approved Withdrawals";
+
+
+        document.getElementById(
+            "sectionSubtitle"
+        ).innerText =
+            "Showing all completed withdrawal transaction records.";
+
+    }
+
+    else{
+
+        records =
+            allHistory.filter(
+                transaction => {
+
+                    const phone =
+                        String(
+                            transaction.phone ||
+                            ""
+                        )
+                        .replace(/\s/g,"")
+                        .toLowerCase();
+
+
+                    return phone.includes(
+                        searchPhone
+                    );
+
+                }
+            );
+
+
+        document.getElementById(
+            "sectionTitle"
+        ).innerText =
+            "Search Results";
+
+
+        document.getElementById(
+            "sectionSubtitle"
+        ).innerText =
+            "Approved withdrawals matching the user phone.";
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    /* =================================================
+       SEARCH NOTICE
+    ================================================== */
+
+    if(
+        searchPhone !== ""
+    ){
+
+        const notice =
+            document.createElement(
+                "div"
+            );
+
+
+        notice.className =
+            "search-notice";
+
+
+        notice.innerHTML =
+            "🔎 Searching phone: " +
+            escapeHTML(
+                searchPhone
+            );
+
+
+        list.appendChild(
+            notice
+        );
+
+    }
+
+
+    /* =================================================
+       EMPTY
+    ================================================== */
+
+    if(
+        records.length === 0
+    ){
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+
+        empty.className =
+            "empty";
+
+
+        empty.innerHTML =
+            searchPhone === ""
+
+                ?
+
+                `
+                    No approved withdrawal
+                    transactions yet.
+                `
+
+                :
+
+                `
+                    No approved withdrawal
+                    transactions found for
+                    <strong>
+                        ${escapeHTML(searchPhone)}
+                    </strong>.
+                `;
+
+
+        list.appendChild(
+            empty
+        );
+
+
+        return;
+
+    }
+
+
+    /* =================================================
+       RECORDS
+    ================================================== */
+
+    records.forEach(
+        transaction => {
+
+            const record =
+                createHistoryRecord(
+                    transaction
+                );
+
+
+            list.appendChild(
+                record
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CREATE HISTORY RECORD
+===================================================== */
+
+function createHistoryRecord(
+    transaction
+){
+
+    const record =
+        document.createElement(
+            "div"
+        );
+
+
+    record.className =
+        "record";
+
+
+    const amount =
+        getNumber(
+            transaction.amount ??
+            transaction.amountValue
+        );
+
+
+    const processingFee =
+        getNumber(
+            transaction.processingFee
+        );
+
+
+    const netAmount =
+        getNumber(
+            transaction.netAmount
+        );
+
+
+    const paymentChannel =
+        transaction.paymentChannel ||
+        transaction.paymentUsed ||
+        "-";
+
+
+    const paymentMethod =
+        transaction.paymentMethod ||
+        "-";
+
+
+    const transactionId =
+        transaction.transactionId ||
+        transaction.id ||
+        "-";
+
+
+    record.innerHTML = `
+
+        <div class="record-header">
+
+            <div>
+
+                <div class="record-title">
+
+                    ${escapeHTML(
+                        transaction.userName ||
+                        "SkyRent User"
+                    )}
+
+                </div>
+
+                <div class="record-subtitle">
+
+                    ${escapeHTML(
+                        transaction.phone ||
+                        "-"
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <span class="status">
+                ✓ Approved
+            </span>
+
+        </div>
+
+
+        <!-- USER PHONE -->
+
+        <div class="row">
+
+            <span class="label">
+                User Phone
+            </span>
+
+            <span class="value">
+                ${escapeHTML(
+                    transaction.phone ||
+                    "-"
+                )}
+            </span>
+
+        </div>
+
+
+        <!-- USER NAME -->
+
+        <div class="row">
+
+            <span class="label">
+                User Name
+            </span>
+
+            <span class="value">
+                ${escapeHTML(
+                    transaction.userName ||
+                    "-"
+                )}
+            </span>
+
+        </div>
+
+
+        <!-- WITHDRAWAL AMOUNT -->
+
+        <div class="row">
+
+            <span class="label">
+                Withdrawal Amount
+            </span>
+
+            <span class="value amount">
+
+                ${formatMoney(amount)}
+
+            </span>
+
+        </div>
+
+
+        <!-- PROCESSING FEE -->
+
+        <div class="row">
+
+            <span class="label">
+                Processing Fee
+            </span>
+
+            <span class="value">
+
+                ${formatMoney(
+                    processingFee
+                )}
+
+            </span>
+
+        </div>
+
+
+        <!-- NET AMOUNT -->
+
+        <div class="row">
+
+            <span class="label">
+                Amount Received
+            </span>
+
+            <span class="value received">
+
+                ${formatMoney(
+                    netAmount
+                )}
+
+            </span>
+
+        </div>
+
+
+        <!-- ACCOUNT NAME -->
+
+        <div class="row">
+
+            <span class="label">
+                Account Name
+            </span>
+
+            <span class="value">
+
+                ${escapeHTML(
+                    transaction.accountName ||
+                    "-"
+                )}
+
+            </span>
+
+        </div>
+
+
+        <!-- ACCOUNT TYPE -->
+
+        <div class="row">
+
+            <span class="label">
+                Account Type
+            </span>
+
+            <span class="value">
+
+                ${escapeHTML(
+                    transaction.accountType ||
+                    "-"
+                )}
+
+            </span>
+
+        </div>
+
+
+        <!-- ACCOUNT NUMBER -->
+
+        <div class="row">
+
+            <span class="label">
+                Account Number
+            </span>
+
+            <span class="value">
+
+                ${escapeHTML(
+                    transaction.accountNumber ||
+                    "-"
+                )}
+
+            </span>
+
+        </div>
+
+
+        <!-- PAYMENT CHANNEL -->
+
+        <div class="row">
+
+            <span class="label">
+                Payment Channel
+            </span>
+
+            <span class="value">
+
+                <span class="payment-channel">
+
+                    ${escapeHTML(
+                        paymentChannel
+                    )}
+
+                </span>
+
+            </span>
+
+        </div>
+
+
+        <!-- PAYMENT METHOD -->
+
+        <div class="row">
+
+            <span class="label">
+                Payment Method
+            </span>
+
+            <span class="value">
+
+                ${escapeHTML(
+                    paymentMethod
+                )}
+
+            </span>
+
+        </div>
+
+
+        <!-- REQUEST TIME -->
+
+        <div class="row">
+
+            <span class="label">
+                Request Time
+            </span>
+
+            <span class="value">
+
+                ${escapeHTML(
+                    formatDate(
+                        transaction.requestedAt
+                    )
+                )}
+
+            </span>
+
+        </div>
+
+
+        <!-- APPROVED TIME -->
+
+        <div class="row">
+
+            <span class="label">
+                Approved Time
+            </span>
+
+            <span class="value">
+
+                ${escapeHTML(
+                    formatDate(
+                        transaction.approvedAt
+                    )
+                )}
+
+            </span>
+
+        </div>
+
+
+        <!-- ADMIN -->
+
+        <div class="row">
+
+            <span class="label">
+                Approved By
+            </span>
+
+            <span class="value">
+
+                ${escapeHTML(
+                    transaction.approvedByEmail ||
+                    transaction.approvedBy ||
+                    "-"
+                )}
+
+            </span>
+
+        </div>
+
+
+        <!-- TRANSACTION ID -->
+
+        <div class="row">
+
+            <span class="label">
+                Transaction ID
+            </span>
+
+            <span class="value">
+
+                <span class="transaction-id">
+
+                    ${escapeHTML(
+                        transactionId
+                    )}
+
+                </span>
+
+            </span>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="row">
+
+            <span class="label">
+                Transaction Status
+            </span>
+
+            <span class="value">
+
+                <span class="status">
+                    ✓ Approved
+                </span>
+
+            </span>
+
+        </div>
+
+    `;
+
+
+    return record;
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document
+    .getElementById(
+        "phoneSearch"
+    )
+    .addEventListener(
+        "input",
+        function(){
+
+            renderHistory();
+
+        }
+    );
+
+
+/* =====================================================
+   CLEAR SEARCH
+===================================================== */
+
+function clearSearch(){
+
+    document.getElementById(
+        "phoneSearch"
+    ).value = "";
+
+
+    renderHistory();
+
+
+    document.getElementById(
+        "phoneSearch"
+    ).focus();
+
+}
+
+
+/* =====================================================
+   ADMIN PANEL
+===================================================== */
+
+function goAdminPanel(){
+
+    window.location.href =
+        "admin.html";
+
+}
+
+
+/* =====================================================
+   MAKE FUNCTIONS AVAILABLE
+===================================================== */
+
+window.loadHistory =
+    loadHistory;
+
+window.clearSearch =
+    clearSearch;
+
+window.goAdminPanel =
+    goAdminPanel;
+
+
+/* =====================================================
+   ADMIN AUTHENTICATION
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            alert(
+                "Admin login required."
+            );
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        currentAdmin =
+            user;
+
+
+        /* =================================================
+           ADMIN UID CHECK
+        ================================================== */
+
+        if(
+            user.uid !==
+            ADMIN_UID
+        ){
+
+            alert(
+                "Access denied. " +
+                "This account is not authorized as admin."
+            );
+
+
+            try{
+
+                await signOut(
+                    auth
+                );
+
+            }
+
+            catch(error){
+
+                console.error(
+                    "Admin sign out error:",
+                    error
+                );
+
+            }
+
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        /* =================================================
+           LOAD HISTORY
+        ================================================== */
+
+        await loadHistory();
+
+    }
+);
+
+
+/* =====================================================
+   AUTO REFRESH
+===================================================== */
+
+setInterval(
+    () => {
+
+        if(
+            currentAdmin &&
+            !loadingHistory
+        ){
+
+            loadHistory();
+
+        }
+
+    },
+    60000
+);
+
+
+</script>
+
+
+</body>
+
+</html>
