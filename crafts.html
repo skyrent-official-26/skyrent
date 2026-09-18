@@ -8,21 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>SkyRent</title>
-
-<!-- SKYRENT AIRCRAFT FLEET -->
-<link rel="icon" type="image/png" href="skyrent.png">
-<link rel="apple-touch-icon" href="skyrent.png">
-<link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="#0757c9">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="SkyRent">
-
-
-
-      
+<title>SkyRent - Aircraft Fleet</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -2491,12 +2477,14 @@ body{
                     </div>
 
 
-                    <button class="details"
-                            onclick="openCraft(9)">
+                      <button class="details"
+                            onclick="">
 
-                        Buy / Invest →
+                        AVAIALABLE SOON
 
                     </button>
+
+
 
                 </div>
 
@@ -2890,7 +2878,8 @@ const SKYRENT_PLANS = {
         price:50000,
         daily:7500,
         cycle:30,
-        total:225000
+        total:225000,
+        active:false
     }
 
 };
@@ -3079,115 +3068,48 @@ onAuthStateChanged(
 );
 
 
+
 /* =====================================================
    FIND USER BY REFERRAL CODE
 ===================================================== */
 
-async function findUserByReferralCode(
-    referralCode
-){
+async function findUserByReferralCode(referralCode){
 
-    if(!referralCode){
+    if(!referralCode) return null;
 
-        return null;
+    const cleanCode = String(referralCode).trim();
 
-    }
+    if(!cleanCode) return null;
 
+    const usersRef = collection(db, "users");
 
-    const cleanCode =
-        String(referralCode)
-        .trim();
+    const referralQuery = query(
+        usersRef,
+        where("referralCode", "==", cleanCode)
+    );
 
+    const snapshot = await getDocs(referralQuery);
 
-    if(!cleanCode){
+    if(snapshot.empty) return null;
 
-        return null;
-
-    }
-
-
-    const usersRef =
-        collection(
-            db,
-            "users"
-        );
-
-
-    const referralQuery =
-        query(
-
-            usersRef,
-
-            where(
-                "referralCode",
-                "==",
-                cleanCode
-            )
-
-        );
-
-
-    const snapshot =
-        await getDocs(
-            referralQuery
-        );
-
-
-    if(snapshot.empty){
-
-        return null;
-
-    }
-
-
-    const firstDoc =
-        snapshot.docs[0];
-
+    const firstDoc = snapshot.docs[0];
 
     return {
-
-        uid:
-            firstDoc.id,
-
-        data:
-            firstDoc.data()
-
+        uid: firstDoc.id,
+        data: firstDoc.data()
     };
-
 }
 
 
 /* =====================================================
-   GET REFERRAL CODE FROM USER DATA
+   GET PARENT REFERRAL CODE
 ===================================================== */
 
-function getParentReferralCode(
-    userData
-){
+function getParentReferralCode(userData){
 
-    if(!userData){
+    if(!userData) return "";
 
-        return "";
-
-    }
-
-
-    return (
-
-        userData.referredByCode ||
-
-        userData.referredBy ||
-
-        userData.referrerCode ||
-
-        userData.referralBy ||
-
-        userData.parentReferralCode ||
-
-        ""
-
-    );
-
+    return userData.referredByCode || "";
 }
 
 
@@ -3530,8 +3452,11 @@ function(){
    CONFIRM PURCHASE
 ===================================================== */
 
-window.confirmPurchase =
-async function(){
+/* =====================================================
+   CONFIRM PURCHASE
+===================================================== */
+
+window.confirmPurchase = async function(){
 
     if(!currentUser){
 
@@ -3541,7 +3466,6 @@ async function(){
         );
 
         return;
-
     }
 
 
@@ -3553,7 +3477,24 @@ async function(){
         );
 
         return;
+    }
 
+
+    /* =========================================
+       BLOCK INACTIVE PLANS
+    ========================================= */
+
+    if(
+        selectedPlan.id === "AC9" ||
+        selectedPlan.active === false
+    ){
+
+        showStatus(
+            "AC9 is not available yet.",
+            "error"
+        );
+
+        return;
     }
 
 
@@ -3572,7 +3513,6 @@ async function(){
 
 
     try{
-
         /* =================================================
            USER REFERENCE
         ================================================= */
