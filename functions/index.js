@@ -1,358 +1,279 @@
-
-
-
+const { onCall, HttpsError } = require("firebase-functions/v2/https");
+const { initializeApp } = require("firebase-admin/app");
 const {
-    onCall,
-    HttpsError
-} = require("firebase-functions/v2/https");
-
-const {
-    initializeApp
-} = require("firebase-admin/app");
-
-const {
-    getAuth
-} = require("firebase-admin/auth");
-
-const {
-    getFirestore
+  getFirestore
 } = require("firebase-admin/firestore");
-
+const {
+  getAuth
+} = require("firebase-admin/auth");
 
 initializeApp();
 
-
 const db = getFirestore();
-
 const auth = getAuth();
 
+const ADMIN_UID = "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
-/* =========================================================
-   YOUR ADMIN UID
-========================================================= */
-
-const ADMIN_UID =
-    "28zzG9NB46gRkwia7WtOxS1lQNa2";
-
-
-/* =========================================================
-   MEMBER DATA COLLECTIONS
-========================================================= */
-
-const MEMBER_COLLECTIONS = [
-
-    "users",
-
-    "deposits",
-
-    "withdrawals",
-
-    "investments",
-
-    "purchases",
-
-    "earnings",
-
-    "earningsHistory",
-
-    "referralCommissions"
-
+const COLLECTIONS_TO_RESET = [
+  "deposits",
+  "withdrawals",
+  "investments",
+  "purchases",
+  "earnings",
+  "transactions",
+  "referrals"
 ];
 
+exports.resetSkyRentData = onCall(
+  {
+    region: "asia-southeast1",
+    timeoutSeconds: 540,
+    memory: "512MiB"
+  },
+  async (request) => {
 
-/* =========================================================
-   DELETE A COLLECTION
-========================================================= */
+    console.log("RESET FUNCTION STARTED");
 
-async function deleteCollection(
-    collectionName
-){
+    // ==============================
+    // ADMIN SECURITY CHECK
+    // ==============================
 
-    const snapshot =
-        await db
-            .collection(collectionName)
-            .get();
-
-
-    if(snapshot.empty){
-
-        return 0;
-
+    if (!request.auth) {
+      console.error("No authenticated user");
+      throw new HttpsError(
+        "unauthenticated",
+        "You must be logged in as administrator."
+      );
     }
 
+    console.log("Caller UID:", request.auth.uid);
 
-    let deleted = 0;
+    if (request.auth.uid !== ADMIN_UID) {
+      console.error("Unauthorized UID:", request.auth.uid);
 
-    let batch =
-        db.batch();
+      throw new HttpsError(
+        "permission-denied",
+        "Only the SkyRent administrator can perform this reset."
+      );
+    }
 
-    let batchSize = 0;
+    // ==============================
+    // CONFIRMATION CHECK
+    // ==============================
 
+    if (
+      !request.data ||
+      request.data.confirm !== "RESET_SKYRENT_DATA"
+    ) {
+      throw new HttpsError(
+        "invalid-argument",
+        "Reset confirmation was not provided."
+      );
+    }
 
-    for(
-        const document
-        of snapshot.docs
-    ){
+    const result = {
+      firestore: {},
+      authUsersDeleted: 0
+    };
 
-        batch.delete(
-            document.ref
+    // ==============================
+    // DELETE FIRESTORE COLLECTIONS
+    // ==============================
+
+    for (const collectionName of COLLECTIONS_TO_RESET) {
+
+      console.log(
+        "Deleting collection:",
+        collectionName
+      );
+
+      try {
+
+        const documentRefs =
+          await db
+            .collection(collectionName)
+            .listDocuments();
+
+        let deleted = 0;
+
+        for (const docRef of documentRefs) {
+
+          await db.recursiveDelete(docRef);
+
+          deleted++;
+
+        }
+
+        result.firestore[collectionName] = deleted;
+
+        console.log(
+          `Deleted ${deleted} documents from ${collectionName}`
         );
 
-        deleted++;
+      } catch (error) {
 
-        batchSize++;
+        console.error(
+          `Error deleting ${collectionName}:`,
+          error
+        );
 
+        throw new HttpsError(
+          "internal",
+          `Failed deleting ${collectionName}: ${error.message}`
+        );
+      }
+    }
 
-        /*
-         * Keep batches below Firestore's
-         * maximum operation limit.
-         */
+    // ==============================
+    // DELETE USER DOCUMENTS
+    // EXCEPT ADMIN
+    // ==============================
 
-        if(batchSize >= 400){
+    console.log("Deleting user documents");
 
-            await batch.commit();
+    try {
 
-            batch =
-                db.batch();
+      const userRefs =
+        await db
+          .collection("users")
+          .listDocuments();
 
-            batchSize = 0;
+      let deletedUsers = 0;
+
+      for (const userRef of userRefs) {
+
+        // NEVER delete administrator
+        if (userRef.id === ADMIN_UID) {
+          console.log(
+            "Preserving admin user document"
+          );
+          continue;
+        }
+
+        await db.recursiveDelete(userRef);
+
+        deletedUsers++;
+      }
+
+      result.firestore.users = deletedUsers;
+
+      console.log(
+        `Deleted ${deletedUsers} user documents`
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Error deleting users:",
+        error
+      );
+
+      throw new HttpsError(
+        "internal",
+        `Failed deleting user documents: ${error.message}`
+      );
+    }
+
+    // ==============================
+    // GET ALL AUTH USERS
+    // ==============================
+
+    console.log("Getting Firebase Authentication users");
+
+    try {
+
+      const authUsers = [];
+
+      let pageToken;
+
+      do {
+
+        const page =
+          await auth.listUsers(
+            1000,
+            pageToken
+          );
+
+        for (const user of page.users) {
+
+          // NEVER DELETE ADMIN ACCOUNT
+          if (user.uid !== ADMIN_UID) {
+            authUsers.push(user.uid);
+          }
 
         }
 
-    }
+        pageToken = page.pageToken;
 
+      } while (pageToken);
 
-    if(batchSize > 0){
+      console.log(
+        `Found ${authUsers.length} authentication users to delete`
+      );
 
-        await batch.commit();
+      // ==============================
+      // DELETE AUTH USERS IN BATCHES
+      // ==============================
 
-    }
+      for (
+        let i = 0;
+        i < authUsers.length;
+        i += 1000
+      ) {
 
+        const batch =
+          authUsers.slice(i, i + 1000);
 
-    return deleted;
+        if (batch.length > 0) {
 
-}
+          const deleteResult =
+            await auth.deleteUsers(batch);
 
+          result.authUsersDeleted +=
+            deleteResult.successCount;
 
-/* =========================================================
-   DELETE ALL AUTH USERS EXCEPT ADMIN
-========================================================= */
+          console.log(
+            `Deleted ${deleteResult.successCount} Auth users`
+          );
 
-async function deleteMemberAuthUsers(){
+          if (
+            deleteResult.failureCount > 0
+          ) {
 
-    let deletedUsers = 0;
-
-    let pageToken;
-
-
-    do{
-
-        const result =
-            await auth.listUsers(
-                1000,
-                pageToken
+            console.error(
+              "Some Auth users could not be deleted:",
+              deleteResult.errors
             );
-
-
-        const memberUsers =
-            result.users.filter(
-                user =>
-                    user.uid !== ADMIN_UID
-            );
-
-
-        /*
-         * Firebase allows deleting users
-         * in batches.
-         */
-
-        if(memberUsers.length > 0){
-
-            const deleteResult =
-                await auth.deleteUsers(
-                    memberUsers.map(
-                        user =>
-                            user.uid
-                    )
-                );
-
-
-            deletedUsers +=
-                deleteResult.successCount;
-
-
-            if(
-                deleteResult.failureCount > 0
-            ){
-
-                console.error(
-                    "Some Authentication users could not be deleted:",
-                    deleteResult.errors
-                );
-
-            }
-
+          }
         }
+      }
 
+    } catch (error) {
 
-        pageToken =
-            result.pageToken;
+      console.error(
+        "Error deleting Auth users:",
+        error
+      );
 
+      throw new HttpsError(
+        "internal",
+        `Failed deleting Firebase Authentication users: ${error.message}`
+      );
     }
 
-    while(pageToken);
+    // ==============================
+    // FINISHED
+    // ==============================
 
-
-    return deletedUsers;
-
-}
-
-
-/* =========================================================
-   RESET ALL SKYRENT MEMBER DATA
-========================================================= */
-
-exports.resetAllMemberData =
-    onCall(
-        async (request) => {
-
-
-            /* =============================================
-               REQUIRE FIREBASE LOGIN
-            ============================================= */
-
-            if(
-                !request.auth
-            ){
-
-                throw new HttpsError(
-                    "unauthenticated",
-                    "You must be logged in as administrator."
-                );
-
-            }
-
-
-            /* =============================================
-               REQUIRE ADMIN UID
-            ============================================= */
-
-            if(
-                request.auth.uid !== ADMIN_UID
-            ){
-
-                throw new HttpsError(
-                    "permission-denied",
-                    "Only the SkyRent administrator can perform this reset."
-                );
-
-            }
-
-
-            try{
-
-                const deletedFirestore =
-                    {};
-
-
-                /* =========================================
-                   DELETE MEMBER COLLECTIONS
-                ========================================= */
-
-                for(
-                    const collectionName
-                    of MEMBER_COLLECTIONS
-                ){
-
-                    try{
-
-                        deletedFirestore[
-                            collectionName
-                        ] =
-                            await deleteCollection(
-                                collectionName
-                            );
-
-                    }
-
-                    catch(error){
-
-                        /*
-                         * A collection that does not exist
-                         * simply contributes zero.
-                         */
-
-                        console.log(
-                            "Collection skipped:",
-                            collectionName,
-                            error.message
-                        );
-
-                        deletedFirestore[
-                            collectionName
-                        ] = 0;
-
-                    }
-
-                }
-
-
-                /* =========================================
-                   DELETE AUTH USERS
-                ========================================= */
-
-                const deletedAuthUsers =
-                    await deleteMemberAuthUsers();
-
-
-                /* =========================================
-                   LOG RESULT
-                ========================================= */
-
-                console.log(
-                    "SkyRent member reset completed.",
-                    {
-                        deletedFirestore,
-                        deletedAuthUsers
-                    }
-                );
-
-
-                /* =========================================
-                   RETURN RESULT
-                ========================================= */
-
-                return {
-
-                    success:true,
-
-                    message:
-                        "All SkyRent member data has been reset.",
-
-                    deletedFirestore,
-
-                    deletedAuthUsers
-
-                };
-
-            }
-
-
-            catch(error){
-
-                console.error(
-                    "SkyRent member reset failed:",
-                    error
-                );
-
-
-                throw new HttpsError(
-                    "internal",
-                    "The member data reset failed. Check Firebase Functions logs."
-                );
-
-            }
-
-        }
+    console.log(
+      "SKYRENT RESET COMPLETED",
+      result
     );
-  
+
+    return {
+      success: true,
+      message: "SkyRent registered data has been reset.",
+      ...result
+    };
+  }
+);
