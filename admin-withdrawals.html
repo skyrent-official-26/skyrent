@@ -10,7 +10,6 @@
 
 <title>Admin Withdrawals - SkyRent</title>
 
-
 <style>
 
 /* =====================================================
@@ -59,9 +58,7 @@ body{
 
 .back-btn{
     border:none;
-
     background:rgba(255,255,255,.18);
-
     color:white;
 
     width:42px;
@@ -72,6 +69,10 @@ body{
     font-size:20px;
 
     cursor:pointer;
+}
+
+.header-top strong{
+    font-size:20px;
 }
 
 .header h1{
@@ -181,7 +182,6 @@ body{
 
 .search-input:focus{
     border-color:#0757c9;
-
     background:white;
 }
 
@@ -311,6 +311,11 @@ body{
 
 .refresh-btn:active{
     transform:scale(.98);
+}
+
+.refresh-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
 }
 
 
@@ -452,6 +457,27 @@ body{
 
 
 /* =====================================================
+   TRANSACTION ID
+===================================================== */
+
+.transaction-id{
+    font-family:monospace;
+
+    font-size:11px;
+
+    color:#0757c9;
+
+    background:#f1f6ff;
+
+    padding:5px 7px;
+
+    border-radius:6px;
+
+    word-break:break-all;
+}
+
+
+/* =====================================================
    ACTION BUTTONS
 ===================================================== */
 
@@ -471,7 +497,7 @@ body{
 
     border-radius:11px;
 
-    padding:11px;
+    padding:12px;
 
     font-size:12px;
 
@@ -482,7 +508,6 @@ body{
 
 .approve-btn{
     background:#188044;
-
     color:white;
 }
 
@@ -567,6 +592,29 @@ body{
     font-size:14px;
 
     border:1px solid #e9eef5;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-box{
+    background:#fff0f0;
+
+    border:1px solid #ffd3d3;
+
+    border-radius:18px;
+
+    padding:25px 18px;
+
+    text-align:center;
+
+    color:#c62828;
+
+    font-size:13px;
+
+    line-height:1.5;
 }
 
 
@@ -720,6 +768,8 @@ body{
     font-weight:900;
 
     text-align:right;
+
+    word-break:break-word;
 }
 
 
@@ -1115,7 +1165,13 @@ body{
 </div>
 
 
-<div id="withdrawalList"></div>
+<div id="withdrawalList">
+
+    <div class="loading">
+        Loading withdrawal records...
+    </div>
+
+</div>
 
 
 </main>
@@ -1170,8 +1226,13 @@ body{
         ================================================== -->
 
         <label class="form-label">
+
             Payment Channel
-            <span class="required">*</span>
+
+            <span class="required">
+                *
+            </span>
+
         </label>
 
 
@@ -1441,9 +1502,7 @@ function getNumber(value){
 function formatDate(value){
 
     if(!value){
-
         return "-";
-
     }
 
 
@@ -1622,18 +1681,12 @@ function escapeJS(value){
 function getWithdrawalDate(withdrawal){
 
     if(withdrawal.requestedAt){
-
         return withdrawal.requestedAt;
-
     }
-
 
     if(withdrawal.createdAt){
-
         return withdrawal.createdAt;
-
     }
-
 
     return null;
 
@@ -1647,9 +1700,7 @@ function getWithdrawalDate(withdrawal){
 async function getActiveInvestmentCount(uid){
 
     if(!uid){
-
         return 0;
-
     }
 
 
@@ -1852,9 +1903,7 @@ async function getAllWithdrawals(){
 async function loadWithdrawals(){
 
     if(loadingWithdrawals){
-
         return;
-
     }
 
 
@@ -2014,6 +2063,16 @@ async function loadWithdrawals(){
             " rejected withdrawals";
 
 
+        /*
+           IMPORTANT FIX:
+           Do NOT let renderCurrentSearch()
+           stop just because loadingWithdrawals
+           is true.
+
+           allWithdrawals has already been loaded
+           at this point.
+        */
+
         await renderCurrentSearch();
 
     }
@@ -2028,14 +2087,20 @@ async function loadWithdrawals(){
 
         list.innerHTML = `
 
-            <div class="empty">
+            <div class="error-box">
 
                 Unable to load withdrawal records.
 
                 <br><br>
 
-                Please check your Firebase
-                connection and try again.
+                ${escapeHTML(
+                    error.message ||
+                    "Please check your Firebase connection."
+                )}
+
+                <br><br>
+
+                Tap Refresh Withdrawals to try again.
 
             </div>
 
@@ -2133,10 +2198,32 @@ async function renderWithdrawalRecord(
     }
 
 
-    const activeInvestmentCount =
-        await getActiveInvestmentCount(
-            withdrawal.uid
+    /*
+       If the investment lookup fails,
+       the withdrawal record will still render.
+    */
+
+    let activeInvestmentCount = 0;
+
+    try{
+
+        activeInvestmentCount =
+            await getActiveInvestmentCount(
+                withdrawal.uid
+            );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Investment count failed:",
+            error
         );
+
+        activeInvestmentCount = 0;
+
+    }
 
 
     const record =
@@ -2286,6 +2373,44 @@ async function renderWithdrawalRecord(
 
 
     /* =================================================
+       TRANSACTION ID
+    ================================================== */
+
+    let transactionId = "";
+
+
+    if(
+        withdrawal.transactionId
+    ){
+
+        transactionId = `
+
+            <div class="row">
+
+                <span class="label">
+                    Transaction ID
+                </span>
+
+                <span class="value">
+
+                    <span class="transaction-id">
+
+                        ${escapeHTML(
+                            withdrawal.transactionId
+                        )}
+
+                    </span>
+
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =================================================
        REJECTED TIME
     ================================================== */
 
@@ -2323,13 +2448,21 @@ async function renderWithdrawalRecord(
 
     /* =================================================
        ACTION BUTTONS
-    ================================================== */
+    ================================================= */
 
     let actions = "";
 
 
+    /*
+       IMPORTANT:
+       Pending withdrawals ALWAYS get
+       Approve and Reject buttons.
+    */
+
     if(
-        statusClass === "pending"
+        isPendingStatus(
+            withdrawal.status
+        )
     ){
 
         actions = `
@@ -2337,6 +2470,7 @@ async function renderWithdrawalRecord(
             <div class="actions">
 
                 <button
+                    type="button"
                     class="approve-btn"
                     onclick="approveWithdrawal('${escapeJS(withdrawal.id)}')"
                 >
@@ -2345,6 +2479,7 @@ async function renderWithdrawalRecord(
 
 
                 <button
+                    type="button"
                     class="reject-btn"
                     onclick="rejectWithdrawal('${escapeJS(withdrawal.id)}')"
                 >
@@ -2360,7 +2495,7 @@ async function renderWithdrawalRecord(
 
     /* =================================================
        RECORD HTML
-    ================================================== */
+    ================================================= */
 
     record.innerHTML = `
 
@@ -2546,6 +2681,9 @@ async function renderWithdrawalRecord(
         ${paymentMethod}
 
 
+        ${transactionId}
+
+
         ${rejectedTime}
 
 
@@ -2655,6 +2793,12 @@ function approveWithdrawal(
         );
 
 
+    const processingFee =
+        getNumber(
+            withdrawal.processingFee
+        );
+
+
     const info =
         document.getElementById(
             "approvalInfo"
@@ -2712,6 +2856,19 @@ function approveWithdrawal(
         <div class="approval-info-row">
 
             <span>
+                Processing Fee
+            </span>
+
+            <span>
+                ${formatMoney(processingFee)}
+            </span>
+
+        </div>
+
+
+        <div class="approval-info-row">
+
+            <span>
                 Net Amount
             </span>
 
@@ -2740,7 +2897,9 @@ function approveWithdrawal(
     `;
 
 
-    /* Reset payment selection */
+    /* =================================================
+       RESET PAYMENT SELECTION
+    ================================================== */
 
     document
         .querySelectorAll(
@@ -2757,10 +2916,23 @@ function approveWithdrawal(
     ).value = "";
 
 
-    document.getElementById(
-        "confirmApprovalButton"
-    ).disabled = false;
+    const confirmButton =
+        document.getElementById(
+            "confirmApprovalButton"
+        );
 
+
+    confirmButton.disabled =
+        false;
+
+
+    confirmButton.innerText =
+        "✓ Approve & Record";
+
+
+    /* =================================================
+       SHOW MODAL
+    ================================================== */
 
     document.getElementById(
         "approvalModal"
@@ -2786,6 +2958,20 @@ function closeApprovalModal(){
     ).classList.remove(
         "show"
     );
+
+
+    const confirmButton =
+        document.getElementById(
+            "confirmApprovalButton"
+        );
+
+
+    confirmButton.disabled =
+        false;
+
+
+    confirmButton.innerText =
+        "✓ Approve & Record";
 
 }
 
@@ -2882,6 +3068,16 @@ async function confirmApproval(){
             "⏳ Processing...";
 
 
+        document
+            .querySelectorAll(
+                ".approve-btn,.reject-btn"
+            )
+            .forEach(
+                button =>
+                    button.disabled = true
+            );
+
+
         const withdrawalId =
             selectedWithdrawal.id;
 
@@ -2895,10 +3091,10 @@ async function confirmApproval(){
 
 
         /*
-           Create a new transaction document reference.
+           Create a unique transaction document ID.
 
-           This record will be created atomically
-           together with the withdrawal approval.
+           The transaction record and withdrawal update
+           are committed together.
         */
 
         const transactionRef =
@@ -2983,6 +3179,19 @@ async function confirmApproval(){
 
 
                 /* =================================================
+                   USER UID
+                ================================================== */
+
+                if(!withdrawal.uid){
+
+                    throw new Error(
+                        "USER_UID_MISSING"
+                    );
+
+                }
+
+
+                /* =================================================
                    VALUES
                 ================================================== */
 
@@ -3027,38 +3236,37 @@ async function confirmApproval(){
 
                         paymentMethod:
                             paymentMethod ||
-                            "Not specified"
+                            "Not specified",
+
+                        transactionId:
+                            transactionRef.id
 
                     }
                 );
 
 
                 /* =================================================
-                   CREATE WITHDRAWAL TRANSACTION RECORD
+                   CREATE NEW WITHDRAWAL TRANSACTION
                 ================================================== */
 
                 transaction.set(
                     transactionRef,
                     {
 
-                        /*
-                           Reference
-                        */
+                        transactionId:
+                            transactionRef.id,
+
+                        transactionType:
+                            "Withdrawal",
 
                         withdrawalId:
                             withdrawalId,
 
-                        transactionId:
-                            transactionRef.id,
 
-
-                        /*
-                           User
-                        */
+                        /* USER */
 
                         uid:
-                            withdrawal.uid ||
-                            null,
+                            withdrawal.uid,
 
                         phone:
                             withdrawal.phone ||
@@ -3069,9 +3277,7 @@ async function confirmApproval(){
                             "",
 
 
-                        /*
-                           Withdrawal account
-                        */
+                        /* ACCOUNT */
 
                         accountName:
                             withdrawal.accountName ||
@@ -3087,9 +3293,7 @@ async function confirmApproval(){
                             "",
 
 
-                        /*
-                           Financial information
-                        */
+                        /* AMOUNTS */
 
                         amount:
                             amount,
@@ -3101,9 +3305,7 @@ async function confirmApproval(){
                             netAmount,
 
 
-                        /*
-                           Payment processing information
-                        */
+                        /* PAYMENT */
 
                         paymentChannel:
                             paymentChannel,
@@ -3113,9 +3315,7 @@ async function confirmApproval(){
                             "Not specified",
 
 
-                        /*
-                           Original request time
-                        */
+                        /* REQUEST TIME */
 
                         requestedAt:
                             withdrawal.requestedAt ||
@@ -3123,9 +3323,7 @@ async function confirmApproval(){
                             null,
 
 
-                        /*
-                           Approval information
-                        */
+                        /* APPROVAL */
 
                         approvedAt:
                             serverTimestamp(),
@@ -3138,17 +3336,13 @@ async function confirmApproval(){
                             "",
 
 
-                        /*
-                           Transaction status
-                        */
+                        /* STATUS */
 
                         status:
                             "Approved",
 
 
-                        /*
-                           Creation time
-                        */
+                        /* RECORD CREATED */
 
                         createdAt:
                             serverTimestamp()
@@ -3235,6 +3429,17 @@ async function confirmApproval(){
 
         }
 
+        else if(
+            error.message ===
+            "USER_UID_MISSING"
+        ){
+
+            alert(
+                "This withdrawal does not contain a Firebase user ID."
+            );
+
+        }
+
         else{
 
             alert(
@@ -3256,6 +3461,16 @@ async function confirmApproval(){
 
         confirmButton.innerText =
             "✓ Approve & Record";
+
+
+        document
+            .querySelectorAll(
+                ".approve-btn,.reject-btn"
+            )
+            .forEach(
+                button =>
+                    button.disabled = false
+            );
 
     }
 
@@ -3319,7 +3534,6 @@ async function rejectWithdrawal(
             db,
             async transaction => {
 
-
                 /* =================================================
                    GET WITHDRAWAL
                 ================================================== */
@@ -3373,7 +3587,9 @@ async function rejectWithdrawal(
                 }
 
 
-                /* Cannot reject approved */
+                /* =================================================
+                   CANNOT REJECT APPROVED
+                ================================================== */
 
                 if(
                     isApprovedStatus(
@@ -3388,7 +3604,9 @@ async function rejectWithdrawal(
                 }
 
 
-                /* Only pending */
+                /* =================================================
+                   ONLY PENDING
+                ================================================== */
 
                 if(
                     !isPendingStatus(
@@ -3664,6 +3882,19 @@ async function rejectWithdrawal(
 
     }
 
+    finally{
+
+        document
+            .querySelectorAll(
+                ".approve-btn,.reject-btn"
+            )
+            .forEach(
+                button =>
+                    button.disabled = false
+            );
+
+    }
+
 }
 
 
@@ -3698,6 +3929,9 @@ window.rejectWithdrawal =
 window.goAdminPanel =
     goAdminPanel;
 
+window.loadWithdrawals =
+    loadWithdrawals;
+
 
 /* =====================================================
    ADMIN AUTHENTICATION
@@ -3706,7 +3940,6 @@ window.goAdminPanel =
 onAuthStateChanged(
     auth,
     async user => {
-
 
         if(!user){
 
@@ -3792,6 +4025,12 @@ document
         "input",
         function(){
 
+            /*
+               Only render from existing data.
+               We do not reload Firebase for every
+               search keystroke.
+            */
+
             renderCurrentSearch();
 
         }
@@ -3804,11 +4043,20 @@ document
 
 async function renderCurrentSearch(){
 
-    if(loadingWithdrawals){
+    /*
+       IMPORTANT FIX:
 
-        return;
+       There is NO:
 
-    }
+       if(loadingWithdrawals){
+           return;
+       }
+
+       here.
+
+       loadWithdrawals() calls this function AFTER
+       allWithdrawals has already been populated.
+    */
 
 
     const list =
@@ -3907,7 +4155,7 @@ async function renderCurrentSearch(){
 
 
     /* =================================================
-       CLEAR
+       CLEAR LIST
     ================================================== */
 
     list.innerHTML = "";
@@ -4051,7 +4299,6 @@ setInterval(
 
 
 </script>
-
 
 </body>
 
