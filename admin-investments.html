@@ -1,0 +1,4439 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent - Admin Investments</title>
+
+<meta name="theme-color" content="#0757c9">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            180deg,
+            #eef6ff 0%,
+            #f7fbff 45%,
+            #ffffff 100%
+        );
+
+    color:#182133;
+
+    min-height:100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0757c9,
+            #087bed
+        );
+
+    padding:
+        16px 16px
+        18px;
+
+    box-shadow:
+        0 4px 18px
+        rgba(0,0,0,.15);
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.back-btn{
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    background:
+        rgba(255,255,255,.14);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:22px;
+    font-weight:bold;
+}
+
+.header-title{
+    flex:1;
+}
+
+.header-title h1{
+    color:#fff;
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+.header-title p{
+    color:
+        rgba(255,255,255,.83);
+
+    font-size:12px;
+}
+
+.refresh-btn{
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.14);
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.container{
+    width:100%;
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:
+        18px 14px
+        45px;
+}
+
+
+/* =====================================================
+   ADMIN STATUS
+===================================================== */
+
+.admin-status{
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:14px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(35,75,130,.08);
+
+    margin-bottom:16px;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.status-icon{
+    width:40px;
+    height:40px;
+
+    border-radius:12px;
+
+    background:#e8f2ff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#0757c9;
+
+    font-size:20px;
+}
+
+.admin-status strong{
+    display:block;
+
+    font-size:14px;
+
+    margin-bottom:3px;
+}
+
+.admin-status small{
+    color:#748094;
+    font-size:12px;
+}
+
+
+/* =====================================================
+   SUMMARY CARDS
+===================================================== */
+
+.summary-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:11px;
+
+    margin-bottom:22px;
+}
+
+.summary-card{
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:16px;
+
+    min-height:112px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(35,75,130,.09);
+
+    border:
+        1px solid
+        rgba(7,87,201,.05);
+}
+
+.summary-icon{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:#edf5ff;
+
+    margin-bottom:11px;
+
+    font-size:19px;
+}
+
+.summary-label{
+    font-size:11px;
+
+    color:#7b8799;
+
+    margin-bottom:5px;
+
+    font-weight:bold;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+}
+
+.summary-value{
+    font-size:20px;
+
+    font-weight:800;
+
+    color:#12213a;
+
+    word-break:break-word;
+}
+
+.summary-value.blue{
+    color:#0757c9;
+}
+
+.summary-value.green{
+    color:#169c62;
+}
+
+.summary-value.orange{
+    color:#eb8a1a;
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section{
+    margin-bottom:24px;
+}
+
+.section-heading{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+}
+
+.section-heading h2{
+    font-size:17px;
+
+    color:#182133;
+}
+
+.section-heading span{
+    font-size:11px;
+
+    color:#778397;
+}
+
+
+/* =====================================================
+   PLAN GRID
+===================================================== */
+
+.plan-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:11px;
+}
+
+.plan-card{
+    background:#fff;
+
+    border-radius:17px;
+
+    padding:14px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(35,75,130,.08);
+
+    border:
+        1px solid
+        #edf3fa;
+}
+
+.plan-card.inactive{
+    opacity:.72;
+}
+
+.plan-top{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+}
+
+.plan-name{
+    font-size:18px;
+
+    font-weight:800;
+
+    color:#0757c9;
+}
+
+.plan-badge{
+    padding:
+        4px 8px;
+
+    border-radius:20px;
+
+    background:#e9f6ef;
+
+    color:#168653;
+
+    font-size:9px;
+
+    font-weight:bold;
+}
+
+.plan-badge.inactive{
+    background:#f2f2f2;
+
+    color:#777;
+}
+
+.plan-price{
+    font-size:15px;
+
+    font-weight:bold;
+
+    color:#1e293b;
+
+    margin-bottom:10px;
+}
+
+.plan-stat{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-top:7px;
+
+    font-size:11px;
+
+    color:#7c8796;
+}
+
+.plan-stat strong{
+    color:#28364d;
+
+    text-align:right;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-box{
+    position:relative;
+
+    margin-bottom:13px;
+}
+
+.search-box input{
+    width:100%;
+
+    border:
+        1px solid
+        #dbe7f4;
+
+    outline:none;
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:
+        15px 45px
+        15px 45px;
+
+    font-size:14px;
+
+    box-shadow:
+        0 4px 16px
+        rgba(35,75,130,.06);
+
+    transition:.2s;
+}
+
+.search-box input:focus{
+    border-color:#1d78e8;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(7,87,201,.08);
+}
+
+.search-icon{
+    position:absolute;
+
+    left:16px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size:18px;
+}
+
+.clear-search{
+    position:absolute;
+
+    right:10px;
+
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    width:32px;
+    height:32px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#eef4fa;
+
+    color:#536275;
+
+    display:none;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+.filter-row{
+    display:flex;
+
+    gap:8px;
+
+    overflow-x:auto;
+
+    padding-bottom:6px;
+
+    margin-bottom:13px;
+
+    scrollbar-width:none;
+}
+
+.filter-row::-webkit-scrollbar{
+    display:none;
+}
+
+.filter-btn{
+    flex-shrink:0;
+
+    border:
+        1px solid
+        #dfe9f5;
+
+    border-radius:22px;
+
+    background:#fff;
+
+    padding:
+        9px 14px;
+
+    color:#637083;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.filter-btn.active{
+    background:#0757c9;
+
+    color:#fff;
+
+    border-color:#0757c9;
+}
+
+
+/* =====================================================
+   INVESTMENT LIST
+===================================================== */
+
+.investment-list{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.investment-card{
+    background:#fff;
+
+    border-radius:17px;
+
+    padding:14px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(35,75,130,.08);
+
+    border:
+        1px solid
+        #edf3fa;
+
+    cursor:pointer;
+
+    transition:
+        transform .15s,
+        box-shadow .15s;
+}
+
+.investment-card:active{
+    transform:
+        scale(.985);
+}
+
+.investment-card-top{
+    display:flex;
+
+    gap:11px;
+
+    align-items:center;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0757c9,
+            #1695ff
+        );
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    flex-shrink:0;
+}
+
+.investment-user{
+    flex:1;
+
+    min-width:0;
+}
+
+.user-name{
+    font-size:14px;
+
+    font-weight:800;
+
+    color:#1b293e;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    margin-bottom:4px;
+}
+
+.user-phone{
+    font-size:11px;
+
+    color:#7d899a;
+}
+
+.plan-tag{
+    padding:
+        6px 9px;
+
+    border-radius:10px;
+
+    background:#eaf3ff;
+
+    color:#0757c9;
+
+    font-size:11px;
+
+    font-weight:bold;
+}
+
+.investment-divider{
+    height:1px;
+
+    background:#edf2f7;
+
+    margin:
+        12px 0;
+}
+
+.investment-info{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:6px;
+}
+
+.info-cell{
+    min-width:0;
+}
+
+.info-label{
+    font-size:9px;
+
+    color:#8994a4;
+
+    margin-bottom:4px;
+
+    text-transform:uppercase;
+}
+
+.info-value{
+    font-size:11px;
+
+    font-weight:bold;
+
+    color:#26344a;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+}
+
+.status-active{
+    color:#12945b;
+}
+
+.status-completed{
+    color:#0757c9;
+}
+
+.status-pending{
+    color:#df8a00;
+}
+
+.status-other{
+    color:#7d8996;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-state{
+    display:none;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    padding:
+        34px 20px;
+
+    color:#7d8997;
+
+    box-shadow:
+        0 5px 18px
+        rgba(35,75,130,.07);
+}
+
+.empty-icon{
+    font-size:38px;
+
+    margin-bottom:10px;
+}
+
+.empty-state h3{
+    color:#344258;
+
+    font-size:15px;
+
+    margin-bottom:5px;
+}
+
+.empty-state p{
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-screen{
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0757c9,
+            #148cff
+        );
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+}
+
+.loader-logo{
+    width:75px;
+    height:75px;
+
+    border-radius:22px;
+
+    background:
+        rgba(255,255,255,.15);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:38px;
+
+    margin-bottom:18px;
+}
+
+.loader{
+    width:37px;
+    height:37px;
+
+    border:
+        4px solid
+        rgba(255,255,255,.3);
+
+    border-top-color:#fff;
+
+    border-radius:50%;
+
+    animation:
+        spin .8s
+        linear infinite;
+
+    margin-bottom:12px;
+}
+
+@keyframes spin{
+
+    to{
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+.loading-screen p{
+    font-size:13px;
+
+    color:
+        rgba(255,255,255,.9);
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal-overlay{
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(3,20,43,.6);
+
+    z-index:5000;
+
+    display:none;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    padding-top:30px;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:100%;
+
+    max-width:620px;
+
+    max-height:91vh;
+
+    overflow-y:auto;
+
+    background:#f5f9fd;
+
+    border-radius:
+        25px 25px
+        0 0;
+
+    animation:
+        slideUp .25s ease;
+}
+
+@keyframes slideUp{
+
+    from{
+        transform:
+            translateY(100%);
+    }
+
+    to{
+        transform:
+            translateY(0);
+    }
+
+}
+
+.modal-header{
+    position:sticky;
+
+    top:0;
+
+    z-index:3;
+
+    background:#fff;
+
+    border-radius:
+        25px 25px
+        0 0;
+
+    padding:
+        17px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    border-bottom:
+        1px solid
+        #edf2f7;
+}
+
+.modal-user-avatar{
+    width:48px;
+    height:48px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0757c9,
+            #1395ff
+        );
+
+    color:#fff;
+
+    font-weight:bold;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+}
+
+.modal-user-info{
+    flex:1;
+}
+
+.modal-user-info h3{
+    font-size:16px;
+
+    color:#19273b;
+
+    margin-bottom:4px;
+}
+
+.modal-user-info p{
+    font-size:11px;
+
+    color:#7b8798;
+}
+
+.close-modal{
+    width:38px;
+    height:38px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#edf3f8;
+
+    color:#47566a;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.modal-body{
+    padding:15px;
+}
+
+.user-summary-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+
+    margin-bottom:15px;
+}
+
+.user-summary{
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:13px;
+
+    box-shadow:
+        0 4px 14px
+        rgba(35,75,130,.06);
+}
+
+.user-summary small{
+    display:block;
+
+    font-size:9px;
+
+    color:#8490a0;
+
+    margin-bottom:5px;
+
+    text-transform:uppercase;
+}
+
+.user-summary strong{
+    font-size:15px;
+
+    color:#1b293d;
+}
+
+.details-section{
+    background:#fff;
+
+    border-radius:17px;
+
+    padding:14px;
+
+    margin-bottom:12px;
+
+    box-shadow:
+        0 4px 14px
+        rgba(35,75,130,.06);
+}
+
+.details-section h4{
+    font-size:13px;
+
+    color:#233149;
+
+    margin-bottom:11px;
+}
+
+.detail-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:
+        8px 0;
+
+    border-bottom:
+        1px solid
+        #f0f3f7;
+
+    font-size:11px;
+}
+
+.detail-row:last-child{
+    border-bottom:none;
+}
+
+.detail-row span{
+    color:#8290a0;
+}
+
+.detail-row strong{
+    color:#26354b;
+
+    text-align:right;
+
+    word-break:break-word;
+}
+
+.modal-investment{
+    border:
+        1px solid
+        #e7eef6;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    margin-bottom:9px;
+
+    background:#fbfdff;
+}
+
+.modal-investment:last-child{
+    margin-bottom:0;
+}
+
+.modal-plan-head{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:8px;
+}
+
+.modal-plan-head strong{
+    color:#0757c9;
+
+    font-size:14px;
+}
+
+.modal-plan-head span{
+    font-size:10px;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   ERROR MESSAGE
+===================================================== */
+
+.error-message{
+    display:none;
+
+    background:#fff0f0;
+
+    border:
+        1px solid
+        #ffd0d0;
+
+    color:#b33a3a;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    font-size:12px;
+
+    margin-bottom:14px;
+
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media(min-width:700px){
+
+    .container{
+        padding:
+            22px 20px
+            50px;
+    }
+
+    .summary-grid{
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+    .plan-grid{
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .investment-list{
+        display:grid;
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .modal-overlay{
+        align-items:center;
+
+        padding:20px;
+    }
+
+    .modal{
+        border-radius:25px;
+
+        max-height:90vh;
+    }
+
+    .modal-header{
+        border-radius:
+            25px 25px
+            0 0;
+    }
+
+}
+
+@media(min-width:950px){
+
+    .plan-grid{
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+}
+
+
+/* =====================================================
+   UTILITY
+===================================================== */
+
+.hidden{
+    display:none !important;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADING SCREEN
+===================================================== -->
+
+<div
+    class="loading-screen"
+    id="loadingScreen">
+
+    <div class="loader-logo">
+        ✈
+    </div>
+
+    <div class="loader"></div>
+
+    <p id="loadingText">
+        Checking administrator access...
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="header-top">
+
+        <a
+            href="admin.html"
+            class="back-btn">
+            ‹
+        </a>
+
+        <div class="header-title">
+
+            <h1>
+                Investments
+            </h1>
+
+            <p>
+                SkyRent Administration
+            </p>
+
+        </div>
+
+        <button
+            class="refresh-btn"
+            id="refreshBtn"
+            title="Refresh">
+            ↻
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
+
+<main class="container">
+
+
+    <div
+        class="error-message"
+        id="errorMessage">
+    </div>
+
+
+    <!-- ADMIN STATUS -->
+
+    <div class="admin-status">
+
+        <div class="status-icon">
+            🛡️
+        </div>
+
+        <div>
+
+            <strong id="adminStatus">
+                Administrator
+            </strong>
+
+            <small id="lastUpdated">
+                Loading investment records...
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SUMMARY
+    ================================================== -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <h2>
+                Investment Summary
+            </h2>
+
+            <span id="investmentCountLabel">
+                0 records
+            </span>
+
+        </div>
+
+
+        <div class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📋
+                </div>
+
+                <div class="summary-label">
+                    Investments
+                </div>
+
+                <div
+                    class="summary-value blue"
+                    id="totalInvestments">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    💰
+                </div>
+
+                <div class="summary-label">
+                    Invested Amount
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="totalInvestmentAmount">
+                    ₱0
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📈
+                </div>
+
+                <div class="summary-label">
+                    Total Revenue
+                </div>
+
+                <div
+                    class="summary-value green"
+                    id="totalRevenue">
+                    ₱0
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    ✈️
+                </div>
+
+                <div class="summary-label">
+                    Active Plans
+                </div>
+
+                <div
+                    class="summary-value orange"
+                    id="activeInvestments">
+                    0
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PLAN SUMMARY
+    ================================================== -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <h2>
+                Plan Summary
+            </h2>
+
+            <span>
+                All SkyRent plans
+            </span>
+
+        </div>
+
+        <div
+            class="plan-grid"
+            id="planGrid">
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         INVESTMENTS
+    ================================================== -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <h2>
+                Investment Records
+            </h2>
+
+            <span id="visibleCount">
+                0 shown
+            </span>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔎
+            </span>
+
+            <input
+                type="tel"
+                id="searchInput"
+                placeholder="Search user phone number..."
+                autocomplete="off">
+
+            <button
+                class="clear-search"
+                id="clearSearch">
+                ✕
+            </button>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div
+            class="filter-row"
+            id="filterRow">
+
+            <button
+                class="filter-btn active"
+                data-plan="ALL">
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                data-plan="AC1">
+                AC1
+            </button>
+
+            <button
+                class="filter-btn"
+                data-plan="AC2">
+                AC2
+            </button>
+
+            <button
+                class="filter-btn"
+                data-plan="AC3">
+                AC3
+            </button>
+
+            <button
+                class="filter-btn"
+                data-plan="AC4">
+                AC4
+            </button>
+
+            <button
+                class="filter-btn"
+                data-plan="AC5">
+                AC5
+            </button>
+
+            <button
+                class="filter-btn"
+                data-plan="AC6">
+                AC6
+            </button>
+
+            <button
+                class="filter-btn"
+                data-plan="AC7">
+                AC7
+            </button>
+
+            <button
+                class="filter-btn"
+                data-plan="AC8">
+                AC8
+            </button>
+
+            <button
+                class="filter-btn"
+                data-plan="AC9">
+                AC9
+            </button>
+
+        </div>
+
+
+        <!-- LIST -->
+
+        <div
+            class="investment-list"
+            id="investmentList">
+        </div>
+
+
+        <!-- EMPTY -->
+
+        <div
+            class="empty-state"
+            id="emptyState">
+
+            <div class="empty-icon">
+                🔍
+            </div>
+
+            <h3>
+                No investments found
+            </h3>
+
+            <p>
+                No investment records match
+                the selected search or plan.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     USER DETAILS MODAL
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="userModal">
+
+    <div class="modal">
+
+
+        <div class="modal-header">
+
+            <div
+                class="modal-user-avatar"
+                id="modalAvatar">
+                U
+            </div>
+
+            <div class="modal-user-info">
+
+                <h3 id="modalUserName">
+                    User
+                </h3>
+
+                <p id="modalUserPhone">
+                    —
+                </p>
+
+            </div>
+
+            <button
+                class="close-modal"
+                id="closeModal">
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+
+            <!-- USER TOTALS -->
+
+            <div class="user-summary-grid">
+
+
+                <div class="user-summary">
+
+                    <small>
+                        Plans Purchased
+                    </small>
+
+                    <strong id="modalPlanCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="user-summary">
+
+                    <small>
+                        Total Invested
+                    </small>
+
+                    <strong id="modalTotalInvested">
+                        ₱0
+                    </strong>
+
+                </div>
+
+
+                <div class="user-summary">
+
+                    <small>
+                        Total Revenue
+                    </small>
+
+                    <strong id="modalRevenue">
+                        ₱0
+                    </strong>
+
+                </div>
+
+
+                <div class="user-summary">
+
+                    <small>
+                        Daily Earnings
+                    </small>
+
+                    <strong id="modalDaily">
+                        ₱0
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- USER INFORMATION -->
+
+            <div class="details-section">
+
+                <h4>
+                    User Information
+                </h4>
+
+                <div class="detail-row">
+
+                    <span>
+                        Name
+                    </span>
+
+                    <strong id="detailName">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Phone
+                    </span>
+
+                    <strong id="detailPhone">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Email
+                    </span>
+
+                    <strong id="detailEmail">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Referral Code
+                    </span>
+
+                    <strong id="detailReferral">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        User ID
+                    </span>
+
+                    <strong id="detailUid">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- INVESTMENT DETAILS -->
+
+            <div class="details-section">
+
+                <h4>
+                    Investment History
+                </h4>
+
+                <div id="modalInvestmentList">
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+
+    initializeApp
+
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+
+    getAuth,
+    onAuthStateChanged
+
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    getDoc
+
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+/*
+    IMPORTANT:
+
+    Copy the SAME Firebase configuration
+    from your current working SkyRent pages.
+
+    Example:
+
+    const firebaseConfig = {
+        apiKey: "...",
+        authDomain: "...",
+        projectId: "skyrent-ea30c",
+        storageBucket: "...",
+        messagingSenderId: "...",
+        appId: "..."
+    };
+*/
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "PASTE_YOUR_FIREBASE_API_KEY",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "PASTE_YOUR_STORAGE_BUCKET",
+
+    messagingSenderId:
+        "PASTE_YOUR_MESSAGING_SENDER_ID",
+
+    appId:
+        "PASTE_YOUR_APP_ID"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* =====================================================
+   ADMIN CONFIG
+===================================================== */
+
+/*
+    Paste the SAME admin UID
+    used in your existing admin.html page.
+
+    You may add more than one UID:
+
+    const ADMIN_UIDS = [
+        "UID_1",
+        "UID_2"
+    ];
+*/
+
+
+const ADMIN_UIDS = [
+
+    "PASTE_YOUR_ADMIN_UID_HERE"
+
+];
+
+
+
+/* =====================================================
+   SKYRENT PLAN CONFIGURATION
+===================================================== */
+
+const SKYRENT_PLANS = {
+
+    AC1:{
+        price:500,
+        daily:65,
+        revenue:1950,
+        active:true
+    },
+
+    AC2:{
+        price:800,
+        daily:104,
+        revenue:3120,
+        active:true
+    },
+
+    AC3:{
+        price:1500,
+        daily:220,
+        revenue:6600,
+        active:true
+    },
+
+    AC4:{
+        price:3000,
+        daily:465,
+        revenue:13950,
+        active:true
+    },
+
+    AC5:{
+        price:5000,
+        daily:680,
+        revenue:20400,
+        active:true
+    },
+
+    AC6:{
+        price:10000,
+        daily:1500,
+        revenue:45000,
+        active:true
+    },
+
+    AC7:{
+        price:15000,
+        daily:2300,
+        revenue:69000,
+        active:true
+    },
+
+    AC8:{
+        price:25000,
+        daily:3700,
+        revenue:111000,
+        active:true
+    },
+
+    AC9:{
+        price:50000,
+        daily:7500,
+        revenue:225000,
+        active:false
+    }
+
+};
+
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let allUsers = [];
+
+let allInvestments = [];
+
+let usersByUid = {};
+
+let currentPlanFilter =
+    "ALL";
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const loadingScreen =
+    document.getElementById(
+        "loadingScreen"
+    );
+
+
+const loadingText =
+    document.getElementById(
+        "loadingText"
+    );
+
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+const clearSearch =
+    document.getElementById(
+        "clearSearch"
+    );
+
+
+const investmentList =
+    document.getElementById(
+        "investmentList"
+    );
+
+
+const emptyState =
+    document.getElementById(
+        "emptyState"
+    );
+
+
+const userModal =
+    document.getElementById(
+        "userModal"
+    );
+
+
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
+
+
+
+/* =====================================================
+   MONEY FORMAT
+===================================================== */
+
+function money(value){
+
+    const number =
+        Number(value) || 0;
+
+    return new Intl.NumberFormat(
+
+        "en-PH",
+
+        {
+            style:"currency",
+            currency:"PHP",
+            minimumFractionDigits:0,
+            maximumFractionDigits:0
+        }
+
+    ).format(number);
+
+}
+
+
+
+/* =====================================================
+   NORMALIZE PHONE
+===================================================== */
+
+function normalizePhone(phone){
+
+    return String(
+        phone || ""
+    )
+    .replace(/\s+/g,"")
+    .replace(/-/g,"")
+    .replace(/\(/g,"")
+    .replace(/\)/g,"");
+
+}
+
+
+
+/* =====================================================
+   GET FIRST AVAILABLE FIELD
+===================================================== */
+
+function getValue(
+    object,
+    fields,
+    fallback = null
+){
+
+    if(!object){
+        return fallback;
+    }
+
+
+    for(
+        const field
+        of fields
+    ){
+
+        if(
+            object[field] !== undefined &&
+            object[field] !== null &&
+            object[field] !== ""
+        ){
+
+            return object[field];
+
+        }
+
+    }
+
+
+    return fallback;
+
+}
+
+
+
+/* =====================================================
+   NORMALIZE PLAN ID
+===================================================== */
+
+function normalizePlanId(value){
+
+    if(!value){
+        return "UNKNOWN";
+    }
+
+
+    let plan =
+        String(value)
+        .trim()
+        .toUpperCase();
+
+
+    /*
+        Older code sometimes used ACT3.
+    */
+
+    if(plan === "ACT3"){
+        plan = "AC3";
+    }
+
+
+    return plan;
+
+}
+
+
+
+/* =====================================================
+   GET INVESTMENT PLAN
+===================================================== */
+
+function getInvestmentPlan(
+    investment
+){
+
+    return normalizePlanId(
+
+        getValue(
+            investment,
+            [
+                "planId",
+                "plan",
+                "planName",
+                "aircraft",
+                "aircraftId"
+            ],
+            "UNKNOWN"
+        )
+
+    );
+
+}
+
+
+
+/* =====================================================
+   GET INVESTMENT USER ID
+===================================================== */
+
+function getInvestmentUid(
+    investment
+){
+
+    return String(
+
+        getValue(
+            investment,
+            [
+                "userId",
+                "uid",
+                "userUid",
+                "ownerId"
+            ],
+            ""
+        )
+
+    );
+
+}
+
+
+
+/* =====================================================
+   GET INVESTMENT AMOUNT
+===================================================== */
+
+function getInvestmentAmount(
+    investment
+){
+
+    const plan =
+        getInvestmentPlan(
+            investment
+        );
+
+
+    const configured =
+        SKYRENT_PLANS[plan];
+
+
+    return Number(
+
+        getValue(
+            investment,
+            [
+                "amount",
+                "investmentAmount",
+                "price",
+                "planPrice",
+                "purchaseAmount"
+            ],
+            configured
+                ? configured.price
+                : 0
+        )
+
+    ) || 0;
+
+}
+
+
+
+/* =====================================================
+   GET DAILY EARNING
+===================================================== */
+
+function getDailyEarning(
+    investment
+){
+
+    const plan =
+        getInvestmentPlan(
+            investment
+        );
+
+
+    const configured =
+        SKYRENT_PLANS[plan];
+
+
+    return Number(
+
+        getValue(
+            investment,
+            [
+                "dailyEarning",
+                "dailyIncome",
+                "daily",
+                "dailyProfit"
+            ],
+            configured
+                ? configured.daily
+                : 0
+        )
+
+    ) || 0;
+
+}
+
+
+
+/* =====================================================
+   GET REVENUE
+===================================================== */
+
+function getInvestmentRevenue(
+    investment
+){
+
+    const plan =
+        getInvestmentPlan(
+            investment
+        );
+
+
+    const configured =
+        SKYRENT_PLANS[plan];
+
+
+    return Number(
+
+        getValue(
+            investment,
+            [
+                "totalEarning",
+                "totalEarnings",
+                "totalIncome",
+                "totalRevenue",
+                "totalReturn",
+                "expectedReturn"
+            ],
+            configured
+                ? configured.revenue
+                : 0
+        )
+
+    ) || 0;
+
+}
+
+
+
+/* =====================================================
+   GET STATUS
+===================================================== */
+
+function getStatus(
+    investment
+){
+
+    const status =
+        String(
+
+            getValue(
+                investment,
+                [
+                    "status",
+                    "investmentStatus"
+                ],
+                "active"
+            )
+
+        )
+        .trim()
+        .toLowerCase();
+
+
+    return status;
+
+}
+
+
+
+/* =====================================================
+   DATE FORMAT
+===================================================== */
+
+function getDateValue(
+    investment
+){
+
+    return getValue(
+
+        investment,
+
+        [
+            "createdAt",
+            "purchaseDate",
+            "purchasedAt",
+            "startDate",
+            "date"
+        ],
+
+        null
+
+    );
+
+}
+
+
+function convertToDate(value){
+
+    if(!value){
+        return null;
+    }
+
+
+    try{
+
+        if(
+            typeof value.toDate ===
+            "function"
+        ){
+
+            return value.toDate();
+
+        }
+
+
+        if(value.seconds){
+
+            return new Date(
+                value.seconds * 1000
+            );
+
+        }
+
+
+        const parsed =
+            new Date(value);
+
+
+        if(
+            !isNaN(
+                parsed.getTime()
+            )
+        ){
+
+            return parsed;
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Date conversion error:",
+            error
+        );
+
+    }
+
+
+    return null;
+
+}
+
+
+function formatDate(value){
+
+    const date =
+        convertToDate(value);
+
+
+    if(!date){
+        return "—";
+    }
+
+
+    return date.toLocaleString(
+
+        "en-PH",
+
+        {
+            month:"short",
+            day:"numeric",
+            year:"numeric",
+            hour:"numeric",
+            minute:"2-digit"
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   GET USER INFORMATION
+===================================================== */
+
+function getUserByInvestment(
+    investment
+){
+
+    const uid =
+        getInvestmentUid(
+            investment
+        );
+
+
+    if(
+        uid &&
+        usersByUid[uid]
+    ){
+
+        return usersByUid[uid];
+
+    }
+
+
+    /*
+        Some older investment records
+        may contain user information directly.
+    */
+
+    return {
+
+        id:uid,
+
+        name:getValue(
+            investment,
+            [
+                "userName",
+                "name"
+            ],
+            "Unknown User"
+        ),
+
+        phone:getValue(
+            investment,
+            [
+                "phone",
+                "userPhone",
+                "phoneNumber"
+            ],
+            "—"
+        ),
+
+        email:getValue(
+            investment,
+            [
+                "email",
+                "userEmail"
+            ],
+            "—"
+        )
+
+    };
+
+}
+
+
+
+/* =====================================================
+   CHECK ADMIN
+===================================================== */
+
+async function isAuthorizedAdmin(
+    user
+){
+
+    /*
+        Method 1:
+        Direct administrator UID.
+    */
+
+    if(
+        ADMIN_UIDS.includes(
+            user.uid
+        )
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+        Method 2:
+        Check the user's Firestore
+        document for role/isAdmin.
+
+        This gives flexibility if you
+        already save admin status there.
+    */
+
+    try{
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                user.uid
+            );
+
+
+        const snapshot =
+            await getDoc(
+                userRef
+            );
+
+
+        if(snapshot.exists()){
+
+            const data =
+                snapshot.data();
+
+
+            if(
+                data.isAdmin === true
+            ){
+
+                return true;
+
+            }
+
+
+            if(
+                String(
+                    data.role || ""
+                ).toLowerCase()
+                === "admin"
+            ){
+
+                return true;
+
+            }
+
+        }
+
+    }
+    catch(error){
+
+        console.warn(
+            "Unable to check admin document:",
+            error
+        );
+
+    }
+
+
+    return false;
+
+}
+
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+
+    auth,
+
+    async(user)=>{
+
+        if(!user){
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        loadingText.textContent =
+            "Checking administrator access...";
+
+
+        const allowed =
+            await isAuthorizedAdmin(
+                user
+            );
+
+
+        if(!allowed){
+
+            loadingText.textContent =
+                "Administrator access required.";
+
+
+            setTimeout(
+                ()=>{
+
+                    window.location.href =
+                        "dashboard.html";
+
+                },
+                1000
+            );
+
+
+            return;
+
+        }
+
+
+        document.getElementById(
+            "adminStatus"
+        ).textContent =
+            user.email
+                ? "Administrator • " +
+                  user.email
+                : "SkyRent Administrator";
+
+
+        await loadInvestmentData();
+
+    }
+
+);
+
+
+
+/* =====================================================
+   LOAD FIRESTORE DATA
+===================================================== */
+
+async function loadInvestmentData(){
+
+    showError("");
+
+    loadingScreen.style.display =
+        "flex";
+
+    loadingText.textContent =
+        "Loading investment records...";
+
+
+    try{
+
+
+        /*
+            Load users and investments
+            together for faster loading.
+        */
+
+        const [
+
+            usersSnapshot,
+            investmentsSnapshot
+
+        ] = await Promise.all([
+
+            getDocs(
+                collection(
+                    db,
+                    "users"
+                )
+            ),
+
+            getDocs(
+                collection(
+                    db,
+                    "investments"
+                )
+            )
+
+        ]);
+
+
+        allUsers = [];
+
+        allInvestments = [];
+
+        usersByUid = {};
+
+
+
+        /* USERS */
+
+        usersSnapshot.forEach(
+
+            snapshot=>{
+
+                const user = {
+
+                    id:snapshot.id,
+
+                    ...snapshot.data()
+
+                };
+
+
+                allUsers.push(
+                    user
+                );
+
+
+                usersByUid[
+                    snapshot.id
+                ] = user;
+
+            }
+
+        );
+
+
+
+        /* INVESTMENTS */
+
+        investmentsSnapshot.forEach(
+
+            snapshot=>{
+
+                allInvestments.push({
+
+                    id:snapshot.id,
+
+                    ...snapshot.data()
+
+                });
+
+            }
+
+        );
+
+
+
+        /*
+            Newest investment first
+        */
+
+        allInvestments.sort(
+
+            (a,b)=>{
+
+                const dateA =
+                    convertToDate(
+                        getDateValue(a)
+                    );
+
+
+                const dateB =
+                    convertToDate(
+                        getDateValue(b)
+                    );
+
+
+                return (
+                    dateB?.getTime() || 0
+                ) - (
+                    dateA?.getTime() || 0
+                );
+
+            }
+
+        );
+
+
+        updateDashboard();
+
+        renderPlanSummary();
+
+        applyFilters();
+
+
+        document.getElementById(
+            "lastUpdated"
+        ).textContent =
+            "Updated " +
+            new Date()
+            .toLocaleTimeString(
+                "en-PH",
+                {
+                    hour:"numeric",
+                    minute:"2-digit"
+                }
+            );
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Investment loading error:",
+            error
+        );
+
+
+        showError(
+            "Unable to load investment data. " +
+            error.message
+        );
+
+    }
+    finally{
+
+        loadingScreen.style.display =
+            "none";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   DASHBOARD TOTALS
+===================================================== */
+
+function updateDashboard(){
+
+    let investmentAmount = 0;
+
+    let totalRevenue = 0;
+
+    let activeCount = 0;
+
+
+    allInvestments.forEach(
+
+        investment=>{
+
+            investmentAmount +=
+                getInvestmentAmount(
+                    investment
+                );
+
+
+            totalRevenue +=
+                getInvestmentRevenue(
+                    investment
+                );
+
+
+            const status =
+                getStatus(
+                    investment
+                );
+
+
+            if(
+                status === "active" ||
+                status === "in progress" ||
+                status === "progress"
+            ){
+
+                activeCount++;
+
+            }
+
+        }
+
+    );
+
+
+    document.getElementById(
+        "totalInvestments"
+    ).textContent =
+        allInvestments.length;
+
+
+    document.getElementById(
+        "totalInvestmentAmount"
+    ).textContent =
+        money(
+            investmentAmount
+        );
+
+
+    document.getElementById(
+        "totalRevenue"
+    ).textContent =
+        money(
+            totalRevenue
+        );
+
+
+    document.getElementById(
+        "activeInvestments"
+    ).textContent =
+        activeCount;
+
+
+    document.getElementById(
+        "investmentCountLabel"
+    ).textContent =
+        allInvestments.length +
+        (
+            allInvestments.length === 1
+                ? " record"
+                : " records"
+        );
+
+}
+
+
+
+/* =====================================================
+   PLAN SUMMARY
+===================================================== */
+
+function renderPlanSummary(){
+
+    const container =
+        document.getElementById(
+            "planGrid"
+        );
+
+
+    container.innerHTML = "";
+
+
+    Object.entries(
+        SKYRENT_PLANS
+    ).forEach(
+
+        ([planId,plan])=>{
+
+
+            const investments =
+                allInvestments.filter(
+
+                    investment=>
+                        getInvestmentPlan(
+                            investment
+                        ) === planId
+
+                );
+
+
+            let invested = 0;
+
+            let revenue = 0;
+
+
+            investments.forEach(
+
+                investment=>{
+
+                    invested +=
+                        getInvestmentAmount(
+                            investment
+                        );
+
+
+                    revenue +=
+                        getInvestmentRevenue(
+                            investment
+                        );
+
+                }
+
+            );
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "plan-card" +
+                (
+                    plan.active
+                        ? ""
+                        : " inactive"
+                );
+
+
+            card.innerHTML = `
+
+                <div class="plan-top">
+
+                    <div class="plan-name">
+                        ${planId}
+                    </div>
+
+                    <div class="plan-badge ${
+                        plan.active
+                            ? ""
+                            : "inactive"
+                    }">
+
+                        ${
+                            plan.active
+                                ? "ACTIVE"
+                                : "INACTIVE"
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="plan-price">
+
+                    ${money(plan.price)}
+
+                </div>
+
+
+                <div class="plan-stat">
+
+                    <span>
+                        Purchases
+                    </span>
+
+                    <strong>
+                        ${investments.length}
+                    </strong>
+
+                </div>
+
+
+                <div class="plan-stat">
+
+                    <span>
+                        Invested
+                    </span>
+
+                    <strong>
+                        ${money(invested)}
+                    </strong>
+
+                </div>
+
+
+                <div class="plan-stat">
+
+                    <span>
+                        Revenue
+                    </span>
+
+                    <strong>
+                        ${money(revenue)}
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            /*
+                Click plan summary to
+                automatically filter list.
+            */
+
+            card.addEventListener(
+
+                "click",
+
+                ()=>{
+
+                    currentPlanFilter =
+                        planId;
+
+
+                    updateFilterButtons();
+
+                    applyFilters();
+
+
+                    document.getElementById(
+                        "searchInput"
+                    ).scrollIntoView({
+
+                        behavior:"smooth",
+                        block:"center"
+
+                    });
+
+                }
+
+            );
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   APPLY SEARCH + PLAN FILTER
+===================================================== */
+
+function applyFilters(){
+
+    const query =
+        normalizePhone(
+            searchInput.value
+        ).toLowerCase();
+
+
+    clearSearch.style.display =
+        searchInput.value
+            ? "block"
+            : "none";
+
+
+    const filtered =
+        allInvestments.filter(
+
+            investment=>{
+
+
+                const user =
+                    getUserByInvestment(
+                        investment
+                    );
+
+
+                const phone =
+                    normalizePhone(
+
+                        getValue(
+                            user,
+                            [
+                                "phone",
+                                "phoneNumber",
+                                "mobile"
+                            ],
+                            getValue(
+                                investment,
+                                [
+                                    "phone",
+                                    "userPhone"
+                                ],
+                                ""
+                            )
+                        )
+
+                    )
+                    .toLowerCase();
+
+
+                const plan =
+                    getInvestmentPlan(
+                        investment
+                    );
+
+
+                const matchesPhone =
+                    !query ||
+                    phone.includes(
+                        query
+                    );
+
+
+                const matchesPlan =
+                    currentPlanFilter
+                        === "ALL" ||
+                    plan ===
+                        currentPlanFilter;
+
+
+                return (
+                    matchesPhone &&
+                    matchesPlan
+                );
+
+            }
+
+        );
+
+
+    renderInvestmentList(
+        filtered
+    );
+
+}
+
+
+
+/* =====================================================
+   RENDER INVESTMENT LIST
+===================================================== */
+
+function renderInvestmentList(
+    investments
+){
+
+    investmentList.innerHTML =
+        "";
+
+
+    document.getElementById(
+        "visibleCount"
+    ).textContent =
+        investments.length +
+        " shown";
+
+
+    if(
+        investments.length === 0
+    ){
+
+        emptyState.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    emptyState.style.display =
+        "none";
+
+
+    investments.forEach(
+
+        investment=>{
+
+
+            const user =
+                getUserByInvestment(
+                    investment
+                );
+
+
+            const name =
+                getValue(
+                    user,
+                    [
+                        "name",
+                        "fullName",
+                        "displayName"
+                    ],
+                    "Unknown User"
+                );
+
+
+            const phone =
+                getValue(
+                    user,
+                    [
+                        "phone",
+                        "phoneNumber",
+                        "mobile"
+                    ],
+                    getValue(
+                        investment,
+                        [
+                            "phone",
+                            "userPhone"
+                        ],
+                        "—"
+                    )
+                );
+
+
+            const plan =
+                getInvestmentPlan(
+                    investment
+                );
+
+
+            const amount =
+                getInvestmentAmount(
+                    investment
+                );
+
+
+            const revenue =
+                getInvestmentRevenue(
+                    investment
+                );
+
+
+            const status =
+                getStatus(
+                    investment
+                );
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "investment-card";
+
+
+            card.innerHTML = `
+
+                <div class="investment-card-top">
+
+                    <div class="avatar">
+
+                        ${escapeHtml(
+                            getInitials(name)
+                        )}
+
+                    </div>
+
+
+                    <div class="investment-user">
+
+                        <div class="user-name">
+
+                            ${escapeHtml(name)}
+
+                        </div>
+
+                        <div class="user-phone">
+
+                            ${escapeHtml(phone)}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="plan-tag">
+
+                        ${escapeHtml(plan)}
+
+                    </div>
+
+                </div>
+
+
+                <div class="investment-divider">
+                </div>
+
+
+                <div class="investment-info">
+
+
+                    <div class="info-cell">
+
+                        <div class="info-label">
+                            Invested
+                        </div>
+
+                        <div class="info-value">
+
+                            ${money(amount)}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-cell">
+
+                        <div class="info-label">
+                            Revenue
+                        </div>
+
+                        <div class="info-value">
+
+                            ${money(revenue)}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-cell">
+
+                        <div class="info-label">
+                            Status
+                        </div>
+
+                        <div class="
+                            info-value
+                            ${getStatusClass(status)}
+                        ">
+
+                            ${escapeHtml(
+                                capitalize(status)
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            `;
+
+
+            card.addEventListener(
+
+                "click",
+
+                ()=>{
+
+                    openUserDetails(
+                        investment
+                    );
+
+                }
+
+            );
+
+
+            investmentList.appendChild(
+                card
+            );
+
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   OPEN USER DETAILS
+===================================================== */
+
+function openUserDetails(
+    selectedInvestment
+){
+
+    const selectedUser =
+        getUserByInvestment(
+            selectedInvestment
+        );
+
+
+    const uid =
+        getInvestmentUid(
+            selectedInvestment
+        ) ||
+        selectedUser.id ||
+        "";
+
+
+    /*
+        Find every investment belonging
+        to this user.
+    */
+
+    let userInvestments =
+        allInvestments.filter(
+
+            investment=>
+                getInvestmentUid(
+                    investment
+                ) === uid
+
+        );
+
+
+    /*
+        Fallback for old records that
+        have no userId but do have phone.
+    */
+
+    if(
+        !uid ||
+        userInvestments.length === 0
+    ){
+
+        const selectedPhone =
+            normalizePhone(
+
+                getValue(
+                    selectedUser,
+                    [
+                        "phone",
+                        "phoneNumber"
+                    ],
+                    getValue(
+                        selectedInvestment,
+                        [
+                            "phone",
+                            "userPhone"
+                        ],
+                        ""
+                    )
+                )
+
+            );
+
+
+        if(selectedPhone){
+
+            userInvestments =
+                allInvestments.filter(
+
+                    investment=>{
+
+                        const recordUser =
+                            getUserByInvestment(
+                                investment
+                            );
+
+
+                        const phone =
+                            normalizePhone(
+
+                                getValue(
+                                    recordUser,
+                                    [
+                                        "phone",
+                                        "phoneNumber"
+                                    ],
+                                    getValue(
+                                        investment,
+                                        [
+                                            "phone",
+                                            "userPhone"
+                                        ],
+                                        ""
+                                    )
+                                )
+
+                            );
+
+
+                        return phone ===
+                            selectedPhone;
+
+                    }
+
+                );
+
+        }
+
+    }
+
+
+
+    const name =
+        getValue(
+            selectedUser,
+            [
+                "name",
+                "fullName",
+                "displayName"
+            ],
+            "Unknown User"
+        );
+
+
+    const phone =
+        getValue(
+            selectedUser,
+            [
+                "phone",
+                "phoneNumber",
+                "mobile"
+            ],
+            getValue(
+                selectedInvestment,
+                [
+                    "phone",
+                    "userPhone"
+                ],
+                "—"
+            )
+        );
+
+
+    const email =
+        getValue(
+            selectedUser,
+            [
+                "email",
+                "emailAddress"
+            ],
+            "—"
+        );
+
+
+    const referralCode =
+        getValue(
+            selectedUser,
+            [
+                "referralCode",
+                "inviteCode",
+                "code"
+            ],
+            "—"
+        );
+
+
+
+    let totalInvested = 0;
+
+    let revenue = 0;
+
+    let daily = 0;
+
+
+    userInvestments.forEach(
+
+        investment=>{
+
+            totalInvested +=
+                getInvestmentAmount(
+                    investment
+                );
+
+
+            revenue +=
+                getInvestmentRevenue(
+                    investment
+                );
+
+
+            const status =
+                getStatus(
+                    investment
+                );
+
+
+            /*
+                Only currently active
+                plans are added to the
+                user's current daily income.
+            */
+
+            if(
+                status === "active" ||
+                status === "in progress" ||
+                status === "progress"
+            ){
+
+                daily +=
+                    getDailyEarning(
+                        investment
+                    );
+
+            }
+
+        }
+
+    );
+
+
+
+    document.getElementById(
+        "modalAvatar"
+    ).textContent =
+        getInitials(name);
+
+
+    document.getElementById(
+        "modalUserName"
+    ).textContent =
+        name;
+
+
+    document.getElementById(
+        "modalUserPhone"
+    ).textContent =
+        phone;
+
+
+    document.getElementById(
+        "modalPlanCount"
+    ).textContent =
+        userInvestments.length;
+
+
+    document.getElementById(
+        "modalTotalInvested"
+    ).textContent =
+        money(
+            totalInvested
+        );
+
+
+    document.getElementById(
+        "modalRevenue"
+    ).textContent =
+        money(
+            revenue
+        );
+
+
+    document.getElementById(
+        "modalDaily"
+    ).textContent =
+        money(
+            daily
+        );
+
+
+    document.getElementById(
+        "detailName"
+    ).textContent =
+        name;
+
+
+    document.getElementById(
+        "detailPhone"
+    ).textContent =
+        phone;
+
+
+    document.getElementById(
+        "detailEmail"
+    ).textContent =
+        email;
+
+
+    document.getElementById(
+        "detailReferral"
+    ).textContent =
+        referralCode;
+
+
+    document.getElementById(
+        "detailUid"
+    ).textContent =
+        uid || "—";
+
+
+    renderModalInvestments(
+        userInvestments
+    );
+
+
+    userModal.classList.add(
+        "show"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+/* =====================================================
+   USER MODAL INVESTMENTS
+===================================================== */
+
+function renderModalInvestments(
+    investments
+){
+
+    const container =
+        document.getElementById(
+            "modalInvestmentList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if(
+        investments.length === 0
+    ){
+
+        container.innerHTML = `
+
+            <p style="
+                font-size:12px;
+                color:#7f8b9c;
+                padding:5px 0;
+            ">
+
+                No investment records found.
+
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    investments.forEach(
+
+        investment=>{
+
+
+            const plan =
+                getInvestmentPlan(
+                    investment
+                );
+
+
+            const status =
+                getStatus(
+                    investment
+                );
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "modal-investment";
+
+
+            card.innerHTML = `
+
+                <div class="modal-plan-head">
+
+                    <strong>
+
+                        ${escapeHtml(plan)}
+
+                    </strong>
+
+                    <span class="
+                        ${getStatusClass(status)}
+                    ">
+
+                        ${escapeHtml(
+                            capitalize(status)
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Investment
+                    </span>
+
+                    <strong>
+
+                        ${money(
+                            getInvestmentAmount(
+                                investment
+                            )
+                        )}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Daily Earnings
+                    </span>
+
+                    <strong>
+
+                        ${money(
+                            getDailyEarning(
+                                investment
+                            )
+                        )}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Total Revenue
+                    </span>
+
+                    <strong>
+
+                        ${money(
+                            getInvestmentRevenue(
+                                investment
+                            )
+                        )}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Purchased
+                    </span>
+
+                    <strong>
+
+                        ${escapeHtml(
+                            formatDate(
+                                getDateValue(
+                                    investment
+                                )
+                            )
+                        )}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Investment ID
+                    </span>
+
+                    <strong>
+
+                        ${escapeHtml(
+                            investment.id
+                        )}
+
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeUserModal(){
+
+    userModal.classList.remove(
+        "show"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+document.getElementById(
+    "closeModal"
+)
+.addEventListener(
+
+    "click",
+    closeUserModal
+
+);
+
+
+userModal.addEventListener(
+
+    "click",
+
+    event=>{
+
+        if(
+            event.target ===
+            userModal
+        ){
+
+            closeUserModal();
+
+        }
+
+    }
+
+);
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+searchInput.addEventListener(
+
+    "input",
+
+    applyFilters
+
+);
+
+
+clearSearch.addEventListener(
+
+    "click",
+
+    ()=>{
+
+        searchInput.value =
+            "";
+
+        applyFilters();
+
+        searchInput.focus();
+
+    }
+
+);
+
+
+
+/* =====================================================
+   PLAN FILTER BUTTONS
+===================================================== */
+
+document.querySelectorAll(
+    ".filter-btn"
+)
+.forEach(
+
+    button=>{
+
+        button.addEventListener(
+
+            "click",
+
+            ()=>{
+
+                currentPlanFilter =
+                    button.dataset.plan;
+
+
+                updateFilterButtons();
+
+                applyFilters();
+
+            }
+
+        );
+
+    }
+
+);
+
+
+function updateFilterButtons(){
+
+    document.querySelectorAll(
+        ".filter-btn"
+    )
+    .forEach(
+
+        button=>{
+
+            button.classList.toggle(
+
+                "active",
+
+                button.dataset.plan ===
+                    currentPlanFilter
+
+            );
+
+        }
+
+    );
+
+}
+
+
+
+/* =====================================================
+   REFRESH BUTTON
+===================================================== */
+
+document.getElementById(
+    "refreshBtn"
+)
+.addEventListener(
+
+    "click",
+
+    loadInvestmentData
+
+);
+
+
+
+/* =====================================================
+   STATUS CLASS
+===================================================== */
+
+function getStatusClass(
+    status
+){
+
+    const value =
+        String(status)
+        .toLowerCase();
+
+
+    if(
+        value === "active" ||
+        value === "in progress" ||
+        value === "progress"
+    ){
+
+        return "status-active";
+
+    }
+
+
+    if(
+        value === "completed" ||
+        value === "finished"
+    ){
+
+        return "status-completed";
+
+    }
+
+
+    if(
+        value === "pending"
+    ){
+
+        return "status-pending";
+
+    }
+
+
+    return "status-other";
+
+}
+
+
+
+/* =====================================================
+   INITIALS
+===================================================== */
+
+function getInitials(name){
+
+    if(!name){
+        return "U";
+    }
+
+
+    const parts =
+        String(name)
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean);
+
+
+    if(parts.length === 0){
+        return "U";
+    }
+
+
+    if(parts.length === 1){
+
+        return parts[0]
+            .substring(0,2)
+            .toUpperCase();
+
+    }
+
+
+    return (
+        parts[0][0] +
+        parts[
+            parts.length - 1
+        ][0]
+    )
+    .toUpperCase();
+
+}
+
+
+
+/* =====================================================
+   CAPITALIZE
+===================================================== */
+
+function capitalize(value){
+
+    const text =
+        String(
+            value || ""
+        );
+
+
+    if(!text){
+        return "Unknown";
+    }
+
+
+    return text
+        .split(" ")
+        .map(
+
+            word=>
+                word.charAt(0)
+                .toUpperCase() +
+                word.slice(1)
+
+        )
+        .join(" ");
+
+}
+
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+function showError(message){
+
+    if(!message){
+
+        errorMessage.style.display =
+            "none";
+
+        errorMessage.textContent =
+            "";
+
+        return;
+
+    }
+
+
+    errorMessage.textContent =
+        message;
+
+    errorMessage.style.display =
+        "block";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+```
