@@ -10,53 +10,37 @@
 
 <style>
 
-/* =========================
-   RESET
-========================= */
-
 *{
     box-sizing:border-box;
 }
 
-
-/* =========================
-   BODY
-========================= */
-
 body{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f3f7ff;
     color:#1e293b;
 }
 
-
 /* =========================
-   ADMIN LOADING SCREEN
+   ADMIN LOADING
 ========================= */
 
 .admin-loading-screen{
     position:fixed;
     inset:0;
-
-    background:
-        linear-gradient(
-            135deg,
-            #052b78,
-            #0074d9,
-            #7edfff
-        );
-
+    background:linear-gradient(
+        135deg,
+        #052b78,
+        #0074d9,
+        #7edfff
+    );
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-
     z-index:99999;
-
     color:white;
     text-align:center;
-
     padding:25px;
 }
 
@@ -65,13 +49,8 @@ body{
     max-width:65%;
     height:auto;
     object-fit:contain;
-
     margin-bottom:22px;
-
-    filter:
-        drop-shadow(
-            0 5px 12px rgba(0,0,0,.25)
-        );
+    filter:drop-shadow(0 5px 12px rgba(0,0,0,.25));
 }
 
 .admin-loading-title{
@@ -83,72 +62,48 @@ body{
 .admin-loading-spinner{
     width:44px;
     height:44px;
-
-    border:
-        4px solid
-        rgba(255,255,255,.30);
-
+    border:4px solid rgba(255,255,255,.30);
     border-top-color:white;
-
     border-radius:50%;
-
-    animation:
-        adminLoadingSpin
-        .8s linear infinite;
-
+    animation:adminLoadingSpin .8s linear infinite;
     margin-bottom:18px;
 }
 
 @keyframes adminLoadingSpin{
-
     to{
         transform:rotate(360deg);
     }
-
 }
 
 .admin-loading-text{
     font-size:14px;
     font-weight:600;
-
     min-height:20px;
-
     opacity:.95;
-
     transition:opacity .2s ease;
 }
 
 .admin-loading-subtext{
     margin-top:7px;
-
     font-size:11px;
-
     opacity:.75;
-
     min-height:16px;
 }
-
 
 /* =========================
    HEADER
 ========================= */
 
 .header{
-    background:
-        linear-gradient(
-            135deg,
-            #075985,
-            #0284c7
-        );
-
+    background:linear-gradient(
+        135deg,
+        #075985,
+        #0284c7
+    );
     color:white;
-
     padding:18px 15px;
-
     text-align:center;
-
-    box-shadow:
-        0 3px 10px rgba(0,0,0,.12);
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
 }
 
 .header h1{
@@ -162,7 +117,6 @@ body{
     opacity:.9;
 }
 
-
 /* =========================
    MAIN
 ========================= */
@@ -174,18 +128,11 @@ body{
     padding:15px;
 }
 
-
-/* =========================
-   SECTION TITLE
-========================= */
-
 .section-title{
     font-size:19px;
     font-weight:bold;
-
     margin:5px 0 12px;
 }
-
 
 /* =========================
    FINANCIAL SUMMARY
@@ -193,27 +140,17 @@ body{
 
 .summary{
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:10px;
-
     margin-bottom:20px;
 }
 
 .summary-card{
     background:white;
-
     border-radius:12px;
-
     padding:15px;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.07);
-
-    border-left:
-        4px solid #0284c7;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    border-left:4px solid #0284c7;
 }
 
 .summary-card.clickable{
@@ -223,9 +160,7 @@ body{
 
 .summary-card.clickable:hover{
     transform:translateY(-2px);
-
-    box-shadow:
-        0 6px 18px rgba(0,0,0,.12);
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
 }
 
 .summary-card.clickable:active{
@@ -234,34 +169,22 @@ body{
 
 .summary-card h3{
     margin:0;
-
     font-size:13px;
-
     color:#64748b;
 }
 
 .summary-card .value{
     margin-top:7px;
-
     font-size:21px;
-
     font-weight:bold;
-
     color:#075985;
 }
 
 .summary-card .small{
     margin-top:4px;
-
     font-size:12px;
-
     color:#64748b;
 }
-
-
-/* =========================
-   APPROVED DEPOSIT
-========================= */
 
 .approved-deposit-card{
     border-left-color:#16a34a;
@@ -271,11 +194,6 @@ body{
     color:#15803d;
 }
 
-
-/* =========================
-   TOTAL WITHDRAWAL
-========================= */
-
 .total-withdrawal-card{
     border-left-color:#7c3aed;
 }
@@ -283,11 +201,6 @@ body{
 .total-withdrawal-card .value{
     color:#6d28d9;
 }
-
-
-/* =========================
-   APPROVED WITHDRAWAL
-========================= */
 
 .approved-withdrawal-card{
     border-left-color:#059669;
@@ -297,11 +210,6 @@ body{
     color:#047857;
 }
 
-
-/* =========================
-   PENDING DEPOSIT
-========================= */
-
 .pending-deposit-card{
     border-left-color:#f59e0b;
 }
@@ -309,11 +217,6 @@ body{
 .pending-deposit-card .value{
     color:#d97706;
 }
-
-
-/* =========================
-   PAYMENT 1
-========================= */
 
 .payment1-card{
     border-left-color:#2563eb;
@@ -323,11 +226,6 @@ body{
     color:#2563eb;
 }
 
-
-/* =========================
-   PAYMENT 2
-========================= */
-
 .payment2-card{
     border-left-color:#7c3aed;
 }
@@ -335,11 +233,6 @@ body{
 .payment2-card .value{
     color:#7c3aed;
 }
-
-
-/* =========================
-   PENDING WITHDRAWAL
-========================= */
 
 .pending-withdrawal-card{
     border-left-color:#ef4444;
@@ -349,27 +242,20 @@ body{
     color:#dc2626;
 }
 
-
 /* =========================
    COMPARISON
 ========================= */
 
 .comparison{
     background:white;
-
     padding:15px;
-
     border-radius:12px;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.07);
-
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
     margin-bottom:20px;
 }
 
 .comparison h3{
     margin:0 0 12px;
-
     font-size:15px;
 }
 
@@ -383,33 +269,23 @@ body{
 
 .bar-label{
     display:flex;
-
     justify-content:space-between;
-
     font-size:12px;
-
     margin-bottom:5px;
 }
 
 .bar-bg{
     width:100%;
-
     height:10px;
-
     background:#e2e8f0;
-
     border-radius:20px;
-
     overflow:hidden;
 }
 
 .bar{
     height:100%;
-
     border-radius:20px;
-
     width:0%;
-
     transition:.4s;
 }
 
@@ -421,6 +297,41 @@ body{
     background:#16a34a;
 }
 
+/* =========================
+   REMAINING FUNDS
+========================= */
+
+.remaining-funds{
+    margin-top:16px;
+    padding:14px;
+    border-radius:10px;
+    background:#ecfdf5;
+    border:1px solid #bbf7d0;
+    text-align:center;
+}
+
+.remaining-funds-label{
+    font-size:12px;
+    font-weight:700;
+    color:#047857;
+    margin-bottom:5px;
+}
+
+.remaining-funds-value{
+    font-size:24px;
+    font-weight:800;
+    color:#15803d;
+}
+
+.remaining-funds-value.negative{
+    color:#dc2626;
+}
+
+.remaining-funds-description{
+    margin-top:5px;
+    font-size:11px;
+    color:#64748b;
+}
 
 /* =========================
    MANAGEMENT
@@ -428,39 +339,25 @@ body{
 
 .management-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
-
     margin-bottom:20px;
 }
 
 .manage-card{
     background:white;
-
     border-radius:14px;
-
     padding:17px;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.07);
-
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
     cursor:pointer;
-
     transition:.2s;
-
     position:relative;
-
     overflow:hidden;
 }
 
 .manage-card:hover{
     transform:translateY(-2px);
-
-    box-shadow:
-        0 6px 18px rgba(0,0,0,.12);
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
 }
 
 .manage-card:active{
@@ -469,26 +366,20 @@ body{
 
 .manage-icon{
     font-size:30px;
-
     margin-bottom:8px;
 }
 
 .manage-card h2{
     margin:0;
-
     font-size:17px;
-
     color:#0f172a;
 }
 
 .manage-card p{
     margin:5px 0 0;
-
     font-size:12px;
-
     color:#64748b;
 }
-
 
 /* =========================
    COUNT BOX
@@ -496,23 +387,14 @@ body{
 
 .count-box{
     margin-top:12px;
-
     display:inline-flex;
-
     align-items:center;
-
     gap:5px;
-
     background:#eff6ff;
-
     color:#075985;
-
     border-radius:20px;
-
     padding:6px 11px;
-
     font-size:13px;
-
     font-weight:bold;
 }
 
@@ -540,7 +422,6 @@ body{
     color:#6d28d9;
 }
 
-
 /* =========================
    GIFT CODES
 ========================= */
@@ -552,31 +433,19 @@ body{
 
 .gift-code-card{
     background:white;
-
     border-radius:14px;
-
     padding:17px;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.07);
-
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
     cursor:pointer;
-
     transition:.2s;
-
     position:relative;
-
     overflow:hidden;
-
-    border-left:
-        5px solid #f59e0b;
+    border-left:5px solid #f59e0b;
 }
 
 .gift-code-card:hover{
     transform:translateY(-2px);
-
-    box-shadow:
-        0 6px 18px rgba(0,0,0,.12);
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
 }
 
 .gift-code-card:active{
@@ -590,20 +459,15 @@ body{
 
 .gift-code-card h2{
     margin:0;
-
     font-size:17px;
-
     color:#0f172a;
 }
 
 .gift-code-card p{
     margin:5px 0 0;
-
     font-size:12px;
-
     color:#64748b;
 }
-
 
 /* =========================
    DANGER ZONE
@@ -616,101 +480,64 @@ body{
 
 .danger-title{
     font-size:19px;
-
     font-weight:700;
-
     color:#b91c1c;
-
     margin:5px 0 12px;
 }
 
 .danger-card{
     background:#fff;
-
     border-radius:14px;
-
     padding:18px;
-
-    border:
-        2px solid #fecaca;
-
-    border-left:
-        5px solid #dc2626;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.07);
+    border:2px solid #fecaca;
+    border-left:5px solid #dc2626;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
 .danger-icon{
     font-size:30px;
-
     margin-bottom:8px;
 }
 
 .danger-card h2{
     margin:0;
-
     font-size:17px;
-
     color:#991b1b;
 }
 
 .danger-card p{
     margin:7px 0 12px;
-
     font-size:12px;
-
     line-height:1.5;
-
     color:#64748b;
 }
 
 .danger-warning{
     background:#fef2f2;
-
-    border:
-        1px solid #fecaca;
-
+    border:1px solid #fecaca;
     border-radius:9px;
-
     padding:10px;
-
     color:#b91c1c;
-
     font-size:12px;
-
     font-weight:700;
-
     margin-bottom:13px;
 }
 
 .danger-reset-btn{
     width:100%;
-
     border:none;
-
-    background:
-        linear-gradient(
-            135deg,
-            #dc2626,
-            #991b1b
-        );
-
+    background:linear-gradient(
+        135deg,
+        #dc2626,
+        #991b1b
+    );
     color:white;
-
     padding:13px 15px;
-
     border-radius:9px;
-
     font-size:13px;
-
     font-weight:700;
-
     cursor:pointer;
-
-    box-shadow:
-        0 5px 12px rgba(220,38,38,.20);
-
+    box-shadow:0 5px 12px rgba(220,38,38,.20);
     transition:.2s;
 }
 
@@ -724,25 +551,17 @@ body{
 
 .danger-reset-btn:disabled{
     opacity:.6;
-
     cursor:not-allowed;
-
     transform:none;
 }
 
 .reset-status{
     display:none;
-
     margin-top:12px;
-
     padding:10px;
-
     border-radius:8px;
-
     font-size:12px;
-
     font-weight:600;
-
     text-align:center;
 }
 
@@ -765,30 +584,22 @@ body{
     color:#b91c1c;
 }
 
-
 /* =========================
    BUTTON AREA
 ========================= */
 
 .refresh-box{
     text-align:center;
-
     margin:20px 0 10px;
 }
 
 .refresh-btn{
     border:none;
-
     background:#075985;
-
     color:white;
-
     padding:10px 18px;
-
     border-radius:8px;
-
     font-size:13px;
-
     cursor:pointer;
 }
 
@@ -798,19 +609,12 @@ body{
 
 .logout-btn{
     border:none;
-
     background:#64748b;
-
     color:white;
-
     padding:10px 18px;
-
     border-radius:8px;
-
     font-size:13px;
-
     cursor:pointer;
-
     margin-top:10px;
 }
 
@@ -820,14 +624,10 @@ body{
 
 .admin-status{
     text-align:center;
-
     font-size:12px;
-
     color:#64748b;
-
     margin-top:10px;
 }
-
 
 /* =========================
    MOBILE
@@ -848,9 +648,7 @@ body{
     }
 
     .summary{
-        grid-template-columns:
-            repeat(2,1fr);
-
+        grid-template-columns:repeat(2,1fr);
         gap:8px;
     }
 
@@ -867,11 +665,8 @@ body{
     }
 
     .management-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-
+        grid-template-columns:repeat(2,1fr);
         gap:9px;
-
         margin-bottom:18px;
     }
 
@@ -893,7 +688,6 @@ body{
 
     .count-box{
         font-size:11px;
-
         padding:5px 8px;
     }
 
@@ -933,10 +727,13 @@ body{
         font-size:12px;
     }
 
+    .remaining-funds-value{
+        font-size:22px;
+    }
+
     .refresh-btn,
     .logout-btn{
         width:90%;
-
         max-width:320px;
     }
 
@@ -946,13 +743,11 @@ body{
 
 </head>
 
-
 <body>
 
-
-<!-- =========================================================
+<!-- =========================
      ADMIN LOADING SCREEN
-========================================================= -->
+========================= -->
 
 <div
     id="adminLoadingScreen"
@@ -969,8 +764,7 @@ body{
         SkyRent Admin
     </div>
 
-    <div class="admin-loading-spinner">
-    </div>
+    <div class="admin-loading-spinner"></div>
 
     <div
         id="adminLoadingText"
@@ -989,9 +783,9 @@ body{
 </div>
 
 
-<!-- =========================================================
+<!-- =========================
      HEADER
-========================================================= -->
+========================= -->
 
 <div class="header">
 
@@ -1008,26 +802,19 @@ body{
 
 <div class="container">
 
-
-<!-- =========================================================
+<!-- =========================
      FINANCIAL SUMMARY
-========================================================= -->
+========================= -->
 
 <div class="section-title">
     Financial Summary
 </div>
 
-
 <div class="summary">
-
-
-    <!-- TOTAL DEPOSIT -->
 
     <div class="summary-card">
 
-        <h3>
-            Total Deposit
-        </h3>
+        <h3>Total Deposit</h3>
 
         <div
             class="value"
@@ -1043,13 +830,9 @@ body{
     </div>
 
 
-    <!-- APPROVED DEPOSIT -->
-
     <div class="summary-card approved-deposit-card">
 
-        <h3>
-            Approved Deposit
-        </h3>
+        <h3>Approved Deposit</h3>
 
         <div
             class="value"
@@ -1065,13 +848,9 @@ body{
     </div>
 
 
-    <!-- TOTAL WITHDRAWAL -->
-
     <div class="summary-card total-withdrawal-card">
 
-        <h3>
-            Total Withdrawal
-        </h3>
+        <h3>Total Withdrawal</h3>
 
         <div
             class="value"
@@ -1087,13 +866,9 @@ body{
     </div>
 
 
-    <!-- APPROVED WITHDRAWAL -->
-
     <div class="summary-card approved-withdrawal-card">
 
-        <h3>
-            Approved Withdrawal
-        </h3>
+        <h3>Approved Withdrawal</h3>
 
         <div
             class="value"
@@ -1109,16 +884,12 @@ body{
     </div>
 
 
-    <!-- PENDING DEPOSITS -->
-
     <div
         class="summary-card clickable pending-deposit-card"
         onclick="location.href='admin-deposits.html'"
     >
 
-        <h3>
-            Pending Deposits
-        </h3>
+        <h3>Pending Deposits</h3>
 
         <div
             class="value"
@@ -1134,16 +905,12 @@ body{
     </div>
 
 
-    <!-- PAYMENT 1 PENDING -->
-
     <div
         class="summary-card clickable payment1-card"
         onclick="location.href='admin-deposits.html?payment=1'"
     >
 
-        <h3>
-            Payment 1 Pending
-        </h3>
+        <h3>Payment 1 Pending</h3>
 
         <div
             class="value"
@@ -1159,16 +926,12 @@ body{
     </div>
 
 
-    <!-- PAYMENT 2 PENDING -->
-
     <div
         class="summary-card clickable payment2-card"
         onclick="location.href='admin-deposits.html?payment=2'"
     >
 
-        <h3>
-            Payment 2 Pending
-        </h3>
+        <h3>Payment 2 Pending</h3>
 
         <div
             class="value"
@@ -1184,16 +947,12 @@ body{
     </div>
 
 
-    <!-- PENDING WITHDRAWALS -->
-
     <div
         class="summary-card clickable pending-withdrawal-card"
         onclick="location.href='admin-withdrawals.html'"
     >
 
-        <h3>
-            Pending Withdrawals
-        </h3>
+        <h3>Pending Withdrawals</h3>
 
         <div
             class="value"
@@ -1208,18 +967,17 @@ body{
 
     </div>
 
-
 </div>
 
 
-<!-- =========================================================
-     COMPARISON
-========================================================= -->
+<!-- =========================
+     APPROVED COMPARISON
+========================= -->
 
 <div class="comparison">
 
     <h3>
-        Deposit vs Approved Withdrawal
+        Approved Deposit vs Approved Withdrawal
     </h3>
 
 
@@ -1228,7 +986,7 @@ body{
         <div class="bar-label">
 
             <span>
-                Total Deposit
+                Approved Deposit
             </span>
 
             <span id="depositBarText">
@@ -1242,8 +1000,7 @@ body{
             <div
                 class="bar deposit-bar"
                 id="depositBar"
-            >
-            </div>
+            ></div>
 
         </div>
 
@@ -1269,9 +1026,30 @@ body{
             <div
                 class="bar withdraw-bar"
                 id="withdrawBar"
-            >
-            </div>
+            ></div>
 
+        </div>
+
+    </div>
+
+
+    <!-- REMAINING FUNDS -->
+
+    <div class="remaining-funds">
+
+        <div class="remaining-funds-label">
+            Remaining Funds
+        </div>
+
+        <div
+            class="remaining-funds-value"
+            id="remainingFunds"
+        >
+            ₱0.00
+        </div>
+
+        <div class="remaining-funds-description">
+            Approved Deposit less Approved Withdrawal
         </div>
 
     </div>
@@ -1279,19 +1057,15 @@ body{
 </div>
 
 
-<!-- =========================================================
+<!-- =========================
      MANAGEMENT
-========================================================= -->
+========================= -->
 
 <div class="section-title">
     Management
 </div>
 
-
 <div class="management-grid">
-
-
-    <!-- MEMBERS -->
 
     <div
         class="manage-card members"
@@ -1302,9 +1076,7 @@ body{
             👥
         </div>
 
-        <h2>
-            Members
-        </h2>
+        <h2>Members</h2>
 
         <p>
             View and manage registered members
@@ -1328,8 +1100,6 @@ body{
     </div>
 
 
-    <!-- DEPOSITS -->
-
     <div
         class="manage-card deposits"
         onclick="location.href='admin-deposits.html'"
@@ -1339,9 +1109,7 @@ body{
             💰
         </div>
 
-        <h2>
-            Deposits
-        </h2>
+        <h2>Deposits</h2>
 
         <p>
             Review and approve deposit requests
@@ -1365,8 +1133,6 @@ body{
     </div>
 
 
-    <!-- WITHDRAWALS -->
-
     <div
         class="manage-card withdrawals"
         onclick="location.href='admin-withdrawals.html'"
@@ -1376,9 +1142,7 @@ body{
             💸
         </div>
 
-        <h2>
-            Withdrawals
-        </h2>
+        <h2>Withdrawals</h2>
 
         <p>
             Review withdrawal requests
@@ -1402,8 +1166,6 @@ body{
     </div>
 
 
-    <!-- INVESTMENTS -->
-
     <div
         class="manage-card investments"
         onclick="location.href='admin-investments.html'"
@@ -1413,9 +1175,7 @@ body{
             ✈️
         </div>
 
-        <h2>
-            Investments
-        </h2>
+        <h2>Investments</h2>
 
         <p>
             View and manage aircraft investments
@@ -1438,20 +1198,18 @@ body{
 
     </div>
 
-
 </div>
 
 
-<!-- =========================================================
+<!-- =========================
      GIFT CODES
-========================================================= -->
+========================= -->
 
 <div class="gift-code-section">
 
     <div class="section-title">
         Gift Codes
     </div>
-
 
     <div
         class="gift-code-card"
@@ -1475,9 +1233,9 @@ body{
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      PASSWORD RESET
-===================================================== -->
+========================= -->
 
 <button
     type="button"
@@ -1499,16 +1257,15 @@ body{
 </button>
 
 
-<!-- =========================================================
+<!-- =========================
      DANGER ZONE
-========================================================= -->
+========================= -->
 
 <div class="danger-section">
 
     <div class="danger-title">
         ⚠️ Danger Zone
     </div>
-
 
     <div class="danger-card">
 
@@ -1526,11 +1283,9 @@ body{
             earnings and referral records.
         </p>
 
-
         <div class="danger-warning">
             ⚠️ This action cannot be undone.
         </div>
-
 
         <button
             type="button"
@@ -1541,21 +1296,19 @@ body{
             🗑️ RESET ALL MEMBER DATA
         </button>
 
-
         <div
             id="resetStatus"
             class="reset-status"
-        >
-        </div>
+        ></div>
 
     </div>
 
 </div>
 
 
-<!-- =========================================================
+<!-- =========================
      REFRESH / LOGOUT
-========================================================= -->
+========================= -->
 
 <div class="refresh-box">
 
@@ -1584,27 +1337,20 @@ body{
 
 </div>
 
-
 </div>
 
 
-<!-- =========================================================
+<!-- =========================
      FIREBASE
-========================================================= -->
+========================= -->
 
 <script type="module">
-
-
-/* =========================================================
-   FIREBASE IMPORTS
-========================================================= */
 
 import {
     initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
 
 import {
     getAuth,
@@ -1614,7 +1360,6 @@ import {
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-
 import {
     getFirestore,
     collection,
@@ -1622,11 +1367,6 @@ import {
 }
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-/*
- * Firebase Cloud Functions
- */
 
 import {
     getFunctions,
@@ -1636,9 +1376,9 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js";
 
 
-/* =========================================================
+/* =========================
    FIREBASE CONFIG
-========================================================= */
+========================= */
 
 const firebaseConfig = {
 
@@ -1663,9 +1403,9 @@ const firebaseConfig = {
 };
 
 
-/* =========================================================
+/* =========================
    INITIALIZE FIREBASE
-========================================================= */
+========================= */
 
 const app =
     initializeApp(firebaseConfig);
@@ -1680,24 +1420,20 @@ const functions =
     getFunctions(app);
 
 
-/* =========================================================
+/* =========================
    ADMIN UID
-========================================================= */
+========================= */
 
 const ADMIN_UID =
     "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
 
-/* =========================================================
-   GLOBAL ADMIN
-========================================================= */
-
 let currentAdmin = null;
 
 
-/* =========================================================
-   LOADING SCREEN HELPERS
-========================================================= */
+/* =========================
+   LOADING HELPERS
+========================= */
 
 function updateAdminLoading(
     mainText,
@@ -1713,7 +1449,6 @@ function updateAdminLoading(
         document.getElementById(
             "adminLoadingSubtext"
         );
-
 
     if(text){
 
@@ -1731,7 +1466,6 @@ function updateAdminLoading(
 
     }
 
-
     if(sub){
 
         sub.textContent =
@@ -1742,17 +1476,12 @@ function updateAdminLoading(
 }
 
 
-/* =========================================================
-   HIDE ADMIN LOADING
-========================================================= */
-
 function hideAdminLoading(){
 
     const screen =
         document.getElementById(
             "adminLoadingScreen"
         );
-
 
     if(screen){
 
@@ -1761,7 +1490,6 @@ function hideAdminLoading(){
 
         screen.style.transition =
             "opacity .35s ease";
-
 
         setTimeout(() => {
 
@@ -1775,17 +1503,12 @@ function hideAdminLoading(){
 }
 
 
-/* =========================================================
-   SHOW ADMIN LOADING
-========================================================= */
-
 function showAdminLoading(){
 
     const screen =
         document.getElementById(
             "adminLoadingScreen"
         );
-
 
     if(screen){
 
@@ -1800,9 +1523,9 @@ function showAdminLoading(){
 }
 
 
-/* =========================================================
+/* =========================
    NUMBER FORMAT
-========================================================= */
+========================= */
 
 function getNumber(value){
 
@@ -1815,7 +1538,6 @@ function getNumber(value){
 
     }
 
-
     return Number(
         String(value)
             .replace(/[₱,\s]/g,"")
@@ -1824,9 +1546,9 @@ function getNumber(value){
 }
 
 
-/* =========================================================
+/* =========================
    STATUS HELPERS
-========================================================= */
+========================= */
 
 function isRejected(status){
 
@@ -1835,17 +1557,11 @@ function isRejected(status){
             .toLowerCase()
             .trim();
 
-
     return (
-
         status === "rejected" ||
-
         status === "cancelled" ||
-
         status === "canceled" ||
-
         status === "declined"
-
     );
 
 }
@@ -1858,17 +1574,11 @@ function isApprovedDeposit(status){
             .toLowerCase()
             .trim();
 
-
     return (
-
         status === "approved" ||
-
         status === "deposit successful" ||
-
         status === "successful" ||
-
         status === "completed"
-
     );
 
 }
@@ -1881,7 +1591,6 @@ function isPendingDeposit(status){
             .toLowerCase()
             .trim();
 
-
     if(
         isRejected(status) ||
         isApprovedDeposit(status)
@@ -1891,19 +1600,12 @@ function isPendingDeposit(status){
 
     }
 
-
     return (
-
         status === "" ||
-
         status === "pending" ||
-
         status === "pending approval" ||
-
         status === "waiting" ||
-
         status === "processing"
-
     );
 
 }
@@ -1916,13 +1618,9 @@ function isApprovedWithdrawal(status){
             .toLowerCase()
             .trim();
 
-
     return (
-
         status === "withdrawal successful" ||
-
         status === "approved"
-
     );
 
 }
@@ -1935,7 +1633,6 @@ function isPendingWithdrawal(status){
             .toLowerCase()
             .trim();
 
-
     if(
         isRejected(status) ||
         isApprovedWithdrawal(status)
@@ -1945,65 +1642,43 @@ function isPendingWithdrawal(status){
 
     }
 
-
     return (
-
         status === "" ||
-
         status === "pending" ||
-
         status === "pending approval" ||
-
         status === "pending for approval" ||
-
         status === "waiting" ||
-
         status === "processing"
-
     );
 
 }
 
 
-/* =========================================================
-   PAYMENT OPTION DETECTOR
-========================================================= */
+/* =========================
+   PAYMENT OPTION
+========================= */
 
 function getPaymentOption(deposit){
 
     if(!deposit){
-
         return "";
-
     }
-
 
     const possibleValues = [
 
         deposit.paymentOption,
-
         deposit.paymentNumber,
-
         deposit.paymentOptionNumber,
-
         deposit.paymentTypeNumber,
-
         deposit.selectedPayment,
-
         deposit.selectedPaymentOption,
-
         deposit.paymentMethodNumber,
-
         deposit.paymentChannelNumber,
-
         deposit.payment,
-
         deposit.paymentMethod,
-
         deposit.paymentChannel
 
     ];
-
 
     for(
         const value of possibleValues
@@ -2020,38 +1695,24 @@ function getPaymentOption(deposit){
                     .toLowerCase()
                     .trim();
 
-
             if(
-
                 normalized === "1" ||
-
                 normalized === "payment 1" ||
-
                 normalized === "payment1" ||
-
                 normalized === "payment-1" ||
-
                 normalized === "payment_1"
-
             ){
 
                 return "1";
 
             }
 
-
             if(
-
                 normalized === "2" ||
-
                 normalized === "payment 2" ||
-
                 normalized === "payment2" ||
-
                 normalized === "payment-2" ||
-
                 normalized === "payment_2"
-
             ){
 
                 return "2";
@@ -2066,9 +1727,7 @@ function getPaymentOption(deposit){
     const allText = [
 
         deposit.paymentType,
-
         deposit.receivingAccount,
-
         deposit.paymentAccount
 
     ]
@@ -2094,7 +1753,6 @@ function getPaymentOption(deposit){
 
     }
 
-
     if(
         /\bpayment\s*2\b/.test(allText)
     ){
@@ -2103,15 +1761,14 @@ function getPaymentOption(deposit){
 
     }
 
-
     return "";
 
 }
 
 
-/* =========================================================
-   AUTHENTICATION / ADMIN PROTECTION
-========================================================= */
+/* =========================
+   AUTHENTICATION
+========================= */
 
 updateAdminLoading(
     "Checking administrator access...",
@@ -2123,14 +1780,12 @@ onAuthStateChanged(
     auth,
     async (user) => {
 
-
         if(!user){
 
             updateAdminLoading(
                 "No admin session found",
                 "Redirecting to the login page..."
             );
-
 
             setTimeout(() => {
 
@@ -2155,40 +1810,6 @@ onAuthStateChanged(
 
 
         if(
-            ADMIN_UID ===
-            "PUT_YOUR_ADMIN_UID_HERE"
-        ){
-
-            document.getElementById(
-                "adminStatus"
-            ).textContent =
-                "⚠️ Admin UID has not been configured.";
-
-
-            updateAdminLoading(
-                "Admin setup required",
-                "Admin UID has not been configured"
-            );
-
-
-            alert(
-                "Admin UID has not been configured in admin.html."
-            );
-
-
-            await signOut(auth);
-
-
-            window.location.href =
-                "index.html";
-
-
-            return;
-
-        }
-
-
-        if(
             user.uid !== ADMIN_UID
         ){
 
@@ -2197,18 +1818,14 @@ onAuthStateChanged(
                 "This Firebase account is not an administrator"
             );
 
-
             alert(
                 "❌ Access denied. This account is not an administrator."
             );
 
-
             await signOut(auth);
-
 
             window.location.href =
                 "index.html";
-
 
             return;
 
@@ -2233,20 +1850,16 @@ onAuthStateChanged(
 
             showAdminLoading();
 
-
             await loadDashboard();
-
 
             sessionStorage.setItem(
                 "skyRentAdminDashboardReady",
                 "true"
             );
 
-
             hideAdminLoading();
 
         }
-
         else{
 
             hideAdminLoading();
@@ -2256,13 +1869,12 @@ onAuthStateChanged(
         }
 
     }
-
 );
 
 
-/* =========================================================
+/* =========================
    LOAD DASHBOARD
-========================================================= */
+========================= */
 
 async function loadDashboard(){
 
@@ -2278,30 +1890,20 @@ async function loadDashboard(){
 
     try{
 
-        /* =========================
-           FINANCIAL VARIABLES
-        ========================= */
-
         let totalDeposit = 0;
-
         let approvedDeposit = 0;
 
         let totalWithdrawal = 0;
-
         let approvedWithdrawal = 0;
 
         let pendingDeposits = 0;
-
         let pendingPayment1 = 0;
-
         let pendingPayment2 = 0;
 
         let pendingWithdrawals = 0;
 
         let depositRecords = 0;
-
         let withdrawalRecords = 0;
-
         let investmentRecords = 0;
 
 
@@ -2314,7 +1916,6 @@ async function loadDashboard(){
             "Fetching registered SkyRent users"
         );
 
-
         const usersSnapshot =
             await getDocs(
                 collection(
@@ -2322,7 +1923,6 @@ async function loadDashboard(){
                     "users"
                 )
             );
-
 
         document.getElementById(
             "memberCount"
@@ -2339,7 +1939,6 @@ async function loadDashboard(){
             "Fetching deposit records and approval status"
         );
 
-
         const depositsSnapshot =
             await getDocs(
                 collection(
@@ -2347,7 +1946,6 @@ async function loadDashboard(){
                     "deposits"
                 )
             );
-
 
         depositRecords =
             depositsSnapshot.size;
@@ -2359,30 +1957,20 @@ async function loadDashboard(){
                 const deposit =
                     docSnap.data();
 
-
                 if(!deposit){
-
                     return;
-
                 }
-
 
                 const amount =
                     getNumber(
                         deposit.amount
                     );
 
-
                 const status =
                     deposit.status || "";
 
 
-                /*
-                 * TOTAL DEPOSIT
-                 *
-                 * Includes all deposits
-                 * except rejected/cancelled/declined.
-                 */
+                /* TOTAL DEPOSIT */
 
                 if(
                     !isRejected(status)
@@ -2394,12 +1982,7 @@ async function loadDashboard(){
                 }
 
 
-                /*
-                 * APPROVED DEPOSIT
-                 *
-                 * Only successfully approved
-                 * deposits are counted here.
-                 */
+                /* APPROVED DEPOSIT */
 
                 if(
                     isApprovedDeposit(status)
@@ -2411,9 +1994,7 @@ async function loadDashboard(){
                 }
 
 
-                /*
-                 * PENDING DEPOSITS
-                 */
+                /* PENDING DEPOSIT */
 
                 if(
                     isPendingDeposit(status)
@@ -2421,12 +2002,10 @@ async function loadDashboard(){
 
                     pendingDeposits++;
 
-
                     const paymentOption =
                         getPaymentOption(
                             deposit
                         );
-
 
                     if(
                         paymentOption === "1"
@@ -2435,7 +2014,6 @@ async function loadDashboard(){
                         pendingPayment1++;
 
                     }
-
 
                     if(
                         paymentOption === "2"
@@ -2460,7 +2038,6 @@ async function loadDashboard(){
             "Checking approved and pending withdrawals"
         );
 
-
         const withdrawalsSnapshot =
             await getDocs(
                 collection(
@@ -2468,7 +2045,6 @@ async function loadDashboard(){
                     "withdrawals"
                 )
             );
-
 
         withdrawalRecords =
             withdrawalsSnapshot.size;
@@ -2480,30 +2056,20 @@ async function loadDashboard(){
                 const withdrawal =
                     docSnap.data();
 
-
                 if(!withdrawal){
-
                     return;
-
                 }
-
 
                 const amount =
                     getNumber(
                         withdrawal.amount
                     );
 
-
                 const status =
                     withdrawal.status || "";
 
 
-                /*
-                 * TOTAL WITHDRAWAL
-                 *
-                 * Includes all withdrawals
-                 * except rejected/cancelled/declined.
-                 */
+                /* TOTAL WITHDRAWAL */
 
                 if(
                     !isRejected(status)
@@ -2515,9 +2081,7 @@ async function loadDashboard(){
                 }
 
 
-                /*
-                 * APPROVED WITHDRAWAL
-                 */
+                /* APPROVED WITHDRAWAL */
 
                 if(
                     isApprovedWithdrawal(status)
@@ -2529,9 +2093,7 @@ async function loadDashboard(){
                 }
 
 
-                /*
-                 * PENDING WITHDRAWALS
-                 */
+                /* PENDING WITHDRAWAL */
 
                 if(
                     isPendingWithdrawal(status)
@@ -2554,7 +2116,6 @@ async function loadDashboard(){
             "Checking aircraft investment records"
         );
 
-
         try{
 
             const investmentsSnapshot =
@@ -2565,12 +2126,10 @@ async function loadDashboard(){
                     )
                 );
 
-
             investmentRecords =
                 investmentsSnapshot.size;
 
         }
-
         catch(error){
 
             console.log(
@@ -2584,7 +2143,7 @@ async function loadDashboard(){
 
 
         /* =========================
-           PREPARE DASHBOARD
+           FORMAT VALUES
         ========================= */
 
         updateAdminLoading(
@@ -2592,10 +2151,6 @@ async function loadDashboard(){
             "Calculating financial summary"
         );
 
-
-        /* =========================
-           TOTAL DEPOSIT FORMAT
-        ========================= */
 
         const depositFormatted =
             totalDeposit.toLocaleString(
@@ -2607,16 +2162,6 @@ async function loadDashboard(){
             );
 
 
-        document.getElementById(
-            "totalDeposit"
-        ).textContent =
-            "₱" + depositFormatted;
-
-
-        /* =========================
-           APPROVED DEPOSIT FORMAT
-        ========================= */
-
         const approvedDepositFormatted =
             approvedDeposit.toLocaleString(
                 "en-PH",
@@ -2626,16 +2171,6 @@ async function loadDashboard(){
                 }
             );
 
-
-        document.getElementById(
-            "approvedDeposit"
-        ).textContent =
-            "₱" + approvedDepositFormatted;
-
-
-        /* =========================
-           TOTAL WITHDRAWAL FORMAT
-        ========================= */
 
         const totalWithdrawalFormatted =
             totalWithdrawal.toLocaleString(
@@ -2647,17 +2182,7 @@ async function loadDashboard(){
             );
 
 
-        document.getElementById(
-            "totalWithdrawal"
-        ).textContent =
-            "₱" + totalWithdrawalFormatted;
-
-
-        /* =========================
-           APPROVED WITHDRAWAL FORMAT
-        ========================= */
-
-        const withdrawalFormatted =
+        const approvedWithdrawalFormatted =
             approvedWithdrawal.toLocaleString(
                 "en-PH",
                 {
@@ -2667,15 +2192,33 @@ async function loadDashboard(){
             );
 
 
+        /* =========================
+           SUMMARY VALUES
+        ========================= */
+
+        document.getElementById(
+            "totalDeposit"
+        ).textContent =
+            "₱" + depositFormatted;
+
+
+        document.getElementById(
+            "approvedDeposit"
+        ).textContent =
+            "₱" + approvedDepositFormatted;
+
+
+        document.getElementById(
+            "totalWithdrawal"
+        ).textContent =
+            "₱" + totalWithdrawalFormatted;
+
+
         document.getElementById(
             "approvedWithdrawal"
         ).textContent =
-            "₱" + withdrawalFormatted;
+            "₱" + approvedWithdrawalFormatted;
 
-
-        /* =========================
-           PENDING COUNTS
-        ========================= */
 
         document.getElementById(
             "pendingDeposits"
@@ -2723,29 +2266,31 @@ async function loadDashboard(){
             investmentRecords;
 
 
-        /* =========================
-           COMPARISON BAR TEXT
-        ========================= */
+        /* =================================================
+           APPROVED DEPOSIT VS APPROVED WITHDRAWAL
+        ================================================= */
 
         document.getElementById(
             "depositBarText"
         ).textContent =
-            "₱" + depositFormatted;
+            "₱" + approvedDepositFormatted;
 
 
         document.getElementById(
             "withdrawBarText"
         ).textContent =
-            "₱" + withdrawalFormatted;
+            "₱" + approvedWithdrawalFormatted;
 
 
-        /* =========================
-           COMPARISON BAR WIDTH
-        ========================= */
+        /*
+         * IMPORTANT:
+         * The comparison uses APPROVED DEPOSIT,
+         * not Total Deposit.
+         */
 
         const highest =
             Math.max(
-                totalDeposit,
+                approvedDeposit,
                 approvedWithdrawal,
                 1
             );
@@ -2755,8 +2300,7 @@ async function loadDashboard(){
             "depositBar"
         ).style.width =
             (
-                (totalDeposit / highest)
-                * 100
+                (approvedDeposit / highest) * 100
             ) + "%";
 
 
@@ -2764,9 +2308,66 @@ async function loadDashboard(){
             "withdrawBar"
         ).style.width =
             (
-                (approvedWithdrawal / highest)
-                * 100
+                (approvedWithdrawal / highest) * 100
             ) + "%";
+
+
+        /* =================================================
+           REMAINING FUNDS
+           Approved Deposit - Approved Withdrawal
+        ================================================= */
+
+        const remainingFunds =
+            approvedDeposit -
+            approvedWithdrawal;
+
+
+        const remainingFundsElement =
+            document.getElementById(
+                "remainingFunds"
+            );
+
+
+        if(remainingFundsElement){
+
+            if(
+                remainingFunds < 0
+            ){
+
+                remainingFundsElement.textContent =
+                    "-₱" +
+                    Math.abs(
+                        remainingFunds
+                    ).toLocaleString(
+                        "en-PH",
+                        {
+                            minimumFractionDigits:2,
+                            maximumFractionDigits:2
+                        }
+                    );
+
+            }
+            else{
+
+                remainingFundsElement.textContent =
+                    "₱" +
+                    remainingFunds.toLocaleString(
+                        "en-PH",
+                        {
+                            minimumFractionDigits:2,
+                            maximumFractionDigits:2
+                        }
+                    );
+
+            }
+
+
+            remainingFundsElement.classList.toggle(
+                "negative",
+                remainingFunds < 0
+            );
+
+        }
 
 
         /* =========================
@@ -2816,25 +2417,20 @@ async function loadDashboard(){
 }
 
 
-/* =========================================================
-   MAKE LOAD DASHBOARD AVAILABLE
-========================================================= */
+/* =========================
+   GLOBAL LOAD FUNCTION
+========================= */
 
 window.loadDashboard =
     loadDashboard;
 
 
-/* =========================================================
+/* =========================
    RESET ALL MEMBER DATA
-========================================================= */
+========================= */
 
 window.resetAllMemberData =
     async function(){
-
-        /*
-         * Verify that the current browser session
-         * belongs to the configured administrator.
-         */
 
         if(
             !currentAdmin ||
@@ -2850,17 +2446,11 @@ window.resetAllMemberData =
         }
 
 
-        /*
-         * FIRST CONFIRMATION
-         */
-
         const firstConfirm =
             confirm(
                 "⚠️ WARNING!\n\n" +
-
                 "This will permanently delete ALL registered " +
                 "member data, including:\n\n" +
-
                 "• Member accounts\n" +
                 "• Deposits\n" +
                 "• Withdrawals\n" +
@@ -2868,40 +2458,27 @@ window.resetAllMemberData =
                 "• Purchases\n" +
                 "• Earnings\n" +
                 "• Referral commissions\n\n" +
-
                 "Your admin account will NOT be deleted.\n\n" +
-
                 "Do you want to continue?"
             );
 
 
         if(!firstConfirm){
-
             return;
-
         }
 
-
-        /*
-         * SECOND CONFIRMATION
-         */
 
         const secondConfirm =
             confirm(
                 "FINAL CONFIRMATION\n\n" +
-
                 "This action CANNOT be undone.\n\n" +
-
                 "All member accounts and their data will be deleted.\n\n" +
-
                 "Are you absolutely sure?"
             );
 
 
         if(!secondConfirm){
-
             return;
-
         }
 
 
@@ -2939,10 +2516,6 @@ window.resetAllMemberData =
 
         try{
 
-            /*
-             * Call the protected Cloud Function.
-             */
-
             const resetFunction =
                 httpsCallable(
                     functions,
@@ -2978,10 +2551,6 @@ window.resetAllMemberData =
 
             }
 
-
-            /*
-             * Refresh dashboard counters.
-             */
 
             await loadDashboard();
 
@@ -3049,9 +2618,9 @@ window.resetAllMemberData =
     };
 
 
-/* =========================================================
+/* =========================
    ADMIN LOGOUT
-========================================================= */
+========================= */
 
 window.adminLogout =
     async function(){
@@ -3089,9 +2658,9 @@ window.adminLogout =
     };
 
 
-/* =========================================================
+/* =========================
    AUTO REFRESH
-========================================================= */
+========================= */
 
 setInterval(
     () => {
@@ -3109,10 +2678,7 @@ setInterval(
     10000
 );
 
-
 </script>
 
-
 </body>
-
 </html>
