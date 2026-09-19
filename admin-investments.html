@@ -31,78 +31,6 @@ body{
 
 
 /* =====================================================
-   LOADING SCREEN
-===================================================== */
-
-.admin-loading-screen{
-    position:fixed;
-    inset:0;
-    background:linear-gradient(
-        135deg,
-        #052b78,
-        #0074d9,
-        #7edfff
-    );
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    z-index:99999;
-    color:white;
-    text-align:center;
-    padding:25px;
-}
-
-.admin-loading-logo{
-    width:170px;
-    max-width:65%;
-    height:auto;
-    object-fit:contain;
-    margin-bottom:22px;
-    filter:drop-shadow(
-        0 5px 12px rgba(0,0,0,.25)
-    );
-}
-
-.admin-loading-title{
-    font-size:20px;
-    font-weight:700;
-    margin-bottom:18px;
-}
-
-.admin-loading-spinner{
-    width:44px;
-    height:44px;
-    border:4px solid rgba(255,255,255,.30);
-    border-top-color:white;
-    border-radius:50%;
-    animation:loadingSpin .8s linear infinite;
-    margin-bottom:18px;
-}
-
-@keyframes loadingSpin{
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-.admin-loading-text{
-    font-size:14px;
-    font-weight:600;
-    min-height:20px;
-}
-
-.admin-loading-subtext{
-    margin-top:7px;
-    font-size:11px;
-    opacity:.75;
-    min-height:16px;
-}
-
-
-/* =====================================================
    HEADER
 ===================================================== */
 
@@ -606,7 +534,7 @@ body{
 
 
 /* =====================================================
-   EMPTY / LOADING
+   EMPTY
 ===================================================== */
 
 .empty-box{
@@ -949,44 +877,6 @@ body{
 
 
 <!-- =====================================================
-     ADMIN LOADING SCREEN
-===================================================== -->
-
-<div
-    id="adminLoadingScreen"
-    class="admin-loading-screen"
->
-
-    <img
-        src="skyrent-logo.png"
-        class="admin-loading-logo"
-        alt="SkyRent"
-    >
-
-    <div class="admin-loading-title">
-        SkyRent Admin
-    </div>
-
-    <div class="admin-loading-spinner"></div>
-
-    <div
-        id="adminLoadingText"
-        class="admin-loading-text"
-    >
-        Checking administrator access...
-    </div>
-
-    <div
-        id="adminLoadingSubtext"
-        class="admin-loading-subtext"
-    >
-        Please wait
-    </div>
-
-</div>
-
-
-<!-- =====================================================
      HEADER
 ===================================================== -->
 
@@ -1041,7 +931,7 @@ body{
     <div class="summary-card">
 
         <h3>
-            Total Revenue
+            Total Earnings Collected
         </h3>
 
         <div
@@ -1052,7 +942,7 @@ body{
         </div>
 
         <div class="summary-small">
-            Recorded investment revenue
+            Earnings actually collected by members
         </div>
 
     </div>
@@ -1146,7 +1036,7 @@ body{
     </div>
 
     <div class="search-info">
-        Enter a phone number to find the member's investment records.
+        Enter a phone number, name, email, or user ID.
     </div>
 
 </div>
@@ -1285,7 +1175,7 @@ body{
     <div class="empty-box">
 
         <div class="empty-icon">
-            ⏳
+            ✈️
         </div>
 
         <div class="empty-title">
@@ -1385,7 +1275,6 @@ from
 
 /* =====================================================
    FIREBASE CONFIG
-   EXACTLY FROM WORKING ADMIN.HTML
 ===================================================== */
 
 const firebaseConfig = {
@@ -1426,7 +1315,7 @@ const db =
 
 
 /* =====================================================
-   EXACT ADMIN UID FROM WORKING ADMIN.HTML
+   ADMIN UID
 ===================================================== */
 
 const ADMIN_UID =
@@ -1518,76 +1407,6 @@ const PLAN_DATA = {
     }
 
 };
-
-
-/* =====================================================
-   LOADING HELPERS
-===================================================== */
-
-function updateAdminLoading(
-    mainText,
-    subText
-){
-
-    const text =
-        document.getElementById(
-            "adminLoadingText"
-        );
-
-    const sub =
-        document.getElementById(
-            "adminLoadingSubtext"
-        );
-
-
-    if(text){
-
-        text.textContent =
-            mainText;
-
-    }
-
-
-    if(sub){
-
-        sub.textContent =
-            subText || "";
-
-    }
-
-}
-
-
-function hideAdminLoading(){
-
-    const screen =
-        document.getElementById(
-            "adminLoadingScreen"
-        );
-
-
-    if(screen){
-
-        screen.style.opacity =
-            "0";
-
-        screen.style.transition =
-            "opacity .35s ease";
-
-
-        setTimeout(
-            () => {
-
-                screen.style.display =
-                    "none";
-
-            },
-            350
-        );
-
-    }
-
-}
 
 
 /* =====================================================
@@ -1918,7 +1737,7 @@ function getInvestmentAmount(data){
 
 
 /* =====================================================
-   GET REVENUE
+   GET EARNINGS COLLECTED
 ===================================================== */
 
 function getInvestmentRevenue(data){
@@ -1930,16 +1749,33 @@ function getInvestmentRevenue(data){
     }
 
 
+    /*
+     * These are fields that can represent
+     * earnings actually collected/claimed.
+     *
+     * We intentionally DO NOT use:
+     *
+     * totalRevenue
+     * totalEarning
+     * totalEarnings
+     * expectedRevenue
+     * expectedEarning
+     * plan total
+     *
+     * because those can represent future/
+     * expected earnings instead of collected earnings.
+     */
+
     const possible = [
 
-        data.totalRevenue,
-        data.totalEarning,
-        data.totalEarnings,
-        data.expectedRevenue,
-        data.expectedEarning,
-        data.totalIncome,
-        data.revenue,
-        data.income
+        data.claimedTotal,
+        data.collectedEarnings,
+        data.earningsCollected,
+        data.totalCollected,
+        data.collectedIncome,
+        data.claimedEarnings,
+        data.earnedAmount,
+        data.collectedAmount
 
     ];
 
@@ -1957,19 +1793,6 @@ function getInvestmentRevenue(data){
             return getNumber(value);
 
         }
-
-    }
-
-
-    const planId =
-        getPlanId(data);
-
-
-    if(
-        PLAN_DATA[planId]
-    ){
-
-        return PLAN_DATA[planId].total;
 
     }
 
@@ -2177,7 +2000,7 @@ function renderPlanSummary(){
 
             let amount = 0;
 
-            let revenue = 0;
+            let collected = 0;
 
 
             allInvestments.forEach(
@@ -2196,7 +2019,7 @@ function renderPlanSummary(){
                                 investment.data
                             );
 
-                        revenue +=
+                        collected +=
                             getInvestmentRevenue(
                                 investment.data
                             );
@@ -2252,11 +2075,11 @@ function renderPlanSummary(){
                     <div class="plan-total">
 
                         <div class="plan-total-label">
-                            Recorded Revenue
+                            Earnings Collected
                         </div>
 
                         <div class="plan-total-value">
-                            ${formatMoney(revenue)}
+                            ${formatMoney(collected)}
                         </div>
 
                     </div>
@@ -2283,7 +2106,7 @@ function updateSummary(){
 
     let totalAmount = 0;
 
-    let totalRevenue = 0;
+    let totalCollected = 0;
 
     let activeCount = 0;
 
@@ -2301,7 +2124,7 @@ function updateSummary(){
                 );
 
 
-            totalRevenue +=
+            totalCollected +=
                 getInvestmentRevenue(
                     data
                 );
@@ -2335,7 +2158,7 @@ function updateSummary(){
     document.getElementById(
         "totalRevenue"
     ).textContent =
-        formatMoney(totalRevenue);
+        formatMoney(totalCollected);
 
 
     document.getElementById(
@@ -2568,7 +2391,7 @@ function renderInvestments(){
                 getInvestmentAmount(data);
 
 
-            const revenue =
+            const collected =
                 getInvestmentRevenue(data);
 
 
@@ -2689,11 +2512,11 @@ function renderInvestments(){
                         <div class="data-box">
 
                             <div class="data-label">
-                                Revenue
+                                Collected
                             </div>
 
                             <div class="data-value">
-                                ${formatMoney(revenue)}
+                                ${formatMoney(collected)}
                             </div>
 
                         </div>
@@ -2840,12 +2663,6 @@ async function(
         userMap[userId] || {};
 
 
-    /*
-     * If the user wasn't found in the
-     * initial users collection map,
-     * try loading the exact user document.
-     */
-
     if(
         !userId
     ){
@@ -2973,7 +2790,7 @@ function showUserModal(
         );
 
 
-    const totalRevenue =
+    const totalCollected =
         investments.reduce(
             (
                 total,
@@ -3057,7 +2874,7 @@ function showUserModal(
                     getDailyEarning(data);
 
 
-                const revenue =
+                const collected =
                     getInvestmentRevenue(data);
 
 
@@ -3107,11 +2924,11 @@ function showUserModal(
                             <div class="detail-item">
 
                                 <div class="detail-item-label">
-                                    Total Revenue
+                                    Earnings Collected
                                 </div>
 
                                 <div class="detail-item-value">
-                                    ${formatMoney(revenue)}
+                                    ${formatMoney(collected)}
                                 </div>
 
                             </div>
@@ -3217,11 +3034,11 @@ function showUserModal(
                 <div class="modal-summary-box">
 
                     <div class="modal-summary-label">
-                        Revenue
+                        Earnings Collected
                     </div>
 
                     <div class="modal-summary-value">
-                        ${formatMoney(totalRevenue)}
+                        ${formatMoney(totalCollected)}
                     </div>
 
                 </div>
@@ -3310,12 +3127,6 @@ function(event){
 
 async function loadUsers(){
 
-    updateAdminLoading(
-        "Loading members...",
-        "Fetching SkyRent user details"
-    );
-
-
     const snapshot =
         await getDocs(
             collection(
@@ -3326,7 +3137,6 @@ async function loadUsers(){
 
 
     allUsers = [];
-
 
     userMap = {};
 
@@ -3364,12 +3174,6 @@ async function loadUsers(){
 ===================================================== */
 
 async function loadInvestments(){
-
-    updateAdminLoading(
-        "Loading investments...",
-        "Fetching all aircraft investment records"
-    );
-
 
     const snapshot =
         await getDocs(
@@ -3503,41 +3307,15 @@ async function loadInvestmentPage(){
 
     try{
 
-        updateAdminLoading(
-            "Loading investment data...",
-            "Please wait"
-        );
-
-
         await loadUsers();
-
 
         await loadInvestments();
 
-
         updateSummary();
-
 
         renderPlanSummary();
 
-
         renderInvestments();
-
-
-        updateAdminLoading(
-            "Investments ready",
-            "SkyRent investment records loaded successfully"
-        );
-
-
-        setTimeout(
-            () => {
-
-                hideAdminLoading();
-
-            },
-            400
-        );
 
     }
     catch(error){
@@ -3545,12 +3323,6 @@ async function loadInvestmentPage(){
         console.error(
             "Investment page error:",
             error
-        );
-
-
-        updateAdminLoading(
-            "Unable to load investments",
-            "Please check your Firestore connection and rules"
         );
 
 
@@ -3585,15 +3357,8 @@ async function loadInvestmentPage(){
 
 
 /* =====================================================
-   EXACT ADMIN AUTHENTICATION
-   SAME AS WORKING ADMIN.HTML
+   ADMIN AUTHENTICATION
 ===================================================== */
-
-updateAdminLoading(
-    "Checking administrator access...",
-    "Verifying your Firebase account"
-);
-
 
 onAuthStateChanged(
     auth,
@@ -3605,22 +3370,8 @@ onAuthStateChanged(
 
         if(!user){
 
-            updateAdminLoading(
-                "No admin session found",
-                "Redirecting to the login page..."
-            );
-
-
-            setTimeout(
-                () => {
-
-                    window.location.href =
-                        "index.html";
-
-                },
-                700
-            );
-
+            window.location.href =
+                "index.html";
 
             return;
 
@@ -3631,36 +3382,17 @@ onAuthStateChanged(
             user;
 
 
-        updateAdminLoading(
-            "Administrator account found",
-            "Checking admin permissions..."
-        );
-
-
         /*
-         * EXACT SAME ADMIN UID CHECK
-         * FROM YOUR WORKING ADMIN.HTML
+         * ADMIN UID CHECK
          */
 
         if(
             user.uid !== ADMIN_UID
         ){
 
-            updateAdminLoading(
-                "Access denied",
-                "This Firebase account is not an administrator"
-            );
-
-
             alert(
                 "❌ Access denied. This account is not an administrator."
             );
-
-
-            /*
-             * Same behavior as your
-             * working admin.html
-             */
 
             return;
 
@@ -3684,7 +3416,8 @@ onAuthStateChanged(
 
 
 /* =====================================================
-   OPTIONAL REFRESH
+   MANUAL REFRESH
+   NO AUTOMATIC REFRESH
 ===================================================== */
 
 window.refreshInvestments =
@@ -3702,53 +3435,18 @@ async function(){
 
     try{
 
-        updateAdminLoading(
-            "Refreshing investments...",
-            "Fetching the latest records"
-        );
-
-
-        const screen =
-            document.getElementById(
-                "adminLoadingScreen"
-            );
-
-
-        screen.style.display =
-            "flex";
-
-        screen.style.opacity =
-            "1";
-
-
         await loadUsers();
-
 
         await loadInvestments();
 
-
         updateSummary();
-
 
         renderPlanSummary();
 
-
         renderInvestments();
 
-
-        updateAdminLoading(
-            "Refresh complete",
-            "Investment records are up to date"
-        );
-
-
-        setTimeout(
-            () => {
-
-                hideAdminLoading();
-
-            },
-            350
+        console.log(
+            "Investment records refreshed."
         );
 
     }
@@ -3764,13 +3462,9 @@ async function(){
             "Unable to refresh investment records."
         );
 
-
-        hideAdminLoading();
-
     }
 
 };
-
 
 
 /* =====================================================
