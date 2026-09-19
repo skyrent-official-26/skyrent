@@ -8,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Admin Withdrawal History - SkyRent</title>
+<title>Admin Withdrawals - SkyRent</title>
 
 <style>
 
@@ -261,7 +261,7 @@ body{
 
 
 /* =====================================================
-   SECTION
+   SECTION TITLE
 ===================================================== */
 
 .section-title{
@@ -328,161 +328,14 @@ body{
 
     border-radius:18px;
 
+    padding:16px;
+
     margin-bottom:12px;
 
     box-shadow:
         0 5px 18px rgba(30,70,120,.07);
 
     border:1px solid #e9eef5;
-
-    overflow:hidden;
-}
-
-
-/* =====================================================
-   COMPACT RECORD SUMMARY
-===================================================== */
-
-.record-summary{
-    padding:14px 15px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    cursor:pointer;
-
-    user-select:none;
-}
-
-.record-summary:active{
-    background:#f8fbff;
-}
-
-.record-summary-main{
-    flex:1;
-
-    min-width:0;
-}
-
-.record-summary-name{
-    font-size:14px;
-
-    font-weight:900;
-
-    color:#172033;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-}
-
-.record-summary-phone{
-    margin-top:3px;
-
-    font-size:11px;
-
-    color:#858d99;
-}
-
-.record-summary-bottom{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:8px;
-
-    margin-top:7px;
-}
-
-.record-summary-amount{
-    font-size:16px;
-
-    font-weight:900;
-
-    color:#0757c9;
-}
-
-.record-summary-date{
-    margin-top:4px;
-
-    font-size:10px;
-
-    color:#858d99;
-}
-
-.record-arrow{
-    width:34px;
-    height:34px;
-
-    flex-shrink:0;
-
-    border-radius:10px;
-
-    background:#eaf2ff;
-
-    color:#0757c9;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:17px;
-
-    font-weight:900;
-
-    transition:
-        transform .2s ease,
-        background .2s ease;
-}
-
-.record.expanded .record-arrow{
-    transform:rotate(180deg);
-
-    background:#dceaff;
-}
-
-.record-tap-text{
-    margin-top:5px;
-
-    font-size:10px;
-
-    color:#0757c9;
-
-    font-weight:800;
-}
-
-.record.expanded .record-tap-text{
-    color:#858d99;
-}
-
-
-/* =====================================================
-   RECORD DETAILS
-===================================================== */
-
-.record-details{
-    display:none;
-
-    padding:0 15px 15px;
-
-    border-top:1px solid #edf0f4;
-}
-
-.record.expanded .record-details{
-    display:block;
-}
-
-.record-details .row:first-child{
-    margin-top:5px;
 }
 
 
@@ -514,8 +367,6 @@ body{
     font-size:12px;
 
     font-weight:700;
-
-    flex:0 0 auto;
 }
 
 .value{
@@ -528,8 +379,6 @@ body{
     text-align:right;
 
     word-break:break-word;
-
-    max-width:65%;
 }
 
 
@@ -629,25 +478,57 @@ body{
 
 
 /* =====================================================
-   REFUND NOTICE
+   ACTION BUTTONS
 ===================================================== */
 
-.refund-notice{
-    margin-top:10px;
+.actions{
+    display:flex;
 
-    padding:10px 12px;
+    gap:8px;
 
-    border-radius:10px;
+    margin-top:13px;
+}
 
-    background:#eafaf0;
+.approve-btn,
+.reject-btn{
+    flex:1;
 
-    color:#188044;
+    border:none;
 
-    font-size:11px;
+    border-radius:11px;
 
-    font-weight:800;
+    padding:12px;
 
-    line-height:1.4;
+    font-size:12px;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.approve-btn{
+    background:#188044;
+    color:white;
+}
+
+.reject-btn{
+    background:#fff0f0;
+
+    color:#c62828;
+
+    border:1px solid #ffd3d3;
+}
+
+.approve-btn:active,
+.reject-btn:active{
+    transform:scale(.97);
+}
+
+.approve-btn:disabled,
+.reject-btn:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
 }
 
 
@@ -738,6 +619,312 @@ body{
 
 
 /* =====================================================
+   REFUND NOTICE
+===================================================== */
+
+.refund-notice{
+    margin-top:10px;
+
+    padding:10px 12px;
+
+    border-radius:10px;
+
+    background:#eafaf0;
+
+    color:#188044;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    line-height:1.4;
+}
+
+
+/* =====================================================
+   APPROVAL MODAL
+===================================================== */
+
+.modal-overlay{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(5,20,40,.65);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:18px;
+
+    z-index:5000;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.approval-modal{
+    width:100%;
+
+    max-width:430px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:white;
+
+    border-radius:22px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
+
+    padding:20px;
+}
+
+.modal-header{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:17px;
+}
+
+.modal-icon{
+    width:46px;
+    height:46px;
+
+    border-radius:14px;
+
+    background:#e8f8ee;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:23px;
+}
+
+.modal-header h2{
+    font-size:19px;
+
+    font-weight:900;
+
+    color:#172033;
+}
+
+.modal-header p{
+    margin-top:3px;
+
+    font-size:11px;
+
+    color:#858d99;
+}
+
+
+/* =====================================================
+   APPROVAL INFO
+===================================================== */
+
+.approval-info{
+    background:#f5f8fc;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    margin-bottom:16px;
+}
+
+.approval-info-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:6px 0;
+
+    font-size:12px;
+}
+
+.approval-info-row span:first-child{
+    color:#858d99;
+
+    font-weight:700;
+}
+
+.approval-info-row span:last-child{
+    color:#172033;
+
+    font-weight:900;
+
+    text-align:right;
+
+    word-break:break-word;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-label{
+    display:block;
+
+    margin:12px 0 7px;
+
+    color:#4b5563;
+
+    font-size:12px;
+
+    font-weight:900;
+}
+
+.required{
+    color:#c62828;
+}
+
+.payment-options{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:9px;
+}
+
+.payment-option{
+    position:relative;
+}
+
+.payment-option input{
+    position:absolute;
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+.payment-option label{
+    display:block;
+
+    padding:13px 10px;
+
+    border:1px solid #dce5ef;
+
+    border-radius:12px;
+
+    background:#f8fbff;
+
+    color:#475569;
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.payment-option input:checked + label{
+    background:#eaf2ff;
+
+    border-color:#0757c9;
+
+    color:#0757c9;
+
+    box-shadow:
+        0 0 0 2px rgba(7,87,201,.08);
+}
+
+.payment-method{
+    width:100%;
+
+    border:1px solid #dce5ef;
+
+    background:#f8fbff;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    font-size:13px;
+
+    color:#172033;
+
+    outline:none;
+}
+
+.payment-method:focus{
+    background:white;
+
+    border-color:#0757c9;
+}
+
+
+/* =====================================================
+   MODAL BUTTONS
+===================================================== */
+
+.modal-actions{
+    display:flex;
+
+    gap:9px;
+
+    margin-top:20px;
+}
+
+.modal-cancel,
+.modal-confirm{
+    flex:1;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:13px;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.modal-cancel{
+    background:#eef2f6;
+
+    color:#596579;
+}
+
+.modal-confirm{
+    background:#188044;
+
+    color:white;
+}
+
+.modal-cancel:active,
+.modal-confirm:active{
+    transform:scale(.98);
+}
+
+.modal-confirm:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+}
+
+
+/* =====================================================
    MOBILE
 ===================================================== */
 
@@ -751,8 +938,8 @@ body{
         font-size:22px;
     }
 
-    .record-summary{
-        padding:13px;
+    .approval-modal{
+        padding:17px;
     }
 
 }
@@ -787,11 +974,11 @@ body{
     </div>
 
     <h1>
-        Withdrawal History
+        Withdrawal Requests
     </h1>
 
     <p>
-        View all processed and pending withdrawal transactions.
+        Review and manage user withdrawal transactions.
     </p>
 
 </header>
@@ -903,7 +1090,7 @@ body{
     <div class="summary pending">
 
         <div class="summary-title">
-            TOTAL AMOUNT PENDING
+            TOTAL AMOUNT PENDING APPROVAL
         </div>
 
         <div
@@ -955,7 +1142,7 @@ body{
     id="refreshButton"
     onclick="loadWithdrawals()"
 >
-    🔄 Refresh History
+    🔄 Refresh Withdrawals
 </button>
 
 
@@ -967,31 +1154,198 @@ body{
     id="withdrawalSectionTitle"
     class="section-title"
 >
-    Withdrawal History
+    Pending Withdrawal Requests
 </div>
 
 <div
     id="withdrawalSectionSubtitle"
     class="section-subtitle"
 >
-    Tap any withdrawal to view the full details.
+    Only withdrawals waiting for approval are shown.
 </div>
 
-
-<!-- =====================================================
-     LIST
-===================================================== -->
 
 <div id="withdrawalList">
 
     <div class="loading">
-        Loading withdrawal history...
+        Loading withdrawal records...
     </div>
 
 </div>
 
 
 </main>
+
+
+<!-- =====================================================
+     APPROVAL MODAL
+===================================================== -->
+
+<div
+    id="approvalModal"
+    class="modal-overlay"
+>
+
+    <div class="approval-modal">
+
+
+        <div class="modal-header">
+
+            <div class="modal-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <h2>
+                    Process Withdrawal
+                </h2>
+
+                <p>
+                    Select the payment channel used.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             WITHDRAWAL SUMMARY
+        ================================================== -->
+
+        <div
+            id="approvalInfo"
+            class="approval-info"
+        >
+        </div>
+
+
+        <!-- =================================================
+             PAYMENT CHANNEL
+        ================================================== -->
+
+        <label class="form-label">
+
+            Payment Channel
+
+            <span class="required">
+                *
+            </span>
+
+        </label>
+
+
+        <div class="payment-options">
+
+
+            <div class="payment-option">
+
+                <input
+                    type="radio"
+                    id="payment1"
+                    name="paymentChannel"
+                    value="Payment 1"
+                >
+
+                <label for="payment1">
+                    Payment 1
+                </label>
+
+            </div>
+
+
+            <div class="payment-option">
+
+                <input
+                    type="radio"
+                    id="payment2"
+                    name="paymentChannel"
+                    value="Payment 2"
+                >
+
+                <label for="payment2">
+                    Payment 2
+                </label>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             PAYMENT METHOD
+        ================================================== -->
+
+        <label
+            class="form-label"
+            for="paymentMethod"
+        >
+            Payment Method
+        </label>
+
+
+        <select
+            id="paymentMethod"
+            class="payment-method"
+        >
+
+            <option value="">
+                Select payment method
+            </option>
+
+            <option value="GCash">
+                GCash
+            </option>
+
+            <option value="Maya">
+                Maya
+            </option>
+
+            <option value="InstaPay">
+                InstaPay
+            </option>
+
+            <option value="Bank Transfer">
+                Bank Transfer
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+
+        <!-- =================================================
+             BUTTONS
+        ================================================== -->
+
+        <div class="modal-actions">
+
+            <button
+                class="modal-cancel"
+                onclick="closeApprovalModal()"
+            >
+                Cancel
+            </button>
+
+
+            <button
+                id="confirmApprovalButton"
+                class="modal-confirm"
+                onclick="confirmApproval()"
+            >
+                ✓ Approve & Record
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
 
 
 <!-- =====================================================
@@ -1024,9 +1378,12 @@ from
 import {
     getFirestore,
     collection,
+    doc,
     getDocs,
     query,
-    orderBy
+    orderBy,
+    runTransaction,
+    serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -1077,8 +1434,8 @@ const db =
    ADMIN UID
 ===================================================== */
 
-const ADMIN_UID =
-    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+  const ADMIN_UID = "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
 
 /* =====================================================
@@ -1090,6 +1447,8 @@ let currentAdmin = null;
 let allWithdrawals = [];
 
 let loadingWithdrawals = false;
+
+let selectedWithdrawal = null;
 
 
 /* =====================================================
@@ -1130,14 +1489,14 @@ function getNumber(value){
 
     return Number(
         String(value)
-            .replace(/[₱,\s]/g,"")
+        .replace(/[₱,\s]/g,"")
     ) || 0;
 
 }
 
 
 /* =====================================================
-   FORMAT DATE
+   FORMAT FIREBASE DATE
 ===================================================== */
 
 function formatDate(value){
@@ -1152,8 +1511,7 @@ function formatDate(value){
 
     if(
         value &&
-        typeof value.toDate ===
-        "function"
+        typeof value.toDate === "function"
     ){
 
         date =
@@ -1261,12 +1619,21 @@ function isRejectedStatus(status){
 
 function isPendingStatus(status){
 
-    return (
+    const value =
+        normalizeStatus(status);
 
-        !isApprovedStatus(status) &&
-        !isRejectedStatus(status)
 
-    );
+    if(
+        isApprovedStatus(value) ||
+        isRejectedStatus(value)
+    ){
+
+        return false;
+
+    }
+
+
+    return true;
 
 }
 
@@ -1293,30 +1660,119 @@ function escapeHTML(value){
 
 
 /* =====================================================
+   ESCAPE JAVASCRIPT
+===================================================== */
+
+function escapeJS(value){
+
+    return String(value ?? "")
+
+        .replace(/\\/g,"\\\\")
+
+        .replace(/'/g,"\\'");
+
+}
+
+
+/* =====================================================
    GET WITHDRAWAL DATE
 ===================================================== */
 
 function getWithdrawalDate(withdrawal){
 
-    if(
-        withdrawal.requestedAt
-    ){
-
+    if(withdrawal.requestedAt){
         return withdrawal.requestedAt;
-
     }
 
-
-    if(
-        withdrawal.createdAt
-    ){
-
+    if(withdrawal.createdAt){
         return withdrawal.createdAt;
-
     }
-
 
     return null;
+
+}
+
+
+/* =====================================================
+   GET ACTIVE INVESTMENT COUNT
+===================================================== */
+
+async function getActiveInvestmentCount(uid){
+
+    if(!uid){
+        return 0;
+    }
+
+
+    try{
+
+        const investmentsRef =
+            collection(
+                db,
+                "investments"
+            );
+
+
+        const snapshot =
+            await getDocs(
+                investmentsRef
+            );
+
+
+        let count = 0;
+
+
+        snapshot.forEach(
+            investmentDoc => {
+
+                const data =
+                    investmentDoc.data();
+
+
+                if(
+                    String(
+                        data.userId || ""
+                    ) !==
+                    String(uid)
+                ){
+
+                    return;
+
+                }
+
+
+                const status =
+                    normalizeStatus(
+                        data.status
+                    );
+
+
+                if(
+                    status === "active"
+                ){
+
+                    count++;
+
+                }
+
+            }
+        );
+
+
+        return count;
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Active investment count error:",
+            error
+        );
+
+        return 0;
+
+    }
 
 }
 
@@ -1395,10 +1851,6 @@ async function getAllWithdrawals(){
     );
 
 
-    /* =================================================
-       SORT NEWEST FIRST
-    ================================================== */
-
     records.sort(
         (a,b) => {
 
@@ -1409,50 +1861,28 @@ async function getAllWithdrawals(){
                 getWithdrawalDate(b);
 
 
-            let timeA = 0;
-            let timeB = 0;
-
-
-            if(
+            const timeA =
                 dateA &&
                 typeof dateA.toMillis ===
                 "function"
-            ){
 
-                timeA =
-                    dateA.toMillis();
+                    ? dateA.toMillis()
 
-            }
-
-            else{
-
-                timeA =
-                    new Date(
+                    : new Date(
                         dateA || 0
                     ).getTime();
 
-            }
 
-
-            if(
+            const timeB =
                 dateB &&
                 typeof dateB.toMillis ===
                 "function"
-            ){
 
-                timeB =
-                    dateB.toMillis();
+                    ? dateB.toMillis()
 
-            }
-
-            else{
-
-                timeB =
-                    new Date(
+                    : new Date(
                         dateB || 0
                     ).getTime();
-
-            }
 
 
             return timeB - timeA;
@@ -1472,12 +1902,8 @@ async function getAllWithdrawals(){
 
 async function loadWithdrawals(){
 
-    if(
-        loadingWithdrawals
-    ){
-
+    if(loadingWithdrawals){
         return;
-
     }
 
 
@@ -1504,13 +1930,13 @@ async function loadWithdrawals(){
 
 
         refreshButton.innerText =
-            "⏳ Loading History...";
+            "⏳ Loading Withdrawals...";
 
 
         list.innerHTML = `
 
             <div class="loading">
-                Loading withdrawal history...
+                Loading withdrawal records...
             </div>
 
         `;
@@ -1522,7 +1948,7 @@ async function loadWithdrawals(){
 
         /* =================================================
            SUMMARY
-        ================================================== */
+        ================================================= */
 
         let totalCount = 0;
 
@@ -1577,7 +2003,11 @@ async function loadWithdrawals(){
 
                 }
 
-                else{
+                else if(
+                    isPendingStatus(
+                        withdrawal.status
+                    )
+                ){
 
                     pendingAmount +=
                         amount;
@@ -1633,6 +2063,16 @@ async function loadWithdrawals(){
             " rejected withdrawals";
 
 
+        /*
+           IMPORTANT FIX:
+           Do NOT let renderCurrentSearch()
+           stop just because loadingWithdrawals
+           is true.
+
+           allWithdrawals has already been loaded
+           at this point.
+        */
+
         await renderCurrentSearch();
 
     }
@@ -1640,7 +2080,7 @@ async function loadWithdrawals(){
     catch(error){
 
         console.error(
-            "Load withdrawal history error:",
+            "Load withdrawals error:",
             error
         );
 
@@ -1649,7 +2089,7 @@ async function loadWithdrawals(){
 
             <div class="error-box">
 
-                Unable to load withdrawal history.
+                Unable to load withdrawal records.
 
                 <br><br>
 
@@ -1660,7 +2100,7 @@ async function loadWithdrawals(){
 
                 <br><br>
 
-                Tap Refresh History to try again.
+                Tap Refresh Withdrawals to try again.
 
             </div>
 
@@ -1679,7 +2119,7 @@ async function loadWithdrawals(){
 
 
         refreshButton.innerText =
-            "🔄 Refresh History";
+            "🔄 Refresh Withdrawals";
 
     }
 
@@ -1690,7 +2130,7 @@ async function loadWithdrawals(){
    RENDER WITHDRAWAL RECORD
 ===================================================== */
 
-function renderWithdrawalRecord(
+async function renderWithdrawalRecord(
     withdrawal,
     list
 ){
@@ -1713,10 +2153,6 @@ function renderWithdrawalRecord(
             withdrawal.processingFee
         );
 
-
-    /* =================================================
-       STATUS
-    ================================================== */
 
     let status =
         withdrawal.status ||
@@ -1758,6 +2194,108 @@ function renderWithdrawalRecord(
 
         statusClass =
             "pending";
+
+    }
+
+
+    /*
+       If the investment lookup fails,
+       the withdrawal record will still render.
+    */
+
+    let activeInvestmentCount = 0;
+
+    try{
+
+        activeInvestmentCount =
+            await getActiveInvestmentCount(
+                withdrawal.uid
+            );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Investment count failed:",
+            error
+        );
+
+        activeInvestmentCount = 0;
+
+    }
+
+
+    const record =
+        document.createElement(
+            "div"
+        );
+
+
+    record.className =
+        "record";
+
+
+    /* =================================================
+       REFUND NOTICE
+    ================================================== */
+
+    let refundNotice = "";
+
+
+    if(
+        isRejectedStatus(
+            withdrawal.status
+        ) &&
+        withdrawal.refunded === true
+    ){
+
+        refundNotice = `
+
+            <div class="refund-notice">
+
+                ✓
+                ${formatMoney(amount)}
+                has been returned to the user's
+                SkyRent balance.
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =================================================
+       APPROVED TIME
+    ================================================== */
+
+    let approvedTime = "";
+
+
+    if(
+        withdrawal.approvedAt
+    ){
+
+        approvedTime = `
+
+            <div class="row">
+
+                <span class="label">
+                    Approved Time
+                </span>
+
+                <span class="value">
+                    ${escapeHTML(
+                        formatDate(
+                            withdrawal.approvedAt
+                        )
+                    )}
+                </span>
+
+            </div>
+
+        `;
 
     }
 
@@ -1873,42 +2411,6 @@ function renderWithdrawalRecord(
 
 
     /* =================================================
-       APPROVED TIME
-    ================================================== */
-
-    let approvedTime = "";
-
-
-    if(
-        withdrawal.approvedAt
-    ){
-
-        approvedTime = `
-
-            <div class="row">
-
-                <span class="label">
-                    Approved Time
-                </span>
-
-                <span class="value">
-
-                    ${escapeHTML(
-                        formatDate(
-                            withdrawal.approvedAt
-                        )
-                    )}
-
-                </span>
-
-            </div>
-
-        `;
-
-    }
-
-
-    /* =================================================
        REJECTED TIME
     ================================================== */
 
@@ -1945,27 +2447,44 @@ function renderWithdrawalRecord(
 
 
     /* =================================================
-       REFUND NOTICE
-    ================================================== */
+       ACTION BUTTONS
+    ================================================= */
 
-    let refundNotice = "";
+    let actions = "";
 
+
+    /*
+       IMPORTANT:
+       Pending withdrawals ALWAYS get
+       Approve and Reject buttons.
+    */
 
     if(
-        isRejectedStatus(
+        isPendingStatus(
             withdrawal.status
-        ) &&
-        withdrawal.refunded === true
+        )
     ){
 
-        refundNotice = `
+        actions = `
 
-            <div class="refund-notice">
+            <div class="actions">
 
-                ✓
-                ${formatMoney(amount)}
-                has been returned to the user's
-                SkyRent balance.
+                <button
+                    type="button"
+                    class="approve-btn"
+                    onclick="approveWithdrawal('${escapeJS(withdrawal.id)}')"
+                >
+                    ✓ Approve
+                </button>
+
+
+                <button
+                    type="button"
+                    class="reject-btn"
+                    onclick="rejectWithdrawal('${escapeJS(withdrawal.id)}')"
+                >
+                    ✕ Reject
+                </button>
 
             </div>
 
@@ -1975,384 +2494,226 @@ function renderWithdrawalRecord(
 
 
     /* =================================================
-       CREATE RECORD
-    ================================================== */
-
-    const record =
-        document.createElement(
-            "div"
-        );
-
-
-    record.className =
-        "record";
-
-
-    /* =================================================
        RECORD HTML
-    ================================================== */
+    ================================================= */
 
     record.innerHTML = `
 
-        <!-- =============================================
-             COMPACT SUMMARY
-        ============================================== -->
+        <div class="row">
 
-        <div class="record-summary">
+            <span class="label">
+                User Phone
+            </span>
 
-            <div class="record-summary-main">
+            <span class="value">
 
-                <div class="record-summary-name">
+                ${escapeHTML(
+                    withdrawal.phone || "-"
+                )}
 
-                    ${escapeHTML(
-                        withdrawal.userName ||
-                        "Unknown User"
-                    )}
-
-                </div>
-
-
-                <div class="record-summary-phone">
-
-                    ${escapeHTML(
-                        withdrawal.phone ||
-                        "-"
-                    )}
-
-                </div>
-
-
-                <div class="record-summary-bottom">
-
-                    <div>
-
-                        <div class="record-summary-amount">
-
-                            ${formatMoney(amount)}
-
-                        </div>
-
-                        <div class="record-summary-date">
-
-                            ${escapeHTML(
-                                formatDate(
-                                    getWithdrawalDate(
-                                        withdrawal
-                                    )
-                                )
-                            )}
-
-                        </div>
-
-                    </div>
-
-
-                    <div>
-
-                        <span
-                            class="status ${statusClass}"
-                        >
-
-                            ${escapeHTML(status)}
-
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="record-tap-text">
-
-                    Tap to view details
-
-                </div>
-
-            </div>
-
-
-            <div class="record-arrow">
-
-                ▼
-
-            </div>
+            </span>
 
         </div>
 
 
-        <!-- =============================================
-             DETAILS
-        ============================================== -->
+        <div class="row">
 
-        <div class="record-details">
+            <span class="label">
+                User Name
+            </span>
 
+            <span class="value">
 
-            <div class="row">
+                ${escapeHTML(
+                    withdrawal.userName || "-"
+                )}
 
-                <span class="label">
-                    User Phone
-                </span>
+            </span>
 
-                <span class="value">
+        </div>
 
-                    ${escapeHTML(
-                        withdrawal.phone ||
-                        "-"
-                    )}
 
-                </span>
+        <div class="row">
 
-            </div>
+            <span class="label">
+                Active Investments
+            </span>
 
+            <span class="value">
 
-            <div class="row">
+                ${activeInvestmentCount}
+                Aircraft
 
-                <span class="label">
-                    User Name
-                </span>
+            </span>
 
-                <span class="value">
+        </div>
 
-                    ${escapeHTML(
-                        withdrawal.userName ||
-                        "-"
-                    )}
 
-                </span>
+        <div class="row">
 
-            </div>
+            <span class="label">
+                Account Name
+            </span>
 
+            <span class="value">
 
-            <div class="row">
+                ${escapeHTML(
+                    withdrawal.accountName ||
+                    withdrawal.userName ||
+                    "-"
+                )}
 
-                <span class="label">
-                    Firebase User ID
-                </span>
+            </span>
 
-                <span class="value">
+        </div>
 
-                    ${escapeHTML(
-                        withdrawal.uid ||
-                        "-"
-                    )}
 
-                </span>
+        <div class="row">
 
-            </div>
+            <span class="label">
+                Account Type
+            </span>
 
+            <span class="value">
 
-            <div class="row">
+                ${escapeHTML(
+                    withdrawal.accountType ||
+                    "-"
+                )}
 
-                <span class="label">
-                    Account Name
-                </span>
+            </span>
 
-                <span class="value">
+        </div>
 
-                    ${escapeHTML(
-                        withdrawal.accountName ||
-                        withdrawal.userName ||
-                        "-"
-                    )}
 
-                </span>
+        <div class="row">
 
-            </div>
+            <span class="label">
+                Account Number
+            </span>
 
+            <span class="value">
 
-            <div class="row">
+                ${escapeHTML(
+                    withdrawal.accountNumber ||
+                    "-"
+                )}
 
-                <span class="label">
-                    Account Type
-                </span>
+            </span>
 
-                <span class="value">
+        </div>
 
-                    ${escapeHTML(
-                        withdrawal.accountType ||
-                        "-"
-                    )}
 
-                </span>
+        <div class="row">
 
-            </div>
+            <span class="label">
+                Withdrawal Amount
+            </span>
 
+            <span class="value amount">
 
-            <div class="row">
+                ${formatMoney(amount)}
 
-                <span class="label">
-                    Account Number
-                </span>
+            </span>
 
-                <span class="value">
+        </div>
 
-                    ${escapeHTML(
-                        withdrawal.accountNumber ||
-                        "-"
-                    )}
 
-                </span>
+        <div class="row">
 
-            </div>
+            <span class="label">
+                Processing Fee
+            </span>
 
+            <span class="value">
 
-            <div class="row">
+                ${formatMoney(
+                    processingFee
+                )}
 
-                <span class="label">
-                    Withdrawal Amount
-                </span>
+            </span>
 
-                <span class="value amount">
+        </div>
 
-                    ${formatMoney(amount)}
 
-                </span>
+        <div class="row">
 
-            </div>
+            <span class="label">
+                Amount Received
+            </span>
 
+            <span class="value received">
 
-            <div class="row">
+                ${formatMoney(received)}
 
-                <span class="label">
-                    Processing Fee
-                </span>
+            </span>
 
-                <span class="value">
+        </div>
 
-                    ${formatMoney(
-                        processingFee
-                    )}
 
-                </span>
+        <div class="row">
 
-            </div>
+            <span class="label">
+                Request Time
+            </span>
 
+            <span class="value">
 
-            <div class="row">
-
-                <span class="label">
-                    Amount Received
-                </span>
-
-                <span class="value received">
-
-                    ${formatMoney(received)}
-
-                </span>
-
-            </div>
-
-
-            <div class="row">
-
-                <span class="label">
-                    Request Time
-                </span>
-
-                <span class="value">
-
-                    ${escapeHTML(
-                        formatDate(
-                            getWithdrawalDate(
-                                withdrawal
-                            )
+                ${escapeHTML(
+                    formatDate(
+                        getWithdrawalDate(
+                            withdrawal
                         )
-                    )}
+                    )
+                )}
 
-                </span>
-
-            </div>
-
-
-            ${approvedTime}
-
-
-            ${paymentChannel}
-
-
-            ${paymentMethod}
-
-
-            ${transactionId}
-
-
-            ${rejectedTime}
-
-
-            <div class="row">
-
-                <span class="label">
-                    Status
-                </span>
-
-                <span class="value">
-
-                    <span
-                        class="status ${statusClass}"
-                    >
-
-                        ${escapeHTML(status)}
-
-                    </span>
-
-                </span>
-
-            </div>
-
-
-            ${refundNotice}
-
+            </span>
 
         </div>
+
+
+        ${approvedTime}
+
+
+        ${paymentChannel}
+
+
+        ${paymentMethod}
+
+
+        ${transactionId}
+
+
+        ${rejectedTime}
+
+
+        <div class="row">
+
+            <span class="label">
+                Status
+            </span>
+
+            <span class="value">
+
+                <span
+                    class="status ${statusClass}"
+                >
+
+                    ${escapeHTML(status)}
+
+                </span>
+
+            </span>
+
+        </div>
+
+
+        ${refundNotice}
+
+
+        ${actions}
 
     `;
-
-
-    /* =================================================
-       EXPAND / COLLAPSE
-    ================================================== */
-
-    const summary =
-        record.querySelector(
-            ".record-summary"
-        );
-
-
-    summary.addEventListener(
-        "click",
-        function(){
-
-            record.classList.toggle(
-                "expanded"
-            );
-
-
-            const tapText =
-                record.querySelector(
-                    ".record-tap-text"
-                );
-
-
-            if(
-                record.classList.contains(
-                    "expanded"
-                )
-            ){
-
-                tapText.innerText =
-                    "Tap to hide details";
-
-            }
-
-            else{
-
-                tapText.innerText =
-                    "Tap to view details";
-
-            }
-
-        }
-    );
 
 
     list.appendChild(
@@ -2363,10 +2724,1340 @@ function renderWithdrawalRecord(
 
 
 /* =====================================================
-   RENDER SEARCH
+   OPEN APPROVAL MODAL
+===================================================== */
+
+function approveWithdrawal(
+    withdrawalId
+){
+
+    if(!currentAdmin){
+
+        alert(
+            "Admin authentication required."
+        );
+
+        return;
+
+    }
+
+
+    const withdrawal =
+        allWithdrawals.find(
+            item =>
+                item.id ===
+                withdrawalId
+        );
+
+
+    if(!withdrawal){
+
+        alert(
+            "Withdrawal record not found."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !isPendingStatus(
+            withdrawal.status
+        )
+    ){
+
+        alert(
+            "This withdrawal has already been processed."
+        );
+
+        return;
+
+    }
+
+
+    selectedWithdrawal =
+        withdrawal;
+
+
+    const amount =
+        getNumber(
+            withdrawal.amount ??
+            withdrawal.amountValue
+        );
+
+
+    const received =
+        getNumber(
+            withdrawal.netAmount
+        );
+
+
+    const processingFee =
+        getNumber(
+            withdrawal.processingFee
+        );
+
+
+    const info =
+        document.getElementById(
+            "approvalInfo"
+        );
+
+
+    info.innerHTML = `
+
+        <div class="approval-info-row">
+
+            <span>
+                User
+            </span>
+
+            <span>
+                ${escapeHTML(
+                    withdrawal.userName ||
+                    withdrawal.phone ||
+                    "-"
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="approval-info-row">
+
+            <span>
+                Phone
+            </span>
+
+            <span>
+                ${escapeHTML(
+                    withdrawal.phone ||
+                    "-"
+                )}
+            </span>
+
+        </div>
+
+
+        <div class="approval-info-row">
+
+            <span>
+                Withdrawal
+            </span>
+
+            <span>
+                ${formatMoney(amount)}
+            </span>
+
+        </div>
+
+
+        <div class="approval-info-row">
+
+            <span>
+                Processing Fee
+            </span>
+
+            <span>
+                ${formatMoney(processingFee)}
+            </span>
+
+        </div>
+
+
+        <div class="approval-info-row">
+
+            <span>
+                Net Amount
+            </span>
+
+            <span>
+                ${formatMoney(received)}
+            </span>
+
+        </div>
+
+
+        <div class="approval-info-row">
+
+            <span>
+                Account
+            </span>
+
+            <span>
+                ${escapeHTML(
+                    withdrawal.accountNumber ||
+                    "-"
+                )}
+            </span>
+
+        </div>
+
+    `;
+
+
+    /* =================================================
+       RESET PAYMENT SELECTION
+    ================================================== */
+
+    document
+        .querySelectorAll(
+            'input[name="paymentChannel"]'
+        )
+        .forEach(
+            radio =>
+                radio.checked = false
+        );
+
+
+    document.getElementById(
+        "paymentMethod"
+    ).value = "";
+
+
+    const confirmButton =
+        document.getElementById(
+            "confirmApprovalButton"
+        );
+
+
+    confirmButton.disabled =
+        false;
+
+
+    confirmButton.innerText =
+        "✓ Approve & Record";
+
+
+    /* =================================================
+       SHOW MODAL
+    ================================================== */
+
+    document.getElementById(
+        "approvalModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   CLOSE APPROVAL MODAL
+===================================================== */
+
+function closeApprovalModal(){
+
+    selectedWithdrawal =
+        null;
+
+
+    document.getElementById(
+        "approvalModal"
+    ).classList.remove(
+        "show"
+    );
+
+
+    const confirmButton =
+        document.getElementById(
+            "confirmApprovalButton"
+        );
+
+
+    confirmButton.disabled =
+        false;
+
+
+    confirmButton.innerText =
+        "✓ Approve & Record";
+
+}
+
+
+/* =====================================================
+   CONFIRM APPROVAL
+===================================================== */
+
+async function confirmApproval(){
+
+    if(!currentAdmin){
+
+        alert(
+            "Admin authentication required."
+        );
+
+        return;
+
+    }
+
+
+    if(!selectedWithdrawal){
+
+        alert(
+            "No withdrawal selected."
+        );
+
+        return;
+
+    }
+
+
+    const selectedChannel =
+        document.querySelector(
+            'input[name="paymentChannel"]:checked'
+        );
+
+
+    if(!selectedChannel){
+
+        alert(
+            "Please select Payment 1 or Payment 2."
+        );
+
+        return;
+
+    }
+
+
+    const paymentChannel =
+        selectedChannel.value;
+
+
+    const paymentMethod =
+        document.getElementById(
+            "paymentMethod"
+        ).value;
+
+
+    const confirmButton =
+        document.getElementById(
+            "confirmApprovalButton"
+        );
+
+
+    if(
+        !confirm(
+            "Approve this withdrawal?\n\n" +
+
+            "Payment Channel: " +
+            paymentChannel +
+
+            "\nPayment Method: " +
+            (
+                paymentMethod ||
+                "Not specified"
+            ) +
+
+            "\n\nA permanent withdrawal transaction record will be created."
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        confirmButton.disabled =
+            true;
+
+        confirmButton.innerText =
+            "⏳ Processing...";
+
+
+        document
+            .querySelectorAll(
+                ".approve-btn,.reject-btn"
+            )
+            .forEach(
+                button =>
+                    button.disabled = true
+            );
+
+
+        const withdrawalId =
+            selectedWithdrawal.id;
+
+
+        const withdrawalRef =
+            doc(
+                db,
+                "withdrawals",
+                withdrawalId
+            );
+
+
+        /*
+           Create a unique transaction document ID.
+
+           The transaction record and withdrawal update
+           are committed together.
+        */
+
+        const transactionRef =
+            doc(
+                collection(
+                    db,
+                    "withdrawalTransactions"
+                )
+            );
+
+
+        await runTransaction(
+            db,
+            async transaction => {
+
+                /* =================================================
+                   GET CURRENT WITHDRAWAL
+                ================================================== */
+
+                const withdrawalSnapshot =
+                    await transaction.get(
+                        withdrawalRef
+                    );
+
+
+                if(
+                    !withdrawalSnapshot.exists()
+                ){
+
+                    throw new Error(
+                        "WITHDRAWAL_NOT_FOUND"
+                    );
+
+                }
+
+
+                const withdrawal =
+                    withdrawalSnapshot.data();
+
+
+                /* =================================================
+                   PREVENT DUPLICATE PROCESSING
+                ================================================== */
+
+                if(
+                    isApprovedStatus(
+                        withdrawal.status
+                    )
+                ){
+
+                    throw new Error(
+                        "ALREADY_APPROVED"
+                    );
+
+                }
+
+
+                if(
+                    isRejectedStatus(
+                        withdrawal.status
+                    )
+                ){
+
+                    throw new Error(
+                        "ALREADY_REJECTED"
+                    );
+
+                }
+
+
+                if(
+                    !isPendingStatus(
+                        withdrawal.status
+                    )
+                ){
+
+                    throw new Error(
+                        "INVALID_STATUS"
+                    );
+
+                }
+
+
+                /* =================================================
+                   USER UID
+                ================================================== */
+
+                if(!withdrawal.uid){
+
+                    throw new Error(
+                        "USER_UID_MISSING"
+                    );
+
+                }
+
+
+                /* =================================================
+                   VALUES
+                ================================================== */
+
+                const amount =
+                    getNumber(
+                        withdrawal.amount ??
+                        withdrawal.amountValue
+                    );
+
+
+                const processingFee =
+                    getNumber(
+                        withdrawal.processingFee
+                    );
+
+
+                const netAmount =
+                    getNumber(
+                        withdrawal.netAmount
+                    );
+
+
+                /* =================================================
+                   UPDATE ORIGINAL WITHDRAWAL
+                ================================================== */
+
+                transaction.update(
+                    withdrawalRef,
+                    {
+
+                        status:
+                            "Withdrawal Successful",
+
+                        approvedAt:
+                            serverTimestamp(),
+
+                        approvedBy:
+                            currentAdmin.uid,
+
+                        paymentChannel:
+                            paymentChannel,
+
+                        paymentMethod:
+                            paymentMethod ||
+                            "Not specified",
+
+                        transactionId:
+                            transactionRef.id
+
+                    }
+                );
+
+
+                /* =================================================
+                   CREATE NEW WITHDRAWAL TRANSACTION
+                ================================================== */
+
+                transaction.set(
+                    transactionRef,
+                    {
+
+                        transactionId:
+                            transactionRef.id,
+
+                        transactionType:
+                            "Withdrawal",
+
+                        withdrawalId:
+                            withdrawalId,
+
+
+                        /* USER */
+
+                        uid:
+                            withdrawal.uid,
+
+                        phone:
+                            withdrawal.phone ||
+                            "",
+
+                        userName:
+                            withdrawal.userName ||
+                            "",
+
+
+                        /* ACCOUNT */
+
+                        accountName:
+                            withdrawal.accountName ||
+                            withdrawal.userName ||
+                            "",
+
+                        accountType:
+                            withdrawal.accountType ||
+                            "",
+
+                        accountNumber:
+                            withdrawal.accountNumber ||
+                            "",
+
+
+                        /* AMOUNTS */
+
+                        amount:
+                            amount,
+
+                        processingFee:
+                            processingFee,
+
+                        netAmount:
+                            netAmount,
+
+
+                        /* PAYMENT */
+
+                        paymentChannel:
+                            paymentChannel,
+
+                        paymentMethod:
+                            paymentMethod ||
+                            "Not specified",
+
+
+                        /* REQUEST TIME */
+
+                        requestedAt:
+                            withdrawal.requestedAt ||
+                            withdrawal.createdAt ||
+                            null,
+
+
+                        /* APPROVAL */
+
+                        approvedAt:
+                            serverTimestamp(),
+
+                        approvedBy:
+                            currentAdmin.uid,
+
+                        approvedByEmail:
+                            currentAdmin.email ||
+                            "",
+
+
+                        /* STATUS */
+
+                        status:
+                            "Approved",
+
+
+                        /* RECORD CREATED */
+
+                        createdAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+            }
+        );
+
+
+        closeApprovalModal();
+
+
+        alert(
+            "Withdrawal approved successfully.\n\n" +
+
+            "Payment Channel: " +
+            paymentChannel +
+
+            "\nPayment Method: " +
+            (
+                paymentMethod ||
+                "Not specified"
+            ) +
+
+            "\n\nWithdrawal transaction record created."
+        );
+
+
+        await loadWithdrawals();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Approve withdrawal error:",
+            error
+        );
+
+
+        if(
+            error.message ===
+            "WITHDRAWAL_NOT_FOUND"
+        ){
+
+            alert(
+                "Withdrawal record not found."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "ALREADY_APPROVED"
+        ){
+
+            alert(
+                "This withdrawal is already approved."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "ALREADY_REJECTED"
+        ){
+
+            alert(
+                "This withdrawal has already been rejected."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "INVALID_STATUS"
+        ){
+
+            alert(
+                "This withdrawal has an invalid status."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "USER_UID_MISSING"
+        ){
+
+            alert(
+                "This withdrawal does not contain a Firebase user ID."
+            );
+
+        }
+
+        else{
+
+            alert(
+                "Unable to approve withdrawal.\n\n" +
+                "No transaction record was created."
+            );
+
+        }
+
+
+        await loadWithdrawals();
+
+    }
+
+    finally{
+
+        confirmButton.disabled =
+            false;
+
+        confirmButton.innerText =
+            "✓ Approve & Record";
+
+
+        document
+            .querySelectorAll(
+                ".approve-btn,.reject-btn"
+            )
+            .forEach(
+                button =>
+                    button.disabled = false
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   REJECT WITHDRAWAL
+===================================================== */
+
+async function rejectWithdrawal(
+    withdrawalId
+){
+
+    if(!currentAdmin){
+
+        alert(
+            "Admin authentication required."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !confirm(
+            "Are you sure you want to reject this withdrawal?\n\n" +
+
+            "The full withdrawal amount will be returned " +
+            "to the user's SkyRent balance."
+        )
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        document
+            .querySelectorAll(
+                ".approve-btn,.reject-btn"
+            )
+            .forEach(
+                button =>
+                    button.disabled = true
+            );
+
+
+        const withdrawalRef =
+            doc(
+                db,
+                "withdrawals",
+                withdrawalId
+            );
+
+
+        await runTransaction(
+            db,
+            async transaction => {
+
+                /* =================================================
+                   GET WITHDRAWAL
+                ================================================== */
+
+                const withdrawalSnapshot =
+                    await transaction.get(
+                        withdrawalRef
+                    );
+
+
+                if(
+                    !withdrawalSnapshot.exists()
+                ){
+
+                    throw new Error(
+                        "WITHDRAWAL_NOT_FOUND"
+                    );
+
+                }
+
+
+                const withdrawal =
+                    withdrawalSnapshot.data();
+
+
+                /* =================================================
+                   PREVENT DUPLICATE REFUND
+                ================================================== */
+
+                if(
+                    isRejectedStatus(
+                        withdrawal.status
+                    )
+                ){
+
+                    if(
+                        withdrawal.refunded === true
+                    ){
+
+                        throw new Error(
+                            "ALREADY_REFUNDED"
+                        );
+
+                    }
+
+
+                    throw new Error(
+                        "ALREADY_REJECTED"
+                    );
+
+                }
+
+
+                /* =================================================
+                   CANNOT REJECT APPROVED
+                ================================================== */
+
+                if(
+                    isApprovedStatus(
+                        withdrawal.status
+                    )
+                ){
+
+                    throw new Error(
+                        "ALREADY_APPROVED"
+                    );
+
+                }
+
+
+                /* =================================================
+                   ONLY PENDING
+                ================================================== */
+
+                if(
+                    !isPendingStatus(
+                        withdrawal.status
+                    )
+                ){
+
+                    throw new Error(
+                        "INVALID_STATUS"
+                    );
+
+                }
+
+
+                /* =================================================
+                   USER UID
+                ================================================== */
+
+                const uid =
+                    withdrawal.uid;
+
+
+                if(!uid){
+
+                    throw new Error(
+                        "USER_UID_MISSING"
+                    );
+
+                }
+
+
+                /* =================================================
+                   REFUND AMOUNT
+                ================================================== */
+
+                const refundAmount =
+                    getNumber(
+                        withdrawal.amount ??
+                        withdrawal.amountValue
+                    );
+
+
+                if(
+                    !Number.isFinite(
+                        refundAmount
+                    ) ||
+                    refundAmount <= 0
+                ){
+
+                    throw new Error(
+                        "INVALID_REFUND_AMOUNT"
+                    );
+
+                }
+
+
+                /* =================================================
+                   GET USER
+                ================================================== */
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        uid
+                    );
+
+
+                const userSnapshot =
+                    await transaction.get(
+                        userRef
+                    );
+
+
+                if(
+                    !userSnapshot.exists()
+                ){
+
+                    throw new Error(
+                        "USER_NOT_FOUND"
+                    );
+
+                }
+
+
+                const userData =
+                    userSnapshot.data();
+
+
+                /* =================================================
+                   CURRENT BALANCE
+                ================================================== */
+
+                const currentBalance =
+                    getNumber(
+                        userData.balance
+                    );
+
+
+                const newBalance =
+                    currentBalance +
+                    refundAmount;
+
+
+                /* =================================================
+                   UPDATE USER BALANCE
+                ================================================== */
+
+                transaction.update(
+                    userRef,
+                    {
+
+                        balance:
+                            newBalance,
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                /* =================================================
+                   UPDATE WITHDRAWAL
+                ================================================== */
+
+                transaction.update(
+                    withdrawalRef,
+                    {
+
+                        status:
+                            "Rejected",
+
+                        rejectedAt:
+                            serverTimestamp(),
+
+                        rejectedBy:
+                            currentAdmin.uid,
+
+                        refunded:
+                            true,
+
+                        refundedAmount:
+                            refundAmount,
+
+                        refundProcessedAt:
+                            serverTimestamp(),
+
+                        refundPreviousBalance:
+                            currentBalance,
+
+                        refundNewBalance:
+                            newBalance
+
+                    }
+                );
+
+            }
+        );
+
+
+        alert(
+            "Withdrawal rejected successfully.\n\n" +
+
+            "The full withdrawal amount has been returned " +
+            "to the user's SkyRent balance."
+        );
+
+
+        await loadWithdrawals();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Reject withdrawal error:",
+            error
+        );
+
+
+        if(
+            error.message ===
+            "WITHDRAWAL_NOT_FOUND"
+        ){
+
+            alert(
+                "Withdrawal record not found."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "ALREADY_REFUNDED"
+        ){
+
+            alert(
+                "This withdrawal has already been rejected and refunded."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "ALREADY_REJECTED"
+        ){
+
+            alert(
+                "This withdrawal has already been rejected."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "ALREADY_APPROVED"
+        ){
+
+            alert(
+                "This withdrawal is already approved and cannot be rejected."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "USER_UID_MISSING"
+        ){
+
+            alert(
+                "This withdrawal does not contain a Firebase user ID.\n\n" +
+                "The balance cannot be refunded automatically."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "USER_NOT_FOUND"
+        ){
+
+            alert(
+                "The Firebase user account could not be found.\n\n" +
+                "The withdrawal was not changed."
+            );
+
+        }
+
+        else if(
+            error.message ===
+            "INVALID_REFUND_AMOUNT"
+        ){
+
+            alert(
+                "Invalid withdrawal amount.\n\n" +
+                "No refund was processed."
+            );
+
+        }
+
+        else{
+
+            alert(
+                "Unable to reject withdrawal.\n\n" +
+                "No balance refund was completed."
+            );
+
+        }
+
+
+        await loadWithdrawals();
+
+    }
+
+    finally{
+
+        document
+            .querySelectorAll(
+                ".approve-btn,.reject-btn"
+            )
+            .forEach(
+                button =>
+                    button.disabled = false
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   ADMIN PANEL
+===================================================== */
+
+function goAdminPanel(){
+
+    window.location.href =
+        "admin.html";
+
+}
+
+
+/* =====================================================
+   MAKE FUNCTIONS AVAILABLE
+===================================================== */
+
+window.approveWithdrawal =
+    approveWithdrawal;
+
+window.confirmApproval =
+    confirmApproval;
+
+window.closeApprovalModal =
+    closeApprovalModal;
+
+window.rejectWithdrawal =
+    rejectWithdrawal;
+
+window.goAdminPanel =
+    goAdminPanel;
+
+window.loadWithdrawals =
+    loadWithdrawals;
+
+
+/* =====================================================
+   ADMIN AUTHENTICATION
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            alert(
+                "Admin login required."
+            );
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        currentAdmin =
+            user;
+
+
+        /* =================================================
+           ADMIN UID CHECK
+        ================================================== */
+
+        if(
+            ADMIN_UID !==
+            "PUT_YOUR_ADMIN_UID_HERE" &&
+
+            user.uid !==
+            ADMIN_UID
+        ){
+
+            alert(
+                "Access denied. " +
+                "This account is not authorized as admin."
+            );
+
+
+            try{
+
+                await signOut(
+                    auth
+                );
+
+            }
+
+            catch(error){
+
+                console.error(
+                    "Admin sign out error:",
+                    error
+                );
+
+            }
+
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        /* =================================================
+           LOAD
+        ================================================== */
+
+        await loadWithdrawals();
+
+    }
+);
+
+
+/* =====================================================
+   SEARCH LISTENER
+===================================================== */
+
+document
+    .getElementById(
+        "phoneSearch"
+    )
+    .addEventListener(
+        "input",
+        function(){
+
+            /*
+               Only render from existing data.
+               We do not reload Firebase for every
+               search keystroke.
+            */
+
+            renderCurrentSearch();
+
+        }
+    );
+
+
+/* =====================================================
+   RENDER CURRENT SEARCH
 ===================================================== */
 
 async function renderCurrentSearch(){
+
+    /*
+       IMPORTANT FIX:
+
+       There is NO:
+
+       if(loadingWithdrawals){
+           return;
+       }
+
+       here.
+
+       loadWithdrawals() calls this function AFTER
+       allWithdrawals has already been populated.
+    */
+
 
     const list =
         document.getElementById(
@@ -2400,19 +4091,24 @@ async function renderCurrentSearch(){
     ){
 
         withdrawals =
-            allWithdrawals;
+            allWithdrawals.filter(
+                withdrawal =>
+                    isPendingStatus(
+                        withdrawal.status
+                    )
+            );
 
 
         document.getElementById(
             "withdrawalSectionTitle"
         ).innerText =
-            "Withdrawal History";
+            "Pending Withdrawal Requests";
 
 
         document.getElementById(
             "withdrawalSectionSubtitle"
         ).innerText =
-            "Tap any withdrawal to view the full details.";
+            "Only withdrawals waiting for approval are shown.";
 
     }
 
@@ -2447,13 +4143,13 @@ async function renderCurrentSearch(){
         document.getElementById(
             "withdrawalSectionTitle"
         ).innerText =
-            "Search Results";
+            "User Withdrawal Records";
 
 
         document.getElementById(
             "withdrawalSectionSubtitle"
         ).innerText =
-            "Showing withdrawal records matching the user phone.";
+            "Showing all withdrawal records matching the user phone.";
 
     }
 
@@ -2498,7 +4194,7 @@ async function renderCurrentSearch(){
 
 
     /* =================================================
-       EMPTY
+       NO RESULTS
     ================================================== */
 
     if(
@@ -2516,7 +4212,6 @@ async function renderCurrentSearch(){
 
 
         empty.innerHTML =
-
             searchPhone !== ""
 
                 ?
@@ -2526,7 +4221,7 @@ async function renderCurrentSearch(){
 
                 :
 
-                "No withdrawal history found.";
+                "No pending withdrawal requests.";
 
 
         list.appendChild(
@@ -2540,143 +4235,50 @@ async function renderCurrentSearch(){
 
 
     /* =================================================
-       DISPLAY RECORDS
+       DISPLAY
     ================================================== */
 
-    withdrawals.forEach(
-        withdrawal => {
+    for(
+        const withdrawal of withdrawals
+    ){
 
-            renderWithdrawalRecord(
-                withdrawal,
-                list
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   ADMIN PANEL
-===================================================== */
-
-function goAdminPanel(){
-
-    window.location.href =
-        "admin.html";
-
-}
-
-
-/* =====================================================
-   MAKE FUNCTIONS AVAILABLE
-===================================================== */
-
-window.goAdminPanel =
-    goAdminPanel;
-
-window.loadWithdrawals =
-    loadWithdrawals;
-
-
-/* =====================================================
-   ADMIN AUTHENTICATION
-===================================================== */
-
-onAuthStateChanged(
-    auth,
-    async user => {
-
-        if(!user){
-
-            alert(
-                "Admin login required."
-            );
-
-            window.location.href =
-                "index.html";
-
-            return;
-
-        }
-
-
-        currentAdmin =
-            user;
-
-
-        /* =================================================
-           ADMIN UID CHECK
-        ================================================== */
-
-        if(
-            user.uid !==
-            ADMIN_UID
-        ){
-
-            alert(
-                "Access denied. " +
-                "This account is not authorized as admin."
-            );
-
-
-            try{
-
-                await signOut(
-                    auth
-                );
-
-            }
-
-            catch(error){
-
-                console.error(
-                    "Admin sign out error:",
-                    error
-                );
-
-            }
-
-
-            window.location.href =
-                "index.html";
-
-            return;
-
-        }
-
-
-        /* =================================================
-           LOAD HISTORY
-        ================================================== */
-
-        await loadWithdrawals();
+        await renderWithdrawalRecord(
+            withdrawal,
+            list
+        );
 
     }
-);
+
+}
 
 
 /* =====================================================
-   SEARCH LISTENER
+   CLOSE MODAL WHEN CLICKING OUTSIDE
 ===================================================== */
 
 document
     .getElementById(
-        "phoneSearch"
+        "approvalModal"
     )
     .addEventListener(
-        "input",
-        function(){
+        "click",
+        function(event){
 
-            renderCurrentSearch();
+            if(
+                event.target ===
+                this
+            ){
+
+                closeApprovalModal();
+
+            }
 
         }
     );
 
 
 /* =====================================================
-   AUTO REFRESH
+   PERIODIC REFRESH
 ===================================================== */
 
 setInterval(
