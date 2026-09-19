@@ -3772,27 +3772,6 @@ async function(){
 };
 
 
-/* =====================================================
-   AUTO REFRESH
-   Every 30 seconds
-===================================================== */
-
-setInterval(
-    () => {
-
-        if(
-            currentAdmin &&
-            currentAdmin.uid === ADMIN_UID
-        ){
-
-            refreshInvestments();
-
-        }
-
-    },
-    30000
-);
-
 
 /* =====================================================
    ESC KEY CLOSE MODAL
