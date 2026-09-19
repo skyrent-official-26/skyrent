@@ -1,1 +1,2196 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>SkyRent - Deposit History</title> <style> /* ===================================================== RESET ===================================================== */ *{ box-sizing:border-box; margin:0; padding:0; } body{ font-family:Arial,Helvetica,sans-serif; background:#f3f7ff; color:#172033; min-height:100vh; } /* ===================================================== HEADER ===================================================== */ .header{ background:linear-gradient( 135deg, #0757c9, #0b7bea ); color:white; padding:18px 16px; position:sticky; top:0; z-index:100; box-shadow: 0 4px 15px rgba(0,0,0,.15); } .header-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; } .header-title{ font-size:20px; font-weight:bold; } .header-subtitle{ font-size:12px; opacity:.85; margin-top:3px; } .back-btn{ border:none; background:rgba(255,255,255,.18); color:white; width:40px; height:40px; border-radius:12px; font-size:20px; cursor:pointer; } /* ===================================================== MAIN ===================================================== */ .container{ width:100%; max-width:800px; margin:auto; padding:15px; } /* ===================================================== SEARCH ===================================================== */ .search-box{ background:white; border-radius:16px; padding:14px; box-shadow:0 4px 15px rgba(0,0,0,.06); margin-bottom:14px; } .search-label{ font-size:13px; font-weight:bold; color:#64748b; margin-bottom:8px; } .search-input{ width:100%; border:1px solid #dbe5f3; background:#f8fbff; padding:13px 14px; border-radius:12px; font-size:14px; outline:none; } .search-input:focus{ border-color:#0b7bea; background:white; } /* ===================================================== SUMMARY ===================================================== */ .summary{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; } .summary-card{ background:white; border-radius:15px; padding:13px; box-shadow: 0 4px 15px rgba(0,0,0,.05); } .summary-label{ font-size:11px; color:#64748b; margin-bottom:5px; } .summary-value{ font-size:18px; font-weight:bold; color:#0757c9; } .summary-card.payment2 .summary-value{ color:#0b7bea; } .summary-card.total .summary-value{ color:#172033; } /* ===================================================== SECTION ===================================================== */ .section-title{ display:flex; justify-content:space-between; align-items:center; margin:17px 2px 9px; } .section-title h2{ font-size:16px; } .count{ font-size:12px; color:#64748b; } /* ===================================================== HISTORY LIST ===================================================== */ .history-list{ display:flex; flex-direction:column; gap:9px; } /* ===================================================== HISTORY ITEM ===================================================== */ .history-item{ background:white; border-radius:15px; box-shadow: 0 4px 14px rgba(0,0,0,.06); overflow:hidden; } /* ===================================================== COLLAPSED HEADER ===================================================== */ .history-header{ width:100%; border:none; background:white; display:flex; align-items:center; padding:13px; text-align:left; cursor:pointer; } .history-header:active{ background:#f7faff; } .history-main{ flex:1; min-width:0; } .top-line{ display:flex; align-items:center; gap:7px; margin-bottom:5px; } .payment-badge{ display:inline-block; padding:4px 7px; border-radius:7px; font-size:10px; font-weight:bold; color:white; } .payment1{ background:#0757c9; } .payment2{ background:#0b7bea; } .approved-badge{ background:#16a34a; color:white; padding:4px 7px; border-radius:7px; font-size:10px; font-weight:bold; } .user-name{ font-size:14px; font-weight:bold; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; } .user-phone{ color:#64748b; font-size:12px; margin-top:2px; } .amount{ font-size:16px; font-weight:bold; color:#0757c9; margin-left:10px; white-space:nowrap; } .date{ font-size:11px; color:#94a3b8; margin-top:4px; } .chevron{ width:28px; height:28px; display:flex; align-items:center; justify-content:center; color:#64748b; font-size:18px; transition: transform .2s ease; } .history-item.open .chevron{ transform:rotate(180deg); } /* ===================================================== DETAILS ===================================================== */ .history-details{ display:none; border-top:1px solid #edf2f7; padding:13px; background:#fbfdff; } .history-item.open .history-details{ display:block; } .details-title{ font-size:13px; font-weight:bold; color:#0757c9; margin-bottom:10px; } .detail-grid{ display:grid; grid-template-columns:1fr 1fr; gap:9px; } .detail{ background:white; border:1px solid #edf2f7; border-radius:10px; padding:9px; min-width:0; } .detail.full{ grid-column:1 / -1; } .detail-label{ font-size:10px; color:#94a3b8; margin-bottom:4px; text-transform:uppercase; } .detail-value{ font-size:12px; font-weight:bold; color:#1e293b; word-break:break-word; } /* ===================================================== LOADING ===================================================== */ .loading{ text-align:center; padding:35px 15px; color:#64748b; font-size:14px; } .spinner{ width:28px; height:28px; border:3px solid #dbeafe; border-top-color:#0757c9; border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 10px; } @keyframes spin{ to{ transform:rotate(360deg); } } /* ===================================================== EMPTY ===================================================== */ .empty{ background:white; border-radius:15px; padding:30px 15px; text-align:center; color:#64748b; box-shadow: 0 4px 15px rgba(0,0,0,.05); } .empty-icon{ font-size:35px; margin-bottom:8px; } .empty-title{ font-weight:bold; color:#334155; margin-bottom:4px; } .empty-text{ font-size:12px; } /* ===================================================== ERROR ===================================================== */ .error-box{ background:#fff1f2; border:1px solid #fecdd3; color:#be123c; border-radius:12px; padding:13px; font-size:13px; display:none; margin-bottom:12px; } /* ===================================================== REFRESH BUTTON ===================================================== */ .refresh-btn{ width:100%; border:none; padding:13px; border-radius:12px; background:#e8f1ff; color:#0757c9; font-size:14px; font-weight:bold; cursor:pointer; margin-top:15px; } .refresh-btn:active{ transform:scale(.98); } /* ===================================================== DESKTOP ===================================================== */ @media(min-width:600px){ .summary{ grid-template-columns:1fr 1fr 1fr; } .history-header{ padding:15px; } .history-details{ padding:16px; } } </style> </head> <body> <!-- ===================================================== HEADER ===================================================== --> <header class="header"> <div class="header-row"> <button class="back-btn" onclick="window.location.href='admin.html'" > ← </button> <div style="flex:1;"> <div class="header-title"> Deposit History </div> <div class="header-subtitle"> Approved Payment 1 & Payment 2 deposits </div> </div> </div> </header> <!-- ===================================================== MAIN ===================================================== --> <main class="container"> <!-- SEARCH --> <div class="search-box"> <div class="search-label"> Search Deposit History </div> <input type="text" id="historySearch" class="search-input" placeholder="Search phone, name, reference or transaction ID..." autocomplete="off" > </div> <!-- ERROR --> <div id="errorBox" class="error-box" ></div> <!-- SUMMARY --> <div class="summary"> <div class="summary-card"> <div class="summary-label"> Payment 1 </div> <div class="summary-value" id="payment1Total" > ₱0.00 </div> </div> <div class="summary-card payment2"> <div class="summary-label"> Payment 2 </div> <div class="summary-value" id="payment2Total" > ₱0.00 </div> </div> <div class="summary-card total"> <div class="summary-label"> Total Approved </div> <div class="summary-value" id="totalDeposit" > ₱0.00 </div> </div> </div> <!-- LIST --> <div class="section-title"> <h2> Deposit Records </h2> <span class="count" id="recordCount" > 0 records </span> </div> <div id="historyList" class="history-list" > <div class="loading"> <div class="spinner"></div> Loading deposit history... </div> </div> <button class="refresh-btn" id="refreshBtn" > 🔄 Refresh History </button> </main> <!-- ===================================================== FIREBASE ===================================================== --> <script type="module"> import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"; import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"; import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"; /* ===================================================== FIREBASE CONFIG ===================================================== */ const firebaseConfig = { apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8", authDomain: "skyrent-ea30c.firebaseapp.com", projectId: "skyrent-ea30c", storageBucket: "skyrent-ea30c.firebasestorage.app", messagingSenderId: "572678456448", appId: "1:572678456448:web:6b7132351515742dd09265" }; /* ===================================================== INITIALIZE ===================================================== */ const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app); /* ===================================================== ADMIN UID ===================================================== */ const ADMIN_UID = "28zzG9NB46gRkwia7WtOxS1lQNa2"; /* ===================================================== GLOBAL DATA ===================================================== */ let allDeposits = []; /* ===================================================== HELPERS ===================================================== */ function escapeHTML(value){ if( value === null || value === undefined ){ return ""; } return String(value) .replace(/&/g,"&amp;") .replace(/</g,"&lt;") .replace(/>/g,"&gt;") .replace(/"/g,"&quot;") .replace(/'/g,"&#039;"); } function getNumber(value){ const number = Number(value); return Number.isFinite(number) ? number : 0; } function money(value){ return "₱" + getNumber(value) .toLocaleString( "en-PH", { minimumFractionDigits:2, maximumFractionDigits:2 } ); } function formatDate(value){ if(!value){ return "—"; } try{ let date; if( typeof value === "object" && value.seconds !== undefined ){ date = new Date( value.seconds * 1000 ); } else if( typeof value === "object" && typeof value.toDate === "function" ){ date = value.toDate(); } else{ date = new Date(value); } if( isNaN(date.getTime()) ){ return "—"; } return date.toLocaleString( "en-PH", { year:"numeric", month:"short", day:"numeric", hour:"numeric", minute:"2-digit", second:"2-digit" } ); } catch(error){ return "—"; } } function getDateValue(value){ if(!value){ return 0; } try{ if( typeof value === "object" && value.seconds !== undefined ){ return value.seconds * 1000; } if( typeof value === "object" && typeof value.toDate === "function" ){ return value.toDate().getTime(); } const date = new Date(value); return date.getTime() || 0; } catch(error){ return 0; } } /* ===================================================== PAYMENT CHANNEL ===================================================== */ function getPaymentChannel(data){ return ( data.paymentChannel || data.paymentMethodChannel || data.channel || data.payment || "" ); } /* ===================================================== APPROVED STATUS ===================================================== */ function isApproved(data){ const status = String( data.status || "" ) .trim() .toLowerCase(); return ( status === "approved" || status === "deposit approved" || status === "deposit successful" || status === "success" || status === "successful" ); } /* ===================================================== GET DEPOSIT DATE ===================================================== */ function getDepositDate(data){ return ( data.approvedAt || data.updatedAt || data.createdAt || data.submittedAt || data.requestedAt ); } /* ===================================================== SEARCH TEXT ===================================================== */ function searchableText(record){ const data = record.data || {}; return [ data.phone, data.userPhone, data.userName, data.name, data.email, data.referenceNumber, data.referenceNo, data.gcachReference, data.gcashReference, data.mayaReference, data.instapayReference, data.transactionId, data.depositId, record.id, data.uid, data.userId, getPaymentChannel(data), data.paymentMethod ] .filter( value => value !== undefined && value !== null ) .join(" ") .toLowerCase(); } /* ===================================================== GET USER NAME ===================================================== */ function getUserName(data){ return ( data.userName || data.name || data.fullName || "Unknown User" ); } /* ===================================================== GET PHONE ===================================================== */ function getPhone(data){ return ( data.phone || data.userPhone || "—" ); } /* ===================================================== GET AMOUNT ===================================================== */ function getAmount(data){ return getNumber( data.amount ?? data.depositAmount ?? data.amountDeposited ?? 0 ); } /* ===================================================== GET REFERENCE ===================================================== */ function getReference(data){ return ( data.referenceNumber || data.referenceNo || data.gcashReference || data.gcachReference || data.mayaReference || data.instapayReference || data.refNumber || "—" ); } /* ===================================================== GET TRANSACTION ID ===================================================== */ function getTransactionId(data, id){ return ( data.transactionId || data.depositTransactionId || data.txnId || id || "—" ); } /* ===================================================== LOAD HISTORY ===================================================== */ async function loadHistory(){ const historyList = document.getElementById( "historyList" ); const errorBox = document.getElementById( "errorBox" ); errorBox.style.display = "none"; historyList.innerHTML = ` <div class="loading"> <div class="spinner"></div> Loading deposit history... </div> `; try{ let snapshot; /* * Try newest approved deposits first. */ try{ const depositsQuery = query( collection( db, "deposits" ), orderBy( "approvedAt", "desc" ) ); snapshot = await getDocs( depositsQuery ); } catch(error){ /* * Fallback if some documents do not * contain approvedAt or index is unavailable. */ snapshot = await getDocs( collection( db, "deposits" ) ); } allDeposits = []; snapshot.forEach( docSnapshot => { const data = docSnapshot.data(); /* * Only approved deposits belong * in Deposit History. */ if(!isApproved(data)){ return; } allDeposits.push({ id: docSnapshot.id, data: data }); } ); /* * Newest first. */ allDeposits.sort( (a,b) => getDateValue( getDepositDate(b.data) ) - getDateValue( getDepositDate(a.data) ) ); updateSummary(); renderHistory(); } catch(error){ console.error( "Deposit history error:", error ); historyList.innerHTML = ` <div class="empty"> <div class="empty-icon"> ⚠️ </div> <div class="empty-title"> Unable to load history </div> <div class="empty-text"> Please check your Firebase connection and Firestore permissions. </div> </div> `; errorBox.textContent = error.message || "Unable to load deposit history."; errorBox.style.display = "block"; } } /* ===================================================== SUMMARY ===================================================== */ function updateSummary(){ let payment1 = 0; let payment2 = 0; let total = 0; allDeposits.forEach( record => { const data = record.data; const amount = getAmount(data); const channel = getPaymentChannel(data) .toLowerCase(); total += amount; if( channel.includes("payment 1") || channel.includes("payment1") ){ payment1 += amount; } else if( channel.includes("payment 2") || channel.includes("payment2") ){ payment2 += amount; } } ); document.getElementById( "payment1Total" ).textContent = money(payment1); document.getElementById( "payment2Total" ).textContent = money(payment2); document.getElementById( "totalDeposit" ).textContent = money(total); } /* ===================================================== PAYMENT BADGE ===================================================== */ function paymentBadge(channel){ const lower = String(channel) .toLowerCase(); if( lower.includes("payment 2") || lower.includes("payment2") ){ return ` <span class="payment-badge payment2"> Payment 2 </span> `; } return ` <span class="payment-badge payment1"> Payment 1 </span> `; } /* ===================================================== DETAIL ITEM ===================================================== */ function detailItem( label, value, full = false ){ return ` <div class="detail ${full ? "full" : ""}"> <div class="detail-label"> ${escapeHTML(label)} </div> <div class="detail-value"> ${escapeHTML( value === undefined || value === null || value === "" ? "—" : value )} </div> </div> `; } /* ===================================================== RENDER HISTORY ===================================================== */ function renderHistory(){ const historyList = document.getElementById( "historyList" ); const search = document.getElementById( "historySearch" ) .value .trim() .toLowerCase(); let records = allDeposits; if(search){ records = allDeposits.filter( record => searchableText( record ).includes(search) ); } document.getElementById( "recordCount" ).textContent = records.length + ( records.length === 1 ? " record" : " records" ); if(records.length === 0){ historyList.innerHTML = ` <div class="empty"> <div class="empty-icon"> 📋 </div> <div class="empty-title"> No deposit history found </div> <div class="empty-text"> ${ search ? "No approved deposit matches your search." : "There are no approved deposits yet." } </div> </div> `; return; } historyList.innerHTML = ""; records.forEach( record => { const data = record.data; const userName = getUserName(data); const phone = getPhone(data); const amount = getAmount(data); const channel = getPaymentChannel(data); const reference = getReference(data); const transactionId = getTransactionId( data, record.id ); const depositDate = getDepositDate(data); const item = document.createElement( "div" ); item.className = "history-item"; item.innerHTML = ` <!-- ========================= COLLAPSED ROW ========================== --> <button class="history-header" type="button" > <div class="history-main"> <div class="top-line"> ${paymentBadge(channel)} <span class="approved-badge"> Approved </span> </div> <div class="user-name"> ${escapeHTML( userName )} </div> <div class="user-phone"> ${escapeHTML( phone )} </div> <div class="date"> ${escapeHTML( formatDate( depositDate ) )} </div> </div> <div class="amount"> ${money(amount)} </div> <div class="chevron"> ▼ </div> </button> <!-- ========================= DETAILS ========================== --> <div class="history-details"> <div class="details-title"> Deposit Details </div> <div class="detail-grid"> ${detailItem( "User Name", userName )} ${detailItem( "Phone Number", phone )} ${detailItem( "Deposit Amount", money(amount) )} ${detailItem( "Payment Channel", channel || "—" )} ${detailItem( "Payment Method", data.paymentMethod || data.method || data.depositMethod || "—" )} ${detailItem( "Reference Number", reference )} ${detailItem( "Transaction ID", transactionId )} ${detailItem( "Deposit Status", data.status || "Approved" )} ${detailItem( "Requested / Submitted", formatDate( data.requestedAt || data.submittedAt || data.createdAt ) )} ${detailItem( "Approved At", formatDate( data.approvedAt || data.updatedAt ) )} ${detailItem( "Approved By", data.approvedBy || data.approvedByEmail || "—" )} ${detailItem( "User ID", data.uid || data.userId || "—", true )} ${detailItem( "Deposit Record ID", record.id, true )} </div> </div> `; /* * Click to expand/collapse. */ const header = item.querySelector( ".history-header" ); header.addEventListener( "click", () => { item.classList.toggle( "open" ); } ); historyList.appendChild( item ); } ); } /* ===================================================== SEARCH ===================================================== */ document.getElementById( "historySearch" ) .addEventListener( "input", renderHistory ); /* ===================================================== REFRESH ===================================================== */ document.getElementById( "refreshBtn" ) .addEventListener( "click", async () => { const button = document.getElementById( "refreshBtn" ); button.disabled = true; button.textContent = "⏳ Refreshing..."; try{ await loadHistory(); } finally{ button.disabled = false; button.textContent = "🔄 Refresh History"; } } ); /* ===================================================== ADMIN AUTH ===================================================== */ onAuthStateChanged( auth, async user => { if(!user){ window.location.href = "index.html"; return; } /* * Only the configured admin account * can access this page. */ if( user.uid !== ADMIN_UID ){ try{ await signOut(auth); } catch(error){ console.error( error ); } window.location.href = "index.html"; return; } /* * Admin verified. */ await loadHistory(); } ); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent Admin - Deposit History</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f7ff;
+    color:#172033;
+    min-height:100vh;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #0757c9,
+        #0b7bea
+    );
+
+    color:white;
+    padding:20px 16px;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.header h1{
+    font-size:22px;
+    margin-bottom:5px;
+}
+
+.header p{
+    font-size:13px;
+    opacity:.9;
+}
+
+.back-btn{
+    border:none;
+    background:rgba(255,255,255,.18);
+    color:white;
+    padding:10px 13px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.container{
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:16px;
+}
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-bottom:16px;
+}
+
+.summary-card{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+    border:1px solid #e5edfb;
+}
+
+.summary-label{
+    font-size:12px;
+    color:#64748b;
+    margin-bottom:7px;
+}
+
+.summary-value{
+    font-size:20px;
+    font-weight:bold;
+    color:#0757c9;
+}
+
+.payment-summary{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-bottom:16px;
+}
+
+.payment-card{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+    border:1px solid #e5edfb;
+}
+
+.payment-title{
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.payment-amount{
+    font-size:19px;
+    font-weight:bold;
+    color:#0757c9;
+}
+
+.payment-count{
+    font-size:12px;
+    color:#64748b;
+    margin-top:4px;
+}
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-card{
+    background:white;
+    border-radius:15px;
+    padding:14px;
+    margin-bottom:16px;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+}
+
+.search-label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    color:#334155;
+    margin-bottom:7px;
+}
+
+.search-input{
+    width:100%;
+    border:1px solid #d7e1f0;
+    border-radius:11px;
+    padding:13px;
+    font-size:14px;
+    outline:none;
+    background:#f8fbff;
+}
+
+.search-input:focus{
+    border-color:#0757c9;
+    background:white;
+}
+
+/* =====================================================
+   FILTER BUTTONS
+===================================================== */
+
+.filter-row{
+    display:flex;
+    gap:8px;
+    margin-top:12px;
+    overflow-x:auto;
+    padding-bottom:2px;
+}
+
+.filter-btn{
+    border:none;
+    padding:10px 13px;
+    border-radius:10px;
+    background:#edf3fc;
+    color:#334155;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.filter-btn.active{
+    background:#0757c9;
+    color:white;
+}
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:5px 0 10px;
+}
+
+.section-title h2{
+    font-size:17px;
+}
+
+.section-title span{
+    font-size:12px;
+    color:#64748b;
+}
+
+/* =====================================================
+   DEPOSIT LIST
+===================================================== */
+
+.deposit-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.deposit-card{
+    background:white;
+    border-radius:15px;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+    border:1px solid #e3ebf7;
+    overflow:hidden;
+}
+
+.deposit-main{
+    padding:14px;
+    cursor:pointer;
+}
+
+.deposit-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.deposit-user{
+    min-width:0;
+}
+
+.deposit-name{
+    font-size:15px;
+    font-weight:bold;
+    color:#172033;
+    word-break:break-word;
+}
+
+.deposit-phone{
+    font-size:12px;
+    color:#64748b;
+    margin-top:4px;
+}
+
+.deposit-amount{
+    font-size:18px;
+    font-weight:bold;
+    color:#0757c9;
+    white-space:nowrap;
+}
+
+.badge-row{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    padding:6px 9px;
+    border-radius:8px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.badge-payment1{
+    background:#e8f1ff;
+    color:#0757c9;
+}
+
+.badge-payment2{
+    background:#eef8ff;
+    color:#0875a8;
+}
+
+.badge-unknown{
+    background:#fff3cd;
+    color:#8a6500;
+}
+
+.badge-approved{
+    background:#e9f9ef;
+    color:#16803c;
+}
+
+.deposit-date{
+    font-size:11px;
+    color:#64748b;
+    margin-top:9px;
+}
+
+/* =====================================================
+   EXPANDED DETAILS
+===================================================== */
+
+.deposit-details{
+    display:none;
+    border-top:1px solid #e8eef7;
+    padding:14px;
+    background:#f9fbff;
+}
+
+.deposit-card.open .deposit-details{
+    display:block;
+}
+
+.detail-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:9px;
+}
+
+.detail-item{
+    background:white;
+    border:1px solid #e2e9f4;
+    border-radius:10px;
+    padding:10px;
+}
+
+.detail-label{
+    font-size:10px;
+    color:#64748b;
+    margin-bottom:4px;
+    text-transform:uppercase;
+    letter-spacing:.3px;
+}
+
+.detail-value{
+    font-size:13px;
+    font-weight:bold;
+    color:#172033;
+    word-break:break-word;
+}
+
+.expand-indicator{
+    font-size:12px;
+    color:#0757c9;
+    margin-top:9px;
+    font-weight:bold;
+}
+
+/* =====================================================
+   EMPTY / LOADING
+===================================================== */
+
+.loading{
+    text-align:center;
+    padding:35px 15px;
+    color:#64748b;
+    font-size:14px;
+}
+
+.spinner{
+    width:30px;
+    height:30px;
+    border:3px solid #dce8f8;
+    border-top-color:#0757c9;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:0 auto 10px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.empty{
+    background:white;
+    border-radius:15px;
+    padding:30px 15px;
+    text-align:center;
+    color:#64748b;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+
+.empty-icon{
+    font-size:35px;
+    margin-bottom:8px;
+}
+
+.error{
+    background:#fff1f1;
+    border:1px solid #ffcaca;
+    color:#b42318;
+    padding:14px;
+    border-radius:12px;
+    font-size:13px;
+}
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media(min-width:650px){
+
+    .summary-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .payment-summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .detail-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header">
+
+    <div class="header-top">
+
+        <div>
+
+            <h1>💰 Deposit History</h1>
+
+            <p>
+                Approved deposits and payment records
+            </p>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="window.location.href='admin-deposits.html'"
+        >
+            ← Back
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="container">
+
+
+    <!-- SUMMARY -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="summary-label">
+                Total Approved
+            </div>
+
+            <div
+                class="summary-value"
+                id="totalAmount"
+            >
+                ₱0.00
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-label">
+                Approved Deposits
+            </div>
+
+            <div
+                class="summary-value"
+                id="totalCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-label">
+                Showing
+            </div>
+
+            <div
+                class="summary-value"
+                id="showingCount"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT SUMMARY -->
+
+    <div class="payment-summary">
+
+
+        <div class="payment-card">
+
+            <div class="payment-title">
+                💳 Payment 1
+            </div>
+
+            <div
+                class="payment-amount"
+                id="payment1Amount"
+            >
+                ₱0.00
+            </div>
+
+            <div
+                class="payment-count"
+                id="payment1Count"
+            >
+                0 deposits
+            </div>
+
+        </div>
+
+
+        <div class="payment-card">
+
+            <div class="payment-title">
+                💳 Payment 2
+            </div>
+
+            <div
+                class="payment-amount"
+                id="payment2Amount"
+            >
+                ₱0.00
+            </div>
+
+            <div
+                class="payment-count"
+                id="payment2Count"
+            >
+                0 deposits
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-card">
+
+        <label
+            class="search-label"
+            for="searchInput"
+        >
+            🔎 Search deposit
+        </label>
+
+        <input
+            id="searchInput"
+            class="search-input"
+            type="search"
+            placeholder="Phone, name, reference, email..."
+            autocomplete="off"
+        >
+
+
+        <div class="filter-row">
+
+            <button
+                class="filter-btn active"
+                data-filter="ALL"
+                onclick="setFilter('ALL')"
+            >
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="1"
+                onclick="setFilter('1')"
+            >
+                💳 Payment 1
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="2"
+                onclick="setFilter('2')"
+            >
+                💳 Payment 2
+            </button>
+
+            <button
+                class="filter-btn"
+                data-filter="UNKNOWN"
+                onclick="setFilter('UNKNOWN')"
+            >
+                ⚠️ Not Identified
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TITLE -->
+
+    <div class="section-title">
+
+        <h2>
+            Approved Deposits
+        </h2>
+
+        <span id="listStatus">
+            Loading...
+        </span>
+
+    </div>
+
+
+    <!-- LIST -->
+
+    <div
+        id="depositList"
+        class="deposit-list"
+    >
+
+        <div class="loading">
+
+            <div class="spinner"></div>
+
+            Loading deposit history...
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    where
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let allDeposits = [];
+
+let currentFilter = "ALL";
+
+let searchText = "";
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function money(value){
+
+    const number =
+        Number(value || 0);
+
+    return number.toLocaleString(
+        "en-PH",
+        {
+            style:"currency",
+            currency:"PHP",
+            minimumFractionDigits:2
+        }
+    );
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function getTimestampValue(value){
+
+    if(!value){
+        return 0;
+    }
+
+    if(
+        typeof value === "object" &&
+        typeof value.toMillis === "function"
+    ){
+        return value.toMillis();
+    }
+
+    if(
+        typeof value === "object" &&
+        value.seconds
+    ){
+        return Number(value.seconds) * 1000;
+    }
+
+    const parsed =
+        new Date(value).getTime();
+
+    return Number.isNaN(parsed)
+        ? 0
+        : parsed;
+
+}
+
+
+function formatDate(value){
+
+    const time =
+        getTimestampValue(value);
+
+    if(!time){
+        return "Date not available";
+    }
+
+    return new Date(time).toLocaleString(
+        "en-PH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric",
+            hour:"numeric",
+            minute:"2-digit"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PAYMENT IDENTIFICATION
+===================================================== */
+
+function getPaymentOption(deposit){
+
+    if(!deposit){
+        return null;
+    }
+
+
+    /*
+       FIRST:
+       Use the explicit field that the new
+       deposit.html will save.
+    */
+
+    const channel =
+        String(
+            deposit.paymentChannel ?? ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    if(
+        channel === "payment 1" ||
+        channel === "payment1" ||
+        channel === "1"
+    ){
+        return "1";
+    }
+
+
+    if(
+        channel === "payment 2" ||
+        channel === "payment2" ||
+        channel === "2"
+    ){
+        return "2";
+    }
+
+
+    /*
+       SECOND:
+       Numeric option field.
+    */
+
+    const numericFields = [
+
+        deposit.paymentOption,
+
+        deposit.paymentOptionNumber,
+
+        deposit.paymentTypeNumber,
+
+        deposit.selectedPaymentOption,
+
+        deposit.paymentMethodNumber,
+
+        deposit.paymentChannelNumber
+
+    ];
+
+
+    for(
+        const value of numericFields
+    ){
+
+        if(
+            value === 1 ||
+            String(value).trim() === "1"
+        ){
+            return "1";
+        }
+
+
+        if(
+            value === 2 ||
+            String(value).trim() === "2"
+        ){
+            return "2";
+        }
+
+    }
+
+
+    /*
+       THIRD:
+       Boolean fields.
+    */
+
+    if(
+        deposit.payment1 === true
+    ){
+        return "1";
+    }
+
+
+    if(
+        deposit.payment2 === true
+    ){
+        return "2";
+    }
+
+
+    /*
+       FOURTH:
+       Other possible text fields.
+    */
+
+    const textFields = [
+
+        deposit.payment,
+
+        deposit.paymentType,
+
+        deposit.paymentMethod,
+
+        deposit.selectedPayment,
+
+        deposit.selectedPaymentOption
+
+    ];
+
+
+    for(
+        const value of textFields
+    ){
+
+        const text =
+            String(value ?? "")
+            .trim()
+            .toLowerCase()
+            .replace(/[_-]+/g," ")
+            .replace(/\s+/g," ");
+
+
+        if(
+            text === "payment 1" ||
+            text === "payment1" ||
+            text === "payment option 1" ||
+            text === "option 1"
+        ){
+            return "1";
+        }
+
+
+        if(
+            text === "payment 2" ||
+            text === "payment2" ||
+            text === "payment option 2" ||
+            text === "option 2"
+        ){
+            return "2";
+        }
+
+    }
+
+
+    /*
+       IMPORTANT:
+       Do not guess if the document does not
+       contain payment information.
+    */
+
+    return null;
+
+}
+
+
+/* =====================================================
+   PAYMENT BADGE
+===================================================== */
+
+function paymentBadgeHTML(deposit){
+
+    const option =
+        getPaymentOption(deposit);
+
+
+    if(option === "1"){
+
+        return `
+            <span class="badge badge-payment1">
+                💳 PAYMENT 1
+            </span>
+        `;
+
+    }
+
+
+    if(option === "2"){
+
+        return `
+            <span class="badge badge-payment2">
+                💳 PAYMENT 2
+            </span>
+        `;
+
+    }
+
+
+    return `
+        <span class="badge badge-unknown">
+            ⚠️ PAYMENT NOT IDENTIFIED
+        </span>
+    `;
+
+}
+
+
+/* =====================================================
+   NAME
+===================================================== */
+
+function getName(deposit){
+
+    return (
+        deposit.userName ||
+        deposit.name ||
+        deposit.fullName ||
+        deposit.displayName ||
+        "Unknown User"
+    );
+
+}
+
+
+/* =====================================================
+   PHONE
+===================================================== */
+
+function getPhone(deposit){
+
+    return (
+        deposit.phone ||
+        deposit.mobile ||
+        deposit.userPhone ||
+        deposit.phoneNumber ||
+        "Not available"
+    );
+
+}
+
+
+/* =====================================================
+   EMAIL
+===================================================== */
+
+function getEmail(deposit){
+
+    return (
+        deposit.email ||
+        deposit.userEmail ||
+        "Not available"
+    );
+
+}
+
+
+/* =====================================================
+   REFERENCE
+===================================================== */
+
+function getReference(deposit){
+
+    return (
+        deposit.referenceNumber ||
+        deposit.referenceNo ||
+        deposit.refNo ||
+        deposit.reference ||
+        deposit.gcashReference ||
+        deposit.paymentReference ||
+        "Not available"
+    );
+
+}
+
+
+/* =====================================================
+   PAYMENT ACCOUNT
+===================================================== */
+
+function getPaymentAccount(deposit){
+
+    return (
+        deposit.paymentAccount ||
+        deposit.receivingAccount ||
+        deposit.account ||
+        deposit.paymentNumber ||
+        "Not available"
+    );
+
+}
+
+
+/* =====================================================
+   PAYMENT METHOD
+===================================================== */
+
+function getPaymentMethod(deposit){
+
+    return (
+        deposit.paymentMethod ||
+        deposit.method ||
+        "Not available"
+    );
+
+}
+
+
+/* =====================================================
+   DEPOSIT AMOUNT
+===================================================== */
+
+function getAmount(deposit){
+
+    return Number(
+        deposit.amount ||
+        deposit.depositAmount ||
+        deposit.value ||
+        0
+    );
+
+}
+
+
+/* =====================================================
+   APPROVAL DATE
+===================================================== */
+
+function getApprovalDate(deposit){
+
+    return (
+        deposit.approvedAt ||
+        deposit.updatedAt ||
+        deposit.processedAt ||
+        deposit.createdAt ||
+        deposit.timestamp
+    );
+
+}
+
+
+/* =====================================================
+   SEARCH TEXT
+===================================================== */
+
+function searchableText(deposit){
+
+    return [
+
+        getName(deposit),
+
+        getPhone(deposit),
+
+        getEmail(deposit),
+
+        getReference(deposit),
+
+        getPaymentMethod(deposit),
+
+        getPaymentAccount(deposit),
+
+        deposit.userId,
+
+        deposit.id
+
+    ]
+    .join(" ")
+    .toLowerCase();
+
+}
+
+
+/* =====================================================
+   LOAD APPROVED DEPOSITS
+===================================================== */
+
+async function loadDeposits(){
+
+    const list =
+        document.getElementById(
+            "depositList"
+        );
+
+
+    list.innerHTML = `
+        <div class="loading">
+
+            <div class="spinner"></div>
+
+            Loading deposit history...
+
+        </div>
+    `;
+
+
+    try{
+
+        /*
+           Only approved deposits.
+        */
+
+        const q =
+            query(
+                collection(
+                    db,
+                    "deposits"
+                ),
+                where(
+                    "status",
+                    "==",
+                    "Approved"
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        allDeposits = [];
+
+
+        snapshot.forEach(
+            docSnapshot => {
+
+                const data =
+                    docSnapshot.data();
+
+
+                allDeposits.push({
+
+                    id:
+                        docSnapshot.id,
+
+                    ...data
+
+                });
+
+            }
+        );
+
+
+        /*
+           Some older records may use approved:true
+           but not status:"Approved".
+           We intentionally keep the query above
+           simple and reliable.
+        */
+
+
+        allDeposits.sort(
+            (a,b) => {
+
+                return (
+                    getTimestampValue(
+                        getApprovalDate(b)
+                    )
+                    -
+                    getTimestampValue(
+                        getApprovalDate(a)
+                    )
+                );
+
+            }
+        );
+
+
+        updateSummary();
+
+        renderDeposits();
+
+    }
+    catch(error){
+
+        console.error(
+            "Deposit history error:",
+            error
+        );
+
+
+        list.innerHTML = `
+            <div class="error">
+
+                ❌ Unable to load deposit history.
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </div>
+        `;
+
+        document.getElementById(
+            "listStatus"
+        ).textContent =
+            "Error";
+
+    }
+
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+function updateSummary(){
+
+    let total =
+        0;
+
+    let payment1Amount =
+        0;
+
+    let payment2Amount =
+        0;
+
+    let payment1Count =
+        0;
+
+    let payment2Count =
+        0;
+
+
+    allDeposits.forEach(
+        deposit => {
+
+            const amount =
+                getAmount(deposit);
+
+            const option =
+                getPaymentOption(deposit);
+
+
+            total += amount;
+
+
+            if(option === "1"){
+
+                payment1Amount += amount;
+
+                payment1Count++;
+
+            }
+
+
+            if(option === "2"){
+
+                payment2Amount += amount;
+
+                payment2Count++;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalAmount"
+    ).textContent =
+        money(total);
+
+
+    document.getElementById(
+        "totalCount"
+    ).textContent =
+        allDeposits.length;
+
+
+    document.getElementById(
+        "payment1Amount"
+    ).textContent =
+        money(payment1Amount);
+
+
+    document.getElementById(
+        "payment1Count"
+    ).textContent =
+        `${payment1Count} deposits`;
+
+
+    document.getElementById(
+        "payment2Amount"
+    ).textContent =
+        money(payment2Amount);
+
+
+    document.getElementById(
+        "payment2Count"
+    ).textContent =
+        `${payment2Count} deposits`;
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+window.setFilter =
+    function(filter){
+
+        currentFilter =
+            filter;
+
+
+        document
+            .querySelectorAll(
+                ".filter-btn"
+            )
+            .forEach(
+                button => {
+
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.filter === filter
+                    );
+
+                }
+            );
+
+
+        renderDeposits();
+
+    };
+
+
+/* =====================================================
+   SEARCH LISTENER
+===================================================== */
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        function(){
+
+            searchText =
+                this.value
+                .trim()
+                .toLowerCase();
+
+
+            renderDeposits();
+
+        }
+    );
+
+
+/* =====================================================
+   FILTERED DATA
+===================================================== */
+
+function getFilteredDeposits(){
+
+    return allDeposits.filter(
+        deposit => {
+
+            const option =
+                getPaymentOption(deposit);
+
+
+            /*
+               Payment filter
+            */
+
+            if(
+                currentFilter === "1" &&
+                option !== "1"
+            ){
+                return false;
+            }
+
+
+            if(
+                currentFilter === "2" &&
+                option !== "2"
+            ){
+                return false;
+            }
+
+
+            if(
+                currentFilter === "UNKNOWN" &&
+                option !== null
+            ){
+                return false;
+            }
+
+
+            /*
+               Search
+            */
+
+            if(
+                searchText &&
+                !searchableText(
+                    deposit
+                ).includes(
+                    searchText
+                )
+            ){
+                return false;
+            }
+
+
+            return true;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderDeposits(){
+
+    const list =
+        document.getElementById(
+            "depositList"
+        );
+
+
+    const deposits =
+        getFilteredDeposits();
+
+
+    document.getElementById(
+        "showingCount"
+    ).textContent =
+        deposits.length;
+
+
+    document.getElementById(
+        "listStatus"
+    ).textContent =
+        `${deposits.length} record${
+            deposits.length === 1
+                ? ""
+                : "s"
+        }`;
+
+
+    if(!deposits.length){
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                No approved deposits found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        deposits
+        .map(
+            (deposit,index) =>
+                createDepositHTML(
+                    deposit,
+                    index
+                )
+        )
+        .join("");
+
+}
+
+
+/* =====================================================
+   CREATE CARD
+===================================================== */
+
+function createDepositHTML(
+    deposit,
+    index
+){
+
+    const amount =
+        getAmount(deposit);
+
+
+    const name =
+        getName(deposit);
+
+
+    const phone =
+        getPhone(deposit);
+
+
+    const email =
+        getEmail(deposit);
+
+
+    const reference =
+        getReference(deposit);
+
+
+    const method =
+        getPaymentMethod(deposit);
+
+
+    const account =
+        getPaymentAccount(deposit);
+
+
+    const option =
+        getPaymentOption(deposit);
+
+
+    const paymentChannel =
+        option === "1"
+            ? "Payment 1"
+            : option === "2"
+                ? "Payment 2"
+                : "Payment Not Identified";
+
+
+    const createdDate =
+        formatDate(
+            deposit.createdAt ||
+            deposit.timestamp
+        );
+
+
+    const approvedDate =
+        formatDate(
+            getApprovalDate(
+                deposit
+            )
+        );
+
+
+    const status =
+        deposit.status ||
+        "Approved";
+
+
+    return `
+
+        <div
+            class="deposit-card"
+            id="deposit-${index}"
+        >
+
+
+            <!-- MAIN CLICK AREA -->
+
+            <div
+                class="deposit-main"
+                onclick="toggleDeposit(${index})"
+            >
+
+                <div class="deposit-top">
+
+
+                    <div class="deposit-user">
+
+                        <div class="deposit-name">
+
+                            ${escapeHTML(name)}
+
+                        </div>
+
+
+                        <div class="deposit-phone">
+
+                            📱 ${escapeHTML(phone)}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="deposit-amount">
+
+                        ${money(amount)}
+
+                    </div>
+
+                </div>
+
+
+                <div class="badge-row">
+
+                    ${paymentBadgeHTML(
+                        deposit
+                    )}
+
+
+                    <span class="badge badge-approved">
+
+                        ✓ APPROVED
+
+                    </span>
+
+                </div>
+
+
+                <div class="deposit-date">
+
+                    Approved:
+                    ${escapeHTML(
+                        approvedDate
+                    )}
+
+                </div>
+
+
+                <div
+                    class="expand-indicator"
+                    id="indicator-${index}"
+                >
+
+                    👆 Tap to view details
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPANDED DETAILS -->
+
+            <div class="deposit-details">
+
+
+                <div class="detail-grid">
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Deposit Amount
+                        </div>
+
+                        <div class="detail-value">
+                            ${money(amount)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Payment Channel
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${
+                                option === "1"
+                                    ? "💳 Payment 1"
+                                    : option === "2"
+                                        ? "💳 Payment 2"
+                                        : "⚠️ Payment Not Identified"
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Payment Method
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                method
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Payment Account
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                account
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            User Name
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                name
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Phone
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                phone
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Email
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                email
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Reference Number
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                reference
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Deposit Created
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                createdDate
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Approved Date
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                approvedDate
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Status
+                        </div>
+
+                        <div class="detail-value">
+
+                            ✓ ${escapeHTML(
+                                status
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Deposit ID
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                deposit.id
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                ${
+                    option === null
+                        ? `
+                            <div
+                                style="
+                                    margin-top:12px;
+                                    padding:12px;
+                                    border-radius:10px;
+                                    background:#fff7dc;
+                                    border:1px solid #f0d98a;
+                                    color:#745900;
+                                    font-size:12px;
+                                    line-height:1.5;
+                                "
+                            >
+                                ⚠️ This deposit record does not contain
+                                an explicit Payment 1 / Payment 2
+                                selection. It should not be guessed.
+                                New deposits will be correctly identified
+                                when <b>paymentChannel</b> is saved.
+                            </div>
+                        `
+                        : ""
+                }
+
+
+            </div>
+
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   TOGGLE DETAILS
+===================================================== */
+
+window.toggleDeposit =
+    function(index){
+
+        const card =
+            document.getElementById(
+                `deposit-${index}`
+            );
+
+
+        if(!card){
+            return;
+        }
+
+
+        const wasOpen =
+            card.classList.contains(
+                "open"
+            );
+
+
+        /*
+           Close all other cards.
+        */
+
+        document
+            .querySelectorAll(
+                ".deposit-card.open"
+            )
+            .forEach(
+                other => {
+
+                    other.classList.remove(
+                        "open"
+                    );
+
+                }
+            );
+
+
+        /*
+           Open selected card.
+        */
+
+        if(!wasOpen){
+
+            card.classList.add(
+                "open"
+            );
+
+
+            const indicator =
+                document.getElementById(
+                    `indicator-${index}`
+                );
+
+
+            if(indicator){
+
+                indicator.textContent =
+                    "👆 Tap to hide details";
+
+            }
+
+        }
+
+
+        /*
+           Reset indicators on closed cards.
+        */
+
+        document
+            .querySelectorAll(
+                ".deposit-card:not(.open) .expand-indicator"
+            )
+            .forEach(
+                element => {
+
+                    element.textContent =
+                        "👆 Tap to view details";
+
+                }
+            );
+
+    };
+
+
+/* =====================================================
+   AUTHENTICATION
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        /*
+           Admin protection.
+        */
+
+        if(
+            user.uid !== ADMIN_UID
+        ){
+
+            alert(
+                "Access denied. Administrator only."
+            );
+
+            window.location.href =
+                "dashboard.html";
+
+            return;
+
+        }
+
+
+        await loadDeposits();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
