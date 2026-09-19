@@ -260,6 +260,45 @@ body{
 
 
 /* =========================
+   APPROVED DEPOSIT
+========================= */
+
+.approved-deposit-card{
+    border-left-color:#16a34a;
+}
+
+.approved-deposit-card .value{
+    color:#15803d;
+}
+
+
+/* =========================
+   TOTAL WITHDRAWAL
+========================= */
+
+.total-withdrawal-card{
+    border-left-color:#7c3aed;
+}
+
+.total-withdrawal-card .value{
+    color:#6d28d9;
+}
+
+
+/* =========================
+   APPROVED WITHDRAWAL
+========================= */
+
+.approved-withdrawal-card{
+    border-left-color:#059669;
+}
+
+.approved-withdrawal-card .value{
+    color:#047857;
+}
+
+
+/* =========================
    PENDING DEPOSIT
 ========================= */
 
@@ -998,7 +1037,51 @@ body{
         </div>
 
         <div class="small">
-            All approved/non-rejected deposits
+            All non-rejected deposits
+        </div>
+
+    </div>
+
+
+    <!-- APPROVED DEPOSIT -->
+
+    <div class="summary-card approved-deposit-card">
+
+        <h3>
+            Approved Deposit
+        </h3>
+
+        <div
+            class="value"
+            id="approvedDeposit"
+        >
+            ₱0.00
+        </div>
+
+        <div class="small">
+            Successfully approved deposits
+        </div>
+
+    </div>
+
+
+    <!-- TOTAL WITHDRAWAL -->
+
+    <div class="summary-card total-withdrawal-card">
+
+        <h3>
+            Total Withdrawal
+        </h3>
+
+        <div
+            class="value"
+            id="totalWithdrawal"
+        >
+            ₱0.00
+        </div>
+
+        <div class="small">
+            All non-rejected withdrawals
         </div>
 
     </div>
@@ -1006,7 +1089,7 @@ body{
 
     <!-- APPROVED WITHDRAWAL -->
 
-    <div class="summary-card">
+    <div class="summary-card approved-withdrawal-card">
 
         <h3>
             Approved Withdrawal
@@ -1020,7 +1103,7 @@ body{
         </div>
 
         <div class="small">
-            Successful withdrawals
+            Successfully approved withdrawals
         </div>
 
     </div>
@@ -2195,7 +2278,15 @@ async function loadDashboard(){
 
     try{
 
+        /* =========================
+           FINANCIAL VARIABLES
+        ========================= */
+
         let totalDeposit = 0;
+
+        let approvedDeposit = 0;
+
+        let totalWithdrawal = 0;
 
         let approvedWithdrawal = 0;
 
@@ -2214,7 +2305,9 @@ async function loadDashboard(){
         let investmentRecords = 0;
 
 
-        /* USERS */
+        /* =========================
+           USERS
+        ========================= */
 
         updateAdminLoading(
             "Loading members...",
@@ -2237,7 +2330,9 @@ async function loadDashboard(){
             usersSnapshot.size;
 
 
-        /* DEPOSITS */
+        /* =========================
+           DEPOSITS
+        ========================= */
 
         updateAdminLoading(
             "Loading deposits...",
@@ -2282,6 +2377,13 @@ async function loadDashboard(){
                     deposit.status || "";
 
 
+                /*
+                 * TOTAL DEPOSIT
+                 *
+                 * Includes all deposits
+                 * except rejected/cancelled/declined.
+                 */
+
                 if(
                     !isRejected(status)
                 ){
@@ -2291,6 +2393,27 @@ async function loadDashboard(){
 
                 }
 
+
+                /*
+                 * APPROVED DEPOSIT
+                 *
+                 * Only successfully approved
+                 * deposits are counted here.
+                 */
+
+                if(
+                    isApprovedDeposit(status)
+                ){
+
+                    approvedDeposit +=
+                        amount;
+
+                }
+
+
+                /*
+                 * PENDING DEPOSITS
+                 */
 
                 if(
                     isPendingDeposit(status)
@@ -2328,7 +2451,9 @@ async function loadDashboard(){
         );
 
 
-        /* WITHDRAWALS */
+        /* =========================
+           WITHDRAWALS
+        ========================= */
 
         updateAdminLoading(
             "Loading withdrawals...",
@@ -2373,10 +2498,29 @@ async function loadDashboard(){
                     withdrawal.status || "";
 
 
+                /*
+                 * TOTAL WITHDRAWAL
+                 *
+                 * Includes all withdrawals
+                 * except rejected/cancelled/declined.
+                 */
+
                 if(
-                    isApprovedWithdrawal(
-                        status
-                    )
+                    !isRejected(status)
+                ){
+
+                    totalWithdrawal +=
+                        amount;
+
+                }
+
+
+                /*
+                 * APPROVED WITHDRAWAL
+                 */
+
+                if(
+                    isApprovedWithdrawal(status)
                 ){
 
                     approvedWithdrawal +=
@@ -2385,10 +2529,12 @@ async function loadDashboard(){
                 }
 
 
+                /*
+                 * PENDING WITHDRAWALS
+                 */
+
                 if(
-                    isPendingWithdrawal(
-                        status
-                    )
+                    isPendingWithdrawal(status)
                 ){
 
                     pendingWithdrawals++;
@@ -2399,7 +2545,9 @@ async function loadDashboard(){
         );
 
 
-        /* INVESTMENTS */
+        /* =========================
+           INVESTMENTS
+        ========================= */
 
         updateAdminLoading(
             "Loading investments...",
@@ -2435,13 +2583,19 @@ async function loadDashboard(){
         }
 
 
-        /* DISPLAY TOTAL DEPOSIT */
+        /* =========================
+           PREPARE DASHBOARD
+        ========================= */
 
         updateAdminLoading(
             "Preparing dashboard...",
             "Calculating financial summary"
         );
 
+
+        /* =========================
+           TOTAL DEPOSIT FORMAT
+        ========================= */
 
         const depositFormatted =
             totalDeposit.toLocaleString(
@@ -2459,7 +2613,49 @@ async function loadDashboard(){
             "₱" + depositFormatted;
 
 
-        /* DISPLAY APPROVED WITHDRAWAL */
+        /* =========================
+           APPROVED DEPOSIT FORMAT
+        ========================= */
+
+        const approvedDepositFormatted =
+            approvedDeposit.toLocaleString(
+                "en-PH",
+                {
+                    minimumFractionDigits:2,
+                    maximumFractionDigits:2
+                }
+            );
+
+
+        document.getElementById(
+            "approvedDeposit"
+        ).textContent =
+            "₱" + approvedDepositFormatted;
+
+
+        /* =========================
+           TOTAL WITHDRAWAL FORMAT
+        ========================= */
+
+        const totalWithdrawalFormatted =
+            totalWithdrawal.toLocaleString(
+                "en-PH",
+                {
+                    minimumFractionDigits:2,
+                    maximumFractionDigits:2
+                }
+            );
+
+
+        document.getElementById(
+            "totalWithdrawal"
+        ).textContent =
+            "₱" + totalWithdrawalFormatted;
+
+
+        /* =========================
+           APPROVED WITHDRAWAL FORMAT
+        ========================= */
 
         const withdrawalFormatted =
             approvedWithdrawal.toLocaleString(
@@ -2477,7 +2673,9 @@ async function loadDashboard(){
             "₱" + withdrawalFormatted;
 
 
-        /* PENDING */
+        /* =========================
+           PENDING COUNTS
+        ========================= */
 
         document.getElementById(
             "pendingDeposits"
@@ -2503,7 +2701,9 @@ async function loadDashboard(){
             pendingWithdrawals;
 
 
-        /* MANAGEMENT COUNTS */
+        /* =========================
+           MANAGEMENT COUNTS
+        ========================= */
 
         document.getElementById(
             "depositCount"
@@ -2523,7 +2723,9 @@ async function loadDashboard(){
             investmentRecords;
 
 
-        /* BAR TEXT */
+        /* =========================
+           COMPARISON BAR TEXT
+        ========================= */
 
         document.getElementById(
             "depositBarText"
@@ -2537,7 +2739,9 @@ async function loadDashboard(){
             "₱" + withdrawalFormatted;
 
 
-        /* BAR WIDTH */
+        /* =========================
+           COMPARISON BAR WIDTH
+        ========================= */
 
         const highest =
             Math.max(
@@ -2564,6 +2768,10 @@ async function loadDashboard(){
                 * 100
             ) + "%";
 
+
+        /* =========================
+           COMPLETE
+        ========================= */
 
         updateAdminLoading(
             "Dashboard ready",
