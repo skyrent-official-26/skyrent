@@ -8,8 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>SkyRent Admin - Withdrawal History</title>
-
+<title>Admin Withdrawal History - SkyRent</title>
 
 <style>
 
@@ -54,29 +53,26 @@ body{
     display:flex;
     align-items:center;
     gap:10px;
-
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .back-btn{
+    border:none;
+    background:rgba(255,255,255,.18);
+    color:white;
+
     width:42px;
     height:42px;
 
-    border:none;
     border-radius:12px;
-
-    background:rgba(255,255,255,.18);
-
-    color:white;
 
     font-size:20px;
 
     cursor:pointer;
 }
 
-.header-title{
-    font-size:18px;
-    font-weight:900;
+.header-top strong{
+    font-size:20px;
 }
 
 .header h1{
@@ -86,9 +82,7 @@ body{
 
 .header p{
     margin-top:5px;
-
     font-size:13px;
-
     opacity:.9;
 }
 
@@ -99,8 +93,7 @@ body{
 
 .container{
     width:94%;
-    max-width:620px;
-
+    max-width:600px;
     margin:15px auto;
 }
 
@@ -149,7 +142,7 @@ body{
 
     border-radius:16px;
 
-    padding:13px;
+    padding:12px;
 
     margin-bottom:14px;
 
@@ -164,21 +157,13 @@ body{
 
     color:#858d99;
 
-    font-weight:900;
+    font-weight:800;
 
-    margin-bottom:8px;
-}
-
-.search-row{
-    display:flex;
-
-    gap:8px;
+    margin-bottom:7px;
 }
 
 .search-input{
-    flex:1;
-
-    min-width:0;
+    width:100%;
 
     border:1px solid #dce7f5;
 
@@ -197,7 +182,6 @@ body{
 
 .search-input:focus{
     border-color:#0757c9;
-
     background:white;
 }
 
@@ -205,27 +189,9 @@ body{
     color:#9aa3af;
 }
 
-.clear-btn{
-    border:none;
-
-    background:#eef4fc;
-
-    color:#0757c9;
-
-    border-radius:11px;
-
-    padding:0 14px;
-
-    font-size:12px;
-
-    font-weight:900;
-
-    cursor:pointer;
-}
-
 
 /* =====================================================
-   SUMMARY
+   SUMMARY GRID
 ===================================================== */
 
 .summary-grid{
@@ -245,10 +211,10 @@ body{
 
     padding:15px;
 
-    border:1px solid #e9eef5;
-
     box-shadow:
-        0 5px 18px rgba(30,70,120,.07);
+        0 5px 18px rgba(30,70,120,.08);
+
+    border:1px solid #e9eef5;
 }
 
 .summary-title{
@@ -256,7 +222,7 @@ body{
 
     color:#858d99;
 
-    font-weight:900;
+    font-weight:800;
 
     line-height:1.3;
 }
@@ -264,17 +230,56 @@ body{
 .summary-value{
     margin-top:6px;
 
-    font-size:19px;
-
-    color:#0757c9;
+    font-size:20px;
 
     font-weight:900;
+
+    color:#0757c9;
 
     word-break:break-word;
 }
 
+.summary-count{
+    margin-top:4px;
+
+    font-size:11px;
+
+    color:#858d99;
+}
+
 .summary.approved .summary-value{
     color:#188044;
+}
+
+.summary.pending .summary-value{
+    color:#a16d00;
+}
+
+.summary.rejected-summary .summary-value{
+    color:#c62828;
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section-title{
+    font-size:14px;
+
+    font-weight:900;
+
+    color:#172033;
+
+    margin:8px 2px 10px;
+}
+
+.section-subtitle{
+    font-size:11px;
+
+    color:#858d99;
+
+    margin:-5px 2px 12px;
 }
 
 
@@ -304,52 +309,13 @@ body{
     cursor:pointer;
 }
 
+.refresh-btn:active{
+    transform:scale(.98);
+}
+
 .refresh-btn:disabled{
     opacity:.6;
-
     cursor:not-allowed;
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-.section-title{
-    font-size:15px;
-
-    font-weight:900;
-
-    margin:8px 2px 4px;
-}
-
-.section-subtitle{
-    font-size:11px;
-
-    color:#858d99;
-
-    margin:0 2px 12px;
-}
-
-
-/* =====================================================
-   SEARCH NOTICE
-===================================================== */
-
-.search-notice{
-    background:#eaf2ff;
-
-    color:#0757c9;
-
-    border-radius:12px;
-
-    padding:11px 13px;
-
-    margin-bottom:12px;
-
-    font-size:12px;
-
-    font-weight:900;
 }
 
 
@@ -362,48 +328,161 @@ body{
 
     border-radius:18px;
 
-    padding:16px;
-
     margin-bottom:12px;
-
-    border:1px solid #e9eef5;
 
     box-shadow:
         0 5px 18px rgba(30,70,120,.07);
+
+    border:1px solid #e9eef5;
+
+    overflow:hidden;
 }
 
-.record-header{
+
+/* =====================================================
+   COMPACT RECORD SUMMARY
+===================================================== */
+
+.record-summary{
+    padding:14px 15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    user-select:none;
+}
+
+.record-summary:active{
+    background:#f8fbff;
+}
+
+.record-summary-main{
+    flex:1;
+
+    min-width:0;
+}
+
+.record-summary-name{
+    font-size:14px;
+
+    font-weight:900;
+
+    color:#172033;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.record-summary-phone{
+    margin-top:3px;
+
+    font-size:11px;
+
+    color:#858d99;
+}
+
+.record-summary-bottom{
     display:flex;
 
     align-items:center;
 
     justify-content:space-between;
 
-    gap:10px;
+    gap:8px;
 
-    margin-bottom:10px;
-
-    padding-bottom:10px;
-
-    border-bottom:1px solid #edf0f4;
+    margin-top:7px;
 }
 
-.record-title{
-    font-size:14px;
+.record-summary-amount{
+    font-size:16px;
 
     font-weight:900;
 
-    color:#172033;
+    color:#0757c9;
 }
 
-.record-subtitle{
-    margin-top:3px;
+.record-summary-date{
+    margin-top:4px;
 
     font-size:10px;
 
     color:#858d99;
+}
 
-    word-break:break-all;
+.record-arrow{
+    width:34px;
+    height:34px;
+
+    flex-shrink:0;
+
+    border-radius:10px;
+
+    background:#eaf2ff;
+
+    color:#0757c9;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:17px;
+
+    font-weight:900;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.record.expanded .record-arrow{
+    transform:rotate(180deg);
+
+    background:#dceaff;
+}
+
+.record-tap-text{
+    margin-top:5px;
+
+    font-size:10px;
+
+    color:#0757c9;
+
+    font-weight:800;
+}
+
+.record.expanded .record-tap-text{
+    color:#858d99;
+}
+
+
+/* =====================================================
+   RECORD DETAILS
+===================================================== */
+
+.record-details{
+    display:none;
+
+    padding:0 15px 15px;
+
+    border-top:1px solid #edf0f4;
+}
+
+.record.expanded .record-details{
+    display:block;
+}
+
+.record-details .row:first-child{
+    margin-top:5px;
 }
 
 
@@ -416,7 +495,7 @@ body{
 
     justify-content:space-between;
 
-    align-items:flex-start;
+    align-items:center;
 
     gap:12px;
 
@@ -425,30 +504,32 @@ body{
     border-bottom:1px solid #edf0f4;
 }
 
-.row:last-child{
+.row:last-of-type{
     border-bottom:none;
 }
 
 .label{
     color:#858d99;
 
-    font-size:11px;
+    font-size:12px;
 
     font-weight:700;
 
-    flex:0 0 43%;
+    flex:0 0 auto;
 }
 
 .value{
     color:#172033;
 
-    font-size:12px;
+    font-size:13px;
 
     font-weight:800;
 
     text-align:right;
 
     word-break:break-word;
+
+    max-width:65%;
 }
 
 
@@ -459,7 +540,7 @@ body{
 .amount{
     color:#0757c9;
 
-    font-size:17px;
+    font-size:18px;
 
     font-weight:900;
 }
@@ -484,13 +565,24 @@ body{
 
     border-radius:20px;
 
-    background:#e8f8ee;
-
-    color:#188044;
-
-    font-size:10px;
+    font-size:11px;
 
     font-weight:900;
+}
+
+.status.pending{
+    background:#fff5d6;
+    color:#a16d00;
+}
+
+.status.success{
+    background:#e8f8ee;
+    color:#188044;
+}
+
+.status.rejected{
+    background:#fff0f0;
+    color:#c62828;
 }
 
 
@@ -501,9 +593,9 @@ body{
 .payment-channel{
     display:inline-block;
 
-    padding:6px 10px;
+    padding:6px 9px;
 
-    border-radius:9px;
+    border-radius:8px;
 
     background:#eaf2ff;
 
@@ -520,44 +612,42 @@ body{
 ===================================================== */
 
 .transaction-id{
-    display:inline-block;
+    font-family:monospace;
 
-    max-width:100%;
+    font-size:11px;
 
-    padding:6px 8px;
+    color:#0757c9;
 
-    border-radius:8px;
+    background:#f1f6ff;
 
-    background:#f3f5f8;
+    padding:5px 7px;
 
-    color:#475569;
-
-    font-size:10px;
-
-    font-weight:800;
+    border-radius:6px;
 
     word-break:break-all;
 }
 
 
 /* =====================================================
-   LOADING
+   REFUND NOTICE
 ===================================================== */
 
-.loading{
-    background:white;
+.refund-notice{
+    margin-top:10px;
 
-    border-radius:18px;
+    padding:10px 12px;
 
-    padding:35px 20px;
+    border-radius:10px;
 
-    text-align:center;
+    background:#eafaf0;
 
-    color:#858d99;
+    color:#188044;
 
-    font-size:14px;
+    font-size:11px;
 
-    border:1px solid #e9eef5;
+    font-weight:800;
+
+    line-height:1.4;
 }
 
 
@@ -583,25 +673,67 @@ body{
 
 
 /* =====================================================
+   SEARCH NOTICE
+===================================================== */
+
+.search-notice{
+    background:#eaf2ff;
+
+    color:#0757c9;
+
+    border-radius:12px;
+
+    padding:11px 13px;
+
+    margin-bottom:12px;
+
+    font-size:12px;
+
+    font-weight:800;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+    background:white;
+
+    border-radius:18px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    color:#858d99;
+
+    font-size:14px;
+
+    border:1px solid #e9eef5;
+}
+
+
+/* =====================================================
    ERROR
 ===================================================== */
 
 .error-box{
     background:#fff0f0;
 
-    color:#c62828;
+    border:1px solid #ffd3d3;
 
-    border:1px solid #ffd4d4;
+    border-radius:18px;
 
-    border-radius:15px;
-
-    padding:16px;
-
-    font-size:12px;
-
-    line-height:1.5;
+    padding:25px 18px;
 
     text-align:center;
+
+    color:#c62828;
+
+    font-size:13px;
+
+    line-height:1.5;
 }
 
 
@@ -619,20 +751,8 @@ body{
         font-size:22px;
     }
 
-    .search-row{
-        flex-direction:column;
-    }
-
-    .clear-btn{
-        padding:11px;
-    }
-
-    .row{
-        gap:8px;
-    }
-
-    .label{
-        flex-basis:40%;
+    .record-summary{
+        padding:13px;
     }
 
 }
@@ -660,19 +780,18 @@ body{
             ←
         </button>
 
-        <div class="header-title">
+        <strong>
             SkyRent Admin
-        </div>
+        </strong>
 
     </div>
-
 
     <h1>
         Withdrawal History
     </h1>
 
     <p>
-        View all successfully approved withdrawal transactions.
+        View all processed and pending withdrawal transactions.
     </p>
 
 </header>
@@ -682,7 +801,7 @@ body{
 
 
 <!-- =====================================================
-     ADMIN PANEL
+     BACK TO ADMIN PANEL
 ===================================================== -->
 
 <button
@@ -700,29 +819,16 @@ body{
 <div class="search-box">
 
     <div class="search-title">
-        SEARCH WITHDRAWAL HISTORY BY USER PHONE
+        SEARCH BY USER PHONE
     </div>
 
-    <div class="search-row">
-
-        <input
-            type="text"
-            id="phoneSearch"
-            class="search-input"
-            placeholder="Enter user phone number..."
-            autocomplete="off"
-            inputmode="tel"
-        >
-
-        <button
-            id="clearSearch"
-            class="clear-btn"
-            onclick="clearSearch()"
-        >
-            Clear
-        </button>
-
-    </div>
+    <input
+        type="text"
+        id="phoneSearch"
+        class="search-input"
+        placeholder="Enter user phone number..."
+        autocomplete="off"
+    >
 
 </div>
 
@@ -737,14 +843,38 @@ body{
     <div class="summary">
 
         <div class="summary-title">
-            TOTAL TRANSACTIONS
+            TOTAL NO. OF WITHDRAWALS
         </div>
 
         <div
-            id="totalCount"
             class="summary-value"
+            id="totalCount"
         >
             0
+        </div>
+
+        <div class="summary-count">
+            withdrawal requests
+        </div>
+
+    </div>
+
+
+    <div class="summary">
+
+        <div class="summary-title">
+            TOTAL AMOUNT WITHDRAWN
+        </div>
+
+        <div
+            class="summary-value"
+            id="totalAmount"
+        >
+            ₱0.00
+        </div>
+
+        <div class="summary-count">
+            all withdrawal requests
         </div>
 
     </div>
@@ -753,14 +883,61 @@ body{
     <div class="summary approved">
 
         <div class="summary-title">
-            TOTAL APPROVED AMOUNT
+            TOTAL AMOUNT APPROVED
         </div>
 
         <div
-            id="totalAmount"
             class="summary-value"
+            id="approvedAmount"
         >
             ₱0.00
+        </div>
+
+        <div class="summary-count">
+            approved withdrawals
+        </div>
+
+    </div>
+
+
+    <div class="summary pending">
+
+        <div class="summary-title">
+            TOTAL AMOUNT PENDING
+        </div>
+
+        <div
+            class="summary-value"
+            id="pendingAmount"
+        >
+            ₱0.00
+        </div>
+
+        <div class="summary-count">
+            pending withdrawals
+        </div>
+
+    </div>
+
+
+    <div class="summary rejected-summary">
+
+        <div class="summary-title">
+            TOTAL AMOUNT REJECTED
+        </div>
+
+        <div
+            class="summary-value"
+            id="rejectedAmount"
+        >
+            ₱0.00
+        </div>
+
+        <div
+            class="summary-count"
+            id="rejectedCount"
+        >
+            0 rejected withdrawals
         </div>
 
     </div>
@@ -774,30 +951,30 @@ body{
 ===================================================== -->
 
 <button
-    id="refreshButton"
     class="refresh-btn"
-    onclick="loadHistory()"
+    id="refreshButton"
+    onclick="loadWithdrawals()"
 >
-    🔄 Refresh Withdrawal History
+    🔄 Refresh History
 </button>
 
 
 <!-- =====================================================
-     SECTION TITLE
+     LIST TITLE
 ===================================================== -->
 
 <div
-    id="sectionTitle"
+    id="withdrawalSectionTitle"
     class="section-title"
 >
-    All Approved Withdrawals
+    Withdrawal History
 </div>
 
 <div
-    id="sectionSubtitle"
+    id="withdrawalSectionSubtitle"
     class="section-subtitle"
 >
-    Showing all completed withdrawal transaction records.
+    Tap any withdrawal to view the full details.
 </div>
 
 
@@ -805,7 +982,13 @@ body{
      LIST
 ===================================================== -->
 
-<div id="historyList"></div>
+<div id="withdrawalList">
+
+    <div class="loading">
+        Loading withdrawal history...
+    </div>
+
+</div>
 
 
 </main>
@@ -881,14 +1064,10 @@ const firebaseConfig = {
 ===================================================== */
 
 const app =
-    initializeApp(
-        firebaseConfig
-    );
-
+    initializeApp(firebaseConfig);
 
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
@@ -908,9 +1087,9 @@ const ADMIN_UID =
 
 let currentAdmin = null;
 
-let allHistory = [];
+let allWithdrawals = [];
 
-let loadingHistory = false;
+let loadingWithdrawals = false;
 
 
 /* =====================================================
@@ -964,18 +1143,17 @@ function getNumber(value){
 function formatDate(value){
 
     if(!value){
-
         return "-";
-
     }
 
 
-    let date;
+    let date = null;
 
 
     if(
         value &&
-        typeof value.toDate === "function"
+        typeof value.toDate ===
+        "function"
     ){
 
         date =
@@ -1026,6 +1204,74 @@ function formatDate(value){
 
 
 /* =====================================================
+   STATUS HELPERS
+===================================================== */
+
+function normalizeStatus(status){
+
+    return String(status || "")
+        .trim()
+        .toLowerCase();
+
+}
+
+
+function isApprovedStatus(status){
+
+    const value =
+        normalizeStatus(status);
+
+    return (
+
+        value === "approved" ||
+
+        value ===
+        "withdrawal successful" ||
+
+        value ===
+        "successful" ||
+
+        value ===
+        "completed"
+
+    );
+
+}
+
+
+function isRejectedStatus(status){
+
+    const value =
+        normalizeStatus(status);
+
+    return (
+
+        value === "rejected" ||
+
+        value === "cancelled" ||
+
+        value === "canceled" ||
+
+        value === "declined"
+
+    );
+
+}
+
+
+function isPendingStatus(status){
+
+    return (
+
+        !isApprovedStatus(status) &&
+        !isRejectedStatus(status)
+
+    );
+
+}
+
+
+/* =====================================================
    ESCAPE HTML
 ===================================================== */
 
@@ -1047,24 +1293,201 @@ function escapeHTML(value){
 
 
 /* =====================================================
-   LOAD HISTORY
+   GET WITHDRAWAL DATE
 ===================================================== */
 
-async function loadHistory(){
+function getWithdrawalDate(withdrawal){
 
-    if(loadingHistory){
+    if(
+        withdrawal.requestedAt
+    ){
+
+        return withdrawal.requestedAt;
+
+    }
+
+
+    if(
+        withdrawal.createdAt
+    ){
+
+        return withdrawal.createdAt;
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   GET ALL WITHDRAWALS
+===================================================== */
+
+async function getAllWithdrawals(){
+
+    const withdrawalsRef =
+        collection(
+            db,
+            "withdrawals"
+        );
+
+
+    let snapshot;
+
+
+    try{
+
+        const withdrawalQuery =
+            query(
+                withdrawalsRef,
+                orderBy(
+                    "requestedAt",
+                    "desc"
+                )
+            );
+
+
+        snapshot =
+            await getDocs(
+                withdrawalQuery
+            );
+
+    }
+
+    catch(error){
+
+        console.warn(
+            "Ordered withdrawal query failed. Loading all records.",
+            error
+        );
+
+
+        snapshot =
+            await getDocs(
+                withdrawalsRef
+            );
+
+    }
+
+
+    const records = [];
+
+
+    snapshot.forEach(
+        withdrawalDoc => {
+
+            const data =
+                withdrawalDoc.data();
+
+
+            records.push({
+
+                ...data,
+
+                id:
+                    withdrawalDoc.id
+
+            });
+
+        }
+    );
+
+
+    /* =================================================
+       SORT NEWEST FIRST
+    ================================================== */
+
+    records.sort(
+        (a,b) => {
+
+            const dateA =
+                getWithdrawalDate(a);
+
+            const dateB =
+                getWithdrawalDate(b);
+
+
+            let timeA = 0;
+            let timeB = 0;
+
+
+            if(
+                dateA &&
+                typeof dateA.toMillis ===
+                "function"
+            ){
+
+                timeA =
+                    dateA.toMillis();
+
+            }
+
+            else{
+
+                timeA =
+                    new Date(
+                        dateA || 0
+                    ).getTime();
+
+            }
+
+
+            if(
+                dateB &&
+                typeof dateB.toMillis ===
+                "function"
+            ){
+
+                timeB =
+                    dateB.toMillis();
+
+            }
+
+            else{
+
+                timeB =
+                    new Date(
+                        dateB || 0
+                    ).getTime();
+
+            }
+
+
+            return timeB - timeA;
+
+        }
+    );
+
+
+    return records;
+
+}
+
+
+/* =====================================================
+   LOAD WITHDRAWALS
+===================================================== */
+
+async function loadWithdrawals(){
+
+    if(
+        loadingWithdrawals
+    ){
 
         return;
 
     }
 
 
-    loadingHistory = true;
+    loadingWithdrawals =
+        true;
 
 
     const list =
         document.getElementById(
-            "historyList"
+            "withdrawalList"
         );
 
 
@@ -1079,6 +1502,7 @@ async function loadHistory(){
         refreshButton.disabled =
             true;
 
+
         refreshButton.innerText =
             "⏳ Loading History...";
 
@@ -1086,191 +1510,130 @@ async function loadHistory(){
         list.innerHTML = `
 
             <div class="loading">
-
-                Loading withdrawal transaction history...
-
+                Loading withdrawal history...
             </div>
 
         `;
 
 
-        const transactionsRef =
-            collection(
-                db,
-                "withdrawalTransactions"
-            );
-
-
-        let snapshot;
+        allWithdrawals =
+            await getAllWithdrawals();
 
 
         /* =================================================
-           TRY ORDERED QUERY
+           SUMMARY
         ================================================== */
 
-        try{
+        let totalCount = 0;
 
-            const historyQuery =
-                query(
-                    transactionsRef,
-                    orderBy(
-                        "approvedAt",
-                        "desc"
-                    )
-                );
+        let totalAmount = 0;
 
+        let approvedAmount = 0;
 
-            snapshot =
-                await getDocs(
-                    historyQuery
-                );
+        let pendingAmount = 0;
 
-        }
+        let rejectedAmount = 0;
 
-        catch(error){
-
-            console.warn(
-                "Ordered history query failed. Loading all records.",
-                error
-            );
+        let rejectedCount = 0;
 
 
-            snapshot =
-                await getDocs(
-                    transactionsRef
-                );
+        allWithdrawals.forEach(
+            withdrawal => {
 
-        }
-
-
-        allHistory = [];
-
-
-        snapshot.forEach(
-            transactionDoc => {
-
-                const data =
-                    transactionDoc.data();
+                const amount =
+                    getNumber(
+                        withdrawal.amount ??
+                        withdrawal.amountValue
+                    );
 
 
-                /*
-                   Only display withdrawal
-                   transactions.
-                */
+                totalCount++;
 
-                const transactionType =
-                    String(
-                        data.transactionType ||
-                        "Withdrawal"
-                    )
-                    .trim()
-                    .toLowerCase();
-
-
-                const status =
-                    String(
-                        data.status ||
-                        ""
-                    )
-                    .trim()
-                    .toLowerCase();
+                totalAmount +=
+                    amount;
 
 
                 if(
-                    transactionType !==
-                    "withdrawal"
+                    isApprovedStatus(
+                        withdrawal.status
+                    )
                 ){
 
-                    return;
+                    approvedAmount +=
+                        amount;
 
                 }
 
-
-                /*
-                   The approval page creates
-                   status = Approved.
-                */
-
-                if(
-                    status &&
-                    status !== "approved" &&
-                    status !== "completed" &&
-                    status !== "successful" &&
-                    status !== "withdrawal successful"
+                else if(
+                    isRejectedStatus(
+                        withdrawal.status
+                    )
                 ){
 
-                    return;
+                    rejectedAmount +=
+                        amount;
+
+                    rejectedCount++;
 
                 }
 
+                else{
 
-                allHistory.push({
+                    pendingAmount +=
+                        amount;
 
-                    ...data,
-
-                    id:
-                        transactionDoc.id
-
-                });
+                }
 
             }
         );
 
 
-        /* =================================================
-           SORT
-        ================================================== */
-
-        allHistory.sort(
-            (a,b) => {
-
-                const valueA =
-                    a.approvedAt ||
-                    a.createdAt ||
-                    a.requestedAt;
+        document.getElementById(
+            "totalCount"
+        ).innerText =
+            totalCount;
 
 
-                const valueB =
-                    b.approvedAt ||
-                    b.createdAt ||
-                    b.requestedAt;
+        document.getElementById(
+            "totalAmount"
+        ).innerText =
+            formatMoney(
+                totalAmount
+            );
 
 
-                const timeA =
-                    valueA &&
-                    typeof valueA.toMillis ===
-                    "function"
-
-                        ? valueA.toMillis()
-
-                        : new Date(
-                            valueA || 0
-                        ).getTime();
+        document.getElementById(
+            "approvedAmount"
+        ).innerText =
+            formatMoney(
+                approvedAmount
+            );
 
 
-                const timeB =
-                    valueB &&
-                    typeof valueB.toMillis ===
-                    "function"
-
-                        ? valueB.toMillis()
-
-                        : new Date(
-                            valueB || 0
-                        ).getTime();
+        document.getElementById(
+            "pendingAmount"
+        ).innerText =
+            formatMoney(
+                pendingAmount
+            );
 
 
-                return timeB - timeA;
+        document.getElementById(
+            "rejectedAmount"
+        ).innerText =
+            formatMoney(
+                rejectedAmount
+            );
 
-            }
-        );
+
+        document.getElementById(
+            "rejectedCount"
+        ).innerText =
+            rejectedCount +
+            " rejected withdrawals";
 
 
-        updateSummary();
-
-
-        renderHistory();
-
+        await renderCurrentSearch();
 
     }
 
@@ -1286,21 +1649,18 @@ async function loadHistory(){
 
             <div class="error-box">
 
-                <strong>
-                    Unable to load withdrawal history.
-                </strong>
-
-                <br><br>
-
-                Please check your Firebase
-                connection and Firestore rules.
+                Unable to load withdrawal history.
 
                 <br><br>
 
                 ${escapeHTML(
                     error.message ||
-                    "Unknown error"
+                    "Please check your Firebase connection."
                 )}
+
+                <br><br>
+
+                Tap Refresh History to try again.
 
             </div>
 
@@ -1310,13 +1670,16 @@ async function loadHistory(){
 
     finally{
 
-        loadingHistory = false;
+        loadingWithdrawals =
+            false;
+
 
         refreshButton.disabled =
             false;
 
+
         refreshButton.innerText =
-            "🔄 Refresh Withdrawal History";
+            "🔄 Refresh History";
 
     }
 
@@ -1324,60 +1687,690 @@ async function loadHistory(){
 
 
 /* =====================================================
-   UPDATE SUMMARY
+   RENDER WITHDRAWAL RECORD
 ===================================================== */
 
-function updateSummary(){
+function renderWithdrawalRecord(
+    withdrawal,
+    list
+){
 
-    let totalCount = 0;
+    const amount =
+        getNumber(
+            withdrawal.amount ??
+            withdrawal.amountValue
+        );
 
-    let totalAmount = 0;
+
+    const received =
+        getNumber(
+            withdrawal.netAmount
+        );
 
 
-    allHistory.forEach(
-        transaction => {
+    const processingFee =
+        getNumber(
+            withdrawal.processingFee
+        );
 
-            const amount =
-                getNumber(
-                    transaction.amount ??
-                    transaction.amountValue
+
+    /* =================================================
+       STATUS
+    ================================================== */
+
+    let status =
+        withdrawal.status ||
+        "Pending";
+
+
+    let statusClass =
+        "pending";
+
+
+    if(
+        isApprovedStatus(status)
+    ){
+
+        status =
+            "Withdrawal Successful";
+
+        statusClass =
+            "success";
+
+    }
+
+    else if(
+        isRejectedStatus(status)
+    ){
+
+        status =
+            "Rejected";
+
+        statusClass =
+            "rejected";
+
+    }
+
+    else{
+
+        status =
+            "Pending for Approval";
+
+        statusClass =
+            "pending";
+
+    }
+
+
+    /* =================================================
+       PAYMENT CHANNEL
+    ================================================== */
+
+    let paymentChannel = "";
+
+
+    if(
+        withdrawal.paymentChannel
+    ){
+
+        paymentChannel = `
+
+            <div class="row">
+
+                <span class="label">
+                    Payment Channel
+                </span>
+
+                <span class="value">
+
+                    <span class="payment-channel">
+
+                        ${escapeHTML(
+                            withdrawal.paymentChannel
+                        )}
+
+                    </span>
+
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =================================================
+       PAYMENT METHOD
+    ================================================== */
+
+    let paymentMethod = "";
+
+
+    if(
+        withdrawal.paymentMethod
+    ){
+
+        paymentMethod = `
+
+            <div class="row">
+
+                <span class="label">
+                    Payment Method
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        withdrawal.paymentMethod
+                    )}
+
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =================================================
+       TRANSACTION ID
+    ================================================== */
+
+    let transactionId = "";
+
+
+    if(
+        withdrawal.transactionId
+    ){
+
+        transactionId = `
+
+            <div class="row">
+
+                <span class="label">
+                    Transaction ID
+                </span>
+
+                <span class="value">
+
+                    <span class="transaction-id">
+
+                        ${escapeHTML(
+                            withdrawal.transactionId
+                        )}
+
+                    </span>
+
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =================================================
+       APPROVED TIME
+    ================================================== */
+
+    let approvedTime = "";
+
+
+    if(
+        withdrawal.approvedAt
+    ){
+
+        approvedTime = `
+
+            <div class="row">
+
+                <span class="label">
+                    Approved Time
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        formatDate(
+                            withdrawal.approvedAt
+                        )
+                    )}
+
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =================================================
+       REJECTED TIME
+    ================================================== */
+
+    let rejectedTime = "";
+
+
+    if(
+        withdrawal.rejectedAt
+    ){
+
+        rejectedTime = `
+
+            <div class="row">
+
+                <span class="label">
+                    Rejected Time
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        formatDate(
+                            withdrawal.rejectedAt
+                        )
+                    )}
+
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =================================================
+       REFUND NOTICE
+    ================================================== */
+
+    let refundNotice = "";
+
+
+    if(
+        isRejectedStatus(
+            withdrawal.status
+        ) &&
+        withdrawal.refunded === true
+    ){
+
+        refundNotice = `
+
+            <div class="refund-notice">
+
+                ✓
+                ${formatMoney(amount)}
+                has been returned to the user's
+                SkyRent balance.
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =================================================
+       CREATE RECORD
+    ================================================== */
+
+    const record =
+        document.createElement(
+            "div"
+        );
+
+
+    record.className =
+        "record";
+
+
+    /* =================================================
+       RECORD HTML
+    ================================================== */
+
+    record.innerHTML = `
+
+        <!-- =============================================
+             COMPACT SUMMARY
+        ============================================== -->
+
+        <div class="record-summary">
+
+            <div class="record-summary-main">
+
+                <div class="record-summary-name">
+
+                    ${escapeHTML(
+                        withdrawal.userName ||
+                        "Unknown User"
+                    )}
+
+                </div>
+
+
+                <div class="record-summary-phone">
+
+                    ${escapeHTML(
+                        withdrawal.phone ||
+                        "-"
+                    )}
+
+                </div>
+
+
+                <div class="record-summary-bottom">
+
+                    <div>
+
+                        <div class="record-summary-amount">
+
+                            ${formatMoney(amount)}
+
+                        </div>
+
+                        <div class="record-summary-date">
+
+                            ${escapeHTML(
+                                formatDate(
+                                    getWithdrawalDate(
+                                        withdrawal
+                                    )
+                                )
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <span
+                            class="status ${statusClass}"
+                        >
+
+                            ${escapeHTML(status)}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="record-tap-text">
+
+                    Tap to view details
+
+                </div>
+
+            </div>
+
+
+            <div class="record-arrow">
+
+                ▼
+
+            </div>
+
+        </div>
+
+
+        <!-- =============================================
+             DETAILS
+        ============================================== -->
+
+        <div class="record-details">
+
+
+            <div class="row">
+
+                <span class="label">
+                    User Phone
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        withdrawal.phone ||
+                        "-"
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    User Name
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        withdrawal.userName ||
+                        "-"
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Firebase User ID
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        withdrawal.uid ||
+                        "-"
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Account Name
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        withdrawal.accountName ||
+                        withdrawal.userName ||
+                        "-"
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Account Type
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        withdrawal.accountType ||
+                        "-"
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Account Number
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        withdrawal.accountNumber ||
+                        "-"
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Withdrawal Amount
+                </span>
+
+                <span class="value amount">
+
+                    ${formatMoney(amount)}
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Processing Fee
+                </span>
+
+                <span class="value">
+
+                    ${formatMoney(
+                        processingFee
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Amount Received
+                </span>
+
+                <span class="value received">
+
+                    ${formatMoney(received)}
+
+                </span>
+
+            </div>
+
+
+            <div class="row">
+
+                <span class="label">
+                    Request Time
+                </span>
+
+                <span class="value">
+
+                    ${escapeHTML(
+                        formatDate(
+                            getWithdrawalDate(
+                                withdrawal
+                            )
+                        )
+                    )}
+
+                </span>
+
+            </div>
+
+
+            ${approvedTime}
+
+
+            ${paymentChannel}
+
+
+            ${paymentMethod}
+
+
+            ${transactionId}
+
+
+            ${rejectedTime}
+
+
+            <div class="row">
+
+                <span class="label">
+                    Status
+                </span>
+
+                <span class="value">
+
+                    <span
+                        class="status ${statusClass}"
+                    >
+
+                        ${escapeHTML(status)}
+
+                    </span>
+
+                </span>
+
+            </div>
+
+
+            ${refundNotice}
+
+
+        </div>
+
+    `;
+
+
+    /* =================================================
+       EXPAND / COLLAPSE
+    ================================================== */
+
+    const summary =
+        record.querySelector(
+            ".record-summary"
+        );
+
+
+    summary.addEventListener(
+        "click",
+        function(){
+
+            record.classList.toggle(
+                "expanded"
+            );
+
+
+            const tapText =
+                record.querySelector(
+                    ".record-tap-text"
                 );
 
 
-            totalCount++;
+            if(
+                record.classList.contains(
+                    "expanded"
+                )
+            ){
 
-            totalAmount +=
-                amount;
+                tapText.innerText =
+                    "Tap to hide details";
+
+            }
+
+            else{
+
+                tapText.innerText =
+                    "Tap to view details";
+
+            }
 
         }
     );
 
 
-    document.getElementById(
-        "totalCount"
-    ).innerText =
-        totalCount;
-
-
-    document.getElementById(
-        "totalAmount"
-    ).innerText =
-        formatMoney(
-            totalAmount
-        );
+    list.appendChild(
+        record
+    );
 
 }
 
 
 /* =====================================================
-   RENDER HISTORY
+   RENDER SEARCH
 ===================================================== */
 
-function renderHistory(){
+async function renderCurrentSearch(){
 
     const list =
         document.getElementById(
-            "historyList"
+            "withdrawalList"
         );
 
 
@@ -1395,38 +2388,48 @@ function renderHistory(){
         .toLowerCase();
 
 
-    let records;
+    let withdrawals;
 
+
+    /* =================================================
+       NO SEARCH
+    ================================================== */
 
     if(
         searchPhone === ""
     ){
 
-        records =
-            allHistory;
-
-        document.getElementById(
-            "sectionTitle"
-        ).innerText =
-            "All Approved Withdrawals";
+        withdrawals =
+            allWithdrawals;
 
 
         document.getElementById(
-            "sectionSubtitle"
+            "withdrawalSectionTitle"
         ).innerText =
-            "Showing all completed withdrawal transaction records.";
+            "Withdrawal History";
+
+
+        document.getElementById(
+            "withdrawalSectionSubtitle"
+        ).innerText =
+            "Tap any withdrawal to view the full details.";
 
     }
 
+
+    /* =================================================
+       SEARCH
+    ================================================== */
+
     else{
 
-        records =
-            allHistory.filter(
-                transaction => {
+        withdrawals =
+            allWithdrawals.filter(
+                withdrawal => {
 
                     const phone =
                         String(
-                            transaction.phone ||
+                            withdrawal.phone ||
                             ""
                         )
                         .replace(/\s/g,"")
@@ -1442,18 +2445,22 @@ function renderHistory(){
 
 
         document.getElementById(
-            "sectionTitle"
+            "withdrawalSectionTitle"
         ).innerText =
             "Search Results";
 
 
         document.getElementById(
-            "sectionSubtitle"
+            "withdrawalSectionSubtitle"
         ).innerText =
-            "Approved withdrawals matching the user phone.";
+            "Showing withdrawal records matching the user phone.";
 
     }
 
+
+    /* =================================================
+       CLEAR LIST
+    ================================================== */
 
     list.innerHTML = "";
 
@@ -1477,7 +2484,7 @@ function renderHistory(){
 
 
         notice.innerHTML =
-            "🔎 Searching phone: " +
+            "🔎 Search results for: " +
             escapeHTML(
                 searchPhone
             );
@@ -1495,7 +2502,7 @@ function renderHistory(){
     ================================================== */
 
     if(
-        records.length === 0
+        withdrawals.length === 0
     ){
 
         const empty =
@@ -1509,24 +2516,17 @@ function renderHistory(){
 
 
         empty.innerHTML =
-            searchPhone === ""
+
+            searchPhone !== ""
 
                 ?
 
-                `
-                    No approved withdrawal
-                    transactions yet.
-                `
+                "No withdrawal records found<br>" +
+                "for this user phone."
 
                 :
 
-                `
-                    No approved withdrawal
-                    transactions found for
-                    <strong>
-                        ${escapeHTML(searchPhone)}
-                    </strong>.
-                `;
+                "No withdrawal history found.";
 
 
         list.appendChild(
@@ -1540,456 +2540,19 @@ function renderHistory(){
 
 
     /* =================================================
-       RECORDS
+       DISPLAY RECORDS
     ================================================== */
 
-    records.forEach(
-        transaction => {
+    withdrawals.forEach(
+        withdrawal => {
 
-            const record =
-                createHistoryRecord(
-                    transaction
-                );
-
-
-            list.appendChild(
-                record
+            renderWithdrawalRecord(
+                withdrawal,
+                list
             );
 
         }
     );
-
-}
-
-
-/* =====================================================
-   CREATE HISTORY RECORD
-===================================================== */
-
-function createHistoryRecord(
-    transaction
-){
-
-    const record =
-        document.createElement(
-            "div"
-        );
-
-
-    record.className =
-        "record";
-
-
-    const amount =
-        getNumber(
-            transaction.amount ??
-            transaction.amountValue
-        );
-
-
-    const processingFee =
-        getNumber(
-            transaction.processingFee
-        );
-
-
-    const netAmount =
-        getNumber(
-            transaction.netAmount
-        );
-
-
-    const paymentChannel =
-        transaction.paymentChannel ||
-        transaction.paymentUsed ||
-        "-";
-
-
-    const paymentMethod =
-        transaction.paymentMethod ||
-        "-";
-
-
-    const transactionId =
-        transaction.transactionId ||
-        transaction.id ||
-        "-";
-
-
-    record.innerHTML = `
-
-        <div class="record-header">
-
-            <div>
-
-                <div class="record-title">
-
-                    ${escapeHTML(
-                        transaction.userName ||
-                        "SkyRent User"
-                    )}
-
-                </div>
-
-                <div class="record-subtitle">
-
-                    ${escapeHTML(
-                        transaction.phone ||
-                        "-"
-                    )}
-
-                </div>
-
-            </div>
-
-
-            <span class="status">
-                ✓ Approved
-            </span>
-
-        </div>
-
-
-        <!-- USER PHONE -->
-
-        <div class="row">
-
-            <span class="label">
-                User Phone
-            </span>
-
-            <span class="value">
-                ${escapeHTML(
-                    transaction.phone ||
-                    "-"
-                )}
-            </span>
-
-        </div>
-
-
-        <!-- USER NAME -->
-
-        <div class="row">
-
-            <span class="label">
-                User Name
-            </span>
-
-            <span class="value">
-                ${escapeHTML(
-                    transaction.userName ||
-                    "-"
-                )}
-            </span>
-
-        </div>
-
-
-        <!-- WITHDRAWAL AMOUNT -->
-
-        <div class="row">
-
-            <span class="label">
-                Withdrawal Amount
-            </span>
-
-            <span class="value amount">
-
-                ${formatMoney(amount)}
-
-            </span>
-
-        </div>
-
-
-        <!-- PROCESSING FEE -->
-
-        <div class="row">
-
-            <span class="label">
-                Processing Fee
-            </span>
-
-            <span class="value">
-
-                ${formatMoney(
-                    processingFee
-                )}
-
-            </span>
-
-        </div>
-
-
-        <!-- NET AMOUNT -->
-
-        <div class="row">
-
-            <span class="label">
-                Amount Received
-            </span>
-
-            <span class="value received">
-
-                ${formatMoney(
-                    netAmount
-                )}
-
-            </span>
-
-        </div>
-
-
-        <!-- ACCOUNT NAME -->
-
-        <div class="row">
-
-            <span class="label">
-                Account Name
-            </span>
-
-            <span class="value">
-
-                ${escapeHTML(
-                    transaction.accountName ||
-                    "-"
-                )}
-
-            </span>
-
-        </div>
-
-
-        <!-- ACCOUNT TYPE -->
-
-        <div class="row">
-
-            <span class="label">
-                Account Type
-            </span>
-
-            <span class="value">
-
-                ${escapeHTML(
-                    transaction.accountType ||
-                    "-"
-                )}
-
-            </span>
-
-        </div>
-
-
-        <!-- ACCOUNT NUMBER -->
-
-        <div class="row">
-
-            <span class="label">
-                Account Number
-            </span>
-
-            <span class="value">
-
-                ${escapeHTML(
-                    transaction.accountNumber ||
-                    "-"
-                )}
-
-            </span>
-
-        </div>
-
-
-        <!-- PAYMENT CHANNEL -->
-
-        <div class="row">
-
-            <span class="label">
-                Payment Channel
-            </span>
-
-            <span class="value">
-
-                <span class="payment-channel">
-
-                    ${escapeHTML(
-                        paymentChannel
-                    )}
-
-                </span>
-
-            </span>
-
-        </div>
-
-
-        <!-- PAYMENT METHOD -->
-
-        <div class="row">
-
-            <span class="label">
-                Payment Method
-            </span>
-
-            <span class="value">
-
-                ${escapeHTML(
-                    paymentMethod
-                )}
-
-            </span>
-
-        </div>
-
-
-        <!-- REQUEST TIME -->
-
-        <div class="row">
-
-            <span class="label">
-                Request Time
-            </span>
-
-            <span class="value">
-
-                ${escapeHTML(
-                    formatDate(
-                        transaction.requestedAt
-                    )
-                )}
-
-            </span>
-
-        </div>
-
-
-        <!-- APPROVED TIME -->
-
-        <div class="row">
-
-            <span class="label">
-                Approved Time
-            </span>
-
-            <span class="value">
-
-                ${escapeHTML(
-                    formatDate(
-                        transaction.approvedAt
-                    )
-                )}
-
-            </span>
-
-        </div>
-
-
-        <!-- ADMIN -->
-
-        <div class="row">
-
-            <span class="label">
-                Approved By
-            </span>
-
-            <span class="value">
-
-                ${escapeHTML(
-                    transaction.approvedByEmail ||
-                    transaction.approvedBy ||
-                    "-"
-                )}
-
-            </span>
-
-        </div>
-
-
-        <!-- TRANSACTION ID -->
-
-        <div class="row">
-
-            <span class="label">
-                Transaction ID
-            </span>
-
-            <span class="value">
-
-                <span class="transaction-id">
-
-                    ${escapeHTML(
-                        transactionId
-                    )}
-
-                </span>
-
-            </span>
-
-        </div>
-
-
-        <!-- STATUS -->
-
-        <div class="row">
-
-            <span class="label">
-                Transaction Status
-            </span>
-
-            <span class="value">
-
-                <span class="status">
-                    ✓ Approved
-                </span>
-
-            </span>
-
-        </div>
-
-    `;
-
-
-    return record;
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-document
-    .getElementById(
-        "phoneSearch"
-    )
-    .addEventListener(
-        "input",
-        function(){
-
-            renderHistory();
-
-        }
-    );
-
-
-/* =====================================================
-   CLEAR SEARCH
-===================================================== */
-
-function clearSearch(){
-
-    document.getElementById(
-        "phoneSearch"
-    ).value = "";
-
-
-    renderHistory();
-
-
-    document.getElementById(
-        "phoneSearch"
-    ).focus();
 
 }
 
@@ -2010,14 +2573,11 @@ function goAdminPanel(){
    MAKE FUNCTIONS AVAILABLE
 ===================================================== */
 
-window.loadHistory =
-    loadHistory;
-
-window.clearSearch =
-    clearSearch;
-
 window.goAdminPanel =
     goAdminPanel;
+
+window.loadWithdrawals =
+    loadWithdrawals;
 
 
 /* =====================================================
@@ -2091,10 +2651,28 @@ onAuthStateChanged(
            LOAD HISTORY
         ================================================== */
 
-        await loadHistory();
+        await loadWithdrawals();
 
     }
 );
+
+
+/* =====================================================
+   SEARCH LISTENER
+===================================================== */
+
+document
+    .getElementById(
+        "phoneSearch"
+    )
+    .addEventListener(
+        "input",
+        function(){
+
+            renderCurrentSearch();
+
+        }
+    );
 
 
 /* =====================================================
@@ -2106,10 +2684,10 @@ setInterval(
 
         if(
             currentAdmin &&
-            !loadingHistory
+            !loadingWithdrawals
         ){
 
-            loadHistory();
+            loadWithdrawals();
 
         }
 
@@ -2119,7 +2697,6 @@ setInterval(
 
 
 </script>
-
 
 </body>
 
