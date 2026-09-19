@@ -1,446 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SkyRent Admin - Deposit History</title>
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
     box-sizing:border-box;
-    margin:0;
-    padding:0;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    margin:0;
+    font-family:Arial,sans-serif;
     background:#f3f7ff;
-    color:#172033;
-    min-height:100vh;
+    color:#1e293b;
 }
 
-/* =====================================================
+/* =========================
    HEADER
-===================================================== */
+========================= */
 
 .header{
-    background:linear-gradient(
-        135deg,
-        #0757c9,
-        #0b7bea
-    );
-
+    background:linear-gradient(135deg,#075985,#0284c7);
     color:white;
-    padding:20px 16px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.12);
-}
-
-.header-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
+    padding:18px 15px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
 }
 
 .header h1{
-    font-size:22px;
-    margin-bottom:5px;
+    margin:0;
+    font-size:23px;
 }
 
 .header p{
+    margin:5px 0 0;
     font-size:13px;
     opacity:.9;
 }
 
-.back-btn{
-    border:none;
-    background:rgba(255,255,255,.18);
-    color:white;
-    padding:10px 13px;
-    border-radius:10px;
-    font-size:13px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* =====================================================
-   MAIN
-===================================================== */
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
     width:100%;
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
-    padding:16px;
+    padding:15px;
 }
 
-/* =====================================================
-   SUMMARY
-===================================================== */
+/* =========================
+   TOP ACTIONS
+========================= */
 
-.summary-grid{
+.top-actions{
+    display:flex;
+    gap:8px;
+    margin-bottom:15px;
+    flex-wrap:wrap;
+}
+
+.top-btn{
+    border:none;
+    padding:9px 14px;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.back-btn{
+    background:white;
+    color:#075985;
+}
+
+.back-btn:hover{
+    background:#e0f2fe;
+}
+
+.refresh-btn{
+    background:#0284c7;
+    color:white;
+}
+
+.refresh-btn:hover{
+    background:#0369a1;
+}
+
+.refresh-btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.summary{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-    margin-bottom:16px;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:12px;
 }
 
 .summary-card{
     background:white;
-    border-radius:15px;
+    border-radius:12px;
     padding:15px;
-
-    box-shadow:
-        0 4px 14px rgba(0,0,0,.07);
-
-    border:1px solid #e5edfb;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    border-left:4px solid #0284c7;
 }
 
-.summary-label{
+.summary-card.payment1{
+    border-left-color:#075985;
+}
+
+.summary-card.payment2{
+    border-left-color:#7c3aed;
+}
+
+.summary-card.total{
+    border-left-color:#16a34a;
+}
+
+.summary-card h3{
+    margin:0;
     font-size:12px;
     color:#64748b;
-    margin-bottom:7px;
 }
 
 .summary-value{
+    margin-top:7px;
     font-size:20px;
     font-weight:bold;
-    color:#0757c9;
 }
 
-/* =====================================================
-   PAYMENT SUMMARY
-===================================================== */
+.summary-card.total .summary-value{
+    color:#15803d;
+}
 
-.payment-summary{
+.summary-card.payment1 .summary-value{
+    color:#075985;
+}
+
+.summary-card.payment2 .summary-value{
+    color:#6d28d9;
+}
+
+/* =========================
+   SECOND SUMMARY
+========================= */
+
+.summary-small{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-    margin-bottom:16px;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:20px;
 }
 
-.payment-card{
+.summary-small-card{
     background:white;
-    border-radius:15px;
-    padding:15px;
-
-    box-shadow:
-        0 4px 14px rgba(0,0,0,.07);
-
-    border:1px solid #e5edfb;
+    border-radius:12px;
+    padding:12px 15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
-.payment-title{
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:7px;
-}
-
-.payment-amount{
-    font-size:19px;
-    font-weight:bold;
-    color:#0757c9;
-}
-
-.payment-count{
-    font-size:12px;
+.summary-small-card h3{
+    margin:0;
     color:#64748b;
-    margin-top:4px;
+    font-size:11px;
 }
 
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.search-card{
-    background:white;
-    border-radius:15px;
-    padding:14px;
-    margin-bottom:16px;
-
-    box-shadow:
-        0 4px 14px rgba(0,0,0,.07);
-}
-
-.search-label{
-    display:block;
-    font-size:13px;
+.summary-small-value{
+    margin-top:5px;
+    font-size:18px;
     font-weight:bold;
     color:#334155;
-    margin-bottom:7px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    margin-bottom:15px;
+}
+
+.search-title{
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#075985;
+}
+
+.search-row{
+    display:flex;
+    gap:7px;
 }
 
 .search-input{
+    flex:1;
     width:100%;
-    border:1px solid #d7e1f0;
-    border-radius:11px;
-    padding:13px;
-    font-size:14px;
+    padding:11px 12px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
     outline:none;
-    background:#f8fbff;
+    font-size:14px;
 }
 
 .search-input:focus{
-    border-color:#0757c9;
-    background:white;
+    border-color:#0284c7;
+    box-shadow:0 0 0 2px rgba(2,132,199,.1);
 }
 
-/* =====================================================
-   FILTER BUTTONS
-===================================================== */
+.clear-btn{
+    border:none;
+    background:#64748b;
+    color:white;
+    padding:0 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13px;
+}
 
-.filter-row{
+.clear-btn:hover{
+    background:#475569;
+}
+
+/* =========================
+   FILTER
+========================= */
+
+.filter-box{
+    background:white;
+    padding:12px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+    margin-bottom:15px;
+}
+
+.filter-title{
+    font-size:13px;
+    font-weight:bold;
+    color:#075985;
+    margin-bottom:8px;
+}
+
+.filter-buttons{
     display:flex;
-    gap:8px;
-    margin-top:12px;
-    overflow-x:auto;
-    padding-bottom:2px;
+    gap:7px;
+    flex-wrap:wrap;
 }
 
 .filter-btn{
-    border:none;
-    padding:10px 13px;
-    border-radius:10px;
-    background:#edf3fc;
-    color:#334155;
+    border:1px solid #cbd5e1;
+    background:#f8fafc;
+    color:#475569;
+    padding:8px 12px;
+    border-radius:8px;
     font-size:12px;
     font-weight:bold;
     cursor:pointer;
-    white-space:nowrap;
+}
+
+.filter-btn:hover{
+    background:#e0f2fe;
 }
 
 .filter-btn.active{
-    background:#0757c9;
+    background:#0284c7;
+    border-color:#0284c7;
     color:white;
 }
 
-/* =====================================================
-   SECTION TITLE
-===================================================== */
-
-.section-title{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin:5px 0 10px;
-}
-
-.section-title h2{
-    font-size:17px;
-}
-
-.section-title span{
-    font-size:12px;
-    color:#64748b;
-}
-
-/* =====================================================
-   DEPOSIT LIST
-===================================================== */
-
-.deposit-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.deposit-card{
-    background:white;
-    border-radius:15px;
-
-    box-shadow:
-        0 4px 14px rgba(0,0,0,.07);
-
-    border:1px solid #e3ebf7;
-    overflow:hidden;
-}
-
-.deposit-main{
-    padding:14px;
-    cursor:pointer;
-}
-
-.deposit-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:10px;
-}
-
-.deposit-user{
-    min-width:0;
-}
-
-.deposit-name{
-    font-size:15px;
-    font-weight:bold;
-    color:#172033;
-    word-break:break-word;
-}
-
-.deposit-phone{
-    font-size:12px;
-    color:#64748b;
-    margin-top:4px;
-}
-
-.deposit-amount{
-    font-size:18px;
-    font-weight:bold;
-    color:#0757c9;
-    white-space:nowrap;
-}
-
-.badge-row{
-    display:flex;
-    gap:6px;
-    flex-wrap:wrap;
-    margin-top:10px;
-}
-
-.badge{
-    display:inline-flex;
-    align-items:center;
-    padding:6px 9px;
-    border-radius:8px;
-    font-size:10px;
-    font-weight:bold;
-}
-
-.badge-payment1{
-    background:#e8f1ff;
-    color:#0757c9;
-}
-
-.badge-payment2{
-    background:#eef8ff;
-    color:#0875a8;
-}
-
-.badge-unknown{
-    background:#fff3cd;
-    color:#8a6500;
-}
-
-.badge-approved{
-    background:#e9f9ef;
-    color:#16803c;
-}
-
-.deposit-date{
+.filter-info{
+    margin-top:8px;
     font-size:11px;
     color:#64748b;
-    margin-top:9px;
 }
 
-/* =====================================================
-   EXPANDED DETAILS
-===================================================== */
+/* =========================
+   SECTION
+========================= */
 
-.deposit-details{
-    display:none;
-    border-top:1px solid #e8eef7;
-    padding:14px;
-    background:#f9fbff;
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin:8px 0 12px;
 }
 
-.deposit-card.open .deposit-details{
-    display:block;
+.section-title{
+    font-size:19px;
+    font-weight:bold;
 }
 
-.detail-grid{
-    display:grid;
-    grid-template-columns:1fr;
+.last-refresh{
+    color:#64748b;
+    font-size:10px;
+}
+
+/* =========================
+   HISTORY LIST
+========================= */
+
+.history-list{
+    display:flex;
+    flex-direction:column;
     gap:9px;
 }
 
-.detail-item{
+/* =========================
+   HISTORY CARD
+========================= */
+
+.history-card{
     background:white;
-    border:1px solid #e2e9f4;
-    border-radius:10px;
-    padding:10px;
+    border-radius:12px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    border-left:4px solid #16a34a;
+    overflow:hidden;
 }
 
-.detail-label{
+/* =========================
+   CARD TOP
+========================= */
+
+.card-top{
+    padding:13px;
+    cursor:pointer;
+}
+
+.card-top:hover{
+    background:#f8fafc;
+}
+
+.card-main{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr 1fr;
+    gap:10px;
+    align-items:center;
+}
+
+.field{
+    min-width:0;
+}
+
+.label{
+    display:block;
     font-size:10px;
     color:#64748b;
     margin-bottom:4px;
-    text-transform:uppercase;
-    letter-spacing:.3px;
 }
 
-.detail-value{
+.value{
     font-size:13px;
     font-weight:bold;
-    color:#172033;
     word-break:break-word;
 }
 
-.expand-indicator{
+.amount{
+    color:#075985;
+    font-size:16px;
+}
+
+/* =========================
+   PAYMENT BADGE
+========================= */
+
+.payment-badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:15px;
+    font-size:10px;
+    font-weight:bold;
+    margin-top:4px;
+}
+
+.payment1{
+    background:#e0f2fe;
+    color:#075985;
+}
+
+.payment2{
+    background:#ede9fe;
+    color:#6d28d9;
+}
+
+.paymentUnknown{
+    background:#f1f5f9;
+    color:#64748b;
+}
+
+/* =========================
+   EXPANDED
+========================= */
+
+.card-details{
+    display:none;
+    padding:0 13px 13px;
+    border-top:1px solid #e2e8f0;
+}
+
+.card-details.open{
+    display:block;
+}
+
+.details-title{
+    margin-top:12px;
+    margin-bottom:9px;
     font-size:12px;
-    color:#0757c9;
+    font-weight:bold;
+    color:#075985;
+}
+
+.details-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.detail-box{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+    padding:9px;
+}
+
+.detail-label{
+    display:block;
+    font-size:10px;
+    color:#64748b;
+    margin-bottom:4px;
+}
+
+.detail-value{
+    font-size:12px;
+    font-weight:bold;
+    word-break:break-word;
+}
+
+.payment-selection{
+    margin-top:10px;
+    padding:10px;
+    border-radius:9px;
+    background:#f0f9ff;
+    border:1px solid #bae6fd;
+}
+
+.payment-selection-title{
+    font-size:11px;
+    color:#64748b;
+    margin-bottom:5px;
+}
+
+.payment-selection-value{
+    font-size:14px;
+    font-weight:bold;
+    color:#075985;
+}
+
+.payment-account{
     margin-top:9px;
+    padding:10px;
+    border-radius:9px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+}
+
+.payment-account-title{
+    font-size:10px;
+    color:#64748b;
+    margin-bottom:4px;
+}
+
+.payment-account-value{
+    font-size:13px;
+    font-weight:bold;
+    word-break:break-word;
+}
+
+.expand-text{
+    text-align:right;
+    margin-top:8px;
+    color:#0284c7;
+    font-size:10px;
     font-weight:bold;
 }
 
-/* =====================================================
-   LOADING
-===================================================== */
-
-.loading{
-    text-align:center;
-    padding:35px 15px;
-    color:#64748b;
-    font-size:14px;
-}
-
-.spinner{
-    width:30px;
-    height:30px;
-
-    border:3px solid #dce8f8;
-    border-top-color:#0757c9;
-
-    border-radius:50%;
-
-    animation:spin .8s linear infinite;
-
-    margin:0 auto 10px;
-}
-
-@keyframes spin{
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-/* =====================================================
+/* =========================
    EMPTY
-===================================================== */
+========================= */
 
 .empty{
     background:white;
-    border-radius:15px;
-    padding:30px 15px;
+    padding:35px 15px;
     text-align:center;
+    border-radius:12px;
     color:#64748b;
-
-    box-shadow:
-        0 4px 14px rgba(0,0,0,.06);
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
 .empty-icon{
@@ -448,67 +517,275 @@ body{
     margin-bottom:8px;
 }
 
-/* =====================================================
-   ERROR
-===================================================== */
+/* =========================
+   SEARCH MATCH
+========================= */
 
-.error{
-    background:#fff1f1;
-    border:1px solid #ffcaca;
-    color:#b42318;
-    padding:14px;
-    border-radius:12px;
-    font-size:13px;
+.search-match{
+    background:#fef08a;
+    color:#713f12;
+    padding:2px 4px;
+    border-radius:4px;
 }
 
-/* =====================================================
-   DESKTOP
-===================================================== */
+/* =========================
+   MOBILE
+========================= */
 
-@media(min-width:650px){
+@media(max-width:700px){
 
-    .summary-grid{
-        grid-template-columns:repeat(3,1fr);
+    .summary{
+        grid-template-columns:1fr 1fr 1fr;
+        gap:7px;
     }
 
-    .detail-grid{
-        grid-template-columns:repeat(2,1fr);
+    .summary-card{
+        padding:10px;
     }
 
+    .summary-card h3{
+        font-size:10px;
+    }
+
+    .summary-value{
+        font-size:15px;
+    }
+
+    .card-main{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .details-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:500px){
+
+    .container{
+        padding:11px;
+    }
+
+    .header h1{
+        font-size:20px;
+    }
+
+    .summary{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+
+    .summary-card{
+        padding:8px;
+    }
+
+    .summary-card h3{
+        font-size:9px;
+    }
+
+    .summary-value{
+        font-size:14px;
+    }
+
+    .summary-small{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .summary-small-card{
+        padding:10px;
+    }
+
+    .summary-small-value{
+        font-size:15px;
+    }
+
+    .card-main{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .details-grid{
+        grid-template-columns:1fr;
+    }
+
+    .top-actions{
+        gap:6px;
+    }
+
+    .top-btn{
+        padding:9px 11px;
+        font-size:12px;
+    }
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
+<!-- =========================
      HEADER
-===================================================== -->
+========================= -->
 
 <div class="header">
 
-    <div class="header-top">
+    <h1>📋 Deposit History</h1>
 
-        <div>
+    <p>
+        Approved deposit records
+    </p>
 
-            <h1>💰 Deposit History</h1>
+</div>
 
-            <p>
-                Approved deposits and payment records
-            </p>
 
+<div class="container">
+
+<!-- =========================
+     TOP BUTTONS
+========================= -->
+
+<div class="top-actions">
+
+    <button
+        class="top-btn back-btn"
+        onclick="location.href='admin-deposits.html'"
+    >
+        ← Back to Deposits
+    </button>
+
+    <button
+        class="top-btn refresh-btn"
+        id="refreshBtn"
+        onclick="manualRefresh()"
+    >
+        ↻ Refresh
+    </button>
+
+</div>
+
+
+<!-- =========================
+     SUMMARY
+========================= -->
+
+<div class="summary">
+
+    <div class="summary-card total">
+
+        <h3>
+            Total Approved Deposit
+        </h3>
+
+        <div
+            class="summary-value"
+            id="totalApprovedAmount"
+        >
+            ₱0.00
         </div>
 
+    </div>
+
+
+    <div class="summary-card payment1">
+
+        <h3>
+            Payment 1 Approved
+        </h3>
+
+        <div
+            class="summary-value"
+            id="payment1Amount"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+
+    <div class="summary-card payment2">
+
+        <h3>
+            Payment 2 Approved
+        </h3>
+
+        <div
+            class="summary-value"
+            id="payment2Amount"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     COUNT SUMMARY
+========================= -->
+
+<div class="summary-small">
+
+    <div class="summary-small-card">
+
+        <h3>
+            Payment 1 Approved Count
+        </h3>
+
+        <div
+            class="summary-small-value"
+            id="payment1Count"
+        >
+            0
+        </div>
+
+    </div>
+
+
+    <div class="summary-small-card">
+
+        <h3>
+            Payment 2 Approved Count
+        </h3>
+
+        <div
+            class="summary-small-value"
+            id="payment2Count"
+        >
+            0
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="search-box">
+
+    <div class="search-title">
+        🔎 Search Approved Deposits
+    </div>
+
+    <div class="search-row">
+
+        <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search name, phone, reference, email or account..."
+            autocomplete="off"
+            oninput="renderHistory()"
+        >
 
         <button
-            class="back-btn"
-            onclick="window.location.href='admin-deposits.html'"
+            class="clear-btn"
+            onclick="clearSearch()"
         >
-            ← Back
+            Clear
         </button>
 
     </div>
@@ -516,253 +793,123 @@ body{
 </div>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<!-- =========================
+     FILTER
+========================= -->
 
-<div class="container">
+<div class="filter-box">
 
-
-    <!-- SUMMARY -->
-
-    <div class="summary-grid">
-
-        <div class="summary-card">
-
-            <div class="summary-label">
-                Total Approved
-            </div>
-
-            <div
-                class="summary-value"
-                id="totalAmount"
-            >
-                ₱0.00
-            </div>
-
-        </div>
-
-
-        <div class="summary-card">
-
-            <div class="summary-label">
-                Approved Deposits
-            </div>
-
-            <div
-                class="summary-value"
-                id="totalCount"
-            >
-                0
-            </div>
-
-        </div>
-
-
-        <div class="summary-card">
-
-            <div class="summary-label">
-                Showing
-            </div>
-
-            <div
-                class="summary-value"
-                id="showingCount"
-            >
-                0
-            </div>
-
-        </div>
-
+    <div class="filter-title">
+        💳 Filter by Payment Selection
     </div>
 
+    <div class="filter-buttons">
 
-    <!-- =================================================
-         PAYMENT SUMMARY
-    ================================================== -->
-
-    <div class="payment-summary">
-
-
-        <div class="payment-card">
-
-            <div class="payment-title">
-                💳 Payment 1
-            </div>
-
-            <div
-                class="payment-amount"
-                id="payment1Amount"
-            >
-                ₱0.00
-            </div>
-
-            <div
-                class="payment-count"
-                id="payment1Count"
-            >
-                0 deposits
-            </div>
-
-        </div>
-
-
-        <div class="payment-card">
-
-            <div class="payment-title">
-                💳 Payment 2
-            </div>
-
-            <div
-                class="payment-amount"
-                id="payment2Amount"
-            >
-                ₱0.00
-            </div>
-
-            <div
-                class="payment-count"
-                id="payment2Count"
-            >
-                0 deposits
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         SEARCH
-    ================================================== -->
-
-    <div class="search-card">
-
-        <label
-            class="search-label"
-            for="searchInput"
+        <button
+            class="filter-btn active"
+            id="filterAll"
+            onclick="setPaymentFilter('all')"
         >
-            🔎 Search deposit
-        </label>
+            All Approved
+        </button>
 
-
-        <input
-            id="searchInput"
-            class="search-input"
-            type="search"
-            placeholder="Phone, name, reference, email..."
-            autocomplete="off"
+        <button
+            class="filter-btn"
+            id="filterPayment1"
+            onclick="setPaymentFilter('1')"
         >
+            Payment 1
+        </button>
 
-
-        <div class="filter-row">
-
-
-            <button
-                class="filter-btn active"
-                data-filter="ALL"
-                onclick="setFilter('ALL')"
-            >
-                All
-            </button>
-
-
-            <button
-                class="filter-btn"
-                data-filter="1"
-                onclick="setFilter('1')"
-            >
-                💳 Payment 1
-            </button>
-
-
-            <button
-                class="filter-btn"
-                data-filter="2"
-                onclick="setFilter('2')"
-            >
-                💳 Payment 2
-            </button>
-
-
-            <button
-                class="filter-btn"
-                data-filter="UNKNOWN"
-                onclick="setFilter('UNKNOWN')"
-            >
-                ⚠️ Not Identified
-            </button>
-
-
-        </div>
+        <button
+            class="filter-btn"
+            id="filterPayment2"
+            onclick="setPaymentFilter('2')"
+        >
+            Payment 2
+        </button>
 
     </div>
-
-
-    <!-- =================================================
-         SECTION TITLE
-    ================================================== -->
-
-    <div class="section-title">
-
-        <h2>
-            Approved Deposits
-        </h2>
-
-        <span id="listStatus">
-            Loading...
-        </span>
-
-    </div>
-
-
-    <!-- =================================================
-         LIST
-    ================================================== -->
 
     <div
-        id="depositList"
-        class="deposit-list"
+        class="filter-info"
+        id="filterInfo"
     >
+        Showing all approved deposits.
+    </div>
 
-        <div class="loading">
+</div>
 
-            <div class="spinner"></div>
 
-            Loading deposit history...
+<!-- =========================
+     SECTION HEADER
+========================= -->
 
+<div class="section-header">
+
+    <div class="section-title">
+        Approved Deposits
+    </div>
+
+    <div
+        class="last-refresh"
+        id="lastRefresh"
+    >
+        Loading...
+    </div>
+
+</div>
+
+
+<!-- =========================
+     HISTORY
+========================= -->
+
+<div
+    class="history-list"
+    id="historyList"
+>
+
+    <div class="empty">
+
+        <div class="empty-icon">
+            ⏳
         </div>
 
+        Loading approved deposits...
+
     </div>
+
+</div>
 
 
 </div>
 
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
-
 <script type="module">
+
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getAuth,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
     getFirestore,
     collection,
-    getDocs,
-    query,
-    where
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 /* =====================================================
@@ -788,39 +935,60 @@ const firebaseConfig = {
 
     appId:
         "1:572678456448:web:6b7132351515742dd09265"
-
 };
 
 
-const ADMIN_UID =
-    "28zzG9NB46gRkwia7WtOxS1lQNa2";
-
-
 /* =====================================================
-   INITIALIZE
+   INITIALIZE FIREBASE
 ===================================================== */
 
 const app =
     initializeApp(firebaseConfig);
 
-
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
 
 
 /* =====================================================
-   STATE
+   ADMIN UID
 ===================================================== */
 
-let allDeposits = [];
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
-let currentFilter = "ALL";
 
-let searchText = "";
+/* =====================================================
+   DATA
+===================================================== */
+
+let currentAdmin = null;
+
+let allApprovedDeposits = [];
+
+let activePaymentFilter = "all";
+
+
+/* =====================================================
+   NUMBER
+===================================================== */
+
+function getNumber(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+        return 0;
+    }
+
+    return Number(
+        String(value)
+            .replace(/[₱,\s]/g,"")
+    ) || 0;
+}
 
 
 /* =====================================================
@@ -829,117 +997,168 @@ let searchText = "";
 
 function money(value){
 
-    const number =
-        Number(value || 0);
-
-    return number.toLocaleString(
-        "en-PH",
-        {
-            style:"currency",
-            currency:"PHP",
-            minimumFractionDigits:2
-        }
-    );
-
+    return "₱" +
+        getNumber(value).toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
 }
 
 
 /* =====================================================
-   ESCAPE HTML
+   DATE VALUE
 ===================================================== */
 
-function escapeHTML(value){
+function getDateValue(deposit){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   TIMESTAMP
-===================================================== */
-
-function getTimestampValue(value){
-
-    if(!value){
+    if(!deposit){
         return 0;
     }
 
+    const values = [
 
-    if(
-        typeof value === "object" &&
-        typeof value.toMillis === "function"
+        deposit.approvedAt,
+        deposit.createdAt,
+        deposit.requestedAt,
+        deposit.submittedAt,
+        deposit.depositTime,
+        deposit.depositedAt,
+        deposit.requestTime,
+        deposit.dateTime,
+        deposit.date_time,
+        deposit.timestamp,
+        deposit.date,
+        deposit.time
+
+    ];
+
+    for(
+        const value of values
     ){
 
-        return value.toMillis();
+        if(
+            value === null ||
+            value === undefined
+        ){
+            continue;
+        }
 
+        if(
+            typeof value.toMillis === "function"
+        ){
+            return value.toMillis();
+        }
+
+        if(
+            typeof value.toDate === "function"
+        ){
+            return value
+                .toDate()
+                .getTime();
+        }
+
+        const date =
+            new Date(value);
+
+        if(
+            !isNaN(
+                date.getTime()
+            )
+        ){
+            return date.getTime();
+        }
     }
 
-
-    if(
-        typeof value === "object" &&
-        value.seconds
-    ){
-
-        return Number(value.seconds) * 1000;
-
-    }
-
-
-    const parsed =
-        new Date(value).getTime();
-
-
-    return Number.isNaN(parsed)
-        ? 0
-        : parsed;
-
+    return 0;
 }
 
 
 /* =====================================================
-   FORMAT DATE
+   DATE DISPLAY
 ===================================================== */
 
-function formatDate(value){
+function getDateDisplay(deposit){
 
-    const time =
-        getTimestampValue(value);
+    const timestamp =
+        getDateValue(deposit);
 
-
-    if(!time){
-
-        return "Date not available";
-
+    if(!timestamp){
+        return "Time not recorded";
     }
 
-
-    return new Date(time).toLocaleString(
-        "en-PH",
-        {
-            year:"numeric",
-            month:"short",
-            day:"numeric",
-            hour:"numeric",
-            minute:"2-digit"
-        }
-    );
-
+    return new Date(timestamp)
+        .toLocaleString(
+            "en-PH",
+            {
+                year:"numeric",
+                month:"short",
+                day:"numeric",
+                hour:"numeric",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+        );
 }
 
 
 /* =====================================================
-   PAYMENT OPTION IDENTIFIER
-=====================================================
+   REFERENCE NUMBER
+   SAME AS ADMIN DEPOSITS
+===================================================== */
 
-   Payment 1 / Payment 2 is ONLY the identifier
-   telling us which payment account the user selected.
+function getReferenceNumber(deposit){
 
+    return (
+        deposit.referenceNumber ||
+        deposit.referenceNo ||
+        deposit.refNo ||
+        deposit.reference ||
+        deposit.gcashReference ||
+        deposit.paymentReference ||
+        "—"
+    );
+}
+
+
+/* =====================================================
+   RECEIVING ACCOUNT
+   SAME AS ADMIN DEPOSITS
+===================================================== */
+
+function getReceivingAccount(deposit){
+
+    return (
+        deposit.paymentAccount ||
+        deposit.receivingAccount ||
+        deposit.paymentType ||
+        deposit.account ||
+        "—"
+    );
+}
+
+
+/* =====================================================
+   PAYMENT METHOD
+   SAME AS ADMIN DEPOSITS
+===================================================== */
+
+function getPaymentMethod(deposit){
+
+    return (
+        deposit.paymentMethod ||
+        deposit.method ||
+        deposit.paymentChannel ||
+        "—"
+    );
+}
+
+
+/* =====================================================
+   PAYMENT OPTION DETECTION
+   EXACT SAME LOGIC AS ADMIN-DEPOSITS.HTML
 ===================================================== */
 
 function getPaymentOption(deposit){
@@ -949,51 +1168,17 @@ function getPaymentOption(deposit){
     }
 
 
-    /*
-       Explicit paymentChannel may contain:
-       Payment 1
-       Payment 2
-    */
-
-    const channel =
-        String(
-            deposit.paymentChannel ?? ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    if(
-        channel === "payment 1" ||
-        channel === "payment1"
-    ){
-
-        return "1";
-
-    }
-
-
-    if(
-        channel === "payment 2" ||
-        channel === "payment2"
-    ){
-
-        return "2";
-
-    }
-
-
-    /*
-       Numeric identifier.
-    */
-
-    const numericFields = [
+    const directFields = [
 
         deposit.paymentOption,
+
+        deposit.paymentNumber,
 
         deposit.paymentOptionNumber,
 
         deposit.paymentTypeNumber,
+
+        deposit.selectedPayment,
 
         deposit.selectedPaymentOption,
 
@@ -1005,56 +1190,42 @@ function getPaymentOption(deposit){
 
 
     for(
-        const value of numericFields
+        const value of directFields
     ){
 
         if(
             value === 1 ||
             String(value).trim() === "1"
         ){
-
             return "1";
-
         }
-
 
         if(
             value === 2 ||
             String(value).trim() === "2"
         ){
-
             return "2";
-
         }
-
     }
 
 
-    /*
-       Boolean identifiers.
-    */
+    /* BOOLEAN COMPATIBILITY */
 
     if(
         deposit.payment1 === true
     ){
-
         return "1";
-
     }
 
 
     if(
         deposit.payment2 === true
     ){
-
         return "2";
-
     }
 
 
-    /*
-       Other possible text identifiers.
-    */
+    /* TEXT FIELDS */
 
     const textFields = [
 
@@ -1064,9 +1235,15 @@ function getPaymentOption(deposit){
 
         deposit.paymentMethod,
 
+        deposit.paymentChannel,
+
         deposit.selectedPayment,
 
-        deposit.selectedPaymentOption
+        deposit.selectedPaymentOption,
+
+        deposit.paymentAccount,
+
+        deposit.receivingAccount
 
     ];
 
@@ -1077,40 +1254,35 @@ function getPaymentOption(deposit){
 
         const text =
             String(value ?? "")
-            .trim()
-            .toLowerCase()
-            .replace(/[_-]+/g," ")
-            .replace(/\s+/g," ");
+                .trim()
+                .toLowerCase()
+                .replace(
+                    /[_-]+/g,
+                    " "
+                )
+                .replace(
+                    /\s+/g,
+                    " "
+                );
 
 
         if(
-            text === "payment 1" ||
-            text === "payment1" ||
-            text === "payment option 1" ||
-            text === "option 1"
+            /^(payment\s*1|payment\s*option\s*1|option\s*1)$/.test(text)
         ){
-
             return "1";
-
         }
 
 
         if(
-            text === "payment 2" ||
-            text === "payment2" ||
-            text === "payment option 2" ||
-            text === "option 2"
+            /^(payment\s*2|payment\s*option\s*2|option\s*2)$/.test(text)
         ){
-
             return "2";
-
         }
 
     }
 
 
     return null;
-
 }
 
 
@@ -1124,294 +1296,347 @@ function paymentBadgeHTML(deposit){
         getPaymentOption(deposit);
 
 
-    if(option === "1"){
+    if(
+        option === "1"
+    ){
 
         return `
-            <span class="badge badge-payment1">
-                💳 PAYMENT 1
+            <span class="payment-badge payment1">
+                💳 Payment 1
             </span>
         `;
-
     }
 
 
-    if(option === "2"){
+    if(
+        option === "2"
+    ){
 
         return `
-            <span class="badge badge-payment2">
-                💳 PAYMENT 2
+            <span class="payment-badge payment2">
+                💳 Payment 2
             </span>
         `;
-
     }
 
 
     return `
-        <span class="badge badge-unknown">
-            ⚠️ PAYMENT NOT IDENTIFIED
+        <span class="payment-badge paymentUnknown">
+            ⚠ Payment Not Set
         </span>
     `;
-
 }
 
 
 /* =====================================================
-   NAME
+   ESCAPE HTML
 ===================================================== */
 
-function getName(deposit){
+function escapeHTML(value){
 
-    return (
-        deposit.userName ||
-        deposit.name ||
-        deposit.fullName ||
-        deposit.displayName ||
-        "Unknown User"
-    );
-
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 
 
 /* =====================================================
-   PHONE
+   NORMALIZE STATUS
 ===================================================== */
 
-function getPhone(deposit){
+function normalizeStatus(status){
 
-    return (
-        deposit.phone ||
-        deposit.mobile ||
-        deposit.userPhone ||
-        deposit.phoneNumber ||
-        "Not available"
-    );
-
+    return String(
+        status || ""
+    )
+    .toLowerCase()
+    .trim();
 }
 
 
 /* =====================================================
-   EMAIL
+   APPROVED
 ===================================================== */
 
-function getEmail(deposit){
+function isApproved(deposit){
 
-    return (
-        deposit.email ||
-        deposit.userEmail ||
-        "Not available"
-    );
-
-}
-
-
-/* =====================================================
-   REFERENCE
-===================================================== */
-
-function getReference(deposit){
-
-    return (
-        deposit.referenceNumber ||
-        deposit.referenceNo ||
-        deposit.refNo ||
-        deposit.reference ||
-        deposit.gcashReference ||
-        deposit.paymentReference ||
-        "Not available"
-    );
-
-}
-
-
-/* =====================================================
-   PAYMENT CHANNEL
-=====================================================
-
-   IMPORTANT:
-
-   paymentAccount is displayed here.
-
-   Payment 1 / Payment 2 is NOT displayed as the
-   payment channel itself.
-
-===================================================== */
-
-function getPaymentChannel(deposit){
-
-    return (
-        deposit.paymentAccount ||
-        deposit.receivingAccount ||
-        deposit.account ||
-        "Not available"
-    );
-
-}
-
-
-/* =====================================================
-   PAYMENT METHOD
-===================================================== */
-
-function getPaymentMethod(deposit){
-
-    return (
-        deposit.paymentMethod ||
-        deposit.method ||
-        "Not available"
-    );
-
-}
-
-
-/* =====================================================
-   AMOUNT
-===================================================== */
-
-function getAmount(deposit){
-
-    return Number(
-        deposit.amount ||
-        deposit.depositAmount ||
-        deposit.value ||
-        0
-    );
-
-}
-
-
-/* =====================================================
-   APPROVAL DATE
-===================================================== */
-
-function getApprovalDate(deposit){
-
-    return (
-        deposit.approvedAt ||
-        deposit.updatedAt ||
-        deposit.processedAt ||
-        deposit.createdAt ||
-        deposit.timestamp
-    );
-
-}
-
-
-/* =====================================================
-   SEARCH TEXT
-===================================================== */
-
-function searchableText(deposit){
-
-    return [
-
-        getName(deposit),
-
-        getPhone(deposit),
-
-        getEmail(deposit),
-
-        getReference(deposit),
-
-        getPaymentMethod(deposit),
-
-        getPaymentChannel(deposit),
-
-        deposit.userId,
-
-        deposit.id
-
-    ]
-    .join(" ")
-    .toLowerCase();
-
-}
-
-
-/* =====================================================
-   LOAD DEPOSITS
-===================================================== */
-
-async function loadDeposits(){
-
-    const list =
-        document.getElementById(
-            "depositList"
+    const status =
+        normalizeStatus(
+            deposit.status
         );
 
 
-    list.innerHTML = `
-        <div class="loading">
+    /*
+       Your approval code sets:
 
-            <div class="spinner"></div>
+       status:"Approved"
+       approved:true
+       credited:true
 
-            Loading deposit history...
+       We accept both so older approved
+       records are also included.
+    */
 
-        </div>
-    `;
+    return (
+        status === "approved" ||
+        status === "deposit successful" ||
+        status === "successful" ||
+        status === "completed" ||
+        deposit.approved === true
+    );
+}
 
 
-    try{
+/* =====================================================
+   SEARCH NORMALIZATION
+===================================================== */
 
-        /*
-           Load approved deposits only.
-        */
+function normalizeSearch(value){
 
-        const q =
-            query(
-                collection(
-                    db,
-                    "deposits"
-                ),
-                where(
-                    "status",
-                    "==",
-                    "Approved"
+    return String(
+        value ?? ""
+    )
+    .toLowerCase()
+    .trim();
+}
+
+
+/* =====================================================
+   SEARCH HIGHLIGHT
+===================================================== */
+
+function highlightText(
+    value,
+    search
+){
+
+    const text =
+        String(value ?? "");
+
+    const term =
+        String(search ?? "").trim();
+
+    if(!term){
+        return escapeHTML(text);
+    }
+
+
+    const escaped =
+        term.replace(
+            /[.*+?^${}()|[\]\\]/g,
+            "\\$&"
+        );
+
+
+    const regex =
+        new RegExp(
+            escaped,
+            "gi"
+        );
+
+
+    let result = "";
+
+    let lastIndex = 0;
+
+    let match;
+
+
+    while(
+        (match = regex.exec(text)) !== null
+    ){
+
+        result +=
+            escapeHTML(
+                text.substring(
+                    lastIndex,
+                    match.index
                 )
             );
 
 
+        result +=
+            `<span class="search-match">` +
+            escapeHTML(match[0]) +
+            `</span>`;
+
+
+        lastIndex =
+            match.index +
+            match[0].length;
+    }
+
+
+    result +=
+        escapeHTML(
+            text.substring(lastIndex)
+        );
+
+
+    return result;
+}
+
+
+/* =====================================================
+   AUTHENTICATION
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async function(user){
+
+        if(!user){
+
+            window.location.href =
+                "index.html";
+
+            return;
+        }
+
+
+        if(
+            user.uid !== ADMIN_UID
+        ){
+
+            alert(
+                "Access denied. Admin account required."
+            );
+
+
+            try{
+
+                await signOut(auth);
+
+            }catch(error){
+
+                console.error(error);
+
+            }
+
+
+            window.location.href =
+                "index.html";
+
+            return;
+        }
+
+
+        currentAdmin =
+            user;
+
+
+        await loadApprovedDeposits();
+
+    }
+);
+
+
+/* =====================================================
+   LOAD APPROVED DEPOSITS
+===================================================== */
+
+async function loadApprovedDeposits(){
+
+    const list =
+        document.getElementById(
+            "historyList"
+        );
+
+    const refreshBtn =
+        document.getElementById(
+            "refreshBtn"
+        );
+
+
+    try{
+
+        refreshBtn.disabled = true;
+
+        refreshBtn.textContent =
+            "↻ Loading...";
+
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ⏳
+                </div>
+
+                Loading approved deposits...
+
+            </div>
+
+        `;
+
+
         const snapshot =
-            await getDocs(q);
+            await getDocs(
+                collection(
+                    db,
+                    "deposits"
+                )
+            );
 
 
-        allDeposits = [];
+        allApprovedDeposits = [];
 
 
         snapshot.forEach(
-            docSnapshot => {
+            function(docSnapshot){
 
                 const data =
                     docSnapshot.data();
 
 
-                allDeposits.push({
+                /*
+                   ONLY APPROVED RECORDS
+                */
 
-                    id:
-                        docSnapshot.id,
+                if(
+                    isApproved(data)
+                ){
 
-                    ...data
+                    allApprovedDeposits.push({
 
-                });
+                        id:
+                            docSnapshot.id,
+
+                        ...data
+
+                    });
+
+                }
 
             }
         );
 
 
-        /*
-           Newest first.
-        */
-
-        allDeposits.sort(
-            (a,b) => {
+        allApprovedDeposits.sort(
+            function(a,b){
 
                 return (
-                    getTimestampValue(
-                        getApprovalDate(b)
-                    )
-                    -
-                    getTimestampValue(
-                        getApprovalDate(a)
-                    )
+                    getDateValue(b) -
+                    getDateValue(a)
                 );
 
             }
@@ -1420,40 +1645,86 @@ async function loadDeposits(){
 
         updateSummary();
 
-        renderDeposits();
+        renderHistory();
 
-    }
-    catch(error){
+
+        document.getElementById(
+            "lastRefresh"
+        ).textContent =
+            "Updated " +
+            new Date()
+                .toLocaleTimeString(
+                    "en-PH"
+                );
+
+
+    }catch(error){
 
         console.error(
-            "Deposit history error:",
+            "Load history error:",
             error
         );
 
 
         list.innerHTML = `
-            <div class="error">
 
-                ❌ Unable to load deposit history.
+            <div class="empty">
 
-                <br><br>
+                <div class="empty-icon">
+                    ⚠️
+                </div>
 
-                ${escapeHTML(
-                    error.message
-                )}
+                <strong>
+                    Unable to load deposit history
+                </strong>
+
+                <div
+                    style="
+                        margin-top:7px;
+                        font-size:12px;
+                    "
+                >
+                    ${escapeHTML(
+                        error.message
+                    )}
+                </div>
 
             </div>
+
         `;
 
+    }finally{
 
-        document.getElementById(
-            "listStatus"
-        ).textContent =
-            "Error";
+        refreshBtn.disabled = false;
+
+        refreshBtn.textContent =
+            "↻ Refresh";
 
     }
 
 }
+
+
+/* =====================================================
+   MANUAL REFRESH
+===================================================== */
+
+window.manualRefresh =
+    async function(){
+
+        if(!currentAdmin){
+
+            alert(
+                "Admin authentication is required."
+            );
+
+            return;
+        }
+
+
+        await loadApprovedDeposits();
+
+    };
 
 
 /* =====================================================
@@ -1462,43 +1733,62 @@ async function loadDeposits(){
 
 function updateSummary(){
 
-    let total = 0;
+    let totalApproved = 0;
 
-    let payment1Amount = 0;
+    let payment1Total = 0;
 
-    let payment2Amount = 0;
+    let payment2Total = 0;
 
     let payment1Count = 0;
 
     let payment2Count = 0;
 
 
-    allDeposits.forEach(
-        deposit => {
+    allApprovedDeposits.forEach(
+        function(deposit){
 
             const amount =
-                getAmount(deposit);
+                getNumber(
+                    deposit.amount
+                );
 
+
+            /*
+               EVERY APPROVED DEPOSIT
+               contributes to total.
+            */
+
+            totalApproved += amount;
+
+
+            /*
+               USE EXACT SAME
+               PAYMENT OPTION FUNCTION
+               AS ADMIN DEPOSITS.
+            */
 
             const option =
-                getPaymentOption(deposit);
+                getPaymentOption(
+                    deposit
+                );
 
 
-            total += amount;
+            if(
+                option === "1"
+            ){
 
-
-            if(option === "1"){
-
-                payment1Amount += amount;
+                payment1Total += amount;
 
                 payment1Count++;
 
             }
 
 
-            if(option === "2"){
+            if(
+                option === "2"
+            ){
 
-                payment2Amount += amount;
+                payment2Total += amount;
 
                 payment2Count++;
 
@@ -1509,273 +1799,425 @@ function updateSummary(){
 
 
     document.getElementById(
-        "totalAmount"
+        "totalApprovedAmount"
     ).textContent =
-        money(total);
-
-
-    document.getElementById(
-        "totalCount"
-    ).textContent =
-        allDeposits.length;
+        money(totalApproved);
 
 
     document.getElementById(
         "payment1Amount"
     ).textContent =
-        money(payment1Amount);
-
-
-    document.getElementById(
-        "payment1Count"
-    ).textContent =
-        `${payment1Count} deposits`;
+        money(payment1Total);
 
 
     document.getElementById(
         "payment2Amount"
     ).textContent =
-        money(payment2Amount);
+        money(payment2Total);
+
+
+    document.getElementById(
+        "payment1Count"
+    ).textContent =
+        payment1Count;
 
 
     document.getElementById(
         "payment2Count"
     ).textContent =
-        `${payment2Count} deposits`;
+        payment2Count;
 
 }
 
 
 /* =====================================================
-   FILTER
+   PAYMENT FILTER
 ===================================================== */
 
-window.setFilter =
+window.setPaymentFilter =
     function(filter){
 
-        currentFilter =
+        if(
+            filter !== "1" &&
+            filter !== "2"
+        ){
+
+            filter = "all";
+
+        }
+
+
+        activePaymentFilter =
             filter;
 
 
-        document
-            .querySelectorAll(
-                ".filter-btn"
-            )
-            .forEach(
-                button => {
+        updateFilterUI();
 
-                    button.classList.toggle(
-                        "active",
-                        button.dataset.filter === filter
+        renderHistory();
+
+    };
+
+
+/* =====================================================
+   FILTER UI
+===================================================== */
+
+function updateFilterUI(){
+
+    document
+        .getElementById("filterAll")
+        .classList.toggle(
+            "active",
+            activePaymentFilter === "all"
+        );
+
+
+    document
+        .getElementById("filterPayment1")
+        .classList.toggle(
+            "active",
+            activePaymentFilter === "1"
+        );
+
+
+    document
+        .getElementById("filterPayment2")
+        .classList.toggle(
+            "active",
+            activePaymentFilter === "2"
+        );
+
+}
+
+
+/* =====================================================
+   RENDER HISTORY
+===================================================== */
+
+window.renderHistory =
+    function(){
+
+        const list =
+            document.getElementById(
+                "historyList"
+            );
+
+
+        const searchInput =
+            document.getElementById(
+                "searchInput"
+            );
+
+
+        const search =
+            normalizeSearch(
+                searchInput.value
+            );
+
+
+        let records =
+            allApprovedDeposits.filter(
+                function(deposit){
+
+                    /*
+                       PAYMENT FILTER
+                    */
+
+                    if(
+                        activePaymentFilter === "1"
+                    ){
+
+                        if(
+                            getPaymentOption(
+                                deposit
+                            ) !== "1"
+                        ){
+
+                            return false;
+
+                        }
+
+                    }
+
+
+                    if(
+                        activePaymentFilter === "2"
+                    ){
+
+                        if(
+                            getPaymentOption(
+                                deposit
+                            ) !== "2"
+                        ){
+
+                            return false;
+
+                        }
+
+                    }
+
+
+                    /*
+                       SEARCH
+                    */
+
+                    if(!search){
+
+                        return true;
+
+                    }
+
+
+                    const name =
+                        normalizeSearch(
+                            deposit.userName ||
+                            deposit.name
+                        );
+
+
+                    const phone =
+                        normalizeSearch(
+                            deposit.phone ||
+                            deposit.mobile ||
+                            deposit.userPhone
+                        );
+
+
+                    const email =
+                        normalizeSearch(
+                            deposit.email
+                        );
+
+
+                    const reference =
+                        normalizeSearch(
+                            getReferenceNumber(
+                                deposit
+                            )
+                        );
+
+
+                    const account =
+                        normalizeSearch(
+                            getReceivingAccount(
+                                deposit
+                            )
+                        );
+
+
+                    const method =
+                        normalizeSearch(
+                            getPaymentMethod(
+                                deposit
+                            )
+                        );
+
+
+                    const option =
+                        normalizeSearch(
+                            getPaymentOption(
+                                deposit
+                            ) === "1"
+                                ? "payment 1"
+                                : getPaymentOption(
+                                    deposit
+                                ) === "2"
+                                    ? "payment 2"
+                                    : ""
+                        );
+
+
+                    return (
+
+                        name.includes(search) ||
+
+                        phone.includes(search) ||
+
+                        email.includes(search) ||
+
+                        reference.includes(search) ||
+
+                        account.includes(search) ||
+
+                        method.includes(search) ||
+
+                        option.includes(search)
+
                     );
 
                 }
             );
 
 
-        renderDeposits();
+        updateFilterInfo(
+            records.length
+        );
+
+
+        if(
+            records.length === 0
+        ){
+
+            list.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        📭
+                    </div>
+
+                    <strong>
+                        No approved deposits found
+                    </strong>
+
+                    <div
+                        style="
+                            margin-top:6px;
+                            font-size:12px;
+                        "
+                    >
+                        Try another search or payment filter.
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML =
+            records
+                .map(
+                    function(deposit,index){
+
+                        return createHistoryCard(
+                            deposit,
+                            search,
+                            index
+                        );
+
+                    }
+                )
+                .join("");
 
     };
 
 
 /* =====================================================
-   SEARCH
+   FILTER INFO
 ===================================================== */
 
-document
-    .getElementById(
-        "searchInput"
-    )
-    .addEventListener(
-        "input",
-        function(){
+function updateFilterInfo(count){
 
-            searchText =
-                this.value
-                .trim()
-                .toLowerCase();
-
-
-            renderDeposits();
-
-        }
-    );
-
-
-/* =====================================================
-   FILTERED DEPOSITS
-===================================================== */
-
-function getFilteredDeposits(){
-
-    return allDeposits.filter(
-        deposit => {
-
-            const option =
-                getPaymentOption(
-                    deposit
-                );
-
-
-            if(
-                currentFilter === "1" &&
-                option !== "1"
-            ){
-
-                return false;
-
-            }
-
-
-            if(
-                currentFilter === "2" &&
-                option !== "2"
-            ){
-
-                return false;
-
-            }
-
-
-            if(
-                currentFilter === "UNKNOWN" &&
-                option !== null
-            ){
-
-                return false;
-
-            }
-
-
-            if(
-                searchText &&
-                !searchableText(
-                    deposit
-                ).includes(
-                    searchText
-                )
-            ){
-
-                return false;
-
-            }
-
-
-            return true;
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   RENDER
-===================================================== */
-
-function renderDeposits(){
-
-    const list =
+    const info =
         document.getElementById(
-            "depositList"
+            "filterInfo"
         );
 
 
-    const deposits =
-        getFilteredDeposits();
+    if(
+        activePaymentFilter === "1"
+    ){
 
-
-    document.getElementById(
-        "showingCount"
-    ).textContent =
-        deposits.length;
-
-
-    document.getElementById(
-        "listStatus"
-    ).textContent =
-        `${deposits.length} record${
-            deposits.length === 1
-                ? ""
-                : "s"
-        }`;
-
-
-    if(!deposits.length){
-
-        list.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    📭
-                </div>
-
-                No approved deposits found.
-
-            </div>
-
-        `;
+        info.textContent =
+            "Showing " +
+            count +
+            " approved Payment 1 deposit" +
+            (
+                count === 1
+                    ? ""
+                    : "s"
+            ) +
+            ".";
 
         return;
-
     }
 
 
-    list.innerHTML =
-        deposits
-        .map(
-            (deposit,index) =>
-                createDepositHTML(
-                    deposit,
-                    index
-                )
-        )
-        .join("");
+    if(
+        activePaymentFilter === "2"
+    ){
+
+        info.textContent =
+            "Showing " +
+            count +
+            " approved Payment 2 deposit" +
+            (
+                count === 1
+                    ? ""
+                    : "s"
+            ) +
+            ".";
+
+        return;
+    }
+
+
+    info.textContent =
+        "Showing " +
+        count +
+        " approved deposit" +
+        (
+            count === 1
+                ? ""
+                : "s"
+        ) +
+        ".";
 
 }
 
 
 /* =====================================================
-   CREATE DEPOSIT CARD
+   CREATE HISTORY CARD
 ===================================================== */
 
-function createDepositHTML(
+function createHistoryCard(
     deposit,
+    search,
     index
 ){
 
-    const amount =
-        getAmount(deposit);
-
-
     const name =
-        getName(deposit);
+        deposit.userName ||
+        deposit.name ||
+        "—";
 
 
     const phone =
-        getPhone(deposit);
+        deposit.phone ||
+        deposit.mobile ||
+        deposit.userPhone ||
+        "—";
 
 
     const email =
-        getEmail(deposit);
+        deposit.email ||
+        "—";
+
+
+    const amount =
+        getNumber(
+            deposit.amount
+        );
 
 
     const reference =
-        getReference(deposit);
+        getReferenceNumber(
+            deposit
+        );
 
 
-    const method =
-        getPaymentMethod(deposit);
+    const receivingAccount =
+        getReceivingAccount(
+            deposit
+        );
 
 
-    /*
-       THIS IS THE VALUE DISPLAYED
-       AS PAYMENT CHANNEL.
-    */
-
-    const paymentChannel =
-        getPaymentChannel(
+    const paymentMethod =
+        getPaymentMethod(
             deposit
         );
 
@@ -1786,155 +2228,77 @@ function createDepositHTML(
         );
 
 
-    const createdDate =
-        formatDate(
-            deposit.createdAt ||
-            deposit.timestamp
+    let paymentSelection =
+        "Payment Not Set";
+
+
+    if(
+        option === "1"
+    ){
+
+        paymentSelection =
+            "Payment 1";
+
+    }
+
+
+    if(
+        option === "2"
+    ){
+
+        paymentSelection =
+            "Payment 2";
+
+    }
+
+
+    const cardId =
+        "history_" +
+        index +
+        "_" +
+        String(
+            deposit.id
+        ).replace(
+            /[^a-zA-Z0-9]/g,
+            ""
         );
-
-
-    const approvedDate =
-        formatDate(
-            getApprovalDate(
-                deposit
-            )
-        );
-
-
-    const status =
-        deposit.status ||
-        "Approved";
 
 
     return `
 
-        <div
-            class="deposit-card"
-            id="deposit-${index}"
-        >
+        <div class="history-card">
 
 
-            <!-- MAIN -->
+            <!-- =========================
+                 COLLAPSED TOP
+            ========================= -->
 
             <div
-                class="deposit-main"
-                onclick="toggleDeposit(${index})"
+                class="card-top"
+                onclick="toggleCard('${cardId}')"
             >
 
-                <div class="deposit-top">
+                <div class="card-main">
 
 
-                    <div class="deposit-user">
+                    <!-- USER -->
 
-                        <div class="deposit-name">
+                    <div class="field">
 
-                            ${escapeHTML(
-                                name
-                            )}
+                        <span class="label">
+                            User
+                        </span>
 
-                        </div>
+                        <div class="value">
 
-
-                        <div class="deposit-phone">
-
-                            📱
-                            ${escapeHTML(
-                                phone
-                            )}
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="deposit-amount">
-
-                        ${money(
-                            amount
-                        )}
-
-                    </div>
-
-                </div>
-
-
-                <div class="badge-row">
-
-                    ${paymentBadgeHTML(
-                        deposit
-                    )}
-
-
-                    <span class="badge badge-approved">
-
-                        ✓ APPROVED
-
-                    </span>
-
-                </div>
-
-
-                <div class="deposit-date">
-
-                    Approved:
-                    ${escapeHTML(
-                        approvedDate
-                    )}
-
-                </div>
-
-
-                <div
-                    class="expand-indicator"
-                    id="indicator-${index}"
-                >
-
-                    👆 Tap to view details
-
-                </div>
-
-            </div>
-
-
-            <!-- DETAILS -->
-
-            <div class="deposit-details">
-
-
-                <div class="detail-grid">
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Deposit Amount
-                        </div>
-
-                        <div class="detail-value">
-
-                            ${money(
-                                amount
-                            )}
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Payment Selection
-                        </div>
-
-                        <div class="detail-value">
-
-                            ${
-                                option === "1"
-                                    ? "Payment 1"
-                                    : option === "2"
-                                        ? "Payment 2"
-                                        : "Not Identified"
+                            ${search
+                                ? highlightText(
+                                    name,
+                                    search
+                                )
+                                : escapeHTML(
+                                    name
+                                )
                             }
 
                         </div>
@@ -1942,16 +2306,35 @@ function createDepositHTML(
                     </div>
 
 
-                    <div class="detail-item">
+                    <!-- AMOUNT -->
 
-                        <div class="detail-label">
-                            Payment Channel
+                    <div class="field">
+
+                        <span class="label">
+                            Approved Amount
+                        </span>
+
+                        <div class="value amount">
+
+                            ${money(amount)}
+
                         </div>
 
-                        <div class="detail-value">
+                    </div>
 
-                            ${escapeHTML(
-                                paymentChannel
+
+                    <!-- PAYMENT -->
+
+                    <div class="field">
+
+                        <span class="label">
+                            Payment
+                        </span>
+
+                        <div>
+
+                            ${paymentBadgeHTML(
+                                deposit
                             )}
 
                         </div>
@@ -1959,67 +2342,201 @@ function createDepositHTML(
                     </div>
 
 
-                    <div class="detail-item">
+                    <!-- PHONE -->
 
-                        <div class="detail-label">
-                            Payment Method
-                        </div>
+                    <div class="field">
 
-                        <div class="detail-value">
-
-                            ${escapeHTML(
-                                method
-                            )}
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            User Name
-                        </div>
-
-                        <div class="detail-value">
-
-                            ${escapeHTML(
-                                name
-                            )}
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
+                        <span class="label">
                             Phone
-                        </div>
+                        </span>
 
-                        <div class="detail-value">
+                        <div class="value">
 
-                            ${escapeHTML(
-                                phone
-                            )}
+                            ${search
+                                ? highlightText(
+                                    phone,
+                                    search
+                                )
+                                : escapeHTML(
+                                    phone
+                                )
+                            }
 
                         </div>
 
                     </div>
 
 
-                    <div class="detail-item">
+                </div>
 
-                        <div class="detail-label">
+
+                <div class="expand-text">
+                    👆 Tap to view details
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 DETAILS
+            ========================= -->
+
+            <div
+                class="card-details"
+                id="${cardId}"
+            >
+
+
+                <div class="details-title">
+                    👤 User Information
+                </div>
+
+
+                <div class="details-grid">
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Name
+                        </span>
+
+                        <div class="detail-value">
+                            ${escapeHTML(name)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Phone
+                        </span>
+
+                        <div class="detail-value">
+                            ${escapeHTML(phone)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
                             Email
+                        </span>
+
+                        <div class="detail-value">
+                            ${escapeHTML(email)}
                         </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Approved Amount
+                        </span>
+
+                        <div
+                            class="detail-value"
+                            style="color:#075985;"
+                        >
+                            ${money(amount)}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="details-title">
+                    💳 Payment Information
+                </div>
+
+
+                <!-- PAYMENT SELECTION -->
+
+                <div class="payment-selection">
+
+                    <div class="payment-selection-title">
+                        Payment Selection
+                    </div>
+
+                    <div class="payment-selection-value">
+
+                        ${paymentBadgeHTML(
+                            deposit
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTUAL ACCOUNT -->
+
+                <div class="payment-account">
+
+                    <div class="payment-account-title">
+                        Payment Channel / Receiving Account
+                    </div>
+
+                    <div class="payment-account-value">
+
+                        ${search
+                            ? highlightText(
+                                receivingAccount,
+                                search
+                            )
+                            : escapeHTML(
+                                receivingAccount
+                            )
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="details-grid"
+                     style="margin-top:10px;">
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Reference No.
+                        </span>
+
+                        <div class="detail-value">
+
+                            ${search
+                                ? highlightText(
+                                    reference,
+                                    search
+                                )
+                                : escapeHTML(
+                                    reference
+                                )
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Payment Method
+                        </span>
 
                         <div class="detail-value">
 
                             ${escapeHTML(
-                                email
+                                paymentMethod
                             )}
 
                         </div>
@@ -2027,68 +2544,44 @@ function createDepositHTML(
                     </div>
 
 
-                    <div class="detail-item">
+                    <div class="detail-box">
 
-                        <div class="detail-label">
-                            Reference Number
-                        </div>
-
-                        <div class="detail-value">
-
-                            ${escapeHTML(
-                                reference
-                            )}
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Deposit Created
-                        </div>
-
-                        <div class="detail-value">
-
-                            ${escapeHTML(
-                                createdDate
-                            )}
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
-                            Approved Date
-                        </div>
-
-                        <div class="detail-value">
-
-                            ${escapeHTML(
-                                approvedDate
-                            )}
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail-item">
-
-                        <div class="detail-label">
+                        <span class="detail-label">
                             Status
+                        </span>
+
+                        <div
+                            class="detail-value"
+                            style="color:#15803d;"
+                        >
+                            Approved
                         </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="details-title">
+                    🕐 Date / Approval Information
+                </div>
+
+
+                <div class="details-grid">
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Deposit / Request Time
+                        </span>
 
                         <div class="detail-value">
 
-                            ✓
                             ${escapeHTML(
-                                status
+                                getDateDisplay(
+                                    deposit
+                                )
                             )}
 
                         </div>
@@ -2096,11 +2589,29 @@ function createDepositHTML(
                     </div>
 
 
-                    <div class="detail-item">
+                    <div class="detail-box">
 
-                        <div class="detail-label">
-                            Deposit ID
+                        <span class="detail-label">
+                            Approved By
+                        </span>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                deposit.approvedBy ||
+                                "—"
+                            )}
+
                         </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Deposit ID
+                        </span>
 
                         <div class="detail-value">
 
@@ -2112,41 +2623,15 @@ function createDepositHTML(
 
                     </div>
 
-
                 </div>
 
 
-                ${
-                    option === null
-                        ? `
-                            <div
-                                style="
-                                    margin-top:12px;
-                                    padding:12px;
-                                    border-radius:10px;
-                                    background:#fff7dc;
-                                    border:1px solid #f0d98a;
-                                    color:#745900;
-                                    font-size:12px;
-                                    line-height:1.5;
-                                "
-                            >
-
-                                ⚠️ This record does not contain
-                                a Payment 1 / Payment 2 identifier.
-
-                                New deposits should save
-                                <b>paymentOption</b> when
-                                submitted.
-
-                            </div>
-                        `
-                        : ""
-                }
+                <div class="expand-text">
+                    👆 Tap the top area again to close
+                </div>
 
 
             </div>
-
 
         </div>
 
@@ -2156,15 +2641,15 @@ function createDepositHTML(
 
 
 /* =====================================================
-   TOGGLE
+   TOGGLE CARD
 ===================================================== */
 
-window.toggleDeposit =
-    function(index){
+window.toggleCard =
+    function(cardId){
 
         const card =
             document.getElementById(
-                `deposit-${index}`
+                cardId
             );
 
 
@@ -2173,120 +2658,29 @@ window.toggleDeposit =
         }
 
 
-        const wasOpen =
-            card.classList.contains(
-                "open"
-            );
-
-
-        /*
-           Close all.
-        */
-
-        document
-            .querySelectorAll(
-                ".deposit-card.open"
-            )
-            .forEach(
-                other => {
-
-                    other.classList.remove(
-                        "open"
-                    );
-
-                }
-            );
-
-
-        /*
-           Open selected.
-        */
-
-        if(!wasOpen){
-
-            card.classList.add(
-                "open"
-            );
-
-
-            const indicator =
-                document.getElementById(
-                    `indicator-${index}`
-                );
-
-
-            if(indicator){
-
-                indicator.textContent =
-                    "👆 Tap to hide details";
-
-            }
-
-        }
-
-
-        /*
-           Reset indicators.
-        */
-
-        document
-            .querySelectorAll(
-                ".deposit-card:not(.open) .expand-indicator"
-            )
-            .forEach(
-                element => {
-
-                    element.textContent =
-                        "👆 Tap to view details";
-
-                }
-            );
+        card.classList.toggle(
+            "open"
+        );
 
     };
 
 
 /* =====================================================
-   ADMIN AUTH
+   CLEAR SEARCH
 ===================================================== */
 
-onAuthStateChanged(
-    auth,
-    async user => {
+window.clearSearch =
+    function(){
 
-        if(!user){
+        document.getElementById(
+            "searchInput"
+        ).value = "";
 
-            window.location.href =
-                "index.html";
+        renderHistory();
 
-            return;
-
-        }
-
-
-        if(
-            user.uid !== ADMIN_UID
-        ){
-
-            alert(
-                "Access denied. Administrator only."
-            );
-
-
-            window.location.href =
-                "dashboard.html";
-
-            return;
-
-        }
-
-
-        await loadDeposits();
-
-    }
-);
+    };
 
 </script>
 
 </body>
-
 </html>
