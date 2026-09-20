@@ -2,9 +2,14 @@
   "name": "SkyRent Admin",
   "short_name": "SkyRent Admin",
   "description": "SkyRent Administrator Panel",
-  "start_url": "./admin-login.html",
+  "id": "./sky-admin-access-2x6.html",
+  "start_url": "./sky-admin-access-2x6.html",
   "scope": "./",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
   "background_color": "#0757c9",
   "theme_color": "#0757c9",
   "orientation": "portrait",
@@ -12,12 +17,14 @@
     {
       "src": "./admin-icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "./admin-icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
