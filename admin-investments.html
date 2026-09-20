@@ -1419,20 +1419,14 @@ function getNumber(value){
         value === null ||
         value === undefined
     ){
-
         return 0;
-
     }
-
 
     if(
         typeof value === "number"
     ){
-
         return value;
-
     }
-
 
     return Number(
         String(value)
@@ -1467,16 +1461,12 @@ function formatMoney(value){
 function formatDate(value){
 
     if(!value){
-
         return "—";
-
     }
-
 
     try{
 
         let date;
-
 
         if(
             typeof value.toDate === "function"
@@ -1486,16 +1476,18 @@ function formatDate(value){
                 value.toDate();
 
         }
+
         else if(
-            value.seconds
+            value.seconds !== undefined
         ){
 
             date =
                 new Date(
-                    value.seconds * 1000
+                    Number(value.seconds) * 1000
                 );
 
         }
+
         else{
 
             date =
@@ -1525,6 +1517,7 @@ function formatDate(value){
         );
 
     }
+
     catch(error){
 
         return "—";
@@ -1536,14 +1529,23 @@ function formatDate(value){
 
 /* =====================================================
    NORMALIZE PLAN ID
+
+   IMPORTANT:
+   Supports:
+   AC3
+   ACT3
+   AC 3
+   AC-3
+   ACT 3
+   ACT-3
+   Aircraft AC3
+   Aircraft ACT3
 ===================================================== */
 
 function getPlanId(data){
 
     if(!data){
-
         return "Unknown";
-
     }
 
 
@@ -1566,33 +1568,102 @@ function getPlanId(data){
     ){
 
         if(
-            value !== undefined &&
-            value !== null &&
-            String(value).trim() !== ""
+            value === undefined ||
+            value === null
         ){
-
-            const text =
-                String(value)
-                    .trim()
-                    .toUpperCase();
+            continue;
+        }
 
 
-            const match =
-                text.match(/AC\s*([0-9]+)/);
+        let text =
+            String(value)
+                .trim()
+                .toUpperCase();
 
 
-            if(match){
+        if(!text){
+            continue;
+        }
 
-                return "AC" + match[1];
+
+        /*
+         * Remove spaces, hyphens and underscores.
+         *
+         * AC 3  -> AC3
+         * AC-3  -> AC3
+         * ACT 3 -> ACT3
+         * ACT-3 -> ACT3
+         */
+
+        const normalized =
+            text.replace(/[\s_-]+/g,"");
+
+
+        /*
+         * ACT3 is treated as AC3.
+         */
+
+        let match =
+            normalized.match(/^ACT([0-9]+)$/);
+
+
+        if(match){
+
+            const planId =
+                "AC" + match[1];
+
+            if(PLAN_DATA[planId]){
+
+                return planId;
 
             }
 
+        }
 
-            if(
-                PLAN_DATA[text]
-            ){
 
-                return text;
+        /*
+         * Normal AC3 format.
+         */
+
+        match =
+            normalized.match(/^AC([0-9]+)$/);
+
+
+        if(match){
+
+            const planId =
+                "AC" + match[1];
+
+            if(PLAN_DATA[planId]){
+
+                return planId;
+
+            }
+
+        }
+
+
+        /*
+         * Also detect AC3 / ACT3
+         * when embedded inside a value.
+         *
+         * Example:
+         * "Aircraft AC3"
+         * "ACT3 Plan"
+         */
+
+        match =
+            normalized.match(/(?:ACT|AC)([0-9]+)/);
+
+
+        if(match){
+
+            const planId =
+                "AC" + match[1];
+
+            if(PLAN_DATA[planId]){
+
+                return planId;
 
             }
 
@@ -1613,18 +1684,18 @@ function getPlanId(data){
 function getInvestmentUserId(data){
 
     if(!data){
-
         return "";
-
     }
 
 
     return String(
+
         data.userId ||
         data.uid ||
         data.userUID ||
         data.userUid ||
         ""
+
     ).trim();
 
 }
@@ -1637,17 +1708,17 @@ function getInvestmentUserId(data){
 function getUserPhone(user){
 
     if(!user){
-
         return "";
-
     }
 
 
     return String(
+
         user.phone ||
         user.phoneNumber ||
         user.mobile ||
         ""
+
     ).trim();
 
 }
@@ -1660,17 +1731,17 @@ function getUserPhone(user){
 function getUserName(user){
 
     if(!user){
-
         return "Unknown Member";
-
     }
 
 
     return String(
+
         user.name ||
         user.fullName ||
         user.displayName ||
         "Unknown Member"
+
     ).trim();
 
 }
@@ -1683,9 +1754,7 @@ function getUserName(user){
 function getInvestmentAmount(data){
 
     if(!data){
-
         return 0;
-
     }
 
 
@@ -1743,15 +1812,13 @@ function getInvestmentAmount(data){
 function getInvestmentRevenue(data){
 
     if(!data){
-
         return 0;
-
     }
 
 
     /*
-     * These are fields that can represent
-     * earnings actually collected/claimed.
+     * These fields represent earnings
+     * actually collected/claimed.
      *
      * We intentionally DO NOT use:
      *
@@ -1762,8 +1829,8 @@ function getInvestmentRevenue(data){
      * expectedEarning
      * plan total
      *
-     * because those can represent future/
-     * expected earnings instead of collected earnings.
+     * because those may represent future/
+     * expected earnings.
      */
 
     const possible = [
@@ -1809,9 +1876,7 @@ function getInvestmentRevenue(data){
 function getDailyEarning(data){
 
     if(!data){
-
         return 0;
-
     }
 
 
@@ -1867,19 +1932,78 @@ function getDailyEarning(data){
 function getStatus(data){
 
     if(!data){
-
         return "Unknown";
-
     }
 
 
     return String(
+
         data.status ||
         data.investmentStatus ||
         data.state ||
         "Active"
-    )
-    .trim();
+
+    ).trim();
+
+}
+
+
+/* =====================================================
+   CHECK IF INVESTMENT IS ACTIVE
+
+   IMPORTANT:
+   "inactive" contains the word "active".
+
+   Therefore we MUST check inactive first.
+===================================================== */
+
+function isInvestmentActive(data){
+
+    const status =
+        getStatus(data)
+            .toLowerCase()
+            .trim();
+
+
+    if(!status){
+        return false;
+    }
+
+
+    /*
+     * Explicitly non-active statuses.
+     */
+
+    if(
+        status === "inactive" ||
+        status.includes("inactive") ||
+        status.includes("cancel") ||
+        status.includes("reject") ||
+        status.includes("complete") ||
+        status === "completed"
+    ){
+
+        return false;
+
+    }
+
+
+    /*
+     * Active statuses.
+     */
+
+    if(
+        status === "active" ||
+        status === "running" ||
+        status === "in progress"
+    ){
+
+        return true;
+
+    }
+
+
+    return false;
 
 }
 
@@ -1896,8 +2020,24 @@ function getStatusClass(status){
             .trim();
 
 
+    /*
+     * Check inactive first.
+     */
+
     if(
-        normalized.includes("active") ||
+        normalized === "inactive" ||
+        normalized.includes("inactive") ||
+        normalized.includes("cancel") ||
+        normalized.includes("reject")
+    ){
+
+        return "status-inactive";
+
+    }
+
+
+    if(
+        normalized === "active" ||
         normalized === "running" ||
         normalized === "in progress"
     ){
@@ -1927,17 +2067,6 @@ function getStatusClass(status){
     }
 
 
-    if(
-        normalized.includes("inactive") ||
-        normalized.includes("cancel") ||
-        normalized.includes("reject")
-    ){
-
-        return "status-inactive";
-
-    }
-
-
     return "status-other";
 
 }
@@ -1950,19 +2079,19 @@ function getStatusClass(status){
 function getCreatedDate(data){
 
     if(!data){
-
         return null;
-
     }
 
 
     return (
+
         data.createdAt ||
         data.createdDate ||
         data.startDate ||
         data.purchaseDate ||
         data.date ||
         null
+
     );
 
 }
@@ -1981,9 +2110,7 @@ function renderPlanSummary(){
 
 
     if(!container){
-
         return;
-
     }
 
 
@@ -2006,18 +2133,30 @@ function renderPlanSummary(){
             allInvestments.forEach(
                 investment => {
 
-                    if(
+                    const investmentPlan =
                         getPlanId(
                             investment.data
-                        ) === planId
+                        );
+
+
+                    /*
+                     * Because getPlanId()
+                     * normalizes ACT3 -> AC3,
+                     * AC3 records are counted here.
+                     */
+
+                    if(
+                        investmentPlan === planId
                     ){
 
                         count++;
+
 
                         amount +=
                             getInvestmentAmount(
                                 investment.data
                             );
+
 
                         collected +=
                             getInvestmentRevenue(
@@ -2050,23 +2189,46 @@ function renderPlanSummary(){
                     <div class="plan-info">
 
                         <div class="plan-row">
+
                             <span>Plan Amount</span>
-                            <span>${formatMoney(plan.amount)}</span>
+
+                            <span>
+                                ${formatMoney(plan.amount)}
+                            </span>
+
                         </div>
 
+
                         <div class="plan-row">
+
                             <span>Daily</span>
-                            <span>${formatMoney(plan.daily)}</span>
+
+                            <span>
+                                ${formatMoney(plan.daily)}
+                            </span>
+
                         </div>
 
+
                         <div class="plan-row">
+
                             <span>Records</span>
-                            <span>${count}</span>
+
+                            <span>
+                                ${count}
+                            </span>
+
                         </div>
 
+
                         <div class="plan-row">
+
                             <span>Invested</span>
-                            <span>${formatMoney(amount)}</span>
+
+                            <span>
+                                ${formatMoney(amount)}
+                            </span>
+
                         </div>
 
                     </div>
@@ -2130,15 +2292,12 @@ function updateSummary(){
                 );
 
 
-            const status =
-                getStatus(data)
-                    .toLowerCase();
-
+            /*
+             * Use the corrected active checker.
+             */
 
             if(
-                status.includes("active") ||
-                status === "running" ||
-                status === "in progress"
+                isInvestmentActive(data)
             ){
 
                 activeCount++;
@@ -2210,7 +2369,8 @@ function getFilteredInvestments(){
 
             const status =
                 getStatus(data)
-                    .toLowerCase();
+                    .toLowerCase()
+                    .trim();
 
 
             const name =
@@ -2237,17 +2397,20 @@ function getFilteredInvestments(){
 
 
             const matchesSearch =
+
                 !search ||
+
                 phone.includes(search) ||
+
                 name.includes(search) ||
+
                 email.includes(search) ||
+
                 userId.includes(search);
 
 
             if(!matchesSearch){
-
                 return false;
-
             }
 
 
@@ -2276,11 +2439,7 @@ function getFilteredInvestments(){
                 currentFilter === "active"
             ){
 
-                return (
-                    status.includes("active") ||
-                    status === "running" ||
-                    status === "in progress"
-                );
+                return isInvestmentActive(data);
 
             }
 
@@ -2528,10 +2687,12 @@ function renderInvestments(){
                     <div class="investment-footer">
 
                         <div class="footer-text">
+
                             Investment ID:
                             ${escapeHtml(
                                 investmentId.substring(0,10)
                             )}
+
                         </div>
 
                         <div class="view-user">
@@ -2561,6 +2722,7 @@ function renderInvestments(){
 function escapeHtml(value){
 
     return String(value ?? "")
+
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -2647,9 +2809,7 @@ async function(
 
 
     if(!investment){
-
         return;
-
     }
 
 
@@ -2663,9 +2823,7 @@ async function(
         userMap[userId] || {};
 
 
-    if(
-        !userId
-    ){
+    if(!userId){
 
         showUserModal(
             {},
@@ -2698,11 +2856,14 @@ async function(
                 userSnap.exists()
             ){
 
-                user =
-                    {
-                        id:userSnap.id,
-                        ...userSnap.data()
-                    };
+                user = {
+
+                    id:userSnap.id,
+
+                    ...userSnap.data()
+
+                };
+
 
                 userMap[userId] =
                     user;
@@ -2710,6 +2871,7 @@ async function(
             }
 
         }
+
         catch(error){
 
             console.log(
@@ -2806,22 +2968,10 @@ function showUserModal(
 
     const activeCount =
         investments.filter(
-            item => {
-
-                const status =
-                    getStatus(
-                        item.data
-                    )
-                    .toLowerCase();
-
-
-                return (
-                    status.includes("active") ||
-                    status === "running" ||
-                    status === "in progress"
-                );
-
-            }
+            item =>
+                isInvestmentActive(
+                    item.data
+                )
         ).length;
 
 
@@ -2853,6 +3003,7 @@ function showUserModal(
         `;
 
     }
+
     else{
 
         investments.forEach(
@@ -3055,7 +3206,8 @@ function showUserModal(
                     text-align:center;
                 "
             >
-                ${activeCount} active investment${activeCount === 1 ? "" : "s"}
+                ${activeCount}
+                active investment${activeCount === 1 ? "" : "s"}
             </div>
 
         </div>
@@ -3203,10 +3355,11 @@ async function loadInvestments(){
 
 
     /*
-     * Newest records first
+     * Newest records first.
      */
 
     allInvestments.sort(
+
         (
             a,
             b
@@ -3216,6 +3369,7 @@ async function loadInvestments(){
                 getCreatedDate(
                     a.data
                 );
+
 
             const dateB =
                 getCreatedDate(
@@ -3238,6 +3392,7 @@ async function loadInvestments(){
             return timeB - timeA;
 
         }
+
     );
 
 }
@@ -3250,9 +3405,7 @@ async function loadInvestments(){
 function getDateTime(value){
 
     if(!value){
-
         return 0;
-
     }
 
 
@@ -3262,13 +3415,15 @@ function getDateTime(value){
             typeof value.toDate === "function"
         ){
 
-            return value.toDate().getTime();
+            return value
+                .toDate()
+                .getTime();
 
         }
 
 
         if(
-            value.seconds
+            value.seconds !== undefined
         ){
 
             return (
@@ -3290,6 +3445,7 @@ function getDateTime(value){
         : date.getTime();
 
     }
+
     catch(error){
 
         return 0;
@@ -3318,6 +3474,7 @@ async function loadInvestmentPage(){
         renderInvestments();
 
     }
+
     catch(error){
 
         console.error(
@@ -3361,7 +3518,9 @@ async function loadInvestmentPage(){
 ===================================================== */
 
 onAuthStateChanged(
+
     auth,
+
     async (user) => {
 
         /*
@@ -3412,6 +3571,7 @@ onAuthStateChanged(
         await loadInvestmentPage();
 
     }
+
 );
 
 
@@ -3445,11 +3605,13 @@ async function(){
 
         renderInvestments();
 
+
         console.log(
             "Investment records refreshed."
         );
 
     }
+
     catch(error){
 
         console.error(
@@ -3489,4 +3651,5 @@ document.addEventListener(
 </script>
 
 </body>
+
 </html>
