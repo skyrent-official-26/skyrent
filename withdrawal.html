@@ -908,7 +908,8 @@ body{
 
             <li>
                 Withdrawal requests are available from
-                9:00 AM to 6:00 PM.
+               Mondays-Sundays,
+                10:00 AM to 8:00 PM.
             </li>
 
             <li>
@@ -1271,7 +1272,7 @@ function isWithdrawalTime(){
     const hour =
         now.getHours();
 
-    return hour >= 9 && hour < 18;
+    return hour >= 10 && hour < 20;
 
 }
 
@@ -1950,7 +1951,7 @@ async function submitWithdrawal(){
 
         showMessage(
             "error",
-            "Withdrawals are available only from 9:00 AM to 6:00 PM."
+            "Withdrawals are available only from 10:00 AM to 8:00 PM."
         );
 
         return;
@@ -2237,7 +2238,7 @@ async function submitWithdrawal(){
                         "1-4 hours",
 
                     withdrawalTime:
-                        "9:00 AM - 6:00 PM",
+                        "10:00 AM - 8:00 PM",
 
                     accountName:
                         latestAccount.accountName,
