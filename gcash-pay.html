@@ -1,565 +1,724 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
-  <meta name="theme-color" content="#0757c9">
+<meta name="theme-color" content="#0757c9">
 
-  <title>SkyRent - GCash Payment</title>
+<title>SkyRent - GCash Payment</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+<style>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        linear-gradient(
-          180deg,
-          #0757c9 0%,
-          #1686e8 42%,
-          #eef7ff 100%
-        );
-      color: #123;
-    }
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
-    .page {
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto;
-      min-height: 100vh;
-      padding: 24px 18px 35px;
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
 
-    .top {
-      text-align: center;
-      color: white;
-      padding: 15px 0 25px;
-    }
+  background:
+    linear-gradient(
+      180deg,
+      #0757c9 0%,
+      #1686e8 45%,
+      #eef7ff 100%
+    );
 
-    .logo {
-      width: 78px;
-      height: 78px;
-      object-fit: contain;
-      background: white;
-      border-radius: 22px;
-      padding: 8px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-      margin-bottom: 12px;
-    }
+  color:#222;
+}
 
-    .top h1 {
-      margin: 0;
-      font-size: 27px;
-      font-weight: 800;
-    }
+.page{
+  width:100%;
+  max-width:480px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px 16px 35px;
+}
 
-    .top p {
-      margin: 7px 0 0;
-      font-size: 14px;
-      opacity: 0.92;
-    }
+.header{
+  text-align:center;
+  color:white;
+  padding:10px 0 22px;
+}
 
-    .card {
-      background: white;
-      border-radius: 24px;
-      padding: 24px 20px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.16);
-    }
+.logo{
+  width:76px;
+  height:76px;
+  object-fit:contain;
+  background:white;
+  padding:8px;
+  border-radius:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
 
-    .card h2 {
-      margin: 0 0 7px;
-      text-align: center;
-      color: #0757c9;
-      font-size: 22px;
-    }
+.header h1{
+  margin:10px 0 4px;
+  font-size:27px;
+}
 
-    .description {
-      text-align: center;
-      color: #777;
-      font-size: 14px;
-      margin: 0 0 22px;
-      line-height: 1.5;
-    }
+.header p{
+  margin:0;
+  font-size:14px;
+  opacity:.92;
+}
 
-    .label {
-      display: block;
-      font-size: 14px;
-      font-weight: 700;
-      color: #333;
-      margin-bottom: 8px;
-    }
+.card{
+  background:white;
+  border-radius:24px;
+  padding:22px 18px;
+  box-shadow:0 12px 35px rgba(0,0,0,.16);
+}
 
-    .amount-wrapper {
-      position: relative;
-      margin-bottom: 18px;
-    }
+.title{
+  text-align:center;
+  color:#0757c9;
+  margin:0;
+  font-size:22px;
+}
 
-    .peso {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 22px;
-      font-weight: 700;
-      color: #0757c9;
-    }
+.subtitle{
+  text-align:center;
+  color:#777;
+  font-size:13px;
+  line-height:1.5;
+  margin:7px 0 22px;
+}
 
-    #amount {
-      width: 100%;
-      height: 58px;
-      border: 2px solid #d9e7f7;
-      border-radius: 15px;
-      outline: none;
-      padding: 0 15px 0 42px;
-      font-size: 21px;
-      font-weight: 700;
-      color: #222;
-      background: #f8fbff;
-    }
+.label{
+  display:block;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:9px;
+  color:#333;
+}
 
-    #amount:focus {
-      border-color: #1686e8;
-      background: white;
-    }
+/* PAYMENT ACCOUNT */
 
-    .quick-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #666;
-      margin: 5px 0 10px;
-    }
+.account-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:22px;
+}
 
-    .quick-amounts {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 9px;
-      margin-bottom: 22px;
-    }
+.account-option{
+  position:relative;
+}
 
-    .quick-btn {
-      border: 1px solid #d5e5f7;
-      background: #f3f8ff;
-      color: #0757c9;
-      border-radius: 12px;
-      padding: 11px 5px;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
-    }
+.account-option input{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
 
-    .quick-btn:active {
-      transform: scale(0.97);
-    }
+.account-label{
+  display:block;
+  padding:16px 8px;
+  text-align:center;
+  border:2px solid #dce9f7;
+  border-radius:15px;
+  background:#f8fbff;
+  color:#0757c9;
+  font-weight:800;
+  font-size:15px;
+  cursor:pointer;
+}
 
-    .pay-btn {
-      width: 100%;
-      height: 58px;
-      border: none;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #007cff, #0757c9);
-      color: white;
-      font-size: 17px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(7,87,201,0.28);
-    }
+.account-option input:checked + .account-label{
+  border-color:#0757c9;
+  background:#eaf4ff;
+  box-shadow:0 4px 12px rgba(7,87,201,.12);
+}
 
-    .pay-btn:active {
-      transform: scale(0.98);
-    }
+.account-check{
+  display:block;
+  margin-top:5px;
+  font-size:11px;
+  font-weight:600;
+  color:#777;
+}
 
-    .pay-btn:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-    }
+/* AMOUNT */
 
-    .info {
-      margin-top: 20px;
-      padding: 14px;
-      border-radius: 14px;
-      background: #f1f7ff;
-      color: #526477;
-      font-size: 12px;
-      line-height: 1.55;
-      text-align: center;
-    }
+.amount-wrapper{
+  position:relative;
+  margin-bottom:15px;
+}
 
-    .status {
-      display: none;
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 14px;
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.5;
-    }
+.peso{
+  position:absolute;
+  left:15px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:21px;
+  font-weight:800;
+  color:#0757c9;
+}
 
-    .status.show {
-      display: block;
-    }
+#amount{
+  width:100%;
+  height:57px;
+  border:2px solid #dce9f7;
+  border-radius:15px;
+  outline:none;
+  padding:0 15px 0 42px;
+  font-size:21px;
+  font-weight:700;
+  color:#222;
+  background:#f8fbff;
+}
 
-    .status.success {
-      background: #eaf9f0;
-      color: #17723c;
-    }
+#amount:focus{
+  border-color:#1686e8;
+  background:white;
+}
 
-    .status.warning {
-      background: #fff7e6;
-      color: #8a5b00;
-    }
+/* QUICK AMOUNTS */
 
-    .fallback {
-      display: none;
-      margin-top: 15px;
-    }
+.quick-title{
+  font-size:13px;
+  font-weight:700;
+  color:#666;
+  margin:5px 0 9px;
+}
 
-    .fallback.show {
-      display: block;
-    }
+.quick{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-bottom:22px;
+}
 
-    .fallback-btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-      background: #eef5ff;
-      color: #0757c9;
-      border: 1px solid #cfe1f7;
-      border-radius: 14px;
-      padding: 13px;
-      font-weight: 700;
-      font-size: 14px;
-    }
+.quick button{
+  border:1px solid #d5e5f7;
+  background:#f3f8ff;
+  color:#0757c9;
+  border-radius:11px;
+  padding:10px 4px;
+  font-weight:700;
+  font-size:13px;
+  cursor:pointer;
+}
 
-    .back-btn {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-    }
+.quick button:active{
+  transform:scale(.97);
+}
 
-    .small-note {
-      text-align: center;
-      margin-top: 14px;
-      font-size: 11px;
-      color: #999;
-    }
-  </style>
+/* PAY BUTTON */
+
+.pay-button{
+  width:100%;
+  height:58px;
+  border:0;
+  border-radius:16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #007cff,
+      #0757c9
+    );
+
+  color:white;
+  font-size:17px;
+  font-weight:800;
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 20px rgba(7,87,201,.28);
+}
+
+.pay-button:active{
+  transform:scale(.98);
+}
+
+.pay-button:disabled{
+  opacity:.65;
+}
+
+/* STATUS */
+
+.status{
+  display:none;
+  margin-top:16px;
+  padding:14px;
+  border-radius:14px;
+  font-size:13px;
+  line-height:1.5;
+  text-align:center;
+}
+
+.status.show{
+  display:block;
+}
+
+.status.info{
+  background:#eef6ff;
+  color:#0757c9;
+}
+
+.status.warning{
+  background:#fff7e6;
+  color:#8a5b00;
+}
+
+.status.success{
+  background:#eaf9f0;
+  color:#17723c;
+}
+
+/* INSTRUCTIONS */
+
+.info-box{
+  margin-top:18px;
+  padding:14px;
+  border-radius:14px;
+  background:#f3f8ff;
+  color:#5b6b7c;
+  font-size:12px;
+  line-height:1.55;
+  text-align:center;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  color:white;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+  margin-top:20px;
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="page">
+<div class="page">
 
-    <div class="top">
+  <div class="header">
 
-      <!-- Change the filename if your logo has a different name -->
-      <img
-        src="skyrent-logo.png"
-        class="logo"
-        alt="SkyRent"
-      >
+    <img
+      src="skyrent-logo.png"
+      class="logo"
+      alt="SkyRent"
+    >
 
-      <h1>SkyRent</h1>
+    <h1>SkyRent</h1>
 
-      <p>GCash Payment</p>
+    <p>GCash Payment</p>
 
-    </div>
-
-
-    <div class="card">
-
-      <h2>Pay with GCash</h2>
-
-      <p class="description">
-        Enter the amount you want to pay, then tap the button
-        to open the GCash application.
-      </p>
+  </div>
 
 
-      <label class="label" for="amount">
-        Payment Amount
-      </label>
+  <div class="card">
 
-      <div class="amount-wrapper">
+    <h2 class="title">
+      Make Payment
+    </h2>
 
-        <span class="peso">₱</span>
+    <p class="subtitle">
+      Select a receiving account and enter
+      the amount you want to pay.
+    </p>
+
+
+    <!-- RECEIVING ACCOUNT -->
+
+    <label class="label">
+      Receiving Account
+    </label>
+
+    <div class="account-options">
+
+      <div class="account-option">
 
         <input
-          type="number"
-          id="amount"
-          inputmode="decimal"
-          min="1"
-          step="0.01"
-          placeholder="Enter amount"
+          type="radio"
+          id="payment1"
+          name="paymentAccount"
+          value="payment1"
+          checked
         >
+
+        <label
+          class="account-label"
+          for="payment1"
+        >
+          Payment 1
+
+          <span class="account-check">
+            GCash
+          </span>
+        </label>
 
       </div>
 
 
-      <div class="quick-title">
-        Quick Amount
-      </div>
+      <div class="account-option">
 
-      <div class="quick-amounts">
-
-        <button
-          type="button"
-          class="quick-btn"
-          onclick="setAmount(500)"
+        <input
+          type="radio"
+          id="payment2"
+          name="paymentAccount"
+          value="payment2"
         >
-          ₱500
-        </button>
 
-        <button
-          type="button"
-          class="quick-btn"
-          onclick="setAmount(800)"
+        <label
+          class="account-label"
+          for="payment2"
         >
-          ₱800
-        </button>
+          Payment 2
 
-        <button
-          type="button"
-          class="quick-btn"
-          onclick="setAmount(1500)"
-        >
-          ₱1,500
-        </button>
-
-        <button
-          type="button"
-          class="quick-btn"
-          onclick="setAmount(3000)"
-        >
-          ₱3,000
-        </button>
-
-        <button
-          type="button"
-          class="quick-btn"
-          onclick="setAmount(5000)"
-        >
-          ₱5,000
-        </button>
-
-        <button
-          type="button"
-          class="quick-btn"
-          onclick="setAmount(10000)"
-        >
-          ₱10,000
-        </button>
-
-      </div>
-
-
-      <button
-        type="button"
-        class="pay-btn"
-        id="payButton"
-        onclick="openGCash()"
-      >
-        Open GCash
-      </button>
-
-
-      <div
-        class="status"
-        id="status"
-      ></div>
-
-
-      <div
-        class="fallback"
-        id="fallback"
-      >
-
-        <a
-          href="https://www.gcash.com/"
-          class="fallback-btn"
-          target="_blank"
-          rel="noopener"
-        >
-          GCash Website
-        </a>
-
-      </div>
-
-
-      <div class="info">
-
-        <strong>Important:</strong><br>
-
-        This page attempts to open the GCash application.
-        The amount entered here is only used by SkyRent's
-        payment page and does not guarantee that GCash will
-        automatically fill the amount.
+          <span class="account-check">
+            GCash
+          </span>
+        </label>
 
       </div>
 
     </div>
 
 
-    <a
-      href="javascript:history.back()"
-      class="back-btn"
+    <!-- AMOUNT -->
+
+    <label
+      class="label"
+      for="amount"
     >
-      ← Back
-    </a>
+      Payment Amount
+    </label>
+
+    <div class="amount-wrapper">
+
+      <span class="peso">
+        ₱
+      </span>
+
+      <input
+        type="number"
+        id="amount"
+        inputmode="decimal"
+        min="1"
+        step="0.01"
+        placeholder="Enter amount"
+      >
+
+    </div>
 
 
-    <div class="small-note">
-      SkyRent Payment
+    <!-- QUICK AMOUNTS -->
+
+    <div class="quick-title">
+      Quick Amount
+    </div>
+
+    <div class="quick">
+
+      <button onclick="setAmount(500)">
+        ₱500
+      </button>
+
+      <button onclick="setAmount(800)">
+        ₱800
+      </button>
+
+      <button onclick="setAmount(1500)">
+        ₱1,500
+      </button>
+
+      <button onclick="setAmount(3000)">
+        ₱3,000
+      </button>
+
+      <button onclick="setAmount(5000)">
+        ₱5,000
+      </button>
+
+      <button onclick="setAmount(10000)">
+        ₱10,000
+      </button>
+
+    </div>
+
+
+    <!-- PAY -->
+
+    <button
+      class="pay-button"
+      id="payButton"
+      onclick="payWithGCash()"
+    >
+      Pay with GCash
+    </button>
+
+
+    <div
+      class="status"
+      id="status"
+    ></div>
+
+
+    <div class="info-box">
+
+      <strong>Payment Information</strong>
+      <br><br>
+
+      Your selected receiving account is kept
+      internally by SkyRent. The GCash account
+      number is not displayed on this page.
+
     </div>
 
   </div>
 
 
-  <script>
+  <a
+    href="javascript:history.back()"
+    class="back"
+  >
+    ← Back
+  </a>
 
-    function setAmount(value) {
-
-      document.getElementById("amount").value = value;
-
-    }
-
-
-    function showStatus(message, type) {
-
-      const status =
-        document.getElementById("status");
-
-      status.textContent = message;
-
-      status.className =
-        "status show " + type;
-
-    }
+</div>
 
 
-    function openGCash() {
+<script>
 
-      const amountInput =
-        document.getElementById("amount");
+/*
+====================================================
+SKYRENT PAYMENT ACCOUNT CONFIGURATION
+====================================================
 
-      const amount =
-        parseFloat(amountInput.value);
+The actual account numbers are kept here for the
+payment logic and are NOT displayed in the interface.
 
+Payment 1:
+09507177497
 
-      if (!amount || amount <= 0) {
+Payment 2:
+09304087163
+====================================================
+*/
 
-        showStatus(
-          "Please enter a valid payment amount.",
-          "warning"
-        );
+const PAYMENT_ACCOUNTS = {
 
-        amountInput.focus();
+  payment1: {
+    name: "Payment 1",
+    account: "09507177497"
+  },
 
-        return;
-      }
+  payment2: {
+    name: "Payment 2",
+    account: "09304087163"
+  }
 
-
-      const payButton =
-        document.getElementById("payButton");
-
-      const fallback =
-        document.getElementById("fallback");
-
-
-      payButton.disabled = true;
-
-      payButton.textContent =
-        "Opening GCash...";
+};
 
 
-      showStatus(
-        "Attempting to open GCash for your ₱" +
-        amount.toLocaleString("en-PH") +
-        " payment...",
-        "success"
-      );
+/*
+====================================================
+SET AMOUNT
+====================================================
+*/
+
+function setAmount(value){
+
+  document.getElementById("amount").value = value;
+
+}
 
 
-      /*
-        GCash app deep-link attempt.
+/*
+====================================================
+STATUS
+====================================================
+*/
 
-        IMPORTANT:
-        This opens the GCash application if the device/browser
-        allows the gcash:// scheme.
+function showStatus(message, type){
 
-        It does NOT create a GCash payment transaction by itself.
-      */
+  const status =
+    document.getElementById("status");
 
-      const startTime =
-        Date.now();
+  status.textContent = message;
 
+  status.className =
+    "status show " + type;
 
-      window.location.href =
-        "gcash://";
-
-
-      /*
-        If the browser remains on this page after a short time,
-        show the fallback.
-      */
-
-      setTimeout(function() {
-
-        const elapsed =
-          Date.now() - startTime;
+}
 
 
-        if (elapsed < 2500) {
+/*
+====================================================
+PAY WITH GCASH
+====================================================
+*/
 
-          fallback.classList.add("show");
+function payWithGCash(){
 
-          showStatus(
-            "If GCash did not open, make sure the GCash app is installed on your device.",
-            "warning"
-          );
+  const amountInput =
+    document.getElementById("amount");
 
-        }
+  const amount =
+    parseFloat(amountInput.value);
 
 
-        payButton.disabled = false;
+  if(!amount || amount <= 0){
 
-        payButton.textContent =
-          "Open GCash";
+    showStatus(
+      "Please enter a valid payment amount.",
+      "warning"
+    );
 
-      }, 1800);
+    amountInput.focus();
 
-    }
+    return;
+  }
 
+
+  const selected =
+    document.querySelector(
+      'input[name="paymentAccount"]:checked'
+    );
+
+
+  if(!selected){
+
+    showStatus(
+      "Please select a receiving account.",
+      "warning"
+    );
+
+    return;
+  }
+
+
+  const paymentKey =
+    selected.value;
+
+
+  const account =
+    PAYMENT_ACCOUNTS[paymentKey];
+
+
+  if(!account){
+
+    showStatus(
+      "Payment account could not be found.",
+      "warning"
+    );
+
+    return;
+  }
+
+
+  /*
+  Store the payment information temporarily.
+
+  This allows the next page/payment flow to know
+  which SkyRent payment account was selected and
+  what amount the user entered.
+  */
+
+  sessionStorage.setItem(
+    "skyrentPaymentAccount",
+    paymentKey
+  );
+
+  sessionStorage.setItem(
+    "skyrentPaymentAmount",
+    String(amount)
+  );
+
+
+  /*
+  IMPORTANT:
+
+  A generic gcash:// URL cannot reliably tell GCash
+  which recipient and amount to use.
+
+  Therefore we attempt to open GCash, while keeping
+  the selected payment information available.
+
+  When you provide the official GCash payment/QR
+  links, this section can be changed to launch the
+  correct payment flow for Payment 1 or Payment 2.
+  */
+
+
+  showStatus(
+    "Opening GCash for your ₱" +
+    amount.toLocaleString("en-PH") +
+    " payment using " +
+    account.name +
+    "...",
+    "info"
+  );
+
+
+  const payButton =
+    document.getElementById("payButton");
+
+  payButton.disabled = true;
+
+  payButton.textContent =
+    "Opening GCash...";
+
+
+  /*
+  Attempt to open GCash.
+  */
+
+  window.location.href = "gcash://";
+
+
+  /*
+  Restore the button if the browser does not
+  leave this page.
+  */
+
+  setTimeout(function(){
+
+    payButton.disabled = false;
+
+    payButton.textContent =
+      "Pay with GCash";
+
+
+    showStatus(
+      "If GCash did not open, the GCash app may not be installed or this browser may not support app links.",
+      "warning"
+    );
+
+  }, 2500);
+
+}
+
+
+/*
+Clear status when amount changes.
+*/
+
+document
+  .getElementById("amount")
+  .addEventListener("input", function(){
 
     document
-      .getElementById("amount")
-      .addEventListener("input", function() {
+      .getElementById("status")
+      .className = "status";
 
-        document
-          .getElementById("status")
-          .className = "status";
+  });
 
-        document
-          .getElementById("fallback")
-          .className = "fallback";
-
-      });
-
-  </script>
+</script>
 
 </body>
 </html>
