@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent - Gift Codes</title>
+
+<!-- SKYRENT APP ICON -->
+<link rel="icon" type="image/png" href="/skyrent.png">
+<link rel="apple-touch-icon" href="/skyrent.png">
+<link rel="manifest" href="/manifest.json">
+
+<meta name="theme-color" content="#0757c9">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SkyRent">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f5f9;
+    color:#202124;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    background:
+        linear-gradient(
+            135deg,
+            #061d3d,
+            #0a315d
+        );
+
+    color:white;
+
+    padding:
+        22px
+        18px
+        25px;
+
+    border-radius:
+        0
+        0
+        25px
+        25px;
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.header-icon{
+    width:50px;
+    height:50px;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:27px;
+}
+
+.header-text h1{
+    margin:0;
+    font-size:21px;
+}
+
+.header-text p{
+    margin:5px 0 0;
+    font-size:12px;
+    color:#a9c9e9;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.content{
+    padding:
+        18px
+        14px
+        110px;
+}
+
+
+/* =====================================================
+   REDEEM CARD
+===================================================== */
+
+.redeem-card{
+    background:white;
+
+    border-radius:23px;
+
+    padding:
+        21px
+        18px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.07);
+
+    border:
+        1px solid #e5e7eb;
+
+    margin-bottom:18px;
+}
+
+.card-title{
+    text-align:center;
+
+    font-size:19px;
+
+    font-weight:800;
+
+    color:#222;
+
+    margin-bottom:7px;
+}
+
+.card-description{
+    text-align:center;
+
+    color:#888;
+
+    font-size:12px;
+
+    line-height:18px;
+
+    margin-bottom:20px;
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.input-label{
+    display:block;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    color:#555;
+
+    margin-bottom:7px;
+}
+
+.code-input{
+    width:100%;
+
+    height:52px;
+
+    border:
+        1px solid #d5dbe2;
+
+    border-radius:14px;
+
+    padding:
+        0
+        15px;
+
+    outline:none;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+    color:#222;
+
+    background:#f8fafc;
+
+    transition:.2s;
+}
+
+.code-input:focus{
+    border-color:#087be1;
+
+    background:white;
+
+    box-shadow:
+        0
+        0
+        0
+        3px
+        rgba(8,123,225,.10);
+}
+
+
+/* =====================================================
+   REDEEM BUTTON
+===================================================== */
+
+.redeem-btn{
+    width:100%;
+
+    border:none;
+
+    border-radius:27px;
+
+    padding:15px;
+
+    margin-top:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087be1,
+            #0757c9
+        );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.redeem-btn:disabled{
+    background:#cfd5dc;
+
+    color:#858b92;
+
+    cursor:not-allowed;
+}
+
+
+/* =====================================================
+   REDEEM LOADING
+===================================================== */
+
+.redeem-btn.loading{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:9px;
+
+    cursor:wait;
+}
+
+.spinner{
+    width:18px;
+    height:18px;
+
+    border:
+        3px solid
+        rgba(255,255,255,.35);
+
+    border-top:
+        3px solid
+        white;
+
+    border-radius:50%;
+
+    animation:
+        spin
+        .7s
+        linear
+        infinite;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+    display:none;
+
+    margin-top:14px;
+
+    padding:
+        12px
+        14px;
+
+    border-radius:13px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    line-height:17px;
+}
+
+.message.success{
+    display:block;
+
+    background:#e9f9ef;
+
+    color:#16803c;
+
+    border:
+        1px solid
+        #b7e6c7;
+}
+
+.message.error{
+    display:block;
+
+    background:#feecec;
+
+    color:#c62828;
+
+    border:
+        1px solid
+        #f3c2c2;
+}
+
+
+/* =====================================================
+   BALANCE CARD
+===================================================== */
+
+.balance-card{
+    background:
+        linear-gradient(
+            135deg,
+            #061d3d,
+            #0a315d
+        );
+
+    color:white;
+
+    border-radius:22px;
+
+    padding:19px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+        0
+        5px
+        18px
+        rgba(0,0,0,.10);
+}
+
+.balance-label{
+    font-size:11px;
+
+    color:#a9c9e9;
+}
+
+.balance-value{
+    margin-top:6px;
+
+    font-size:27px;
+
+    font-weight:800;
+}
+
+
+/* =====================================================
+   HISTORY TITLE
+===================================================== */
+
+.history-title{
+    margin:
+        4px
+        5px
+        12px;
+
+    font-size:18px;
+
+    color:#444;
+}
+
+
+/* =====================================================
+   HISTORY CARD
+===================================================== */
+
+.history-card{
+    background:white;
+
+    border-radius:18px;
+
+    padding:15px;
+
+    margin-bottom:11px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    box-shadow:
+        0
+        3px
+        12px
+        rgba(0,0,0,.05);
+
+    border:
+        1px solid
+        #e7eaee;
+}
+
+.history-left{
+    min-width:0;
+
+    flex:1;
+}
+
+.history-code{
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:#222;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+}
+
+.history-date{
+    margin-top:5px;
+
+    color:#999;
+
+    font-size:10px;
+}
+
+.history-right{
+    text-align:right;
+
+    flex-shrink:0;
+}
+
+.history-amount{
+    color:#159447;
+
+    font-size:16px;
+
+    font-weight:800;
+}
+
+.redeemed-label{
+    margin-top:4px;
+
+    color:#16803c;
+
+    font-size:9px;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+    background:white;
+
+    border-radius:22px;
+
+    padding:
+        35px
+        20px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        #e7eaee;
+}
+
+.empty-icon{
+    font-size:43px;
+
+    margin-bottom:9px;
+}
+
+.empty h3{
+    margin:
+        0
+        0
+        7px;
+
+    font-size:18px;
+
+    color:#666;
+}
+
+.empty p{
+    margin:0;
+
+    color:#888;
+
+    font-size:12px;
+
+    line-height:18px;
+}
+
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
+
+.bottom-nav{
+    position:fixed;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:76px;
+
+    background:white;
+
+    border-top:
+        1px solid
+        #ddd;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    z-index:1000;
+}
+
+.nav-item{
+    border:none;
+
+    background:white;
+
+    color:#999;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:10px;
+
+    cursor:pointer;
+}
+
+.nav-icon{
+    font-size:23px;
+
+    line-height:25px;
+
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#168bdc;
+}
+
+.nav-item.active .nav-icon{
+    color:#168bdc;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:380px){
+
+    .header-text h1{
+        font-size:19px;
+    }
+
+    .balance-value{
+        font-size:24px;
+    }
+
+    .history-code{
+        font-size:13px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<section class="header">
+
+    <div class="header-top">
+
+        <div class="header-icon">
+            🎁
+        </div>
+
+        <div class="header-text">
+
+            <h1>
+                Gift Codes
+            </h1>
+
+            <p>
+                Redeem your SkyRent rewards
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+<main class="content">
+
+
+    <!-- =================================================
+         BALANCE
+    ================================================== -->
+
+    <section class="balance-card">
+
+        <div class="balance-label">
+            AVAILABLE BALANCE
+        </div>
+
+        <div
+            id="balanceValue"
+            class="balance-value"
+        >
+            Loading...
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         REDEEM
+    ================================================== -->
+
+    <section class="redeem-card">
+
+        <h2 class="card-title">
+            Redeem Gift Code
+        </h2>
+
+        <p class="card-description">
+            Enter the gift code provided by SkyRent
+            to receive your reward.
+        </p>
+
+        <label
+            class="input-label"
+            for="giftCode"
+        >
+            Gift Code
+        </label>
+
+        <input
+            id="giftCode"
+            class="code-input"
+            type="text"
+            placeholder="ENTER GIFT CODE"
+            autocomplete="off"
+            maxlength="50"
+        >
+
+        <button
+            id="redeemButton"
+            class="redeem-btn"
+            onclick="redeemGiftCode()"
+        >
+            🎁 Redeem Gift Code
+        </button>
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+    </section>
+
+
+    <!-- =================================================
+         HISTORY
+    ================================================== -->
+
+    <h2 class="history-title">
+        Redeemed Gift Codes
+    </h2>
+
+    <section id="historyList"></section>
+
+
+</main>
+
+
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-item"
+        onclick="goHome()"
+    >
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        Home
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="goCrafts()"
+    >
+        <span class="nav-icon">
+            ✈
+        </span>
+
+        Crafts
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="goInvestment()"
+    >
+        <span class="nav-icon">
+            ▤
+        </span>
+
+        Investment
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="goNetwork()"
+    >
+        <span class="nav-icon">
+            ➤
+        </span>
+
+        Network
+    </button>
+
+
+    <button
+        class="nav-item active"
+        onclick="goMine()"
+    >
+        <span class="nav-icon">
+            •••
+        </span>
+
+        Mine
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    query,
+    where,
+    getDocs,
+    runTransaction,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let currentUser = null;
+
+let currentUserData = null;
+
+
+/* =====================================================
+   MONEY FORMAT
+===================================================== */
+
+function formatMoney(value){
+
+    let number =
+        Number(value);
+
+    if(!Number.isFinite(number)){
+
+        number = 0;
+
+    }
+
+    return "₱" +
+
+        number.toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:0,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =====================================================
+   NUMBER VALUE
+===================================================== */
+
+function numberValue(value){
+
+    if(
+        typeof value ===
+        "string"
+    ){
+
+        value =
+            value
+                .replace(/₱/g,"")
+                .replace(/,/g,"")
+                .trim();
+
+    }
+
+
+    const number =
+        Number(value);
+
+
+    return Number.isFinite(number)
+        ? number
+        : 0;
+
+}
+
+
+/* =====================================================
+   TIMESTAMP VALUE
+===================================================== */
+
+function timestampValue(value){
+
+    if(!value){
+
+        return 0;
+
+    }
+
+
+    if(
+        typeof value.toMillis ===
+        "function"
+    ){
+
+        return value.toMillis();
+
+    }
+
+
+    if(
+        value instanceof Date
+    ){
+
+        return value.getTime();
+
+    }
+
+
+    if(
+        typeof value ===
+        "number"
+    ){
+
+        return value;
+
+    }
+
+
+    if(
+        typeof value ===
+        "string"
+    ){
+
+        const parsed =
+            Date.parse(value);
+
+
+        return Number.isFinite(parsed)
+            ? parsed
+            : 0;
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(value){
+
+    const time =
+        timestampValue(value);
+
+
+    if(!time){
+
+        return "Processing";
+
+    }
+
+
+    return new Date(time)
+        .toLocaleString(
+            "en-PH",
+            {
+                year:"numeric",
+                month:"short",
+                day:"numeric",
+                hour:"2-digit",
+                minute:"2-digit",
+                hour12:true
+            }
+        );
+
+}
+
+
+/* =====================================================
+   SHOW MESSAGE
+===================================================== */
+
+function showMessage(
+    text,
+    type
+){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    if(!message){
+
+        return;
+
+    }
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        "message " +
+        type;
+
+}
+
+
+/* =====================================================
+   CLEAR MESSAGE
+===================================================== */
+
+function clearMessage(){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    if(message){
+
+        message.textContent =
+            "";
+
+        message.className =
+            "message";
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE BALANCE DISPLAY
+===================================================== */
+
+function updateBalanceDisplay(){
+
+    const balanceElement =
+        document.getElementById(
+            "balanceValue"
+        );
+
+
+    if(!balanceElement){
+
+        return;
+
+    }
+
+
+    const balance =
+        numberValue(
+            currentUserData?.balance
+        );
+
+
+    balanceElement.textContent =
+        formatMoney(
+            balance
+        );
+
+}
+
+
+/* =====================================================
+   LOAD USER DATA
+===================================================== */
+
+async function loadUserData(){
+
+    if(!currentUser){
+
+        return;
+
+    }
+
+
+    const userRef =
+        doc(
+            db,
+            "users",
+            currentUser.uid
+        );
+
+
+    const userSnap =
+        await getDoc(
+            userRef
+        );
+
+
+    if(!userSnap.exists()){
+
+        throw new Error(
+            "SkyRent user account was not found."
+        );
+
+    }
+
+
+    currentUserData =
+        userSnap.data();
+
+
+    updateBalanceDisplay();
+
+}
+
+
+/* =====================================================
+   FIND GIFT CODE
+===================================================== */
+
+async function findGiftCode(code){
+
+    /*
+       First try document ID.
+    */
+
+    const directRef =
+        doc(
+            db,
+            "giftCodes",
+            code
+        );
+
+
+    const directSnap =
+        await getDoc(
+            directRef
+        );
+
+
+    if(directSnap.exists()){
+
+        return {
+
+            id:
+                directSnap.id,
+
+            ref:
+                directRef,
+
+            data:
+                directSnap.data()
+
+        };
+
+    }
+
+
+    /*
+       Otherwise search code field.
+    */
+
+    const codesRef =
+        collection(
+            db,
+            "giftCodes"
+        );
+
+
+    const codesQuery =
+        query(
+            codesRef,
+            where(
+                "code",
+                "==",
+                code
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(
+            codesQuery
+        );
+
+
+    if(snapshot.empty){
+
+        return null;
+
+    }
+
+
+    const first =
+        snapshot.docs[0];
+
+
+    return {
+
+        id:
+            first.id,
+
+        ref:
+            first.ref,
+
+        data:
+            first.data()
+
+    };
+
+}
+
+
+/* =====================================================
+   SELECT RANDOM REMAINING REWARD
+===================================================== */
+
+function selectRandomReward(
+    rewardPool
+){
+
+    if(
+        !Array.isArray(
+            rewardPool
+        )
+    ){
+
+        throw new Error(
+            "This gift code has no reward pool."
+        );
+
+    }
+
+
+    /*
+       Calculate total remaining slots.
+    */
+
+    let totalRemaining = 0;
+
+
+    rewardPool.forEach(
+        function(item){
+
+            const remaining =
+                Math.max(
+                    0,
+                    Math.floor(
+                        numberValue(
+                            item.remaining
+                        )
+                    )
+                );
+
+
+            totalRemaining +=
+                remaining;
+
+        }
+    );
+
+
+    if(
+        totalRemaining <= 0
+    ){
+
+        throw new Error(
+            "This gift code is FULL. All rewards have already been claimed."
+        );
+
+    }
+
+
+    /*
+       Random position.
+    */
+
+    let randomPosition =
+        Math.floor(
+            Math.random() *
+            totalRemaining
+        );
+
+
+    /*
+       Find selected reward.
+    */
+
+    for(
+        let i = 0;
+        i < rewardPool.length;
+        i++
+    ){
+
+        const remaining =
+            Math.max(
+                0,
+                Math.floor(
+                    numberValue(
+                        rewardPool[i].remaining
+                    )
+                )
+            );
+
+
+        if(
+            remaining <= 0
+        ){
+
+            continue;
+
+        }
+
+
+        if(
+            randomPosition <
+            remaining
+        ){
+
+            return i;
+
+        }
+
+
+        randomPosition -=
+            remaining;
+
+    }
+
+
+    throw new Error(
+        "Unable to select a reward."
+    );
+
+}
+
+
+/* =====================================================
+   REDEEM GIFT CODE
+===================================================== */
+
+async function redeemGiftCode(){
+
+    if(!currentUser){
+
+        showMessage(
+            "Please login first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const input =
+        document.getElementById(
+            "giftCode"
+        );
+
+
+    const button =
+        document.getElementById(
+            "redeemButton"
+        );
+
+
+    if(
+        !input ||
+        !button
+    ){
+
+        return;
+
+    }
+
+
+    const code =
+        input.value
+            .trim()
+            .toUpperCase();
+
+
+    clearMessage();
+
+
+    if(!code){
+
+        showMessage(
+            "Please enter a gift code.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Loading state.
+    */
+
+    button.disabled =
+        true;
+
+
+    button.classList.add(
+        "loading"
+    );
+
+
+    button.innerHTML = `
+
+        <span class="spinner"></span>
+
+        <span>
+            Redeeming Gift Code...
+        </span>
+
+    `;
+
+
+    try{
+
+        /*
+           Find gift code.
+        */
+
+        const gift =
+            await findGiftCode(
+                code
+            );
+
+
+        if(!gift){
+
+            throw new Error(
+                "Invalid gift code."
+            );
+
+        }
+
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+
+        const giftRef =
+            gift.ref;
+
+
+        /*
+           FIRESTORE TRANSACTION
+        */
+
+        const result =
+            await runTransaction(
+                db,
+                async function(transaction){
+
+                    /*
+                       READ USER
+                    */
+
+                    const userSnap =
+                        await transaction.get(
+                            userRef
+                        );
+
+
+                    /*
+                       READ GIFT CODE
+                    */
+
+                    const giftSnap =
+                        await transaction.get(
+                            giftRef
+                        );
+
+
+                    if(
+                        !userSnap.exists()
+                    ){
+
+                        throw new Error(
+                            "User account was not found."
+                        );
+
+                    }
+
+
+                    if(
+                        !giftSnap.exists()
+                    ){
+
+                        throw new Error(
+                            "Gift code was not found."
+                        );
+
+                    }
+
+
+                    const userData =
+                        userSnap.data();
+
+
+                    const giftData =
+                        giftSnap.data();
+
+
+                    /*
+                       CHECK GIFT STATUS
+                    */
+
+                    if(
+
+                        giftData.active === false ||
+
+                        giftData.status ===
+                            "inactive" ||
+
+                        giftData.status ===
+                            "disabled" ||
+
+                        giftData.status ===
+                            "full"
+
+                    ){
+
+                        throw new Error(
+                            "This gift code is no longer available."
+                        );
+
+                    }
+
+
+                    /*
+                       USED BY
+                    */
+
+                    let usedBy =
+                        Array.isArray(
+                            giftData.usedBy
+                        )
+
+                        ? [
+                            ...giftData.usedBy
+                        ]
+
+                        : [];
+
+
+                    /*
+                       PREVENT DUPLICATE CLAIM
+                    */
+
+                    if(
+                        usedBy.includes(
+                            currentUser.uid
+                        )
+                    ){
+
+                        throw new Error(
+                            "You have already redeemed this gift code."
+                        );
+
+                    }
+
+
+                    /*
+                       REWARD POOL
+                    */
+
+                    let rewardPool =
+
+                        Array.isArray(
+                            giftData.rewardPool
+                        )
+
+                        ?
+
+                        giftData.rewardPool.map(
+                            function(item){
+
+                                return {
+
+                                    amount:
+                                        numberValue(
+                                            item.amount
+                                        ),
+
+                                    quantity:
+                                        Math.max(
+                                            0,
+                                            Math.floor(
+                                                numberValue(
+                                                    item.quantity
+                                                )
+                                            )
+                                        ),
+
+                                    remaining:
+                                        Math.max(
+                                            0,
+                                            Math.floor(
+                                                numberValue(
+                                                    item.remaining
+                                                )
+                                            )
+                                        )
+
+                                };
+
+                            }
+                        )
+
+                        :
+
+                        [];
+
+
+                    if(
+                        rewardPool.length === 0
+                    ){
+
+                        throw new Error(
+                            "This gift code has no reward pool."
+                        );
+
+                    }
+
+
+                    /*
+                       TOTAL REMAINING SLOTS
+                    */
+
+                    let totalRemaining =
+                        0;
+
+
+                    rewardPool.forEach(
+                        function(item){
+
+                            totalRemaining +=
+                                Math.max(
+                                    0,
+                                    numberValue(
+                                        item.remaining
+                                    )
+                                );
+
+                        }
+                    );
+
+
+                    if(
+                        totalRemaining <= 0
+                    ){
+
+                        throw new Error(
+                            "This gift code is FULL. All rewards have already been claimed."
+                        );
+
+                    }
+
+
+                    /*
+                       SELECT RANDOM REWARD
+                    */
+
+                    const selectedIndex =
+                        selectRandomReward(
+                            rewardPool
+                        );
+
+
+                    const selectedReward =
+                        numberValue(
+                            rewardPool[
+                                selectedIndex
+                            ].amount
+                        );
+
+
+                    if(
+                        selectedReward <= 0
+                    ){
+
+                        throw new Error(
+                            "Selected reward amount is invalid."
+                        );
+
+                    }
+
+
+                    /*
+                       REMOVE ONE REWARD SLOT
+                    */
+
+                    rewardPool[
+                        selectedIndex
+                    ].remaining -= 1;
+
+
+                    if(
+                        rewardPool[
+                            selectedIndex
+                        ].remaining < 0
+                    ){
+
+                        rewardPool[
+                            selectedIndex
+                        ].remaining = 0;
+
+                    }
+
+
+                    /*
+                       NEW COUNTS
+                    */
+
+                    const oldClaimCount =
+                        numberValue(
+                            giftData.claimCount
+                        );
+
+
+                    const newClaimCount =
+                        oldClaimCount + 1;
+
+
+                    const newRemainingSlots =
+                        Math.max(
+                            0,
+                            totalRemaining - 1
+                        );
+
+
+                    /*
+                       NEW GIFT STATUS
+                    */
+
+                    const newStatus =
+                        newRemainingSlots <= 0
+                            ? "full"
+                            : "active";
+
+
+                    /*
+                       USER BALANCE
+                    */
+
+                    const oldBalance =
+                        numberValue(
+                            userData.balance
+                        );
+
+
+                    const newBalance =
+                        oldBalance +
+                        selectedReward;
+
+
+                    /*
+                       USER TOTAL EARNINGS
+                    */
+
+                    const oldTotalEarnings =
+                        numberValue(
+                            userData.totalEarnings
+                        );
+
+
+                    const newTotalEarnings =
+                        oldTotalEarnings +
+                        selectedReward;
+
+
+                    /*
+                       UPDATE USER
+                    */
+
+                    transaction.update(
+                        userRef,
+                        {
+
+                            balance:
+                                newBalance,
+
+                            totalEarnings:
+                                newTotalEarnings
+
+                        }
+                    );
+
+
+                    /*
+                       ADD USER TO USED BY
+                    */
+
+                    usedBy.push(
+                        currentUser.uid
+                    );
+
+
+                    /*
+                       UPDATE GIFT CODE
+                    */
+
+                    transaction.update(
+                        giftRef,
+                        {
+
+                            rewardPool:
+                                rewardPool,
+
+                            claimCount:
+                                newClaimCount,
+
+                            remainingSlots:
+                                newRemainingSlots,
+
+                            status:
+                                newStatus,
+
+                            usedBy:
+                                usedBy
+
+                        }
+                    );
+
+
+                    /*
+                       CREATE CLAIM RECORD
+                    */
+
+                    const claimRef =
+                        doc(
+                            collection(
+                                db,
+                                "giftCodeClaims"
+                            )
+                        );
+
+
+                    transaction.set(
+                        claimRef,
+                        {
+
+                            giftCodeId:
+                                giftRef.id,
+
+                            code:
+                                giftData.code ||
+                                code,
+
+                            userId:
+                                currentUser.uid,
+
+                            userName:
+                                userData.name ||
+                                "",
+
+                            phone:
+                                userData.phone ||
+                                "",
+
+                            amount:
+                                selectedReward,
+
+                            claimedAt:
+                                serverTimestamp(),
+
+                            status:
+                                "claimed"
+
+                        }
+                    );
+
+
+                    /*
+                       CREATE EARNINGS RECORD
+                    */
+
+                    const earningsRef =
+                        doc(
+                            collection(
+                                db,
+                                "earnings"
+                            )
+                        );
+
+
+                    transaction.set(
+                        earningsRef,
+                        {
+
+                            userId:
+                                currentUser.uid,
+
+                            userPhone:
+                                userData.phone ||
+                                "",
+
+                            userName:
+                                userData.name ||
+                                "",
+
+                            type:
+                                "gift code",
+
+                            name:
+                                "Gift Code",
+
+                            source:
+                                "Gift Code",
+
+                            description:
+                                "Gift Code Reward",
+
+                            amount:
+                                selectedReward,
+
+                            giftCode:
+                                giftData.code ||
+                                code,
+
+                            createdAt:
+                                serverTimestamp()
+
+                        }
+                    );
+
+
+                    /*
+                       RETURN RESULT
+                    */
+
+                    return {
+
+                        reward:
+                            selectedReward,
+
+                        newBalance:
+                            newBalance,
+
+                        newTotalEarnings:
+                            newTotalEarnings,
+
+                        newClaimCount:
+                            newClaimCount,
+
+                        newRemainingSlots:
+                            newRemainingSlots,
+
+                        code:
+                            giftData.code ||
+                            code
+
+                    };
+
+                }
+            );
+
+
+        /*
+           UPDATE LOCAL USER DATA
+        */
+
+        if(
+            currentUserData
+        ){
+
+            currentUserData.balance =
+                result.newBalance;
+
+
+            currentUserData.totalEarnings =
+                result.newTotalEarnings;
+
+        }
+
+
+        updateBalanceDisplay();
+
+
+        /*
+           SUCCESS
+        */
+
+        input.value = "";
+
+
+        showMessage(
+
+            "🎁 Gift code redeemed successfully! " +
+
+            formatMoney(
+                result.reward
+            ) +
+
+            " has been added to your Available Balance and Earnings.",
+
+            "success"
+
+        );
+
+
+        /*
+           RELOAD HISTORY
+        */
+
+        await loadRedeemedHistory();
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Gift code redemption error:",
+            error
+        );
+
+
+        showMessage(
+
+            error.message ||
+
+            "Unable to redeem this gift code.",
+
+            "error"
+
+        );
+
+    }
+    finally{
+
+        /*
+           RESTORE BUTTON
+        */
+
+        button.disabled =
+            false;
+
+
+        button.classList.remove(
+            "loading"
+        );
+
+
+        button.innerHTML =
+            "🎁 Redeem Gift Code";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD REDEEMED HISTORY
+===================================================== */
+
+async function loadRedeemedHistory(){
+
+    if(!currentUser){
+
+        return;
+
+    }
+
+
+    const list =
+        document.getElementById(
+            "historyList"
+        );
+
+
+    if(!list){
+
+        return;
+
+    }
+
+
+    list.innerHTML = `
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                ⏳
+            </div>
+
+            <h3>
+                Loading History
+            </h3>
+
+            <p>
+                Please wait...
+            </p>
+
+        </div>
+
+    `;
+
+
+    try{
+
+        /*
+           Get user's earnings.
+        */
+
+        const earningsRef =
+            collection(
+                db,
+                "earnings"
+            );
+
+
+        const earningsQuery =
+            query(
+                earningsRef,
+                where(
+                    "userId",
+                    "==",
+                    currentUser.uid
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(
+                earningsQuery
+            );
+
+
+        const giftEarnings =
+            [];
+
+
+        snapshot.forEach(
+            function(docSnap){
+
+                const data =
+                    docSnap.data();
+
+
+                const type =
+                    String(
+                        data.type || ""
+                    )
+                    .toLowerCase();
+
+
+                const name =
+                    String(
+                        data.name || ""
+                    )
+                    .toLowerCase();
+
+
+                if(
+
+                    type.includes("gift") ||
+
+                    name.includes("gift")
+
+                ){
+
+                    giftEarnings.push({
+
+                        id:
+                            docSnap.id,
+
+                        ...data
+
+                    });
+
+                }
+
+            }
+        );
+
+
+        /*
+           Newest first.
+        */
+
+        giftEarnings.sort(
+            function(a,b){
+
+                return (
+
+                    timestampValue(
+                        b.createdAt
+                    )
+
+                    -
+
+                    timestampValue(
+                        a.createdAt
+                    )
+
+                );
+
+            }
+        );
+
+
+        /*
+           No history.
+        */
+
+        if(
+            giftEarnings.length === 0
+        ){
+
+            list.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        🎁
+                    </div>
+
+                    <h3>
+                        No Gift Codes Yet
+                    </h3>
+
+                    <p>
+                        Your redeemed gift codes
+                        will appear here.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML =
+            "";
+
+
+        /*
+           Display each gift reward.
+        */
+
+        giftEarnings.forEach(
+            function(earning){
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "history-card";
+
+
+                const code =
+                    earning.giftCode ||
+                    "Gift Code";
+
+
+                const amount =
+                    numberValue(
+                        earning.amount
+                    );
+
+
+                card.innerHTML = `
+
+                    <div class="history-left">
+
+                        <div class="history-code">
+
+                            🎁
+
+                            ${escapeHTML(
+                                code
+                            )}
+
+                        </div>
+
+                        <div class="history-date">
+
+                            ${formatDate(
+                                earning.createdAt
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="history-right">
+
+                        <div class="history-amount">
+
+                            +${formatMoney(
+                                amount
+                            )}
+
+                        </div>
+
+                        <div class="redeemed-label">
+
+                            REDEEMED
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                list.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Gift code history error:",
+            error
+        );
+
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                <h3>
+                    Unable to Load History
+                </h3>
+
+                <p>
+                    Please refresh the page
+                    and try again.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+   CLEAN URL VERSION
+===================================================== */
+
+function goHome(){
+
+    window.location.href =
+        "/dashboard/";
+
+}
+
+
+function goCrafts(){
+
+    window.location.href =
+        "/crafts/";
+
+}
+
+
+function goInvestment(){
+
+    window.location.href =
+        "/my-aircraft/";
+
+}
+
+
+function goNetwork(){
+
+    window.location.href =
+        "/network/";
+
+}
+
+
+function goMine(){
+
+    window.location.href =
+        "/dashboard/";
+
+}
+
+
+/* =====================================================
+   MAKE FUNCTIONS AVAILABLE
+===================================================== */
+
+window.redeemGiftCode =
+    redeemGiftCode;
+
+window.goHome =
+    goHome;
+
+window.goCrafts =
+    goCrafts;
+
+window.goInvestment =
+    goInvestment;
+
+window.goNetwork =
+    goNetwork;
+
+window.goMine =
+    goMine;
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async function(user){
+
+        if(!user){
+
+            window.location.href =
+                "/";
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+
+        try{
+
+            await loadUserData();
+
+            await loadRedeemedHistory();
+
+        }
+        catch(error){
+
+            console.error(
+                "Gift page initialization error:",
+                error
+            );
+
+
+            showMessage(
+                "Unable to load your SkyRent account.",
+                "error"
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+document
+    .getElementById(
+        "giftCode"
+    )
+    ?.addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "Enter"
+            ){
+
+                redeemGiftCode();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
