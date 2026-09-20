@@ -12,8 +12,7 @@
 
 <title>SkyRent Admin Login</title>
 
-<!-- =========================
-
+<style>
 
 /* =========================
    RESET
@@ -735,7 +734,7 @@ loginForm.addEventListener(
             if(
                 !user.email ||
                 user.email.toLowerCase()
-                !== ADMIN_EMAIL
+                !== ADMIN_EMAIL.toLowerCase()
             ){
 
                 showError(
@@ -862,6 +861,17 @@ loginForm.addEventListener(
 
             }
 
+            else if(
+                error.code ===
+                "auth/network-request-failed"
+            ){
+
+                showError(
+                    "❌ Network error. Please check your internet connection."
+                );
+
+            }
+
             else{
 
                 showError(
@@ -874,7 +884,6 @@ loginForm.addEventListener(
 
     }
 );
-
 
 
 </script>
