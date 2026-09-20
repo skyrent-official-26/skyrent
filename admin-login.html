@@ -7,37 +7,54 @@
 
 <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>SkyRent Admin Login</title>
 
-    <link rel="icon" type="image/png" href="icons/skyrent.png">
+<!-- =========================
+     ADMIN PWA
+========================= -->
+
+<link rel="manifest" href="admin-manifest.json">
+
+<meta name="theme-color" content="#0757c9">
+
+<meta
+    name="mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+>
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="default"
+>
+
+<meta
+    name="apple-mobile-web-app-title"
+    content="SkyRent Admin"
+>
+
+<!-- Admin icon -->
+<link
+    rel="icon"
+    type="image/png"
+    href="admin-icon-192.png"
+>
+
+<link
+    rel="apple-touch-icon"
+    href="admin-icon-192.png"
+>
 
 
 <style>
-    
-    .logo{
-    width:70px;
-    height:70px;
-    margin:0 auto 15px;
-    border-radius:50%;
-    background:#075985;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 5px 15px rgba(7,89,133,.25);
-    overflow:hidden;
-}
 
-.logo img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    padding:8px;
-}
-    
-    
-    
 /* =========================
    RESET
 ========================= */
@@ -126,11 +143,23 @@ body{
 
     justify-content:center;
 
-    font-size:34px;
-
     box-shadow:
         0 5px 15px
         rgba(7,89,133,.25);
+
+    overflow:hidden;
+}
+
+
+.logo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    padding:8px;
 }
 
 
@@ -255,11 +284,7 @@ h1{
 }
 
 
-/* =========================
-   LOADING
-========================= */
-
-.login-btn.loading{
+.login-btn:disabled{
 
     opacity:.75;
 
@@ -268,6 +293,10 @@ h1{
     pointer-events:none;
 }
 
+
+/* =========================
+   LOADING SPINNER
+========================= */
 
 .spinner{
 
@@ -297,7 +326,9 @@ h1{
 @keyframes spin{
 
     to{
+
         transform:rotate(360deg);
+
     }
 
 }
@@ -356,11 +387,13 @@ h1{
     .login-box{
 
         padding:25px 20px;
+
     }
 
     h1{
 
         font-size:22px;
+
     }
 
 }
@@ -382,9 +415,14 @@ h1{
 
     <!-- LOGO -->
 
-   <div class="logo">
-    <img src="skyrent-logo.png" alt="SkyRent Logo">
-</div>
+    <div class="logo">
+
+        <img
+            src="skyrent-logo.png"
+            alt="SkyRent Logo"
+        >
+
+    </div>
 
 
     <!-- TITLE -->
@@ -492,17 +530,23 @@ h1{
 </div>
 
 
-
 <script type="module">
+
+
+/* =========================================
+   FIREBASE IMPORTS
+========================================= */
 
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+
 import {
     getAuth,
     signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 
 
 /* =========================================
@@ -532,13 +576,18 @@ const firebaseConfig = {
 };
 
 
+
 /* =========================================
    INITIALIZE FIREBASE
 ========================================= */
 
-const app = initializeApp(firebaseConfig);
+const app =
+    initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+
+const auth =
+    getAuth(app);
+
 
 
 /* =========================================
@@ -548,19 +597,94 @@ const auth = getAuth(app);
 const ADMIN_EMAIL =
     "admin@skyrent.com";
 
+
 const ADMIN_UID =
     "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const loginForm =
+    document.getElementById("loginForm");
+
+
+const usernameInput =
+    document.getElementById("username");
+
+
+const passwordInput =
+    document.getElementById("password");
+
+
+const loginButton =
+    document.getElementById("loginBtn");
+
+
+const errorMessage =
+    document.getElementById("errorMessage");
+
+
+
+/* =========================================
+   SHOW ERROR
+========================================= */
+
+function showError(message){
+
+    errorMessage.textContent =
+        message;
+
+    errorMessage.style.display =
+        "block";
+
+}
+
+
+
+/* =========================================
+   HIDE ERROR
+========================================= */
+
+function hideError(){
+
+    errorMessage.style.display =
+        "none";
+
+}
+
+
+
+/* =========================================
+   RESET LOGIN BUTTON
+========================================= */
+
+function resetLoginButton(){
+
+    loginButton.disabled =
+        false;
+
+    loginButton.innerHTML =
+        "🔐 Login to Admin Panel";
+
+}
+
 
 
 /* =========================================
    LOGIN FORM
 ========================================= */
 
-document
-    .getElementById("loginForm")
-    .addEventListener("submit", async function(event) {
+loginForm.addEventListener(
+    "submit",
+    async function(event){
 
         event.preventDefault();
+
+
+        hideError();
 
 
         /* ================================
@@ -568,57 +692,51 @@ document
         ================================= */
 
         const email =
-            document
-                .getElementById("username")
+            usernameInput
                 .value
                 .trim()
                 .toLowerCase();
 
+
         const password =
-            document
-                .getElementById("password")
-                .value;
+            passwordInput.value;
 
-        const errorMessage =
-            document.getElementById("errorMessage");
-
-        const loginButton =
-            document.querySelector(".login-btn");
 
 
         /* ================================
-           HIDE OLD ERROR
+           CHECK INPUT
         ================================= */
 
-        errorMessage.style.display = "none";
+        if(
+            !email ||
+            !password
+        ){
 
-
-        /* ================================
-           CHECK EMAIL
-        ================================= */
-
-        if (!email || !password) {
-
-            errorMessage.textContent =
-                "❌ Please enter your email and password.";
-
-            errorMessage.style.display = "block";
+            showError(
+                "❌ Please enter your email and password."
+            );
 
             return;
+
         }
+
 
 
         /* ================================
            BUTTON LOADING
         ================================= */
 
-        loginButton.disabled = true;
-
-        loginButton.textContent =
-            "🔄 Logging in...";
+        loginButton.disabled =
+            true;
 
 
-        try {
+        loginButton.innerHTML =
+            '<span class="spinner"></span> Logging in...';
+
+
+
+        try{
+
 
             /* ================================
                FIREBASE LOGIN
@@ -636,10 +754,12 @@ document
                 userCredential.user;
 
 
+
             console.log(
                 "Firebase login successful:",
                 user.email
             );
+
 
             console.log(
                 "Firebase UID:",
@@ -647,41 +767,47 @@ document
             );
 
 
+
             /* ================================
                VERIFY ADMIN EMAIL
             ================================= */
 
-            if (
+            if(
+                !user.email ||
                 user.email.toLowerCase()
                 !== ADMIN_EMAIL
-            ) {
+            ){
 
-                errorMessage.textContent =
-                    "❌ Access denied. This account is not the administrator.";
+                showError(
+                    "❌ Access denied. This account is not the administrator."
+                );
 
-                errorMessage.style.display =
-                    "block";
+                resetLoginButton();
 
                 return;
+
             }
+
 
 
             /* ================================
                VERIFY ADMIN UID
             ================================= */
 
-            if (
+            if(
                 user.uid !== ADMIN_UID
-            ) {
+            ){
 
-                errorMessage.textContent =
-                    "❌ Access denied. This account is not the administrator.";
+                showError(
+                    "❌ Access denied. This account is not the administrator."
+                );
 
-                errorMessage.style.display =
-                    "block";
+                resetLoginButton();
 
                 return;
+
             }
+
 
 
             /* ================================
@@ -705,8 +831,9 @@ document
             );
 
 
+
             /* ================================
-               REDIRECT
+               REDIRECT TO ADMIN DASHBOARD
             ================================= */
 
             window.location.href =
@@ -715,7 +842,7 @@ document
 
         }
 
-        catch(error) {
+        catch(error){
 
             console.error(
                 "Firebase admin login error:",
@@ -723,65 +850,72 @@ document
             );
 
 
-            /* ================================
-               RESTORE BUTTON
-            ================================= */
+            resetLoginButton();
 
-            loginButton.disabled =
-                false;
-
-            loginButton.textContent =
-                "🔐 Login to Admin Panel";
 
 
             /* ================================
-               FIREBASE ERROR
+               FIREBASE ERRORS
             ================================= */
 
-            if (
+            if(
                 error.code ===
                 "auth/invalid-credential"
-            ) {
+            ){
 
-                errorMessage.textContent =
-                    "❌ Incorrect email or password.";
+                showError(
+                    "❌ Incorrect email or password."
+                );
 
             }
 
-            else if (
+            else if(
                 error.code ===
                 "auth/user-not-found"
-            ) {
+            ){
 
-                errorMessage.textContent =
-                    "❌ Admin account was not found in Firebase.";
+                showError(
+                    "❌ Admin account was not found in Firebase."
+                );
 
             }
 
-            else if (
+            else if(
                 error.code ===
                 "auth/wrong-password"
-            ) {
+            ){
 
-                errorMessage.textContent =
-                    "❌ Incorrect password.";
-
-            }
-
-            else {
-
-                errorMessage.textContent =
-                    "❌ Login failed. Please try again.";
+                showError(
+                    "❌ Incorrect password."
+                );
 
             }
 
+            else if(
+                error.code ===
+                "auth/too-many-requests"
+            ){
 
-            errorMessage.style.display =
-                "block";
+                showError(
+                    "❌ Too many login attempts. Please try again later."
+                );
+
+            }
+
+            else{
+
+                showError(
+                    "❌ Login failed. Please try again."
+                );
+
+            }
 
         }
 
-    });
+    }
+);
+
+
 
 </script>
 
