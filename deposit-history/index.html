@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent - Deposit History</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:#f5f9fc;
+    color:#456176;
+    padding-bottom:95px;
+}
+
+:root{
+    --blue:#0787e8;
+    --blue-dark:#075da5;
+    --sky:#eaf7ff;
+    --navy:#163752;
+    --text:#456176;
+    --muted:#91a2b0;
+    --bg:#f5f9fc;
+    --white:#ffffff;
+    --line:#e5edf3;
+    --green:#16864b;
+    --green-bg:#eaf8ef;
+    --orange:#d98200;
+    --orange-bg:#fff6df;
+    --red:#c62828;
+    --red-bg:#fff0f0;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.top-header{
+    height:82px;
+    background:
+        linear-gradient(
+            135deg,
+            #075da5 0%,
+            #087fd8 55%,
+            #1599e8 100%
+        );
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:
+        0 4px 14px rgba(4,75,130,.18);
+}
+
+.brand{
+    height:100%;
+    display:flex;
+    align-items:center;
+}
+
+.logo{
+    width:72px;
+    height:72px;
+    object-fit:contain;
+    display:block;
+    filter:
+        drop-shadow(
+            0 2px 5px rgba(0,0,0,.20)
+        );
+}
+
+.header-label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:rgba(255,255,255,.92);
+    font-size:11px;
+    font-weight:650;
+    letter-spacing:.5px;
+}
+
+.header-plane{
+    font-size:15px;
+    color:white;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+    width:100%;
+    max-width:600px;
+    margin:auto;
+    padding:22px 16px 30px;
+}
+
+
+/* =====================================================
+   PAGE HEADING
+===================================================== */
+
+.page-heading{
+    margin-bottom:18px;
+}
+
+.page-heading .small{
+    font-size:11px;
+    font-weight:700;
+    color:var(--blue);
+    letter-spacing:1.2px;
+    margin-bottom:5px;
+}
+
+.page-heading h1{
+    font-size:25px;
+    color:var(--navy);
+    line-height:1.15;
+    margin-bottom:6px;
+}
+
+.page-heading p{
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   SUMMARY CARD
+===================================================== */
+
+.summary-card{
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #075da5,
+            #0787e8
+        );
+    border-radius:20px;
+    padding:20px;
+    color:white;
+    margin-bottom:20px;
+    box-shadow:
+        0 12px 28px rgba(7,135,232,.22);
+}
+
+.summary-card::after{
+    content:"✈";
+    position:absolute;
+    right:-5px;
+    bottom:-20px;
+    font-size:90px;
+    opacity:.08;
+    transform:rotate(-12deg);
+}
+
+.summary-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.summary-label{
+    font-size:11px;
+    opacity:.82;
+}
+
+.summary-icon{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    background:rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:17px;
+}
+
+.summary-value{
+    font-size:28px;
+    font-weight:750;
+    letter-spacing:-.5px;
+}
+
+.summary-bottom{
+    display:flex;
+    gap:8px;
+    margin-top:12px;
+}
+
+.summary-pill{
+    display:inline-flex;
+    align-items:center;
+    padding:6px 9px;
+    border-radius:20px;
+    background:rgba(255,255,255,.13);
+    font-size:10px;
+    font-weight:600;
+}
+
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:22px 2px 10px;
+}
+
+.section-title h2{
+    font-size:15px;
+    color:var(--navy);
+}
+
+.section-title span{
+    font-size:10px;
+    color:var(--muted);
+}
+
+
+/* =====================================================
+   HISTORY LIST
+===================================================== */
+
+.history-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+
+/* =====================================================
+   DEPOSIT CARD
+===================================================== */
+
+.deposit-card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:15px;
+    box-shadow:
+        0 4px 12px rgba(25,75,105,.04);
+}
+
+.deposit-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.deposit-left{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    min-width:0;
+}
+
+.deposit-icon{
+    width:40px;
+    height:40px;
+    flex-shrink:0;
+    border-radius:12px;
+    background:#eaf7ff;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+}
+
+.deposit-info{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.deposit-amount{
+    color:var(--navy);
+    font-size:16px;
+    font-weight:750;
+}
+
+.deposit-method{
+    color:var(--muted);
+    font-size:10px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.status{
+    flex-shrink:0;
+    padding:6px 9px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:700;
+    text-align:center;
+}
+
+
+/* =====================================================
+   STATUS COLORS
+===================================================== */
+
+.status.pending{
+    background:var(--orange-bg);
+    color:var(--orange);
+}
+
+.status.approved{
+    background:var(--green-bg);
+    color:var(--green);
+}
+
+.status.rejected{
+    background:var(--red-bg);
+    color:var(--red);
+}
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+.deposit-details{
+    margin-top:13px;
+    padding-top:12px;
+    border-top:1px solid #edf2f5;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.detail-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.detail-label{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.detail-value{
+    color:var(--text);
+    font-size:10px;
+    font-weight:650;
+    text-align:right;
+}
+
+.transaction-id{
+    max-width:190px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-box{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:
+        0 5px 15px rgba(25,75,105,.04);
+}
+
+.empty-icon{
+    width:55px;
+    height:55px;
+    margin:0 auto 12px;
+    border-radius:16px;
+    background:#eaf7ff;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.empty-box h3{
+    color:var(--navy);
+    font-size:16px;
+    margin-bottom:6px;
+}
+
+.empty-box p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.deposit-now-btn{
+    border:none;
+    padding:11px 18px;
+    border-radius:12px;
+    background:
+        linear-gradient(
+            135deg,
+            #075da5,
+            #0787e8
+        );
+    color:white;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-box{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:30px 20px;
+    text-align:center;
+}
+
+.spinner{
+    width:32px;
+    height:32px;
+    margin:0 auto 12px;
+    border:3px solid #dceef8;
+    border-top-color:var(--blue);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+.loading-box p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-box{
+    display:none;
+    background:#fff0f0;
+    border:1px solid #ffcaca;
+    color:#c62828;
+    border-radius:14px;
+    padding:14px;
+    text-align:center;
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
+
+.bottom-nav{
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:10px;
+    height:68px;
+    background:rgba(255,255,255,.97);
+    border:1px solid #e1ebf1;
+    border-radius:20px;
+    box-shadow:
+        0 10px 30px rgba(19,65,92,.15);
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    padding:5px 4px;
+    z-index:200;
+    backdrop-filter:blur(12px);
+}
+
+.nav-item{
+    flex:1;
+    height:58px;
+    border:none;
+    background:transparent;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    color:#91a2b0;
+    cursor:pointer;
+    border-radius:15px;
+    transition:.2s;
+    position:relative;
+}
+
+.nav-icon{
+    width:32px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+    border-radius:10px;
+    transition:.2s;
+}
+
+.nav-text{
+    font-size:9px;
+    font-weight:650;
+    white-space:nowrap;
+}
+
+.nav-item.active{
+    color:var(--blue);
+    background:#eef8ff;
+}
+
+.nav-item.active .nav-icon{
+    background:
+        linear-gradient(
+            135deg,
+            #075da5,
+            #0787e8
+        );
+    color:white;
+    box-shadow:
+        0 5px 10px rgba(7,135,232,.18);
+}
+
+.nav-item.active::before{
+    content:"";
+    position:absolute;
+    top:-1px;
+    width:22px;
+    height:3px;
+    border-radius:0 0 5px 5px;
+    background:var(--blue);
+}
+
+.nav-item:active{
+    transform:scale(.94);
+}
+
+.nav-item.logout{
+    color:#8d9da8;
+}
+
+
+/* =====================================================
+   SMALL SCREEN
+===================================================== */
+
+@media(max-width:360px){
+
+    .top-header{
+        height:80px;
+        padding:0 13px;
+    }
+
+    .logo{
+        width:70px;
+        height:70px;
+    }
+
+    .main{
+        padding-left:13px;
+        padding-right:13px;
+    }
+
+    .summary-value{
+        font-size:26px;
+    }
+
+    .nav-text{
+        font-size:8px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     TOP HEADER
+===================================================== -->
+
+<header class="top-header">
+
+    <div class="brand">
+
+        <img
+            src="/skyrent-logo.png"
+            class="logo"
+            alt="SkyRent"
+        >
+
+    </div>
+
+    <div class="header-label">
+
+        <span class="header-plane">
+            ✈
+        </span>
+
+        <span>
+            DEPOSIT HISTORY
+        </span>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<div class="page-heading">
+
+    <div class="small">
+        SKYRENT WALLET
+    </div>
+
+    <h1>
+        Deposit History
+    </h1>
+
+    <p>
+        View your deposit transactions and approval status.
+    </p>
+
+</div>
+
+
+<div
+    id="errorBox"
+    class="error-box"
+></div>
+
+
+<!-- =====================================================
+     SUMMARY
+===================================================== -->
+
+<div class="summary-card">
+
+    <div class="summary-top">
+
+        <div class="summary-label">
+            Total Deposited
+        </div>
+
+        <div class="summary-icon">
+            💳
+        </div>
+
+    </div>
+
+    <div
+        class="summary-value"
+        id="totalDeposited"
+    >
+        ₱0.00
+    </div>
+
+    <div class="summary-bottom">
+
+        <div class="summary-pill">
+
+            <span id="depositCount">
+                0
+            </span>
+
+            &nbsp;Transactions
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HISTORY
+===================================================== -->
+
+<div class="section-title">
+
+    <h2>
+        Your Deposits
+    </h2>
+
+    <span id="historyCount">
+        0 records
+    </span>
+
+</div>
+
+
+<div
+    id="loadingBox"
+    class="loading-box"
+>
+
+    <div class="spinner"></div>
+
+    <p>
+        Loading deposit history...
+    </p>
+
+</div>
+
+
+<div
+    id="historyList"
+    class="history-list"
+    style="display:none;"
+></div>
+
+
+<div
+    id="emptyBox"
+    class="empty-box"
+    style="display:none;"
+>
+
+    <div class="empty-icon">
+        💳
+    </div>
+
+    <h3>
+        No Deposits Yet
+    </h3>
+
+    <p>
+        You haven't submitted any deposit transactions yet.
+    </p>
+
+    <button
+        class="deposit-now-btn"
+        onclick="goDeposit()"
+    >
+        Make a Deposit
+    </button>
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="bottom-nav">
+
+
+<button
+    class="nav-item active"
+    onclick="goHome()"
+>
+
+    <div class="nav-icon">
+        🏠
+    </div>
+
+    <div class="nav-text">
+        Home
+    </div>
+
+</button>
+
+
+<button
+    class="nav-item"
+    onclick="goCrafts()"
+>
+
+    <div class="nav-icon">
+        ✈️
+    </div>
+
+    <div class="nav-text">
+        Crafts
+    </div>
+
+</button>
+
+
+<button
+    class="nav-item"
+    onclick="goNetwork()"
+>
+
+    <div class="nav-icon">
+        👥
+    </div>
+
+    <div class="nav-text">
+        Network
+    </div>
+
+</button>
+
+
+<button
+    class="nav-item"
+    onclick="goEarnings()"
+>
+
+    <div class="nav-icon">
+        💰
+    </div>
+
+    <div class="nav-text">
+        Earnings
+    </div>
+
+</button>
+
+
+<button
+    class="nav-item logout"
+    onclick="logout()"
+>
+
+    <div class="nav-icon">
+        🚪
+    </div>
+
+    <div class="nav-text">
+        Logout
+    </div>
+
+</button>
+
+</nav>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if(!user){
+
+            window.location.href = "/";
+
+            return;
+        }
+
+        console.log(
+            "Deposit history user:",
+            user.uid
+        );
+
+        await loadDepositHistory(
+            user.uid
+        );
+
+    }
+);
+
+
+/* =====================================================
+   LOAD DEPOSIT HISTORY
+===================================================== */
+
+async function loadDepositHistory(uid){
+
+    const loadingBox =
+        document.getElementById(
+            "loadingBox"
+        );
+
+    const historyList =
+        document.getElementById(
+            "historyList"
+        );
+
+    const emptyBox =
+        document.getElementById(
+            "emptyBox"
+        );
+
+    const errorBox =
+        document.getElementById(
+            "errorBox"
+        );
+
+
+    try{
+
+        loadingBox.style.display =
+            "block";
+
+        historyList.style.display =
+            "none";
+
+        emptyBox.style.display =
+            "none";
+
+        errorBox.style.display =
+            "none";
+
+
+        /* =========================================
+           GET USER DEPOSITS
+        ========================================= */
+
+        const depositsRef =
+            collection(
+                db,
+                "deposits"
+            );
+
+
+        const depositsQuery =
+            query(
+                depositsRef,
+                where(
+                    "userId",
+                    "==",
+                    uid
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(
+                depositsQuery
+            );
+
+
+        const deposits = [];
+
+
+        snapshot.forEach(
+            (docSnap) => {
+
+                deposits.push({
+
+                    id:
+                        docSnap.id,
+
+                    ...docSnap.data()
+
+                });
+
+            }
+        );
+
+
+        /* =========================================
+           SORT NEWEST FIRST
+        ========================================= */
+
+        deposits.sort(
+            (a,b) => {
+
+                const timeA =
+                    getTimestampMillis(
+                        a.createdAt
+                    );
+
+                const timeB =
+                    getTimestampMillis(
+                        b.createdAt
+                    );
+
+                return timeB - timeA;
+
+            }
+        );
+
+
+        /* =========================================
+           TOTAL DEPOSITED
+
+           Only APPROVED deposits are included.
+        ========================================= */
+
+        let totalDeposited = 0;
+
+
+        deposits.forEach(
+            (deposit) => {
+
+                const status =
+                    normalizeStatus(
+                        deposit.status
+                    );
+
+
+                if(
+                    status === "approved"
+                ){
+
+                    totalDeposited +=
+                        Number(
+                            deposit.amount || 0
+                        );
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           UPDATE SUMMARY
+        ========================================= */
+
+        document.getElementById(
+            "totalDeposited"
+        ).textContent =
+            formatPeso(
+                totalDeposited
+            );
+
+
+        document.getElementById(
+            "depositCount"
+        ).textContent =
+            deposits.length;
+
+
+        document.getElementById(
+            "historyCount"
+        ).textContent =
+            deposits.length +
+            (
+                deposits.length === 1
+                    ? " record"
+                    : " records"
+            );
+
+
+        /* =========================================
+           HIDE LOADING
+        ========================================= */
+
+        loadingBox.style.display =
+            "none";
+
+
+        /* =========================================
+           NO RECORDS
+        ========================================= */
+
+        if(
+            deposits.length === 0
+        ){
+
+            emptyBox.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        /* =========================================
+           DISPLAY HISTORY
+        ========================================= */
+
+        historyList.innerHTML =
+            "";
+
+
+        deposits.forEach(
+            (deposit) => {
+
+                historyList.appendChild(
+                    createDepositCard(
+                        deposit
+                    )
+                );
+
+            }
+        );
+
+
+        historyList.style.display =
+            "flex";
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Deposit history error:",
+            error
+        );
+
+
+        loadingBox.style.display =
+            "none";
+
+        historyList.style.display =
+            "none";
+
+        emptyBox.style.display =
+            "none";
+
+        errorBox.style.display =
+            "block";
+
+        errorBox.innerHTML =
+            "Unable to load your deposit history.<br>" +
+            "Please check your internet connection and try again.";
+
+    }
+
+}
+
+
+/* =====================================================
+   CREATE DEPOSIT CARD
+===================================================== */
+
+function createDepositCard(deposit){
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+    card.className =
+        "deposit-card";
+
+
+    const amount =
+        Number(
+            deposit.amount || 0
+        );
+
+
+    const status =
+        normalizeStatus(
+            deposit.status
+        );
+
+
+    const statusText =
+        getStatusText(
+            status
+        );
+
+
+    const statusClass =
+        getStatusClass(
+            status
+        );
+
+
+    const dateText =
+        formatDate(
+            deposit.createdAt
+        );
+
+
+    const approvedText =
+        deposit.credited === true
+            ? "Yes"
+            : "No";
+
+
+    const referenceNumber =
+        deposit.referenceNumber ||
+        deposit.referenceNo ||
+        deposit.reference ||
+        "";
+
+
+    const referenceText =
+        referenceNumber
+            ? escapeHtml(
+                referenceNumber
+            )
+            : "Not provided";
+
+
+    card.innerHTML = `
+
+        <div class="deposit-top">
+
+            <div class="deposit-left">
+
+                <div class="deposit-icon">
+                    💳
+                </div>
+
+                <div class="deposit-info">
+
+                    <div class="deposit-amount">
+                        ${formatPeso(amount)}
+                    </div>
+
+                    <div class="deposit-method">
+
+                        ${escapeHtml(
+                            deposit.paymentMethod ||
+                            "GCash/Maya"
+                        )}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="status ${statusClass}">
+                ${statusText}
+            </div>
+
+        </div>
+
+
+        <div class="deposit-details">
+
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Date
+                </span>
+
+                <span class="detail-value">
+                    ${dateText}
+                </span>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Reference No.
+                </span>
+
+                <span
+                    class="detail-value transaction-id"
+                    title="${referenceText}"
+                >
+
+                    ${referenceText}
+
+                </span>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Transaction ID
+                </span>
+
+                <span
+                    class="detail-value transaction-id"
+                    title="${escapeHtml(deposit.id)}"
+                >
+
+                    ${escapeHtml(
+                        deposit.id
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Credited to Balance
+                </span>
+
+                <span class="detail-value">
+                    ${approvedText}
+                </span>
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+/* =====================================================
+   NORMALIZE STATUS
+===================================================== */
+
+function normalizeStatus(status){
+
+    const value =
+        String(
+            status || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    if(
+        value === "approved" ||
+        value === "deposit successful" ||
+        value === "successful" ||
+        value === "completed"
+    ){
+
+        return "approved";
+
+    }
+
+
+    if(
+        value === "rejected" ||
+        value === "reject" ||
+        value === "declined" ||
+        value === "cancelled" ||
+        value === "canceled"
+    ){
+
+        return "rejected";
+
+    }
+
+
+    return "pending";
+
+}
+
+
+/* =====================================================
+   STATUS TEXT
+===================================================== */
+
+function getStatusText(status){
+
+    if(
+        status === "approved"
+    ){
+
+        return "Approved";
+
+    }
+
+
+    if(
+        status === "rejected"
+    ){
+
+        return "Rejected";
+
+    }
+
+
+    return "Pending Approval";
+
+}
+
+
+/* =====================================================
+   STATUS CSS CLASS
+===================================================== */
+
+function getStatusClass(status){
+
+    if(
+        status === "approved"
+    ){
+
+        return "approved";
+
+    }
+
+
+    if(
+        status === "rejected"
+    ){
+
+        return "rejected";
+
+    }
+
+
+    return "pending";
+
+}
+
+
+/* =====================================================
+   FORMAT PESO
+===================================================== */
+
+function formatPeso(amount){
+
+    return "₱" +
+        Number(
+            amount || 0
+        ).toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =====================================================
+   FIRESTORE TIMESTAMP
+===================================================== */
+
+function getTimestampMillis(timestamp){
+
+    if(!timestamp){
+
+        return 0;
+
+    }
+
+
+    if(
+        typeof timestamp.toMillis ===
+        "function"
+    ){
+
+        return timestamp.toMillis();
+
+    }
+
+
+    if(
+        timestamp.seconds
+    ){
+
+        return Number(
+            timestamp.seconds
+        ) * 1000;
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(timestamp){
+
+    const millis =
+        getTimestampMillis(
+            timestamp
+        );
+
+
+    if(!millis){
+
+        return "Date unavailable";
+
+    }
+
+
+    const date =
+        new Date(
+            millis
+        );
+
+
+    return date.toLocaleString(
+        "en-PH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric",
+            hour:"numeric",
+            minute:"2-digit"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   CLEAN URL NAVIGATION
+===================================================== */
+
+window.goHome = function(){
+
+    window.location.href =
+        "/dashboard/";
+
+};
+
+
+window.goDeposit = function(){
+
+    window.location.href =
+        "/deposit/";
+
+};
+
+
+window.goCrafts = function(){
+
+    window.location.href =
+        "/crafts/";
+
+};
+
+
+window.goNetwork = function(){
+
+    window.location.href =
+        "/network/";
+
+};
+
+
+window.goEarnings = function(){
+
+    window.location.href =
+        "/earnings/";
+
+};
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logout = async function(){
+
+    try{
+
+        await signOut(
+            auth
+        );
+
+        window.location.href =
+            "/";
+
+    }
+    catch(error){
+
+        console.error(
+            "Logout error:",
+            error
+        );
+
+        window.location.href =
+            "/";
+
+    }
+
+};
+
+
+/* =====================================================
+   FIREBASE CONNECTED
+===================================================== */
+
+console.log(
+    "SkyRent Deposit History Firebase Connected"
+);
+
+</script>
+
+</body>
+</html>
