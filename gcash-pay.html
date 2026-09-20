@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +15,6 @@
 
 <title>SkyRent - GCash Payment</title>
 
-
 <style>
 
 *{
@@ -23,15 +23,9 @@
 }
 
 body{
-
   margin:0;
-
   min-height:100vh;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
 
   background:
     linear-gradient(
@@ -44,260 +38,160 @@ body{
   color:#222;
 }
 
-
 .page{
-
   width:100%;
-
   max-width:480px;
-
   margin:auto;
-
   min-height:100vh;
-
   padding:20px 16px 35px;
 }
 
-
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header{
-
   text-align:center;
-
   color:white;
-
   padding:10px 0 22px;
 }
 
-
 .logo{
-
   width:76px;
-
   height:76px;
-
   object-fit:contain;
-
   background:white;
-
   padding:8px;
-
   border-radius:20px;
 
   box-shadow:
     0 8px 25px rgba(0,0,0,.18);
 }
 
-
 .header h1{
-
   margin:10px 0 4px;
-
   font-size:27px;
-
   font-weight:800;
 }
 
-
 .header p{
-
   margin:0;
-
   font-size:14px;
-
   opacity:.92;
 }
 
-
-/* =========================
-   MAIN CARD
-========================= */
+/* CARD */
 
 .card{
-
   background:white;
-
   border-radius:24px;
-
   padding:22px 18px;
 
   box-shadow:
     0 12px 35px rgba(0,0,0,.16);
 }
 
-
 .title{
-
   text-align:center;
-
   color:#0757c9;
-
   margin:0;
-
   font-size:22px;
-
   font-weight:800;
 }
 
-
 .subtitle{
-
   text-align:center;
-
   color:#777;
-
   font-size:13px;
-
   line-height:1.5;
-
   margin:7px 0 22px;
 }
 
-
-/* =========================
-   LABEL
-========================= */
+/* LABEL */
 
 .label{
-
   display:block;
-
   font-size:14px;
-
   font-weight:700;
-
   margin-bottom:9px;
-
   color:#333;
 }
 
-
-/* =========================
-   PAYMENT ACCOUNT
-========================= */
+/* PAYMENT ACCOUNT */
 
 .account-options{
-
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   gap:10px;
-
   margin-bottom:22px;
 }
 
-
 .account-option{
-
   position:relative;
 }
 
-
 .account-option input{
-
   position:absolute;
-
   opacity:0;
-
   pointer-events:none;
 }
 
-
 .account-label{
-
   display:block;
-
   padding:16px 8px;
-
   text-align:center;
 
   border:2px solid #dce9f7;
-
   border-radius:15px;
 
   background:#f8fbff;
-
   color:#0757c9;
 
   font-weight:800;
-
   font-size:15px;
 
   cursor:pointer;
-
   transition:.2s;
 }
 
-
 .account-label span{
-
   display:block;
-
   margin-top:5px;
-
   font-size:11px;
-
   font-weight:600;
-
   color:#777;
 }
 
-
 .account-option input:checked + .account-label{
-
   border-color:#0757c9;
-
   background:#eaf4ff;
 
   box-shadow:
     0 4px 12px rgba(7,87,201,.12);
 }
 
-
-/* =========================
-   AMOUNT
-========================= */
+/* AMOUNT */
 
 .amount-wrapper{
-
   position:relative;
-
   margin-bottom:15px;
 }
 
-
 .peso{
-
   position:absolute;
-
   left:15px;
-
   top:50%;
-
   transform:translateY(-50%);
 
   font-size:21px;
-
   font-weight:800;
-
   color:#0757c9;
 }
 
-
 #amount{
-
   width:100%;
-
   height:57px;
 
   border:2px solid #dce9f7;
-
   border-radius:15px;
-
   outline:none;
 
   padding:
@@ -307,33 +201,22 @@ body{
     42px;
 
   font-size:21px;
-
   font-weight:700;
 
   color:#222;
-
   background:#f8fbff;
 }
 
-
 #amount:focus{
-
   border-color:#1686e8;
-
   background:white;
 }
 
-
-/* =========================
-   QUICK AMOUNTS
-========================= */
+/* QUICK AMOUNTS */
 
 .quick-title{
-
   font-size:13px;
-
   font-weight:700;
-
   color:#666;
 
   margin:
@@ -342,60 +225,39 @@ body{
     9px;
 }
 
-
 .quick{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:8px;
-
   margin-bottom:22px;
 }
 
-
 .quick button{
-
-  border:
-    1px solid
-    #d5e5f7;
-
+  border:1px solid #d5e5f7;
   background:#f3f8ff;
 
   color:#0757c9;
 
   border-radius:11px;
-
   padding:10px 4px;
 
   font-weight:700;
-
   font-size:13px;
 
   cursor:pointer;
 }
 
-
 .quick button:active{
-
   transform:scale(.97);
 }
 
-
-/* =========================
-   PAY BUTTON
-========================= */
+/* PAY BUTTON */
 
 .pay-button{
-
   width:100%;
-
   height:58px;
 
   border:0;
-
   border-radius:16px;
 
   background:
@@ -408,7 +270,6 @@ body{
   color:white;
 
   font-size:17px;
-
   font-weight:800;
 
   cursor:pointer;
@@ -418,133 +279,88 @@ body{
     rgba(7,87,201,.28);
 }
 
-
 .pay-button:active{
-
   transform:scale(.98);
 }
 
-
 .pay-button:disabled{
-
   opacity:.65;
-
   cursor:not-allowed;
 }
 
-
-/* =========================
-   STATUS
-========================= */
+/* STATUS */
 
 .status{
-
   display:none;
-
   margin-top:16px;
-
   padding:14px;
 
   border-radius:14px;
 
   font-size:13px;
-
   line-height:1.5;
 
   text-align:center;
 }
 
-
 .status.show{
-
   display:block;
 }
 
-
 .status.info{
-
   background:#eef6ff;
-
   color:#0757c9;
 }
 
-
 .status.warning{
-
   background:#fff7e6;
-
   color:#8a5b00;
 }
 
-
 .status.success{
-
   background:#eaf9f0;
-
   color:#17723c;
 }
 
-
-/* =========================
-   QR PAYMENT SECTION
-========================= */
+/* QR */
 
 .qr-section{
-
   display:none;
 
   margin-top:20px;
-
   padding:18px;
 
   border-radius:18px;
 
   background:#f5f9ff;
 
-  border:
-    1px solid
-    #dbe9f7;
+  border:1px solid #dbe9f7;
 
   text-align:center;
 }
 
-
 .qr-section.show{
-
   display:block;
 }
 
-
 .qr-title{
-
   color:#0757c9;
-
   font-size:19px;
-
   font-weight:800;
-
   margin-bottom:5px;
 }
 
-
 .qr-subtitle{
-
   color:#666;
-
   font-size:13px;
-
   line-height:1.5;
-
   margin-bottom:15px;
 }
 
-
 .qr-amount{
-
   display:inline-block;
 
   background:#e7f2ff;
-
   color:#0757c9;
 
   padding:8px 15px;
@@ -552,17 +368,13 @@ body{
   border-radius:20px;
 
   font-size:16px;
-
   font-weight:800;
 
   margin-bottom:15px;
 }
 
-
 .qr-image{
-
   width:100%;
-
   max-width:280px;
 
   aspect-ratio:1 / 1;
@@ -582,47 +394,35 @@ body{
     rgba(0,0,0,.08);
 }
 
-
 .qr-instruction{
-
   margin-top:15px;
 
   color:#596a7c;
 
   font-size:13px;
-
   line-height:1.55;
 }
 
-
 .qr-account{
-
   margin-top:8px;
 
   color:#0757c9;
 
   font-size:14px;
-
   font-weight:800;
 }
 
-
-/* =========================
-   OPEN GCASH BUTTON
-========================= */
+/* OPEN GCASH */
 
 .open-gcash{
-
   display:none;
 
   width:100%;
-
   height:52px;
 
   margin-top:15px;
 
   border:none;
-
   border-radius:14px;
 
   background:#007cff;
@@ -630,25 +430,22 @@ body{
   color:white;
 
   font-size:15px;
-
   font-weight:800;
 
   cursor:pointer;
 }
 
-
 .open-gcash.show{
-
   display:block;
 }
 
+.open-gcash:active{
+  transform:scale(.98);
+}
 
-/* =========================
-   PAYMENT INFO
-========================= */
+/* PAYMENT INFO */
 
 .info-box{
-
   margin-top:18px;
 
   padding:14px;
@@ -660,19 +457,14 @@ body{
   color:#5b6b7c;
 
   font-size:12px;
-
   line-height:1.55;
 
   text-align:center;
 }
 
-
-/* =========================
-   BACK
-========================= */
+/* BACK */
 
 .back{
-
   display:block;
 
   text-align:center;
@@ -682,23 +474,17 @@ body{
   text-decoration:none;
 
   font-weight:700;
-
   font-size:14px;
 
   margin-top:20px;
 }
 
-
-/* =========================
-   QR ERROR
-========================= */
+/* QR ERROR */
 
 .qr-error{
-
   display:none;
 
   padding:14px;
-
   margin-top:10px;
 
   border-radius:12px;
@@ -708,13 +494,27 @@ body{
   color:#a33;
 
   font-size:13px;
-
   line-height:1.5;
 }
 
-
 .qr-error.show{
+  display:block;
+}
 
+/* LOADING */
+
+.qr-loading{
+  display:none;
+
+  margin:12px 0;
+
+  color:#0757c9;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.qr-loading.show{
   display:block;
 }
 
@@ -722,16 +522,11 @@ body{
 
 </head>
 
-
 <body>
-
 
 <div class="page">
 
-
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <!-- HEADER -->
 
   <div class="header">
 
@@ -752,41 +547,27 @@ body{
   </div>
 
 
-
-  <!-- =========================
-       MAIN CARD
-  ========================== -->
+  <!-- MAIN CARD -->
 
   <div class="card">
-
 
     <h2 class="title">
       Make Payment
     </h2>
 
-
     <p class="subtitle">
-
       Select a receiving account and enter
       the amount you want to pay.
-
     </p>
 
 
-
-    <!-- =========================
-         RECEIVING ACCOUNT
-    ========================== -->
+    <!-- RECEIVING ACCOUNT -->
 
     <label class="label">
-
       Receiving Account
-
     </label>
 
-
     <div class="account-options">
-
 
       <div class="account-option">
 
@@ -797,7 +578,6 @@ body{
           value="payment1"
           checked
         >
-
 
         <label
           class="account-label"
@@ -815,7 +595,6 @@ body{
       </div>
 
 
-
       <div class="account-option">
 
         <input
@@ -824,7 +603,6 @@ body{
           name="paymentAccount"
           value="payment2"
         >
-
 
         <label
           class="account-label"
@@ -841,32 +619,23 @@ body{
 
       </div>
 
-
     </div>
 
 
-
-    <!-- =========================
-         PAYMENT AMOUNT
-    ========================== -->
+    <!-- AMOUNT -->
 
     <label
       class="label"
       for="amount"
     >
-
       Payment Amount
-
     </label>
 
-
     <div class="amount-wrapper">
-
 
       <span class="peso">
         ₱
       </span>
-
 
       <input
         type="number"
@@ -877,24 +646,16 @@ body{
         placeholder="Enter amount"
       >
 
-
     </div>
 
 
-
-    <!-- =========================
-         QUICK AMOUNTS
-    ========================== -->
+    <!-- QUICK AMOUNTS -->
 
     <div class="quick-title">
-
       Quick Amount
-
     </div>
 
-
     <div class="quick">
-
 
       <button
         type="button"
@@ -903,14 +664,12 @@ body{
         ₱500
       </button>
 
-
       <button
         type="button"
         onclick="setAmount(800)"
       >
         ₱800
       </button>
-
 
       <button
         type="button"
@@ -919,14 +678,12 @@ body{
         ₱1,500
       </button>
 
-
       <button
         type="button"
         onclick="setAmount(3000)"
       >
         ₱3,000
       </button>
-
 
       <button
         type="button"
@@ -935,7 +692,6 @@ body{
         ₱5,000
       </button>
 
-
       <button
         type="button"
         onclick="setAmount(10000)"
@@ -943,14 +699,10 @@ body{
         ₱10,000
       </button>
 
-
     </div>
 
 
-
-    <!-- =========================
-         MAIN PAY BUTTON
-    ========================== -->
+    <!-- PAY BUTTON -->
 
     <button
       type="button"
@@ -958,16 +710,11 @@ body{
       id="payButton"
       onclick="startPayment()"
     >
-
       Pay with GCash
-
     </button>
 
 
-
-    <!-- =========================
-         STATUS
-    ========================== -->
+    <!-- STATUS -->
 
     <div
       class="status"
@@ -975,44 +722,37 @@ body{
     ></div>
 
 
-
-    <!-- =========================
-         QR PAYMENT
-    ========================== -->
+    <!-- QR PAYMENT -->
 
     <div
       class="qr-section"
       id="qrSection"
     >
 
-
       <div class="qr-title">
-
         Scan to Pay
-
       </div>
-
 
       <div class="qr-subtitle">
-
-        Scan this QR code using your
-        GCash application.
-
+        Open GCash and scan this QR code
+        to complete your payment.
       </div>
-
 
       <div
         class="qr-amount"
         id="qrAmount"
       >
-
         ₱500
-
       </div>
-
 
       <br>
 
+      <div
+        class="qr-loading"
+        id="qrLoading"
+      >
+        Loading payment QR...
+      </div>
 
       <img
         id="qrImage"
@@ -1020,7 +760,6 @@ body{
         src=""
         alt="GCash Payment QR"
       >
-
 
       <div
         class="qr-error"
@@ -1037,34 +776,25 @@ body{
 
         <br><br>
 
-        <strong>
-          images/qrAMOUNT-1.png
-        </strong>
-
-        or
-
-        <strong>
-          images/qrAMOUNT-2.png
+        <strong id="expectedQR">
+          images/qr500-1.png
         </strong>
 
       </div>
-
 
       <div class="qr-instruction">
 
-        Open your GCash app and scan the
-        QR code above to continue your payment.
+        Open your GCash application,
+        choose the QR scanner, and scan
+        the QR code above.
 
       </div>
-
 
       <div
         class="qr-account"
         id="qrAccount"
       >
-
         Payment 1
-
       </div>
 
 
@@ -1074,19 +804,13 @@ body{
         id="openGCashButton"
         onclick="openGCash()"
       >
-
         Open GCash
-
       </button>
-
 
     </div>
 
 
-
-    <!-- =========================
-         INFORMATION
-    ========================== -->
+    <!-- INFORMATION -->
 
     <div class="info-box">
 
@@ -1106,27 +830,20 @@ body{
 
     </div>
 
-
   </div>
-
 
 
   <a
     href="javascript:history.back()"
     class="back"
   >
-
     ← Back
-
   </a>
-
 
 </div>
 
 
-
 <script>
-
 
 /*
 ====================================================
@@ -1139,31 +856,23 @@ Payment 1:
 Payment 2:
 09304087163
 
-The account numbers are NOT displayed to the user.
+The account numbers are never displayed.
 ====================================================
 */
 
 const PAYMENT_ACCOUNTS = {
 
-  payment1: {
-
-    name: "Payment 1",
-
-    account: "09507177497"
-
+  payment1:{
+    name:"Payment 1",
+    account:"09507177497"
   },
 
-
-  payment2: {
-
-    name: "Payment 2",
-
-    account: "09304087163"
-
+  payment2:{
+    name:"Payment 2",
+    account:"09304087163"
   }
 
 };
-
 
 
 /*
@@ -1175,19 +884,13 @@ AVAILABLE PAYMENT AMOUNTS
 const ALLOWED_AMOUNTS = [
 
   500,
-
   800,
-
   1500,
-
   3000,
-
   5000,
-
   10000
 
 ];
-
 
 
 /*
@@ -1203,20 +906,18 @@ function setAmount(value){
 
   input.value = value;
 
-
-  /*
-  Hide previous QR when changing amount.
-  */
-
   hideQR();
+
+  document
+    .getElementById("status")
+    .className = "status";
 
 }
 
 
-
 /*
 ====================================================
-GET SELECTED PAYMENT ACCOUNT
+GET SELECTED PAYMENT
 ====================================================
 */
 
@@ -1227,18 +928,13 @@ function getSelectedPayment(){
       'input[name="paymentAccount"]:checked'
     );
 
-
   if(!selected){
-
     return null;
-
   }
-
 
   return PAYMENT_ACCOUNTS[selected.value];
 
 }
-
 
 
 /*
@@ -1247,24 +943,17 @@ SHOW STATUS
 ====================================================
 */
 
-function showStatus(
-  message,
-  type
-){
+function showStatus(message,type){
 
   const status =
     document.getElementById("status");
 
-
-  status.textContent =
-    message;
-
+  status.textContent = message;
 
   status.className =
     "status show " + type;
 
 }
-
 
 
 /*
@@ -1279,18 +968,19 @@ function hideQR(){
     .getElementById("qrSection")
     .classList.remove("show");
 
-
   document
     .getElementById("openGCashButton")
     .classList.remove("show");
-
 
   document
     .getElementById("qrError")
     .classList.remove("show");
 
-}
+  document
+    .getElementById("qrLoading")
+    .classList.remove("show");
 
+}
 
 
 /*
@@ -1304,13 +994,12 @@ function startPayment(){
   const amountInput =
     document.getElementById("amount");
 
-
   const amount =
     parseFloat(amountInput.value);
 
 
   /*
-  Validate amount.
+  Validate amount
   */
 
   if(
@@ -1330,16 +1019,14 @@ function startPayment(){
   }
 
 
-
   /*
-  Get selected payment account.
+  Validate payment account
   */
 
   const selected =
     document.querySelector(
       'input[name="paymentAccount"]:checked'
     );
-
 
   if(!selected){
 
@@ -1353,18 +1040,15 @@ function startPayment(){
   }
 
 
-
   const paymentKey =
     selected.value;
-
 
   const payment =
     PAYMENT_ACCOUNTS[paymentKey];
 
 
-
   /*
-  Check whether amount is supported.
+  Validate amount
   */
 
   if(
@@ -1372,11 +1056,8 @@ function startPayment(){
   ){
 
     showStatus(
-
       "This payment amount is not available. Please choose one of the available amounts.",
-
       "warning"
-
     );
 
     return;
@@ -1384,9 +1065,8 @@ function startPayment(){
   }
 
 
-
   /*
-  Store payment information temporarily.
+  Save payment information
   */
 
   sessionStorage.setItem(
@@ -1394,27 +1074,14 @@ function startPayment(){
     paymentKey
   );
 
-
   sessionStorage.setItem(
     "skyrentPaymentAmount",
     String(amount)
   );
 
 
-
   /*
-  Determine QR filename.
-
-  Example:
-
-  Payment 1 + ₱500
-
-  images/qr500-1.png
-
-
-  Payment 2 + ₱500
-
-  images/qr500-2.png
+  Determine QR filename
   */
 
   const accountNumber =
@@ -1431,9 +1098,8 @@ function startPayment(){
     ".png";
 
 
-
   /*
-  Update QR information.
+  Update interface
   */
 
   document
@@ -1449,26 +1115,38 @@ function startPayment(){
       payment.name;
 
 
+  document
+    .getElementById("expectedQR")
+    .textContent =
+      qrPath;
+
 
   const qrImage =
     document.getElementById("qrImage");
 
-
   const qrError =
     document.getElementById("qrError");
 
+  const qrLoading =
+    document.getElementById("qrLoading");
+
+  const openButton =
+    document.getElementById("openGCashButton");
 
 
   /*
-  Reset QR error.
+  Reset
   */
 
   qrError.classList.remove("show");
 
+  openButton.classList.remove("show");
+
+  qrLoading.classList.add("show");
 
 
   /*
-  Show QR section.
+  Show QR container
   */
 
   document
@@ -1476,96 +1154,88 @@ function startPayment(){
     .classList.add("show");
 
 
-
   /*
-  Set QR image.
+  Clear old image
   */
 
-  qrImage.src =
-    qrPath;
+  qrImage.onload = null;
+  qrImage.onerror = null;
 
+  qrImage.removeAttribute("src");
 
 
   /*
-  If QR exists.
+  Load new QR
   */
 
-  qrImage.onload =
-    function(){
+  qrImage.onload = function(){
 
-      qrError.classList.remove("show");
+    qrLoading.classList.remove("show");
+
+    qrError.classList.remove("show");
+
+    openButton.classList.add("show");
+
+
+    showStatus(
+
+      payment.name +
+      " selected. Your ₱" +
+      amount.toLocaleString("en-PH") +
+      " payment QR is ready.",
+
+      "success"
+
+    );
+
+
+    setTimeout(function(){
 
       document
-        .getElementById("openGCashButton")
-        .classList.add("show");
+        .getElementById("qrSection")
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
 
+    },100);
 
-      showStatus(
-
-        "Payment " +
-        (paymentKey === "payment1" ? "1" : "2") +
-        " selected. Your ₱" +
-        amount.toLocaleString("en-PH") +
-        " payment QR is ready.",
-
-        "success"
-
-      );
-
-
-
-      /*
-      Scroll smoothly to QR.
-      */
-
-      setTimeout(function(){
-
-        document
-          .getElementById("qrSection")
-          .scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-          });
-
-      },100);
-
-    };
-
+  };
 
 
   /*
-  If QR does not exist.
+  QR does not exist
   */
 
-  qrImage.onerror =
-    function(){
+  qrImage.onerror = function(){
 
-      qrImage.removeAttribute("src");
+    qrLoading.classList.remove("show");
 
-      document
-        .getElementById("openGCashButton")
-        .classList.remove("show");
+    qrImage.removeAttribute("src");
 
+    openButton.classList.remove("show");
 
-      qrError.classList.add("show");
+    qrError.classList.add("show");
 
 
-      showStatus(
+    showStatus(
 
-        "The QR code for " +
-        payment.name +
-        " at ₱" +
-        amount.toLocaleString("en-PH") +
-        " could not be found.",
+      "The QR code for " +
+      payment.name +
+      " at ₱" +
+      amount.toLocaleString("en-PH") +
+      " could not be found.",
 
-        "warning"
+      "warning"
 
-      );
+    );
 
-    };
+  };
+
+
+  qrImage.src = qrPath;
 
 }
-
 
 
 /*
@@ -1573,32 +1243,38 @@ function startPayment(){
 OPEN GCASH
 ====================================================
 
-This attempts to open the GCash app.
+IMPORTANT:
 
-The QR remains available on this page because
-opening GCash does not automatically guarantee
-that the recipient and amount are passed to GCash.
+A normal website cannot reliably open GCash
+directly to a specific recipient using only
+a phone number.
+
+The QR code is therefore the actual payment
+method.
+
+This function attempts to launch the GCash
+application using an Android intent.
+
+If Android/Chrome does not allow it, the
+user remains on this page and can scan the
+QR manually.
 ====================================================
 */
 
 function openGCash(){
 
-  const amount =
-    sessionStorage.getItem(
-      "skyrentPaymentAmount"
-    );
+  const qrSection =
+    document.getElementById("qrSection");
 
 
-  const paymentKey =
-    sessionStorage.getItem(
-      "skyrentPaymentAccount"
-    );
+  /*
+  Make sure the QR is visible.
+  */
 
-
-  if(!amount || !paymentKey){
+  if(!qrSection.classList.contains("show")){
 
     showStatus(
-      "Please select the payment account and amount first.",
+      "Please generate the payment QR first.",
       "warning"
     );
 
@@ -1607,39 +1283,55 @@ function openGCash(){
   }
 
 
+  showStatus(
+    "Opening GCash. If it does not open, return here and scan the QR code.",
+    "info"
+  );
+
 
   /*
-  Try opening GCash.
+  Android intent attempt.
+
+  This does NOT send the GCash number or
+  payment amount. It only attempts to open
+  the GCash application.
   */
 
-  window.location.href =
-    "gcash://";
-
+  const intentURL =
+    "intent://#Intent;" +
+    "scheme=gcash;" +
+    "package=com.gcash.android;" +
+    "end";
 
 
   /*
-  Keep the QR visible if GCash does not open.
+  Attempt launch.
+  */
+
+  window.location.href = intentURL;
+
+
+  /*
+  Fallback message.
+
+  The QR remains visible.
   */
 
   setTimeout(function(){
 
     showStatus(
-
-      "If GCash did not open, use the QR code above to complete the payment.",
-
+      "If GCash did not open, stay on this page and scan the QR code using your GCash app.",
       "warning"
-
     );
 
-  },2000);
+  },1800);
 
 }
 
 
-
 /*
 ====================================================
-RESET QR WHEN PAYMENT ACCOUNT CHANGES
+PAYMENT ACCOUNT CHANGE
 ====================================================
 */
 
@@ -1666,10 +1358,9 @@ document
   });
 
 
-
 /*
 ====================================================
-RESET QR WHEN USER MANUALLY CHANGES AMOUNT
+AMOUNT CHANGE
 ====================================================
 */
 
@@ -1691,7 +1382,7 @@ document
 
 </script>
 
-
 </body>
 
 </html>
+```
