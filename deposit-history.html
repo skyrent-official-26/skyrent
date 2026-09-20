@@ -36,7 +36,141 @@
 
 <!-- ===================================================== FIREBASE ===================================================== -->
 
-<script type="module"> /* ===================================================== IMPORT FIREBASE ===================================================== */ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"; import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"; import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"; /* ===================================================== FIREBASE CONFIG ===================================================== */ const firebaseConfig = { apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8", authDomain: "skyrent-ea30c.firebaseapp.com", projectId: "skyrent-ea30c", storageBucket: "skyrent-ea30c.firebasestorage.app", messagingSenderId: "572678456448", appId: "1:572678456448:web:6b7132351515742dd09265" }; /* ===================================================== INITIALIZE FIREBASE ===================================================== */ const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app); /* ===================================================== AUTH STATE ===================================================== */ onAuthStateChanged( auth, async (user) => { if(!user){ window.location.href = "index.html"; return; } console.log( "Deposit history user:", user.uid ); await loadDepositHistory( user.uid ); } ); /* ===================================================== LOAD DEPOSIT HISTORY ===================================================== */ async function loadDepositHistory(uid){ const loadingBox = document.getElementById( "loadingBox" ); const historyList = document.getElementById( "historyList" ); const emptyBox = document.getElementById( "emptyBox" ); const errorBox = document.getElementById( "errorBox" ); try{ loadingBox.style.display = "block"; historyList.style.display = "none"; emptyBox.style.display = "none"; errorBox.style.display = "none"; /* ========================================= GET USER DEPOSITS Your deposit documents contain: userId uid amount status paymentMethod credited createdAt ========================================= */ const depositsRef = collection( db, "deposits" ); const depositsQuery = query( depositsRef, where( "userId", "==", uid ) ); const snapshot = await getDocs( depositsQuery ); const deposits = []; snapshot.forEach( (docSnap) => { deposits.push({ id: docSnap.id, ...docSnap.data() }); } ); /* ========================================= SORT NEWEST FIRST ========================================= */ deposits.sort( (a,b) => { const timeA = getTimestampMillis( a.createdAt ); const timeB = getTimestampMillis( b.createdAt ); return timeB - timeA; } ); /* ========================================= TOTAL DEPOSITED Only APPROVED deposits are included in the total deposited amount. Pending and rejected deposits are not counted. ========================================= */ let totalDeposited = 0; deposits.forEach( (deposit) => { const status = normalizeStatus( deposit.status ); if( status === "approved" ){ totalDeposited += Number( deposit.amount || 0 ); } } ); /* ========================================= UPDATE SUMMARY ========================================= */ document.getElementById( "totalDeposited" ).textContent = formatPeso( totalDeposited ); document.getElementById( "depositCount" ).textContent = deposits.length; document.getElementById( "historyCount" ).textContent = deposits.length + ( deposits.length === 1 ? " record" : " records" ); /* ========================================= HIDE LOADING ========================================= */ loadingBox.style.display = "none"; /* ========================================= NO RECORDS ========================================= */ if( deposits.length === 0 ){ emptyBox.style.display = "block"; return; } /* ========================================= DISPLAY HISTORY ========================================= */ historyList.innerHTML = ""; deposits.forEach( (deposit) => { historyList.appendChild( createDepositCard( deposit ) ); } ); historyList.style.display = "flex"; } catch(error){ console.error( "Deposit history error:", error ); loadingBox.style.display = "none"; historyList.style.display = "none"; emptyBox.style.display = "none"; errorBox.style.display = "block"; errorBox.innerHTML = "Unable to load your deposit history.<br>" + "Please check your internet connection and try again."; } } /* ===================================================== CREATE DEPOSIT CARD ===================================================== */ function createDepositCard(deposit){ const card = document.createElement( "div" ); card.className = "deposit-card"; const amount = Number( deposit.amount || 0 ); const status = normalizeStatus( deposit.status ); const statusText = getStatusText( status ); const statusClass = getStatusClass( status ); const dateText = formatDate( deposit.createdAt ); const approvedText = deposit.credited === true ? "Yes" : "No"; card.innerHTML = ` <div class="deposit-top"> <div class="deposit-left"> <div class="deposit-icon"> 💳 </div> <div class="deposit-info"> <div class="deposit-amount"> ${formatPeso(amount)} </div> <div class="deposit-method"> ${escapeHtml( deposit.paymentMethod || "GCash/Maya" )} </div> </div> </div> <div class="status ${statusClass}"> ${statusText} </div> </div> <div class="deposit-details"> <div class="detail-row"> <span class="detail-label"> Date </span> <span class="detail-value"> ${dateText} </span> </div> <div class="detail-row"> <span class="detail-label"> Transaction ID </span> <span class="detail-value transaction-id" title="${escapeHtml( deposit.id )}" > ${escapeHtml( deposit.id )} </span> </div> <div class="detail-row"> <span class="detail-label"> Credited to Balance </span> <span class="detail-value"> ${approvedText} </span> </div> </div> `; return card; } /* ===================================================== NORMALIZE STATUS ===================================================== */ function normalizeStatus(status){ const value = String( status || "" ) .trim() .toLowerCase(); if( value === "approved" || value === "deposit successful" || value === "successful" || value === "completed" ){ return "approved"; } if( value === "rejected" || value === "reject" || value === "declined" || value === "cancelled" || value === "canceled" ){ return "rejected"; } return "pending"; } /* ===================================================== STATUS TEXT ===================================================== */ function getStatusText(status){ if(status === "approved"){ return "Approved"; } if(status === "rejected"){ return "Rejected"; } return "Pending Approval"; } /* ===================================================== STATUS CSS CLASS ===================================================== */ function getStatusClass(status){ if(status === "approved"){ return "approved"; } if(status === "rejected"){ return "rejected"; } return "pending"; } /* ===================================================== FORMAT PESO ===================================================== */ function formatPeso(amount){ return "₱" + Number( amount || 0 ).toLocaleString( "en-PH", { minimumFractionDigits:2, maximumFractionDigits:2 } ); } /* ===================================================== FIRESTORE TIMESTAMP ===================================================== */ function getTimestampMillis(timestamp){ if(!timestamp){ return 0; } if( typeof timestamp.toMillis === "function" ){ return timestamp.toMillis(); } if( timestamp.seconds ){ return Number( timestamp.seconds ) * 1000; } return 0; } /* ===================================================== FORMAT DATE ===================================================== */ function formatDate(timestamp){ const millis = getTimestampMillis( timestamp ); if(!millis){ return "Date unavailable"; } const date = new Date( millis ); return date.toLocaleString( "en-PH", { year:"numeric", month:"short", day:"numeric", hour:"numeric", minute:"2-digit" } ); } /* ===================================================== ESCAPE HTML ===================================================== */ function escapeHtml(value){ return String( value ?? "" ) .replace( /&/g, "&amp;" ) .replace( /</g, "&lt;" ) .replace( />/g, "&gt;" ) .replace( /"/g, "&quot;" ) .replace( /'/g, "&#039;" ); } /* ===================================================== NAVIGATION ===================================================== */ window.goHome = function(){ window.location.href = "dashboard.html"; }; window.goDeposit = function(){ window.location.href = "deposit.html"; }; window.goCrafts = function(){ window.location.href = "crafts.html"; }; window.goNetwork = function(){ window.location.href = "network.html"; }; window.goEarnings = function(){ window.location.href = "earnings.html"; }; /* ===================================================== LOGOUT ===================================================== */ window.logout = async function(){ try{ await signOut( auth ); window.location.href = "index.html"; } catch(error){ console.error( "Logout error:", error ); window.location.href = "index.html"; } }; /* ===================================================== FIREBASE CONNECTED ===================================================== */ console.log( "SkyRent Deposit History Firebase Connected" ); </script>
+<script type="module"> /* ===================================================== IMPORT FIREBASE ===================================================== */ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"; import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"; import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"; /* ===================================================== FIREBASE CONFIG ===================================================== */ const firebaseConfig = { apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8", authDomain: "skyrent-ea30c.firebaseapp.com", projectId: "skyrent-ea30c", storageBucket: "skyrent-ea30c.firebasestorage.app", messagingSenderId: "572678456448", appId: "1:572678456448:web:6b7132351515742dd09265" }; /* ===================================================== INITIALIZE FIREBASE ===================================================== */ const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app); /* ===================================================== AUTH STATE ===================================================== */ onAuthStateChanged( auth, async (user) => { if(!user){ window.location.href = "index.html"; return; } console.log( "Deposit history user:", user.uid ); await loadDepositHistory( user.uid ); } ); /* ===================================================== LOAD DEPOSIT HISTORY ===================================================== */ async function loadDepositHistory(uid){ const loadingBox = document.getElementById( "loadingBox" ); const historyList = document.getElementById( "historyList" ); const emptyBox = document.getElementById( "emptyBox" ); const errorBox = document.getElementById( "errorBox" ); try{ loadingBox.style.display = "block"; historyList.style.display = "none"; emptyBox.style.display = "none"; errorBox.style.display = "none"; /* ========================================= GET USER DEPOSITS Your deposit documents contain: userId uid amount status paymentMethod credited createdAt ========================================= */ const depositsRef = collection( db, "deposits" ); const depositsQuery = query( depositsRef, where( "userId", "==", uid ) ); const snapshot = await getDocs( depositsQuery ); const deposits = []; snapshot.forEach( (docSnap) => { deposits.push({ id: docSnap.id, ...docSnap.data() }); } ); /* ========================================= SORT NEWEST FIRST ========================================= */ deposits.sort( (a,b) => { const timeA = getTimestampMillis( a.createdAt ); const timeB = getTimestampMillis( b.createdAt ); return timeB - timeA; } ); /* ========================================= TOTAL DEPOSITED Only APPROVED deposits are included in the total deposited amount. Pending and rejected deposits are not counted. ========================================= */ let totalDeposited = 0; deposits.forEach( (deposit) => { const status = normalizeStatus( deposit.status ); if( status === "approved" ){ totalDeposited += Number( deposit.amount || 0 ); } } ); /* ========================================= UPDATE SUMMARY ========================================= */ document.getElementById( "totalDeposited" ).textContent = formatPeso( totalDeposited ); document.getElementById( "depositCount" ).textContent = deposits.length; document.getElementById( "historyCount" ).textContent = deposits.length + ( deposits.length === 1 ? " record" : " records" ); /* ========================================= HIDE LOADING ========================================= */ loadingBox.style.display = "none"; /* ========================================= NO RECORDS ========================================= */ if( deposits.length === 0 ){ emptyBox.style.display = "block"; return; } /* ========================================= DISPLAY HISTORY ========================================= */ historyList.innerHTML = ""; deposits.forEach( (deposit) => { historyList.appendChild( createDepositCard( deposit ) ); } ); historyList.style.display = "flex"; } catch(error){ console.error( "Deposit history error:", error ); loadingBox.style.display = "none"; historyList.style.display = "none"; emptyBox.style.display = "none"; errorBox.style.display = "block"; errorBox.innerHTML = "Unable to load your deposit history.<br>" + "Please check your internet connection and try again."; } } /* ===================================================== CREATE DEPOSIT CARD ===================================================== */ function createDepositCard(deposit){
+
+    const card = document.createElement("div");
+    card.className = "deposit-card";
+
+    const amount = Number(deposit.amount || 0);
+
+    const status = normalizeStatus(deposit.status);
+    const statusText = getStatusText(status);
+    const statusClass = getStatusClass(status);
+
+    const dateText = formatDate(deposit.createdAt);
+
+    const approvedText =
+        deposit.credited === true ? "Yes" : "No";
+
+    /* =====================================================
+       REFERENCE NUMBER
+       Supports the possible field names used by deposit.html
+    ===================================================== */
+
+    const referenceNumber =
+        deposit.referenceNumber ||
+        deposit.referenceNo ||
+        deposit.reference ||
+        "";
+
+    const referenceText =
+        referenceNumber
+            ? escapeHtml(referenceNumber)
+            : "Not provided";
+
+    card.innerHTML = `
+
+        <div class="deposit-top">
+
+            <div class="deposit-left">
+
+                <div class="deposit-icon">
+                    💳
+                </div>
+
+                <div class="deposit-info">
+
+                    <div class="deposit-amount">
+                        ${formatPeso(amount)}
+                    </div>
+
+                    <div class="deposit-method">
+                        ${escapeHtml(
+                            deposit.paymentMethod ||
+                            "GCash/Maya"
+                        )}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="status ${statusClass}">
+                ${statusText}
+            </div>
+
+        </div>
+
+        <div class="deposit-details">
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Date
+                </span>
+
+                <span class="detail-value">
+                    ${dateText}
+                </span>
+
+            </div>
+
+
+            <!-- REFERENCE NUMBER -->
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Reference No.
+                </span>
+
+                <span
+                    class="detail-value transaction-id"
+                    title="${referenceText}"
+                >
+                    ${referenceText}
+                </span>
+
+            </div>
+
+
+            <!-- TRANSACTION ID -->
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Transaction ID
+                </span>
+
+                <span
+                    class="detail-value transaction-id"
+                    title="${escapeHtml(deposit.id)}"
+                >
+                    ${escapeHtml(deposit.id)}
+                </span>
+
+            </div>
+
+
+            <!-- CREDIT STATUS -->
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+                    Credited to Balance
+                </span>
+
+                <span class="detail-value">
+                    ${approvedText}
+                </span>
+
+            </div>
+
+        </div>
+    `;
+
+    return card;
+} /* ===================================================== NORMALIZE STATUS ===================================================== */ function normalizeStatus(status){ const value = String( status || "" ) .trim() .toLowerCase(); if( value === "approved" || value === "deposit successful" || value === "successful" || value === "completed" ){ return "approved"; } if( value === "rejected" || value === "reject" || value === "declined" || value === "cancelled" || value === "canceled" ){ return "rejected"; } return "pending"; } /* ===================================================== STATUS TEXT ===================================================== */ function getStatusText(status){ if(status === "approved"){ return "Approved"; } if(status === "rejected"){ return "Rejected"; } return "Pending Approval"; } /* ===================================================== STATUS CSS CLASS ===================================================== */ function getStatusClass(status){ if(status === "approved"){ return "approved"; } if(status === "rejected"){ return "rejected"; } return "pending"; } /* ===================================================== FORMAT PESO ===================================================== */ function formatPeso(amount){ return "₱" + Number( amount || 0 ).toLocaleString( "en-PH", { minimumFractionDigits:2, maximumFractionDigits:2 } ); } /* ===================================================== FIRESTORE TIMESTAMP ===================================================== */ function getTimestampMillis(timestamp){ if(!timestamp){ return 0; } if( typeof timestamp.toMillis === "function" ){ return timestamp.toMillis(); } if( timestamp.seconds ){ return Number( timestamp.seconds ) * 1000; } return 0; } /* ===================================================== FORMAT DATE ===================================================== */ function formatDate(timestamp){ const millis = getTimestampMillis( timestamp ); if(!millis){ return "Date unavailable"; } const date = new Date( millis ); return date.toLocaleString( "en-PH", { year:"numeric", month:"short", day:"numeric", hour:"numeric", minute:"2-digit" } ); } /* ===================================================== ESCAPE HTML ===================================================== */ function escapeHtml(value){ return String( value ?? "" ) .replace( /&/g, "&amp;" ) .replace( /</g, "&lt;" ) .replace( />/g, "&gt;" ) .replace( /"/g, "&quot;" ) .replace( /'/g, "&#039;" ); } /* ===================================================== NAVIGATION ===================================================== */ window.goHome = function(){ window.location.href = "dashboard.html"; }; window.goDeposit = function(){ window.location.href = "deposit.html"; }; window.goCrafts = function(){ window.location.href = "crafts.html"; }; window.goNetwork = function(){ window.location.href = "network.html"; }; window.goEarnings = function(){ window.location.href = "earnings.html"; }; /* ===================================================== LOGOUT ===================================================== */ window.logout = async function(){ try{ await signOut( auth ); window.location.href = "index.html"; } catch(error){ console.error( "Logout error:", error ); window.location.href = "index.html"; } }; /* ===================================================== FIREBASE CONNECTED ===================================================== */ console.log( "SkyRent Deposit History Firebase Connected" ); </script>
 
 </body> </html>
 
