@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Withdrawal History - SkyRent</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f3f7fc;
+    color:#172033;
+    padding-bottom:90px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #0757c9,
+        #1475e8
+    );
+
+    color:white;
+
+    padding:22px 20px 30px;
+
+    border-bottom-left-radius:32px;
+    border-bottom-right-radius:32px;
+
+    box-shadow:0 10px 25px rgba(7,87,201,.18);
+}
+
+.back-row{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.back-button{
+    width:43px;
+    height:43px;
+
+    border:none;
+    border-radius:14px;
+
+    background:rgba(255,255,255,.18);
+
+    color:white;
+    font-size:23px;
+
+    cursor:pointer;
+}
+
+.header h1{
+    margin-top:20px;
+    font-size:27px;
+    font-weight:900;
+}
+
+.header p{
+    margin-top:6px;
+    font-size:13px;
+    opacity:.9;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:92%;
+    max-width:520px;
+
+    margin:-20px auto 0;
+
+    position:relative;
+    z-index:5;
+}
+
+/* =========================
+   HISTORY CARD
+========================= */
+
+.history-card{
+    margin-top:14px;
+
+    background:white;
+
+    border-radius:23px;
+
+    padding:18px;
+
+    box-shadow:0 9px 25px rgba(30,70,120,.08);
+}
+
+.history-title{
+    font-size:20px;
+    font-weight:900;
+
+    margin-bottom:15px;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.summary{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    margin-bottom:15px;
+}
+
+.summary-box{
+    background:#f5f8fd;
+
+    border:1px solid #e7edf5;
+
+    border-radius:13px;
+
+    padding:11px
