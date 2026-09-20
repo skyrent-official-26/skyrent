@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent - Transactions</title>
+
+<link rel="icon" type="image/png" href="/skyrent.png">
+<link rel="apple-touch-icon" href="/skyrent.png">
+<link rel="manifest" href="/manifest.json">
+
+<meta name="theme-color" content="#0757c9">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f7fc;
+    color:#172033;
+    padding-bottom:85px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    background:linear-gradient(135deg,#0757c9,#1475e8);
+    color:white;
+    padding:20px 18px 28px;
+    border-bottom-left-radius:28px;
+    border-bottom-right-radius:28px;
+    box-shadow:0 8px 22px rgba(7,87,201,.18);
+}
+
+.back-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.back-button{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:13px;
+    background:rgba(255,255,255,.17);
+    color:white;
+    font-size:23px;
+    cursor:pointer;
+}
+
+.header-logo{
+    font-size:18px;
+    font-weight:900;
+}
+
+.header h1{
+    margin-top:20px;
+    font-size:27px;
+    font-weight:900;
+}
+
+.header p{
+    margin-top:5px;
+    font-size:12px;
+    opacity:.9;
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.container{
+    width:94%;
+    max-width:520px;
+    margin:15px auto 0;
+}
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+.filter-card{
+    background:white;
+    border-radius:18px;
+    padding:12px;
+    box-shadow:0 5px 18px rgba(30,70,120,.07);
+    margin-bottom:12px;
+}
+
+.filter-row{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+.filter-row::-webkit-scrollbar{
+    display:none;
+}
+
+.filter-btn{
+    flex:0 0 auto;
+    border:none;
+    background:#eef5ff;
+    color:#0757c9;
+    padding:9px 13px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.filter-btn.active{
+    background:linear-gradient(135deg,#0757c9,#1475e8);
+    color:white;
+}
+
+/* =====================================================
+   HISTORY CARD
+===================================================== */
+
+.history-card{
+    background:white;
+    border-radius:20px;
+    padding:17px 14px;
+    box-shadow:0 5px 18px rgba(30,70,120,.07);
+}
+
+.history-title{
+    font-size:18px;
+    font-weight:900;
+    margin-bottom:14px;
+}
+
+/* =====================================================
+   TRANSACTION LIST
+===================================================== */
+
+.transaction-list{
+    display:flex;
+    flex-direction:column;
+}
+
+/* =====================================================
+   TRANSACTION ITEM
+===================================================== */
+
+.transaction-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:15px 4px;
+    border-bottom:1px solid #edf0f4;
+}
+
+.transaction-item:last-child{
+    border-bottom:none;
+}
+
+.transaction-left{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    min-width:0;
+}
+
+.transaction-icon{
+    width:40px;
+    height:40px;
+    flex-shrink:0;
+    border-radius:12px;
+    background:#eef5ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+}
+
+.transaction-info{
+    min-width:0;
+}
+
+.transaction-type{
+    font-size:13px;
+    font-weight:900;
+    color:#172033;
+}
+
+.transaction-date{
+    margin-top:5px;
+    color:#89919d;
+    font-size:10px;
+}
+
+.transaction-amount{
+    font-size:15px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+.transaction-amount.plus{
+    color:#168044;
+}
+
+.transaction-amount.minus{
+    color:#c62828;
+}
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+    text-align:center;
+    padding:35px 15px;
+    color:#858d99;
+    font-size:13px;
+}
+
+/* =====================================================
+   REFRESH
+===================================================== */
+
+.refresh-btn{
+    width:100%;
+    margin-top:13px;
+    padding:13px;
+    border:none;
+    border-radius:14px;
+    background:#eef5ff;
+    color:#0757c9;
+    font-size:12px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottom-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    height:76px;
+    background:rgba(255,255,255,.97);
+    border-top:1px solid #e5e9ef;
+    box-shadow:0 -5px 20px rgba(20,60,110,.10);
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    z-index:9999;
+    backdrop-filter:blur(10px);
+}
+
+.nav-item{
+    border:none;
+    background:transparent;
+    color:#89919d;
+    font-size:10px;
+    font-weight:bold;
+    cursor:pointer;
+    padding-top:8px;
+}
+
+.nav-icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:4px;
+}
+
+.nav-item.active{
+    color:#0757c9;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="back-row">
+
+        <button
+            class="back-button"
+            onclick="goBack()"
+        >
+            ←
+        </button>
+
+        <div class="header-logo">
+            SkyRent
+        </div>
+
+    </div>
+
+    <h1>Transactions</h1>
+
+    <p>
+        Account transaction history
+    </p>
+
+</header>
+
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+<main class="container">
+
+    <!-- FILTERS -->
+
+    <div class="filter-card">
+
+        <div class="filter-row">
+
+            <button
+                class="filter-btn active"
+                onclick="setFilter('all',this)"
+            >
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('deposit',this)"
+            >
+                Deposits
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('purchase',this)"
+            >
+                Purchases
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('earning',this)"
+            >
+                Earnings
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('gift',this)"
+            >
+                Gift Codes
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('bonus',this)"
+            >
+                Bonus
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('commission',this)"
+            >
+                Commission
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="setFilter('withdrawal',this)"
+            >
+                Withdrawals
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- HISTORY -->
+
+    <div class="history-card">
+
+        <div class="history-title">
+            Transaction History
+        </div>
+
+        <div
+            id="transactionList"
+            class="transaction-list"
+        >
+
+            <div class="empty">
+                Loading transactions...
+            </div>
+
+        </div>
+
+        <button
+            class="refresh-btn"
+            onclick="loadTransactions()"
+        >
+            🔄 Refresh
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-item"
+        onclick="goHome()"
+    >
+        <span class="nav-icon">🏠</span>
+        Home
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="goCrafts()"
+    >
+        <span class="nav-icon">✈️</span>
+        Crafts
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="goNetwork()"
+    >
+        <span class="nav-icon">👥</span>
+        Network
+    </button>
+
+
+    <button
+        class="nav-item active"
+    >
+        <span class="nav-icon">💰</span>
+        Earnings
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="logout()"
+    >
+        <span class="nav-icon">↪</span>
+        Logout
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs,
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/* =====================================================
+   GLOBALS
+===================================================== */
+
+let currentUser = null;
+
+let allTransactions = [];
+
+let currentFilter = "all";
+
+
+/* =====================================================
+   MONEY
+===================================================== */
+
+function formatMoney(value){
+
+    const number = Number(value || 0);
+
+    return "₱" + number.toLocaleString(
+        "en-PH",
+        {
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        }
+    );
+
+}
+
+
+/* =====================================================
+   NUMBER
+===================================================== */
+
+function getNumber(data,fields){
+
+    if(!data){
+        return 0;
+    }
+
+    for(const field of fields){
+
+        const value = data[field];
+
+        if(
+            value !== undefined &&
+            value !== null &&
+            value !== ""
+        ){
+
+            const number = Number(
+                String(value)
+                    .replace(/[₱,\s]/g,"")
+            );
+
+            if(Number.isFinite(number)){
+                return number;
+            }
+
+        }
+
+    }
+
+    return 0;
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function getDate(data){
+
+    if(!data){
+        return null;
+    }
+
+    const fields = [
+
+        "createdAt",
+        "updatedAt",
+        "requestedAt",
+        "submittedAt",
+        "approvedAt",
+        "completedAt",
+        "collectedAt",
+        "earnedAt",
+        "purchaseDate",
+        "date",
+        "time"
+
+    ];
+
+
+    for(const field of fields){
+
+        const value = data[field];
+
+        if(!value){
+            continue;
+        }
+
+
+        if(
+            typeof value.toDate === "function"
+        ){
+
+            return value.toDate();
+
+        }
+
+
+        if(value instanceof Date){
+
+            return value;
+
+        }
+
+
+        if(typeof value === "number"){
+
+            const date = new Date(value);
+
+            if(!isNaN(date.getTime())){
+
+                return date;
+
+            }
+
+        }
+
+
+        if(typeof value === "string"){
+
+            const date = new Date(value);
+
+            if(!isNaN(date.getTime())){
+
+                return date;
+
+            }
+
+        }
+
+    }
+
+    return null;
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(date){
+
+    if(!date){
+
+        return "Date unavailable";
+
+    }
+
+    return date.toLocaleString(
+        "en-PH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric",
+            hour:"numeric",
+            minute:"2-digit",
+            hour12:true
+        }
+    );
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function getStatus(data){
+
+    if(!data){
+
+        return "Completed";
+
+    }
+
+    return String(
+
+        data.status ||
+        data.depositStatus ||
+        data.withdrawalStatus ||
+        data.investmentStatus ||
+        data.earningStatus ||
+        "Completed"
+
+    );
+
+}
+
+
+/* =====================================================
+   SUCCESSFUL / VALID
+===================================================== */
+
+function isRejected(data){
+
+    const status =
+        getStatus(data).toLowerCase();
+
+    return (
+
+        status.includes("reject") ||
+        status.includes("cancel") ||
+        status.includes("decline")
+
+    );
+
+}
+
+
+/* =====================================================
+   ADD TRANSACTION
+===================================================== */
+
+function addTransaction({
+
+    type,
+    title,
+    amount,
+    direction,
+    date,
+    icon
+
+}){
+
+    const numericAmount =
+        Number(amount || 0);
+
+    if(numericAmount <= 0){
+
+        return;
+
+    }
+
+    allTransactions.push({
+
+        type,
+        title,
+        amount:numericAmount,
+        direction,
+        date,
+        icon
+
+    });
+
+}
+
+
+/* =====================================================
+   LOAD COLLECTION
+===================================================== */
+
+async function loadCollection(name){
+
+    try{
+
+        const ref =
+            collection(db,name);
+
+        const q =
+            query(
+                ref,
+                where(
+                    "userId",
+                    "==",
+                    currentUser.uid
+                )
+            );
+
+        const snapshot =
+            await getDocs(q);
+
+        const records = [];
+
+        snapshot.forEach(
+            snap => {
+
+                records.push({
+
+                    id:snap.id,
+                    ...snap.data()
+
+                });
+
+            }
+        );
+
+        return records;
+
+    }
+    catch(error){
+
+        console.log(
+            "Collection skipped:",
+            name,
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD TRANSACTIONS
+===================================================== */
+
+window.loadTransactions = async function(){
+
+    if(!currentUser){
+
+        return;
+
+    }
+
+
+    const list =
+        document.getElementById(
+            "transactionList"
+        );
+
+
+    list.innerHTML = `
+
+        <div class="empty">
+            Loading transactions...
+        </div>
+
+    `;
+
+
+    allTransactions = [];
+
+
+    try{
+
+        /* =================================================
+           1. USER REGISTRATION BONUS
+        ================================================= */
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+
+        const userSnap =
+            await getDoc(userRef);
+
+
+        if(userSnap.exists()){
+
+            const userData =
+                userSnap.data();
+
+
+            const registrationBonus =
+                getNumber(
+                    userData,
+                    [
+                        "bonus",
+                        "registrationBonus",
+                        "welcomeBonus"
+                    ]
+                );
+
+
+            if(registrationBonus > 0){
+
+                addTransaction({
+
+                    type:"bonus",
+
+                    title:"Registration Bonus",
+
+                    amount:
+                        registrationBonus,
+
+                    direction:"plus",
+
+                    date:
+                        getDate(userData),
+
+                    icon:"🎁"
+
+                });
+
+            }
+
+        }
+
+
+        /* =================================================
+           2. DEPOSITS
+        ================================================= */
+
+        const deposits =
+            await loadCollection(
+                "deposits"
+            );
+
+
+        deposits.forEach(
+            deposit => {
+
+                if(isRejected(deposit)){
+
+                    return;
+
+                }
+
+
+                const amount =
+                    getNumber(
+                        deposit,
+                        [
+                            "amount",
+                            "amountValue",
+                            "depositAmount",
+                            "value"
+                        ]
+                    );
+
+
+                addTransaction({
+
+                    type:"deposit",
+
+                    title:"Deposit",
+
+                    amount,
+
+                    direction:"plus",
+
+                    date:
+                        getDate(deposit),
+
+                    icon:"💳"
+
+                });
+
+            }
+        );
+
+
+        /* =================================================
+           3. PURCHASES
+        ================================================= */
+
+        const purchases =
+            await loadCollection(
+                "purchases"
+            );
+
+
+        const investments =
+            await loadCollection(
+                "investments"
+            );
+
+
+        const purchaseRecords =
+            purchases.concat(
+                investments
+            );
+
+
+        purchaseRecords.forEach(
+            purchase => {
+
+                if(isRejected(purchase)){
+
+                    return;
+
+                }
+
+
+                const amount =
+                    getNumber(
+                        purchase,
+                        [
+                            "amount",
+                            "price",
+                            "purchaseAmount",
+                            "investmentAmount",
+                            "cost",
+                            "planPrice",
+                            "principal"
+                        ]
+                    );
+
+
+                if(amount <= 0){
+
+                    return;
+
+                }
+
+
+                addTransaction({
+
+                    type:"purchase",
+
+                    title:"Purchase",
+
+                    amount,
+
+                    direction:"minus",
+
+                    date:
+                        getDate(purchase),
+
+                    icon:"✈️"
+
+                });
+
+            }
+        );
+
+
+        /* =================================================
+           4. WITHDRAWALS
+        ================================================= */
+
+        const withdrawals =
+            await loadCollection(
+                "withdrawals"
+            );
+
+
+        withdrawals.forEach(
+            withdrawal => {
+
+                if(isRejected(withdrawal)){
+
+                    return;
+
+                }
+
+
+                const amount =
+                    getNumber(
+                        withdrawal,
+                        [
+                            "amount",
+                            "withdrawalAmount",
+                            "value"
+                        ]
+                    );
+
+
+                addTransaction({
+
+                    type:"withdrawal",
+
+                    title:"Withdrawal",
+
+                    amount,
+
+                    direction:"minus",
+
+                    date:
+                        getDate(withdrawal),
+
+                    icon:"💸"
+
+                });
+
+            }
+        );
+
+
+        /* =================================================
+           5. EARNINGS
+        ================================================= */
+
+        const earnings =
+            await loadCollection(
+                "earnings"
+            );
+
+
+        earnings.forEach(
+            earning => {
+
+                if(isRejected(earning)){
+
+                    return;
+
+                }
+
+
+                const amount =
+                    getNumber(
+                        earning,
+                        [
+                            "amount",
+                            "earning",
+                            "earnings",
+                            "dailyEarning",
+                            "profit",
+                            "value"
+                        ]
+                    );
+
+
+                if(amount <= 0){
+
+                    return;
+
+                }
+
+
+                const type =
+                    String(
+                        earning.type || ""
+                    ).toLowerCase();
+
+
+                const name =
+                    String(
+                        earning.name || ""
+                    ).toLowerCase();
+
+
+                const source =
+                    String(
+                        earning.source || ""
+                    ).toLowerCase();
+
+
+                const description =
+                    String(
+                        earning.description || ""
+                    ).toLowerCase();
+
+
+                /* =========================================
+                   GIFT CODE
+                ========================================== */
+
+                const isGiftCode =
+
+                    type.includes("gift") ||
+                    name.includes("gift") ||
+                    source.includes("gift") ||
+                    description.includes("gift");
+
+
+                if(isGiftCode){
+
+                    addTransaction({
+
+                        type:"gift",
+
+                        title:"Gift Code",
+
+                        amount,
+
+                        direction:"plus",
+
+                        date:
+                            getDate(earning),
+
+                        icon:"🎁"
+
+                    });
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   REGISTRATION / WELCOME BONUS
+                ========================================== */
+
+                const isRegistrationBonus =
+
+                    type.includes("registration") ||
+                    type.includes("welcome") ||
+                    name.includes("registration") ||
+                    name.includes("welcome") ||
+                    source.includes("registration") ||
+                    source.includes("welcome") ||
+                    description.includes("registration") ||
+                    description.includes("welcome");
+
+
+                if(isRegistrationBonus){
+
+                    addTransaction({
+
+                        type:"bonus",
+
+                        title:"Registration Bonus",
+
+                        amount,
+
+                        direction:"plus",
+
+                        date:
+                            getDate(earning),
+
+                        icon:"🎁"
+
+                    });
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   REFERRAL COMMISSION
+                ========================================== */
+
+                const isCommission =
+
+                    type.includes("commission") ||
+                    name.includes("commission") ||
+                    source.includes("commission") ||
+                    description.includes("commission");
+
+
+                if(isCommission){
+
+                    addTransaction({
+
+                        type:"commission",
+
+                        title:"Referral Commission",
+
+                        amount,
+
+                        direction:"plus",
+
+                        date:
+                            getDate(earning),
+
+                        icon:"🤝"
+
+                    });
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   NORMAL DAILY EARNING
+                ========================================== */
+
+                addTransaction({
+
+                    type:"earning",
+
+                    title:"Daily Earnings",
+
+                    amount,
+
+                    direction:"plus",
+
+                    date:
+                        getDate(earning),
+
+                    icon:"📈"
+
+                });
+
+            }
+        );
+
+
+        /* =================================================
+           6. COMMISSIONS COLLECTION
+        ================================================= */
+
+        const commissions =
+            await loadCollection(
+                "commissions"
+            );
+
+
+        commissions.forEach(
+            commission => {
+
+                if(isRejected(commission)){
+
+                    return;
+
+                }
+
+
+                const amount =
+                    getNumber(
+                        commission,
+                        [
+                            "amount",
+                            "commission",
+                            "commissionAmount",
+                            "value"
+                        ]
+                    );
+
+
+                addTransaction({
+
+                    type:"commission",
+
+                    title:"Referral Commission",
+
+                    amount,
+
+                    direction:"plus",
+
+                    date:
+                        getDate(commission),
+
+                    icon:"🤝"
+
+                });
+
+            }
+        );
+
+
+        /* =================================================
+           7. REFERRAL COMMISSIONS
+        ================================================= */
+
+        const referralCommissions =
+            await loadCollection(
+                "referralCommissions"
+            );
+
+
+        referralCommissions.forEach(
+            commission => {
+
+                if(isRejected(commission)){
+
+                    return;
+
+                }
+
+
+                const amount =
+                    getNumber(
+                        commission,
+                        [
+                            "amount",
+                            "commission",
+                            "commissionAmount",
+                            "value"
+                        ]
+                    );
+
+
+                addTransaction({
+
+                    type:"commission",
+
+                    title:"Referral Commission",
+
+                    amount,
+
+                    direction:"plus",
+
+                    date:
+                        getDate(commission),
+
+                    icon:"🤝"
+
+                });
+
+            }
+        );
+
+
+        /* =================================================
+           8. BONUSES COLLECTION
+        ================================================= */
+
+        const bonuses =
+            await loadCollection(
+                "bonuses"
+            );
+
+
+        bonuses.forEach(
+            bonus => {
+
+                if(isRejected(bonus)){
+
+                    return;
+
+                }
+
+
+                const amount =
+                    getNumber(
+                        bonus,
+                        [
+                            "amount",
+                            "bonus",
+                            "bonusAmount",
+                            "value"
+                        ]
+                    );
+
+
+                if(amount <= 0){
+
+                    return;
+
+                }
+
+
+                const reason =
+                    String(
+                        bonus.reason ||
+                        bonus.description ||
+                        bonus.type ||
+                        ""
+                    ).toLowerCase();
+
+
+                const isRegistration =
+
+                    reason.includes("registration") ||
+                    reason.includes("welcome");
+
+
+                if(isRegistration){
+
+                    const alreadyHasUserBonus =
+
+                        userSnap.exists() &&
+                        getNumber(
+                            userSnap.data(),
+                            [
+                                "bonus",
+                                "registrationBonus",
+                                "welcomeBonus"
+                            ]
+                        ) > 0;
+
+
+                    if(alreadyHasUserBonus){
+
+                        return;
+
+                    }
+
+                }
+
+
+                addTransaction({
+
+                    type:"bonus",
+
+                    title:
+                        isRegistration
+                        ? "Registration Bonus"
+                        : "Bonus",
+
+                    amount,
+
+                    direction:"plus",
+
+                    date:
+                        getDate(bonus),
+
+                    icon:"🎁"
+
+                });
+
+            }
+        );
+
+
+        /* =================================================
+           SORT NEWEST FIRST
+        ================================================= */
+
+        allTransactions.sort(
+
+            function(a,b){
+
+                const aTime =
+                    a.date
+                    ? a.date.getTime()
+                    : 0;
+
+                const bTime =
+                    b.date
+                    ? b.date.getTime()
+                    : 0;
+
+                return bTime - aTime;
+
+            }
+
+        );
+
+
+        /* =================================================
+           DISPLAY
+        ================================================= */
+
+        renderTransactions();
+
+    }
+    catch(error){
+
+        console.error(
+            "Transaction loading error:",
+            error
+        );
+
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                Unable to load transactions.
+
+                <br><br>
+
+                Please check your internet connection.
+
+            </div>
+
+        `;
+
+    }
+
+};
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderTransactions(){
+
+    const list =
+        document.getElementById(
+            "transactionList"
+        );
+
+
+    let transactions =
+        allTransactions;
+
+
+    if(currentFilter !== "all"){
+
+        transactions =
+            allTransactions.filter(
+
+                transaction =>
+                    transaction.type ===
+                    currentFilter
+
+            );
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    if(transactions.length === 0){
+
+        list.innerHTML = `
+
+            <div class="empty">
+                No transactions found.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    transactions.forEach(
+        transaction => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "transaction-item";
+
+
+            const sign =
+                transaction.direction === "plus"
+                ? "+"
+                : "−";
+
+
+            const amountClass =
+                transaction.direction === "plus"
+                ? "plus"
+                : "minus";
+
+
+            item.innerHTML = `
+
+                <div class="transaction-left">
+
+                    <div class="transaction-icon">
+
+                        ${transaction.icon}
+
+                    </div>
+
+
+                    <div class="transaction-info">
+
+                        <div class="transaction-type">
+
+                            ${escapeHTML(
+                                transaction.title
+                            )}
+
+                        </div>
+
+
+                        <div class="transaction-date">
+
+                            ${escapeHTML(
+                                formatDate(
+                                    transaction.date
+                                )
+                            )}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="transaction-amount ${amountClass}"
+                >
+
+                    ${sign}${formatMoney(
+                        transaction.amount
+                    )}
+
+                </div>
+
+            `;
+
+
+            list.appendChild(item);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+window.setFilter = function(
+    filter,
+    button
+){
+
+    currentFilter = filter;
+
+
+    document
+        .querySelectorAll(
+            ".filter-btn"
+        )
+        .forEach(
+            btn =>
+                btn.classList.remove(
+                    "active"
+                )
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    renderTransactions();
+
+};
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+window.goHome = function(){
+
+    window.location.href =
+        "/dashboard/";
+
+};
+
+
+window.goCrafts = function(){
+
+    window.location.href =
+        "/crafts/";
+
+};
+
+
+window.goNetwork = function(){
+
+    window.location.href =
+        "/network/";
+
+};
+
+
+window.goBack = function(){
+
+    window.location.href =
+        "/dashboard/";
+
+};
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logout = async function(){
+
+    try{
+
+        await signOut(auth);
+
+        window.location.href =
+            "/";
+
+    }
+    catch(error){
+
+        console.error(
+            "Logout error:",
+            error
+        );
+
+        alert(
+            "Logout failed. Please try again."
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async function(user){
+
+        if(!user){
+
+            window.location.href =
+                "/";
+
+            return;
+
+        }
+
+
+        currentUser = user;
+
+        await loadTransactions();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
