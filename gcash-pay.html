@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1260,75 +1260,44 @@ user remains on this page and can scan the
 QR manually.
 ====================================================
 */
-
 function openGCash(){
 
-  const qrSection =
-    document.getElementById("qrSection");
-
-
-  /*
-  Make sure the QR is visible.
-  */
-
-  if(!qrSection.classList.contains("show")){
-
-    showStatus(
-      "Please generate the payment QR first.",
-      "warning"
-    );
-
-    return;
-
-  }
-
-
   showStatus(
-    "Opening GCash. If it does not open, return here and scan the QR code.",
+    "Opening GCash. If GCash does not open, use the QR code below.",
     "info"
   );
 
-
   /*
-  Android intent attempt.
-
-  This does NOT send the GCash number or
-  payment amount. It only attempts to open
-  the GCash application.
+  Try the GCash app URI.
   */
 
-  const intentURL =
-    "intent://#Intent;" +
-    "scheme=gcash;" +
-    "package=com.gcash.android;" +
-    "end";
+  const startTime = Date.now();
 
+  window.location.href = "gcash://";
 
   /*
-  Attempt launch.
-  */
-
-  window.location.href = intentURL;
-
-
-  /*
-  Fallback message.
-
-  The QR remains visible.
+  If GCash doesn't open, return the user
+  to the QR instructions.
   */
 
   setTimeout(function(){
 
-    showStatus(
-      "If GCash did not open, stay on this page and scan the QR code using your GCash app.",
-      "warning"
-    );
+    const elapsed = Date.now() - startTime;
 
-  },1800);
+    if(elapsed < 2500){
+
+      showStatus(
+        "GCash could not be opened automatically. Please open GCash manually and scan the QR code above.",
+        "warning"
+      );
+
+    }
+
+  }, 1800);
 
 }
 
-
+      
 /*
 ====================================================
 PAYMENT ACCOUNT CHANGE
