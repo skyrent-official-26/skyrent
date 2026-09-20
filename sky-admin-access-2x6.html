@@ -5,10 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SkyRent Admin Login</title>
 
@@ -18,10 +15,10 @@
    RESET
 ========================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 
@@ -29,17 +26,18 @@
    BODY
 ========================= */
 
-body{
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
 
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
         Arial,
         Helvetica,
         sans-serif;
@@ -47,12 +45,12 @@ body{
     background:
         linear-gradient(
             135deg,
-            #075985,
-            #0284c7,
-            #38bdf8
+            #075985 0%,
+            #0284c7 50%,
+            #38bdf8 100%
         );
 
-    padding:20px;
+    padding: 20px;
 }
 
 
@@ -60,22 +58,20 @@ body{
    LOGIN BOX
 ========================= */
 
-.login-box{
+.login-box {
+    width: 100%;
+    max-width: 380px;
 
-    width:100%;
+    background: #ffffff;
 
-    max-width:380px;
+    border-radius: 20px;
 
-    background:white;
+    padding: 30px 25px;
 
-    border-radius:18px;
-
-    padding:30px 25px;
+    text-align: center;
 
     box-shadow:
-        0 15px 40px rgba(0,0,0,.20);
-
-    text-align:center;
+        0 20px 50px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -83,42 +79,33 @@ body{
    LOGO
 ========================= */
 
-.logo{
+.logo {
+    width: 78px;
+    height: 78px;
 
-    width:70px;
+    margin: 0 auto 16px;
 
-    height:70px;
+    border-radius: 50%;
 
-    margin:
-        0 auto 15px;
+    background: #075985;
 
-    border-radius:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    background:#075985;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
+    overflow: hidden;
 
     box-shadow:
-        0 5px 15px
-        rgba(7,89,133,.25);
-
-    overflow:hidden;
+        0 6px 18px rgba(7, 89, 133, 0.30);
 }
 
+.logo img {
+    width: 100%;
+    height: 100%;
 
-.logo img{
+    object-fit: contain;
 
-    width:100%;
-
-    height:100%;
-
-    object-fit:contain;
-
-    padding:8px;
+    padding: 8px;
 }
 
 
@@ -126,23 +113,22 @@ body{
    TITLE
 ========================= */
 
-h1{
+h1 {
+    color: #0f172a;
 
-    color:#0f172a;
+    font-size: 24px;
+    font-weight: 700;
 
-    font-size:24px;
-
-    margin-bottom:5px;
+    margin-bottom: 6px;
 }
 
 
-.subtitle{
+.subtitle {
+    color: #64748b;
 
-    color:#64748b;
+    font-size: 13px;
 
-    font-size:13px;
-
-    margin-bottom:25px;
+    margin-bottom: 25px;
 }
 
 
@@ -150,54 +136,59 @@ h1{
    INPUT GROUP
 ========================= */
 
-.input-group{
+.input-group {
+    text-align: left;
 
-    text-align:left;
-
-    margin-bottom:15px;
+    margin-bottom: 16px;
 }
 
 
-.input-group label{
+.input-group label {
+    display: block;
 
-    display:block;
+    color: #334155;
 
-    font-size:13px;
+    font-size: 13px;
 
-    font-weight:bold;
+    font-weight: 700;
 
-    color:#334155;
-
-    margin-bottom:6px;
+    margin-bottom: 7px;
 }
 
 
-.input-group input{
+.input-group input {
+    width: 100%;
 
-    width:100%;
+    height: 48px;
 
-    padding:13px 12px;
+    padding: 0 13px;
 
-    border:
-        1px solid #cbd5e1;
+    border: 1px solid #cbd5e1;
 
-    border-radius:9px;
+    border-radius: 10px;
 
-    outline:none;
+    outline: none;
 
-    font-size:14px;
+    background: #ffffff;
 
-    transition:.2s;
+    color: #0f172a;
+
+    font-size: 14px;
+
+    transition: 0.2s;
 }
 
 
-.input-group input:focus{
+.input-group input::placeholder {
+    color: #94a3b8;
+}
 
-    border-color:#0284c7;
+
+.input-group input:focus {
+    border-color: #0284c7;
 
     box-shadow:
-        0 0 0 3px
-        rgba(2,132,199,.12);
+        0 0 0 3px rgba(2, 132, 199, 0.12);
 }
 
 
@@ -205,121 +196,124 @@ h1{
    LOGIN BUTTON
 ========================= */
 
-.login-btn{
+.login-btn {
+    width: 100%;
 
-    width:100%;
+    height: 48px;
 
-    border:none;
+    border: none;
 
-    background:#075985;
+    border-radius: 10px;
 
-    color:white;
+    background:
+        linear-gradient(
+            135deg,
+            #075985,
+            #0284c7
+        );
 
-    padding:13px;
+    color: white;
 
-    border-radius:9px;
+    font-size: 15px;
 
-    font-size:15px;
+    font-weight: 700;
 
-    font-weight:bold;
+    cursor: pointer;
 
-    cursor:pointer;
+    margin-top: 5px;
 
-    margin-top:5px;
+    box-shadow:
+        0 6px 15px rgba(2, 132, 199, 0.25);
 
-    transition:.2s;
+    transition: 0.2s;
 }
 
 
-.login-btn:hover{
-
-    background:#0369a1;
+.login-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #064e73,
+            #0369a1
+        );
 }
 
 
-.login-btn:active{
-
-    transform:scale(.98);
+.login-btn:active {
+    transform: scale(0.98);
 }
 
 
-.login-btn:disabled{
+.login-btn:disabled {
+    opacity: 0.75;
 
-    opacity:.75;
-
-    cursor:not-allowed;
-
-    pointer-events:none;
+    cursor: not-allowed;
 }
 
 
 /* =========================
-   LOADING SPINNER
+   SPINNER
 ========================= */
 
-.spinner{
+.spinner {
+    display: inline-block;
 
-    display:inline-block;
+    width: 16px;
+    height: 16px;
 
-    width:16px;
+    border: 3px solid rgba(255, 255, 255, 0.35);
 
-    height:16px;
+    border-top-color: #ffffff;
 
-    border:
-        3px solid
-        rgba(255,255,255,.35);
-
-    border-top-color:white;
-
-    border-radius:50%;
+    border-radius: 50%;
 
     animation:
-        spin .8s linear infinite;
+        spin 0.8s linear infinite;
 
-    vertical-align:middle;
+    vertical-align: middle;
 
-    margin-right:7px;
+    margin-right: 7px;
 }
 
 
-@keyframes spin{
+@keyframes spin {
 
-    to{
-
-        transform:rotate(360deg);
-
+    to {
+        transform: rotate(360deg);
     }
 
 }
 
 
 /* =========================
-   ERROR MESSAGE
+   ERROR
 ========================= */
 
-.error{
+.error {
+    display: none;
 
-    display:none;
+    margin-top: 15px;
 
-    margin-top:15px;
+    padding: 11px;
 
-    padding:10px;
+    border-radius: 9px;
 
-    border-radius:8px;
+    background: #fef2f2;
 
-    background:#fef2f2;
+    border: 1px solid #fecaca;
 
-    color:#dc2626;
+    color: #dc2626;
 
-    font-size:12px;
+    font-size: 12px;
 
-    font-weight:bold;
+    font-weight: 600;
+
+    line-height: 1.4;
 }
 
 
-.error.show{
-
-    display:block;
+.error.show {
+    display: block;
 }
 
 
@@ -327,13 +321,12 @@ h1{
    FOOTER
 ========================= */
 
-.footer{
+.footer {
+    margin-top: 22px;
 
-    margin-top:20px;
+    color: #94a3b8;
 
-    font-size:11px;
-
-    color:#94a3b8;
+    font-size: 11px;
 }
 
 
@@ -341,18 +334,25 @@ h1{
    MOBILE
 ========================= */
 
-@media(max-width:500px){
+@media (max-width: 500px) {
 
-    .login-box{
-
-        padding:25px 20px;
-
+    body {
+        padding: 16px;
     }
 
-    h1{
+    .login-box {
+        padding: 27px 20px;
 
-        font-size:22px;
+        border-radius: 18px;
+    }
 
+    .logo {
+        width: 72px;
+        height: 72px;
+    }
+
+    h1 {
+        font-size: 22px;
     }
 
 }
@@ -364,10 +364,6 @@ h1{
 
 <body>
 
-
-<!-- =========================
-     LOGIN BOX
-========================= -->
 
 <div class="login-box">
 
@@ -387,34 +383,23 @@ h1{
     <!-- TITLE -->
 
     <h1>
-
         SkyRent Admin
-
     </h1>
 
-
     <div class="subtitle">
-
         Administrator Login
-
     </div>
 
 
-    <!-- =========================
-         LOGIN FORM
-    ========================= -->
+    <!-- LOGIN FORM -->
 
     <form id="loginForm">
 
 
-        <!-- USERNAME -->
-
         <div class="input-group">
 
             <label for="username">
-
                 Username
-
             </label>
 
             <input
@@ -428,14 +413,10 @@ h1{
         </div>
 
 
-        <!-- PASSWORD -->
-
         <div class="input-group">
 
             <label for="password">
-
                 Password
-
             </label>
 
             <input
@@ -449,40 +430,30 @@ h1{
         </div>
 
 
-        <!-- LOGIN BUTTON -->
-
         <button
             type="submit"
             class="login-btn"
             id="loginBtn"
         >
-
             🔐 Login to Admin Panel
-
         </button>
 
 
     </form>
 
 
-    <!-- ERROR MESSAGE -->
+    <!-- ERROR -->
 
     <div
         class="error"
         id="errorMessage"
-    >
-
-        ❌ Incorrect username or password.
-
-    </div>
+    ></div>
 
 
     <!-- FOOTER -->
 
     <div class="footer">
-
         SkyRent Admin Panel
-
     </div>
 
 
@@ -491,9 +462,8 @@ h1{
 
 <script type="module">
 
-
 /* =========================================
-   FIREBASE IMPORTS
+   FIREBASE
 ========================================= */
 
 import {
@@ -505,7 +475,6 @@ import {
     getAuth,
     signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
 
 
 /* =========================================
@@ -535,18 +504,15 @@ const firebaseConfig = {
 };
 
 
-
 /* =========================================
-   INITIALIZE FIREBASE
+   INITIALIZE
 ========================================= */
 
 const app =
     initializeApp(firebaseConfig);
 
-
 const auth =
     getAuth(app);
-
 
 
 /* =========================================
@@ -556,10 +522,8 @@ const auth =
 const ADMIN_EMAIL =
     "admin@skyrent.com";
 
-
 const ADMIN_UID =
     "28zzG9NB46gRkwia7WtOxS1lQNa2";
-
 
 
 /* =========================================
@@ -569,61 +533,48 @@ const ADMIN_UID =
 const loginForm =
     document.getElementById("loginForm");
 
-
 const usernameInput =
     document.getElementById("username");
-
 
 const passwordInput =
     document.getElementById("password");
 
-
 const loginButton =
     document.getElementById("loginBtn");
-
 
 const errorMessage =
     document.getElementById("errorMessage");
 
 
-
 /* =========================================
-   SHOW ERROR
+   ERROR
 ========================================= */
 
-function showError(message){
+function showError(message) {
 
-    errorMessage.textContent =
-        message;
+    errorMessage.textContent = message;
 
-    errorMessage.style.display =
-        "block";
+    errorMessage.classList.add("show");
 
 }
 
 
+function hideError() {
 
-/* =========================================
-   HIDE ERROR
-========================================= */
+    errorMessage.textContent = "";
 
-function hideError(){
-
-    errorMessage.style.display =
-        "none";
+    errorMessage.classList.remove("show");
 
 }
 
 
-
 /* =========================================
-   RESET LOGIN BUTTON
+   RESET BUTTON
 ========================================= */
 
-function resetLoginButton(){
+function resetLoginButton() {
 
-    loginButton.disabled =
-        false;
+    loginButton.disabled = false;
 
     loginButton.innerHTML =
         "🔐 Login to Admin Panel";
@@ -631,75 +582,48 @@ function resetLoginButton(){
 }
 
 
-
 /* =========================================
-   LOGIN FORM
+   LOGIN
 ========================================= */
 
 loginForm.addEventListener(
     "submit",
-    async function(event){
+    async function(event) {
 
         event.preventDefault();
 
-
         hideError();
 
-
-        /* ================================
-           GET INPUTS
-        ================================= */
-
         const email =
-            usernameInput
-                .value
-                .trim()
-                .toLowerCase();
-
+            usernameInput.value
+            .trim()
+            .toLowerCase();
 
         const password =
             passwordInput.value;
 
 
-
-        /* ================================
-           CHECK INPUT
-        ================================= */
-
-        if(
-            !email ||
-            !password
-        ){
+        if (!email || !password) {
 
             showError(
                 "❌ Please enter your email and password."
             );
 
             return;
-
         }
 
 
-
-        /* ================================
-           BUTTON LOADING
-        ================================= */
-
-        loginButton.disabled =
-            true;
-
+        loginButton.disabled = true;
 
         loginButton.innerHTML =
             '<span class="spinner"></span> Logging in...';
 
 
+        try {
 
-        try{
-
-
-            /* ================================
+            /* =========================
                FIREBASE LOGIN
-            ================================= */
+            ========================= */
 
             const userCredential =
                 await signInWithEmailAndPassword(
@@ -713,12 +637,10 @@ loginForm.addEventListener(
                 userCredential.user;
 
 
-
             console.log(
                 "Firebase login successful:",
                 user.email
             );
-
 
             console.log(
                 "Firebase UID:",
@@ -726,16 +648,15 @@ loginForm.addEventListener(
             );
 
 
+            /* =========================
+               VERIFY EMAIL
+            ========================= */
 
-            /* ================================
-               VERIFY ADMIN EMAIL
-            ================================= */
-
-            if(
+            if (
                 !user.email ||
                 user.email.toLowerCase()
                 !== ADMIN_EMAIL.toLowerCase()
-            ){
+            ) {
 
                 showError(
                     "❌ Access denied. This account is not the administrator."
@@ -744,18 +665,16 @@ loginForm.addEventListener(
                 resetLoginButton();
 
                 return;
-
             }
 
 
+            /* =========================
+               VERIFY UID
+            ========================= */
 
-            /* ================================
-               VERIFY ADMIN UID
-            ================================= */
-
-            if(
+            if (
                 user.uid !== ADMIN_UID
-            ){
+            ) {
 
                 showError(
                     "❌ Access denied. This account is not the administrator."
@@ -764,20 +683,17 @@ loginForm.addEventListener(
                 resetLoginButton();
 
                 return;
-
             }
 
 
-
-            /* ================================
+            /* =========================
                ADMIN VERIFIED
-            ================================= */
+            ========================= */
 
             sessionStorage.setItem(
                 "skyRentAdminLoggedIn",
                 "true"
             );
-
 
             sessionStorage.setItem(
                 "skyRentAdminUID",
@@ -790,18 +706,16 @@ loginForm.addEventListener(
             );
 
 
-
-            /* ================================
-               REDIRECT TO ADMIN DASHBOARD
-            ================================= */
+            /* =========================
+               REDIRECT
+            ========================= */
 
             window.location.href =
                 "admin.html";
 
-
         }
 
-        catch(error){
+        catch (error) {
 
             console.error(
                 "Firebase admin login error:",
@@ -812,15 +726,10 @@ loginForm.addEventListener(
             resetLoginButton();
 
 
-
-            /* ================================
-               FIREBASE ERRORS
-            ================================= */
-
-            if(
+            if (
                 error.code ===
                 "auth/invalid-credential"
-            ){
+            ) {
 
                 showError(
                     "❌ Incorrect email or password."
@@ -828,10 +737,10 @@ loginForm.addEventListener(
 
             }
 
-            else if(
+            else if (
                 error.code ===
                 "auth/user-not-found"
-            ){
+            ) {
 
                 showError(
                     "❌ Admin account was not found in Firebase."
@@ -839,10 +748,10 @@ loginForm.addEventListener(
 
             }
 
-            else if(
+            else if (
                 error.code ===
                 "auth/wrong-password"
-            ){
+            ) {
 
                 showError(
                     "❌ Incorrect password."
@@ -850,10 +759,10 @@ loginForm.addEventListener(
 
             }
 
-            else if(
+            else if (
                 error.code ===
                 "auth/too-many-requests"
-            ){
+            ) {
 
                 showError(
                     "❌ Too many login attempts. Please try again later."
@@ -861,10 +770,10 @@ loginForm.addEventListener(
 
             }
 
-            else if(
+            else if (
                 error.code ===
                 "auth/network-request-failed"
-            ){
+            ) {
 
                 showError(
                     "❌ Network error. Please check your internet connection."
@@ -872,7 +781,7 @@ loginForm.addEventListener(
 
             }
 
-            else{
+            else {
 
                 showError(
                     "❌ Login failed. Please try again."
@@ -885,9 +794,7 @@ loginForm.addEventListener(
     }
 );
 
-
 </script>
-
 
 </body>
 
