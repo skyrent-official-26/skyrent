@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>SkyRent Test Account Adjustments</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f7ff;
+    color:#1e293b;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #075985,
+        #0284c7
+    );
+    color:white;
+    padding:20px 15px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.header h1{
+    margin:0;
+    font-size:22px;
+}
+
+.header p{
+    margin:6px 0 0;
+    font-size:13px;
+    opacity:.9;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:100%;
+    max-width:600px;
+    margin:auto;
+    padding:15px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    margin-top:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.card h2{
+    margin:0 0 8px;
+    font-size:18px;
+    color:#075985;
+}
+
+.card-description{
+    font-size:12px;
+    color:#64748b;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+/* =========================
+   WARNING
+========================= */
+
+.warning{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    color:#9a3412;
+    padding:12px;
+    border-radius:10px;
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:18px;
+}
+
+/* =========================
+   FIELD
+========================= */
+
+.field{
+    margin-bottom:17px;
+}
+
+.field label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    color:#334155;
+    margin-bottom:7px;
+}
+
+.input-wrapper{
+    position:relative;
+}
+
+.currency{
+    position:absolute;
+    left:13px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:16px;
+    font-weight:700;
+    color:#075985;
+}
+
+input{
+    width:100%;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    padding:13px 13px 13px 35px;
+    font-size:16px;
+    outline:none;
+    background:#f8fafc;
+}
+
+input:focus{
+    border-color:#0284c7;
+    background:white;
+    box-shadow:0 0 0 3px rgba(2,132,199,.10);
+}
+
+/* =========================
+   CURRENT VALUES
+========================= */
+
+.current-box{
+    background:#eff6ff;
+    border-radius:11px;
+    padding:14px;
+    margin-top:20px;
+}
+
+.current-title{
+    font-size:12px;
+    color:#64748b;
+    margin-bottom:8px;
+    font-weight:700;
+}
+
+.current-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:6px 0;
+    font-size:13px;
+}
+
+.current-row strong{
+    color:#075985;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.save-btn{
+    width:100%;
+    border:none;
+    background:linear-gradient(
+        135deg,
+        #075985,
+        #0284c7
+    );
+    color:white;
+    padding:14px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.save-btn:active{
+    transform:scale(.98);
+}
+
+.save-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* =========================
+   RESET
+========================= */
+
+.reset-btn{
+    width:100%;
+    border:none;
+    background:#fee2e2;
+    color:#b91c1c;
+    padding:12px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+    display:none;
+    margin-top:15px;
+    padding:11px;
+    border-radius:9px;
+    text-align:center;
+    font-size:12px;
+    font-weight:700;
+}
+
+.status.show{
+    display:block;
+}
+
+.status.success{
+    background:#ecfdf5;
+    color:#047857;
+}
+
+.status.error{
+    background:#fef2f2;
+    color:#b91c1c;
+}
+
+.status.loading{
+    background:#eff6ff;
+    color:#075985;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn{
+    width:100%;
+    border:none;
+    background:#64748b;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-screen{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(
+        135deg,
+        #052b78,
+        #0074d9,
+        #7edfff
+    );
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    color:white;
+    text-align:center;
+}
+
+.spinner{
+    width:42px;
+    height:42px;
+    border:4px solid rgba(255,255,255,.3);
+    border-top-color:white;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin-bottom:15px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.loading-text{
+    font-size:14px;
+    font-weight:700;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     LOADING
+========================= -->
+
+<div
+    id="loadingScreen"
+    class="loading-screen"
+>
+
+    <div class="spinner"></div>
+
+    <div class="loading-text">
+        Checking administrator access...
+    </div>
+
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
+
+    <h1>
+        🧪 Test Account Adjustments
+    </h1>
+
+    <p>
+        Manage test-account financial deductions
+    </p>
+
+</div>
+
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>
+            Test Account Financial Adjustment
+        </h2>
+
+        <div class="card-description">
+
+            Enter the total deposit and withdrawal amounts
+            generated by your test account. These amounts will
+            be excluded from the financial totals displayed on
+            the SkyRent Admin Dashboard.
+
+        </div>
+
+
+        <div class="warning">
+
+            ⚠️ <strong>Important:</strong>
+            These values do not delete or modify Firestore
+            deposit or withdrawal records. They are only used
+            as dashboard display deductions.
+
+        </div>
+
+
+        <!-- =========================
+             TEST DEPOSIT
+        ========================= -->
+
+        <div class="field">
+
+            <label for="testDeposit">
+
+                Test Account Deposit Amount
+
+            </label>
+
+            <div class="input-wrapper">
+
+                <span class="currency">
+                    ₱
+                </span>
+
+                <input
+                    type="number"
+                    id="testDeposit"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TEST WITHDRAWAL
+        ========================= -->
+
+        <div class="field">
+
+            <label for="testWithdrawal">
+
+                Test Account Withdrawal Amount
+
+            </label>
+
+            <div class="input-wrapper">
+
+                <span class="currency">
+                    ₱
+                </span>
+
+                <input
+                    type="number"
+                    id="testWithdrawal"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CURRENT VALUES
+        ========================= -->
+
+        <div class="current-box">
+
+            <div class="current-title">
+                CURRENT SAVED ADJUSTMENTS
+            </div>
+
+            <div class="current-row">
+
+                <span>
+                    Test Deposit
+                </span>
+
+                <strong id="currentDeposit">
+                    ₱0.00
+                </strong>
+
+            </div>
+
+            <div class="current-row">
+
+                <span>
+                    Test Withdrawal
+                </span>
+
+                <strong id="currentWithdrawal">
+                    ₱0.00
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             SAVE
+        ========================= -->
+
+        <button
+            id="saveBtn"
+            class="save-btn"
+            onclick="saveAdjustments()"
+        >
+            💾 SAVE TEST ACCOUNT ADJUSTMENTS
+        </button>
+
+
+        <!-- =========================
+             RESET
+        ========================= -->
+
+        <button
+            class="reset-btn"
+            onclick="resetAdjustments()"
+        >
+            ♻️ RESET ADJUSTMENTS TO ₱0
+        </button>
+
+
+        <div
+            id="status"
+            class="status"
+        ></div>
+
+
+        <!-- =========================
+             BACK
+        ========================= -->
+
+        <button
+            class="back-btn"
+            onclick="window.location.href='admin.html'"
+        >
+            ← Back to Admin Dashboard
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =========================
+   ADMIN UID
+========================= */
+
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+/* =========================
+   FIRESTORE LOCATION
+========================= */
+
+const adjustmentRef =
+    doc(
+        db,
+        "adminSettings",
+        "testAccountAdjustments"
+    );
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loadingScreen =
+    document.getElementById(
+        "loadingScreen"
+    );
+
+const testDeposit =
+    document.getElementById(
+        "testDeposit"
+    );
+
+const testWithdrawal =
+    document.getElementById(
+        "testWithdrawal"
+    );
+
+const currentDeposit =
+    document.getElementById(
+        "currentDeposit"
+    );
+
+const currentWithdrawal =
+    document.getElementById(
+        "currentWithdrawal"
+    );
+
+const saveBtn =
+    document.getElementById(
+        "saveBtn"
+    );
+
+const statusBox =
+    document.getElementById(
+        "status"
+    );
+
+
+/* =========================
+   FORMAT MONEY
+========================= */
+
+function formatMoney(value){
+
+    return Number(value || 0)
+        .toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+function showStatus(
+    message,
+    type
+){
+
+    statusBox.className =
+        "status show " + type;
+
+    statusBox.textContent =
+        message;
+
+}
+
+
+/* =========================
+   LOAD SAVED VALUES
+========================= */
+
+async function loadAdjustments(){
+
+    try{
+
+        const snapshot =
+            await getDoc(
+                adjustmentRef
+            );
+
+
+        if(snapshot.exists()){
+
+            const data =
+                snapshot.data();
+
+
+            const deposit =
+                Number(
+                    data.testDeposit || 0
+                );
+
+
+            const withdrawal =
+                Number(
+                    data.testWithdrawal || 0
+                );
+
+
+            testDeposit.value =
+                deposit;
+
+
+            testWithdrawal.value =
+                withdrawal;
+
+
+            currentDeposit.textContent =
+                "₱" +
+                formatMoney(deposit);
+
+
+            currentWithdrawal.textContent =
+                "₱" +
+                formatMoney(withdrawal);
+
+        }
+        else{
+
+            testDeposit.value =
+                0;
+
+            testWithdrawal.value =
+                0;
+
+            currentDeposit.textContent =
+                "₱0.00";
+
+            currentWithdrawal.textContent =
+                "₱0.00";
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Load adjustment error:",
+            error
+        );
+
+        showStatus(
+            "❌ Unable to load saved adjustments.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+window.saveAdjustments =
+    async function(){
+
+        const deposit =
+            Number(
+                testDeposit.value || 0
+            );
+
+
+        const withdrawal =
+            Number(
+                testWithdrawal.value || 0
+            );
+
+
+        if(
+            deposit < 0 ||
+            withdrawal < 0
+        ){
+
+            showStatus(
+                "❌ Amounts cannot be negative.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        saveBtn.disabled =
+            true;
+
+        saveBtn.textContent =
+            "⏳ SAVING...";
+
+
+        showStatus(
+            "Saving test-account adjustments...",
+            "loading"
+        );
+
+
+        try{
+
+            await setDoc(
+                adjustmentRef,
+                {
+                    testDeposit:
+                        deposit,
+
+                    testWithdrawal:
+                        withdrawal,
+
+                    updatedAt:
+                        new Date()
+                }
+            );
+
+
+            currentDeposit.textContent =
+                "₱" +
+                formatMoney(deposit);
+
+
+            currentWithdrawal.textContent =
+                "₱" +
+                formatMoney(withdrawal);
+
+
+            showStatus(
+                "✅ Test-account adjustments saved successfully.",
+                "success"
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                "Save adjustment error:",
+                error
+            );
+
+            showStatus(
+                "❌ Unable to save adjustments: " +
+                error.message,
+                "error"
+            );
+
+        }
+
+
+        saveBtn.disabled =
+            false;
+
+        saveBtn.textContent =
+            "💾 SAVE TEST ACCOUNT ADJUSTMENTS";
+
+    };
+
+
+/* =========================
+   RESET
+========================= */
+
+window.resetAdjustments =
+    async function(){
+
+        const confirmed =
+            confirm(
+                "Reset both test-account adjustments to ₱0?"
+            );
+
+
+        if(!confirmed){
+            return;
+        }
+
+
+        saveBtn.disabled =
+            true;
+
+
+        try{
+
+            await setDoc(
+                adjustmentRef,
+                {
+                    testDeposit:0,
+                    testWithdrawal:0,
+                    updatedAt:new Date()
+                }
+            );
+
+
+            testDeposit.value =
+                0;
+
+            testWithdrawal.value =
+                0;
+
+            currentDeposit.textContent =
+                "₱0.00";
+
+            currentWithdrawal.textContent =
+                "₱0.00";
+
+
+            showStatus(
+                "✅ Test-account adjustments reset to ₱0.",
+                "success"
+            );
+
+        }
+        catch(error){
+
+            console.error(
+                "Reset adjustment error:",
+                error
+            );
+
+            showStatus(
+                "❌ Unable to reset adjustments: " +
+                error.message,
+                "error"
+            );
+
+        }
+
+
+        saveBtn.disabled =
+            false;
+
+    };
+
+
+/* =========================
+   ADMIN AUTH
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if(!user){
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        if(
+            user.uid !== ADMIN_UID
+        ){
+
+            alert(
+                "❌ Access denied. Administrator account required."
+            );
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        await loadAdjustments();
+
+
+        loadingScreen.style.display =
+            "none";
+
+    }
+);
+
+</script>
+
+</body>
+</html>
