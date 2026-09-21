@@ -8,437 +8,229 @@
 
 <style>
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f4f7fb;
-    color:#172033;
+    font-family:Arial, sans-serif;
+    background:#f3f7fc;
+    color:#123;
 }
 
-/* HEADER */
 .header{
-    background:linear-gradient(135deg,#0757c9,#1688f5);
+    background:linear-gradient(135deg,#0757c9,#0b8df5);
     color:white;
-    padding:18px 16px;
+    padding:18px 15px;
     position:sticky;
     top:0;
-    z-index:20;
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
-}
-
-.header-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
+    z-index:100;
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
 }
 
 .header h1{
-    font-size:21px;
+    font-size:22px;
+    margin-bottom:5px;
 }
 
 .header p{
-    font-size:12px;
-    opacity:.85;
-    margin-top:3px;
+    font-size:13px;
+    opacity:.9;
 }
 
-.back-btn{
-    border:0;
-    background:rgba(255,255,255,.18);
-    color:white;
-    padding:9px 12px;
-    border-radius:9px;
-    cursor:pointer;
-}
-
-/* MAIN */
 .container{
     max-width:1100px;
     margin:auto;
     padding:15px;
 }
 
-/* SUMMARY */
-.summary{
-    background:white;
-    border-radius:15px;
-    padding:17px;
-    box-shadow:0 3px 14px rgba(20,40,80,.07);
-    margin-bottom:14px;
+.top-bar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
 }
 
-.summary-label{
-    font-size:13px;
-    color:#718096;
-}
-
-.summary-count{
-    font-size:29px;
-    font-weight:bold;
-    color:#0757c9;
-    margin-top:4px;
-}
-
-/* SEARCH */
 .search-box{
-    position:relative;
-    margin-bottom:12px;
+    flex:1;
+    min-width:220px;
 }
 
 .search-box input{
     width:100%;
-    border:1px solid #dce3ed;
-    background:white;
     padding:13px 15px;
-    border-radius:11px;
-    font-size:14px;
+    border:1px solid #d5dfeb;
+    border-radius:12px;
     outline:none;
+    background:white;
+    font-size:14px;
 }
 
 .search-box input:focus{
-    border-color:#1688f5;
+    border-color:#0877e8;
+    box-shadow:0 0 0 3px rgba(8,119,232,.1);
 }
 
-/* MEMBER LIST */
-.member-list{
+.stats{
     background:white;
     border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 3px 14px rgba(20,40,80,.07);
+    padding:16px;
+    margin-bottom:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.list-header{
-    padding:14px 15px;
-    border-bottom:1px solid #edf0f5;
+.stats-title{
+    color:#687789;
+    font-size:13px;
+    margin-bottom:5px;
+}
+
+.stats-number{
+    color:#0757c9;
+    font-size:25px;
     font-weight:bold;
-    font-size:15px;
 }
 
-.member-row{
+.members-list{
     display:flex;
-    align-items:center;
+    flex-direction:column;
+    gap:12px;
+}
+
+.member-card{
+    background:white;
+    border-radius:16px;
+    padding:16px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    border:1px solid #edf2f7;
+}
+
+.member-top{
+    display:flex;
     justify-content:space-between;
+    align-items:flex-start;
     gap:10px;
-    padding:13px 15px;
-    border-bottom:1px solid #edf0f5;
-    cursor:pointer;
-    transition:.15s;
-}
-
-.member-row:last-child{
-    border-bottom:0;
-}
-
-.member-row:hover{
-    background:#f7fbff;
-}
-
-.member-info{
-    min-width:0;
 }
 
 .member-name{
+    font-size:17px;
     font-weight:bold;
-    font-size:14px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.member-phone{
-    font-size:12px;
-    color:#718096;
-    margin-top:3px;
-}
-
-.view-btn{
-    flex-shrink:0;
-    border:0;
-    background:#eaf4ff;
     color:#0757c9;
-    padding:8px 11px;
-    border-radius:8px;
+}
+
+.member-id{
     font-size:12px;
-    font-weight:bold;
+    color:#7b8794;
+    margin-top:4px;
 }
 
-/* LOADING */
-.loading{
-    padding:35px 15px;
-    text-align:center;
-    color:#718096;
-    font-size:14px;
-}
-
-.spinner{
-    width:25px;
-    height:25px;
-    border:3px solid #dcecff;
-    border-top-color:#0757c9;
-    border-radius:50%;
-    animation:spin .8s linear infinite;
-    margin:0 auto 10px;
-}
-
-@keyframes spin{
-    to{transform:rotate(360deg)}
-}
-
-.empty{
-    padding:30px 15px;
-    text-align:center;
-    color:#718096;
-    font-size:14px;
-}
-
-/* DETAILS */
-.details{
-    display:none;
-}
-
-.details.show{
-    display:block;
-}
-
-.detail-top{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:14px;
-}
-
-.detail-back{
-    border:0;
-    background:white;
-    padding:9px 12px;
-    border-radius:9px;
-    color:#0757c9;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-}
-
-.detail-title{
-    flex:1;
-}
-
-.detail-title h2{
-    font-size:19px;
-}
-
-.detail-title p{
-    font-size:12px;
-    color:#718096;
-    margin-top:3px;
-}
-
-/* CARDS */
-.card{
-    background:white;
-    border-radius:14px;
-    padding:15px;
-    margin-bottom:12px;
-    box-shadow:0 3px 14px rgba(20,40,80,.06);
-}
-
-.card-title{
-    font-size:15px;
-    font-weight:bold;
-    margin-bottom:12px;
-    color:#172033;
-}
-
-.info-grid{
+.member-info{
+    margin-top:13px;
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:9px;
 }
 
-.info-item{
-    background:#f7f9fc;
+.info-box{
+    background:#f7faff;
+    border-radius:10px;
     padding:10px;
-    border-radius:9px;
-    min-width:0;
 }
 
 .info-label{
-    color:#7b8798;
-    font-size:10px;
-    text-transform:uppercase;
+    display:block;
+    color:#7b8794;
+    font-size:11px;
     margin-bottom:4px;
 }
 
 .info-value{
     font-size:13px;
     font-weight:600;
+    color:#26384a;
     word-break:break-word;
 }
 
-/* COLLAPSIBLE SECTIONS */
-.lazy-section{
-    background:white;
-    border-radius:14px;
-    margin-bottom:10px;
-    box-shadow:0 3px 14px rgba(20,40,80,.06);
-    overflow:hidden;
+.balance{
+    color:#0877e8;
 }
 
-.lazy-header{
-    width:100%;
-    border:0;
-    background:white;
-    padding:15px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    cursor:pointer;
-    text-align:left;
+.date{
+    color:#536579;
 }
 
-.lazy-left{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.lazy-icon{
-    width:34px;
-    height:34px;
-    border-radius:9px;
-    background:#eaf4ff;
+.badge{
+    background:#e7f3ff;
     color:#0757c9;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-}
-
-.lazy-name{
-    font-weight:bold;
-    font-size:14px;
-}
-
-.lazy-count{
-    color:#718096;
+    padding:6px 9px;
+    border-radius:20px;
     font-size:11px;
-    margin-top:2px;
+    white-space:nowrap;
 }
 
-.arrow{
-    color:#718096;
-    transition:.2s;
-}
-
-.lazy-section.open .arrow{
-    transform:rotate(180deg);
-}
-
-.lazy-content{
-    display:none;
-    border-top:1px solid #edf0f5;
-    padding:12px;
-}
-
-.lazy-section.open .lazy-content{
-    display:block;
-}
-
-/* RECORDS */
-.record{
-    border:1px solid #e8edf4;
-    border-radius:10px;
-    padding:11px;
-    margin-bottom:8px;
-    background:#fafcff;
-}
-
-.record:last-child{
-    margin-bottom:0;
-}
-
-.record-title{
-    font-size:13px;
-    font-weight:bold;
-    margin-bottom:7px;
-}
-
-.record-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:7px;
-}
-
-.record-item{
-    font-size:11px;
-}
-
-.record-label{
-    color:#7b8798;
-}
-
-.record-value{
-    margin-top:2px;
-    font-weight:600;
-    word-break:break-word;
-}
-
-.status{
-    display:inline-block;
-    padding:4px 7px;
-    border-radius:6px;
-    font-size:10px;
-    font-weight:bold;
-}
-
-.status-approved{
-    background:#e8f8ef;
-    color:#16834a;
-}
-
-.status-pending{
-    background:#fff5dc;
-    color:#9a6800;
-}
-
-.status-rejected{
-    background:#ffe9e9;
-    color:#c33;
-}
-
-.section-loading{
-    padding:15px;
+.loading{
     text-align:center;
-    color:#718096;
-    font-size:12px;
+    padding:40px 15px;
+    color:#6f7f91;
+}
+
+.spinner{
+    width:35px;
+    height:35px;
+    border:4px solid #dcecff;
+    border-top-color:#0877e8;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:0 auto 12px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.empty{
+    background:white;
+    border-radius:15px;
+    padding:35px 15px;
+    text-align:center;
+    color:#7b8794;
 }
 
 .error{
-    padding:12px;
     background:#fff0f0;
-    color:#c33;
-    border-radius:8px;
+    color:#c62828;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.back-button{
+    display:inline-block;
+    margin-top:15px;
+    text-decoration:none;
+    color:white;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    padding:8px 12px;
+    border-radius:9px;
     font-size:12px;
 }
 
-/* MOBILE */
 @media(max-width:600px){
-    .container{
-        padding:10px;
+    .member-info{
+        grid-template-columns:1fr;
     }
 
-    .info-grid{
-        grid-template-columns:1fr 1fr;
+    .member-top{
+        flex-direction:column;
     }
 
-    .record-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .member-row{
-        padding:12px;
+    .badge{
+        align-self:flex-start;
     }
 }
 </style>
@@ -446,265 +238,65 @@ body{
 
 <body>
 
-<header class="header">
-    <div class="header-row">
-        <div>
-            <h1>SkyRent Members</h1>
-            <p>Member management</p>
-        </div>
+<div class="header">
+    <h1>👥 SkyRent Members</h1>
+    <p>Registered members • Newest registrations first</p>
 
-        <button class="back-btn" id="adminBtn">
-            Admin
-        </button>
-    </div>
-</header>
+    <a href="/admin.html" class="back-button">
+        ← Back to Admin
+    </a>
+</div>
 
-<main class="container">
+<div class="container">
 
-    <!-- MEMBERS PAGE -->
-    <div id="membersPage">
-
-        <div class="summary">
-            <div class="summary-label">Total Registered Members</div>
-            <div class="summary-count" id="totalUsers">...</div>
-        </div>
-
+    <div class="top-bar">
         <div class="search-box">
             <input
                 type="text"
                 id="searchInput"
-                placeholder="Search name or phone..."
-                autocomplete="off"
+                placeholder="Search name, phone, email, member ID..."
             >
         </div>
-
-        <div class="member-list">
-
-            <div class="list-header">
-                Members
-            </div>
-
-            <div id="membersList">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading members...
-                </div>
-            </div>
-
-        </div>
-
     </div>
 
-
-    <!-- DETAILS PAGE -->
-    <div id="detailsPage" class="details">
-
-        <div class="detail-top">
-
-            <button class="detail-back" id="backBtn">
-                ← Back
-            </button>
-
-            <div class="detail-title">
-                <h2 id="detailName">Member</h2>
-                <p id="detailPhone"></p>
-            </div>
-
-        </div>
-
-
-        <!-- ACCOUNT -->
-        <div class="card">
-
-            <div class="card-title">
-                Account Information
-            </div>
-
-            <div class="info-grid" id="accountInfo"></div>
-
-        </div>
-
-
-        <!-- WITHDRAWAL ACCOUNT -->
-        <div class="card">
-
-            <div class="card-title">
-                Withdrawal Account
-            </div>
-
-            <div class="info-grid" id="withdrawalInfo">
-                <div class="info-item">
-                    <div class="info-label">Account</div>
-                    <div class="info-value">No withdrawal account</div>
-                </div>
-            </div>
-
-        </div>
-
-
-        <!-- DEPOSITS -->
-        <div class="lazy-section" data-type="deposits">
-
-            <button class="lazy-header">
-
-                <div class="lazy-left">
-
-                    <div class="lazy-icon">
-                        ₱
-                    </div>
-
-                    <div>
-                        <div class="lazy-name">
-                            Deposits
-                        </div>
-
-                        <div class="lazy-count">
-                            Tap to load deposit history
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="arrow">
-                    ▼
-                </div>
-
-            </button>
-
-            <div class="lazy-content"></div>
-
-        </div>
-
-
-        <!-- WITHDRAWALS -->
-        <div class="lazy-section" data-type="withdrawals">
-
-            <button class="lazy-header">
-
-                <div class="lazy-left">
-
-                    <div class="lazy-icon">
-                        ↗
-                    </div>
-
-                    <div>
-                        <div class="lazy-name">
-                            Withdrawals
-                        </div>
-
-                        <div class="lazy-count">
-                            Tap to load withdrawal history
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="arrow">
-                    ▼
-                </div>
-
-            </button>
-
-            <div class="lazy-content"></div>
-
-        </div>
-
-
-        <!-- INVESTMENTS -->
-        <div class="lazy-section" data-type="investments">
-
-            <button class="lazy-header">
-
-                <div class="lazy-left">
-
-                    <div class="lazy-icon">
-                        ✈
-                    </div>
-
-                    <div>
-                        <div class="lazy-name">
-                            Investments
-                        </div>
-
-                        <div class="lazy-count">
-                            Tap to load investment history
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="arrow">
-                    ▼
-                </div>
-
-            </button>
-
-            <div class="lazy-content"></div>
-
-        </div>
-
-
-        <!-- EARNINGS -->
-        <div class="lazy-section" data-type="earnings">
-
-            <button class="lazy-header">
-
-                <div class="lazy-left">
-
-                    <div class="lazy-icon">
-                        ₱
-                    </div>
-
-                    <div>
-                        <div class="lazy-name">
-                            Earnings
-                        </div>
-
-                        <div class="lazy-count">
-                            Tap to load earnings history
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="arrow">
-                    ▼
-                </div>
-
-            </button>
-
-            <div class="lazy-content"></div>
-
-        </div>
-
+    <div class="stats">
+        <div class="stats-title">Total Registered Members</div>
+        <div class="stats-number" id="totalUsers">0</div>
     </div>
 
-</main>
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        Loading members...
+    </div>
 
+    <div id="errorBox" class="error" style="display:none;"></div>
+
+    <div id="membersList" class="members-list"></div>
+
+</div>
 
 <script type="module">
 
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getAuth,
     onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
     getFirestore,
     collection,
-    getDocs,
-    query,
-    where
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    getDocs
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* ================================
-   FIREBASE
-================================ */
+/* ==============================
+   FIREBASE CONFIG
+============================== */
 
 const firebaseConfig = {
     apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
@@ -715,104 +307,139 @@ const firebaseConfig = {
     appId: "1:572678456448:web:6b7132351515742dd09265"
 };
 
-const ADMIN_UID = "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
+/* ==============================
+   FIREBASE INIT
+============================== */
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
+
 const db = getFirestore(app);
 
 
-/* ================================
-   VARIABLES
-================================ */
+/* ==============================
+   ADMIN UID
+============================== */
+
+const ADMIN_UID = "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+/* ==============================
+   ELEMENTS
+============================== */
+
+const loading = document.getElementById("loading");
+
+const membersList = document.getElementById("membersList");
+
+const totalUsers = document.getElementById("totalUsers");
+
+const searchInput = document.getElementById("searchInput");
+
+const errorBox = document.getElementById("errorBox");
+
+
+/* ==============================
+   DATA
+============================== */
 
 let allUsers = [];
-let currentUser = null;
-
-const detailCache = new Map();
 
 
-/* ================================
-   ELEMENTS
-================================ */
+/* ==============================
+   DATE HELPER
+============================== */
 
-const totalUsers =
-    document.getElementById("totalUsers");
+function getDateValue(value){
 
-const membersList =
-    document.getElementById("membersList");
-
-const searchInput =
-    document.getElementById("searchInput");
-
-const membersPage =
-    document.getElementById("membersPage");
-
-const detailsPage =
-    document.getElementById("detailsPage");
-
-const detailName =
-    document.getElementById("detailName");
-
-const detailPhone =
-    document.getElementById("detailPhone");
-
-const accountInfo =
-    document.getElementById("accountInfo");
-
-const withdrawalInfo =
-    document.getElementById("withdrawalInfo");
-
-
-/* ================================
-   AUTH CHECK
-================================ */
-
-onAuthStateChanged(auth, async (user) => {
-
-    if (!user) {
-
-        window.location.href = "index.html";
-        return;
+    if(!value){
+        return 0;
     }
 
-    if (user.uid !== ADMIN_UID) {
-
-        alert("Access denied.");
-        window.location.href = "dashboard.html";
-        return;
+    /*
+       Firebase Timestamp
+    */
+    if(
+        typeof value === "object" &&
+        typeof value.toDate === "function"
+    ){
+        return value.toDate().getTime();
     }
 
-    await loadUsers();
+    /*
+       Firebase Timestamp-like object
+    */
+    if(
+        typeof value === "object" &&
+        typeof value.seconds === "number"
+    ){
+        return value.seconds * 1000;
+    }
 
-});
+    /*
+       JavaScript Date
+    */
+    if(value instanceof Date){
+        return value.getTime();
+    }
+
+    /*
+       String / number date
+    */
+    const date = new Date(value);
+
+    if(!isNaN(date.getTime())){
+        return date.getTime();
+    }
+
+    return 0;
+}
 
 
-/* ================================
-   LOAD USERS ONLY
-================================ */
+/* ==============================
+   FORMAT DATE
+============================== */
+
+function formatDate(value){
+
+    const timestamp = getDateValue(value);
+
+    if(!timestamp){
+        return "No registration date";
+    }
+
+    const date = new Date(timestamp);
+
+    return date.toLocaleString("en-PH",{
+        year:"numeric",
+        month:"short",
+        day:"numeric",
+        hour:"numeric",
+        minute:"2-digit",
+        hour12:true
+    });
+}
+
+
+/* ==============================
+   LOAD USERS
+============================== */
 
 async function loadUsers(){
 
     try{
 
-        membersList.innerHTML = `
-            <div class="loading">
-                <div class="spinner"></div>
-                Loading members...
-            </div>
-        `;
+        loading.style.display = "block";
 
-        /*
-         * IMPORTANT:
-         * Only users are loaded here.
-         * Deposits, withdrawals, investments
-         * and earnings are NOT loaded.
-         */
+        errorBox.style.display = "none";
 
-        const snapshot =
-            await getDocs(collection(db, "users"));
+        membersList.innerHTML = "";
+
+        const snapshot = await getDocs(
+            collection(db,"users")
+        );
 
         allUsers = [];
 
@@ -825,35 +452,64 @@ async function loadUsers(){
 
         });
 
+
+        /*
+        =========================================
+        IMPORTANT:
+        SORT NEWEST REGISTRATION FIRST
+        =========================================
+
+        Users with the newest createdAt timestamp
+        will appear at the top.
+
+        Users without createdAt are placed
+        at the bottom.
+        */
+
+        allUsers.sort((a,b) => {
+
+            const dateA = getDateValue(a.createdAt);
+
+            const dateB = getDateValue(b.createdAt);
+
+            return dateB - dateA;
+
+        });
+
+
         totalUsers.textContent =
             allUsers.length.toLocaleString();
+
 
         renderMembers(allUsers);
 
     }catch(error){
 
-        console.error(error);
+        console.error("Error loading users:",error);
 
-        membersList.innerHTML = `
-            <div class="empty">
-                Unable to load members.
-                <br><br>
-                ${escapeHTML(error.message)}
-            </div>
-        `;
+        errorBox.textContent =
+            "Unable to load members: " + error.message;
+
+        errorBox.style.display = "block";
+
+    }finally{
+
+        loading.style.display = "none";
 
     }
 
 }
 
 
-/* ================================
+/* ==============================
    RENDER MEMBERS
-================================ */
+============================== */
 
 function renderMembers(users){
 
-    if(!users.length){
+    membersList.innerHTML = "";
+
+    if(users.length === 0){
 
         membersList.innerHTML = `
             <div class="empty">
@@ -864,879 +520,282 @@ function renderMembers(users){
         return;
     }
 
-    const fragment =
-        document.createDocumentFragment();
 
-    users.forEach(user => {
-
-        const row =
-            document.createElement("div");
-
-        row.className = "member-row";
+    users.forEach((user,index) => {
 
         const name =
             user.name ||
-            user.fullName ||
-            user.displayName ||
-            "Unnamed User";
+            "Unnamed Member";
+
+        const email =
+            user.email ||
+            "No email";
 
         const phone =
             user.phone ||
-            user.mobile ||
-            user.phoneNumber ||
             "No phone";
 
-        row.innerHTML = `
+        const memberId =
+            user.memberId ||
+            user.id ||
+            "N/A";
 
-            <div class="member-info">
+        const balance =
+            Number(user.balance || 0);
 
-                <div class="member-name">
-                    ${escapeHTML(name)}
+        const bonus =
+            Number(user.bonus || 0);
+
+        const totalEarnings =
+            Number(user.totalEarnings || 0);
+
+        const referralCode =
+            user.referralCode ||
+            "N/A";
+
+        const referredByCode =
+            user.referredByCode ||
+            "None";
+
+        const registrationDate =
+            formatDate(user.createdAt);
+
+
+        const card = document.createElement("div");
+
+        card.className = "member-card";
+
+
+        card.innerHTML = `
+
+            <div class="member-top">
+
+                <div>
+
+                    <div class="member-name">
+                        ${escapeHtml(name)}
+                    </div>
+
+                    <div class="member-id">
+                        Member ID: ${escapeHtml(memberId)}
+                    </div>
+
                 </div>
 
-                <div class="member-phone">
-                    ${escapeHTML(phone)}
+                <div class="badge">
+                    #${index + 1}
                 </div>
 
             </div>
 
-            <button class="view-btn">
-                View
-            </button>
+
+            <div class="member-info">
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        📱 Phone
+                    </span>
+
+                    <div class="info-value">
+                        ${escapeHtml(phone)}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        📧 Email
+                    </span>
+
+                    <div class="info-value">
+                        ${escapeHtml(email)}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        💰 Balance
+                    </span>
+
+                    <div class="info-value balance">
+                        ₱${balance.toLocaleString("en-PH",{
+                            minimumFractionDigits:2,
+                            maximumFractionDigits:2
+                        })}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        🎁 Registration Bonus
+                    </span>
+
+                    <div class="info-value">
+                        ₱${bonus.toLocaleString("en-PH",{
+                            minimumFractionDigits:2,
+                            maximumFractionDigits:2
+                        })}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        📈 Total Earnings
+                    </span>
+
+                    <div class="info-value">
+                        ₱${totalEarnings.toLocaleString("en-PH",{
+                            minimumFractionDigits:2,
+                            maximumFractionDigits:2
+                        })}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        🔗 Referral Code
+                    </span>
+
+                    <div class="info-value">
+                        ${escapeHtml(referralCode)}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        👥 Referred By
+                    </span>
+
+                    <div class="info-value">
+                        ${escapeHtml(referredByCode)}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        🕐 Registered
+                    </span>
+
+                    <div class="info-value date">
+                        ${escapeHtml(registrationDate)}
+                    </div>
+
+                </div>
+
+            </div>
 
         `;
 
-        row.addEventListener("click", () => {
 
-            openMember(user);
-
-        });
-
-        fragment.appendChild(row);
+        membersList.appendChild(card);
 
     });
-
-    membersList.innerHTML = "";
-
-    membersList.appendChild(fragment);
 
 }
 
 
-/* ================================
+/* ==============================
    SEARCH
-================================ */
+============================== */
 
-searchInput.addEventListener("input", () => {
+searchInput.addEventListener("input",function(){
 
-    const term =
-        searchInput.value
-        .trim()
-        .toLowerCase();
+    const search =
+        this.value
+            .trim()
+            .toLowerCase();
 
-    if(!term){
+
+    if(!search){
+
+        /*
+        allUsers is already sorted
+        newest first, so simply render it.
+        */
 
         renderMembers(allUsers);
+
         return;
 
     }
+
 
     const filtered =
         allUsers.filter(user => {
 
             const name =
-                String(
-                    user.name ||
-                    user.fullName ||
-                    user.displayName ||
-                    ""
-                ).toLowerCase();
+                String(user.name || "")
+                    .toLowerCase();
 
             const phone =
-                String(
-                    user.phone ||
-                    user.mobile ||
-                    user.phoneNumber ||
-                    ""
-                ).toLowerCase();
+                String(user.phone || "")
+                    .toLowerCase();
+
+            const email =
+                String(user.email || "")
+                    .toLowerCase();
+
+            const memberId =
+                String(user.memberId || "")
+                    .toLowerCase();
+
+            const referralCode =
+                String(user.referralCode || "")
+                    .toLowerCase();
+
+            const referredByCode =
+                String(user.referredByCode || "")
+                    .toLowerCase();
 
             return (
-                name.includes(term) ||
-                phone.includes(term)
+                name.includes(search) ||
+                phone.includes(search) ||
+                email.includes(search) ||
+                memberId.includes(search) ||
+                referralCode.includes(search) ||
+                referredByCode.includes(search)
             );
 
         });
+
+
+    /*
+    Because allUsers is already sorted
+    newest first, filtered results keep
+    the same newest-first order.
+    */
 
     renderMembers(filtered);
 
 });
 
 
-/* ================================
-   OPEN MEMBER
-================================ */
-
-async function openMember(user){
-
-    currentUser = user;
-
-    membersPage.style.display = "none";
-
-    detailsPage.classList.add("show");
-
-    window.scrollTo({
-        top:0,
-        behavior:"instant"
-    });
-
-
-    const name =
-        user.name ||
-        user.fullName ||
-        user.displayName ||
-        "Unnamed User";
-
-    const phone =
-        user.phone ||
-        user.mobile ||
-        user.phoneNumber ||
-        "No phone";
-
-
-    detailName.textContent = name;
-
-    detailPhone.textContent = phone;
-
-
-    renderAccount(user);
-
-    renderWithdrawalAccount(user);
-
-    resetLazySections();
-
-
-    /*
-     * We don't load any transactions here.
-     * They load only when their section is opened.
-     */
-
-}
-
-
-/* ================================
-   ACCOUNT INFORMATION
-================================ */
-
-function renderAccount(user){
-
-    const ignored = [
-        "withdrawalAccount"
-    ];
-
-    const fields = Object.entries(user)
-        .filter(([key]) =>
-            key !== "id" &&
-            !ignored.includes(key)
-        )
-        .slice(0, 30);
-
-
-    if(!fields.length){
-
-        accountInfo.innerHTML = `
-            <div class="info-item">
-                <div class="info-value">
-                    No account information.
-                </div>
-            </div>
-        `;
-
-        return;
-    }
-
-
-    accountInfo.innerHTML =
-        fields.map(([key,value]) => `
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    ${escapeHTML(formatLabel(key))}
-                </div>
-
-                <div class="info-value">
-                    ${escapeHTML(formatValue(value))}
-                </div>
-
-            </div>
-
-        `).join("");
-
-}
-
-
-/* ================================
-   WITHDRAWAL ACCOUNT
-================================ */
-
-function renderWithdrawalAccount(user){
-
-    const account =
-        user.withdrawalAccount;
-
-
-    if(!account){
-
-        withdrawalInfo.innerHTML = `
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    Withdrawal Account
-                </div>
-
-                <div class="info-value">
-                    Not registered
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-
-    if(typeof account === "object"){
-
-        const entries =
-            Object.entries(account);
-
-        withdrawalInfo.innerHTML =
-            entries.map(([key,value]) => `
-
-                <div class="info-item">
-
-                    <div class="info-label">
-                        ${escapeHTML(formatLabel(key))}
-                    </div>
-
-                    <div class="info-value">
-                        ${escapeHTML(formatValue(value))}
-                    </div>
-
-                </div>
-
-            `).join("");
-
-    }else{
-
-        withdrawalInfo.innerHTML = `
-
-            <div class="info-item">
-
-                <div class="info-label">
-                    Withdrawal Account
-                </div>
-
-                <div class="info-value">
-                    ${escapeHTML(formatValue(account))}
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-/* ================================
-   RESET SECTIONS
-================================ */
-
-function resetLazySections(){
-
-    document
-        .querySelectorAll(".lazy-section")
-        .forEach(section => {
-
-            section.classList.remove("open");
-
-            const content =
-                section.querySelector(".lazy-content");
-
-            content.innerHTML = "";
-
-            const count =
-                section.querySelector(".lazy-count");
-
-            count.textContent =
-                "Tap to load history";
-
-        });
-
-}
-
-
-/* ================================
-   LAZY SECTION CLICK
-================================ */
-
-document
-    .querySelectorAll(".lazy-section")
-    .forEach(section => {
-
-        const button =
-            section.querySelector(".lazy-header");
-
-        button.addEventListener("click", async () => {
-
-            const alreadyOpen =
-                section.classList.contains("open");
-
-            if(alreadyOpen){
-
-                section.classList.remove("open");
-
-                return;
-
-            }
-
-            section.classList.add("open");
-
-            const type =
-                section.dataset.type;
-
-            await loadSection(
-                section,
-                type
-            );
-
-        });
-
-    });
-
-
-/* ================================
-   LOAD SECTION
-================================ */
-
-async function loadSection(section,type){
-
-    if(!currentUser)
-        return;
-
-
-    const content =
-        section.querySelector(".lazy-content");
-
-
-    /*
-     * Cache key prevents repeatedly loading
-     * the same section for the same member.
-     */
-
-    const cacheKey =
-        currentUser.id + "_" + type;
-
-
-    if(detailCache.has(cacheKey)){
-
-        renderRecords(
-            content,
-            detailCache.get(cacheKey),
-            type
-        );
-
-        updateSectionCount(
-            section,
-            detailCache.get(cacheKey).length
-        );
-
-        return;
-
-    }
-
-
-    content.innerHTML = `
-        <div class="section-loading">
-            Loading ${escapeHTML(type)}...
-        </div>
-    `;
-
-
-    try{
-
-        const records =
-            await getUserRecords(
-                type,
-                currentUser.id
-            );
-
-
-        detailCache.set(
-            cacheKey,
-            records
-        );
-
-
-        renderRecords(
-            content,
-            records,
-            type
-        );
-
-
-        updateSectionCount(
-            section,
-            records.length
-        );
-
-
-    }catch(error){
-
-        console.error(error);
-
-        content.innerHTML = `
-            <div class="error">
-                Unable to load ${escapeHTML(type)}.
-                <br><br>
-                ${escapeHTML(error.message)}
-            </div>
-        `;
-
-    }
-
-}
-
-
-/* ================================
-   GET USER RECORDS
-================================ */
-
-async function getUserRecords(
-    type,
-    uid
-){
-
-    const collectionName =
-        type;
-
-
-    /*
-     * Most SkyRent records use userId.
-     * Try that first.
-     */
-
-    let snapshot =
-        await getDocs(
-            query(
-                collection(db, collectionName),
-                where("userId","==",uid)
-            )
-        );
-
-
-    let records =
-        snapshot.docs.map(doc => ({
-            id:doc.id,
-            ...doc.data()
-        }));
-
-
-    /*
-     * If nothing was found, support the
-     * older uid field.
-     */
-
-    if(records.length === 0){
-
-        snapshot =
-            await getDocs(
-                query(
-                    collection(db, collectionName),
-                    where("uid","==",uid)
-                )
-            );
-
-
-        records =
-            snapshot.docs.map(doc => ({
-                id:doc.id,
-                ...doc.data()
-            }));
-
-    }
-
-
-    return records;
-
-}
-
-
-/* ================================
-   UPDATE COUNT
-================================ */
-
-function updateSectionCount(
-    section,
-    count
-){
-
-    const element =
-        section.querySelector(".lazy-count");
-
-    element.textContent =
-        count === 1
-        ? "1 record"
-        : `${count} records`;
-
-}
-
-
-/* ================================
-   RENDER RECORDS
-================================ */
-
-function renderRecords(
-    container,
-    records,
-    type
-){
-
-    if(!records.length){
-
-        container.innerHTML = `
-            <div class="empty">
-                No ${escapeHTML(type)}
-                found for this member.
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    /*
-     * Show newest records first when
-     * createdAt exists.
-     */
-
-    records.sort((a,b) => {
-
-        const da =
-            getDateValue(a.createdAt);
-
-        const db =
-            getDateValue(b.createdAt);
-
-        return db - da;
-
-    });
-
-
-    container.innerHTML =
-        records.map((record,index) => {
-
-            const entries =
-                Object.entries(record)
-                .filter(([key]) =>
-                    key !== "id" &&
-                    key !== "userId" &&
-                    key !== "uid"
-                )
-                .slice(0, 12);
-
-
-            const title =
-                getRecordTitle(
-                    record,
-                    type,
-                    index
-                );
-
-
-            return `
-
-                <div class="record">
-
-                    <div class="record-title">
-                        ${escapeHTML(title)}
-                    </div>
-
-                    <div class="record-grid">
-
-                        ${entries.map(
-                            ([key,value]) => `
-
-                            <div class="record-item">
-
-                                <div class="record-label">
-                                    ${escapeHTML(
-                                        formatLabel(key)
-                                    )}
-                                </div>
-
-                                <div class="record-value">
-                                    ${formatRecordValue(
-                                        key,
-                                        value
-                                    )}
-                                </div>
-
-                            </div>
-
-                        `).join("")}
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }).join("");
-
-}
-
-
-/* ================================
-   RECORD TITLE
-================================ */
-
-function getRecordTitle(
-    record,
-    type,
-    index
-){
-
-    if(type === "investments"){
-
-        return (
-            record.planName ||
-            record.planId ||
-            record.name ||
-            `Investment #${index + 1}`
-        );
-
-    }
-
-
-    if(type === "deposits"){
-
-        return (
-            record.amount
-            ? `Deposit ₱${formatNumber(record.amount)}`
-            : `Deposit #${index + 1}`
-        );
-
-    }
-
-
-    if(type === "withdrawals"){
-
-        return (
-            record.amount
-            ? `Withdrawal ₱${formatNumber(record.amount)}`
-            : `Withdrawal #${index + 1}`
-        );
-
-    }
-
-
-    if(type === "earnings"){
-
-        return (
-            record.amount
-            ? `Earning ₱${formatNumber(record.amount)}`
-            : `Earning #${index + 1}`
-        );
-
-    }
-
-
-    return `Record #${index + 1}`;
-
-}
-
-
-/* ================================
-   FORMAT RECORD VALUE
-================================ */
-
-function formatRecordValue(
-    key,
-    value
-){
-
-    const lower =
-        key.toLowerCase();
-
-
-    if(
-        lower === "status"
-    ){
-
-        const status =
-            String(value)
-            .toLowerCase();
-
-
-        let className =
-            "status-pending";
-
-
-        if(status === "approved" ||
-           status === "active" ||
-           status === "completed"){
-
-            className =
-                "status-approved";
-
-        }
-
-        if(status === "rejected" ||
-           status === "cancelled"){
-
-            className =
-                "status-rejected";
-
-        }
-
-
-        return `
-            <span class="status ${className}">
-                ${escapeHTML(String(value))}
-            </span>
-        `;
-
-    }
-
-
-    return escapeHTML(
-        formatValue(value)
-    );
-
-}
-
-
-/* ================================
-   FORMAT LABEL
-================================ */
-
-function formatLabel(key){
-
-    return String(key)
-        .replace(/([A-Z])/g," $1")
-        .replace(/[_-]/g," ")
-        .replace(/\s+/g," ")
-        .trim()
-        .replace(/^./,char => char.toUpperCase());
-
-}
-
-
-/* ================================
-   FORMAT VALUE
-================================ */
-
-function formatValue(value){
-
-    if(value === null ||
-       value === undefined){
-
-        return "-";
-
-    }
-
-
-    if(typeof value === "object"){
-
-        if(
-            typeof value.toDate === "function"
-        ){
-
-            return value
-                .toDate()
-                .toLocaleString();
-
-        }
-
-
-        return JSON.stringify(
-            value
-        );
-
-    }
-
-
-    return String(value);
-
-}
-
-
-/* ================================
-   DATE
-================================ */
-
-function getDateValue(value){
-
-    if(!value)
-        return 0;
-
-
-    if(
-        typeof value.toDate === "function"
-    ){
-
-        return value.toDate().getTime();
-
-    }
-
-
-    const date =
-        new Date(value);
-
-
-    return isNaN(date.getTime())
-        ? 0
-        : date.getTime();
-
-}
-
-
-/* ================================
-   NUMBER
-================================ */
-
-function formatNumber(value){
-
-    const number =
-        Number(value);
-
-
-    if(isNaN(number))
-        return String(value);
-
-
-    return number.toLocaleString(
-        "en-PH",
-        {
-            minimumFractionDigits:0,
-            maximumFractionDigits:2
-        }
-    );
-
-}
-
-
-/* ================================
-   ESCAPE HTML
-================================ */
-
-function escapeHTML(value){
+/* ==============================
+   HTML ESCAPE
+============================== */
+
+function escapeHtml(value){
 
     return String(value)
         .replace(/&/g,"&amp;")
@@ -1748,40 +807,35 @@ function escapeHTML(value){
 }
 
 
-/* ================================
-   BACK BUTTON
-================================ */
+/* ==============================
+   AUTH / ADMIN CHECK
+============================== */
 
-document
-    .getElementById("backBtn")
-    .addEventListener("click", () => {
+onAuthStateChanged(auth,async(user)=>{
 
-        detailsPage.classList.remove("show");
+    if(!user){
 
-        membersPage.style.display = "block";
+        window.location.href = "/index.html";
 
-        currentUser = null;
+        return;
 
-        window.scrollTo({
-            top:0,
-            behavior:"instant"
-        });
-
-    });
+    }
 
 
-/* ================================
-   ADMIN BUTTON
-================================ */
+    if(user.uid !== ADMIN_UID){
 
-document
-    .getElementById("adminBtn")
-    .addEventListener("click", () => {
+        alert("Access denied.");
 
-        window.location.href =
-            "admin.html";
+        window.location.href = "/dashboard.html";
 
-    });
+        return;
+
+    }
+
+
+    await loadUsers();
+
+});
 
 </script>
 
