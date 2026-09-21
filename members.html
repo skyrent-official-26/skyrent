@@ -156,6 +156,14 @@ body{
     margin-top:3px;
 }
 
+/* AVAILABLE BALANCE */
+.member-balance{
+    font-size:12px;
+    color:#16834a;
+    font-weight:bold;
+    margin-top:4px;
+}
+
 .view-btn{
     flex-shrink:0;
     border:0;
@@ -841,13 +849,6 @@ async function loadUsers(){
 
         /* =========================================
            NEWEST REGISTRATION FIRST
-           
-           createdAt is the registration timestamp.
-           Firebase Timestamp is handled by
-           getDateValue() below.
-           
-           Members without createdAt are placed
-           at the bottom.
         ========================================= */
 
         allUsers.sort((a, b) => {
@@ -932,6 +933,26 @@ function renderMembers(users){
             "No phone";
 
 
+        /*
+         * AVAILABLE BALANCE
+         *
+         * Uses the existing Firestore
+         * "balance" field.
+         */
+        const balance =
+            Number(user.balance || 0);
+
+
+        const formattedBalance =
+            balance.toLocaleString(
+                "en-PH",
+                {
+                    minimumFractionDigits:2,
+                    maximumFractionDigits:2
+                }
+            );
+
+
         row.innerHTML = `
 
             <div class="member-info">
@@ -942,6 +963,10 @@ function renderMembers(users){
 
                 <div class="member-phone">
                     ${escapeHTML(phone)}
+                </div>
+
+                <div class="member-balance">
+                    Available Balance: ₱${formattedBalance}
                 </div>
 
             </div>
