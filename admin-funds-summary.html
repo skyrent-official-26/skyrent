@@ -470,6 +470,215 @@ body{
 
 
 /* =====================================================
+   TEST ACCOUNT ADJUSTMENTS
+===================================================== */
+
+.test-adjustment-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    margin-top:14px;
+
+    border:1px solid #e2eaf4;
+
+    box-shadow:
+        0 6px 20px rgba(30,70,120,.08);
+}
+
+.test-adjustment-title{
+
+    font-size:18px;
+
+    font-weight:900;
+
+    color:#0757c9;
+
+    margin-bottom:5px;
+}
+
+.test-adjustment-subtitle{
+
+    font-size:11px;
+
+    color:#858d99;
+
+    line-height:1.5;
+
+    margin-bottom:14px;
+}
+
+.test-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid #edf1f6;
+}
+
+.test-row:last-child{
+    border-bottom:none;
+}
+
+.test-label{
+
+    font-size:12px;
+
+    color:#6f7886;
+
+    font-weight:700;
+
+    line-height:1.4;
+}
+
+.test-label small{
+
+    font-size:10px;
+
+    color:#9aa3af;
+
+    font-weight:600;
+}
+
+.test-value{
+
+    font-size:17px;
+
+    font-weight:900;
+
+    text-align:right;
+}
+
+.test-deposit{
+    color:#c62828;
+}
+
+.test-withdrawal{
+    color:#c62828;
+}
+
+
+/* =====================================================
+   ADJUSTED FUNDS
+===================================================== */
+
+.adjusted-card{
+
+    background:
+        linear-gradient(
+            135deg,
+            #172033,
+            #263b5d
+        );
+
+    color:white;
+
+    border-radius:22px;
+
+    padding:20px;
+
+    margin-top:14px;
+
+    box-shadow:
+        0 10px 30px rgba(23,32,51,.18);
+}
+
+.adjusted-title{
+
+    font-size:18px;
+
+    font-weight:900;
+
+    margin-bottom:5px;
+}
+
+.adjusted-subtitle{
+
+    font-size:11px;
+
+    opacity:.75;
+
+    line-height:1.5;
+
+    margin-bottom:14px;
+}
+
+.adjusted-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.14);
+}
+
+.adjusted-row:last-child{
+    border-bottom:none;
+}
+
+.adjusted-label{
+
+    font-size:12px;
+
+    opacity:.85;
+
+    font-weight:700;
+}
+
+.adjusted-value{
+
+    font-size:18px;
+
+    font-weight:900;
+
+    text-align:right;
+}
+
+.adjusted-remaining{
+
+    margin-top:15px;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.12);
+}
+
+.adjusted-remaining .adjusted-label{
+
+    display:block;
+
+    margin-bottom:5px;
+}
+
+.adjusted-remaining .adjusted-value{
+
+    font-size:24px;
+}
+
+.adjusted-negative{
+    color:#ffb4b4;
+}
+
+
+/* =====================================================
    UNKNOWN RECORDS
 ===================================================== */
 
@@ -644,6 +853,14 @@ body{
         font-size:17px;
     }
 
+    .adjusted-value{
+        font-size:15px;
+    }
+
+    .adjusted-remaining .adjusted-value{
+        font-size:21px;
+    }
+
 }
 
 </style>
@@ -720,7 +937,6 @@ body{
 ===================================================== -->
 
 <div class="mini-grid">
-
 
     <div class="mini-card">
 
@@ -969,6 +1185,158 @@ body{
 
 
 <!-- =====================================================
+     TEST ACCOUNT ADJUSTMENTS
+===================================================== -->
+
+<div class="section-title">
+    Test Account Adjustments
+</div>
+
+<div class="section-subtitle">
+    These values are displayed separately and do not modify
+    real deposit or withdrawal records.
+</div>
+
+
+<div class="test-adjustment-card">
+
+    <div class="test-adjustment-title">
+        🧪 Test Account
+    </div>
+
+    <div class="test-adjustment-subtitle">
+        Test amounts are applied only to the adjusted funds
+        calculation below.
+    </div>
+
+
+    <div class="test-row">
+
+        <div class="test-label">
+
+            Test Deposit
+
+            <br>
+
+            <small>
+                Deducted from approved deposits
+            </small>
+
+        </div>
+
+        <div
+            class="test-value test-deposit"
+            id="testDepositAmount"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+
+    <div class="test-row">
+
+        <div class="test-label">
+
+            Test Withdrawal
+
+            <br>
+
+            <small>
+                Added to approved withdrawals
+            </small>
+
+        </div>
+
+        <div
+            class="test-value test-withdrawal"
+            id="testWithdrawalAmount"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ADJUSTED FUNDS
+===================================================== -->
+
+<div class="section-title">
+    Adjusted Funds
+</div>
+
+<div class="section-subtitle">
+    Actual approved funds after applying the test account
+    adjustments.
+</div>
+
+
+<div class="adjusted-card">
+
+    <div class="adjusted-title">
+        🧮 Adjusted SkyRent Funds
+    </div>
+
+    <div class="adjusted-subtitle">
+        These figures are for the Funds Summary display only.
+        They do not change Firebase transaction records.
+    </div>
+
+
+    <div class="adjusted-row">
+
+        <div class="adjusted-label">
+            Adjusted Approved Deposits
+        </div>
+
+        <div
+            class="adjusted-value"
+            id="adjustedDeposits"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+
+    <div class="adjusted-row">
+
+        <div class="adjusted-label">
+            Adjusted Approved Withdrawals
+        </div>
+
+        <div
+            class="adjusted-value"
+            id="adjustedWithdrawals"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+
+    <div class="adjusted-remaining">
+
+        <div class="adjusted-label">
+            Adjusted Remaining Funds
+        </div>
+
+        <div
+            class="adjusted-value"
+            id="adjustedRemaining"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
      COMBINED TOTAL
 ===================================================== -->
 
@@ -1137,7 +1505,9 @@ from
 import {
     getFirestore,
     collection,
-    getDocs
+    getDocs,
+    doc,
+    getDoc
 }
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -1202,8 +1572,7 @@ const ADMIN_UID =
 
 let currentAdmin = null;
 
-let loading =
-    false;
+let loading = false;
 
 
 /* =====================================================
@@ -1779,6 +2148,62 @@ async function loadApprovedWithdrawals(){
 
 
 /* =====================================================
+   LOAD TEST ACCOUNT ADJUSTMENTS
+===================================================== */
+
+async function loadTestAccountAdjustments(){
+
+    const adjustmentRef =
+        doc(
+            db,
+            "adminSettings",
+            "testAccountAdjustments"
+        );
+
+
+    const snapshot =
+        await getDoc(
+            adjustmentRef
+        );
+
+
+    if(
+        !snapshot.exists()
+    ){
+
+        return {
+
+            testDeposit:0,
+
+            testWithdrawal:0
+
+        };
+
+    }
+
+
+    const data =
+        snapshot.data();
+
+
+    return {
+
+        testDeposit:
+            getNumber(
+                data.testDeposit
+            ),
+
+        testWithdrawal:
+            getNumber(
+                data.testWithdrawal
+            )
+
+    };
+
+}
+
+
+/* =====================================================
    SET REMAINING BOX STATE
 ===================================================== */
 
@@ -1869,19 +2294,22 @@ async function loadFundsSummary(){
 
 
         /*
-           Load deposits and withdrawals
-           separately.
+           Load deposits, withdrawals,
+           and test account adjustments.
         */
 
         const [
             deposits,
-            withdrawals
+            withdrawals,
+            testAdjustments
         ] =
             await Promise.all([
 
                 loadApprovedDeposits(),
 
-                loadApprovedWithdrawals()
+                loadApprovedWithdrawals(),
+
+                loadTestAccountAdjustments()
 
             ]);
 
@@ -2009,7 +2437,7 @@ async function loadFundsSummary(){
 
 
         /* =================================================
-           COMBINED
+           COMBINED REAL FUNDS
         ================================================== */
 
         const combinedDeposits =
@@ -2065,6 +2493,130 @@ async function loadFundsSummary(){
             "approvedWithdrawalCount"
         ).innerText =
             withdrawals.totalCount;
+
+
+        /* =================================================
+           TEST ACCOUNT ADJUSTMENTS
+        ================================================== */
+
+        const testDeposit =
+            testAdjustments.testDeposit;
+
+
+        const testWithdrawal =
+            testAdjustments.testWithdrawal;
+
+
+        /*
+           Display test amounts.
+        */
+
+        document.getElementById(
+            "testDepositAmount"
+        ).innerText =
+            formatMoney(
+                testDeposit
+            );
+
+
+        document.getElementById(
+            "testWithdrawalAmount"
+        ).innerText =
+            formatMoney(
+                testWithdrawal
+            );
+
+
+        /* =================================================
+           ADJUSTED FUNDS
+        ================================================= */
+
+        /*
+           Test Deposit:
+           subtract from approved deposits.
+
+           Test Withdrawal:
+           add to approved withdrawals.
+        */
+
+        const adjustedDeposits =
+            combinedDeposits -
+            testDeposit;
+
+
+        const adjustedWithdrawals =
+            combinedWithdrawals +
+            testWithdrawal;
+
+
+        const adjustedRemaining =
+            adjustedDeposits -
+            adjustedWithdrawals;
+
+
+        /*
+           Display adjusted deposits.
+        */
+
+        document.getElementById(
+            "adjustedDeposits"
+        ).innerText =
+            formatMoney(
+                adjustedDeposits
+            );
+
+
+        /*
+           Display adjusted withdrawals.
+        */
+
+        document.getElementById(
+            "adjustedWithdrawals"
+        ).innerText =
+            formatMoney(
+                adjustedWithdrawals
+            );
+
+
+        /*
+           Display adjusted remaining.
+        */
+
+        const adjustedRemainingElement =
+            document.getElementById(
+                "adjustedRemaining"
+            );
+
+
+        adjustedRemainingElement.innerText =
+            formatMoney(
+                adjustedRemaining
+            );
+
+
+        /*
+           Negative remaining indicator.
+        */
+
+        if(
+            adjustedRemaining < 0
+        ){
+
+            adjustedRemainingElement
+                .classList.add(
+                    "adjusted-negative"
+                );
+
+        }
+
+        else{
+
+            adjustedRemainingElement
+                .classList.remove(
+                    "adjusted-negative"
+                );
+
+        }
 
 
         /* =================================================
@@ -2285,6 +2837,7 @@ onAuthStateChanged(
             alert(
                 "Admin login required."
             );
+
 
             window.location.href =
                 "index.html";
