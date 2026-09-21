@@ -4,16 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Withdrawal History - SkyRent</title>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 *{
     margin:0;
@@ -22,122 +17,1008 @@
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f3f7fc;
     color:#172033;
-    padding-bottom:90px;
+    padding-bottom:80px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header{
-    background:linear-gradient(
-        135deg,
-        #0757c9,
-        #1475e8
-    );
-
+    background:linear-gradient(135deg,#0757c9,#1475e8);
     color:white;
-
-    padding:22px 20px 30px;
-
-    border-bottom-left-radius:32px;
-    border-bottom-right-radius:32px;
-
-    box-shadow:0 10px 25px rgba(7,87,201,.18);
+    padding:20px;
+    border-radius:0 0 30px 30px;
+    box-shadow:0 10px 25px rgba(7,87,201,.2);
 }
 
-.back-row{
+.header-top{
     display:flex;
     align-items:center;
-    gap:13px;
+    gap:12px;
 }
 
-.back-button{
-    width:43px;
-    height:43px;
-
+.back-btn{
+    width:42px;
+    height:42px;
     border:none;
     border-radius:14px;
-
-    background:rgba(255,255,255,.18);
-
+    background:rgba(255,255,255,.2);
     color:white;
-    font-size:23px;
-
-    cursor:pointer;
+    font-size:25px;
 }
 
-.header h1{
-    margin-top:20px;
-    font-size:27px;
-    font-weight:900;
+.header-title{
+    font-size:21px;
+    font-weight:800;
 }
 
-.header p{
-    margin-top:6px;
-    font-size:13px;
-    opacity:.9;
+.header-subtitle{
+    font-size:12px;
+    opacity:.85;
 }
 
-/* =========================
-   CONTAINER
-========================= */
+
+/* MAIN */
 
 .container{
+    max-width:600px;
     width:92%;
-    max-width:520px;
-
-    margin:-20px auto 0;
-
-    position:relative;
-    z-index:5;
+    margin:20px auto;
 }
 
-/* =========================
-   HISTORY CARD
-========================= */
 
-.history-card{
-    margin-top:14px;
+/* BALANCE */
+
+.balance-card{
+    background:linear-gradient(135deg,#0757c9,#38a3ff);
+    color:white;
+    padding:22px;
+    border-radius:22px;
+    box-shadow:0 8px 20px rgba(7,87,201,.25);
+    margin-bottom:20px;
+}
+
+.balance-label{
+    font-size:13px;
+    opacity:.85;
+}
+
+.balance{
+    font-size:32px;
+    font-weight:900;
+    margin-top:8px;
+}
+
+
+/* LIST */
+
+.section-title{
+    font-size:18px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.withdrawal-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+
+.withdrawal-item{
+
+    background:white;
+    border-radius:18px;
+    padding:16px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border:1px solid #dbeafe;
+
+    box-shadow:
+    0 6px 18px rgba(30,80,140,.08);
+
+}
+
+
+.transaction-date{
+
+    font-size:12px;
+    color:#667085;
+    margin-bottom:8px;
+
+}
+
+
+.transaction-amount{
+
+    font-size:18px;
+    font-weight:900;
+    color:#0757c9;
+
+}
+
+
+/* STATUS */
+
+.status{
+
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:800;
+}
+
+
+.status.pending{
+
+    background:#fff4d6;
+    color:#a66b00;
+
+}
+
+
+.status.success{
+
+    background:#e8f8ef;
+    color:#16834b;
+
+}
+
+
+.status.rejected{
+
+    background:#ffe9e9;
+    color:#d62828;
+
+}
+
+
+.loading,
+.empty{
+
+    background:white;
+    padding:30px;
+    text-align:center;
+    border-radius:18px;
+    color:#718096;
+
+}
+
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+
+    height:70px;
 
     background:white;
 
-    border-radius:23px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
 
-    padding:18px;
+    box-shadow:0 -5px 20px rgba(0,0,0,.1);
 
-    box-shadow:0 9px 25px rgba(30,70,120,.08);
 }
 
-.history-title{
-    font-size:20px;
-    font-weight:900;
 
-    margin-bottom:15px;
+.nav-item{
+
+    text-decoration:none;
+    color:#718096;
+    font-size:11px;
+    text-align:center;
+
 }
 
-/* =========================
-   SUMMARY
-========================= */
 
-.summary{
-    display:grid;
+.nav-icon{
 
-    grid-template-columns:1fr 1fr;
+    font-size:22px;
+    display:block;
 
-    gap:10px;
-
-    margin-bottom:15px;
 }
 
-.summary-box{
-    background:#f5f8fd;
 
-    border:1px solid #e7edf5;
+.nav-item.active{
 
-    border-radius:13px;
+    color:#0757c9;
+    font-weight:bold;
 
-    padding:11px
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<div class="header-top">
+
+<button class="back-btn"
+onclick="window.location.href='../dashboard.html'">
+‹
+</button>
+
+<div>
+
+<div class="header-title">
+Withdrawal History
+</div>
+
+<div class="header-subtitle">
+Your withdrawal transactions
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="container">
+
+
+<div class="balance-card">
+
+<div class="balance-label">
+Available Balance
+</div>
+
+<div class="balance" id="availableBalance">
+₱0.00
+</div>
+
+</div>
+
+
+<div class="section-title">
+Withdrawal Transactions
+</div>
+
+
+<div id="withdrawalList"
+class="withdrawal-list">
+
+<div class="loading">
+Loading withdrawal history...
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="bottom-nav">
+
+
+<a href="../dashboard.html"
+class="nav-item">
+
+<span class="nav-icon">⌂</span>
+Home
+
+</a>
+
+
+<a href="../crafts.html"
+class="nav-item">
+
+<span class="nav-icon">✈</span>
+Crafts
+
+</a>
+
+
+<a href="../network.html"
+class="nav-item">
+
+<span class="nav-icon">👥</span>
+Network
+
+</a>
+
+
+<a href="../earnings.html"
+class="nav-item">
+
+<span class="nav-icon">₱</span>
+Earnings
+
+</a>
+
+
+<a href="../withdrawal.html"
+class="nav-item active">
+
+<span class="nav-icon">↗</span>
+Withdraw
+
+</a>
+
+
+</div>
+
+
+<script type="module">
+
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import { 
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    query,
+    where,
+    getDocs
+
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* ===============================
+   FIREBASE CONFIG
+================================ */
+
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+authDomain:
+"skyrent-ea30c.firebaseapp.com",
+
+projectId:
+"skyrent-ea30c",
+
+storageBucket:
+"skyrent-ea30c.firebasestorage.app",
+
+messagingSenderId:
+"572678456448",
+
+appId:
+"1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+
+const auth = getAuth(app);
+
+
+const db = getFirestore(app);
+
+
+
+const balanceElement =
+document.getElementById("availableBalance");
+
+
+const withdrawalList =
+document.getElementById("withdrawalList");
+
+
+
+/* ===============================
+   FORMAT MONEY
+================================ */
+
+
+function formatMoney(value){
+
+    return "₱" +
+
+    Number(value || 0)
+    .toLocaleString("en-PH",{
+
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+
+    });
+
+}
+
+
+
+/* ===============================
+   FORMAT DATE
+================================ */
+
+
+function formatDate(data){
+
+
+    const timestamp =
+
+    data.requestedAt ||
+    data.createdAt ||
+    data.timestamp;
+
+
+
+    if(!timestamp){
+
+        return "Date unavailable";
+
+    }
+
+
+
+    let date;
+
+
+
+    try{
+
+
+        if(typeof timestamp.toDate === "function"){
+
+            date = timestamp.toDate();
+
+        }
+
+        else{
+
+            date = new Date(timestamp);
+
+        }
+
+
+
+        return date.toLocaleString("en-PH",{
+
+            month:"short",
+            day:"numeric",
+            year:"numeric",
+            hour:"numeric",
+            minute:"2-digit"
+
+        });
+
+
+
+    }
+
+    catch(error){
+
+        return "Date unavailable";
+
+    }
+
+
+}
+
+
+
+/* ===============================
+   STATUS
+================================ */
+
+
+function getStatus(data){
+
+
+const status = String(
+
+data.status || "pending"
+
+)
+
+.toLowerCase()
+.trim();
+
+
+
+if(
+
+status === "approved" ||
+status === "success" ||
+status === "successful" ||
+status === "completed"
+
+){
+
+
+return {
+
+text:"Withdrawal Successful",
+
+className:"success"
+
+};
+
+
+}
+
+
+
+if(
+
+status === "rejected" ||
+status === "failed" ||
+status === "cancelled"
+
+){
+
+
+return {
+
+text:"Withdrawal Failed",
+
+className:"rejected"
+
+};
+
+
+}
+
+
+
+return {
+
+text:"Pending for Approval",
+
+className:"pending"
+
+};
+
+
+}
+
+
+
+/* ===============================
+   LOAD BALANCE
+================================ */
+
+
+async function loadBalance(user){
+
+
+try{
+
+
+const userRef =
+doc(db,"users",user.uid);
+
+
+
+const snap =
+await getDoc(userRef);
+
+
+
+if(snap.exists()){
+
+
+const data =
+snap.data();
+
+
+balanceElement.innerText =
+formatMoney(data.balance);
+
+
+}
+
+else{
+
+
+balanceElement.innerText =
+"₱0.00";
+
+
+}
+
+
+
+}
+
+catch(error){
+
+
+console.log(
+"Balance error:",
+error
+);
+
+
+balanceElement.innerText =
+"₱0.00";
+
+
+}
+
+
+
+}
+
+
+
+/* ===============================
+   LOAD WITHDRAWALS
+================================ */
+
+
+async function loadWithdrawals(user){
+
+
+withdrawalList.innerHTML = `
+
+<div class="loading">
+
+Loading withdrawal history...
+
+</div>
+
+`;
+
+
+
+try{
+
+
+const ref =
+collection(db,"withdrawals");
+
+
+
+const q =
+query(
+
+ref,
+
+where(
+"uid",
+"==",
+user.uid
+)
+
+);
+
+
+
+const snapshot =
+await getDocs(q);
+
+
+
+let records = [];
+
+
+
+snapshot.forEach((item)=>{
+
+
+records.push({
+
+id:item.id,
+
+...item.data()
+
+});
+
+
+});
+
+
+
+records.sort((a,b)=>{
+
+
+let aTime =
+a.requestedAt ||
+a.createdAt ||
+0;
+
+
+let bTime =
+b.requestedAt ||
+b.createdAt ||
+0;
+
+
+
+if(aTime.toMillis){
+
+aTime =
+aTime.toMillis();
+
+}
+
+
+if(bTime.toMillis){
+
+bTime =
+bTime.toMillis();
+
+}
+
+
+
+return bTime-aTime;
+
+
+});
+
+
+
+if(records.length === 0){
+
+
+withdrawalList.innerHTML = `
+
+<div class="empty">
+
+No withdrawal transactions yet.
+
+</div>
+
+`;
+
+return;
+
+
+}
+
+
+
+withdrawalList.innerHTML="";
+
+
+
+records.forEach((withdrawal)=>{
+
+
+const amount =
+
+Number(
+
+withdrawal.amount ??
+withdrawal.amountValue ??
+0
+
+);
+
+
+
+const status =
+getStatus(withdrawal);
+
+
+
+const card =
+document.createElement("div");
+
+
+card.className =
+"withdrawal-item";
+
+
+
+card.innerHTML = `
+
+<div>
+
+<div class="transaction-date">
+
+${formatDate(withdrawal)}
+
+</div>
+
+
+<span class="status ${status.className}">
+
+${status.text}
+
+</span>
+
+
+</div>
+
+
+<div class="transaction-amount">
+
+${formatMoney(amount)}
+
+</div>
+
+
+`;
+
+
+
+withdrawalList.appendChild(card);
+
+
+
+});
+
+
+
+}
+
+catch(error){
+
+
+console.error(
+"Withdrawal loading error:",
+error
+);
+
+
+
+withdrawalList.innerHTML = `
+
+<div class="empty">
+
+Unable to load withdrawal history.
+
+</div>
+
+`;
+
+}
+
+
+
+}
+
+
+ 
+/* ===============================
+   LOAD PAGE
+================================ */
+
+
+async function loadPage(user){
+
+    await Promise.all([
+
+        loadBalance(user),
+
+        loadWithdrawals(user)
+
+    ]);
+
+}
+
+
+
+/* ===============================
+   AUTH CHECK
+================================ */
+
+
+onAuthStateChanged(
+auth,
+
+async(user)=>{
+
+
+if(!user){
+
+
+window.location.href =
+"../index.html";
+
+
+return;
+
+
+}
+
+
+
+await loadPage(user);
+
+
+
+}
+
+);
+
+
+
+
+/* ===============================
+   AUTO REFRESH
+================================ */
+
+
+setInterval(()=>{
+
+
+const user =
+auth.currentUser;
+
+
+
+if(user){
+
+loadPage(user);
+
+}
+
+
+
+},30000);
+
+
+
+
+/* ===============================
+   STORAGE REFRESH
+================================ */
+
+
+window.addEventListener(
+"storage",
+
+()=>{
+
+
+const user =
+auth.currentUser;
+
+
+
+if(user){
+
+loadPage(user);
+
+}
+
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+   
+   
