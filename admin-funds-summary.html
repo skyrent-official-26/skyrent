@@ -9,6 +9,103 @@
 
 <style>
 
+.fund-status-card{
+
+    background:white;
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:18px;
+    border:1px solid #dfe8f5;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+
+.fund-status-title{
+
+    font-size:20px;
+    font-weight:900;
+    color:#0757c9;
+
+}
+
+
+.fund-status-subtitle{
+
+    margin-top:5px;
+    font-size:11px;
+    color:#7b8797;
+    line-height:1.5;
+
+}
+
+
+.fund-row{
+
+    display:flex;
+    justify-content:space-between;
+    padding:13px 0;
+    border-bottom:1px solid #edf1f6;
+    font-size:13px;
+    font-weight:700;
+
+}
+
+
+.fund-row strong{
+
+    font-size:17px;
+    color:#0757c9;
+
+}
+
+
+.fund-row.current strong{
+
+    color:#188044;
+    font-size:22px;
+
+}
+
+
+.bar-section{
+
+    margin-top:15px;
+
+}
+
+
+.bar-label{
+
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:6px;
+
+}
+
+
+.progress{
+
+    height:12px;
+    background:#e8edf5;
+    border-radius:20px;
+    overflow:hidden;
+
+}
+
+
+.progress-fill{
+
+    height:100%;
+    width:0%;
+    background:#0757c9;
+    border-radius:20px;
+    transition:.4s;
+
+}
+
 *{
     margin:0;
     padding:0;
@@ -501,6 +598,101 @@ input:focus{
 
 
 <main class="container">
+    
+    <!-- ACTUAL FUND STATUS TOP -->
+
+<div class="fund-status-card">
+
+    <div class="fund-status-title">
+        💰 Actual SkyRent Fund Status
+    </div>
+
+    <div class="fund-status-subtitle">
+        Includes approved deposits and approved withdrawals with test withdrawal adjustments.
+    </div>
+
+
+    <div class="fund-row">
+        <span>Total Approved Deposits</span>
+        <strong id="topTotalDeposits">
+            ₱0.00
+        </strong>
+    </div>
+
+
+    <div class="fund-row">
+        <span>Actual Approved Withdrawals</span>
+        <strong id="topTotalWithdrawals">
+            ₱0.00
+        </strong>
+    </div>
+
+
+    <div class="fund-row current">
+        <span>Available Current Fund</span>
+        <strong id="topCurrentFund">
+            ₱0.00
+        </strong>
+    </div>
+
+
+
+    <div class="bar-section">
+
+        <div class="bar-label">
+            <span>Total Fund</span>
+            <span id="totalFundPercent">100%</span>
+        </div>
+
+        <div class="progress">
+            <div 
+            class="progress-fill"
+            id="totalFundBar">
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="bar-section">
+
+        <div class="bar-label">
+            <span>Withdrawn Fund</span>
+            <span id="withdrawFundPercent">0%</span>
+        </div>
+
+        <div class="progress">
+            <div 
+            class="progress-fill"
+            id="withdrawFundBar">
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="bar-section">
+
+        <div class="bar-label">
+            <span>Remaining Fund</span>
+            <span id="remainingFundPercent">0%</span>
+        </div>
+
+        <div class="progress">
+            <div 
+            class="progress-fill"
+            id="remainingFundBar">
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+    
+    
 
     <button
         class="main-btn admin-btn"
@@ -1762,7 +1954,7 @@ async function loadFundsSummary(){
 
 
         const actualApprovedWithdrawals =
-            combinedWithdrawals;
+    combinedWithdrawals + testWithdrawal;
 
 
         const currentFunds =
@@ -1792,6 +1984,13 @@ async function loadFundsSummary(){
             formatMoney(
                 currentFunds
             );
+
+
+
+
+
+
+
 
 
         /* =========================================
@@ -2272,6 +2471,40 @@ setInterval(
     },
     60000
 );
+
+document.getElementById("topTotalDeposits").innerText =
+formatMoney(actualApprovedDeposits);
+
+document.getElementById("topTotalWithdrawals").innerText =
+formatMoney(actualApprovedWithdrawals);
+
+document.getElementById("topCurrentFund").innerText =
+formatMoney(currentFunds);
+
+
+let withdrawPercent =
+actualApprovedDeposits > 0
+? (actualApprovedWithdrawals / actualApprovedDeposits) * 100
+: 0;
+
+
+let remainPercent =
+100 - withdrawPercent;
+
+
+document.getElementById("withdrawFundPercent").innerText =
+withdrawPercent.toFixed(1)+"%";
+
+document.getElementById("remainingFundPercent").innerText =
+remainPercent.toFixed(1)+"%";
+
+
+document.getElementById("withdrawFundBar").style.width =
+Math.min(withdrawPercent,100)+"%";
+
+document.getElementById("remainingFundBar").style.width =
+Math.max(remainPercent,0)+"%";
+
 
 </script>
 
