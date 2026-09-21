@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Admin Funds Summary - SkyRent</title>
+<title>SkyRent - Funds Test Summary</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
     margin:0;
@@ -26,2701 +20,1436 @@ body{
     font-family:Arial,Helvetica,sans-serif;
     background:#f3f7fc;
     color:#172033;
-    padding-bottom:35px;
+    min-height:100vh;
 }
 
-
-/* =====================================================
-   HEADER
-===================================================== */
+/* HEADER */
 
 .header{
-    background:linear-gradient(
-        135deg,
-        #0757c9,
-        #1475e8
-    );
-
+    background:linear-gradient(135deg,#0757c9,#0a7df5);
     color:white;
-
-    padding:20px;
-
-    border-bottom-left-radius:28px;
-    border-bottom-right-radius:28px;
-
-    box-shadow:
-        0 8px 25px rgba(7,87,201,.18);
+    padding:22px 18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.12);
 }
 
-.header-top{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    margin-bottom:18px;
-}
-
-.back-btn{
-    border:none;
-
-    background:rgba(255,255,255,.18);
-
-    color:white;
-
-    width:42px;
-    height:42px;
-
-    border-radius:12px;
-
-    font-size:20px;
-
-    cursor:pointer;
-}
-
-.back-btn:active{
-    transform:scale(.96);
-}
-
-.header-top strong{
-    font-size:19px;
+.header-inner{
+    max-width:1000px;
+    margin:auto;
 }
 
 .header h1{
-    font-size:24px;
-    font-weight:900;
+    font-size:23px;
+    margin-bottom:6px;
 }
 
 .header p{
-    margin-top:6px;
-
     font-size:13px;
-
     opacity:.9;
-
-    line-height:1.4;
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
+/* CONTAINER */
 
 .container{
-    width:94%;
-    max-width:650px;
-
-    margin:15px auto;
+    max-width:1000px;
+    margin:auto;
+    padding:20px 14px 40px;
 }
 
+/* BACK BUTTON */
 
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.admin-panel-btn,
-.refresh-btn{
-
-    width:100%;
-
-    border:none;
-
-    border-radius:14px;
-
-    padding:14px;
-
-    font-size:13px;
-
-    font-weight:900;
-
-    cursor:pointer;
-
-    transition:.15s;
-}
-
-.admin-panel-btn{
-
-    background:white;
-
+.back-btn{
+    display:inline-block;
+    background:#fff;
     color:#0757c9;
-
-    border:1px solid #dce7f5;
-
-    margin-bottom:10px;
-
-    box-shadow:
-        0 5px 18px rgba(30,70,120,.06);
+    border:1px solid #d8e4f3;
+    padding:11px 17px;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:20px;
 }
 
-.refresh-btn{
-
-    background:#eaf2ff;
-
-    color:#0757c9;
-
-    margin-bottom:18px;
-}
-
-.admin-panel-btn:active,
-.refresh-btn:active{
-    transform:scale(.98);
-}
-
-.refresh-btn:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-}
-
-
-/* =====================================================
-   SECTION TITLE
-===================================================== */
+/* SECTION */
 
 .section-title{
-
-    font-size:15px;
-
-    font-weight:900;
-
-    color:#172033;
-
-    margin:17px 2px 10px;
+    font-size:19px;
+    font-weight:bold;
+    margin:20px 0 6px;
 }
 
 .section-subtitle{
-
-    font-size:11px;
-
-    color:#858d99;
-
-    margin:-4px 2px 12px;
-
-    line-height:1.4;
+    font-size:13px;
+    color:#68758a;
+    margin-bottom:13px;
 }
 
+/* GRID */
 
-/* =====================================================
-   PAYMENT CARD
-===================================================== */
+.payment-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
 
-.payment-card{
+@media(max-width:700px){
+    .payment-grid{
+        grid-template-columns:1fr;
+    }
+}
 
+/* CARD */
+
+.card{
     background:white;
-
-    border-radius:20px;
-
+    border-radius:16px;
     padding:18px;
-
-    margin-bottom:14px;
-
-    border:1px solid #e2eaf4;
-
-    box-shadow:
-        0 6px 20px rgba(30,70,120,.08);
+    box-shadow:0 4px 15px rgba(25,55,95,.08);
+    border:1px solid #e4ebf4;
 }
 
-.payment-header{
+.card-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:4px;
+    color:#0757c9;
+}
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:10px;
-
+.card-subtitle{
+    font-size:12px;
+    color:#78869a;
     margin-bottom:15px;
 }
 
-.payment-title{
-
-    font-size:18px;
-
-    font-weight:900;
-
-    color:#0757c9;
-}
-
-.payment-badge{
-
-    background:#eaf2ff;
-
-    color:#0757c9;
-
-    border-radius:20px;
-
-    padding:6px 10px;
-
-    font-size:10px;
-
-    font-weight:900;
-}
-
-
-/* =====================================================
-   FUND ROW
-===================================================== */
-
-.fund-row{
-
+.row{
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     gap:12px;
-
     padding:12px 0;
-
     border-bottom:1px solid #edf1f6;
 }
 
-.fund-row:last-child{
+.row:last-child{
     border-bottom:none;
 }
 
-.fund-label{
-
-    font-size:12px;
-
-    color:#6f7886;
-
-    font-weight:700;
-
-    line-height:1.3;
+.label{
+    font-size:13px;
+    color:#5c6879;
 }
 
-.fund-value{
-
-    font-size:17px;
-
-    color:#172033;
-
-    font-weight:900;
-
+.value{
+    font-size:16px;
+    font-weight:bold;
     text-align:right;
-
-    word-break:break-word;
 }
+
+/* DEPOSIT / WITHDRAWAL */
 
 .deposit-value{
-    color:#0757c9;
+    color:#087443;
 }
 
 .withdrawal-value{
-    color:#c62828;
+    color:#b42318;
+}
+
+.remaining-box{
+    margin-top:12px;
+    background:#f0f7ff;
+    border:1px solid #d7e9ff;
+    border-radius:12px;
+    padding:14px;
+}
+
+.remaining-label{
+    font-size:12px;
+    color:#617189;
+    margin-bottom:4px;
 }
 
 .remaining-value{
-    color:#188044;
-
-    font-size:19px;
-}
-
-
-/* =====================================================
-   TRANSACTION COUNT
-===================================================== */
-
-.fund-count{
-
-    display:block;
-
-    margin-top:3px;
-
-    font-size:10px;
-
-    color:#9aa3af;
-
-    font-weight:700;
-}
-
-
-/* =====================================================
-   REMAINING BOX
-===================================================== */
-
-.remaining-box{
-
-    margin-top:14px;
-
-    padding:14px;
-
-    border-radius:14px;
-
-    background:#e8f8ee;
-
-    border:1px solid #ccefd9;
-}
-
-.remaining-box.negative{
-
-    background:#fff0f0;
-
-    border-color:#ffd3d3;
-}
-
-.remaining-box .remaining-label{
-
-    font-size:11px;
-
-    color:#188044;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-}
-
-.remaining-box.negative .remaining-label{
-    color:#c62828;
-}
-
-
-/* =====================================================
-   COMBINED CARD
-===================================================== */
-
-.combined-card{
-
-    background:
-        linear-gradient(
-            135deg,
-            #0757c9,
-            #1475e8
-        );
-
-    color:white;
-
-    border-radius:22px;
-
-    padding:20px;
-
-    margin-top:8px;
-
-    box-shadow:
-        0 10px 30px rgba(7,87,201,.20);
-}
-
-.combined-title{
-
-    font-size:18px;
-
-    font-weight:900;
-
-    margin-bottom:16px;
-}
-
-.combined-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:12px 0;
-
-    border-bottom:1px solid rgba(255,255,255,.18);
-}
-
-.combined-row:last-child{
-    border-bottom:none;
-}
-
-.combined-label{
-
-    font-size:12px;
-
-    opacity:.9;
-
-    font-weight:700;
-}
-
-.combined-value{
-
-    font-size:18px;
-
-    font-weight:900;
-
-    text-align:right;
-}
-
-.combined-remaining{
-
-    margin-top:15px;
-
-    padding:15px;
-
-    border-radius:14px;
-
-    background:rgba(255,255,255,.15);
-}
-
-.combined-remaining .combined-label{
-    display:block;
-
-    margin-bottom:5px;
-}
-
-.combined-remaining .combined-value{
-    font-size:23px;
-}
-
-
-/* =====================================================
-   TEST ACCOUNT ADJUSTMENTS
-===================================================== */
-
-.test-adjustment-card{
-
-    background:#fff;
-
-    border-radius:20px;
-
-    padding:18px;
-
-    margin-top:14px;
-
-    border:1px solid #e2eaf4;
-
-    box-shadow:
-        0 6px 20px rgba(30,70,120,.08);
-}
-
-.test-adjustment-title{
-
-    font-size:18px;
-
-    font-weight:900;
-
     color:#0757c9;
-
-    margin-bottom:5px;
+    font-size:22px;
+    font-weight:bold;
 }
 
-.test-adjustment-subtitle{
+/* ACTUAL FUNDS */
 
-    font-size:11px;
-
-    color:#858d99;
-
-    line-height:1.5;
-
-    margin-bottom:14px;
-}
-
-.test-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:12px 0;
-
-    border-bottom:1px solid #edf1f6;
-}
-
-.test-row:last-child{
-    border-bottom:none;
-}
-
-.test-label{
-
-    font-size:12px;
-
-    color:#6f7886;
-
-    font-weight:700;
-
-    line-height:1.4;
-}
-
-.test-label small{
-
-    font-size:10px;
-
-    color:#9aa3af;
-
-    font-weight:600;
-}
-
-.test-value{
-
-    font-size:17px;
-
-    font-weight:900;
-
-    text-align:right;
-}
-
-.test-deposit{
-    color:#c62828;
-}
-
-.test-withdrawal{
-    color:#c62828;
-}
-
-
-/* =====================================================
-   ADJUSTED FUNDS
-===================================================== */
-
-.adjusted-card{
-
-    background:
-        linear-gradient(
-            135deg,
-            #172033,
-            #263b5d
-        );
-
+.actual-card{
+    background:linear-gradient(145deg,#0757c9,#0a79e8);
     color:white;
+    border:none;
+}
 
-    border-radius:22px;
+.actual-card .card-title{
+    color:white;
+}
 
-    padding:20px;
+.actual-card .card-subtitle{
+    color:rgba(255,255,255,.82);
+}
 
+.actual-card .row{
+    border-color:rgba(255,255,255,.18);
+}
+
+.actual-card .label{
+    color:rgba(255,255,255,.85);
+}
+
+.actual-card .value{
+    color:white;
+}
+
+.current-box{
     margin-top:14px;
-
-    box-shadow:
-        0 10px 30px rgba(23,32,51,.18);
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:13px;
+    padding:17px;
 }
 
-.adjusted-title{
-
-    font-size:18px;
-
-    font-weight:900;
-
-    margin-bottom:5px;
-}
-
-.adjusted-subtitle{
-
-    font-size:11px;
-
-    opacity:.75;
-
-    line-height:1.5;
-
-    margin-bottom:14px;
-}
-
-.adjusted-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:12px 0;
-
-    border-bottom:1px solid rgba(255,255,255,.14);
-}
-
-.adjusted-row:last-child{
-    border-bottom:none;
-}
-
-.adjusted-label{
-
-    font-size:12px;
-
-    opacity:.85;
-
-    font-weight:700;
-}
-
-.adjusted-value{
-
-    font-size:18px;
-
-    font-weight:900;
-
-    text-align:right;
-}
-
-.adjusted-remaining{
-
-    margin-top:15px;
-
-    padding:15px;
-
-    border-radius:14px;
-
-    background:rgba(255,255,255,.12);
-}
-
-.adjusted-remaining .adjusted-label{
-
-    display:block;
-
-    margin-bottom:5px;
-}
-
-.adjusted-remaining .adjusted-value{
-
-    font-size:24px;
-}
-
-.adjusted-negative{
-    color:#ffb4b4;
-}
-
-
-/* =====================================================
-   UNKNOWN RECORDS
-===================================================== */
-
-.warning-card{
-
-    background:#fff8e6;
-
-    border:1px solid #f3df9d;
-
-    border-radius:16px;
-
-    padding:14px;
-
-    margin-top:14px;
-
-    color:#876400;
-}
-
-.warning-title{
-
+.current-label{
     font-size:13px;
-
-    font-weight:900;
-
+    opacity:.9;
     margin-bottom:5px;
 }
 
-.warning-text{
-
-    font-size:11px;
-
-    line-height:1.5;
+.current-value{
+    font-size:29px;
+    font-weight:bold;
 }
 
+/* TEST ACCOUNT */
 
-/* =====================================================
-   LAST UPDATED
-===================================================== */
-
-.last-updated{
-
-    text-align:center;
-
-    margin-top:16px;
-
-    color:#8b94a1;
-
-    font-size:10px;
-}
-
-
-/* =====================================================
-   LOADING
-===================================================== */
-
-.loading{
-
+.test-card{
     background:white;
-
-    border-radius:18px;
-
-    padding:40px 20px;
-
-    text-align:center;
-
-    color:#858d99;
-
-    font-size:14px;
-
-    border:1px solid #e9eef5;
-
-    box-shadow:
-        0 5px 18px rgba(30,70,120,.06);
+    border-radius:16px;
+    padding:20px;
+    border:1px solid #e4ebf4;
+    box-shadow:0 4px 15px rgba(25,55,95,.08);
 }
 
+.test-title{
+    font-size:18px;
+    font-weight:bold;
+    color:#7a4b00;
+    margin-bottom:5px;
+}
 
-/* =====================================================
-   ERROR
-===================================================== */
-
-.error-box{
-
-    background:#fff0f0;
-
-    border:1px solid #ffd3d3;
-
-    border-radius:18px;
-
-    padding:25px 18px;
-
-    text-align:center;
-
-    color:#c62828;
-
+.test-description{
+    color:#697789;
     font-size:13px;
-
     line-height:1.5;
+    margin-bottom:18px;
 }
 
-
-/* =====================================================
-   SUMMARY MINI CARDS
-===================================================== */
-
-.mini-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:10px;
-
+.input-group{
     margin-bottom:15px;
 }
 
-.mini-card{
+.input-group label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:7px;
+    color:#39475a;
+}
 
-    background:white;
+.input-wrapper{
+    position:relative;
+}
 
-    border-radius:16px;
+.currency{
+    position:absolute;
+    left:13px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#68758a;
+    font-weight:bold;
+}
 
+.input-group input{
+    width:100%;
+    min-height:48px;
+    border:1px solid #d5dfeb;
+    border-radius:10px;
+    padding:0 14px 0 38px;
+    font-size:16px;
+    outline:none;
+    background:#fbfdff;
+}
+
+.input-group input:focus{
+    border-color:#0757c9;
+    box-shadow:0 0 0 3px rgba(7,87,201,.1);
+}
+
+.button-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:5px;
+}
+
+button{
+    min-height:46px;
+    border:none;
+    border-radius:10px;
+    padding:0 18px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.save-btn{
+    background:#0757c9;
+    color:white;
+    flex:1;
+}
+
+.reset-btn{
+    background:#eef2f7;
+    color:#39475a;
+}
+
+/* TEST DISPLAY */
+
+.test-summary{
+    margin-top:18px;
+    background:#fff9eb;
+    border:1px solid #f3dfae;
+    border-radius:12px;
     padding:14px;
-
-    border:1px solid #e5ebf3;
-
-    box-shadow:
-        0 5px 18px rgba(30,70,120,.06);
 }
 
-.mini-title{
-
-    font-size:10px;
-
-    color:#858d99;
-
-    font-weight:800;
-
-    line-height:1.3;
+.test-summary-title{
+    font-size:13px;
+    font-weight:bold;
+    color:#765000;
+    margin-bottom:10px;
 }
 
-.mini-value{
-
-    margin-top:6px;
-
-    color:#0757c9;
-
-    font-size:19px;
-
-    font-weight:900;
+.test-summary-row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:7px 0;
 }
 
+.test-summary-label{
+    font-size:13px;
+    color:#6b7280;
+}
 
-/* =====================================================
-   MOBILE
-===================================================== */
+.test-summary-value{
+    font-weight:bold;
+    font-size:14px;
+}
 
-@media(max-width:380px){
+/* NOTICE */
+
+.notice{
+    background:#fff;
+    border-left:4px solid #0757c9;
+    border-radius:10px;
+    padding:14px 15px;
+    margin-top:18px;
+    box-shadow:0 3px 10px rgba(0,0,0,.04);
+}
+
+.notice strong{
+    display:block;
+    margin-bottom:5px;
+    font-size:14px;
+}
+
+.notice p{
+    font-size:12px;
+    color:#667386;
+    line-height:1.5;
+}
+
+/* STATUS */
+
+.status{
+    margin-top:15px;
+    font-size:13px;
+    text-align:center;
+    min-height:20px;
+}
+
+.status.success{
+    color:#087443;
+}
+
+.status.error{
+    color:#b42318;
+}
+
+/* LAST UPDATED */
+
+.last-updated{
+    text-align:center;
+    color:#8a96a7;
+    font-size:11px;
+    margin-top:20px;
+}
+
+/* LOADING */
+
+.loading{
+    text-align:center;
+    padding:40px 15px;
+    color:#68758a;
+}
+
+.spinner{
+    width:28px;
+    height:28px;
+    border:3px solid #dce7f5;
+    border-top-color:#0757c9;
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:0 auto 10px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* ERROR */
+
+.error-box{
+    display:none;
+    background:#fff0f0;
+    border:1px solid #f2caca;
+    color:#a61b1b;
+    border-radius:10px;
+    padding:14px;
+    margin-bottom:15px;
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .container{
+        padding:15px 11px 35px;
+    }
+
+    .header{
+        padding:19px 15px;
+    }
 
     .header h1{
-        font-size:22px;
-    }
-
-    .payment-card{
-        padding:15px;
-    }
-
-    .fund-value{
-        font-size:15px;
-    }
-
-    .remaining-value{
-        font-size:17px;
-    }
-
-    .adjusted-value{
-        font-size:15px;
-    }
-
-    .adjusted-remaining .adjusted-value{
         font-size:21px;
     }
 
+    .card{
+        padding:15px;
+    }
+
+    .current-value{
+        font-size:25px;
+    }
+
+    .button-row{
+        flex-direction:column;
+    }
+
+    .save-btn,
+    .reset-btn{
+        width:100%;
+        flex:none;
+    }
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header class="header">
-
-    <div class="header-top">
-
-        <button
-            class="back-btn"
-            onclick="goAdminPanel()"
-        >
-            ←
-        </button>
-
-        <strong>
-            SkyRent Admin
-        </strong>
-
+    <div class="header-inner">
+        <h1>SkyRent Admin</h1>
+        <p>Funds & Test Account Summary</p>
     </div>
-
-    <h1>
-        Funds Summary
-    </h1>
-
-    <p>
-        Approved deposits, approved withdrawals,
-        and remaining funds by payment channel.
-    </p>
-
 </header>
 
+<div class="container">
 
-<main class="container">
+    <a href="admin.html" class="back-btn">
+        ← Back to Admin
+    </a>
 
+    <div id="errorBox" class="error-box"></div>
 
-<!-- =====================================================
-     ADMIN BUTTON
-===================================================== -->
-
-<button
-    class="admin-panel-btn"
-    onclick="goAdminPanel()"
->
-    ← Back to Admin Panel
-</button>
-
-
-<!-- =====================================================
-     REFRESH
-===================================================== -->
-
-<button
-    class="refresh-btn"
-    id="refreshButton"
-    onclick="loadFundsSummary()"
->
-    🔄 Refresh Funds Summary
-</button>
-
-
-<!-- =====================================================
-     QUICK COMBINED COUNTS
-===================================================== -->
-
-<div class="mini-grid">
-
-    <div class="mini-card">
-
-        <div class="mini-title">
-            APPROVED DEPOSIT RECORDS
-        </div>
-
-        <div
-            class="mini-value"
-            id="approvedDepositCount"
-        >
-            0
-        </div>
-
+    <div id="loadingBox" class="loading">
+        <div class="spinner"></div>
+        Loading funds summary...
     </div>
 
+    <div id="content" style="display:none;">
 
-    <div class="mini-card">
+        <!-- PAYMENT SUMMARIES -->
 
-        <div class="mini-title">
-            APPROVED WITHDRAWAL RECORDS
+        <div class="section-title">
+            Approved Deposit & Withdrawal Summary
         </div>
 
-        <div
-            class="mini-value"
-            id="approvedWithdrawalCount"
-        >
-            0
+        <div class="section-subtitle">
+            Approved transaction totals separated by payment channel.
         </div>
 
-    </div>
+        <div class="payment-grid">
 
-</div>
+            <!-- PAYMENT 1 -->
 
+            <div class="card">
 
-<!-- =====================================================
-     PAYMENT 1
-===================================================== -->
+                <div class="card-title">
+                    Payment 1
+                </div>
 
-<div class="section-title">
-    Payment 1
-</div>
+                <div class="card-subtitle">
+                    Approved transactions
+                </div>
 
-<div class="section-subtitle">
-    Funds assigned to Payment 1 from approved transactions only.
-</div>
+                <div class="row">
+                    <div class="label">
+                        Total Approved Deposits
+                    </div>
 
+                    <div class="value deposit-value"
+                         id="payment1Deposits">
+                        ₱0.00
+                    </div>
+                </div>
 
-<div class="payment-card">
+                <div class="row">
+                    <div class="label">
+                        Total Approved Withdrawals
+                    </div>
 
+                    <div class="value withdrawal-value"
+                         id="payment1Withdrawals">
+                        ₱0.00
+                    </div>
+                </div>
 
-    <div class="payment-header">
+                <div class="remaining-box">
 
-        <div class="payment-title">
-            Payment 1
-        </div>
+                    <div class="remaining-label">
+                        Payment 1 Remaining
+                    </div>
 
-        <div class="payment-badge">
-            APPROVED ONLY
-        </div>
+                    <div class="remaining-value"
+                         id="payment1Remaining">
+                        ₱0.00
+                    </div>
 
-    </div>
+                </div>
 
-
-    <!-- APPROVED DEPOSITS -->
-
-    <div class="fund-row">
-
-        <div class="fund-label">
-
-            Approved Deposits
-
-            <span
-                class="fund-count"
-                id="payment1DepositCount"
-            >
-                0 transactions
-            </span>
-
-        </div>
-
-        <div
-            class="fund-value deposit-value"
-            id="payment1Deposits"
-        >
-            ₱0.00
-        </div>
-
-    </div>
+            </div>
 
 
-    <!-- APPROVED WITHDRAWALS -->
+            <!-- PAYMENT 2 -->
 
-    <div class="fund-row">
+            <div class="card">
 
-        <div class="fund-label">
+                <div class="card-title">
+                    Payment 2
+                </div>
 
-            Approved Withdrawals
+                <div class="card-subtitle">
+                    Approved transactions
+                </div>
 
-            <span
-                class="fund-count"
-                id="payment1WithdrawalCount"
-            >
-                0 transactions
-            </span>
+                <div class="row">
+                    <div class="label">
+                        Total Approved Deposits
+                    </div>
 
-        </div>
+                    <div class="value deposit-value"
+                         id="payment2Deposits">
+                        ₱0.00
+                    </div>
+                </div>
 
-        <div
-            class="fund-value withdrawal-value"
-            id="payment1Withdrawals"
-        >
-            ₱0.00
-        </div>
+                <div class="row">
+                    <div class="label">
+                        Total Approved Withdrawals
+                    </div>
 
-    </div>
+                    <div class="value withdrawal-value"
+                         id="payment2Withdrawals">
+                        ₱0.00
+                    </div>
+                </div>
 
+                <div class="remaining-box">
 
-    <!-- REMAINING -->
+                    <div class="remaining-label">
+                        Payment 2 Remaining
+                    </div>
 
-    <div
-        class="remaining-box"
-        id="payment1RemainingBox"
-    >
+                    <div class="remaining-value"
+                         id="payment2Remaining">
+                        ₱0.00
+                    </div>
 
-        <div class="remaining-label">
-            Remaining Funds
-        </div>
+                </div>
 
-        <div
-            class="remaining-value"
-            id="payment1Remaining"
-        >
-            ₱0.00
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     PAYMENT 2
-===================================================== -->
-
-<div class="section-title">
-    Payment 2
-</div>
-
-<div class="section-subtitle">
-    Funds assigned to Payment 2 from approved transactions only.
-</div>
-
-
-<div class="payment-card">
-
-
-    <div class="payment-header">
-
-        <div class="payment-title">
-            Payment 2
-        </div>
-
-        <div class="payment-badge">
-            APPROVED ONLY
-        </div>
-
-    </div>
-
-
-    <!-- APPROVED DEPOSITS -->
-
-    <div class="fund-row">
-
-        <div class="fund-label">
-
-            Approved Deposits
-
-            <span
-                class="fund-count"
-                id="payment2DepositCount"
-            >
-                0 transactions
-            </span>
+            </div>
 
         </div>
 
-        <div
-            class="fund-value deposit-value"
-            id="payment2Deposits"
-        >
-            ₱0.00
+
+        <!-- ACTUAL FUNDS -->
+
+        <div class="section-title">
+            Actual / Current Funds
         </div>
 
-    </div>
-
-
-    <!-- APPROVED WITHDRAWALS -->
-
-    <div class="fund-row">
-
-        <div class="fund-label">
-
-            Approved Withdrawals
-
-            <span
-                class="fund-count"
-                id="payment2WithdrawalCount"
-            >
-                0 transactions
-            </span>
-
+        <div class="section-subtitle">
+            Current funds after applying the test deposit adjustment.
         </div>
 
-        <div
-            class="fund-value withdrawal-value"
-            id="payment2Withdrawals"
-        >
-            ₱0.00
-        </div>
+        <div class="card actual-card">
 
-    </div>
+            <div class="card-title">
+                Current SkyRent Funds
+            </div>
 
+            <div class="card-subtitle">
+                Test withdrawal does not affect this calculation.
+            </div>
 
-    <!-- REMAINING -->
+            <div class="row">
 
-    <div
-        class="remaining-box"
-        id="payment2RemainingBox"
-    >
+                <div class="label">
+                    Actual Approved Deposits
+                </div>
 
-        <div class="remaining-label">
-            Remaining Funds
-        </div>
+                <div class="value"
+                     id="actualDeposits">
+                    ₱0.00
+                </div>
 
-        <div
-            class="remaining-value"
-            id="payment2Remaining"
-        >
-            ₱0.00
-        </div>
+            </div>
 
-    </div>
+            <div class="row">
 
-</div>
+                <div class="label">
+                    Actual Approved Withdrawals
+                </div>
 
+                <div class="value"
+                     id="actualWithdrawals">
+                    ₱0.00
+                </div>
 
-<!-- =====================================================
-     TEST ACCOUNT ADJUSTMENTS
-===================================================== -->
+            </div>
 
-<div class="section-title">
-    Test Account Adjustments
-</div>
+            <div class="current-box">
 
-<div class="section-subtitle">
-    These values are displayed separately and do not modify
-    real deposit or withdrawal records.
-</div>
+                <div class="current-label">
+                    CURRENT FUNDS
+                </div>
 
+                <div class="current-value"
+                     id="currentFunds">
+                    ₱0.00
+                </div>
 
-<div class="test-adjustment-card">
-
-    <div class="test-adjustment-title">
-        🧪 Test Account
-    </div>
-
-    <div class="test-adjustment-subtitle">
-        Test amounts are applied only to the adjusted funds
-        calculation below.
-    </div>
-
-
-    <div class="test-row">
-
-        <div class="test-label">
-
-            Test Deposit
-
-            <br>
-
-            <small>
-                Deducted from approved deposits
-            </small>
+            </div>
 
         </div>
 
-        <div
-            class="test-value test-deposit"
-            id="testDepositAmount"
-        >
-            ₱0.00
+
+        <!-- TEST ACCOUNT -->
+
+        <div class="section-title">
+            Test Account
         </div>
 
-    </div>
+        <div class="section-subtitle">
+            Enter test amounts without creating real deposit or withdrawal records.
+        </div>
+
+        <div class="test-card">
+
+            <div class="test-title">
+                🧪 Test Account Adjustments
+            </div>
+
+            <div class="test-description">
+                The test deposit is deducted from the Actual Approved Deposits
+                calculation. The test withdrawal is displayed for testing only
+                and does not reduce Current Funds.
+            </div>
 
 
-    <div class="test-row">
+            <!-- TEST DEPOSIT -->
 
-        <div class="test-label">
+            <div class="input-group">
 
-            Test Withdrawal
+                <label for="testDeposit">
+                    Test Deposit
+                </label>
 
-            <br>
+                <div class="input-wrapper">
 
-            <small>
-                Added to approved withdrawals
-            </small>
+                    <span class="currency">₱</span>
+
+                    <input
+                        type="number"
+                        id="testDeposit"
+                        min="0"
+                        step="0.01"
+                        inputmode="decimal"
+                        placeholder="0.00"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- TEST WITHDRAWAL -->
+
+            <div class="input-group">
+
+                <label for="testWithdrawal">
+                    Test Withdrawal
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="currency">₱</span>
+
+                    <input
+                        type="number"
+                        id="testWithdrawal"
+                        min="0"
+                        step="0.01"
+                        inputmode="decimal"
+                        placeholder="0.00"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="button-row">
+
+                <button
+                    type="button"
+                    class="save-btn"
+                    id="saveBtn">
+                    Save Test Amounts
+                </button>
+
+                <button
+                    type="button"
+                    class="reset-btn"
+                    id="resetBtn">
+                    Reset
+                </button>
+
+            </div>
+
+
+            <div id="status"
+                 class="status">
+            </div>
+
+
+            <!-- TEST SUMMARY -->
+
+            <div class="test-summary">
+
+                <div class="test-summary-title">
+                    Current Test Values
+                </div>
+
+                <div class="test-summary-row">
+
+                    <div class="test-summary-label">
+                        Test Deposit
+                    </div>
+
+                    <div class="test-summary-value"
+                         id="displayTestDeposit">
+                        ₱0.00
+                    </div>
+
+                </div>
+
+                <div class="test-summary-row">
+
+                    <div class="test-summary-label">
+                        Test Withdrawal
+                    </div>
+
+                    <div class="test-summary-value"
+                         id="displayTestWithdrawal">
+                        ₱0.00
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div
-            class="test-value test-withdrawal"
-            id="testWithdrawalAmount"
-        >
-            ₱0.00
+
+        <!-- EXPLANATION -->
+
+        <div class="notice">
+
+            <strong>
+                How the test calculation works
+            </strong>
+
+            <p>
+                Actual Approved Deposits = Real Approved Deposits − Test Deposit.
+                Actual Approved Withdrawals remain the real approved withdrawals.
+                The Test Withdrawal is not added to or deducted from Current Funds.
+            </p>
+
         </div>
 
-    </div>
 
-</div>
-
-
-<!-- =====================================================
-     ADJUSTED FUNDS
-===================================================== -->
-
-<div class="section-title">
-    Adjusted Funds
-</div>
-
-<div class="section-subtitle">
-    Actual approved funds after applying the test account
-    adjustments.
-</div>
-
-
-<div class="adjusted-card">
-
-    <div class="adjusted-title">
-        🧮 Adjusted SkyRent Funds
-    </div>
-
-    <div class="adjusted-subtitle">
-        These figures are for the Funds Summary display only.
-        They do not change Firebase transaction records.
-    </div>
-
-
-    <div class="adjusted-row">
-
-        <div class="adjusted-label">
-            Adjusted Approved Deposits
-        </div>
-
-        <div
-            class="adjusted-value"
-            id="adjustedDeposits"
-        >
-            ₱0.00
-        </div>
-
-    </div>
-
-
-    <div class="adjusted-row">
-
-        <div class="adjusted-label">
-            Adjusted Approved Withdrawals
-        </div>
-
-        <div
-            class="adjusted-value"
-            id="adjustedWithdrawals"
-        >
-            ₱0.00
-        </div>
-
-    </div>
-
-
-    <div class="adjusted-remaining">
-
-        <div class="adjusted-label">
-            Adjusted Remaining Funds
-        </div>
-
-        <div
-            class="adjusted-value"
-            id="adjustedRemaining"
-        >
-            ₱0.00
+        <div class="last-updated"
+             id="lastUpdated">
+            Last updated: —
         </div>
 
     </div>
 
 </div>
 
-
-<!-- =====================================================
-     COMBINED TOTAL
-===================================================== -->
-
-<div class="section-title">
-    Combined Funds
-</div>
-
-<div class="section-subtitle">
-    Payment 1 + Payment 2.
-</div>
-
-
-<div class="combined-card">
-
-
-    <div class="combined-title">
-        💰 Total SkyRent Funds
-    </div>
-
-
-    <!-- TOTAL DEPOSITS -->
-
-    <div class="combined-row">
-
-        <div class="combined-label">
-            Total Approved Deposits
-        </div>
-
-        <div
-            class="combined-value"
-            id="combinedDeposits"
-        >
-            ₱0.00
-        </div>
-
-    </div>
-
-
-    <!-- TOTAL WITHDRAWALS -->
-
-    <div class="combined-row">
-
-        <div class="combined-label">
-            Total Approved Withdrawals
-        </div>
-
-        <div
-            class="combined-value"
-            id="combinedWithdrawals"
-        >
-            ₱0.00
-        </div>
-
-    </div>
-
-
-    <!-- REMAINING -->
-
-    <div class="combined-remaining">
-
-        <div class="combined-label">
-            Total Remaining Funds
-        </div>
-
-        <div
-            class="combined-value"
-            id="combinedRemaining"
-        >
-            ₱0.00
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     UNASSIGNED WARNING
-===================================================== -->
-
-<div
-    id="unassignedWarning"
-    class="warning-card"
-    style="display:none;"
->
-
-    <div class="warning-title">
-        ⚠️ Unassigned Approved Transactions
-    </div>
-
-    <div
-        class="warning-text"
-        id="unassignedText"
-    >
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     LAST UPDATED
-===================================================== -->
-
-<div
-    class="last-updated"
-    id="lastUpdated"
->
-    Last updated: -
-</div>
-
-
-<!-- =====================================================
-     LOADING
-===================================================== -->
-
-<div
-    id="loadingArea"
-    class="loading"
-    style="display:none;margin-top:14px;"
->
-    Loading approved funds...
-</div>
-
-
-<!-- =====================================================
-     ERROR
-===================================================== -->
-
-<div
-    id="errorArea"
-    style="display:none;margin-top:14px;"
->
-</div>
-
-
-</main>
-
-
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
 
 <script type="module">
 
-
-/* =====================================================
-   FIREBASE IMPORTS
-===================================================== */
-
 import {
     initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
     getAuth,
     onAuthStateChanged,
     signOut
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
     getFirestore,
     collection,
     getDocs,
     doc,
-    getDoc
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    getDoc,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
+/* =========================================================
+   FIREBASE
+========================================================= */
 
 const firebaseConfig = {
-
-    apiKey:
-    "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
-
-    authDomain:
-    "skyrent-ea30c.firebaseapp.com",
-
-    projectId:
-    "skyrent-ea30c",
-
-    storageBucket:
-    "skyrent-ea30c.firebasestorage.app",
-
-    messagingSenderId:
-    "572678456448",
-
-    appId:
-    "1:572678456448:web:6b7132351515742dd09265"
-
+    apiKey: "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+    authDomain: "skyrent-ea30c.firebaseapp.com",
+    projectId: "skyrent-ea30c",
+    storageBucket: "skyrent-ea30c.firebasestorage.app",
+    messagingSenderId: "572678456448",
+    appId: "1:572678456448:web:6b7132351515742dd09265"
 };
 
+const app = initializeApp(firebaseConfig);
 
-/* =====================================================
-   INITIALIZE
-===================================================== */
+const auth = getAuth(app);
 
-const app =
-    initializeApp(
-        firebaseConfig
-    );
+const db = getFirestore(app);
 
 
-const auth =
-    getAuth(app);
-
-
-const db =
-    getFirestore(app);
-
-
-/* =====================================================
+/* =========================================================
    ADMIN UID
-===================================================== */
+========================================================= */
 
-const ADMIN_UID =
-    "28zzG9NB46gRkwia7WtOxS1lQNa2";
-
-
-/* =====================================================
-   GLOBAL
-===================================================== */
-
-let currentAdmin = null;
-
-let loading = false;
+const ADMIN_UID = "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
 
-/* =====================================================
-   FORMAT MONEY
-===================================================== */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-function formatMoney(amount){
+const loadingBox =
+    document.getElementById("loadingBox");
 
-    return Number(amount || 0)
-        .toLocaleString(
-            "en-PH",
-            {
-                style:"currency",
-                currency:"PHP",
-                minimumFractionDigits:2
-            }
-        );
+const content =
+    document.getElementById("content");
 
-}
+const errorBox =
+    document.getElementById("errorBox");
+
+const testDepositInput =
+    document.getElementById("testDeposit");
+
+const testWithdrawalInput =
+    document.getElementById("testWithdrawal");
+
+const saveBtn =
+    document.getElementById("saveBtn");
+
+const resetBtn =
+    document.getElementById("resetBtn");
+
+const statusBox =
+    document.getElementById("status");
 
 
-/* =====================================================
-   GET NUMBER
-===================================================== */
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function getNumber(value){
 
-    if(
-        value === null ||
-        value === undefined ||
-        value === ""
-    ){
-
+    if(value === null ||
+       value === undefined ||
+       value === ""){
         return 0;
-
     }
 
+    const number =
+        Number(value);
 
-    return Number(
-        String(value)
-            .replace(/[₱,\s]/g,"")
-    ) || 0;
-
+    return Number.isFinite(number)
+        ? number
+        : 0;
 }
 
 
-/* =====================================================
-   NORMALIZE TEXT
-===================================================== */
+function formatMoney(value){
+
+    const number =
+        getNumber(value);
+
+    return "₱" +
+        number.toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+}
+
 
 function normalize(value){
 
-    return String(
-        value ?? ""
-    )
-    .trim()
-    .toLowerCase();
+    if(value === null ||
+       value === undefined){
+        return "";
+    }
 
+    return String(value)
+        .trim()
+        .toLowerCase();
 }
 
 
-/* =====================================================
-   CHECK APPROVED DEPOSIT
-===================================================== */
-
-function isApprovedDeposit(data){
-
-    const status =
-        normalize(
-            data.status
-        );
-
-
-    return (
-
-        data.approved === true ||
-
-        status === "approved" ||
-
-        status === "deposit successful" ||
-
-        status === "successful" ||
-
-        status === "completed"
-
-    );
-
-}
-
-
-/* =====================================================
-   CHECK APPROVED WITHDRAWAL TRANSACTION
-===================================================== */
-
-function isApprovedWithdrawal(data){
-
-    const status =
-        normalize(
-            data.status
-        );
-
-
-    return (
-
-        status === "approved" ||
-
-        status === "withdrawal successful" ||
-
-        status === "successful" ||
-
-        status === "completed"
-
-    );
-
-}
-
-
-/* =====================================================
-   GET DEPOSIT AMOUNT
-===================================================== */
-
-function getDepositAmount(data){
-
-    return getNumber(
-
-        data.amount ??
-
-        data.depositAmount ??
-
-        data.amountValue ??
-
-        data.requestedAmount
-
-    );
-
-}
-
-
-/* =====================================================
-   GET WITHDRAWAL AMOUNT
-===================================================== */
-
-function getWithdrawalAmount(data){
-
-    /*
-       IMPORTANT:
-
-       We use the original withdrawal amount,
-       NOT netAmount.
-
-       This represents the amount deducted
-       from the user's balance / withdrawal
-       transaction.
-
-       Processing fee is therefore not
-       accidentally excluded from the funds
-       calculation.
-    */
-
-    return getNumber(
-
-        data.amount ??
-
-        data.withdrawalAmount ??
-
-        data.amountValue
-
-    );
-
-}
-
-
-/* =====================================================
-   GET PAYMENT CHANNEL
-===================================================== */
+/* =========================================================
+   DETECT PAYMENT CHANNEL
+========================================================= */
 
 function getPaymentChannel(data){
 
     /*
-       Withdrawals:
-       paymentChannel = Payment 1 / Payment 2
+       Supports several possible field names used
+       by the SkyRent deposit records.
     */
 
-    const directChannel =
-        data.paymentChannel ??
-        data.paymentOption ??
-        data.paymentNumber ??
-        data.paymentOptionNumber ??
-        data.selectedPayment ??
-        data.selectedPaymentOption ??
-        data.paymentMethodNumber;
-
-
-    if(
-        directChannel !== undefined &&
-        directChannel !== null &&
-        directChannel !== ""
-    ){
-
-        const value =
-            normalize(
-                directChannel
-            );
-
-
-        if(
-            value === "1" ||
-            value === "payment 1" ||
-            value === "payment1"
-        ){
-
-            return "Payment 1";
-
-        }
-
-
-        if(
-            value === "2" ||
-            value === "payment 2" ||
-            value === "payment2"
-        ){
-
-            return "Payment 2";
-
-        }
-
-    }
-
-
-    /*
-       Check text fields.
-    */
-
-    const fields = [
-
-        data.payment,
-
-        data.paymentType,
+    const directValues = [
 
         data.paymentMethod,
-
         data.paymentChannel,
-
-        data.selectedPayment,
-
-        data.selectedPaymentOption,
-
-        data.paymentAccount,
-
-        data.receivingAccount
-
+        data.paymentType,
+        data.channel,
+        data.method,
+        data.accountType,
+        data.payment
     ];
 
+    for(const value of directValues){
 
-    for(
-        const field of fields
-    ){
-
-        const value =
-            normalize(field);
-
+        const text =
+            normalize(value);
 
         if(
-            value.includes("payment 1") ||
-            value === "payment1"
+            text.includes("payment 1") ||
+            text.includes("payment1") ||
+            text === "1"
         ){
-
-            return "Payment 1";
-
+            return 1;
         }
-
 
         if(
-            value.includes("payment 2") ||
-            value === "payment2"
+            text.includes("payment 2") ||
+            text.includes("payment2") ||
+            text === "2"
         ){
-
-            return "Payment 2";
-
+            return 2;
         }
-
-    }
-
-
-    /*
-       Older records may use booleans.
-    */
-
-    if(
-        data.payment1 === true
-    ){
-
-        return "Payment 1";
 
     }
 
 
     if(
-        data.payment2 === true
+        data.payment1 === true ||
+        data.isPayment1 === true
     ){
-
-        return "Payment 2";
-
+        return 1;
     }
 
 
-    return "Unknown";
+    if(
+        data.payment2 === true ||
+        data.isPayment2 === true
+    ){
+        return 2;
+    }
 
+
+    return 0;
 }
 
 
-/* =====================================================
-   LOAD APPROVED DEPOSITS
-===================================================== */
+/* =========================================================
+   GET DEPOSIT AMOUNT
+========================================================= */
 
-async function loadApprovedDeposits(){
+function getDepositAmount(data){
 
-    const snapshot =
-        await getDocs(
-            collection(
-                db,
-                "deposits"
-            )
-        );
+    const possibleValues = [
 
+        data.amount,
+        data.depositAmount,
+        data.amountValue,
+        data.requestedAmount
+    ];
 
-    const result = {
+    for(const value of possibleValues){
 
-        payment1:0,
+        const amount =
+            getNumber(value);
 
-        payment2:0,
-
-        unknown:0,
-
-        payment1Count:0,
-
-        payment2Count:0,
-
-        unknownCount:0,
-
-        totalCount:0,
-
-        totalAmount:0
-
-    };
-
-
-    snapshot.forEach(
-        depositDoc => {
-
-            const data =
-                depositDoc.data();
-
-
-            /*
-               ONLY APPROVED DEPOSITS
-            */
-
-            if(
-                !isApprovedDeposit(data)
-            ){
-
-                return;
-
-            }
-
-
-            const amount =
-                getDepositAmount(
-                    data
-                );
-
-
-            if(
-                amount <= 0
-            ){
-
-                return;
-
-            }
-
-
-            const channel =
-                getPaymentChannel(
-                    data
-                );
-
-
-            result.totalCount++;
-
-            result.totalAmount +=
-                amount;
-
-
-            if(
-                channel ===
-                "Payment 1"
-            ){
-
-                result.payment1 +=
-                    amount;
-
-                result.payment1Count++;
-
-            }
-
-            else if(
-                channel ===
-                "Payment 2"
-            ){
-
-                result.payment2 +=
-                    amount;
-
-                result.payment2Count++;
-
-            }
-
-            else{
-
-                result.unknown +=
-                    amount;
-
-                result.unknownCount++;
-
-            }
-
+        if(amount > 0){
+            return amount;
         }
-    );
 
+    }
 
-    return result;
-
+    return 0;
 }
 
 
-/* =====================================================
-   LOAD APPROVED WITHDRAWALS
-===================================================== */
+/* =========================================================
+   GET WITHDRAWAL AMOUNT
+========================================================= */
 
-async function loadApprovedWithdrawals(){
+function getWithdrawalAmount(data){
 
-    /*
-       IMPORTANT:
+    const possibleValues = [
 
-       Approved withdrawals are read from
-       withdrawalTransactions.
+        data.amount,
+        data.withdrawalAmount,
+        data.amountValue,
+        data.requestedAmount
+    ];
 
-       This prevents pending and rejected
-       withdrawals from being included.
-    */
+    for(const value of possibleValues){
 
-    const snapshot =
-        await getDocs(
-            collection(
-                db,
-                "withdrawalTransactions"
-            )
-        );
+        const amount =
+            getNumber(value);
 
-
-    const result = {
-
-        payment1:0,
-
-        payment2:0,
-
-        unknown:0,
-
-        payment1Count:0,
-
-        payment2Count:0,
-
-        unknownCount:0,
-
-        totalCount:0,
-
-        totalAmount:0
-
-    };
-
-
-    snapshot.forEach(
-        transactionDoc => {
-
-            const data =
-                transactionDoc.data();
-
-
-            /*
-               ONLY APPROVED WITHDRAWAL
-               TRANSACTIONS
-            */
-
-            if(
-                !isApprovedWithdrawal(
-                    data
-                )
-            ){
-
-                return;
-
-            }
-
-
-            const amount =
-                getWithdrawalAmount(
-                    data
-                );
-
-
-            if(
-                amount <= 0
-            ){
-
-                return;
-
-            }
-
-
-            const channel =
-                getPaymentChannel(
-                    data
-                );
-
-
-            result.totalCount++;
-
-            result.totalAmount +=
-                amount;
-
-
-            if(
-                channel ===
-                "Payment 1"
-            ){
-
-                result.payment1 +=
-                    amount;
-
-                result.payment1Count++;
-
-            }
-
-            else if(
-                channel ===
-                "Payment 2"
-            ){
-
-                result.payment2 +=
-                    amount;
-
-                result.payment2Count++;
-
-            }
-
-            else{
-
-                result.unknown +=
-                    amount;
-
-                result.unknownCount++;
-
-            }
-
+        if(amount > 0){
+            return amount;
         }
-    );
 
+    }
 
-    return result;
-
+    return 0;
 }
 
 
-/* =====================================================
-   LOAD TEST ACCOUNT ADJUSTMENTS
-===================================================== */
+/* =========================================================
+   APPROVED DEPOSIT
+========================================================= */
 
-async function loadTestAccountAdjustments(){
+function isApprovedDeposit(data){
 
-    const adjustmentRef =
+    if(data.approved === true){
+        return true;
+    }
+
+    const status =
+        normalize(data.status);
+
+    return (
+        status === "approved" ||
+        status === "deposit successful" ||
+        status === "successful" ||
+        status === "completed"
+    );
+}
+
+
+/* =========================================================
+   APPROVED WITHDRAWAL
+========================================================= */
+
+function isApprovedWithdrawal(data){
+
+    const status =
+        normalize(data.status);
+
+    return (
+        status === "approved" ||
+        status === "withdrawal successful" ||
+        status === "successful" ||
+        status === "completed"
+    );
+}
+
+
+/* =========================================================
+   LOAD TEST ACCOUNT
+========================================================= */
+
+async function loadTestAccount(){
+
+    const ref =
         doc(
             db,
             "adminSettings",
             "testAccountAdjustments"
         );
 
-
     const snapshot =
-        await getDoc(
-            adjustmentRef
-        );
+        await getDoc(ref);
 
-
-    if(
-        !snapshot.exists()
-    ){
+    if(!snapshot.exists()){
 
         return {
-
             testDeposit:0,
-
             testWithdrawal:0
-
         };
 
     }
 
-
     const data =
         snapshot.data();
-
 
     return {
 
         testDeposit:
-            getNumber(
-                data.testDeposit
-            ),
+            getNumber(data.testDeposit),
 
         testWithdrawal:
-            getNumber(
-                data.testWithdrawal
-            )
+            getNumber(data.testWithdrawal)
 
     };
 
 }
 
 
-/* =====================================================
-   SET REMAINING BOX STATE
-===================================================== */
+/* =========================================================
+   LOAD FUNDS
+========================================================= */
 
-function setRemainingBox(
-    boxId,
-    amount
-){
-
-    const box =
-        document.getElementById(
-            boxId
-        );
-
-
-    if(!box){
-        return;
-    }
-
-
-    if(
-        amount < 0
-    ){
-
-        box.classList.add(
-            "negative"
-        );
-
-    }
-
-    else{
-
-        box.classList.remove(
-            "negative"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   LOAD FUNDS SUMMARY
-===================================================== */
-
-async function loadFundsSummary(){
-
-    if(loading){
-        return;
-    }
-
-
-    loading = true;
-
-
-    const refreshButton =
-        document.getElementById(
-            "refreshButton"
-        );
-
-
-    const loadingArea =
-        document.getElementById(
-            "loadingArea"
-        );
-
-
-    const errorArea =
-        document.getElementById(
-            "errorArea"
-        );
-
+async function loadFunds(){
 
     try{
 
-        refreshButton.disabled =
-            true;
-
-        refreshButton.innerText =
-            "⏳ Loading Funds...";
-
-
-        loadingArea.style.display =
-            "block";
-
-
-        errorArea.style.display =
+        errorBox.style.display =
             "none";
 
+        const depositsSnapshot =
+            await getDocs(
+                collection(db,"deposits")
+            );
 
-        /*
-           Load deposits, withdrawals,
-           and test account adjustments.
-        */
-
-        const [
-            deposits,
-            withdrawals,
-            testAdjustments
-        ] =
-            await Promise.all([
-
-                loadApprovedDeposits(),
-
-                loadApprovedWithdrawals(),
-
-                loadTestAccountAdjustments()
-
-            ]);
+        const withdrawalsSnapshot =
+            await getDocs(
+                collection(db,"withdrawalTransactions")
+            );
 
 
-        /* =================================================
-           PAYMENT 1
-        ================================================== */
+        let payment1Deposits = 0;
+        let payment2Deposits = 0;
+
+        let payment1Withdrawals = 0;
+        let payment2Withdrawals = 0;
+
+
+        /* =========================
+           DEPOSITS
+        ========================= */
+
+        depositsSnapshot.forEach(
+            (documentSnapshot) => {
+
+                const data =
+                    documentSnapshot.data();
+
+                if(!isApprovedDeposit(data)){
+                    return;
+                }
+
+                const amount =
+                    getDepositAmount(data);
+
+                if(amount <= 0){
+                    return;
+                }
+
+                const payment =
+                    getPaymentChannel(data);
+
+                if(payment === 1){
+
+                    payment1Deposits +=
+                        amount;
+
+                }
+                else if(payment === 2){
+
+                    payment2Deposits +=
+                        amount;
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           WITHDRAWALS
+        ========================= */
+
+        withdrawalsSnapshot.forEach(
+            (documentSnapshot) => {
+
+                const data =
+                    documentSnapshot.data();
+
+                if(!isApprovedWithdrawal(data)){
+                    return;
+                }
+
+                const amount =
+                    getWithdrawalAmount(data);
+
+                if(amount <= 0){
+                    return;
+                }
+
+                const payment =
+                    getPaymentChannel(data);
+
+                if(payment === 1){
+
+                    payment1Withdrawals +=
+                        amount;
+
+                }
+                else if(payment === 2){
+
+                    payment2Withdrawals +=
+                        amount;
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           PAYMENT REMAINING
+        ========================= */
 
         const payment1Remaining =
-            deposits.payment1 -
-            withdrawals.payment1;
+            payment1Deposits -
+            payment1Withdrawals;
 
+        const payment2Remaining =
+            payment2Deposits -
+            payment2Withdrawals;
+
+
+        /* =========================
+           COMBINED REAL FUNDS
+        ========================= */
+
+        const combinedDeposits =
+            payment1Deposits +
+            payment2Deposits;
+
+        const combinedWithdrawals =
+            payment1Withdrawals +
+            payment2Withdrawals;
+
+
+        /* =========================
+           TEST ACCOUNT
+        ========================= */
+
+        const testAccount =
+            await loadTestAccount();
+
+        const testDeposit =
+            testAccount.testDeposit;
+
+        const testWithdrawal =
+            testAccount.testWithdrawal;
+
+
+        /* =========================
+           ACTUAL FUNDS
+           
+           TEST DEPOSIT:
+           deducted from deposits
+
+           TEST WITHDRAWAL:
+           DOES NOT affect funds
+        ========================= */
+
+        const actualApprovedDeposits =
+            combinedDeposits -
+            testDeposit;
+
+        const actualApprovedWithdrawals =
+            combinedWithdrawals;
+
+        const currentFunds =
+            actualApprovedDeposits -
+            actualApprovedWithdrawals;
+
+
+        /* =========================
+           DISPLAY PAYMENT 1
+        ========================= */
 
         document.getElementById(
             "payment1Deposits"
         ).innerText =
-            formatMoney(
-                deposits.payment1
-            );
-
+            formatMoney(payment1Deposits);
 
         document.getElementById(
             "payment1Withdrawals"
         ).innerText =
-            formatMoney(
-                withdrawals.payment1
-            );
-
+            formatMoney(payment1Withdrawals);
 
         document.getElementById(
             "payment1Remaining"
         ).innerText =
-            formatMoney(
-                payment1Remaining
-            );
+            formatMoney(payment1Remaining);
 
 
-        document.getElementById(
-            "payment1DepositCount"
-        ).innerText =
-            deposits.payment1Count +
-            (
-                deposits.payment1Count === 1
-                    ? " transaction"
-                    : " transactions"
-            );
-
-
-        document.getElementById(
-            "payment1WithdrawalCount"
-        ).innerText =
-            withdrawals.payment1Count +
-            (
-                withdrawals.payment1Count === 1
-                    ? " transaction"
-                    : " transactions"
-            );
-
-
-        setRemainingBox(
-            "payment1RemainingBox",
-            payment1Remaining
-        );
-
-
-        /* =================================================
-           PAYMENT 2
-        ================================================== */
-
-        const payment2Remaining =
-            deposits.payment2 -
-            withdrawals.payment2;
-
+        /* =========================
+           DISPLAY PAYMENT 2
+        ========================= */
 
         document.getElementById(
             "payment2Deposits"
         ).innerText =
-            formatMoney(
-                deposits.payment2
-            );
-
+            formatMoney(payment2Deposits);
 
         document.getElementById(
             "payment2Withdrawals"
         ).innerText =
-            formatMoney(
-                withdrawals.payment2
-            );
-
+            formatMoney(payment2Withdrawals);
 
         document.getElementById(
             "payment2Remaining"
         ).innerText =
-            formatMoney(
-                payment2Remaining
-            );
+            formatMoney(payment2Remaining);
 
 
-        document.getElementById(
-            "payment2DepositCount"
-        ).innerText =
-            deposits.payment2Count +
-            (
-                deposits.payment2Count === 1
-                    ? " transaction"
-                    : " transactions"
-            );
-
+        /* =========================
+           DISPLAY ACTUAL FUNDS
+        ========================= */
 
         document.getElementById(
-            "payment2WithdrawalCount"
+            "actualDeposits"
         ).innerText =
-            withdrawals.payment2Count +
-            (
-                withdrawals.payment2Count === 1
-                    ? " transaction"
-                    : " transactions"
-            );
-
-
-        setRemainingBox(
-            "payment2RemainingBox",
-            payment2Remaining
-        );
-
-
-        /* =================================================
-           COMBINED REAL FUNDS
-        ================================================== */
-
-        const combinedDeposits =
-            deposits.payment1 +
-            deposits.payment2;
-
-
-        const combinedWithdrawals =
-            withdrawals.payment1 +
-            withdrawals.payment2;
-
-
-        const combinedRemaining =
-            combinedDeposits -
-            combinedWithdrawals;
-
+            formatMoney(actualApprovedDeposits);
 
         document.getElementById(
-            "combinedDeposits"
+            "actualWithdrawals"
         ).innerText =
-            formatMoney(
-                combinedDeposits
-            );
-
+            formatMoney(actualApprovedWithdrawals);
 
         document.getElementById(
-            "combinedWithdrawals"
+            "currentFunds"
         ).innerText =
-            formatMoney(
-                combinedWithdrawals
-            );
+            formatMoney(currentFunds);
 
+
+        /* =========================
+           DISPLAY TEST VALUES
+        ========================= */
+
+        testDepositInput.value =
+            testDeposit > 0
+                ? testDeposit
+                : "";
+
+        testWithdrawalInput.value =
+            testWithdrawal > 0
+                ? testWithdrawal
+                : "";
 
         document.getElementById(
-            "combinedRemaining"
+            "displayTestDeposit"
         ).innerText =
-            formatMoney(
-                combinedRemaining
-            );
-
-
-        /* =================================================
-           COUNTS
-        ================================================== */
+            formatMoney(testDeposit);
 
         document.getElementById(
-            "approvedDepositCount"
+            "displayTestWithdrawal"
         ).innerText =
-            deposits.totalCount;
+            formatMoney(testWithdrawal);
 
 
-        document.getElementById(
-            "approvedWithdrawalCount"
-        ).innerText =
-            withdrawals.totalCount;
-
-
-        /* =================================================
-           TEST ACCOUNT ADJUSTMENTS
-        ================================================== */
-
-        const testDeposit =
-            testAdjustments.testDeposit;
-
-
-        const testWithdrawal =
-            testAdjustments.testWithdrawal;
-
-
-        /*
-           Display test amounts.
-        */
-
-        document.getElementById(
-            "testDepositAmount"
-        ).innerText =
-            formatMoney(
-                testDeposit
-            );
-
-
-        document.getElementById(
-            "testWithdrawalAmount"
-        ).innerText =
-            formatMoney(
-                testWithdrawal
-            );
-
-
-        /* =================================================
-           ADJUSTED FUNDS
-        ================================================= */
-
-        /*
-           Test Deposit:
-           subtract from approved deposits.
-
-           Test Withdrawal:
-           add to approved withdrawals.
-        */
-
-        const adjustedDeposits =
-            combinedDeposits -
-            testDeposit;
-
-
-        const adjustedWithdrawals =
-            combinedWithdrawals +
-            testWithdrawal;
-
-
-        const adjustedRemaining =
-            adjustedDeposits -
-            adjustedWithdrawals;
-
-
-        /*
-           Display adjusted deposits.
-        */
-
-        document.getElementById(
-            "adjustedDeposits"
-        ).innerText =
-            formatMoney(
-                adjustedDeposits
-            );
-
-
-        /*
-           Display adjusted withdrawals.
-        */
-
-        document.getElementById(
-            "adjustedWithdrawals"
-        ).innerText =
-            formatMoney(
-                adjustedWithdrawals
-            );
-
-
-        /*
-           Display adjusted remaining.
-        */
-
-        const adjustedRemainingElement =
-            document.getElementById(
-                "adjustedRemaining"
-            );
-
-
-        adjustedRemainingElement.innerText =
-            formatMoney(
-                adjustedRemaining
-            );
-
-
-        /*
-           Negative remaining indicator.
-        */
-
-        if(
-            adjustedRemaining < 0
-        ){
-
-            adjustedRemainingElement
-                .classList.add(
-                    "adjusted-negative"
-                );
-
-        }
-
-        else{
-
-            adjustedRemainingElement
-                .classList.remove(
-                    "adjusted-negative"
-                );
-
-        }
-
-
-        /* =================================================
-           UNKNOWN / UNASSIGNED
-        ================================================== */
-
-        const unknownDepositAmount =
-            deposits.unknown;
-
-
-        const unknownWithdrawalAmount =
-            withdrawals.unknown;
-
-
-        const unknownDepositCount =
-            deposits.unknownCount;
-
-
-        const unknownWithdrawalCount =
-            withdrawals.unknownCount;
-
-
-        const warning =
-            document.getElementById(
-                "unassignedWarning"
-            );
-
-
-        const warningText =
-            document.getElementById(
-                "unassignedText"
-            );
-
-
-        if(
-            unknownDepositCount > 0 ||
-            unknownWithdrawalCount > 0
-        ){
-
-            warning.style.display =
-                "block";
-
-
-            warningText.innerHTML =
-
-                "Some approved records do not contain " +
-                "a recognizable Payment 1 or Payment 2 " +
-                "assignment, so they were not included " +
-                "in the Payment 1 / Payment 2 remaining " +
-                "fund calculations." +
-
-                "<br><br>" +
-
-                "<strong>Deposits:</strong> " +
-
-                formatMoney(
-                    unknownDepositAmount
-                ) +
-
-                " (" +
-                unknownDepositCount +
-                ")" +
-
-                "<br>" +
-
-                "<strong>Withdrawals:</strong> " +
-
-                formatMoney(
-                    unknownWithdrawalAmount
-                ) +
-
-                " (" +
-                unknownWithdrawalCount +
-                ")";
-
-        }
-
-        else{
-
-            warning.style.display =
-                "none";
-
-        }
-
-
-        /* =================================================
+        /* =========================
            LAST UPDATED
-        ================================================== */
+        ========================= */
 
         document.getElementById(
             "lastUpdated"
         ).innerText =
             "Last updated: " +
-            new Date()
-                .toLocaleString(
-                    "en-PH",
-                    {
-                        dateStyle:"medium",
-                        timeStyle:"short"
-                    }
-                );
+            new Date().toLocaleString(
+                "en-PH"
+            );
+
+
+        loadingBox.style.display =
+            "none";
+
+        content.style.display =
+            "block";
 
     }
-
     catch(error){
 
         console.error(
@@ -2728,49 +1457,17 @@ async function loadFundsSummary(){
             error
         );
 
+        loadingBox.style.display =
+            "none";
 
-        errorArea.innerHTML = `
-
-            <div class="error-box">
-
-                Unable to load the funds summary.
-
-                <br><br>
-
-                ${escapeHTML(
-                    error.message ||
-                    "Please check your Firebase connection."
-                )}
-
-                <br><br>
-
-                Tap Refresh Funds Summary
-                to try again.
-
-            </div>
-
-        `;
-
-
-        errorArea.style.display =
+        errorBox.style.display =
             "block";
 
-    }
+        errorBox.innerText =
+            "Unable to load funds summary. " +
+            (error.message || error);
 
-    finally{
-
-        loading = false;
-
-
-        refreshButton.disabled =
-            false;
-
-
-        refreshButton.innerText =
-            "🔄 Refresh Funds Summary";
-
-
-        loadingArea.style.display =
+        content.style.display =
             "none";
 
     }
@@ -2778,143 +1475,252 @@ async function loadFundsSummary(){
 }
 
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
+/* =========================================================
+   SAVE TEST VALUES
+========================================================= */
 
-function escapeHTML(value){
+saveBtn.addEventListener(
+    "click",
+    async () => {
 
-    return String(
-        value ?? ""
-    )
+        statusBox.className =
+            "status";
 
-    .replace(/&/g,"&amp;")
+        statusBox.innerText =
+            "Saving...";
 
-    .replace(/</g,"&lt;")
+        saveBtn.disabled =
+            true;
 
-    .replace(/>/g,"&gt;")
+        try{
 
-    .replace(/"/g,"&quot;")
+            let testDeposit =
+                Number(testDepositInput.value);
 
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   ADMIN PANEL
-===================================================== */
-
-function goAdminPanel(){
-
-    window.location.href =
-        "admin.html";
-
-}
+            let testWithdrawal =
+                Number(testWithdrawalInput.value);
 
 
-/* =====================================================
-   MAKE AVAILABLE
-===================================================== */
+            if(!Number.isFinite(testDeposit) ||
+               testDeposit < 0){
 
-window.loadFundsSummary =
-    loadFundsSummary;
-
-window.goAdminPanel =
-    goAdminPanel;
-
-
-/* =====================================================
-   ADMIN AUTHENTICATION
-===================================================== */
-
-onAuthStateChanged(
-    auth,
-    async user => {
-
-        if(!user){
-
-            alert(
-                "Admin login required."
-            );
-
-
-            window.location.href =
-                "index.html";
-
-            return;
-
-        }
-
-
-        currentAdmin =
-            user;
-
-
-        /* =================================================
-           ADMIN UID CHECK
-        ================================================== */
-
-        if(
-            user.uid !==
-            ADMIN_UID
-        ){
-
-            alert(
-                "Access denied. " +
-                "This account is not authorized as admin."
-            );
-
-
-            try{
-
-                await signOut(
-                    auth
-                );
-
-            }
-
-            catch(error){
-
-                console.error(
-                    "Admin sign out error:",
-                    error
+                throw new Error(
+                    "Please enter a valid test deposit amount."
                 );
 
             }
 
 
-            window.location.href =
-                "index.html";
+            if(!Number.isFinite(testWithdrawal) ||
+               testWithdrawal < 0){
 
-            return;
+                throw new Error(
+                    "Please enter a valid test withdrawal amount."
+                );
+
+            }
+
+
+            const adjustmentRef =
+                doc(
+                    db,
+                    "adminSettings",
+                    "testAccountAdjustments"
+                );
+
+
+            await setDoc(
+                adjustmentRef,
+                {
+                    testDeposit:
+                        testDeposit,
+
+                    testWithdrawal:
+                        testWithdrawal,
+
+                    updatedAt:
+                        new Date()
+                },
+                {
+                    merge:true
+                }
+            );
+
+
+            statusBox.className =
+                "status success";
+
+            statusBox.innerText =
+                "Test amounts saved successfully.";
+
+
+            await loadFunds();
 
         }
+        catch(error){
 
+            console.error(error);
 
-        /* =================================================
-           LOAD SUMMARY
-        ================================================== */
+            statusBox.className =
+                "status error";
 
-        await loadFundsSummary();
+            statusBox.innerText =
+                error.message ||
+                "Unable to save test amounts.";
+
+        }
+        finally{
+
+            saveBtn.disabled =
+                false;
+
+        }
 
     }
 );
 
 
-/* =====================================================
+/* =========================================================
+   RESET TEST VALUES
+========================================================= */
+
+resetBtn.addEventListener(
+    "click",
+    async () => {
+
+        const confirmed =
+            confirm(
+                "Reset the Test Deposit and Test Withdrawal to ₱0.00?"
+            );
+
+        if(!confirmed){
+            return;
+        }
+
+
+        statusBox.className =
+            "status";
+
+        statusBox.innerText =
+            "Resetting...";
+
+        resetBtn.disabled =
+            true;
+
+        try{
+
+            const adjustmentRef =
+                doc(
+                    db,
+                    "adminSettings",
+                    "testAccountAdjustments"
+                );
+
+
+            await setDoc(
+                adjustmentRef,
+                {
+                    testDeposit:0,
+                    testWithdrawal:0,
+                    updatedAt:new Date()
+                },
+                {
+                    merge:true
+                }
+            );
+
+
+            testDepositInput.value =
+                "";
+
+            testWithdrawalInput.value =
+                "";
+
+
+            statusBox.className =
+                "status success";
+
+            statusBox.innerText =
+                "Test amounts reset successfully.";
+
+
+            await loadFunds();
+
+        }
+        catch(error){
+
+            console.error(error);
+
+            statusBox.className =
+                "status error";
+
+            statusBox.innerText =
+                error.message ||
+                "Unable to reset test amounts.";
+
+        }
+        finally{
+
+            resetBtn.disabled =
+                false;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AUTHENTICATION / ADMIN CHECK
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if(!user){
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        if(user.uid !== ADMIN_UID){
+
+            alert(
+                "Unauthorized access."
+            );
+
+            await signOut(auth);
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        await loadFunds();
+
+    }
+);
+
+
+/* =========================================================
    AUTO REFRESH
-===================================================== */
+========================================================= */
 
 setInterval(
-    () => {
+    async () => {
 
-        if(
-            currentAdmin &&
-            !loading
-        ){
+        if(auth.currentUser &&
+           auth.currentUser.uid === ADMIN_UID){
 
-            loadFundsSummary();
+            await loadFunds();
 
         }
 
@@ -2924,7 +1730,5 @@ setInterval(
 
 </script>
 
-
 </body>
-
 </html>
