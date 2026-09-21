@@ -822,36 +822,29 @@ async function loadCollection(name){
 
     try{
 
-        const ref =
-            collection(db,name);
+        const ref = collection(db,name);
 
-        const q =
-            query(
-                ref,
-                where(
-                    "userId",
-                    "==",
-                    currentUser.uid
-                )
-            );
-
-        const snapshot =
-            await getDocs(q);
+        const snapshot = await getDocs(ref);
 
         const records = [];
 
-        snapshot.forEach(
-            snap => {
+        snapshot.forEach(snap=>{
+
+            const data = snap.data();
+
+            if(
+                data.uid === currentUser.uid ||
+                data.userId === currentUser.uid
+            ){
 
                 records.push({
-
                     id:snap.id,
-                    ...snap.data()
-
+                    ...data
                 });
 
             }
-        );
+
+        });
 
         return records;
 
