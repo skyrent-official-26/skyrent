@@ -296,7 +296,16 @@ This device will receive SkyRent admin alerts.
 
 </div>
 
+<button
+class="enable"
+onclick="sendTestNotification()">
 
+📢 Send Test Notification
+
+</button>
+
+
+   
 
 <button class="back"
 onclick="location.href='admin.html'">
@@ -795,6 +804,74 @@ false;
 };
 
 
+window.sendTestNotification = async function(){
+
+try{
+
+
+const adminRef =
+doc(
+db,
+"admins",
+ADMIN_UID
+);
+
+
+const adminSnap =
+await getDoc(adminRef);
+
+
+
+if(!adminSnap.exists()){
+
+alert(
+"No admin notification record found"
+);
+
+return;
+
+}
+
+
+
+const data =
+adminSnap.data();
+
+
+
+if(!data.notificationToken){
+
+alert(
+"No notification token found"
+);
+
+return;
+
+}
+
+
+
+alert(
+"Test request ready. Next step is connecting Firebase Cloud Messaging sender."
+);
+
+
+
+}
+catch(error){
+
+console.error(error);
+
+alert(
+error.message
+);
+
+}
+
+
+};
+
+   
 
 </script>
 
