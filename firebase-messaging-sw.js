@@ -1,5 +1,3 @@
-// Firebase Messaging Service Worker
-
 importScripts(
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"
 );
@@ -8,8 +6,6 @@ importScripts(
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"
 );
 
-
-// Your Firebase Configuration
 
 firebase.initializeApp({
 
@@ -38,40 +34,41 @@ const messaging =
 firebase.messaging();
 
 
-// Background notification
 
 messaging.onBackgroundMessage(
-function(payload){
+(payload)=>{
+
 
 console.log(
-"Background message received:",
+"Background notification received:",
 payload
 );
 
 
+
 const notificationTitle =
-payload.notification.title ||
-"SkyRent Admin";
+payload.notification.title;
+
 
 
 const notificationOptions = {
 
 body:
-payload.notification.body ||
-"New SkyRent update",
+payload.notification.body,
 
 icon:
-"/skyrent.png",
-
-badge:
-"/skyrent.png",
+"/skyrent.png"
 
 };
 
 
+
 self.registration.showNotification(
+
 notificationTitle,
+
 notificationOptions
+
 );
 
 
