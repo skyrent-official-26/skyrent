@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkyRent Admin Notifications</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f3f7ff;
+color:#1e293b;
+}
+
+
+/* HEADER */
+
+.header{
+background:linear-gradient(
+135deg,
+#075985,
+#0284c7
+);
+color:white;
+text-align:center;
+padding:22px 15px;
+box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+
+.header h1{
+margin:0;
+font-size:24px;
+}
+
+.header p{
+margin-top:6px;
+font-size:13px;
+}
+
+
+/* CONTAINER */
+
+.container{
+max-width:500px;
+margin:auto;
+padding:15px;
+}
+
+
+/* CARD */
+
+.card{
+
+background:white;
+border-radius:16px;
+padding:20px;
+margin-top:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+text-align:center;
+
+}
+
+
+.logo{
+
+width:130px;
+margin-bottom:15px;
+
+}
+
+
+/* STATUS */
+
+.status{
+
+padding:12px;
+border-radius:10px;
+margin-top:15px;
+font-size:14px;
+font-weight:bold;
+
+background:#eff6ff;
+color:#075985;
+
+}
+
+
+.status.success{
+
+background:#ecfdf5;
+color:#047857;
+
+}
+
+
+.status.error{
+
+background:#fef2f2;
+color:#b91c1c;
+
+}
+
+
+
+/* BUTTON */
+
+button{
+
+width:100%;
+border:none;
+padding:15px;
+
+border-radius:12px;
+
+font-size:15px;
+font-weight:bold;
+
+cursor:pointer;
+
+margin-top:15px;
+
+}
+
+
+.enable{
+
+background:linear-gradient(
+135deg,
+#075985,
+#0284c7
+);
+
+color:white;
+
+}
+
+
+
+.back{
+
+background:#64748b;
+color:white;
+
+}
+
+
+
+.info{
+
+font-size:12px;
+color:#64748b;
+line-height:1.5;
+margin-top:15px;
+
+}
+
+
+.spinner{
+
+display:none;
+
+width:30px;
+height:30px;
+
+border:4px solid #dbeafe;
+border-top-color:#0284c7;
+
+border-radius:50%;
+
+animation:spin .8s linear infinite;
+
+margin:15px auto;
+
+}
+
+
+@keyframes spin{
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<h1>
+🔔 SkyRent Notifications
+</h1>
+
+<p>
+Admin Notification Settings
+</p>
+
+</div>
+
+
+
+<div class="container">
+
+
+<div class="card">
+
+
+<img 
+src="skyrent-logo.png"
+class="logo"
+>
+
+
+<h2>
+Enable Admin Alerts
+</h2>
+
+
+<p>
+Receive browser notifications for important SkyRent activities.
+</p>
+
+
+<div 
+id="loading"
+class="spinner">
+</div>
+
+
+
+<button
+class="enable"
+onclick="enableNotifications()"
+>
+
+🔔 Enable Notifications
+
+</button>
+
+
+
+<div
+id="status"
+class="status"
+>
+
+Checking notification status...
+
+</div>
+
+
+
+<div class="info">
+
+After enabling notifications, this device will be registered as an admin notification receiver.
+
+</div>
+
+
+
+<button
+class="back"
+onclick="location.href='admin.html'"
+>
+
+⬅ Back to Admin Dashboard
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script type="module">
+
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+
+getAuth,
+onAuthStateChanged
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+
+import {
+
+getFirestore,
+doc,
+setDoc
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+import {
+
+getMessaging,
+getToken
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
+
+
+
+
+
+const firebaseConfig = {
+
+
+apiKey:
+"AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+
+authDomain:
+"skyrent-ea30c.firebaseapp.com",
+
+
+projectId:
+"skyrent-ea30c",
+
+
+storageBucket:
+"skyrent-ea30c.firebasestorage.app",
+
+
+messagingSenderId:
+"572678456448",
+
+
+appId:
+"1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+const messaging =
+getMessaging(app);
+
+
+
+const ADMIN_UID =
+"28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+
+let adminUser = null;
+
+
+
+function setStatus(message,type=""){
+
+const box =
+document.getElementById("status");
+
+box.textContent =
+message;
+
+
+box.className =
+"status "+type;
+
+}
+
+
+
+
+
+onAuthStateChanged(
+auth,
+(user)=>{
+
+
+if(!user){
+
+setStatus(
+"❌ No admin login found",
+"error"
+);
+
+return;
+
+}
+
+
+
+if(user.uid !== ADMIN_UID){
+
+setStatus(
+"❌ Access denied",
+"error"
+);
+
+return;
+
+}
+
+
+
+adminUser=user;
+
+
+setStatus(
+"✅ Admin account verified",
+"success"
+);
+
+
+}
+
+);
+
+
+
+
+
+
+window.enableNotifications =
+async function(){
+
+
+if(!adminUser){
+
+alert(
+"Admin verification still loading"
+);
+
+return;
+
+}
+
+
+
+const loader =
+document.getElementById("loading");
+
+
+loader.style.display="block";
+
+
+
+try{
+
+
+if(
+!"Notification" in window
+){
+
+throw new Error(
+"Browser notifications are not supported"
+);
+
+}
+
+
+
+const permission =
+await Notification.requestPermission();
+
+
+
+if(permission !== "granted"){
+
+
+throw new Error(
+"Notification permission denied"
+);
+
+
+}
+
+
+
+
+
+const token = await getToken(
+    messaging,
+    {
+        vapidKey: "BC390oYXhlNUfxELpth0-roQQe_RubAfu_TupX0i0xN63GlEyXB69XQkpcPwtgUY6h35rZMVy83QIbjxxRFR-Ds"
+    }
+);
+
+}
+
+);
+
+
+
+
+if(!token){
+
+throw new Error(
+"Unable to generate notification token"
+);
+
+}
+
+
+
+
+
+await setDoc(
+
+doc(
+db,
+"admins",
+ADMIN_UID
+),
+
+{
+
+notificationToken:
+token,
+
+
+notificationEnabled:
+true,
+
+
+updatedAt:
+new Date()
+
+},
+
+{
+
+merge:true
+
+}
+
+);
+
+
+
+
+
+setStatus(
+"✅ Notifications enabled successfully",
+"success"
+);
+
+
+
+alert(
+"✅ SkyRent admin notifications are now enabled"
+);
+
+
+
+}
+
+catch(error){
+
+
+console.error(
+error
+);
+
+
+setStatus(
+"❌ "+error.message,
+"error"
+);
+
+
+
+}
+
+
+finally{
+
+
+loader.style.display="none";
+
+
+}
+
+
+
+};
+
+
+
+</script>
+
+
+</body>
+</html>
