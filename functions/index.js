@@ -6,106 +6,126 @@ admin.initializeApp();
 const db = admin.firestore();
 
 
-// ================================
+// =======================================
 // NEW USER REGISTRATION NOTIFICATION
-// ================================
+// =======================================
 
 exports.newUserRegistrationNotification =
 functions.firestore
 .document("users/{userId}")
-.onCreate(async (snap, context)=>{
+.onCreate(async (snap, context) => {
 
     const userData = snap.data();
 
 
     const userName =
-    userData.name || "New User";
+        userData.name || "New User";
 
 
     const userPhone =
-    userData.phone || "";
+        userData.phone || "";
 
 
-    // Get Admin Notification Token
-    const adminDoc =
-    await db.collection("admins")
-    .doc("28zzG9NB46gRkwia7WtOxS1lQNa2")
-    .get();
+    try {
 
 
-    if(!adminDoc.exists){
+        // Get Admin Notification Token
 
-        console.log(
-        "Admin notification token not found"
-        );
-
-        return null;
-    }
-
-
-    const token =
-    adminDoc.data().notificationToken;
-
-
-    if(!token){
-
-        console.log(
-        "No notification token saved"
-        );
-
-        return null;
-    }
+        const adminDoc =
+            await db
+            .collection("admins")
+            .doc("28zzG9NB46gRkwia7WtOxS1lQNa2")
+            .get();
 
 
 
-    const message = {
+        if(!adminDoc.exists){
 
-        token: token,
+            console.log(
+                "Admin document not found"
+            );
 
-        notification: {
-
-            title:
-            "🚀 New SkyRent Member Registered",
-
-            body:
-            `${userName} joined SkyRent ${userPhone}`
-
-        },
-
-        data: {
-
-            type:
-            "new_registration",
-
-            userId:
-            context.params.userId
+            return null;
 
         }
 
-    };
+
+
+        const token =
+            adminDoc.data().notificationToken;
 
 
 
-    try{
+        if(!token){
 
-        await admin.messaging()
+            console.log(
+                "Admin notification token missing"
+            );
+
+            return null;
+
+        }
+
+
+
+        const message = {
+
+
+            token: token,
+
+
+            notification: {
+
+                title:
+                "🚀 New SkyRent Member Registered",
+
+
+                body:
+                `${userName} joined SkyRent ${userPhone}`
+
+            },
+
+
+            data: {
+
+                type:
+                "new_registration",
+
+
+                userId:
+                context.params.userId
+
+            }
+
+        };
+
+
+
+        await admin
+        .messaging()
         .send(message);
 
 
+
         console.log(
-        "Registration notification sent"
+            "✅ Registration notification sent"
         );
 
 
     }
+
+
     catch(error){
 
+
         console.error(
-        "Notification error:",
-        error
+            "❌ Notification error:",
+            error
         );
 
+
     }
+
 
 
     return null;
