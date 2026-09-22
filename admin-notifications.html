@@ -707,64 +707,416 @@ setStatus(
 );
 
 
+<script type="module">
+
+import {
+initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+getDoc,
+setDoc,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+getMessaging,
+getToken
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
 
 
+/* ==============================
+   FIREBASE CONFIG
+============================== */
 
+const firebaseConfig = {
 
-alert(
+apiKey:
+"AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
 
-"✅ SkyRent admin notifications are now enabled"
+authDomain:
+"skyrent-ea30c.firebaseapp.com",
 
-);
+projectId:
+"skyrent-ea30c",
 
+storageBucket:
+"skyrent-ea30c.firebasestorage.app",
 
+messagingSenderId:
+"572678456448",
 
-
-
-}
-
-catch(error){
-
-
-
-console.error(error);
-
-
-
-setStatus(
-
-"❌ "+error.message,
-
-"error"
-
-);
-
-
-
-}
-
-
-
-finally{
-
-
-
-loader.style.display =
-"none";
-
-
-
-}
-
-
+appId:
+"1:572678456448:web:6b7132351515742dd09265"
 
 };
 
 
+/* ==============================
+   INITIALIZE FIREBASE
+============================== */
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
+
+const messaging =
+getMessaging(app);
+
+
+/* ==============================
+   ADMIN UID
+============================== */
+
+const ADMIN_UID =
+"28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+let adminUser = null;
+
+
+/* ==============================
+   STATUS
+============================== */
+
+function setStatus(message,type=""){
+
+const box =
+document.getElementById("status");
+
+box.textContent =
+message;
+
+box.className =
+"status "+type;
+
+}
+
+
+/* ==============================
+   CHECK SAVED NOTIFICATION STATUS
+============================== */
+
+async function checkNotificationStatus(){
+
+try{
+
+const adminRef =
+doc(
+db,
+"admins",
+ADMIN_UID
+);
+
+const adminSnap =
+await getDoc(adminRef);
+
+
+if(adminSnap.exists()){
+
+const data =
+adminSnap.data();
+
+
+if(
+data.notificationEnabled === true &&
+data.notificationToken
+){
+
+setStatus(
+"🔔 Notifications are already enabled",
+"success"
+);
+
+return;
+
+}
+
+}
+
+
+/* No notification token yet */
+
+setStatus(
+"✅ Admin account verified",
+"success"
+);
+
+
+}catch(error){
+
+console.error(
+"Notification status check error:",
+error
+);
+
+setStatus(
+"✅ Admin account verified",
+"success"
+);
+
+}
+
+}
+
+
+/* ==============================
+   ADMIN LOGIN CHECK
+============================== */
+
+onAuthStateChanged(
+auth,
+async(user)=>{
+
+
+if(!user){
+
+adminUser=null;
+
+setStatus(
+"❌ No admin login found",
+"error"
+);
+
+return;
+
+}
+
+
+if(user.uid !== ADMIN_UID){
+
+adminUser=null;
+
+setStatus(
+"❌ Access denied",
+"error"
+);
+
+return;
+
+}
+
+
+adminUser=user;
+
+
+/* Check Firestore */
+
+await checkNotificationStatus();
+
+
+}
+);
+
+
+/* ==============================
+   ENABLE NOTIFICATIONS
+============================== */
+
+window.enableNotifications =
+async function(){
+
+
+if(!adminUser){
+
+alert(
+"Admin verification still loading"
+);
+
+return;
+
+}
+
+
+const loader =
+document.getElementById("loading");
+
+
+const button =
+document.querySelector(".enable");
+
+
+loader.style.display="block";
+
+button.disabled=true;
+
+button.textContent=
+"⏳ Enabling...";
+
+
+try{
+
+
+/* ==============================
+   CHECK BROWSER SUPPORT
+============================== */
+
+if(!("Notification" in window)){
+
+throw new Error(
+"Browser notifications are not supported"
+);
+
+}
+
+
+/* ==============================
+   REQUEST PERMISSION
+============================== */
+
+let permission =
+Notification.permission;
+
+
+if(permission !== "granted"){
+
+permission =
+await Notification.requestPermission();
+
+}
+
+
+if(permission !== "granted"){
+
+throw new Error(
+"Notification permission denied"
+);
+
+}
+
+
+/* ==============================
+   GET FCM TOKEN
+============================== */
+
+const token =
+await getToken(
+
+messaging,
+
+{
+
+vapidKey:
+"BC390oYXhlNUfxELpth0-roQQe_RubAfu_TupX0i0xN63GlEyXB69XQkpcPwtgUY6h35rZMVy83QIbjxxRFR-Ds"
+
+}
+
+);
+
+
+/* ==============================
+   CHECK TOKEN
+============================== */
+
+if(!token){
+
+throw new Error(
+"Unable to generate notification token"
+);
+
+}
+
+
+/* ==============================
+   SAVE TOKEN
+============================== */
+
+await setDoc(
+
+doc(
+db,
+"admins",
+ADMIN_UID
+),
+
+{
+
+notificationToken:
+token,
+
+notificationEnabled:
+true,
+
+notificationPermission:
+"granted",
+
+updatedAt:
+serverTimestamp()
+
+},
+
+{
+
+merge:true
+
+}
+);
+
+
+/* ==============================
+   SUCCESS
+============================== */
+
+setStatus(
+"🔔 Notifications are enabled",
+"success"
+);
+
+
+button.textContent =
+"✅ Notifications Enabled";
+
+
+alert(
+"✅ SkyRent admin notifications are now enabled"
+);
+
+
+}catch(error){
+
+
+console.error(
+"Notification error:",
+error
+);
+
+
+setStatus(
+"❌ "+error.message,
+"error"
+);
+
+
+button.textContent =
+"🔔 Enable Notifications";
+
+
+}finally{
+
+
+loader.style.display="none";
+
+button.disabled=false;
+
+
+}
+
+};
 
 
 </script>
-
 
 </body>
 
