@@ -472,6 +472,10 @@ onAuthStateChanged(
 auth,
 (user)=>{
 
+console.log("AUTH USER:", user);
+
+   
+
 
 if(!user){
 
@@ -511,6 +515,8 @@ return;
 
 adminUser = user;
 
+console.log("ADMIN VERIFIED:", user.uid);
+   
 
 
 setStatus(
