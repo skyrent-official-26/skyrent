@@ -1371,7 +1371,50 @@ margin-bottom:15px;
 </div>
 
 
+<!-- =========================
+     FIREBASE
+========================= -->
 
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    setDoc
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    getFunctions,
+    httpsCallable
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js";
+
+import {
+    getMessaging,
+    getToken,
+    onMessage
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
 
 
 /* =========================
@@ -1417,7 +1460,8 @@ const db =
 const functions =
     getFunctions(app);
     
-    
+    const messaging =
+    getMessaging(app);
 
 
 /* =========================
