@@ -642,42 +642,7 @@ body{
 
 
 /* =====================================================
-   REJECTION NOTE
-===================================================== */
-
-.rejection-note{
-    margin-top:10px;
-
-    padding:12px 13px;
-
-    border-radius:11px;
-
-    background:#fff0f0;
-
-    border:1px solid #ffd3d3;
-
-    color:#c62828;
-
-    font-size:12px;
-
-    line-height:1.5;
-}
-
-.rejection-note strong{
-    display:block;
-
-    margin-bottom:4px;
-
-    font-size:11px;
-
-    text-transform:uppercase;
-
-    letter-spacing:.3px;
-}
-
-
-/* =====================================================
-   APPROVAL / REJECTION MODAL
+   APPROVAL MODAL
 ===================================================== */
 
 .modal-overlay{
@@ -746,12 +711,6 @@ body{
     justify-content:center;
 
     font-size:23px;
-}
-
-.modal-icon.rejection{
-    background:#fff0f0;
-
-    color:#c62828;
 }
 
 .modal-header h2{
@@ -913,62 +872,6 @@ body{
 
 
 /* =====================================================
-   REJECTION TEXTAREA
-===================================================== */
-
-.rejection-textarea{
-    width:100%;
-
-    min-height:110px;
-
-    resize:vertical;
-
-    border:1px solid #dce5ef;
-
-    background:#f8fbff;
-
-    border-radius:12px;
-
-    padding:12px;
-
-    font-family:Arial,Helvetica,sans-serif;
-
-    font-size:13px;
-
-    line-height:1.5;
-
-    color:#172033;
-
-    outline:none;
-}
-
-.rejection-textarea:focus{
-    background:white;
-
-    border-color:#c62828;
-
-    box-shadow:
-        0 0 0 3px rgba(198,40,40,.06);
-}
-
-.rejection-textarea::placeholder{
-    color:#9aa3af;
-}
-
-.note-counter{
-    text-align:right;
-
-    margin-top:5px;
-
-    color:#858d99;
-
-    font-size:10px;
-
-    font-weight:700;
-}
-
-
-/* =====================================================
    MODAL BUTTONS
 ===================================================== */
 
@@ -981,8 +884,7 @@ body{
 }
 
 .modal-cancel,
-.modal-confirm,
-.rejection-confirm{
+.modal-confirm{
     flex:1;
 
     border:none;
@@ -1010,20 +912,12 @@ body{
     color:white;
 }
 
-.rejection-confirm{
-    background:#c62828;
-
-    color:white;
-}
-
 .modal-cancel:active,
-.modal-confirm:active,
-.rejection-confirm:active{
+.modal-confirm:active{
     transform:scale(.98);
 }
 
-.modal-confirm:disabled,
-.rejection-confirm:disabled{
+.modal-confirm:disabled{
     opacity:.6;
 
     cursor:not-allowed;
@@ -1118,13 +1012,12 @@ body{
         font-weight:bold;
         cursor:pointer;
         box-shadow:0 5px 15px rgba(0,0,0,.12);
-        margin-bottom:14px;
     "
 >
     📋 Withdrawal History
 </button>
 
-
+      
 <!-- =====================================================
      SEARCH
 ===================================================== -->
@@ -1336,12 +1229,20 @@ body{
         </div>
 
 
+        <!-- =================================================
+             WITHDRAWAL SUMMARY
+        ================================================== -->
+
         <div
             id="approvalInfo"
             class="approval-info"
         >
         </div>
 
+
+        <!-- =================================================
+             PAYMENT CHANNEL
+        ================================================== -->
 
         <label class="form-label">
 
@@ -1392,6 +1293,10 @@ body{
         </div>
 
 
+        <!-- =================================================
+             PAYMENT METHOD
+        ================================================== -->
+
         <label
             class="form-label"
             for="paymentMethod"
@@ -1432,6 +1337,10 @@ body{
         </select>
 
 
+        <!-- =================================================
+             BUTTONS
+        ================================================== -->
+
         <div class="modal-actions">
 
             <button
@@ -1448,116 +1357,6 @@ body{
                 onclick="confirmApproval()"
             >
                 ✓ Approve & Record
-            </button>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     REJECTION MODAL
-===================================================== -->
-
-<div
-    id="rejectionModal"
-    class="modal-overlay"
->
-
-    <div class="approval-modal">
-
-
-        <div class="modal-header">
-
-            <div class="modal-icon rejection">
-                ✕
-            </div>
-
-            <div>
-
-                <h2>
-                    Reject Withdrawal
-                </h2>
-
-                <p>
-                    Enter the reason for rejecting this request.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             REJECTION INFO
-        ================================================== -->
-
-        <div
-            id="rejectionInfo"
-            class="approval-info"
-        >
-        </div>
-
-
-        <!-- =================================================
-             REJECTION NOTE
-        ================================================== -->
-
-        <label
-            class="form-label"
-            for="rejectionNote"
-        >
-
-            Rejection Note
-
-            <span class="required">
-                *
-            </span>
-
-        </label>
-
-
-        <textarea
-            id="rejectionNote"
-            class="rejection-textarea"
-            maxlength="500"
-            placeholder="Example: Incorrect withdrawal account details. Please update your account information and submit again."
-        ></textarea>
-
-
-        <div
-            id="noteCounter"
-            class="note-counter"
-        >
-            0 / 500
-        </div>
-
-
-        <!-- =================================================
-             BUTTONS
-        ================================================== -->
-
-        <div class="modal-actions">
-
-            <button
-                type="button"
-                class="modal-cancel"
-                onclick="closeRejectionModal()"
-            >
-                Cancel
-            </button>
-
-
-            <button
-                type="button"
-                id="confirmRejectionButton"
-                class="rejection-confirm"
-                onclick="confirmRejection()"
-            >
-                ✕ Reject & Refund
             </button>
 
         </div>
@@ -1616,7 +1415,7 @@ from
 const firebaseConfig = {
 
     apiKey:
-    "AIzaSyDAbHsV-S363u-sGCBo3mO1Y7YLEaFAa4e8",
+    "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
 
     authDomain:
     "skyrent-ea30c.firebaseapp.com",
@@ -1654,8 +1453,8 @@ const db =
    ADMIN UID
 ===================================================== */
 
-const ADMIN_UID =
-    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+  const ADMIN_UID = "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
 
 /* =====================================================
@@ -1669,8 +1468,6 @@ let allWithdrawals = [];
 let loadingWithdrawals = false;
 
 let selectedWithdrawal = null;
-
-let selectedRejectionWithdrawal = null;
 
 
 /* =====================================================
@@ -2285,6 +2082,16 @@ async function loadWithdrawals(){
             " rejected withdrawals";
 
 
+        /*
+           IMPORTANT FIX:
+           Do NOT let renderCurrentSearch()
+           stop just because loadingWithdrawals
+           is true.
+
+           allWithdrawals has already been loaded
+           at this point.
+        */
+
         await renderCurrentSearch();
 
     }
@@ -2410,6 +2217,11 @@ async function renderWithdrawalRecord(
     }
 
 
+    /*
+       If the investment lookup fails,
+       the withdrawal record will still render.
+    */
+
     let activeInvestmentCount = 0;
 
     try{
@@ -2465,39 +2277,6 @@ async function renderWithdrawalRecord(
                 ${formatMoney(amount)}
                 has been returned to the user's
                 SkyRent balance.
-
-            </div>
-
-        `;
-
-    }
-
-
-    /* =================================================
-       REJECTION NOTE
-    ================================================== */
-
-    let rejectionNoteHTML = "";
-
-
-    if(
-        isRejectedStatus(
-            withdrawal.status
-        ) &&
-        withdrawal.rejectionNote
-    ){
-
-        rejectionNoteHTML = `
-
-            <div class="rejection-note">
-
-                <strong>
-                    Rejection Note
-                </strong>
-
-                ${escapeHTML(
-                    withdrawal.rejectionNote
-                )}
 
             </div>
 
@@ -2688,10 +2467,16 @@ async function renderWithdrawalRecord(
 
     /* =================================================
        ACTION BUTTONS
-    ================================================== */
+    ================================================= */
 
     let actions = "";
 
+
+    /*
+       IMPORTANT:
+       Pending withdrawals ALWAYS get
+       Approve and Reject buttons.
+    */
 
     if(
         isPendingStatus(
@@ -2740,9 +2525,11 @@ async function renderWithdrawalRecord(
             </span>
 
             <span class="value">
+
                 ${escapeHTML(
                     withdrawal.phone || "-"
                 )}
+
             </span>
 
         </div>
@@ -2755,9 +2542,11 @@ async function renderWithdrawalRecord(
             </span>
 
             <span class="value">
+
                 ${escapeHTML(
                     withdrawal.userName || "-"
                 )}
+
             </span>
 
         </div>
@@ -2904,11 +2693,15 @@ async function renderWithdrawalRecord(
 
         ${approvedTime}
 
+
         ${paymentChannel}
+
 
         ${paymentMethod}
 
+
         ${transactionId}
+
 
         ${rejectedTime}
 
@@ -2924,7 +2717,9 @@ async function renderWithdrawalRecord(
                 <span
                     class="status ${statusClass}"
                 >
+
                     ${escapeHTML(status)}
+
                 </span>
 
             </span>
@@ -2932,9 +2727,8 @@ async function renderWithdrawalRecord(
         </div>
 
 
-        ${rejectionNoteHTML}
-
         ${refundNotice}
+
 
         ${actions}
 
@@ -3122,6 +2916,10 @@ function approveWithdrawal(
     `;
 
 
+    /* =================================================
+       RESET PAYMENT SELECTION
+    ================================================== */
+
     document
         .querySelectorAll(
             'input[name="paymentChannel"]'
@@ -3150,6 +2948,10 @@ function approveWithdrawal(
     confirmButton.innerText =
         "✓ Approve & Record";
 
+
+    /* =================================================
+       SHOW MODAL
+    ================================================== */
 
     document.getElementById(
         "approvalModal"
@@ -3307,6 +3109,13 @@ async function confirmApproval(){
             );
 
 
+        /*
+           Create a unique transaction document ID.
+
+           The transaction record and withdrawal update
+           are committed together.
+        */
+
         const transactionRef =
             doc(
                 collection(
@@ -3319,6 +3128,10 @@ async function confirmApproval(){
         await runTransaction(
             db,
             async transaction => {
+
+                /* =================================================
+                   GET CURRENT WITHDRAWAL
+                ================================================== */
 
                 const withdrawalSnapshot =
                     await transaction.get(
@@ -3340,6 +3153,10 @@ async function confirmApproval(){
                 const withdrawal =
                     withdrawalSnapshot.data();
 
+
+                /* =================================================
+                   PREVENT DUPLICATE PROCESSING
+                ================================================== */
 
                 if(
                     isApprovedStatus(
@@ -3380,6 +3197,10 @@ async function confirmApproval(){
                 }
 
 
+                /* =================================================
+                   USER UID
+                ================================================== */
+
                 if(!withdrawal.uid){
 
                     throw new Error(
@@ -3388,6 +3209,10 @@ async function confirmApproval(){
 
                 }
 
+
+                /* =================================================
+                   VALUES
+                ================================================== */
 
                 const amount =
                     getNumber(
@@ -3407,6 +3232,10 @@ async function confirmApproval(){
                         withdrawal.netAmount
                     );
 
+
+                /* =================================================
+                   UPDATE ORIGINAL WITHDRAWAL
+                ================================================== */
 
                 transaction.update(
                     withdrawalRef,
@@ -3435,6 +3264,10 @@ async function confirmApproval(){
                 );
 
 
+                /* =================================================
+                   CREATE NEW WITHDRAWAL TRANSACTION
+                ================================================== */
+
                 transaction.set(
                     transactionRef,
                     {
@@ -3448,6 +3281,9 @@ async function confirmApproval(){
                         withdrawalId:
                             withdrawalId,
 
+
+                        /* USER */
+
                         uid:
                             withdrawal.uid,
 
@@ -3458,6 +3294,9 @@ async function confirmApproval(){
                         userName:
                             withdrawal.userName ||
                             "",
+
+
+                        /* ACCOUNT */
 
                         accountName:
                             withdrawal.accountName ||
@@ -3472,6 +3311,9 @@ async function confirmApproval(){
                             withdrawal.accountNumber ||
                             "",
 
+
+                        /* AMOUNTS */
+
                         amount:
                             amount,
 
@@ -3481,6 +3323,9 @@ async function confirmApproval(){
                         netAmount:
                             netAmount,
 
+
+                        /* PAYMENT */
+
                         paymentChannel:
                             paymentChannel,
 
@@ -3488,10 +3333,16 @@ async function confirmApproval(){
                             paymentMethod ||
                             "Not specified",
 
+
+                        /* REQUEST TIME */
+
                         requestedAt:
                             withdrawal.requestedAt ||
                             withdrawal.createdAt ||
                             null,
+
+
+                        /* APPROVAL */
 
                         approvedAt:
                             serverTimestamp(),
@@ -3503,8 +3354,14 @@ async function confirmApproval(){
                             currentAdmin.email ||
                             "",
 
+
+                        /* STATUS */
+
                         status:
                             "Approved",
+
+
+                        /* RECORD CREATED */
 
                         createdAt:
                             serverTimestamp()
@@ -3640,10 +3497,10 @@ async function confirmApproval(){
 
 
 /* =====================================================
-   OPEN REJECTION MODAL
+   REJECT WITHDRAWAL
 ===================================================== */
 
-function rejectWithdrawal(
+async function rejectWithdrawal(
     withdrawalId
 ){
 
@@ -3658,345 +3515,21 @@ function rejectWithdrawal(
     }
 
 
-    const withdrawal =
-        allWithdrawals.find(
-            item =>
-                item.id ===
-                withdrawalId
-        );
-
-
-    if(!withdrawal){
-
-        alert(
-            "Withdrawal record not found."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        !isPendingStatus(
-            withdrawal.status
-        )
-    ){
-
-        alert(
-            "This withdrawal has already been processed."
-        );
-
-        return;
-
-    }
-
-
-    selectedRejectionWithdrawal =
-        withdrawal;
-
-
-    const amount =
-        getNumber(
-            withdrawal.amount ??
-            withdrawal.amountValue
-        );
-
-
-    const processingFee =
-        getNumber(
-            withdrawal.processingFee
-        );
-
-
-    const netAmount =
-        getNumber(
-            withdrawal.netAmount
-        );
-
-
-    const info =
-        document.getElementById(
-            "rejectionInfo"
-        );
-
-
-    info.innerHTML = `
-
-        <div class="approval-info-row">
-
-            <span>
-                User
-            </span>
-
-            <span>
-                ${escapeHTML(
-                    withdrawal.userName ||
-                    withdrawal.phone ||
-                    "-"
-                )}
-            </span>
-
-        </div>
-
-
-        <div class="approval-info-row">
-
-            <span>
-                Phone
-            </span>
-
-            <span>
-                ${escapeHTML(
-                    withdrawal.phone ||
-                    "-"
-                )}
-            </span>
-
-        </div>
-
-
-        <div class="approval-info-row">
-
-            <span>
-                Withdrawal
-            </span>
-
-            <span>
-                ${formatMoney(amount)}
-            </span>
-
-        </div>
-
-
-        <div class="approval-info-row">
-
-            <span>
-                Processing Fee
-            </span>
-
-            <span>
-                ${formatMoney(processingFee)}
-            </span>
-
-        </div>
-
-
-        <div class="approval-info-row">
-
-            <span>
-                Net Amount
-            </span>
-
-            <span>
-                ${formatMoney(netAmount)}
-            </span>
-
-        </div>
-
-
-        <div class="approval-info-row">
-
-            <span>
-                Account
-            </span>
-
-            <span>
-                ${escapeHTML(
-                    withdrawal.accountNumber ||
-                    "-"
-                )}
-            </span>
-
-        </div>
-
-    `;
-
-
-    const note =
-        document.getElementById(
-            "rejectionNote"
-        );
-
-
-    note.value =
-        "";
-
-
-    document.getElementById(
-        "noteCounter"
-    ).innerText =
-        "0 / 500";
-
-
-    const confirmButton =
-        document.getElementById(
-            "confirmRejectionButton"
-        );
-
-
-    confirmButton.disabled =
-        false;
-
-
-    confirmButton.innerText =
-        "✕ Reject & Refund";
-
-
-    document.getElementById(
-        "rejectionModal"
-    ).classList.add(
-        "show"
-    );
-
-
-    setTimeout(
-        () => note.focus(),
-        100
-    );
-
-}
-
-
-/* =====================================================
-   CLOSE REJECTION MODAL
-===================================================== */
-
-function closeRejectionModal(){
-
-    selectedRejectionWithdrawal =
-        null;
-
-
-    document.getElementById(
-        "rejectionModal"
-    ).classList.remove(
-        "show"
-    );
-
-
-    document.getElementById(
-        "rejectionNote"
-    ).value = "";
-
-
-    document.getElementById(
-        "noteCounter"
-    ).innerText =
-        "0 / 500";
-
-
-    const confirmButton =
-        document.getElementById(
-            "confirmRejectionButton"
-        );
-
-
-    confirmButton.disabled =
-        false;
-
-
-    confirmButton.innerText =
-        "✕ Reject & Refund";
-
-}
-
-
-/* =====================================================
-   CONFIRM REJECTION
-===================================================== */
-
-async function confirmRejection(){
-
-    if(!currentAdmin){
-
-        alert(
-            "Admin authentication required."
-        );
-
-        return;
-
-    }
-
-
-    if(!selectedRejectionWithdrawal){
-
-        alert(
-            "No withdrawal selected."
-        );
-
-        return;
-
-    }
-
-
-    const noteInput =
-        document.getElementById(
-            "rejectionNote"
-        );
-
-
-    const rejectionNote =
-        String(
-            noteInput.value || ""
-        ).trim();
-
-
-    if(!rejectionNote){
-
-        alert(
-            "Please enter a rejection reason before continuing."
-        );
-
-        noteInput.focus();
-
-        return;
-
-    }
-
-
-    if(rejectionNote.length > 500){
-
-        alert(
-            "The rejection note cannot exceed 500 characters."
-        );
-
-        return;
-
-    }
-
-
     if(
         !confirm(
-            "Reject this withdrawal?\n\n" +
+            "Are you sure you want to reject this withdrawal?\n\n" +
 
             "The full withdrawal amount will be returned " +
-            "to the user's SkyRent balance.\n\n" +
-
-            "Rejection reason:\n" +
-            rejectionNote
+            "to the user's SkyRent balance."
         )
     ){
 
         return;
 
     }
-
-
-    const confirmButton =
-        document.getElementById(
-            "confirmRejectionButton"
-        );
 
 
     try{
-
-        confirmButton.disabled =
-            true;
-
-        confirmButton.innerText =
-            "⏳ Rejecting...";
-
 
         document
             .querySelectorAll(
@@ -4006,10 +3539,6 @@ async function confirmRejection(){
                 button =>
                     button.disabled = true
             );
-
-
-        const withdrawalId =
-            selectedRejectionWithdrawal.id;
 
 
         const withdrawalRef =
@@ -4025,7 +3554,7 @@ async function confirmRejection(){
             async transaction => {
 
                 /* =================================================
-                   GET CURRENT WITHDRAWAL
+                   GET WITHDRAWAL
                 ================================================== */
 
                 const withdrawalSnapshot =
@@ -4230,11 +3759,6 @@ async function confirmRejection(){
                         status:
                             "Rejected",
 
-                        /* NEW REJECTION NOTE */
-
-                        rejectionNote:
-                            rejectionNote,
-
                         rejectedAt:
                             serverTimestamp(),
 
@@ -4263,13 +3787,8 @@ async function confirmRejection(){
         );
 
 
-        closeRejectionModal();
-
-
         alert(
             "Withdrawal rejected successfully.\n\n" +
-
-            "The rejection reason was saved.\n\n" +
 
             "The full withdrawal amount has been returned " +
             "to the user's SkyRent balance."
@@ -4334,17 +3853,6 @@ async function confirmRejection(){
 
         else if(
             error.message ===
-            "INVALID_STATUS"
-        ){
-
-            alert(
-                "This withdrawal has an invalid status."
-            );
-
-        }
-
-        else if(
-            error.message ===
             "USER_UID_MISSING"
         ){
 
@@ -4395,13 +3903,6 @@ async function confirmRejection(){
 
     finally{
 
-        confirmButton.disabled =
-            false;
-
-        confirmButton.innerText =
-            "✕ Reject & Refund";
-
-
         document
             .querySelectorAll(
                 ".approve-btn,.reject-btn"
@@ -4443,12 +3944,6 @@ window.closeApprovalModal =
 
 window.rejectWithdrawal =
     rejectWithdrawal;
-
-window.confirmRejection =
-    confirmRejection;
-
-window.closeRejectionModal =
-    closeRejectionModal;
 
 window.goAdminPanel =
     goAdminPanel;
@@ -4527,6 +4022,10 @@ onAuthStateChanged(
         }
 
 
+        /* =================================================
+           LOAD
+        ================================================== */
+
         await loadWithdrawals();
 
     }
@@ -4545,6 +4044,12 @@ document
         "input",
         function(){
 
+            /*
+               Only render from existing data.
+               We do not reload Firebase for every
+               search keystroke.
+            */
+
             renderCurrentSearch();
 
         }
@@ -4556,6 +4061,22 @@ document
 ===================================================== */
 
 async function renderCurrentSearch(){
+
+    /*
+       IMPORTANT FIX:
+
+       There is NO:
+
+       if(loadingWithdrawals){
+           return;
+       }
+
+       here.
+
+       loadWithdrawals() calls this function AFTER
+       allWithdrawals has already been populated.
+    */
+
 
     const list =
         document.getElementById(
@@ -4652,8 +4173,16 @@ async function renderCurrentSearch(){
     }
 
 
+    /* =================================================
+       CLEAR LIST
+    ================================================== */
+
     list.innerHTML = "";
 
+
+    /* =================================================
+       SEARCH NOTICE
+    ================================================== */
 
     if(
         searchPhone !== ""
@@ -4682,6 +4211,10 @@ async function renderCurrentSearch(){
 
     }
 
+
+    /* =================================================
+       NO RESULTS
+    ================================================== */
 
     if(
         withdrawals.length === 0
@@ -4720,6 +4253,10 @@ async function renderCurrentSearch(){
     }
 
 
+    /* =================================================
+       DISPLAY
+    ================================================== */
+
     for(
         const withdrawal of withdrawals
     ){
@@ -4735,7 +4272,7 @@ async function renderCurrentSearch(){
 
 
 /* =====================================================
-   CLOSE APPROVAL MODAL OUTSIDE
+   CLOSE MODAL WHEN CLICKING OUTSIDE
 ===================================================== */
 
 document
@@ -4754,53 +4291,6 @@ document
                 closeApprovalModal();
 
             }
-
-        }
-    );
-
-
-/* =====================================================
-   CLOSE REJECTION MODAL OUTSIDE
-===================================================== */
-
-document
-    .getElementById(
-        "rejectionModal"
-    )
-    .addEventListener(
-        "click",
-        function(event){
-
-            if(
-                event.target ===
-                this
-            ){
-
-                closeRejectionModal();
-
-            }
-
-        }
-    );
-
-
-/* =====================================================
-   REJECTION NOTE COUNTER
-===================================================== */
-
-document
-    .getElementById(
-        "rejectionNote"
-    )
-    .addEventListener(
-        "input",
-        function(){
-
-            document.getElementById(
-                "noteCounter"
-            ).innerText =
-                this.value.length +
-                " / 500";
 
         }
     );
