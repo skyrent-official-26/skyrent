@@ -128,8 +128,10 @@ body{
     padding:16px;
     box-shadow:0 3px 14px rgba(20,40,80,.07);
     margin-bottom:14px;
-    display:flex;
-    justify-content:space-between;
+
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:14px;
     align-items:center;
 }
 
@@ -145,10 +147,18 @@ body{
     margin-top:3px;
 }
 
+.summary-owner{
+    color:#172033;
+    font-size:14px;
+    font-weight:bold;
+    margin-top:3px;
+}
+
 .summary-count{
     color:#0757c9;
     font-size:27px;
     font-weight:bold;
+    text-align:right;
 }
 
 /* USER */
@@ -254,6 +264,13 @@ body{
     color:#0757c9;
 }
 
+.code-owner{
+    color:#172033;
+    font-size:12px;
+    font-weight:600;
+    margin-top:4px;
+}
+
 .code-users{
     color:#718096;
     font-size:11px;
@@ -356,12 +373,15 @@ body{
         grid-template-columns:1fr 1fr;
     }
 
+    .summary{
+        grid-template-columns:1fr auto;
+    }
+
 }
 
 </style>
 
 </head>
-
 
 <body>
 
@@ -387,11 +407,9 @@ body{
 </div>
 
 
-
 <!-- MAIN -->
 
 <div id="mainPage" style="display:none;">
-
 
 <header class="header">
 
@@ -409,7 +427,6 @@ body{
 
         </div>
 
-
         <button
             class="back-btn"
             id="backBtn"
@@ -420,7 +437,6 @@ body{
     </div>
 
 </header>
-
 
 
 <main class="container">
@@ -434,7 +450,6 @@ body{
             Search Referral Code
         </div>
 
-
         <div class="search-row">
 
             <input
@@ -444,7 +459,6 @@ body{
                 placeholder="Enter referral code..."
                 autocomplete="off"
             >
-
 
             <button
                 class="search-button"
@@ -456,7 +470,6 @@ body{
         </div>
 
     </div>
-
 
 
     <!-- SUMMARY -->
@@ -480,8 +493,18 @@ body{
                 -
             </div>
 
-        </div>
+            <div class="summary-label" style="margin-top:10px;">
+                Referral Code Owner
+            </div>
 
+            <div
+                class="summary-owner"
+                id="referralOwner"
+            >
+                -
+            </div>
+
+        </div>
 
         <div>
 
@@ -501,7 +524,6 @@ body{
     </div>
 
 
-
     <!-- RESULTS -->
 
     <div id="results">
@@ -519,15 +541,13 @@ body{
     </div>
 
 
-
     <!-- ALL CODES -->
 
     <div class="code-card">
 
         <div class="code-title">
-            📋 Referral Codes In Use
+            📋 Referral Codes
         </div>
-
 
         <div id="codeList">
 
@@ -547,7 +567,6 @@ body{
 </main>
 
 </div>
-
 
 
 <script type="module">
@@ -581,10 +600,8 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-
 /* =====================================================
    FIREBASE CONFIG
-   SAME AS YOUR WORKING MEMBERS PAGE
 ===================================================== */
 
 const firebaseConfig = {
@@ -610,15 +627,12 @@ const firebaseConfig = {
 };
 
 
-
 /* =====================================================
    ADMIN UID
-   SAME AS MEMBERS PAGE
 ===================================================== */
 
 const ADMIN_UID =
     "28zzG9NB46gRkwia7WtOxS1lQNa2";
-
 
 
 /* =====================================================
@@ -633,7 +647,6 @@ const auth =
 
 const db =
     getFirestore(app);
-
 
 
 /* =====================================================
@@ -664,9 +677,11 @@ const resultCount =
 const searchedCode =
     document.getElementById("searchedCode");
 
+const referralOwner =
+    document.getElementById("referralOwner");
+
 const codeList =
     document.getElementById("codeList");
-
 
 
 /* =====================================================
@@ -674,7 +689,6 @@ const codeList =
 ===================================================== */
 
 let allUsers = [];
-
 
 
 /* =====================================================
@@ -709,13 +723,11 @@ onAuthStateChanged(
 
         if(user.uid !== ADMIN_UID){
 
-            alert(
-                "Access denied.\n\nUID:\n" +
-                user.uid
-            );
+            accessDenied.style.display =
+                "flex";
 
-            window.location.href =
-                "dashboard.html";
+            mainPage.style.display =
+                "none";
 
             return;
 
@@ -725,12 +737,14 @@ onAuthStateChanged(
         mainPage.style.display =
             "block";
 
+        accessDenied.style.display =
+            "none";
+
 
         await loadUsers();
 
     }
 );
-
 
 
 /* =====================================================
@@ -771,13 +785,19 @@ async function loadUsers(){
 
                 allUsers.push({
 
-                    id:doc.id,
+                    id: doc.id,
 
                     ...doc.data()
 
                 });
 
             }
+        );
+
+
+        console.log(
+            "Users loaded:",
+            allUsers.length
         );
 
 
@@ -817,7 +837,6 @@ async function loadUsers(){
 }
 
 
-
 /* =====================================================
    GET USED REFERRAL CODE
 ===================================================== */
@@ -845,7 +864,6 @@ function getUsedReferralCode(user){
 }
 
 
-
 /* =====================================================
    GET USER'S OWN REFERRAL CODE
 ===================================================== */
@@ -871,6 +889,88 @@ function getUserReferralCode(user){
 }
 
 
+/* =====================================================
+   GET USER NAME
+===================================================== */
+
+function getUserName(user){
+
+    return (
+
+        user.name ||
+
+        user.fullName ||
+
+        user.displayName ||
+
+        user.username ||
+
+        "Unnamed User"
+
+    )
+    .toString()
+    .trim();
+
+}
+
+
+/* =====================================================
+   GET REFERRAL CODE OWNER
+===================================================== */
+
+function getReferralOwner(code){
+
+    const normalized =
+        String(code || "")
+        .trim()
+        .toUpperCase();
+
+
+    if(!normalized){
+        return null;
+    }
+
+
+    const owner =
+        allUsers.find(
+            user => {
+
+                const ownCode =
+                    getUserReferralCode(user)
+                    .toUpperCase();
+
+                return ownCode === normalized;
+
+            }
+        );
+
+
+    return owner || null;
+
+}
+
+
+/* =====================================================
+   GET REFERRAL OWNER NAME
+===================================================== */
+
+function getReferralOwnerName(code){
+
+    const owner =
+        getReferralOwner(code);
+
+
+    if(!owner){
+
+        return "Unknown";
+
+    }
+
+
+    return getUserName(owner);
+
+}
+
 
 /* =====================================================
    REFERRAL CODE LIST
@@ -878,39 +978,80 @@ function getUserReferralCode(user){
 
 function renderReferralCodes(){
 
-    const counts = {};
+    const referralData = {};
 
+
+    /*
+       Create a list from each user's
+       OWN referral code.
+    */
 
     allUsers.forEach(
         user => {
 
             const code =
-                getUsedReferralCode(user);
+                getUserReferralCode(user);
 
 
-            if(!code)
+            if(!code){
                 return;
+            }
 
 
             const normalized =
                 code.toUpperCase();
 
 
-            if(!counts[normalized]){
+            if(!referralData[normalized]){
 
-                counts[normalized] = 0;
+                referralData[normalized] = {
+
+                    ownerName:
+                        getUserName(user),
+
+                    users:0
+
+                };
 
             }
 
+        }
+    );
 
-            counts[normalized]++;
+
+    /*
+       Count users who used
+       each referral code.
+    */
+
+    allUsers.forEach(
+        user => {
+
+            const usedCode =
+                getUsedReferralCode(user);
+
+
+            if(!usedCode){
+                return;
+            }
+
+
+            const normalized =
+                usedCode.toUpperCase();
+
+
+            if(referralData[normalized]){
+
+                referralData[normalized].users++;
+
+            }
 
         }
     );
 
 
     const codes =
-        Object.keys(counts)
+        Object.keys(referralData)
         .sort();
 
 
@@ -924,7 +1065,7 @@ function renderReferralCodes(){
                     🔗
                 </div>
 
-                No used referral codes found.
+                No referral codes found.
 
             </div>
 
@@ -937,39 +1078,63 @@ function renderReferralCodes(){
 
     codeList.innerHTML =
         codes.map(
-            code => `
+            code => {
 
-                <div
-                    class="code-item"
-                    data-code="${escapeHTML(code)}"
-                >
+                const data =
+                    referralData[code];
 
-                    <div>
 
-                        <div class="code">
-                            ${escapeHTML(code)}
+                return `
+
+                    <div
+                        class="code-item"
+                        data-code="${escapeHTML(code)}"
+                    >
+
+                        <div>
+
+                            <div class="code">
+
+                                ${escapeHTML(code)}
+
+                            </div>
+
+                            <div class="code-owner">
+
+                                👤 ${escapeHTML(
+                                    data.ownerName
+                                )}
+
+                            </div>
+
+                            <div class="code-users">
+
+                                ${data.users}
+
+                                user${data.users === 1 ? "" : "s"}
+
+                            </div>
+
                         </div>
 
-                        <div class="code-users">
 
-                            ${counts[code]}
-                            user${counts[code] === 1 ? "" : "s"}
-
+                        <div class="code-arrow">
+                            ›
                         </div>
 
                     </div>
 
+                `;
 
-                    <div class="code-arrow">
-                        ›
-                    </div>
-
-                </div>
-
-            `
+            }
         )
         .join("");
 
+
+    /*
+       Clicking a referral code
+       automatically searches it.
+    */
 
     document
         .querySelectorAll(".code-item")
@@ -985,6 +1150,11 @@ function renderReferralCodes(){
 
                         searchReferral();
 
+                        window.scrollTo({
+                            top:0,
+                            behavior:"smooth"
+                        });
+
                     }
                 );
 
@@ -992,7 +1162,6 @@ function renderReferralCodes(){
         );
 
 }
-
 
 
 /* =====================================================
@@ -1003,7 +1172,6 @@ searchButton.addEventListener(
     "click",
     searchReferral
 );
-
 
 
 /* =====================================================
@@ -1022,7 +1190,6 @@ referralInput.addEventListener(
 
     }
 );
-
 
 
 /* =====================================================
@@ -1062,30 +1229,54 @@ function searchReferral(){
     }
 
 
+    /*
+       Find users who used this
+       referral code.
+    */
+
     const matchedUsers =
         allUsers.filter(
             user => {
 
                 return (
+
                     getUsedReferralCode(user)
                     .toUpperCase() === code
+
                 );
 
             }
         );
 
 
+    /*
+       Find the owner of the
+       referral code.
+    */
+
+    const ownerName =
+        getReferralOwnerName(code);
+
+
     summary.style.display =
-        "flex";
+        "grid";
 
 
     searchedCode.textContent =
         code;
 
 
+    referralOwner.textContent =
+        ownerName;
+
+
     resultCount.textContent =
         matchedUsers.length;
 
+
+    /*
+       No users found.
+    */
 
     if(!matchedUsers.length){
 
@@ -1103,6 +1294,14 @@ function searchReferral(){
                     ${escapeHTML(code)}
                 </strong>
 
+                <br><br>
+
+                Referral Code Owner:
+
+                <strong>
+                    ${escapeHTML(ownerName)}
+                </strong>
+
             </div>
 
         `;
@@ -1111,6 +1310,10 @@ function searchReferral(){
 
     }
 
+
+    /*
+       Display matched users.
+    */
 
     results.innerHTML =
         matchedUsers
@@ -1126,7 +1329,6 @@ function searchReferral(){
 }
 
 
-
 /* =====================================================
    USER CARD
 ===================================================== */
@@ -1137,10 +1339,7 @@ function createUserCard(
 ){
 
     const name =
-        user.name ||
-        user.fullName ||
-        user.displayName ||
-        "Unnamed User";
+        getUserName(user);
 
 
     const phone =
@@ -1152,6 +1351,11 @@ function createUserCard(
 
     const ownCode =
         getUserReferralCode(user) ||
+        "-";
+
+
+    const usedCode =
+        getUsedReferralCode(user) ||
         "-";
 
 
@@ -1209,7 +1413,9 @@ function createUserCard(
                     </div>
 
                     <div class="info-value">
+
                         ${escapeHTML(ownCode)}
+
                     </div>
 
                 </div>
@@ -1222,9 +1428,9 @@ function createUserCard(
                     </div>
 
                     <div class="info-value">
-                        ${escapeHTML(
-                            getUsedReferralCode(user) || "-"
-                        )}
+
+                        ${escapeHTML(usedCode)}
+
                     </div>
 
                 </div>
@@ -1258,7 +1464,9 @@ function createUserCard(
                     </div>
 
                     <div class="info-value">
+
                         ${escapeHTML(created)}
+
                     </div>
 
                 </div>
@@ -1273,15 +1481,15 @@ function createUserCard(
 }
 
 
-
 /* =====================================================
    FORMAT DATE
 ===================================================== */
 
 function formatDate(value){
 
-    if(!value)
+    if(!value){
         return "-";
+    }
 
 
     try{
@@ -1297,7 +1505,8 @@ function formatDate(value){
             date =
                 value.toDate();
 
-        }else if(
+        }
+        else if(
             typeof value === "object" &&
             typeof value.seconds === "number"
         ){
@@ -1307,7 +1516,8 @@ function formatDate(value){
                     value.seconds * 1000
                 );
 
-        }else{
+        }
+        else{
 
             date =
                 new Date(value);
@@ -1316,7 +1526,9 @@ function formatDate(value){
 
 
         if(
-            isNaN(date.getTime())
+            isNaN(
+                date.getTime()
+            )
         ){
 
             return "-";
@@ -1335,14 +1547,14 @@ function formatDate(value){
             }
         );
 
-    }catch(error){
+    }
+    catch(error){
 
         return "-";
 
     }
 
 }
-
 
 
 /* =====================================================
@@ -1361,7 +1573,6 @@ function escapeHTML(value){
     .replace(/'/g,"&#039;");
 
 }
-
 
 
 /* =====================================================
