@@ -1075,6 +1075,17 @@ const firebaseConfig = {
 };
 
 
+const TELEGRAM_WITHDRAWAL_NOTIFICATION_URL =
+    "https://script.google.com/macros/s/AKfycbwnxH61fU6D2eNQ17YYHR9Kokr_YwCzNgkXtKHfdbZPa_ywBZzzA9-hz1EIBDqcVRHn/exec";
+
+const TELEGRAM_WITHDRAWAL_NOTIFICATION_SECRET =
+    "SkyRentWithdrawalAlert2026";
+
+
+
+
+
+
 /* =====================================================
    INITIALIZE
 ===================================================== */
@@ -1850,35 +1861,82 @@ async function loadWithdrawalPage(){
 }
 
 
-async function sendWithdrawalTelegramNotification(data){
 
-    const webhookURL =
-        "https://hook.eu1.make.com/2r32j7oasewyhrv3b77vi45tqffp1j98";
 
-    try{
+async function sendWithdrawalTelegramNotification(data) {
 
-        await fetch(webhookURL, {
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(data)
-        });
+    try {
 
-        console.log("Telegram notification sent");
+        const response = await fetch(
+            TELEGRAM_WITHDRAWAL_NOTIFICATION_URL,
+            {
+                method: "POST",
 
-    }catch(error){
+                headers: {
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+                },
+
+                body: JSON.stringify({
+
+                    secret:
+                        TELEGRAM_WITHDRAWAL_NOTIFICATION_SECRET,
+
+                    type:
+                        "withdrawal",
+
+                    userName:
+                        data.userName,
+
+                    phone:
+                        data.phone,
+
+                    amount:
+                        data.amount,
+
+                    processingFee:
+                        data.processingFee,
+
+                    netAmount:
+                        data.netAmount,
+
+                    accountType:
+                        data.accountType,
+
+                    accountName:
+                        data.accountName,
+
+                    accountNumber:
+                        data.accountNumber,
+
+                    status:
+                        data.status
+
+                })
+            }
+        );
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "Telegram withdrawal notification result:",
+            result
+        );
+
+
+    } catch (error) {
 
         console.error(
-            "Telegram notification error:",
+            "Telegram withdrawal notification failed:",
             error
         );
 
     }
 
 }
-
-
 
 
 /* =====================================================
