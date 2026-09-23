@@ -2389,6 +2389,86 @@ const db =
 
 
 /* =====================================================
+   TELEGRAM REGISTRATION NOTIFICATION
+===================================================== */
+
+const TELEGRAM_NOTIFICATION_URL =
+    "https://script.google.com/macros/s/AKfycbw8LE3v3s0D1VbLh-_t1fBR3sphehXZ2GfsBvXWf-pI2xsKpB30xC6YQ9b6f6k8vb8x/exec";
+
+const TELEGRAM_NOTIFICATION_SECRET =
+    "SkyRentRegisterAlert2026";
+
+
+async function sendTelegramRegistrationAlert(data){
+
+    try{
+
+        const response =
+            await fetch(
+                TELEGRAM_NOTIFICATION_URL,
+                {
+                    method: "POST",
+
+                    headers:{
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            secret:
+                                TELEGRAM_NOTIFICATION_SECRET,
+
+                            name:
+                                data.name,
+
+                            phone:
+                                data.phone,
+
+                            email:
+                                data.email,
+
+                            memberId:
+                                data.memberId,
+
+                            referralCode:
+                                data.referralCode,
+
+                            referredBy:
+                                data.referredBy
+
+                        })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "Telegram notification result:",
+            result
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Telegram notification failed:",
+            error
+        );
+
+    }
+
+}
+
+
+
+
+/* =====================================================
 CREATE REFERRAL CODE
 ===================================================== */
 
@@ -3119,6 +3199,17 @@ document
                     }
 
                 );
+
+
+sendTelegramRegistrationAlert({
+    name: name,
+    phone: fullPhone,
+    email: realEmail,
+    memberId: myMemberId,
+    referralCode: myReferralCode,
+    referredBy: referredByCode
+});
+
 
 
                 console.log(
