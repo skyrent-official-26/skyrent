@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Referral Search - SkyRent</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f7fc;
+    color:#172033;
+}
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #0757c9,
+        #0b78e3
+    );
+    color:white;
+    padding:22px 18px;
+    border-radius:0 0 22px 22px;
+    box-shadow:0 5px 18px rgba(0,0,0,.15);
+}
+
+.header h1{
+    font-size:22px;
+    margin-bottom:5px;
+}
+
+.header p{
+    font-size:13px;
+    opacity:.9;
+}
+
+/* CONTAINER */
+
+.container{
+    width:100%;
+    max-width:850px;
+    margin:auto;
+    padding:18px;
+}
+
+/* SEARCH CARD */
+
+.search-card{
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 4px 16px rgba(0,0,0,.08);
+    margin-bottom:18px;
+}
+
+.search-title{
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.search-row{
+    display:flex;
+    gap:10px;
+}
+
+.search-input{
+    flex:1;
+    border:1px solid #d6deea;
+    border-radius:12px;
+    padding:13px;
+    font-size:15px;
+    outline:none;
+}
+
+.search-input:focus{
+    border-color:#0757c9;
+}
+
+.search-button{
+    border:none;
+    background:#0757c9;
+    color:white;
+    padding:0 20px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.search-button:active{
+    transform:scale(.97);
+}
+
+/* SUMMARY */
+
+.summary{
+    background:white;
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.summary-label{
+    color:#667085;
+    font-size:13px;
+}
+
+.summary-value{
+    color:#0757c9;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* REFERRAL CODE LIST */
+
+.code-list{
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 4px 16px rgba(0,0,0,.07);
+    margin-bottom:18px;
+}
+
+.section-title{
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:14px;
+}
+
+.code-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 0;
+    border-bottom:1px solid #edf1f6;
+    cursor:pointer;
+}
+
+.code-item:last-child{
+    border-bottom:none;
+}
+
+.code-left{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.code{
+    font-size:15px;
+    font-weight:bold;
+    color:#0757c9;
+}
+
+.code-users{
+    font-size:12px;
+    color:#667085;
+}
+
+.code-arrow{
+    color:#0757c9;
+    font-size:18px;
+}
+
+/* USER LIST */
+
+.user-card{
+    background:white;
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:12px;
+    box-shadow:0 4px 14px rgba(0,0,0,.07);
+}
+
+.user-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+.user-name{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.user-phone{
+    font-size:13px;
+    color:#667085;
+    margin-top:3px;
+}
+
+.user-number{
+    background:#eaf3ff;
+    color:#0757c9;
+    border-radius:20px;
+    padding:5px 9px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.info-box{
+    background:#f7f9fc;
+    border-radius:10px;
+    padding:10px;
+}
+
+.info-label{
+    font-size:10px;
+    color:#7a8494;
+    margin-bottom:4px;
+}
+
+.info-value{
+    font-size:13px;
+    font-weight:bold;
+    word-break:break-word;
+}
+
+/* EMPTY */
+
+.empty{
+    background:white;
+    border-radius:18px;
+    padding:35px 20px;
+    text-align:center;
+    color:#667085;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+
+.empty-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+/* LOADING */
+
+.loading{
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+
+.spinner{
+    width:35px;
+    height:35px;
+    border:4px solid #dce9fa;
+    border-top:4px solid #0757c9;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:0 auto 12px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* ACCESS DENIED */
+
+.access-denied{
+    display:none;
+    min-height:100vh;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:25px;
+}
+
+.access-box{
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    max-width:400px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.access-box h2{
+    color:#d92d20;
+    margin-bottom:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .search-row{
+        flex-direction:column;
+    }
+
+    .search-button{
+        height:46px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ACCESS DENIED -->
+
+<div
+    class="access-denied"
+    id="accessDenied"
+>
+
+    <div class="access-box">
+
+        <h2>Access Denied</h2>
+
+        <p>
+            You are not authorized to access
+            this administrator page.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN PAGE -->
+
+<div id="mainPage" style="display:none;">
+
+
+    <div class="header">
+
+        <h1>
+            🔗 Referral Search
+        </h1>
+
+        <p>
+            Search members by referral code
+        </p>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <!-- SEARCH -->
+
+        <div class="search-card">
+
+            <div class="search-title">
+                Search Referral Code
+            </div>
+
+            <div class="search-row">
+
+                <input
+                    type="text"
+                    id="referralInput"
+                    class="search-input"
+                    placeholder="Enter referral code..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="search-button"
+                    id="searchButton"
+                >
+                    🔍 Search
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH RESULT COUNT -->
+
+        <div
+            id="summary"
+            class="summary"
+            style="display:none;"
+        >
+
+            <div>
+
+                <div class="summary-label">
+                    Users using this referral code
+                </div>
+
+                <div
+                    class="summary-label"
+                    id="searchedCode"
+                >
+                    -
+                </div>
+
+            </div>
+
+            <div
+                class="summary-value"
+                id="resultCount"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <!-- RESULTS -->
+
+        <div id="results"></div>
+
+
+        <!-- ALL REFERRAL CODES -->
+
+        <div class="code-list">
+
+            <div class="section-title">
+                📋 Referral Codes
+            </div>
+
+            <div id="codeList">
+
+                <div class="loading">
+
+                    <div class="spinner"></div>
+
+                    Loading referral codes...
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* =====================================================
+   FIREBASE
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3",
+
+    authDomain:
+        "skyrent-ea30c3.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "YOUR_MESSAGING_SENDER_ID",
+
+    appId:
+        "YOUR_APP_ID"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* =====================================================
+   ADMIN UID
+===================================================== */
+
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const mainPage =
+    document.getElementById("mainPage");
+
+const accessDenied =
+    document.getElementById("accessDenied");
+
+const referralInput =
+    document.getElementById("referralInput");
+
+const searchButton =
+    document.getElementById("searchButton");
+
+const results =
+    document.getElementById("results");
+
+const summary =
+    document.getElementById("summary");
+
+const resultCount =
+    document.getElementById("resultCount");
+
+const searchedCode =
+    document.getElementById("searchedCode");
+
+const codeList =
+    document.getElementById("codeList");
+
+
+
+/* =====================================================
+   STORE USERS
+===================================================== */
+
+let allUsers = [];
+
+
+
+/* =====================================================
+   ADMIN AUTH
+===================================================== */
+
+onAuthStateChanged(
+    auth,
+    async (user) => {
+
+        if(!user){
+
+            accessDenied.style.display =
+                "flex";
+
+            return;
+
+        }
+
+
+        if(user.uid !== ADMIN_UID){
+
+            accessDenied.style.display =
+                "flex";
+
+            return;
+
+        }
+
+
+        mainPage.style.display =
+            "block";
+
+
+        await loadUsers();
+
+    }
+);
+
+
+
+/* =====================================================
+   LOAD USERS
+===================================================== */
+
+async function loadUsers(){
+
+    codeList.innerHTML = `
+
+        <div class="loading">
+
+            <div class="spinner"></div>
+
+            Loading referral data...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(db, "users")
+            );
+
+
+        allUsers = [];
+
+
+        snapshot.forEach(
+            doc => {
+
+                allUsers.push({
+
+                    id:doc.id,
+
+                    ...doc.data()
+
+                });
+
+            }
+        );
+
+
+        renderReferralCodes();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        codeList.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                Unable to load users.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   GET REFERRER CODE USED BY USER
+===================================================== */
+
+function getUsedReferralCode(user){
+
+    return (
+
+        user.referredByCode ||
+
+        user.referredBy ||
+
+        user.referrerCode ||
+
+        user.referralFrom ||
+
+        user.usedReferralCode ||
+
+        ""
+
+    ).toString().trim();
+
+}
+
+
+
+/* =====================================================
+   GET USER REFERRAL CODE
+===================================================== */
+
+function getUserReferralCode(user){
+
+    return (
+
+        user.referralCode ||
+
+        user.referralID ||
+
+        user.referralId ||
+
+        user.referral ||
+
+        ""
+
+    ).toString().trim();
+
+}
+
+
+
+/* =====================================================
+   RENDER REFERRAL CODES
+===================================================== */
+
+function renderReferralCodes(){
+
+    const counts = {};
+
+
+    allUsers.forEach(
+        user => {
+
+            const code =
+                getUsedReferralCode(user);
+
+            if(!code) return;
+
+
+            const normalized =
+                code.toUpperCase();
+
+
+            if(!counts[normalized]){
+
+                counts[normalized] = 0;
+
+            }
+
+
+            counts[normalized]++;
+
+        }
+    );
+
+
+    const codes =
+        Object.keys(counts)
+            .sort();
+
+
+    if(!codes.length){
+
+        codeList.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🔗
+                </div>
+
+                No referral codes are currently
+                being used.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    codeList.innerHTML =
+        codes.map(
+            code => `
+
+                <div
+                    class="code-item"
+                    data-code="${escapeHTML(code)}"
+                >
+
+                    <div class="code-left">
+
+                        <div class="code">
+                            ${escapeHTML(code)}
+                        </div>
+
+                        <div class="code-users">
+
+                            ${counts[code]}
+                            user${counts[code] === 1 ? "" : "s"}
+
+                        </div>
+
+                    </div>
+
+                    <div class="code-arrow">
+                        ›
+                    </div>
+
+                </div>
+
+            `
+        ).join("");
+
+
+    document
+        .querySelectorAll(".code-item")
+        .forEach(
+            item => {
+
+                item.addEventListener(
+                    "click",
+                    () => {
+
+                        referralInput.value =
+                            item.dataset.code;
+
+                        searchReferral();
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+searchButton.addEventListener(
+    "click",
+    searchReferral
+);
+
+
+referralInput.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "Enter"){
+
+            searchReferral();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   SEARCH REFERRAL
+===================================================== */
+
+function searchReferral(){
+
+    const code =
+        referralInput.value
+            .trim()
+            .toUpperCase();
+
+
+    if(!code){
+
+        summary.style.display =
+            "none";
+
+        results.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🔎
+                </div>
+
+                Enter a referral code to search.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const matchedUsers =
+        allUsers.filter(
+            user => {
+
+                const usedCode =
+                    getUsedReferralCode(user)
+                        .toUpperCase();
+
+                return usedCode === code;
+
+            }
+        );
+
+
+    summary.style.display =
+        "flex";
+
+
+    searchedCode.textContent =
+        code;
+
+
+    resultCount.textContent =
+        matchedUsers.length;
+
+
+    if(!matchedUsers.length){
+
+        results.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    👤
+                </div>
+
+                No users found using
+
+                <strong>
+                    ${escapeHTML(code)}
+                </strong>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    results.innerHTML =
+        matchedUsers.map(
+            (user,index) =>
+                createUserCard(
+                    user,
+                    index + 1
+                )
+        ).join("");
+
+}
+
+
+
+/* =====================================================
+   USER CARD
+===================================================== */
+
+function createUserCard(user,index){
+
+    const name =
+        user.name ||
+        user.fullName ||
+        user.displayName ||
+        "Unnamed User";
+
+
+    const phone =
+        user.phone ||
+        user.phoneNumber ||
+        "-";
+
+
+    const ownReferralCode =
+        getUserReferralCode(user) ||
+        "-";
+
+
+    const balance =
+        Number(
+            user.balance ??
+            user.availableBalance ??
+            0
+        );
+
+
+    const date =
+        formatDate(
+            user.createdAt
+        );
+
+
+    return `
+
+        <div class="user-card">
+
+            <div class="user-header">
+
+                <div>
+
+                    <div class="user-name">
+
+                        ${escapeHTML(name)}
+
+                    </div>
+
+                    <div class="user-phone">
+
+                        ${escapeHTML(phone)}
+
+                    </div>
+
+                </div>
+
+                <div class="user-number">
+
+                    #${index}
+
+                </div>
+
+            </div>
+
+
+            <div class="info-grid">
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        User Referral Code
+                    </div>
+
+                    <div class="info-value">
+                        ${escapeHTML(ownReferralCode)}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Used Referral Code
+                    </div>
+
+                    <div class="info-value">
+                        ${escapeHTML(
+                            getUsedReferralCode(user) || "-"
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Available Balance
+                    </div>
+
+                    <div class="info-value">
+                        ₱${balance.toLocaleString(
+                            "en-PH",
+                            {
+                                minimumFractionDigits:2,
+                                maximumFractionDigits:2
+                            }
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Registration Date
+                    </div>
+
+                    <div class="info-value">
+                        ${escapeHTML(date)}
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(value){
+
+    if(!value){
+
+        return "-";
+
+    }
+
+
+    try{
+
+        let date;
+
+
+        if(
+            typeof value === "object" &&
+            value.seconds
+        ){
+
+            date =
+                new Date(
+                    value.seconds * 1000
+                );
+
+        }else{
+
+            date =
+                new Date(value);
+
+        }
+
+
+        if(
+            isNaN(date.getTime())
+        ){
+
+            return "-";
+
+        }
+
+
+        return date.toLocaleString(
+            "en-PH",
+            {
+                year:"numeric",
+                month:"short",
+                day:"numeric",
+                hour:"numeric",
+                minute:"2-digit"
+            }
+        );
+
+    }catch(error){
+
+        return "-";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+
+</html>
