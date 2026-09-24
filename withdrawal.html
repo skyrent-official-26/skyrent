@@ -1098,92 +1098,6 @@ const firebaseConfig = {
 };
 
 
-
-const TELEGRAM_WITHDRAWAL_NOTIFICATION_URL =
-    "https://script.google.com/macros/s/AKfycbwnxH61fU6D2eNQ17YYHR9Kokr_YwCzNgkXtKHfdbZPa_ywBZzzA9-hz1EIBDqcVRHn/exec";
-
-const TELEGRAM_WITHDRAWAL_NOTIFICATION_SECRET =
-    "SkyRentWithdrawalAlert2026";
-
-
-async function sendWithdrawalTelegramNotification(data) {
-
-    try {
-
-        const response = await fetch(
-            TELEGRAM_WITHDRAWAL_NOTIFICATION_URL,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "text/plain;charset=utf-8"
-                },
-
-                body: JSON.stringify({
-
-                    secret:
-                        TELEGRAM_WITHDRAWAL_NOTIFICATION_SECRET,
-
-                    type:
-                        "withdrawal",
-
-                    userName:
-                        data.userName,
-
-                    phone:
-                        data.phone,
-
-                    amount:
-                        data.amount,
-
-                    processingFee:
-                        data.processingFee,
-
-                    netAmount:
-                        data.netAmount,
-
-                    accountType:
-                        data.accountType,
-
-                    accountName:
-                        data.accountName,
-
-                    accountNumber:
-                        data.accountNumber,
-
-                    status:
-                        data.status
-
-                })
-            }
-        );
-
-        const result =
-            await response.json();
-
-        console.log(
-            "Telegram withdrawal notification result:",
-            result
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Telegram withdrawal notification failed:",
-            error
-        );
-
-    }
-
-}
-
-
-
-
-
-
-
 /* =====================================================
    INITIALIZE
 ===================================================== */
@@ -1958,83 +1872,6 @@ async function loadWithdrawalPage(){
 
 }
 
-async function sendWithdrawalTelegramNotification(data) {
-
-    try {
-
-        const response = await fetch(
-            TELEGRAM_WITHDRAWAL_NOTIFICATION_URL,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "text/plain;charset=utf-8"
-                },
-
-                body: JSON.stringify({
-
-                    secret:
-                        TELEGRAM_WITHDRAWAL_NOTIFICATION_SECRET,
-
-                    type:
-                        "withdrawal",
-
-                    userName:
-                        data.userName,
-
-                    phone:
-                        data.phone,
-
-                    amount:
-                        data.amount,
-
-                    processingFee:
-                        data.processingFee,
-
-                    netAmount:
-                        data.netAmount,
-
-                    accountType:
-                        data.accountType,
-
-                    accountName:
-                        data.accountName,
-
-                    accountNumber:
-                        data.accountNumber,
-
-                    status:
-                        data.status
-
-                })
-            }
-        );
-
-        const result =
-            await response.json();
-
-        console.log(
-            "Telegram withdrawal notification result:",
-            result
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Telegram withdrawal notification failed:",
-            error
-        );
-
-    }
-
-}
-
-
-
-
-
-
 
 /* =====================================================
    SUBMIT WITHDRAWAL
@@ -2049,11 +1886,6 @@ async function submitWithdrawal(){
         document.getElementById(
             "withdrawButton"
         );
-        
-        
-        
-        
-        
 
 
     const input =
@@ -2153,39 +1985,6 @@ async function submitWithdrawal(){
 
         button.innerText =
             "Request Withdrawal";
-
-
-sendWithdrawalTelegramNotification({
-
-    userName:
-        currentUserData.name || "",
-
-    phone:
-        currentUserData.phone || "",
-
-    amount:
-        amount,
-
-    processingFee:
-        processingFee,
-
-    netAmount:
-        netAmount,
-
-    accountType:
-        currentWithdrawalAccount.accountType,
-
-    accountName:
-        currentWithdrawalAccount.accountName,
-
-    accountNumber:
-        currentWithdrawalAccount.accountNumber,
-
-    status:
-        "Pending"
-
-});
-
 
 
         showMessage(
