@@ -1130,6 +1130,60 @@ const firebaseConfig = {
 };
 
 
+const TELEGRAM_DEPOSIT_NOTIFICATION_URL =
+    "https://script.google.com/macros/s/AKfycbzra0TVDgyvBVWjkXatcYTy-IucSdlRgi1h9YAtFRLbdqbV9Qyb20Td3daFG1ER2Yfe/exec";
+
+const TELEGRAM_DEPOSIT_NOTIFICATION_SECRET =
+    "SkyRentDepositAlert2026";
+
+async function sendTelegramDepositAlert(data) {
+    try {
+        const response = await fetch(
+            TELEGRAM_DEPOSIT_NOTIFICATION_URL,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify({
+                    secret:
+                        TELEGRAM_DEPOSIT_NOTIFICATION_SECRET,
+                    type: "deposit",
+                    name: data.name,
+                    phone: data.phone,
+                    email: data.email,
+                    memberId: data.memberId,
+                    amount: data.amount,
+                    paymentAccount: data.paymentAccount,
+                    paymentMethod: data.paymentMethod,
+                    referenceNumber: data.referenceNumber,
+                    status: data.status
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        console.log(
+            "Telegram deposit notification result:",
+            result
+        );
+
+    } catch (error) {
+        console.error(
+            "Telegram deposit notification failed:",
+            error
+        );
+    }
+}
+
+
+
+
+
+
+
 /* =====================================================
    INITIALIZE FIREBASE
 ===================================================== */
@@ -1962,9 +2016,21 @@ window.submitDeposit = async function(){
 
 
         console.log(
-            "Deposit created:",
-            depositRef.id
-        );
+    "Deposit created:",
+    depositRef.id
+);
+
+await sendTelegramDepositAlert({
+    name: userName,
+    phone: phone,
+    email: email,
+    memberId: memberId,
+    amount: selectedDepositAmount,
+    paymentAccount: selectedPaymentAccount,
+    paymentMethod: selectedPaymentMethod,
+    referenceNumber: referenceNumber,
+    status: "Pending Approval"
+});
 
 
         /* ============================================
