@@ -1958,6 +1958,83 @@ async function loadWithdrawalPage(){
 
 }
 
+async function sendWithdrawalTelegramNotification(data) {
+
+    try {
+
+        const response = await fetch(
+            TELEGRAM_WITHDRAWAL_NOTIFICATION_URL,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+                },
+
+                body: JSON.stringify({
+
+                    secret:
+                        TELEGRAM_WITHDRAWAL_NOTIFICATION_SECRET,
+
+                    type:
+                        "withdrawal",
+
+                    userName:
+                        data.userName,
+
+                    phone:
+                        data.phone,
+
+                    amount:
+                        data.amount,
+
+                    processingFee:
+                        data.processingFee,
+
+                    netAmount:
+                        data.netAmount,
+
+                    accountType:
+                        data.accountType,
+
+                    accountName:
+                        data.accountName,
+
+                    accountNumber:
+                        data.accountNumber,
+
+                    status:
+                        data.status
+
+                })
+            }
+        );
+
+        const result =
+            await response.json();
+
+        console.log(
+            "Telegram withdrawal notification result:",
+            result
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Telegram withdrawal notification failed:",
+            error
+        );
+
+    }
+
+}
+
+
+
+
+
+
 
 /* =====================================================
    SUBMIT WITHDRAWAL
@@ -1972,6 +2049,11 @@ async function submitWithdrawal(){
         document.getElementById(
             "withdrawButton"
         );
+        
+        
+        
+        
+        
 
 
     const input =
@@ -2073,16 +2155,35 @@ async function submitWithdrawal(){
             "Request Withdrawal";
 
 
-await sendWithdrawalTelegramNotification({
-    userName: currentUserData.name || "",
-    phone: currentUserData.phone || "",
-    amount: amount,
-    processingFee: processingFee,
-    netAmount: netAmount,
-    accountType: currentWithdrawalAccount.accountType,
-    accountName: currentWithdrawalAccount.accountName,
-    accountNumber: currentWithdrawalAccount.accountNumber,
-    status: "Pending"
+sendWithdrawalTelegramNotification({
+
+    userName:
+        currentUserData.name || "",
+
+    phone:
+        currentUserData.phone || "",
+
+    amount:
+        amount,
+
+    processingFee:
+        processingFee,
+
+    netAmount:
+        netAmount,
+
+    accountType:
+        currentWithdrawalAccount.accountType,
+
+    accountName:
+        currentWithdrawalAccount.accountName,
+
+    accountNumber:
+        currentWithdrawalAccount.accountNumber,
+
+    status:
+        "Pending"
+
 });
 
 
