@@ -12,7 +12,6 @@
 
 <title>Admin Rewards - SkyRent</title>
 
-
 <style>
 
 /* =========================================================
@@ -24,7 +23,6 @@
     margin:0;
     padding:0;
 }
-
 
 body{
 
@@ -75,7 +73,6 @@ body{
 
 }
 
-
 .header-top{
 
     display:flex;
@@ -86,7 +83,6 @@ body{
 
 }
 
-
 .header-title{
 
     display:flex;
@@ -96,7 +92,6 @@ body{
     gap:11px;
 
 }
-
 
 .header-icon{
 
@@ -118,7 +113,6 @@ body{
 
 }
 
-
 .header h1{
 
     font-size:21px;
@@ -126,7 +120,6 @@ body{
     font-weight:900;
 
 }
-
 
 .header p{
 
@@ -137,7 +130,6 @@ body{
     opacity:.8;
 
 }
-
 
 .refresh-btn{
 
@@ -198,7 +190,6 @@ body{
 
 }
 
-
 .summary-card{
 
     background:white;
@@ -217,13 +208,11 @@ body{
 
 }
 
-
 .summary-icon{
 
     font-size:21px;
 
 }
-
 
 .summary-label{
 
@@ -239,7 +228,6 @@ body{
 
 }
 
-
 .summary-number{
 
     margin-top:2px;
@@ -254,7 +242,7 @@ body{
 
 
 /* =========================================================
-   FILTER CARD
+   FILTER
 ========================================================= */
 
 .filter-card{
@@ -276,7 +264,6 @@ body{
         #e7edf5;
 
 }
-
 
 .search-box{
 
@@ -300,7 +287,6 @@ body{
 
 }
 
-
 .search-box:focus{
 
     border-color:#168bdc;
@@ -308,7 +294,6 @@ body{
     background:white;
 
 }
-
 
 .filter-buttons{
 
@@ -323,7 +308,6 @@ body{
     padding-bottom:2px;
 
 }
-
 
 .filter-btn{
 
@@ -348,7 +332,6 @@ body{
     cursor:pointer;
 
 }
-
 
 .filter-btn.active{
 
@@ -378,7 +361,6 @@ body{
 
 }
 
-
 .section-title h2{
 
     font-size:17px;
@@ -388,7 +370,6 @@ body{
     font-weight:900;
 
 }
-
 
 .section-title span{
 
@@ -423,7 +404,6 @@ body{
 
 }
 
-
 .reward-card.pending{
 
     border-left:
@@ -431,7 +411,6 @@ body{
         #f1a72b;
 
 }
-
 
 .reward-card.approved{
 
@@ -441,7 +420,6 @@ body{
 
 }
 
-
 .reward-card.rejected{
 
     border-left:
@@ -450,6 +428,10 @@ body{
 
 }
 
+
+/* =========================================================
+   USER
+========================================================= */
 
 .reward-top{
 
@@ -463,7 +445,6 @@ body{
 
 }
 
-
 .user-section{
 
     display:flex;
@@ -475,7 +456,6 @@ body{
     min-width:0;
 
 }
-
 
 .user-avatar{
 
@@ -505,13 +485,11 @@ body{
 
 }
 
-
 .user-info{
 
     min-width:0;
 
 }
-
 
 .user-name{
 
@@ -529,7 +507,6 @@ body{
 
 }
 
-
 .user-phone{
 
     margin-top:3px;
@@ -540,7 +517,6 @@ body{
 
 }
 
-
 .amount{
 
     text-align:right;
@@ -548,7 +524,6 @@ body{
     flex-shrink:0;
 
 }
-
 
 .amount small{
 
@@ -559,7 +534,6 @@ body{
     color:#8a99a9;
 
 }
-
 
 .amount strong{
 
@@ -598,7 +572,6 @@ body{
 
 }
 
-
 .milestone-left{
 
     display:flex;
@@ -608,7 +581,6 @@ body{
     gap:9px;
 
 }
-
 
 .milestone-icon{
 
@@ -629,7 +601,6 @@ body{
 
 }
 
-
 .milestone-name{
 
     font-size:12px;
@@ -639,7 +610,6 @@ body{
     color:#173d73;
 
 }
-
 
 .milestone-required{
 
@@ -651,6 +621,105 @@ body{
 
 }
 
+
+/* =========================================================
+   CURRENT NETWORK COUNT
+========================================================= */
+
+.network-count-box{
+
+    margin-top:10px;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #edf6ff,
+            #f7fbff
+        );
+
+    border:
+        1px solid
+        #d9eafb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+.network-count-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+}
+
+.network-count-icon{
+
+    width:34px;
+    height:34px;
+
+    border-radius:10px;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:17px;
+
+}
+
+.network-count-label{
+
+    font-size:10px;
+
+    font-weight:800;
+
+    color:#66809d;
+
+}
+
+.network-count-sub{
+
+    margin-top:2px;
+
+    font-size:9px;
+
+    color:#94a2b1;
+
+}
+
+.network-count-number{
+
+    font-size:19px;
+
+    font-weight:900;
+
+    color:#0757c9;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 .status{
 
@@ -672,7 +741,6 @@ body{
 
 }
 
-
 .status-pending{
 
     background:#fff3dc;
@@ -681,7 +749,6 @@ body{
 
 }
 
-
 .status-approved{
 
     background:#e5f8ed;
@@ -689,7 +756,6 @@ body{
     color:#188247;
 
 }
-
 
 .status-rejected{
 
@@ -717,7 +783,6 @@ body{
 
 }
 
-
 .detail{
 
     background:#fafbfd;
@@ -727,7 +792,6 @@ body{
     padding:9px;
 
 }
-
 
 .detail-label{
 
@@ -740,7 +804,6 @@ body{
     font-weight:700;
 
 }
-
 
 .detail-value{
 
@@ -771,7 +834,6 @@ body{
 
 }
 
-
 .action-btn{
 
     flex:1;
@@ -792,7 +854,6 @@ body{
 
 }
 
-
 .approve-btn{
 
     background:
@@ -806,7 +867,6 @@ body{
 
 }
 
-
 .reject-btn{
 
     background:#fff0f0;
@@ -818,7 +878,6 @@ body{
         #f3caca;
 
 }
-
 
 .action-btn:disabled{
 
@@ -855,7 +914,6 @@ body{
 
 }
 
-
 .empty-icon{
 
     font-size:35px;
@@ -883,7 +941,6 @@ body{
 
 }
 
-
 .spinner{
 
     width:34px;
@@ -907,7 +964,6 @@ body{
         12px;
 
 }
-
 
 @keyframes spin{
 
@@ -946,13 +1002,11 @@ body{
 
 }
 
-
 .modal-overlay.show{
 
     display:flex;
 
 }
-
 
 .modal{
 
@@ -976,7 +1030,6 @@ body{
 
 }
 
-
 .modal-handle{
 
     width:38px;
@@ -993,7 +1046,6 @@ body{
 
 }
 
-
 .modal h3{
 
     color:#092f68;
@@ -1003,7 +1055,6 @@ body{
     font-weight:900;
 
 }
-
 
 .modal p{
 
@@ -1016,7 +1067,6 @@ body{
     line-height:1.5;
 
 }
-
 
 .reject-input{
 
@@ -1044,13 +1094,11 @@ body{
 
 }
 
-
 .reject-input:focus{
 
     border-color:#168bdc;
 
 }
-
 
 .modal-actions{
 
@@ -1061,7 +1109,6 @@ body{
     margin-top:13px;
 
 }
-
 
 .modal-btn{
 
@@ -1081,7 +1128,6 @@ body{
 
 }
 
-
 .cancel-btn{
 
     background:#eef2f6;
@@ -1089,7 +1135,6 @@ body{
     color:#637386;
 
 }
-
 
 .confirm-reject{
 
@@ -1115,13 +1160,11 @@ body{
 
     }
 
-
     .modal-overlay{
 
         align-items:center;
 
     }
-
 
     .modal{
 
@@ -1189,10 +1232,6 @@ body{
 <main class="container">
 
 
-    <!-- =====================================================
-         LOADING
-    ====================================================== -->
-
     <div
         id="loading"
         class="loading"
@@ -1206,19 +1245,13 @@ body{
 
 
 
-    <!-- =====================================================
-         CONTENT
-    ====================================================== -->
-
     <div
         id="content"
         style="display:none;"
     >
 
 
-        <!-- ==================================================
-             SUMMARY
-        =================================================== -->
+        <!-- SUMMARY -->
 
         <div class="summary-grid">
 
@@ -1309,9 +1342,7 @@ body{
 
 
 
-        <!-- ==================================================
-             FILTERS
-        =================================================== -->
+        <!-- FILTER -->
 
         <div class="filter-card">
 
@@ -1370,9 +1401,7 @@ body{
 
 
 
-        <!-- ==================================================
-             TITLE
-        =================================================== -->
+        <!-- TITLE -->
 
         <div class="section-title">
 
@@ -1405,7 +1434,6 @@ body{
     id="rejectModal"
     class="modal-overlay"
 >
-
 
     <div class="modal">
 
@@ -1521,7 +1549,6 @@ const firebaseConfig = {
 };
 
 
-
 const app =
     initializeApp(
         firebaseConfig
@@ -1559,40 +1586,709 @@ let currentFilter = "all";
 let rejectingRewardId = null;
 
 
+/*
+ * These are loaded from Firebase so the admin page
+ * can calculate the user's CURRENT invested network.
+ */
+
+let allUsers = [];
+
+let allInvestments = [];
+
+
 
 /* =========================================================
-   MILESTONE ICON
+   MILESTONES
 ========================================================= */
 
-function getMilestoneIcon(
-    members
+const milestones = [
+
+    {
+        members:3,
+        reward:250,
+        name:"First Flight",
+        icon:"✈️"
+    },
+
+    {
+        members:5,
+        reward:450,
+        name:"Rising Pilot",
+        icon:"🛫"
+    },
+
+    {
+        members:10,
+        reward:1200,
+        name:"Sky Builder",
+        icon:"🏗️"
+    },
+
+    {
+        members:15,
+        reward:2000,
+        name:"Air Captain",
+        icon:"👨‍✈️"
+    },
+
+    {
+        members:25,
+        reward:3500,
+        name:"Sky Leader",
+        icon:"⭐"
+    },
+
+    {
+        members:40,
+        reward:5600,
+        name:"Fleet Commander",
+        icon:"🛩️"
+    },
+
+    {
+        members:50,
+        reward:12000,
+        name:"Sky Master",
+        icon:"👑"
+    }
+
+];
+
+
+
+/* =========================================================
+   NORMALIZE PHONE
+========================================================= */
+
+function normalizePhone(
+    phone
 ){
 
-    const icons = {
+    return String(
+        phone || ""
+    )
+    .replace(
+        /\D/g,
+        ""
+    )
+    .replace(
+        /^63/,
+        "0"
+    );
 
-        3:"✈️",
+}
 
-        5:"🛫",
 
-        10:"🏗️",
 
-        15:"👨‍✈️",
+/* =========================================================
+   FIND USER
+========================================================= */
 
-        25:"⭐",
+function findUserForReward(
+    reward
+){
 
-        40:"🛩️",
+    const rewardUid =
+        reward.userId ||
+        reward.uid ||
+        reward.userUID ||
+        reward.userUid ||
+        "";
 
-        50:"👑"
+
+    const rewardPhone =
+        normalizePhone(
+            reward.userPhone ||
+            reward.phone ||
+            ""
+        );
+
+
+    if(rewardUid){
+
+        const byUid =
+            allUsers.find(
+                user =>
+                    user.uid ===
+                    rewardUid
+            );
+
+
+        if(byUid){
+
+            return byUid;
+
+        }
+
+    }
+
+
+    if(rewardPhone){
+
+        const byPhone =
+            allUsers.find(
+                user =>
+                    normalizePhone(
+                        user.phone
+                    ) ===
+                    rewardPhone
+            );
+
+
+        if(byPhone){
+
+            return byPhone;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* =========================================================
+   GET DIRECT REFERRER
+========================================================= */
+
+function getDirectReferrer(
+    user
+){
+
+    if(!user){
+
+        return null;
+
+    }
+
+
+    const refUid =
+        user.referredByUid ||
+        user.referrerUid ||
+        user.referrerId ||
+        user.referredBy ||
+        "";
+
+
+    if(refUid){
+
+        const byUid =
+            allUsers.find(
+                member =>
+                    member.uid ===
+                    refUid
+            );
+
+
+        if(byUid){
+
+            return byUid;
+
+        }
+
+    }
+
+
+    const refPhone =
+        normalizePhone(
+            user.referredByPhone ||
+            user.referrerPhone ||
+            user.referrer ||
+            ""
+        );
+
+
+    if(refPhone){
+
+        const byPhone =
+            allUsers.find(
+                member =>
+                    normalizePhone(
+                        member.phone
+                    ) ===
+                    refPhone
+            );
+
+
+        if(byPhone){
+
+            return byPhone;
+
+        }
+
+    }
+
+
+    const refCode =
+        String(
+            user.referredByCode ||
+            user.referrerCode ||
+            user.referralBy ||
+            ""
+        )
+        .trim()
+        .toUpperCase();
+
+
+    if(refCode){
+
+        const byCode =
+            allUsers.find(
+                member =>
+                    String(
+                        member.referralCode ||
+                        ""
+                    )
+                    .trim()
+                    .toUpperCase()
+                    ===
+                    refCode
+            );
+
+
+        if(byCode){
+
+            return byCode;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* =========================================================
+   BUILD NETWORK
+========================================================= */
+
+function buildNetworkForUser(
+    targetUser
+){
+
+    const levelA = [];
+
+    const levelB = [];
+
+    const levelC = [];
+
+
+    if(!targetUser){
+
+        return {
+            levelA,
+            levelB,
+            levelC
+        };
+
+    }
+
+
+    const targetUid =
+        targetUser.uid ||
+        "";
+
+
+    const targetPhone =
+        normalizePhone(
+            targetUser.phone
+        );
+
+
+    /* =====================================================
+       LEVEL A
+    ===================================================== */
+
+    allUsers.forEach(
+        user => {
+
+            if(
+                user.uid ===
+                targetUid
+            ){
+
+                return;
+
+            }
+
+
+            if(
+                normalizePhone(
+                    user.phone
+                ) ===
+                targetPhone
+            ){
+
+                return;
+
+            }
+
+
+            const referrer =
+                getDirectReferrer(
+                    user
+                );
+
+
+            if(!referrer){
+
+                return;
+
+            }
+
+
+            const sameUid =
+                referrer.uid &&
+                referrer.uid ===
+                targetUid;
+
+
+            const samePhone =
+                normalizePhone(
+                    referrer.phone
+                ) ===
+                targetPhone;
+
+
+            if(
+                sameUid ||
+                samePhone
+            ){
+
+                levelA.push(
+                    user
+                );
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       LEVEL B
+    ===================================================== */
+
+    allUsers.forEach(
+        user => {
+
+            if(
+                user.uid ===
+                targetUid
+            ){
+
+                return;
+
+            }
+
+
+            if(
+                levelA.some(
+                    member =>
+                        member.uid ===
+                        user.uid
+                )
+            ){
+
+                return;
+
+            }
+
+
+            const referrer =
+                getDirectReferrer(
+                    user
+                );
+
+
+            if(!referrer){
+
+                return;
+
+            }
+
+
+            if(
+                levelA.some(
+                    member =>
+                        member.uid ===
+                        referrer.uid
+                )
+            ){
+
+                levelB.push(
+                    user
+                );
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       LEVEL C
+    ===================================================== */
+
+    allUsers.forEach(
+        user => {
+
+            if(
+                user.uid ===
+                targetUid
+            ){
+
+                return;
+
+            }
+
+
+            if(
+                levelA.some(
+                    member =>
+                        member.uid ===
+                        user.uid
+                )
+            ){
+
+                return;
+
+            }
+
+
+            if(
+                levelB.some(
+                    member =>
+                        member.uid ===
+                        user.uid
+                )
+            ){
+
+                return;
+
+            }
+
+
+            const referrer =
+                getDirectReferrer(
+                    user
+                );
+
+
+            if(!referrer){
+
+                return;
+
+            }
+
+
+            if(
+                levelB.some(
+                    member =>
+                        member.uid ===
+                        referrer.uid
+                )
+            ){
+
+                levelC.push(
+                    user
+                );
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        levelA,
+        levelB,
+        levelC
 
     };
 
+}
+
+
+
+/* =========================================================
+   ACTIVE INVESTMENT CHECK
+========================================================= */
+
+function hasActiveInvestment(
+    user
+){
+
+    if(!user){
+
+        return false;
+
+    }
+
+
+    const uid =
+        user.uid ||
+        "";
+
+
+    const phone =
+        normalizePhone(
+            user.phone
+        );
+
+
+    return allInvestments.some(
+        investment => {
+
+            const investmentUid =
+                investment.userId ||
+                investment.uid ||
+                investment.userUID ||
+                investment.userUid ||
+                "";
+
+
+            const investmentPhone =
+                normalizePhone(
+                    investment.phone ||
+                    investment.userPhone ||
+                    ""
+                );
+
+
+            const status =
+                String(
+                    investment.status ||
+                    investment.investmentStatus ||
+                    ""
+                )
+                .toLowerCase()
+                .trim();
+
+
+            const activeStatus =
+
+                status === "active"
+
+                ||
+
+                status === "approved"
+
+                ||
+
+                status === "running"
+
+                ||
+
+                status === "in progress";
+
+
+            const sameUser =
+
+                (
+                    investmentUid &&
+                    investmentUid ===
+                    uid
+                )
+
+                ||
+
+                (
+                    investmentPhone &&
+                    investmentPhone ===
+                    phone
+                );
+
+
+            return (
+                sameUser &&
+                activeStatus
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   INVESTED COUNT
+========================================================= */
+
+function getInvestedCount(
+    members
+){
+
+    return members.filter(
+        member =>
+            hasActiveInvestment(
+                member
+            )
+    ).length;
+
+}
+
+
+
+/* =========================================================
+   CURRENT INVESTED NETWORK
+========================================================= */
+
+function getCurrentInvestedNetworkCount(
+    reward
+){
+
+    const user =
+        findUserForReward(
+            reward
+        );
+
+
+    if(!user){
+
+        return 0;
+
+    }
+
+
+    const network =
+        buildNetworkForUser(
+            user
+        );
+
+
+    const investedA =
+        getInvestedCount(
+            network.levelA
+        );
+
+
+    const investedB =
+        getInvestedCount(
+            network.levelB
+        );
+
+
+    const investedC =
+        getInvestedCount(
+            network.levelC
+        );
+
 
     return (
-        icons[
-            Number(members)
-        ]
-        ||
-        "🎁"
+        investedA +
+        investedB +
+        investedC
     );
 
 }
@@ -1725,7 +2421,7 @@ async function checkAdmin(
 
 
 /* =========================================================
-   LOAD REWARDS
+   LOAD USERS + INVESTMENTS + REWARDS
 ========================================================= */
 
 window.loadRewards =
@@ -1733,7 +2429,77 @@ async function(){
 
     try{
 
-        const snapshot =
+        /*
+         * Load users.
+         */
+
+        const usersSnapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "users"
+                )
+            );
+
+
+        allUsers = [];
+
+
+        usersSnapshot.forEach(
+            snap => {
+
+                allUsers.push({
+
+                    uid:
+                        snap.id,
+
+                    ...snap.data()
+
+                });
+
+            }
+        );
+
+
+
+        /*
+         * Load investments.
+         */
+
+        const investmentsSnapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "investments"
+                )
+            );
+
+
+        allInvestments = [];
+
+
+        investmentsSnapshot.forEach(
+            snap => {
+
+                allInvestments.push({
+
+                    id:
+                        snap.id,
+
+                    ...snap.data()
+
+                });
+
+            }
+        );
+
+
+
+        /*
+         * Load rewards.
+         */
+
+        const rewardsSnapshot =
             await getDocs(
                 collection(
                     db,
@@ -1745,7 +2511,7 @@ async function(){
         allRewards = [];
 
 
-        snapshot.forEach(
+        rewardsSnapshot.forEach(
             snap => {
 
                 allRewards.push({
@@ -2020,12 +2786,6 @@ function(){
                     rawStatus;
 
 
-                /*
-                 * Old reward records
-                 * using "claimed"
-                 * are treated as approved.
-                 */
-
                 if(
                     status === "claimed" ||
                     status === "collected"
@@ -2205,6 +2965,12 @@ function(){
                 );
 
 
+            const currentInvestedCount =
+                getCurrentInvestedNetworkCount(
+                    reward
+                );
+
+
             const isPending =
                 status === "pending";
 
@@ -2215,6 +2981,8 @@ function(){
 
 
             card.innerHTML = `
+
+                <!-- USER -->
 
                 <div class="reward-top">
 
@@ -2274,6 +3042,8 @@ function(){
 
 
 
+                <!-- CLAIMED MILESTONE -->
+
                 <div class="milestone-box">
 
 
@@ -2282,9 +3052,11 @@ function(){
 
                         <div class="milestone-icon">
 
-                            ${getMilestoneIcon(
-                                milestoneMembers
-                            )}
+                            ${
+                                getMilestoneIcon(
+                                    milestoneMembers
+                                )
+                            }
 
                         </div>
 
@@ -2305,6 +3077,7 @@ function(){
 
                             <div class="milestone-required">
 
+                                Claimed at
                                 ${
                                     milestoneMembers
                                 }
@@ -2332,6 +3105,62 @@ function(){
                 </div>
 
 
+
+                <!-- CURRENT INVESTED NETWORK -->
+
+                <div class="network-count-box">
+
+
+                    <div class="network-count-left">
+
+
+                        <div class="network-count-icon">
+                            👥
+                        </div>
+
+
+                        <div>
+
+                            <div class="network-count-label">
+
+                                Current Invested Network
+
+                            </div>
+
+
+                            <div class="network-count-sub">
+
+                                Active invested members
+                                across Levels A, B & C
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="network-count-number">
+
+                        ${
+                            currentInvestedCount
+                        }
+                        ${
+                            currentInvestedCount === 1
+                                ?
+                                "member"
+                                :
+                                "members"
+                        }
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- DETAILS -->
 
                 <div class="details">
 
