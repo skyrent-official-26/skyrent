@@ -12,6 +12,7 @@
 
 <title>Admin Rewards - SkyRent</title>
 
+
 <style>
 
 /* =========================================================
@@ -24,7 +25,9 @@
     padding:0;
 }
 
+
 body{
+
     font-family:
         Arial,
         Helvetica,
@@ -35,6 +38,7 @@ body{
     color:#123;
 
     min-height:100vh;
+
 }
 
 
@@ -43,6 +47,7 @@ body{
 ========================================================= */
 
 .header{
+
     background:
         linear-gradient(
             135deg,
@@ -53,7 +58,10 @@ body{
 
     color:white;
 
-    padding:20px 16px 28px;
+    padding:
+        20px
+        16px
+        28px;
 
     border-radius:
         0
@@ -64,25 +72,34 @@ body{
     box-shadow:
         0 7px 25px
         rgba(0,70,160,.18);
+
 }
 
+
 .header-top{
+
     display:flex;
 
     align-items:center;
 
     justify-content:space-between;
+
 }
 
+
 .header-title{
+
     display:flex;
 
     align-items:center;
 
     gap:11px;
+
 }
 
+
 .header-icon{
+
     width:43px;
     height:43px;
 
@@ -98,23 +115,32 @@ body{
         rgba(255,255,255,.14);
 
     font-size:23px;
+
 }
 
+
 .header h1{
+
     font-size:21px;
 
     font-weight:900;
+
 }
 
+
 .header p{
+
     margin-top:3px;
 
     font-size:11px;
 
     opacity:.8;
+
 }
 
+
 .refresh-btn{
+
     width:39px;
     height:39px;
 
@@ -130,6 +156,7 @@ body{
     font-size:19px;
 
     cursor:pointer;
+
 }
 
 
@@ -138,16 +165,21 @@ body{
 ========================================================= */
 
 .container{
+
     width:100%;
 
     max-width:850px;
 
-    margin:-13px auto 0;
+    margin:
+        -13px
+        auto
+        0;
 
     padding:
         0
         14px
         30px;
+
 }
 
 
@@ -156,15 +188,19 @@ body{
 ========================================================= */
 
 .summary-grid{
+
     display:grid;
 
     grid-template-columns:
         repeat(2,1fr);
 
     gap:10px;
+
 }
 
+
 .summary-card{
+
     background:white;
 
     border-radius:16px;
@@ -178,13 +214,19 @@ body{
     border:
         1px solid
         #e7edf5;
+
 }
+
 
 .summary-icon{
+
     font-size:21px;
+
 }
 
+
 .summary-label{
+
     margin-top:7px;
 
     font-size:10px;
@@ -194,9 +236,12 @@ body{
     text-transform:uppercase;
 
     font-weight:700;
+
 }
 
+
 .summary-number{
+
     margin-top:2px;
 
     font-size:23px;
@@ -204,14 +249,16 @@ body{
     font-weight:900;
 
     color:#092f68;
+
 }
 
 
 /* =========================================================
-   FILTER BAR
+   FILTER CARD
 ========================================================= */
 
 .filter-card{
+
     background:white;
 
     border-radius:17px;
@@ -227,9 +274,12 @@ body{
     border:
         1px solid
         #e7edf5;
+
 }
 
+
 .search-box{
+
     width:100%;
 
     padding:12px 13px;
@@ -247,15 +297,21 @@ body{
     color:#123;
 
     background:#f9fbfd;
+
 }
 
+
 .search-box:focus{
+
     border-color:#168bdc;
 
     background:white;
+
 }
 
+
 .filter-buttons{
+
     display:flex;
 
     gap:7px;
@@ -265,12 +321,17 @@ body{
     margin-top:10px;
 
     padding-bottom:2px;
+
 }
 
+
 .filter-btn{
+
     border:none;
 
-    padding:8px 12px;
+    padding:
+        8px
+        12px;
 
     border-radius:20px;
 
@@ -285,20 +346,25 @@ body{
     white-space:nowrap;
 
     cursor:pointer;
+
 }
 
+
 .filter-btn.active{
+
     background:#0757c9;
 
     color:white;
+
 }
 
 
 /* =========================================================
-   SECTION
+   SECTION TITLE
 ========================================================= */
 
 .section-title{
+
     display:flex;
 
     align-items:center;
@@ -309,28 +375,36 @@ body{
         20px
         3px
         10px;
+
 }
 
+
 .section-title h2{
+
     font-size:17px;
 
     color:#092f68;
 
     font-weight:900;
+
 }
 
+
 .section-title span{
+
     font-size:10px;
 
     color:#7d8da0;
+
 }
 
 
 /* =========================================================
-   REWARD REQUEST
+   REWARD CARD
 ========================================================= */
 
 .reward-card{
+
     background:white;
 
     border-radius:19px;
@@ -346,27 +420,39 @@ body{
     box-shadow:
         0 5px 18px
         rgba(20,60,110,.07);
+
 }
 
+
 .reward-card.pending{
+
     border-left:
         4px solid
         #f1a72b;
+
 }
 
+
 .reward-card.approved{
+
     border-left:
         4px solid
         #21a366;
+
 }
 
+
 .reward-card.rejected{
+
     border-left:
         4px solid
         #d73a3a;
+
 }
 
+
 .reward-top{
+
     display:flex;
 
     align-items:flex-start;
@@ -374,9 +460,12 @@ body{
     justify-content:space-between;
 
     gap:12px;
+
 }
 
+
 .user-section{
+
     display:flex;
 
     align-items:center;
@@ -384,9 +473,12 @@ body{
     gap:11px;
 
     min-width:0;
+
 }
 
+
 .user-avatar{
+
     width:45px;
     height:45px;
 
@@ -410,13 +502,19 @@ body{
     color:#0757c9;
 
     font-size:20px;
+
 }
+
 
 .user-info{
+
     min-width:0;
+
 }
 
+
 .user-name{
+
     font-size:14px;
 
     font-weight:900;
@@ -428,31 +526,43 @@ body{
     overflow:hidden;
 
     text-overflow:ellipsis;
+
 }
 
+
 .user-phone{
+
     margin-top:3px;
 
     font-size:10px;
 
     color:#7b8c9f;
+
 }
 
+
 .amount{
+
     text-align:right;
 
     flex-shrink:0;
+
 }
 
+
 .amount small{
+
     display:block;
 
     font-size:9px;
 
     color:#8a99a9;
+
 }
 
+
 .amount strong{
+
     display:block;
 
     margin-top:2px;
@@ -460,6 +570,7 @@ body{
     font-size:18px;
 
     color:#0757c9;
+
 }
 
 
@@ -468,6 +579,7 @@ body{
 ========================================================= */
 
 .milestone-box{
+
     margin-top:13px;
 
     padding:12px;
@@ -483,17 +595,23 @@ body{
     justify-content:space-between;
 
     gap:10px;
+
 }
 
+
 .milestone-left{
+
     display:flex;
 
     align-items:center;
 
     gap:9px;
+
 }
 
+
 .milestone-icon{
+
     width:34px;
     height:34px;
 
@@ -508,30 +626,41 @@ body{
     background:white;
 
     font-size:17px;
+
 }
 
+
 .milestone-name{
+
     font-size:12px;
 
     font-weight:900;
 
     color:#173d73;
+
 }
 
+
 .milestone-required{
+
     margin-top:2px;
 
     font-size:9px;
 
     color:#8291a2;
+
 }
 
+
 .status{
+
     display:inline-flex;
 
     align-items:center;
 
-    padding:7px 10px;
+    padding:
+        7px
+        10px;
 
     border-radius:20px;
 
@@ -540,24 +669,34 @@ body{
     font-weight:900;
 
     white-space:nowrap;
+
 }
 
+
 .status-pending{
+
     background:#fff3dc;
 
     color:#aa6800;
+
 }
 
+
 .status-approved{
+
     background:#e5f8ed;
 
     color:#188247;
+
 }
 
+
 .status-rejected{
+
     background:#fdeaea;
 
     color:#c52f2f;
+
 }
 
 
@@ -566,6 +705,7 @@ body{
 ========================================================= */
 
 .details{
+
     margin-top:12px;
 
     display:grid;
@@ -574,17 +714,23 @@ body{
         repeat(2,1fr);
 
     gap:7px;
+
 }
 
+
 .detail{
+
     background:#fafbfd;
 
     border-radius:10px;
 
     padding:9px;
+
 }
 
+
 .detail-label{
+
     font-size:8px;
 
     color:#8998a8;
@@ -592,9 +738,12 @@ body{
     text-transform:uppercase;
 
     font-weight:700;
+
 }
 
+
 .detail-value{
+
     margin-top:3px;
 
     font-size:10px;
@@ -604,6 +753,7 @@ body{
     font-weight:700;
 
     word-break:break-word;
+
 }
 
 
@@ -612,19 +762,25 @@ body{
 ========================================================= */
 
 .actions{
+
     display:flex;
 
     gap:8px;
 
     margin-top:13px;
+
 }
 
+
 .action-btn{
+
     flex:1;
 
     border:none;
 
-    padding:11px 10px;
+    padding:
+        11px
+        10px;
 
     border-radius:11px;
 
@@ -633,9 +789,12 @@ body{
     font-weight:900;
 
     cursor:pointer;
+
 }
 
+
 .approve-btn{
+
     background:
         linear-gradient(
             135deg,
@@ -644,9 +803,12 @@ body{
         );
 
     color:white;
+
 }
 
+
 .reject-btn{
+
     background:#fff0f0;
 
     color:#c52f2f;
@@ -654,12 +816,16 @@ body{
     border:
         1px solid
         #f3caca;
+
 }
 
+
 .action-btn:disabled{
+
     opacity:.55;
 
     cursor:not-allowed;
+
 }
 
 
@@ -668,11 +834,14 @@ body{
 ========================================================= */
 
 .empty{
+
     background:white;
 
     border-radius:18px;
 
-    padding:35px 20px;
+    padding:
+        35px
+        20px;
 
     text-align:center;
 
@@ -683,12 +852,16 @@ body{
     box-shadow:
         0 4px 15px
         rgba(0,50,120,.06);
+
 }
 
+
 .empty-icon{
+
     font-size:35px;
 
     margin-bottom:10px;
+
 }
 
 
@@ -697,16 +870,22 @@ body{
 ========================================================= */
 
 .loading{
+
     text-align:center;
 
-    padding:55px 20px;
+    padding:
+        55px
+        20px;
 
     color:#718096;
 
     font-size:13px;
+
 }
 
+
 .spinner{
+
     width:34px;
     height:34px;
 
@@ -726,12 +905,17 @@ body{
         0
         auto
         12px;
+
 }
+
 
 @keyframes spin{
 
     to{
-        transform:rotate(360deg);
+
+        transform:
+            rotate(360deg);
+
     }
 
 }
@@ -742,6 +926,7 @@ body{
 ========================================================= */
 
 .modal-overlay{
+
     position:fixed;
 
     inset:0;
@@ -758,13 +943,19 @@ body{
     justify-content:center;
 
     padding:12px;
+
 }
+
 
 .modal-overlay.show{
+
     display:flex;
+
 }
 
+
 .modal{
+
     width:100%;
 
     max-width:500px;
@@ -782,9 +973,12 @@ body{
     box-shadow:
         0 -5px 30px
         rgba(0,0,0,.18);
+
 }
 
+
 .modal-handle{
+
     width:38px;
     height:4px;
 
@@ -792,18 +986,27 @@ body{
 
     background:#d9e1ea;
 
-    margin:0 auto 17px;
+    margin:
+        0
+        auto
+        17px;
+
 }
 
+
 .modal h3{
+
     color:#092f68;
 
     font-size:18px;
 
     font-weight:900;
+
 }
 
+
 .modal p{
+
     margin-top:6px;
 
     color:#718096;
@@ -811,9 +1014,12 @@ body{
     font-size:12px;
 
     line-height:1.5;
+
 }
 
+
 .reject-input{
+
     width:100%;
 
     min-height:90px;
@@ -835,21 +1041,30 @@ body{
     font-family:inherit;
 
     font-size:12px;
+
 }
+
 
 .reject-input:focus{
+
     border-color:#168bdc;
+
 }
 
+
 .modal-actions{
+
     display:flex;
 
     gap:8px;
 
     margin-top:13px;
+
 }
 
+
 .modal-btn{
+
     flex:1;
 
     padding:12px;
@@ -863,18 +1078,25 @@ body{
     font-weight:900;
 
     cursor:pointer;
+
 }
 
+
 .cancel-btn{
+
     background:#eef2f6;
 
     color:#637386;
+
 }
 
+
 .confirm-reject{
+
     background:#c52f2f;
 
     color:white;
+
 }
 
 
@@ -887,16 +1109,24 @@ body{
 ){
 
     .summary-grid{
+
         grid-template-columns:
             repeat(4,1fr);
+
     }
+
 
     .modal-overlay{
+
         align-items:center;
+
     }
 
+
     .modal{
+
         border-radius:20px;
+
     }
 
 }
@@ -959,7 +1189,9 @@ body{
 <main class="container">
 
 
-    <!-- LOADING -->
+    <!-- =====================================================
+         LOADING
+    ====================================================== -->
 
     <div
         id="loading"
@@ -968,13 +1200,15 @@ body{
 
         <div class="spinner"></div>
 
-        Checking reward requests...
+        Checking administrator access...
 
     </div>
 
 
 
-    <!-- CONTENT -->
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
 
     <div
         id="content"
@@ -1009,6 +1243,7 @@ body{
             </div>
 
 
+
             <div class="summary-card">
 
                 <div class="summary-icon">
@@ -1029,6 +1264,7 @@ body{
             </div>
 
 
+
             <div class="summary-card">
 
                 <div class="summary-icon">
@@ -1047,6 +1283,7 @@ body{
                 </div>
 
             </div>
+
 
 
             <div class="summary-card">
@@ -1078,6 +1315,7 @@ body{
 
         <div class="filter-card">
 
+
             <input
                 id="searchInput"
                 class="search-box"
@@ -1089,6 +1327,7 @@ body{
 
             <div class="filter-buttons">
 
+
                 <button
                     id="filterAll"
                     class="filter-btn active"
@@ -1096,6 +1335,7 @@ body{
                 >
                     All
                 </button>
+
 
                 <button
                     id="filterPending"
@@ -1105,6 +1345,7 @@ body{
                     Pending
                 </button>
 
+
                 <button
                     id="filterApproved"
                     class="filter-btn"
@@ -1112,6 +1353,7 @@ body{
                 >
                     Approved
                 </button>
+
 
                 <button
                     id="filterRejected"
@@ -1121,6 +1363,7 @@ body{
                     Rejected
                 </button>
 
+
             </div>
 
         </div>
@@ -1128,7 +1371,7 @@ body{
 
 
         <!-- ==================================================
-             REQUESTS
+             TITLE
         =================================================== -->
 
         <div class="section-title">
@@ -1144,6 +1387,7 @@ body{
         </div>
 
 
+
         <div id="rewardsList"></div>
 
 
@@ -1154,7 +1398,7 @@ body{
 
 
 <!-- ========================================================
-     REJECTION MODAL
+     REJECT MODAL
 ========================================================= -->
 
 <div
@@ -1162,17 +1406,21 @@ body{
     class="modal-overlay"
 >
 
+
     <div class="modal">
 
+
         <div class="modal-handle"></div>
+
 
         <h3>
             Reject Reward Claim
         </h3>
 
+
         <p>
-            Add a note explaining why this reward
-            request is being rejected.
+            Add a note explaining why this
+            reward request is being rejected.
         </p>
 
 
@@ -1185,12 +1433,14 @@ body{
 
         <div class="modal-actions">
 
+
             <button
                 class="modal-btn cancel-btn"
                 onclick="closeRejectModal()"
             >
                 Cancel
             </button>
+
 
             <button
                 class="modal-btn confirm-reject"
@@ -1199,7 +1449,9 @@ body{
                 Reject Request
             </button>
 
+
         </div>
+
 
     </div>
 
@@ -1209,8 +1461,9 @@ body{
 
 <script type="module">
 
+
 /* =========================================================
-   FIREBASE
+   FIREBASE IMPORTS
 ========================================================= */
 
 import {
@@ -1240,6 +1493,7 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+
 /* =========================================================
    FIREBASE CONFIG
 ========================================================= */
@@ -1267,6 +1521,7 @@ const firebaseConfig = {
 };
 
 
+
 const app =
     initializeApp(
         firebaseConfig
@@ -1283,7 +1538,16 @@ const db =
 
 
 /* =========================================================
-   GLOBALS
+   ADMIN UID
+========================================================= */
+
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+
+/* =========================================================
+   GLOBAL VARIABLES
 ========================================================= */
 
 let currentAdmin = null;
@@ -1323,16 +1587,20 @@ function getMilestoneIcon(
     };
 
 
-    return icons[
-        Number(members)
-    ] || "🎁";
+    return (
+        icons[
+            Number(members)
+        ]
+        ||
+        "🎁"
+    );
 
 }
 
 
 
 /* =========================================================
-   FORMAT MONEY
+   MONEY FORMAT
 ========================================================= */
 
 function money(
@@ -1340,6 +1608,7 @@ function money(
 ){
 
     return "₱" +
+
         Number(
             amount || 0
         ).toLocaleString(
@@ -1355,7 +1624,7 @@ function money(
 
 
 /* =========================================================
-   FORMAT DATE
+   DATE FORMAT
 ========================================================= */
 
 function formatDate(
@@ -1363,7 +1632,9 @@ function formatDate(
 ){
 
     if(!timestamp){
+
         return "—";
+
     }
 
 
@@ -1444,25 +1715,9 @@ async function checkAdmin(
     user
 ){
 
-    /*
-     * This uses the Firebase Auth
-     * custom claim:
-     *
-     * admin: true
-     *
-     * If your existing admin pages
-     * use a different admin gate,
-     * keep that gate in this function.
-     */
-
-    const tokenResult =
-        await user.getIdTokenResult(
-            true
-        );
-
-
     return (
-        tokenResult.claims.admin === true
+        user.uid ===
+        ADMIN_UID
     );
 
 }
@@ -1473,7 +1728,8 @@ async function checkAdmin(
    LOAD REWARDS
 ========================================================= */
 
-async function loadRewards(){
+window.loadRewards =
+async function(){
 
     try{
 
@@ -1494,7 +1750,8 @@ async function loadRewards(){
 
                 allRewards.push({
 
-                    id:snap.id,
+                    id:
+                        snap.id,
 
                     ...snap.data()
 
@@ -1504,28 +1761,31 @@ async function loadRewards(){
         );
 
 
-        /*
-         * Newest first
-         */
-
         allRewards.sort(
             (a,b) => {
 
                 const aTime =
                     a.claimedAt &&
                     a.claimedAt.seconds
-                        ? a.claimedAt.seconds
-                        : 0;
+                        ?
+                        a.claimedAt.seconds
+                        :
+                        0;
 
 
                 const bTime =
                     b.claimedAt &&
                     b.claimedAt.seconds
-                        ? b.claimedAt.seconds
-                        : 0;
+                        ?
+                        b.claimedAt.seconds
+                        :
+                        0;
 
 
-                return bTime - aTime;
+                return (
+                    bTime -
+                    aTime
+                );
 
             }
         );
@@ -1560,9 +1820,7 @@ async function loadRewards(){
             "loading"
         ).innerHTML = `
 
-            <div
-                class="empty"
-            >
+            <div class="empty">
 
                 <div class="empty-icon">
                     ⚠️
@@ -1572,7 +1830,9 @@ async function loadRewards(){
 
                 <br><br>
 
-                ${error.message}
+                ${escapeHTML(
+                    error.message
+                )}
 
             </div>
 
@@ -1580,7 +1840,7 @@ async function loadRewards(){
 
     }
 
-}
+};
 
 
 
@@ -1609,8 +1869,7 @@ function updateSummary(){
 
 
             if(
-                status ===
-                "pending"
+                status === "pending"
             ){
 
                 pending++;
@@ -1723,7 +1982,7 @@ function(
 
 
 /* =========================================================
-   RENDER REWARDS
+   RENDER
 ========================================================= */
 
 window.renderRewards =
@@ -1749,7 +2008,7 @@ function(){
         allRewards.filter(
             reward => {
 
-                const status =
+                const rawStatus =
                     String(
                         reward.status || ""
                     )
@@ -1757,19 +2016,25 @@ function(){
                     .trim();
 
 
+                let status =
+                    rawStatus;
+
+
                 /*
-                 * Map old claimed records
-                 * to approved for filtering.
+                 * Old reward records
+                 * using "claimed"
+                 * are treated as approved.
                  */
 
-                const normalizedStatus =
+                if(
+                    status === "claimed" ||
+                    status === "collected"
+                ){
 
-                    (
-                        status === "claimed" ||
-                        status === "collected"
-                    )
-                        ? "approved"
-                        : status;
+                    status =
+                        "approved";
+
+                }
 
 
                 if(
@@ -1778,7 +2043,7 @@ function(){
                 ){
 
                     if(
-                        normalizedStatus !==
+                        status !==
                         currentFilter
                     ){
 
@@ -1832,10 +2097,13 @@ function(){
     ).textContent =
 
         filtered.length +
+
         (
             filtered.length === 1
-                ? " request"
-                : " requests"
+                ?
+                " request"
+                :
+                " requests"
         );
 
 
@@ -1879,10 +2147,6 @@ function(){
             let status =
                 rawStatus;
 
-
-            /*
-             * Old system compatibility
-             */
 
             if(
                 status === "claimed" ||
@@ -1957,6 +2221,7 @@ function(){
 
                     <div class="user-section">
 
+
                         <div class="user-avatar">
                             👤
                         </div>
@@ -1965,22 +2230,26 @@ function(){
                         <div class="user-info">
 
                             <div class="user-name">
+
                                 ${
                                     escapeHTML(
                                         reward.userName ||
                                         "SkyRent Member"
                                     )
                                 }
+
                             </div>
 
 
                             <div class="user-phone">
+
                                 ${
                                     escapeHTML(
                                         reward.userPhone ||
                                         "No phone"
                                     )
                                 }
+
                             </div>
 
                         </div>
@@ -2000,19 +2269,25 @@ function(){
 
                     </div>
 
+
                 </div>
 
 
 
                 <div class="milestone-box">
 
+
                     <div class="milestone-left">
 
+
                         <div class="milestone-icon">
+
                             ${getMilestoneIcon(
                                 milestoneMembers
                             )}
+
                         </div>
+
 
                         <div>
 
@@ -2026,6 +2301,7 @@ function(){
                                 }
 
                             </div>
+
 
                             <div class="milestone-required">
 
@@ -2041,11 +2317,17 @@ function(){
                     </div>
 
 
-                    <div class="status status-${status}">
+                    <div
+                        class="
+                            status
+                            status-${status}
+                        "
+                    >
 
                         ${statusText}
 
                     </div>
+
 
                 </div>
 
@@ -2061,12 +2343,15 @@ function(){
                         </div>
 
                         <div class="detail-value">
+
                             ${escapeHTML(
                                 reward.id
                             )}
+
                         </div>
 
                     </div>
+
 
 
                     <div class="detail">
@@ -2076,9 +2361,11 @@ function(){
                         </div>
 
                         <div class="detail-value">
+
                             ${formatDate(
                                 reward.claimedAt
                             )}
+
                         </div>
 
                     </div>
@@ -2086,7 +2373,9 @@ function(){
 
                     ${
                         reward.approvedAt
-                            ? `
+                            ?
+                            `
+
                                 <div class="detail">
 
                                     <div class="detail-label">
@@ -2094,20 +2383,26 @@ function(){
                                     </div>
 
                                     <div class="detail-value">
+
                                         ${formatDate(
                                             reward.approvedAt
                                         )}
+
                                     </div>
 
                                 </div>
-                              `
-                            : ""
+
+                            `
+                            :
+                            ""
                     }
 
 
                     ${
                         reward.rejectedAt
-                            ? `
+                            ?
+                            `
+
                                 <div class="detail">
 
                                     <div class="detail-label">
@@ -2115,14 +2410,18 @@ function(){
                                     </div>
 
                                     <div class="detail-value">
+
                                         ${formatDate(
                                             reward.rejectedAt
                                         )}
+
                                     </div>
 
                                 </div>
-                              `
-                            : ""
+
+                            `
+                            :
+                            ""
                     }
 
 
@@ -2132,9 +2431,10 @@ function(){
 
                 ${
                     rejectionReason
-                        ? `
+                        ?
+                        `
+
                             <div
-                                class="rejected-note"
                                 style="
                                     margin-top:10px;
                                     padding:10px;
@@ -2150,50 +2450,77 @@ function(){
                                     Rejection note:
                                 </strong>
 
-                                ${escapeHTML(
-                                    rejectionReason
-                                )}
+                                ${
+                                    escapeHTML(
+                                        rejectionReason
+                                    )
+                                }
 
                             </div>
-                          `
-                        : ""
+
+                        `
+                        :
+                        ""
                 }
 
 
 
                 ${
                     isPending
-                        ? `
+                        ?
+
+                        `
 
                             <div class="actions">
 
+
                                 <button
-                                    class="action-btn approve-btn"
-                                    onclick="approveReward(
-                                        '${escapeAttribute(
-                                            reward.id
-                                        )}'
-                                    )"
+                                    class="
+                                        action-btn
+                                        approve-btn
+                                    "
+                                    onclick="
+                                        approveReward(
+                                            '${escapeAttribute(
+                                                reward.id
+                                            )}'
+                                        )
+                                    "
                                 >
+
                                     ✓ Approve
+
                                 </button>
+
 
 
                                 <button
-                                    class="action-btn reject-btn"
-                                    onclick="openRejectModal(
-                                        '${escapeAttribute(
-                                            reward.id
-                                        )}'
-                                    )"
+                                    class="
+                                        action-btn
+                                        reject-btn
+                                    "
+                                    onclick="
+                                        openRejectModal(
+                                            '${escapeAttribute(
+                                                reward.id
+                                            )}'
+                                        )
+                                    "
                                 >
+
                                     ✕ Reject
+
                                 </button>
+
 
                             </div>
 
-                          `
-                        : ""
+                        `
+
+                        :
+
+                        ""
+
                 }
 
             `;
@@ -2211,7 +2538,7 @@ function(){
 
 
 /* =========================================================
-   HTML ESCAPE
+   ESCAPE HTML
 ========================================================= */
 
 function escapeHTML(
@@ -2277,12 +2604,14 @@ async function(
     const confirmed =
         confirm(
             "Approve this reward claim?\n\n" +
-            "The user's reward will be marked as approved/collected."
+            "The reward will be marked as collected."
         );
 
 
     if(!confirmed){
+
         return;
+
     }
 
 
@@ -2483,7 +2812,7 @@ async function(){
 
 
 /* =========================================================
-   AUTH
+   AUTHENTICATION
 ========================================================= */
 
 onAuthStateChanged(
@@ -2508,8 +2837,8 @@ onAuthStateChanged(
 
                     <br><br>
 
-                    Please sign in with an
-                    authorized administrator account.
+                    Please sign in with your
+                    SkyRent administrator account.
 
                 </div>
 
@@ -2546,8 +2875,8 @@ onAuthStateChanged(
 
                         <br><br>
 
-                        This account does not
-                        have administrator access.
+                        This account does not have
+                        administrator access.
 
                     </div>
 
@@ -2602,8 +2931,9 @@ onAuthStateChanged(
 );
 
 
+
 /* =========================================================
-   CLOSE MODAL WHEN CLICKING OUTSIDE
+   CLOSE MODAL OUTSIDE
 ========================================================= */
 
 document.getElementById(
@@ -2623,6 +2953,7 @@ document.getElementById(
 
     }
 );
+
 
 </script>
 
