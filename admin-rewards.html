@@ -1,0 +1,2631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Admin Rewards - SkyRent</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#f3f7fc;
+
+    color:#123;
+
+    min-height:100vh;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+    background:
+        linear-gradient(
+            135deg,
+            #032b70,
+            #0757c9,
+            #168bdc
+        );
+
+    color:white;
+
+    padding:20px 16px 28px;
+
+    border-radius:
+        0
+        0
+        25px
+        25px;
+
+    box-shadow:
+        0 7px 25px
+        rgba(0,70,160,.18);
+}
+
+.header-top{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.header-title{
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+}
+
+.header-icon{
+    width:43px;
+    height:43px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        rgba(255,255,255,.14);
+
+    font-size:23px;
+}
+
+.header h1{
+    font-size:21px;
+
+    font-weight:900;
+}
+
+.header p{
+    margin-top:3px;
+
+    font-size:11px;
+
+    opacity:.8;
+}
+
+.refresh-btn{
+    width:39px;
+    height:39px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.15);
+
+    color:white;
+
+    font-size:19px;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.container{
+    width:100%;
+
+    max-width:850px;
+
+    margin:-13px auto 0;
+
+    padding:
+        0
+        14px
+        30px;
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.summary-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+}
+
+.summary-card{
+    background:white;
+
+    border-radius:16px;
+
+    padding:15px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,50,120,.07);
+
+    border:
+        1px solid
+        #e7edf5;
+}
+
+.summary-icon{
+    font-size:21px;
+}
+
+.summary-label{
+    margin-top:7px;
+
+    font-size:10px;
+
+    color:#7d8da0;
+
+    text-transform:uppercase;
+
+    font-weight:700;
+}
+
+.summary-number{
+    margin-top:2px;
+
+    font-size:23px;
+
+    font-weight:900;
+
+    color:#092f68;
+}
+
+
+/* =========================================================
+   FILTER BAR
+========================================================= */
+
+.filter-card{
+    background:white;
+
+    border-radius:17px;
+
+    padding:13px;
+
+    margin-top:14px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,50,120,.06);
+
+    border:
+        1px solid
+        #e7edf5;
+}
+
+.search-box{
+    width:100%;
+
+    padding:12px 13px;
+
+    border:
+        1px solid
+        #dce5ef;
+
+    border-radius:11px;
+
+    outline:none;
+
+    font-size:13px;
+
+    color:#123;
+
+    background:#f9fbfd;
+}
+
+.search-box:focus{
+    border-color:#168bdc;
+
+    background:white;
+}
+
+.filter-buttons{
+    display:flex;
+
+    gap:7px;
+
+    overflow-x:auto;
+
+    margin-top:10px;
+
+    padding-bottom:2px;
+}
+
+.filter-btn{
+    border:none;
+
+    padding:8px 12px;
+
+    border-radius:20px;
+
+    background:#eef3f8;
+
+    color:#607286;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+
+    cursor:pointer;
+}
+
+.filter-btn.active{
+    background:#0757c9;
+
+    color:white;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section-title{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin:
+        20px
+        3px
+        10px;
+}
+
+.section-title h2{
+    font-size:17px;
+
+    color:#092f68;
+
+    font-weight:900;
+}
+
+.section-title span{
+    font-size:10px;
+
+    color:#7d8da0;
+}
+
+
+/* =========================================================
+   REWARD REQUEST
+========================================================= */
+
+.reward-card{
+    background:white;
+
+    border-radius:19px;
+
+    padding:16px;
+
+    margin-bottom:12px;
+
+    border:
+        1px solid
+        #e4ebf4;
+
+    box-shadow:
+        0 5px 18px
+        rgba(20,60,110,.07);
+}
+
+.reward-card.pending{
+    border-left:
+        4px solid
+        #f1a72b;
+}
+
+.reward-card.approved{
+    border-left:
+        4px solid
+        #21a366;
+}
+
+.reward-card.rejected{
+    border-left:
+        4px solid
+        #d73a3a;
+}
+
+.reward-top{
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:12px;
+}
+
+.user-section{
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    min-width:0;
+}
+
+.user-avatar{
+    width:45px;
+    height:45px;
+
+    flex-shrink:0;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e2f1ff,
+            #f3f9ff
+        );
+
+    color:#0757c9;
+
+    font-size:20px;
+}
+
+.user-info{
+    min-width:0;
+}
+
+.user-name{
+    font-size:14px;
+
+    font-weight:900;
+
+    color:#123;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.user-phone{
+    margin-top:3px;
+
+    font-size:10px;
+
+    color:#7b8c9f;
+}
+
+.amount{
+    text-align:right;
+
+    flex-shrink:0;
+}
+
+.amount small{
+    display:block;
+
+    font-size:9px;
+
+    color:#8a99a9;
+}
+
+.amount strong{
+    display:block;
+
+    margin-top:2px;
+
+    font-size:18px;
+
+    color:#0757c9;
+}
+
+
+/* =========================================================
+   MILESTONE
+========================================================= */
+
+.milestone-box{
+    margin-top:13px;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:#f5f9fd;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.milestone-left{
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+}
+
+.milestone-icon{
+    width:34px;
+    height:34px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:white;
+
+    font-size:17px;
+}
+
+.milestone-name{
+    font-size:12px;
+
+    font-weight:900;
+
+    color:#173d73;
+}
+
+.milestone-required{
+    margin-top:2px;
+
+    font-size:9px;
+
+    color:#8291a2;
+}
+
+.status{
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:7px 10px;
+
+    border-radius:20px;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+}
+
+.status-pending{
+    background:#fff3dc;
+
+    color:#aa6800;
+}
+
+.status-approved{
+    background:#e5f8ed;
+
+    color:#188247;
+}
+
+.status-rejected{
+    background:#fdeaea;
+
+    color:#c52f2f;
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.details{
+    margin-top:12px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:7px;
+}
+
+.detail{
+    background:#fafbfd;
+
+    border-radius:10px;
+
+    padding:9px;
+}
+
+.detail-label{
+    font-size:8px;
+
+    color:#8998a8;
+
+    text-transform:uppercase;
+
+    font-weight:700;
+}
+
+.detail-value{
+    margin-top:3px;
+
+    font-size:10px;
+
+    color:#314b67;
+
+    font-weight:700;
+
+    word-break:break-word;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions{
+    display:flex;
+
+    gap:8px;
+
+    margin-top:13px;
+}
+
+.action-btn{
+    flex:1;
+
+    border:none;
+
+    padding:11px 10px;
+
+    border-radius:11px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.approve-btn{
+    background:
+        linear-gradient(
+            135deg,
+            #159957,
+            #25b86b
+        );
+
+    color:white;
+}
+
+.reject-btn{
+    background:#fff0f0;
+
+    color:#c52f2f;
+
+    border:
+        1px solid
+        #f3caca;
+}
+
+.action-btn:disabled{
+    opacity:.55;
+
+    cursor:not-allowed;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+    background:white;
+
+    border-radius:18px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    color:#8090a0;
+
+    font-size:13px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,50,120,.06);
+}
+
+.empty-icon{
+    font-size:35px;
+
+    margin-bottom:10px;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+    text-align:center;
+
+    padding:55px 20px;
+
+    color:#718096;
+
+    font-size:13px;
+}
+
+.spinner{
+    width:34px;
+    height:34px;
+
+    border:
+        4px solid
+        #dce9f8;
+
+    border-top-color:
+        #0757c9;
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    margin:
+        0
+        auto
+        12px;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay{
+    position:fixed;
+
+    inset:0;
+
+    z-index:500;
+
+    background:
+        rgba(4,22,48,.60);
+
+    display:none;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    padding:12px;
+}
+
+.modal-overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:100%;
+
+    max-width:500px;
+
+    background:white;
+
+    border-radius:
+        22px
+        22px
+        16px
+        16px;
+
+    padding:20px;
+
+    box-shadow:
+        0 -5px 30px
+        rgba(0,0,0,.18);
+}
+
+.modal-handle{
+    width:38px;
+    height:4px;
+
+    border-radius:10px;
+
+    background:#d9e1ea;
+
+    margin:0 auto 17px;
+}
+
+.modal h3{
+    color:#092f68;
+
+    font-size:18px;
+
+    font-weight:900;
+}
+
+.modal p{
+    margin-top:6px;
+
+    color:#718096;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+.reject-input{
+    width:100%;
+
+    min-height:90px;
+
+    resize:none;
+
+    margin-top:14px;
+
+    padding:12px;
+
+    border:
+        1px solid
+        #dbe4ee;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-family:inherit;
+
+    font-size:12px;
+}
+
+.reject-input:focus{
+    border-color:#168bdc;
+}
+
+.modal-actions{
+    display:flex;
+
+    gap:8px;
+
+    margin-top:13px;
+}
+
+.modal-btn{
+    flex:1;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:11px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.cancel-btn{
+    background:#eef2f6;
+
+    color:#637386;
+}
+
+.confirm-reject{
+    background:#c52f2f;
+
+    color:white;
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media(
+    min-width:700px
+){
+
+    .summary-grid{
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+    .modal-overlay{
+        align-items:center;
+    }
+
+    .modal{
+        border-radius:20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <div class="header-top">
+
+        <div class="header-title">
+
+            <div class="header-icon">
+                🎁
+            </div>
+
+            <div>
+
+                <h1>
+                    Rewards Management
+                </h1>
+
+                <p>
+                    SkyRent Network Milestone Claims
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="refresh-btn"
+            onclick="loadRewards()"
+            title="Refresh"
+        >
+            ↻
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- ========================================================
+     MAIN
+========================================================= -->
+
+<main class="container">
+
+
+    <!-- LOADING -->
+
+    <div
+        id="loading"
+        class="loading"
+    >
+
+        <div class="spinner"></div>
+
+        Checking reward requests...
+
+    </div>
+
+
+
+    <!-- CONTENT -->
+
+    <div
+        id="content"
+        style="display:none;"
+    >
+
+
+        <!-- ==================================================
+             SUMMARY
+        =================================================== -->
+
+        <div class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    ⏳
+                </div>
+
+                <div class="summary-label">
+                    Pending
+                </div>
+
+                <div
+                    id="pendingCount"
+                    class="summary-number"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🟢
+                </div>
+
+                <div class="summary-label">
+                    Approved
+                </div>
+
+                <div
+                    id="approvedCount"
+                    class="summary-number"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    ❌
+                </div>
+
+                <div class="summary-label">
+                    Rejected
+                </div>
+
+                <div
+                    id="rejectedCount"
+                    class="summary-number"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🎁
+                </div>
+
+                <div class="summary-label">
+                    Total
+                </div>
+
+                <div
+                    id="totalCount"
+                    class="summary-number"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             FILTERS
+        =================================================== -->
+
+        <div class="filter-card">
+
+            <input
+                id="searchInput"
+                class="search-box"
+                type="text"
+                placeholder="Search name, phone, milestone..."
+                oninput="renderRewards()"
+            >
+
+
+            <div class="filter-buttons">
+
+                <button
+                    id="filterAll"
+                    class="filter-btn active"
+                    onclick="setFilter('all')"
+                >
+                    All
+                </button>
+
+                <button
+                    id="filterPending"
+                    class="filter-btn"
+                    onclick="setFilter('pending')"
+                >
+                    Pending
+                </button>
+
+                <button
+                    id="filterApproved"
+                    class="filter-btn"
+                    onclick="setFilter('approved')"
+                >
+                    Approved
+                </button>
+
+                <button
+                    id="filterRejected"
+                    class="filter-btn"
+                    onclick="setFilter('rejected')"
+                >
+                    Rejected
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             REQUESTS
+        =================================================== -->
+
+        <div class="section-title">
+
+            <h2>
+                Reward Requests
+            </h2>
+
+            <span id="resultCount">
+                0 requests
+            </span>
+
+        </div>
+
+
+        <div id="rewardsList"></div>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- ========================================================
+     REJECTION MODAL
+========================================================= -->
+
+<div
+    id="rejectModal"
+    class="modal-overlay"
+>
+
+    <div class="modal">
+
+        <div class="modal-handle"></div>
+
+        <h3>
+            Reject Reward Claim
+        </h3>
+
+        <p>
+            Add a note explaining why this reward
+            request is being rejected.
+        </p>
+
+
+        <textarea
+            id="rejectReason"
+            class="reject-input"
+            placeholder="Enter rejection reason..."
+        ></textarea>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="modal-btn cancel-btn"
+                onclick="closeRejectModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="modal-btn confirm-reject"
+                onclick="confirmReject()"
+            >
+                Reject Request
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    updateDoc,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* =========================================================
+   GLOBALS
+========================================================= */
+
+let currentAdmin = null;
+
+let allRewards = [];
+
+let currentFilter = "all";
+
+let rejectingRewardId = null;
+
+
+
+/* =========================================================
+   MILESTONE ICON
+========================================================= */
+
+function getMilestoneIcon(
+    members
+){
+
+    const icons = {
+
+        3:"✈️",
+
+        5:"🛫",
+
+        10:"🏗️",
+
+        15:"👨‍✈️",
+
+        25:"⭐",
+
+        40:"🛩️",
+
+        50:"👑"
+
+    };
+
+
+    return icons[
+        Number(members)
+    ] || "🎁";
+
+}
+
+
+
+/* =========================================================
+   FORMAT MONEY
+========================================================= */
+
+function money(
+    amount
+){
+
+    return "₱" +
+        Number(
+            amount || 0
+        ).toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(
+    timestamp
+){
+
+    if(!timestamp){
+        return "—";
+    }
+
+
+    try{
+
+        let date;
+
+
+        if(
+            timestamp.toDate
+        ){
+
+            date =
+                timestamp.toDate();
+
+        }
+
+        else if(
+            timestamp.seconds
+        ){
+
+            date =
+                new Date(
+                    timestamp.seconds *
+                    1000
+                );
+
+        }
+
+        else{
+
+            date =
+                new Date(
+                    timestamp
+                );
+
+        }
+
+
+        if(
+            isNaN(
+                date.getTime()
+            )
+        ){
+
+            return "—";
+
+        }
+
+
+        return date.toLocaleString(
+            "en-PH",
+            {
+                month:"short",
+                day:"numeric",
+                year:"numeric",
+                hour:"numeric",
+                minute:"2-digit"
+            }
+        );
+
+    }
+    catch(error){
+
+        return "—";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ADMIN CHECK
+========================================================= */
+
+async function checkAdmin(
+    user
+){
+
+    /*
+     * This uses the Firebase Auth
+     * custom claim:
+     *
+     * admin: true
+     *
+     * If your existing admin pages
+     * use a different admin gate,
+     * keep that gate in this function.
+     */
+
+    const tokenResult =
+        await user.getIdTokenResult(
+            true
+        );
+
+
+    return (
+        tokenResult.claims.admin === true
+    );
+
+}
+
+
+
+/* =========================================================
+   LOAD REWARDS
+========================================================= */
+
+async function loadRewards(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "networkRewards"
+                )
+            );
+
+
+        allRewards = [];
+
+
+        snapshot.forEach(
+            snap => {
+
+                allRewards.push({
+
+                    id:snap.id,
+
+                    ...snap.data()
+
+                });
+
+            }
+        );
+
+
+        /*
+         * Newest first
+         */
+
+        allRewards.sort(
+            (a,b) => {
+
+                const aTime =
+                    a.claimedAt &&
+                    a.claimedAt.seconds
+                        ? a.claimedAt.seconds
+                        : 0;
+
+
+                const bTime =
+                    b.claimedAt &&
+                    b.claimedAt.seconds
+                        ? b.claimedAt.seconds
+                        : 0;
+
+
+                return bTime - aTime;
+
+            }
+        );
+
+
+        updateSummary();
+
+        renderRewards();
+
+
+        document.getElementById(
+            "loading"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "content"
+        ).style.display =
+            "block";
+
+    }
+    catch(error){
+
+        console.error(
+            "Reward loading error:",
+            error
+        );
+
+
+        document.getElementById(
+            "loading"
+        ).innerHTML = `
+
+            <div
+                class="empty"
+            >
+
+                <div class="empty-icon">
+                    ⚠️
+                </div>
+
+                Unable to load reward requests.
+
+                <br><br>
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   UPDATE SUMMARY
+========================================================= */
+
+function updateSummary(){
+
+    let pending = 0;
+
+    let approved = 0;
+
+    let rejected = 0;
+
+
+    allRewards.forEach(
+        reward => {
+
+            const status =
+                String(
+                    reward.status || ""
+                )
+                .toLowerCase()
+                .trim();
+
+
+            if(
+                status ===
+                "pending"
+            ){
+
+                pending++;
+
+            }
+
+            else if(
+
+                status === "approved"
+
+                ||
+
+                status === "collected"
+
+                ||
+
+                status === "claimed"
+
+            ){
+
+                approved++;
+
+            }
+
+            else if(
+                status === "rejected"
+            ){
+
+                rejected++;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "pendingCount"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "approvedCount"
+    ).textContent =
+        approved;
+
+
+    document.getElementById(
+        "rejectedCount"
+    ).textContent =
+        rejected;
+
+
+    document.getElementById(
+        "totalCount"
+    ).textContent =
+        allRewards.length;
+
+}
+
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+window.setFilter =
+function(
+    filter
+){
+
+    currentFilter =
+        filter;
+
+
+    document
+        .querySelectorAll(
+            ".filter-btn"
+        )
+        .forEach(
+            btn =>
+                btn.classList.remove(
+                    "active"
+                )
+        );
+
+
+    const button =
+        document.getElementById(
+            "filter" +
+            filter.charAt(0).toUpperCase() +
+            filter.slice(1)
+        );
+
+
+    if(button){
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+
+    renderRewards();
+
+};
+
+
+
+/* =========================================================
+   RENDER REWARDS
+========================================================= */
+
+window.renderRewards =
+function(){
+
+    const container =
+        document.getElementById(
+            "rewardsList"
+        );
+
+
+    const search =
+        String(
+            document.getElementById(
+                "searchInput"
+            ).value || ""
+        )
+        .toLowerCase()
+        .trim();
+
+
+    let filtered =
+        allRewards.filter(
+            reward => {
+
+                const status =
+                    String(
+                        reward.status || ""
+                    )
+                    .toLowerCase()
+                    .trim();
+
+
+                /*
+                 * Map old claimed records
+                 * to approved for filtering.
+                 */
+
+                const normalizedStatus =
+
+                    (
+                        status === "claimed" ||
+                        status === "collected"
+                    )
+                        ? "approved"
+                        : status;
+
+
+                if(
+                    currentFilter !==
+                    "all"
+                ){
+
+                    if(
+                        normalizedStatus !==
+                        currentFilter
+                    ){
+
+                        return false;
+
+                    }
+
+                }
+
+
+                if(search){
+
+                    const searchable = [
+
+                        reward.userName,
+
+                        reward.userPhone,
+
+                        reward.milestoneName,
+
+                        reward.milestoneMembers,
+
+                        reward.amount
+
+                    ]
+                    .join(" ")
+                    .toLowerCase();
+
+
+                    if(
+                        !searchable.includes(
+                            search
+                        )
+                    ){
+
+                        return false;
+
+                    }
+
+                }
+
+
+                return true;
+
+            }
+        );
+
+
+    document.getElementById(
+        "resultCount"
+    ).textContent =
+
+        filtered.length +
+        (
+            filtered.length === 1
+                ? " request"
+                : " requests"
+        );
+
+
+    if(
+        filtered.length === 0
+    ){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🎁
+                </div>
+
+                No reward requests found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    filtered.forEach(
+        reward => {
+
+            const rawStatus =
+                String(
+                    reward.status || ""
+                )
+                .toLowerCase()
+                .trim();
+
+
+            let status =
+                rawStatus;
+
+
+            /*
+             * Old system compatibility
+             */
+
+            if(
+                status === "claimed" ||
+                status === "collected"
+            ){
+
+                status =
+                    "approved";
+
+            }
+
+
+            let statusText =
+                "⏳ Pending Approval";
+
+
+            if(
+                status === "approved"
+            ){
+
+                statusText =
+                    "🟢 Approved";
+
+            }
+
+            else if(
+                status === "rejected"
+            ){
+
+                statusText =
+                    "❌ Rejected";
+
+            }
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "reward-card " +
+                status;
+
+
+            const amount =
+                Number(
+                    reward.amount || 0
+                );
+
+
+            const milestoneMembers =
+                Number(
+                    reward.milestoneMembers || 0
+                );
+
+
+            const isPending =
+                status === "pending";
+
+
+            const rejectionReason =
+                reward.rejectionReason ||
+                "";
+
+
+            card.innerHTML = `
+
+                <div class="reward-top">
+
+
+                    <div class="user-section">
+
+                        <div class="user-avatar">
+                            👤
+                        </div>
+
+
+                        <div class="user-info">
+
+                            <div class="user-name">
+                                ${
+                                    escapeHTML(
+                                        reward.userName ||
+                                        "SkyRent Member"
+                                    )
+                                }
+                            </div>
+
+
+                            <div class="user-phone">
+                                ${
+                                    escapeHTML(
+                                        reward.userPhone ||
+                                        "No phone"
+                                    )
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="amount">
+
+                        <small>
+                            Reward
+                        </small>
+
+                        <strong>
+                            ${money(amount)}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="milestone-box">
+
+                    <div class="milestone-left">
+
+                        <div class="milestone-icon">
+                            ${getMilestoneIcon(
+                                milestoneMembers
+                            )}
+                        </div>
+
+                        <div>
+
+                            <div class="milestone-name">
+
+                                ${
+                                    escapeHTML(
+                                        reward.milestoneName ||
+                                        "Network Milestone"
+                                    )
+                                }
+
+                            </div>
+
+                            <div class="milestone-required">
+
+                                ${
+                                    milestoneMembers
+                                }
+                                invested members
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status status-${status}">
+
+                        ${statusText}
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="details">
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Claim ID
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHTML(
+                                reward.id
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Claimed
+                        </div>
+
+                        <div class="detail-value">
+                            ${formatDate(
+                                reward.claimedAt
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    ${
+                        reward.approvedAt
+                            ? `
+                                <div class="detail">
+
+                                    <div class="detail-label">
+                                        Approved
+                                    </div>
+
+                                    <div class="detail-value">
+                                        ${formatDate(
+                                            reward.approvedAt
+                                        )}
+                                    </div>
+
+                                </div>
+                              `
+                            : ""
+                    }
+
+
+                    ${
+                        reward.rejectedAt
+                            ? `
+                                <div class="detail">
+
+                                    <div class="detail-label">
+                                        Rejected
+                                    </div>
+
+                                    <div class="detail-value">
+                                        ${formatDate(
+                                            reward.rejectedAt
+                                        )}
+                                    </div>
+
+                                </div>
+                              `
+                            : ""
+                    }
+
+
+                </div>
+
+
+
+                ${
+                    rejectionReason
+                        ? `
+                            <div
+                                class="rejected-note"
+                                style="
+                                    margin-top:10px;
+                                    padding:10px;
+                                    border-radius:10px;
+                                    background:#fff5f5;
+                                    color:#b93838;
+                                    font-size:10px;
+                                    line-height:1.45;
+                                "
+                            >
+
+                                <strong>
+                                    Rejection note:
+                                </strong>
+
+                                ${escapeHTML(
+                                    rejectionReason
+                                )}
+
+                            </div>
+                          `
+                        : ""
+                }
+
+
+
+                ${
+                    isPending
+                        ? `
+
+                            <div class="actions">
+
+                                <button
+                                    class="action-btn approve-btn"
+                                    onclick="approveReward(
+                                        '${escapeAttribute(
+                                            reward.id
+                                        )}'
+                                    )"
+                                >
+                                    ✓ Approve
+                                </button>
+
+
+                                <button
+                                    class="action-btn reject-btn"
+                                    onclick="openRejectModal(
+                                        '${escapeAttribute(
+                                            reward.id
+                                        )}'
+                                    )"
+                                >
+                                    ✕ Reject
+                                </button>
+
+                            </div>
+
+                          `
+                        : ""
+                }
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
+};
+
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+function escapeAttribute(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+    .replace(
+        /'/g,
+        "\\'"
+    );
+
+}
+
+
+
+/* =========================================================
+   APPROVE REWARD
+========================================================= */
+
+window.approveReward =
+async function(
+    rewardId
+){
+
+    const confirmed =
+        confirm(
+            "Approve this reward claim?\n\n" +
+            "The user's reward will be marked as approved/collected."
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    try{
+
+        const rewardRef =
+            doc(
+                db,
+                "networkRewards",
+                rewardId
+            );
+
+
+        await updateDoc(
+            rewardRef,
+            {
+
+                status:
+                    "approved",
+
+                approvedAt:
+                    serverTimestamp(),
+
+                approvedBy:
+                    currentAdmin.uid
+
+            }
+        );
+
+
+        alert(
+            "✅ Reward approved successfully."
+        );
+
+
+        await loadRewards();
+
+    }
+    catch(error){
+
+        console.error(
+            "Approve reward error:",
+            error
+        );
+
+
+        alert(
+            "Unable to approve reward.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+
+/* =========================================================
+   OPEN REJECT MODAL
+========================================================= */
+
+window.openRejectModal =
+function(
+    rewardId
+){
+
+    rejectingRewardId =
+        rewardId;
+
+
+    document.getElementById(
+        "rejectReason"
+    ).value = "";
+
+
+    document.getElementById(
+        "rejectModal"
+    ).classList.add(
+        "show"
+    );
+
+};
+
+
+
+/* =========================================================
+   CLOSE REJECT MODAL
+========================================================= */
+
+window.closeRejectModal =
+function(){
+
+    rejectingRewardId =
+        null;
+
+
+    document.getElementById(
+        "rejectModal"
+    ).classList.remove(
+        "show"
+    );
+
+};
+
+
+
+/* =========================================================
+   CONFIRM REJECT
+========================================================= */
+
+window.confirmReject =
+async function(){
+
+    if(
+        !rejectingRewardId
+    ){
+
+        return;
+
+    }
+
+
+    const reason =
+        document.getElementById(
+            "rejectReason"
+        ).value.trim();
+
+
+    if(!reason){
+
+        alert(
+            "Please enter a rejection reason."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const rewardRef =
+            doc(
+                db,
+                "networkRewards",
+                rejectingRewardId
+            );
+
+
+        await updateDoc(
+            rewardRef,
+            {
+
+                status:
+                    "rejected",
+
+                rejectionReason:
+                    reason,
+
+                rejectedAt:
+                    serverTimestamp(),
+
+                rejectedBy:
+                    currentAdmin.uid
+
+            }
+        );
+
+
+        closeRejectModal();
+
+
+        alert(
+            "Reward claim rejected."
+        );
+
+
+        await loadRewards();
+
+    }
+    catch(error){
+
+        console.error(
+            "Reject reward error:",
+            error
+        );
+
+
+        alert(
+            "Unable to reject reward.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            document.getElementById(
+                "loading"
+            ).innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        🔐
+                    </div>
+
+                    <strong>
+                        Administrator Login Required
+                    </strong>
+
+                    <br><br>
+
+                    Please sign in with an
+                    authorized administrator account.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        try{
+
+            const isAdmin =
+                await checkAdmin(
+                    user
+                );
+
+
+            if(!isAdmin){
+
+                document.getElementById(
+                    "loading"
+                ).innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            🚫
+                        </div>
+
+                        <strong>
+                            Access Denied
+                        </strong>
+
+                        <br><br>
+
+                        This account does not
+                        have administrator access.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            currentAdmin =
+                user;
+
+
+            await loadRewards();
+
+        }
+        catch(error){
+
+            console.error(
+                "Admin authentication error:",
+                error
+            );
+
+
+            document.getElementById(
+                "loading"
+            ).innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        ⚠️
+                    </div>
+
+                    Unable to verify
+                    administrator access.
+
+                    <br><br>
+
+                    ${escapeHTML(
+                        error.message
+                    )}
+
+                </div>
+
+            `;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================================= */
+
+document.getElementById(
+    "rejectModal"
+).addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target.id ===
+            "rejectModal"
+        ){
+
+            closeRejectModal();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
