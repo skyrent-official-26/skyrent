@@ -1,0 +1,3393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<title>SkyRent Rewards</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:#f4f8fd;
+    color:#102a43;
+    min-height:100vh;
+    padding-bottom:82px;
+}
+
+
+/* =========================================================
+   HEADER / HERO
+========================================================= */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(53,174,255,.35),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(20,110,220,.35),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #032b70 0%,
+            #0757c9 52%,
+            #168bdc 100%
+        );
+
+    color:white;
+
+    padding:
+        18px
+        16px
+        38px;
+
+    border-radius:
+        0
+        0
+        30px
+        30px;
+
+    box-shadow:
+        0 8px 28px rgba(0,72,160,.20);
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+
+    width:190px;
+    height:190px;
+
+    right:-80px;
+    top:75px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    box-shadow:
+        0 0 0 25px rgba(255,255,255,.035),
+        0 0 0 50px rgba(255,255,255,.025);
+}
+
+.hero::after{
+    content:"✈";
+
+    position:absolute;
+
+    right:18px;
+    top:85px;
+
+    font-size:72px;
+
+    opacity:.08;
+
+    transform:rotate(-15deg);
+}
+
+.hero-top{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.brand-icon{
+    width:38px;
+    height:38px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(255,255,255,.14);
+
+    border:
+        1px solid
+        rgba(255,255,255,.20);
+
+    font-size:21px;
+}
+
+.brand-name{
+    font-size:19px;
+    font-weight:900;
+    letter-spacing:.2px;
+}
+
+.back-btn{
+    width:38px;
+    height:38px;
+
+    border:none;
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.14);
+
+    color:white;
+
+    font-size:21px;
+
+    cursor:pointer;
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+
+    margin-top:28px;
+}
+
+.hero-label{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    padding:6px 10px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    font-size:11px;
+    font-weight:800;
+
+    letter-spacing:.5px;
+    text-transform:uppercase;
+}
+
+.hero-title{
+    margin-top:12px;
+
+    font-size:31px;
+    line-height:1.08;
+
+    font-weight:900;
+    letter-spacing:-.7px;
+}
+
+.hero-title span{
+    color:#70d4ff;
+}
+
+.hero-subtitle{
+    margin-top:9px;
+
+    max-width:330px;
+
+    color:
+        rgba(255,255,255,.82);
+
+    font-size:13px;
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.container{
+    width:100%;
+    max-width:680px;
+
+    margin:
+        -18px
+        auto
+        0;
+
+    padding:
+        0
+        14px
+        25px;
+
+    position:relative;
+    z-index:5;
+}
+
+
+/* =========================================================
+   QUALIFIED SUMMARY
+========================================================= */
+
+.summary-card{
+    background:white;
+
+    border-radius:20px;
+
+    padding:16px;
+
+    box-shadow:
+        0 8px 28px
+        rgba(20,70,130,.10);
+
+    border:
+        1px solid
+        #e6eef8;
+}
+
+.summary-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.summary-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.summary-icon{
+    width:48px;
+    height:48px;
+
+    flex-shrink:0;
+
+    border-radius:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e5f3ff,
+            #f1f8ff
+        );
+
+    color:#0757c9;
+
+    font-size:24px;
+}
+
+.summary-label{
+    color:#7b8da1;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+}
+
+.summary-number{
+    margin-top:2px;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    color:#082f6b;
+}
+
+.summary-number span{
+    font-size:12px;
+    color:#91a0b1;
+    font-weight:700;
+}
+
+.summary-badge{
+    padding:8px 10px;
+
+    border-radius:12px;
+
+    background:#edf7ff;
+
+    color:#0757c9;
+
+    font-size:11px;
+    font-weight:800;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-heading{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+
+    margin:
+        23px
+        3px
+        11px;
+}
+
+.section-heading h2{
+    font-size:18px;
+    font-weight:900;
+
+    color:#092f68;
+}
+
+.section-heading p{
+    margin-top:3px;
+
+    font-size:11px;
+    color:#7d8da0;
+}
+
+
+/* =========================================================
+   MILESTONE ROAD
+========================================================= */
+
+.milestone-card{
+    position:relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #062e72,
+            #0757c9
+        );
+
+    color:white;
+
+    border-radius:22px;
+
+    padding:20px 16px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 10px 30px
+        rgba(4,70,150,.18);
+}
+
+.milestone-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    right:-75px;
+    top:-70px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.07);
+}
+
+.milestone-card::after{
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    left:-75px;
+    bottom:-80px;
+
+    border-radius:50%;
+
+    background:
+        rgba(74,193,255,.12);
+}
+
+.milestone-header{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+    gap:12px;
+}
+
+.milestone-kicker{
+    font-size:10px;
+    font-weight:800;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    color:#8edcff;
+}
+
+.milestone-current{
+    margin-top:4px;
+
+    font-size:21px;
+    font-weight:900;
+}
+
+.milestone-reward{
+    text-align:right;
+}
+
+.milestone-reward small{
+    display:block;
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size:10px;
+}
+
+.milestone-reward strong{
+    display:block;
+
+    margin-top:2px;
+
+    font-size:18px;
+}
+
+.road{
+    position:relative;
+    z-index:2;
+
+    margin-top:24px;
+
+    display:flex;
+    justify-content:space-between;
+}
+
+.road-line{
+    position:absolute;
+
+    left:18px;
+    right:18px;
+
+    top:17px;
+
+    height:4px;
+
+    border-radius:10px;
+
+    background:
+        rgba(255,255,255,.16);
+}
+
+.road-fill{
+    position:absolute;
+
+    left:18px;
+    top:17px;
+
+    height:4px;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6be0ff,
+            #fff
+        );
+
+    transition:
+        width .5s ease;
+}
+
+.road-point{
+    position:relative;
+    z-index:3;
+
+    width:36px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.road-dot{
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(255,255,255,.13);
+
+    border:
+        2px solid
+        rgba(255,255,255,.25);
+
+    font-size:13px;
+}
+
+.road-point.completed
+.road-dot{
+    background:white;
+    color:#0757c9;
+
+    border-color:white;
+}
+
+.road-point.current
+.road-dot{
+    background:#59d4ff;
+    color:#07306f;
+
+    border-color:#a9ecff;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(89,212,255,.15);
+}
+
+.road-label{
+    margin-top:8px;
+
+    font-size:9px;
+
+    color:
+        rgba(255,255,255,.72);
+
+    text-align:center;
+
+    white-space:nowrap;
+}
+
+.road-point.completed
+.road-label,
+.road-point.current
+.road-label{
+    color:white;
+    font-weight:800;
+}
+
+
+/* =========================================================
+   REWARD CARDS
+========================================================= */
+
+.reward-card{
+    position:relative;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:16px;
+
+    margin-bottom:12px;
+
+    border:
+        1px solid
+        #e5edf7;
+
+    box-shadow:
+        0 6px 20px
+        rgba(22,66,120,.07);
+
+    overflow:hidden;
+}
+
+.reward-card.available{
+    border-color:#b9e4ff;
+
+    box-shadow:
+        0 8px 24px
+        rgba(0,111,220,.10);
+}
+
+.reward-card.collected{
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f4fcf7
+        );
+
+    border-color:#c9edda;
+}
+
+.reward-card.pending{
+    border-color:#f4ddb2;
+}
+
+.reward-top{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:12px;
+}
+
+.reward-main{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    min-width:0;
+}
+
+.reward-icon{
+    width:50px;
+    height:50px;
+
+    flex-shrink:0;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e8f5ff,
+            #f4faff
+        );
+
+    font-size:25px;
+}
+
+.reward-card.available
+.reward-icon{
+    background:
+        linear-gradient(
+            135deg,
+            #dff3ff,
+            #eefaff
+        );
+}
+
+.reward-card.collected
+.reward-icon{
+    background:
+        linear-gradient(
+            135deg,
+            #def7e8,
+            #effcf4
+        );
+}
+
+.reward-name{
+    font-size:15px;
+
+    font-weight:900;
+
+    color:#10356f;
+
+    white-space:nowrap;
+}
+
+.reward-members{
+    margin-top:4px;
+
+    font-size:11px;
+
+    color:#8090a2;
+}
+
+.reward-amount{
+    text-align:right;
+
+    flex-shrink:0;
+}
+
+.reward-amount small{
+    display:block;
+
+    font-size:9px;
+
+    color:#91a0b1;
+
+    text-transform:uppercase;
+}
+
+.reward-amount strong{
+    display:block;
+
+    margin-top:2px;
+
+    font-size:17px;
+
+    color:#0757c9;
+
+    font-weight:900;
+}
+
+.reward-divider{
+    height:1px;
+
+    background:#edf1f6;
+
+    margin:14px 0;
+}
+
+.reward-bottom{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.status{
+    display:inline-flex;
+
+    align-items:center;
+    gap:5px;
+
+    padding:7px 10px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:800;
+}
+
+.status.locked{
+    background:#f2f4f7;
+    color:#8491a1;
+}
+
+.status.available{
+    background:#e8f7ff;
+    color:#0873bb;
+}
+
+.status.pending{
+    background:#fff4dd;
+    color:#ad6900;
+}
+
+.status.collected{
+    background:#e5f8ec;
+    color:#188247;
+}
+
+.status.rejected{
+    background:#fdeaea;
+    color:#c52f2f;
+}
+
+.requirement{
+    font-size:10px;
+
+    color:#8b98a7;
+}
+
+.claim-btn{
+    width:100%;
+
+    margin-top:13px;
+
+    border:none;
+
+    padding:12px 14px;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0757c9,
+            #168bdc
+        );
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 5px 14px
+        rgba(7,87,201,.20);
+
+    cursor:pointer;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
+}
+
+.claim-btn:active{
+    transform:scale(.98);
+}
+
+.claim-btn:disabled{
+    opacity:.55;
+    box-shadow:none;
+    cursor:not-allowed;
+}
+
+.rejected-note{
+    margin-top:9px;
+
+    padding:9px 10px;
+
+    border-radius:10px;
+
+    background:#fff5f5;
+
+    color:#b93838;
+
+    font-size:10px;
+
+    line-height:1.4;
+}
+
+
+/* =========================================================
+   INFO NOTE
+========================================================= */
+
+.info-note{
+    margin-top:18px;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:#edf6ff;
+
+    border:
+        1px solid
+        #d9ebfa;
+
+    color:#55708d;
+
+    font-size:10px;
+
+    line-height:1.55;
+
+    text-align:center;
+}
+
+.info-note strong{
+    color:#0757c9;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+    min-height:55vh;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#718096;
+
+    font-size:13px;
+}
+
+.spinner{
+    width:36px;
+    height:36px;
+
+    border:
+        4px solid
+        #dceafa;
+
+    border-top-color:#0757c9;
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    margin-bottom:12px;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error-card{
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px 18px;
+
+    text-align:center;
+
+    box-shadow:
+        0 6px 20px
+        rgba(20,70,130,.08);
+
+    color:#718096;
+
+    font-size:13px;
+}
+
+.error-icon{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+
+/* =========================================================
+   BOTTOM NAV
+========================================================= */
+
+.bottom-nav{
+    position:fixed;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    z-index:100;
+
+    height:70px;
+
+    background:
+        rgba(255,255,255,.96);
+
+    backdrop-filter:
+        blur(15px);
+
+    border-top:
+        1px solid
+        #e5ebf2;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:space-around;
+
+    padding:
+        6px
+        8px
+        env(safe-area-inset-bottom);
+}
+
+.nav-item{
+    width:20%;
+
+    border:none;
+
+    background:none;
+
+    color:#8a98a8;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:4px;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.nav-icon{
+    font-size:19px;
+
+    line-height:20px;
+}
+
+.nav-item.active{
+    color:#0757c9;
+}
+
+.nav-item.active
+.nav-icon{
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   SMALL SCREENS
+========================================================= */
+
+@media(
+    max-width:360px
+){
+
+    .hero-title{
+        font-size:27px;
+    }
+
+    .reward-name{
+        font-size:14px;
+    }
+
+    .reward-amount strong{
+        font-size:15px;
+    }
+
+    .road-label{
+        font-size:8px;
+    }
+
+}
+
+
+/* =========================================================
+   LARGER SCREENS
+========================================================= */
+
+@media(
+    min-width:700px
+){
+
+    .hero{
+        border-radius:
+            0
+            0
+            38px
+            38px;
+    }
+
+    .container{
+        margin-top:-25px;
+    }
+
+    .hero-title{
+        font-size:38px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-top">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ✈️
+            </div>
+
+            <div class="brand-name">
+                SkyRent
+            </div>
+
+        </div>
+
+
+        <button
+            class="back-btn"
+            onclick="history.back()"
+        >
+            ←
+        </button>
+
+    </div>
+
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            🎁 Network Rewards
+        </div>
+
+        <h1 class="hero-title">
+            Earn More.<br>
+            <span>Reach Higher.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Grow your network, reach new milestones,
+            and unlock exclusive SkyRent rewards.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     MAIN
+========================================================= -->
+
+<main class="container">
+
+
+    <!-- LOADING -->
+
+    <div
+        id="loading"
+        class="loading"
+    >
+
+        <div class="spinner"></div>
+
+        Loading your rewards...
+
+    </div>
+
+
+
+    <!-- CONTENT -->
+
+    <div
+        id="content"
+        style="display:none;"
+    >
+
+
+        <!-- ==================================================
+             SUMMARY
+        =================================================== -->
+
+        <div class="summary-card">
+
+            <div class="summary-row">
+
+                <div class="summary-left">
+
+                    <div class="summary-icon">
+                        👥
+                    </div>
+
+                    <div>
+
+                        <div class="summary-label">
+                            Qualified Network
+                        </div>
+
+                        <div
+                            id="qualifiedCount"
+                            class="summary-number"
+                        >
+                            0
+                            <span>members</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-badge">
+                    Keep Growing 🚀
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             MILESTONE
+        =================================================== -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Your Milestone Journey
+                </h2>
+
+                <p>
+                    Every milestone unlocks a new reward.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="milestoneCard"
+            class="milestone-card"
+        >
+
+            <div class="milestone-header">
+
+                <div>
+
+                    <div class="milestone-kicker">
+                        Current Milestone
+                    </div>
+
+                    <div
+                        id="currentMilestoneName"
+                        class="milestone-current"
+                    >
+                        Starting Point
+                    </div>
+
+                </div>
+
+
+                <div class="milestone-reward">
+
+                    <small>
+                        Next Reward
+                    </small>
+
+                    <strong
+                        id="nextReward"
+                    >
+                        ₱250.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="milestoneRoad"
+                class="road"
+            >
+
+                <div
+                    id="roadLine"
+                    class="road-line"
+                ></div>
+
+                <div
+                    id="roadFill"
+                    class="road-fill"
+                    style="width:0%;"
+                ></div>
+
+
+                <div class="road-point">
+
+                    <div class="road-dot">
+                        1
+                    </div>
+
+                    <div class="road-label">
+                        First<br>Flight
+                    </div>
+
+                </div>
+
+
+                <div class="road-point">
+
+                    <div class="road-dot">
+                        2
+                    </div>
+
+                    <div class="road-label">
+                        Rising<br>Pilot
+                    </div>
+
+                </div>
+
+
+                <div class="road-point">
+
+                    <div class="road-dot">
+                        3
+                    </div>
+
+                    <div class="road-label">
+                        Sky<br>Builder
+                    </div>
+
+                </div>
+
+
+                <div class="road-point">
+
+                    <div class="road-dot">
+                        4
+                    </div>
+
+                    <div class="road-label">
+                        Air<br>Captain
+                    </div>
+
+                </div>
+
+
+                <div class="road-point">
+
+                    <div class="road-dot">
+                        5
+                    </div>
+
+                    <div class="road-label">
+                        Sky<br>Leader
+                    </div>
+
+                </div>
+
+
+                <div class="road-point">
+
+                    <div class="road-dot">
+                        6
+                    </div>
+
+                    <div class="road-label">
+                        Fleet<br>Commander
+                    </div>
+
+                </div>
+
+
+                <div class="road-point">
+
+                    <div class="road-dot">
+                        7
+                    </div>
+
+                    <div class="road-label">
+                        Sky<br>Master
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             REWARDS
+        =================================================== -->
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Milestone Rewards
+                </h2>
+
+                <p>
+                    Claim each reward once you qualify.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div id="rewardsList"></div>
+
+
+
+        <!-- ==================================================
+             NOTE
+        =================================================== -->
+
+        <div class="info-note">
+
+            🎁 <strong>How rewards work</strong><br><br>
+
+            Once you reach a milestone, your reward becomes
+            available to claim. After claiming, it will remain
+            <strong>Pending Approval</strong> until reviewed by
+            SkyRent administration.
+
+            <br><br>
+
+            Once approved, the reward becomes
+            <strong>Collected</strong>.
+
+            <br><br>
+
+            Rewards are handled separately from your regular
+            commission and are <strong>not automatically added
+            to your available balance</strong>.
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- ========================================================
+     BOTTOM NAVIGATION
+========================================================= -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-item"
+        onclick="window.location.href='dashboard.html'"
+    >
+
+        <div class="nav-icon">
+            🏠
+        </div>
+
+        Home
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="window.location.href='crafts.html'"
+    >
+
+        <div class="nav-icon">
+            ✈️
+        </div>
+
+        Crafts
+
+    </button>
+
+
+    <button
+        class="nav-item active"
+        onclick="window.location.href='network.html'"
+    >
+
+        <div class="nav-icon">
+            👥
+        </div>
+
+        Network
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="window.location.href='earnings.html'"
+    >
+
+        <div class="nav-icon">
+            💰
+        </div>
+
+        Earnings
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="window.location.href='dashboard.html'"
+    >
+
+        <div class="nav-icon">
+            👤
+        </div>
+
+        Account
+
+    </button>
+
+</nav>
+
+
+
+<!-- ========================================================
+     FIREBASE
+========================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    where,
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let currentFirebaseUser = null;
+
+let myUser = null;
+
+let allUsers = [];
+
+let allInvestments = [];
+
+
+
+/* =========================================================
+   MILESTONES
+========================================================= */
+
+const milestones = [
+
+    {
+        members:3,
+        reward:250,
+        name:"First Flight",
+        icon:"✈️"
+    },
+
+    {
+        members:5,
+        reward:450,
+        name:"Rising Pilot",
+        icon:"🛫"
+    },
+
+    {
+        members:10,
+        reward:1200,
+        name:"Sky Builder",
+        icon:"🏗️"
+    },
+
+    {
+        members:15,
+        reward:2000,
+        name:"Air Captain",
+        icon:"👨‍✈️"
+    },
+
+    {
+        members:25,
+        reward:3500,
+        name:"Sky Leader",
+        icon:"⭐"
+    },
+
+    {
+        members:40,
+        reward:5600,
+        name:"Fleet Commander",
+        icon:"🛩️"
+    },
+
+    {
+        members:50,
+        reward:12000,
+        name:"Sky Master",
+        icon:"👑"
+    }
+
+];
+
+
+
+/* =========================================================
+   MONEY
+========================================================= */
+
+function money(amount){
+
+    return "₱" +
+        Number(
+            amount || 0
+        ).toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+
+/* =========================================================
+   NORMALIZE PHONE
+========================================================= */
+
+function normalizePhone(phone){
+
+    if(!phone){
+        return "";
+    }
+
+    return String(phone)
+        .replace(/\s+/g,"")
+        .replace(/-/g,"")
+        .replace(/\(/g,"")
+        .replace(/\)/g,"");
+
+}
+
+
+
+/* =========================================================
+   LOAD MY USER
+========================================================= */
+
+async function loadMyUser(){
+
+    const uid =
+        currentFirebaseUser.uid;
+
+
+    const userRef =
+        doc(
+            db,
+            "users",
+            uid
+        );
+
+
+    const userSnap =
+        await getDoc(
+            userRef
+        );
+
+
+    if(
+        userSnap.exists()
+    ){
+
+        myUser = {
+
+            uid,
+            ...userSnap.data()
+
+        };
+
+        return;
+
+    }
+
+
+    const usersSnap =
+        await getDocs(
+            collection(
+                db,
+                "users"
+            )
+        );
+
+
+    usersSnap.forEach(
+        snap => {
+
+            const data =
+                snap.data();
+
+
+            if(
+                snap.id === uid
+            ){
+
+                myUser = {
+
+                    uid:snap.id,
+
+                    ...data
+
+                };
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   LOAD USERS
+========================================================= */
+
+async function loadAllUsers(){
+
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "users"
+            )
+        );
+
+
+    allUsers = [];
+
+
+    snapshot.forEach(
+        snap => {
+
+            allUsers.push({
+
+                uid:snap.id,
+
+                ...snap.data()
+
+            });
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   LOAD INVESTMENTS
+========================================================= */
+
+async function loadAllInvestments(){
+
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "investments"
+            )
+        );
+
+
+    allInvestments = [];
+
+
+    snapshot.forEach(
+        snap => {
+
+            allInvestments.push({
+
+                id:snap.id,
+
+                ...snap.data()
+
+            });
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   DIRECT REFERRER
+========================================================= */
+
+function getDirectReferrer(user){
+
+    if(!user){
+        return null;
+    }
+
+
+    const possibleUidFields = [
+
+        "referredByUid",
+        "referrerUid",
+        "referrerId"
+
+    ];
+
+
+    for(
+        const field of possibleUidFields
+    ){
+
+        const value =
+            user[field];
+
+
+        if(value){
+
+            const found =
+                allUsers.find(
+                    member =>
+                        member.uid === value
+                );
+
+
+            if(found){
+                return found;
+            }
+
+        }
+
+    }
+
+
+    const possiblePhoneFields = [
+
+        "referredByPhone",
+        "referrerPhone",
+        "referrer"
+
+    ];
+
+
+    for(
+        const field of possiblePhoneFields
+    ){
+
+        const value =
+            user[field];
+
+
+        if(value){
+
+            const normalized =
+                normalizePhone(
+                    value
+                );
+
+
+            const found =
+                allUsers.find(
+                    member =>
+                        normalizePhone(
+                            member.phone
+                        ) === normalized
+                );
+
+
+            if(found){
+                return found;
+            }
+
+        }
+
+    }
+
+
+    const possibleCodeFields = [
+
+        "referredByCode",
+        "referrerCode",
+        "referralBy"
+
+    ];
+
+
+    for(
+        const field of possibleCodeFields
+    ){
+
+        const value =
+            user[field];
+
+
+        if(value){
+
+            const normalized =
+                String(value)
+                    .trim()
+                    .toUpperCase();
+
+
+            const found =
+                allUsers.find(
+                    member =>
+                        String(
+                            member.referralCode || ""
+                        )
+                        .trim()
+                        .toUpperCase()
+                        === normalized
+                );
+
+
+            if(found){
+                return found;
+            }
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* =========================================================
+   BUILD NETWORK
+========================================================= */
+
+function buildNetwork(){
+
+    const levelA = [];
+
+    const levelB = [];
+
+    const levelC = [];
+
+
+    if(!myUser){
+
+        return {
+            levelA,
+            levelB,
+            levelC
+        };
+
+    }
+
+
+    const myUid =
+        currentFirebaseUser.uid;
+
+
+    const myPhone =
+        normalizePhone(
+            myUser.phone
+        );
+
+
+    /* LEVEL A */
+
+    allUsers.forEach(
+        user => {
+
+            if(
+                user.uid === myUid
+            ){
+                return;
+            }
+
+
+            if(
+                normalizePhone(
+                    user.phone
+                ) === myPhone
+            ){
+                return;
+            }
+
+
+            const referrer =
+                getDirectReferrer(
+                    user
+                );
+
+
+            if(!referrer){
+                return;
+            }
+
+
+            const sameUid =
+                referrer.uid &&
+                referrer.uid === myUid;
+
+
+            const samePhone =
+                normalizePhone(
+                    referrer.phone
+                ) === myPhone;
+
+
+            if(
+                sameUid ||
+                samePhone
+            ){
+
+                levelA.push(
+                    user
+                );
+
+            }
+
+        }
+    );
+
+
+    /* LEVEL B */
+
+    allUsers.forEach(
+        user => {
+
+            if(
+                user.uid === myUid
+            ){
+                return;
+            }
+
+
+            if(
+                levelA.some(
+                    member =>
+                        member.uid === user.uid
+                )
+            ){
+                return;
+            }
+
+
+            const referrer =
+                getDirectReferrer(
+                    user
+                );
+
+
+            if(!referrer){
+                return;
+            }
+
+
+            if(
+                levelA.some(
+                    member =>
+                        member.uid ===
+                        referrer.uid
+                )
+            ){
+
+                levelB.push(
+                    user
+                );
+
+            }
+
+        }
+    );
+
+
+    /* LEVEL C */
+
+    allUsers.forEach(
+        user => {
+
+            if(
+                user.uid === myUid
+            ){
+                return;
+            }
+
+
+            if(
+                levelA.some(
+                    member =>
+                        member.uid === user.uid
+                )
+            ){
+                return;
+            }
+
+
+            if(
+                levelB.some(
+                    member =>
+                        member.uid === user.uid
+                )
+            ){
+                return;
+            }
+
+
+            const referrer =
+                getDirectReferrer(
+                    user
+                );
+
+
+            if(!referrer){
+                return;
+            }
+
+
+            if(
+                levelB.some(
+                    member =>
+                        member.uid ===
+                        referrer.uid
+                )
+            ){
+
+                levelC.push(
+                    user
+                );
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        levelA,
+        levelB,
+        levelC
+
+    };
+
+}
+
+
+
+/* =========================================================
+   ACTIVE INVESTMENT
+========================================================= */
+
+function hasActiveInvestment(user){
+
+    if(!user){
+        return false;
+    }
+
+
+    const uid =
+        user.uid || "";
+
+
+    const phone =
+        normalizePhone(
+            user.phone
+        );
+
+
+    return allInvestments.some(
+        investment => {
+
+            const investmentUid =
+                investment.userId ||
+                investment.uid ||
+                investment.userUID ||
+                investment.userUid ||
+                "";
+
+
+            const investmentPhone =
+                normalizePhone(
+                    investment.phone ||
+                    investment.userPhone ||
+                    ""
+                );
+
+
+            const status =
+                String(
+                    investment.status ||
+                    investment.investmentStatus ||
+                    ""
+                )
+                .toLowerCase()
+                .trim();
+
+
+            const activeStatus =
+
+                status === "active" ||
+
+                status === "approved" ||
+
+                status === "running" ||
+
+                status === "in progress";
+
+
+            const sameUser =
+
+                (
+                    investmentUid &&
+                    investmentUid === uid
+                )
+
+                ||
+
+                (
+                    investmentPhone &&
+                    investmentPhone === phone
+                );
+
+
+            return (
+                sameUser &&
+                activeStatus
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   INVESTED COUNT
+========================================================= */
+
+function getInvestedCount(
+    members
+){
+
+    return members.filter(
+        member =>
+            hasActiveInvestment(
+                member
+            )
+    ).length;
+
+}
+
+
+
+/* =========================================================
+   LOAD REWARD RECORDS
+========================================================= */
+
+async function loadRewardRecords(){
+
+    const rewardMap = {};
+
+
+    const rewardsQuery =
+        query(
+            collection(
+                db,
+                "networkRewards"
+            ),
+            where(
+                "userId",
+                "==",
+                currentFirebaseUser.uid
+            )
+        );
+
+
+    const snapshot =
+        await getDocs(
+            rewardsQuery
+        );
+
+
+    snapshot.forEach(
+        snap => {
+
+            const data =
+                snap.data();
+
+
+            const milestoneMembers =
+                Number(
+                    data.milestoneMembers || 0
+                );
+
+
+            rewardMap[
+                milestoneMembers
+            ] = {
+
+                id:snap.id,
+
+                ...data
+
+            };
+
+        }
+    );
+
+
+    return rewardMap;
+
+}
+
+
+
+/* =========================================================
+   RENDER MILESTONE ROAD
+========================================================= */
+
+function renderMilestoneRoad(
+    qualifiedTotal
+){
+
+    const points =
+        document.querySelectorAll(
+            ".road-point"
+        );
+
+
+    let completedCount = 0;
+
+    let currentIndex = -1;
+
+
+    milestones.forEach(
+        (milestone,index) => {
+
+            if(
+                qualifiedTotal >=
+                milestone.members
+            ){
+
+                completedCount++;
+
+                currentIndex =
+                    index;
+
+            }
+
+        }
+    );
+
+
+    points.forEach(
+        (point,index) => {
+
+            point.classList.remove(
+                "completed",
+                "current"
+            );
+
+
+            if(
+                index <
+                currentIndex
+            ){
+
+                point.classList.add(
+                    "completed"
+                );
+
+            }
+
+            else if(
+                index ===
+                currentIndex
+            ){
+
+                point.classList.add(
+                    "current"
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+     * Progress toward next milestone
+     */
+
+    let progress = 0;
+
+
+    if(
+        qualifiedTotal <
+        milestones[0].members
+    ){
+
+        progress =
+            (
+                qualifiedTotal /
+                milestones[0].members
+            ) * 100;
+
+    }
+
+    else{
+
+        const current =
+            milestones[
+                currentIndex
+            ];
+
+
+        const next =
+            milestones[
+                currentIndex + 1
+            ];
+
+
+        if(
+            next
+        ){
+
+            progress =
+                (
+                    (
+                        qualifiedTotal -
+                        current.members
+                    )
+                    /
+                    (
+                        next.members -
+                        current.members
+                    )
+                ) * 100;
+
+        }
+
+        else{
+
+            progress = 100;
+
+        }
+
+    }
+
+
+    progress =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                progress
+            )
+        );
+
+
+    document.getElementById(
+        "roadFill"
+    ).style.width =
+        progress + "%";
+
+}
+
+
+
+/* =========================================================
+   RENDER REWARDS
+========================================================= */
+
+function renderRewards(
+    qualifiedTotal,
+    rewardRecords
+){
+
+    const container =
+        document.getElementById(
+            "rewardsList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    let currentIndex = -1;
+
+
+    milestones.forEach(
+        (milestone,index) => {
+
+            if(
+                qualifiedTotal >=
+                milestone.members
+            ){
+
+                currentIndex =
+                    index;
+
+            }
+
+        }
+    );
+
+
+    const currentMilestone =
+        currentIndex >= 0
+            ? milestones[currentIndex]
+            : null;
+
+
+    const nextMilestone =
+        currentIndex + 1 <
+        milestones.length
+            ? milestones[currentIndex + 1]
+            : milestones[0];
+
+
+    document.getElementById(
+        "currentMilestoneName"
+    ).textContent =
+        currentMilestone
+            ? currentMilestone.name
+            : "Starting Point";
+
+
+    document.getElementById(
+        "nextReward"
+    ).textContent =
+        money(
+            nextMilestone.reward
+        );
+
+
+    renderMilestoneRoad(
+        qualifiedTotal
+    );
+
+
+    milestones.forEach(
+        milestone => {
+
+            const completed =
+                qualifiedTotal >=
+                milestone.members;
+
+
+            const record =
+                rewardRecords[
+                    milestone.members
+                ];
+
+
+            let status =
+                "locked";
+
+
+            let statusText =
+                "🔒 Locked";
+
+
+            let buttonHTML =
+                "";
+
+
+            let extraHTML =
+                "";
+
+
+            if(record){
+
+                const rewardStatus =
+                    String(
+                        record.status || ""
+                    )
+                    .toLowerCase()
+                    .trim();
+
+
+                /* PENDING */
+
+                if(
+                    rewardStatus ===
+                    "pending"
+                ){
+
+                    status =
+                        "pending";
+
+                    statusText =
+                        "🟠 Pending Approval";
+
+                }
+
+
+                /* COLLECTED */
+
+                else if(
+
+                    rewardStatus ===
+                    "approved"
+
+                    ||
+
+                    rewardStatus ===
+                    "collected"
+
+                    ||
+
+                    rewardStatus ===
+                    "claimed"
+
+                ){
+
+                    status =
+                        "collected";
+
+                    statusText =
+                        "🟢 Collected";
+
+                }
+
+
+                /* REJECTED */
+
+                else if(
+                    rewardStatus ===
+                    "rejected"
+                ){
+
+                    status =
+                        "rejected";
+
+                    statusText =
+                        "❌ Rejected";
+
+
+                    extraHTML = `
+
+                        <div class="rejected-note">
+
+                            Your previous request was
+                            rejected. If you still qualify,
+                            you may submit a new request.
+
+                        </div>
+
+                    `;
+
+
+                    if(completed){
+
+                        buttonHTML = `
+
+                            <button
+                                class="claim-btn"
+                                onclick="claimReward(
+                                    ${milestone.members},
+                                    ${milestone.reward},
+                                    '${milestone.name.replace(/'/g,"\\'")}'
+                                )"
+                            >
+                                🎁 Submit New Claim
+                            </button>
+
+                        `;
+
+                    }
+
+                }
+
+
+                /* UNKNOWN */
+
+                else{
+
+                    if(completed){
+
+                        status =
+                            "available";
+
+                        statusText =
+                            "🎁 Available";
+
+
+                        buttonHTML = `
+
+                            <button
+                                class="claim-btn"
+                                onclick="claimReward(
+                                    ${milestone.members},
+                                    ${milestone.reward},
+                                    '${milestone.name.replace(/'/g,"\\'")}'
+                                )"
+                            >
+                                🎁 Claim Reward
+                            </button>
+
+                        `;
+
+                    }
+
+                }
+
+            }
+
+
+            /* NO RECORD */
+
+            else if(completed){
+
+                status =
+                    "available";
+
+                statusText =
+                    "🎁 Available";
+
+
+                buttonHTML = `
+
+                    <button
+                        class="claim-btn"
+                        onclick="claimReward(
+                            ${milestone.members},
+                            ${milestone.reward},
+                            '${milestone.name.replace(/'/g,"\\'")}'
+                        )"
+                    >
+                        🎁 Claim ₱${Number(
+                            milestone.reward
+                        ).toLocaleString(
+                            "en-PH"
+                        )}
+                    </button>
+
+                `;
+
+            }
+
+
+            /* CARD */
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "reward-card " +
+                status;
+
+
+            card.innerHTML = `
+
+                <div class="reward-top">
+
+                    <div class="reward-main">
+
+                        <div class="reward-icon">
+                            ${milestone.icon}
+                        </div>
+
+                        <div>
+
+                            <div class="reward-name">
+                                ${milestone.name}
+                            </div>
+
+                            <div class="reward-members">
+
+                                ${milestone.members}
+                                invested members required
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="reward-amount">
+
+                        <small>
+                            Reward
+                        </small>
+
+                        <strong>
+                            ${money(
+                                milestone.reward
+                            )}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="reward-divider"></div>
+
+
+                <div class="reward-bottom">
+
+                    <div class="status ${status}">
+                        ${statusText}
+                    </div>
+
+
+                    <div class="requirement">
+
+                        ${
+                            completed
+                                ? "Milestone reached"
+                                : (
+                                    milestone.members -
+                                    qualifiedTotal
+                                  ) +
+                                  " more needed"
+                        }
+
+                    </div>
+
+                </div>
+
+
+                ${extraHTML}
+
+                ${buttonHTML}
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   CLAIM REWARD
+========================================================= */
+
+window.claimReward =
+async function(
+    milestoneMembers,
+    rewardAmount,
+    milestoneName
+){
+
+    if(
+        !currentFirebaseUser
+    ){
+
+        alert(
+            "Please log in first."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const rewardId =
+            currentFirebaseUser.uid +
+            "_" +
+            milestoneMembers;
+
+
+        const rewardRef =
+            doc(
+                db,
+                "networkRewards",
+                rewardId
+            );
+
+
+        const existingSnap =
+            await getDoc(
+                rewardRef
+            );
+
+
+        if(
+            existingSnap.exists()
+        ){
+
+            const existing =
+                existingSnap.data();
+
+
+            const existingStatus =
+                String(
+                    existing.status || ""
+                )
+                .toLowerCase()
+                .trim();
+
+
+            if(
+                existingStatus ===
+                "pending"
+            ){
+
+                alert(
+                    "This reward is already pending approval."
+                );
+
+                return;
+
+            }
+
+
+            if(
+
+                existingStatus ===
+                "claimed"
+
+                ||
+
+                existingStatus ===
+                "approved"
+
+                ||
+
+                existingStatus ===
+                "collected"
+
+            ){
+
+                alert(
+                    "This reward has already been collected."
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        /* VERIFY QUALIFICATION */
+
+        const network =
+            buildNetwork();
+
+
+        const investedA =
+            getInvestedCount(
+                network.levelA
+            );
+
+
+        const investedB =
+            getInvestedCount(
+                network.levelB
+            );
+
+
+        const investedC =
+            getInvestedCount(
+                network.levelC
+            );
+
+
+        const qualifiedTotal =
+            investedA +
+            investedB +
+            investedC;
+
+
+        if(
+            qualifiedTotal <
+            milestoneMembers
+        ){
+
+            alert(
+                "You have not reached this milestone yet."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * CREATE PENDING CLAIM
+         *
+         * IMPORTANT:
+         * No balance update.
+         * No earnings record.
+         */
+
+        await setDoc(
+            rewardRef,
+            {
+
+                userId:
+                    currentFirebaseUser.uid,
+
+                userName:
+                    myUser.name ||
+                    "",
+
+                userPhone:
+                    myUser.phone ||
+                    "",
+
+                milestoneMembers:
+                    Number(
+                        milestoneMembers
+                    ),
+
+                milestoneName:
+                    milestoneName,
+
+                amount:
+                    Number(
+                        rewardAmount
+                    ),
+
+                type:
+                    "network milestone reward",
+
+                status:
+                    "pending",
+
+                claimedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        alert(
+            "🎁 Reward claim submitted!\n\n" +
+            "Your reward is now pending admin approval."
+        );
+
+
+        await loadRewards();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Reward claim error:",
+            error
+        );
+
+
+        alert(
+            "Unable to submit reward claim.\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+
+/* =========================================================
+   LOAD REWARDS
+========================================================= */
+
+async function loadRewards(){
+
+    try{
+
+        await loadMyUser();
+
+
+        if(!myUser){
+
+            throw new Error(
+                "User account was not found."
+            );
+
+        }
+
+
+        await loadAllUsers();
+
+        await loadAllInvestments();
+
+
+        const network =
+            buildNetwork();
+
+
+        const investedA =
+            getInvestedCount(
+                network.levelA
+            );
+
+
+        const investedB =
+            getInvestedCount(
+                network.levelB
+            );
+
+
+        const investedC =
+            getInvestedCount(
+                network.levelC
+            );
+
+
+        const qualifiedTotal =
+            investedA +
+            investedB +
+            investedC;
+
+
+        document.getElementById(
+            "qualifiedCount"
+        ).innerHTML =
+
+            qualifiedTotal +
+
+            ` <span>members</span>`;
+
+
+        const rewardRecords =
+            await loadRewardRecords();
+
+
+        renderRewards(
+            qualifiedTotal,
+            rewardRecords
+        );
+
+
+        document.getElementById(
+            "loading"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "content"
+        ).style.display =
+            "block";
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Rewards loading error:",
+            error
+        );
+
+
+        document.getElementById(
+            "loading"
+        ).innerHTML = `
+
+            <div class="error-card">
+
+                <div class="error-icon">
+                    ⚠️
+                </div>
+
+                <strong>
+                    Unable to load rewards
+                </strong>
+
+                <br><br>
+
+                Please refresh the page
+                and try again.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            document.getElementById(
+                "loading"
+            ).innerHTML = `
+
+                <div class="error-card">
+
+                    <div class="error-icon">
+                        🔐
+                    </div>
+
+                    <strong>
+                        Login Required
+                    </strong>
+
+                    <br><br>
+
+                    Please log in to view
+                    your network rewards.
+
+                    <br><br>
+
+                    <button
+                        class="claim-btn"
+                        onclick="window.location.href='index.html'"
+                    >
+                        Go to Login
+                    </button>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        currentFirebaseUser =
+            user;
+
+
+        await loadRewards();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
