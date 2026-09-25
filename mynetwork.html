@@ -11,6 +11,117 @@
 <title>SkyRent - Network</title>
 
 <style>
+    
+    
+    
+.rewards-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    width:100%;
+
+    padding:13px 16px;
+
+    margin-top:12px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0757c9,
+            #168bdc
+        );
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 6px 16px
+        rgba(7,87,201,.20);
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
+}
+
+.rewards-btn:active{
+    transform:scale(.97);
+
+    box-shadow:
+        0 3px 9px
+        rgba(7,87,201,.18);
+}
+
+.rewards-icon{
+    font-size:18px;
+}
+
+    
+    
+    
+    
+    /* =====================================================
+   TOP NETWORK MILESTONE CARD — DYNAMIC THEMES
+===================================================== */
+
+
+    
+    
+    
+    .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.level-first {
+    background: #f1dfc5;
+    color: #8a5a24;
+}
+
+.level-pilot {
+    background: #e8e8e8;
+    color: #555;
+}
+
+.level-builder {
+    background: #fff1b8;
+    color: #9a7200;
+}
+
+.level-captain {
+    background: #dceeff;
+    color: #1769aa;
+}
+
+.level-leader {
+    background: #eadcff;
+    color: #7040a8;
+}
+
+.level-fleet {
+    background: #dce7f5;
+    color: #234b76;
+}
+
+.level-master {
+    background: #fff0c2;
+    color: #a06a00;
+}
+    
+    
 
 /* =====================================================
    RESET
@@ -95,7 +206,7 @@ body{
 
 
 /* =====================================================
-   MAIN CONTAINER
+   MAIN
 ===================================================== */
 
 .container{
@@ -129,23 +240,13 @@ body{
 
 
 /* =====================================================
-   SUMMARY
+   NETWORK MILESTONE - TOP
 ===================================================== */
 
-.summary-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
+.milestone-card{
+    position:relative;
+    overflow:hidden;
 
-.summary-card{
-    border-radius:11px;
-    padding:13px;
-    border:1px solid #dcecf8;
-    background:#f9fcff;
-}
-
-.summary-card.main{
     background:
         linear-gradient(
             135deg,
@@ -154,33 +255,390 @@ body{
         );
 
     color:white;
-    border:none;
+
+    border-radius:17px;
+
+    padding:18px;
+
+    margin-bottom:14px;
+
+    box-shadow:
+        0 7px 20px rgba(7,84,174,.20);
 }
 
-.summary-icon{
-    font-size:19px;
-    margin-bottom:5px;
+
+/* =====================================================
+   DYNAMIC NETWORK REWARD LEVEL THEMES
+===================================================== */
+
+.milestone-card{
+    transition:
+        background .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+    border:2px solid transparent;
 }
 
-.summary-label{
+/* 1 — First Flight */
+.milestone-card.milestone-theme-1{
+    background:linear-gradient(135deg,#fff8ed,#f3dfc4);
+    border-color:#e7cda7;
+    color:#6f481f;
+    box-shadow:0 7px 20px rgba(160,110,45,.14);
+}
+
+/* 2 — Rising Pilot */
+.milestone-card.milestone-theme-2{
+    background:linear-gradient(135deg,#eef7ff,#b9d8ef);
+    border-color:#9fc4df;
+    color:#245577;
+    box-shadow:0 7px 20px rgba(55,125,170,.16);
+}
+
+/* 3 — Sky Builder */
+.milestone-card.milestone-theme-3{
+    background:linear-gradient(135deg,#fffbea,#ffe99a);
+    border-color:#ead37b;
+    color:#745900;
+    box-shadow:0 7px 20px rgba(190,155,30,.14);
+}
+
+/* 4 — Air Captain */
+.milestone-card.milestone-theme-4{
+    background:linear-gradient(135deg,#eef8ff,#d5ecff);
+    border-color:#afd5f2;
+    color:#155985;
+    box-shadow:0 7px 20px rgba(30,130,200,.13);
+}
+
+/* 5 — Sky Leader */
+.milestone-card.milestone-theme-5{
+    background:linear-gradient(135deg,#f8f0ff,#e5d2ff);
+    border-color:#d2b9ed;
+    color:#603a91;
+    box-shadow:0 7px 20px rgba(120,70,175,.13);
+}
+
+/* 6 — Fleet Commander */
+.milestone-card.milestone-theme-6{
+    background:linear-gradient(135deg,#edf5fc,#d3e2f1);
+    border-color:#b8ccdf;
+    color:#244b70;
+    box-shadow:0 7px 20px rgba(45,85,125,.14);
+}
+
+/* 7 — Sky Master */
+.milestone-card.milestone-theme-7{
+    background:linear-gradient(135deg,#fff9df,#ffdf75);
+    border-color:#e4c34f;
+    color:#735300;
+    box-shadow:0 7px 22px rgba(190,145,20,.18);
+}
+
+
+/* =====================================================
+   TOP CARD TEXT
+===================================================== */
+
+.milestone-card[class*="milestone-theme-"] .milestone-label{
+    color:currentColor;
+    opacity:.72;
+}
+
+.milestone-card[class*="milestone-theme-"] .milestone-title{
+    color:currentColor;
+}
+
+.milestone-card[class*="milestone-theme-"] .current-network{
+    color:currentColor;
+    opacity:.78;
+}
+
+.milestone-card[class*="milestone-theme-"] .current-network strong{
+    color:currentColor;
+}
+
+.milestone-card[class*="milestone-theme-"] .next-reward{
+    color:currentColor;
+    opacity:.78;
+}
+
+.milestone-card[class*="milestone-theme-"] .next-reward strong{
+    color:currentColor;
+}
+
+
+/* =====================================================
+   TOP BADGE
+===================================================== */
+
+.milestone-card[class*="milestone-theme-"] .milestone-badge{
+    background:rgba(255,255,255,.58);
+    border-color:rgba(255,255,255,.9);
+    color:currentColor;
+    box-shadow:0 3px 10px rgba(20,70,110,.10);
+}
+
+
+/* =====================================================
+   TOP PROGRESS BAR
+===================================================== */
+
+.milestone-card[class*="milestone-theme-"] .progress-track{
+    background:rgba(255,255,255,.55);
+    border-color:rgba(255,255,255,.75);
+}
+
+.milestone-card[class*="milestone-theme-"] .progress-fill{
+    background:linear-gradient(90deg,#087edb,#45b4f4);
+}
+
+
+/* =====================================================
+   AIRCRAFT DECORATION
+===================================================== */
+
+.milestone-card[class*="milestone-theme-"]::after{
+    color:currentColor;
+    opacity:.08;
+}
+
+
+
+
+.milestone-card:after{
+    content:"✈";
+    position:absolute;
+
+    right:-8px;
+    top:-13px;
+
+    font-size:82px;
+
+    opacity:.08;
+
+    transform:rotate(-10deg);
+}
+
+.milestone-top{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+}
+
+.milestone-label{
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.7px;
+    opacity:.85;
+}
+
+.milestone-title{
+    margin-top:4px;
+
+    font-size:21px;
+    font-weight:800;
+}
+
+.milestone-badge{
+    width:78px;
+    height:78px;
+    min-width:78px;
+    border-radius:18px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,.58);
+    border:1px solid rgba(255,255,255,.9);
+
+    box-shadow:0 4px 12px rgba(20,70,110,.12);
+
+}
+
+.milestone-badge-icon{
+    font-size:34px;
+    line-height:1;
+    margin-bottom:4px;
+
+}
+
+.milestone-badge-text{
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.milestone-progress-area{
+    position:relative;
+    z-index:2;
+
+    margin-top:17px;
+}
+
+.milestone-progress-info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
     font-size:11px;
     font-weight:600;
-    color:#6d8498;
-    margin-bottom:4px;
+
+    margin-bottom:7px;
 }
 
-.summary-card.main .summary-label{
+.progress-track{
+    width:100%;
+    height:11px;
+
+    background:rgba(255,255,255,.22);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.18);
+}
+
+.progress-fill{
+    height:100%;
+
+    width:0%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffe45c,
+            #fff4a3
+        );
+
+    transition:
+        width .7s ease;
+}
+
+.milestone-bottom{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:13px;
+}
+
+.current-network{
+    font-size:11px;
     color:rgba(255,255,255,.88);
 }
 
-.summary-value{
-    font-size:20px;
-    font-weight:700;
-    white-space:nowrap;
+.current-network strong{
+    color:white;
+    font-size:14px;
 }
 
-.summary-card:not(.main) .summary-value{
-    color:#15518a;
+.next-reward{
+    text-align:right;
+    font-size:10px;
+    color:rgba(255,255,255,.88);
+}
+
+.next-reward strong{
+    display:block;
+
+    color:#fff;
+
+    font-size:15px;
+}
+
+
+/* =====================================================
+   COMMISSION TOP CARD
+===================================================== */
+
+.commission-card{
+    background:white;
+
+    border:1px solid #dcecf7;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    margin-bottom:14px;
+
+    box-shadow:
+        0 3px 12px rgba(20,90,150,.07);
+}
+
+.commission-heading{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:12px;
+}
+
+.commission-title{
+    font-size:13px;
+    font-weight:700;
+    color:#174f83;
+}
+
+.commission-total{
+    font-size:23px;
+    font-weight:800;
+    color:#0757b5;
+}
+
+.commission-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+}
+
+.commission-item{
+    text-align:center;
+
+    padding:9px 5px;
+
+    border-radius:10px;
+
+    background:#f4faff;
+
+    border:1px solid #dcecf7;
+}
+
+.commission-rate{
+    font-size:11px;
+    font-weight:800;
+    color:#0757b5;
+}
+
+.commission-level{
+    margin-top:2px;
+
+    font-size:9px;
+    color:#7890a5;
+}
+
+.commission-amount{
+    margin-top:4px;
+
+    font-size:12px;
+    font-weight:700;
+    color:#16813d;
 }
 
 
@@ -193,7 +651,6 @@ body{
     border:1px solid #d5e9f8;
     border-radius:12px;
     padding:13px;
-    margin-top:11px;
 }
 
 .referral-title{
@@ -313,7 +770,7 @@ body{
 
 
 /* =====================================================
-   YOU CARD
+   YOU
 ===================================================== */
 
 .you-card{
@@ -506,7 +963,7 @@ body{
 ===================================================== */
 
 .members-bar{
-    min-height:48px;
+    min-height:52px;
 
     padding:10px 13px;
 
@@ -532,6 +989,7 @@ body{
 
 .member-count{
     color:#0757b5;
+    font-weight:800;
 }
 
 .member-arrow{
@@ -539,6 +997,29 @@ body{
     color:#1261ac;
 
     transition:.2s;
+}
+
+
+/* =====================================================
+   INVESTED COUNT
+===================================================== */
+
+.invested-count{
+    margin-left:auto;
+
+    margin-right:8px;
+
+    padding:5px 8px;
+
+    border-radius:10px;
+
+    background:#eaf7ef;
+
+    color:#16813d;
+
+    font-size:10px;
+
+    font-weight:800;
 }
 
 
@@ -624,6 +1105,298 @@ body{
     font-weight:700;
 }
 
+
+/* =====================================================
+   NETWORK REWARD JOURNEY
+===================================================== */
+
+.milestone-journey{
+    background:#ffffff;
+    border:1px solid #dcecf7;
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:14px;
+    box-shadow:0 4px 14px rgba(20,90,150,.07);
+}
+
+.journey-title{
+    font-size:15px;
+    font-weight:800;
+    color:#174f83;
+    margin-bottom:13px;
+}
+
+.milestone-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.milestone-row{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-height:72px;
+    padding:10px 12px;
+    border-radius:14px;
+    overflow:hidden;
+
+    border:1px solid transparent;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+/* =====================================================
+   DIFFERENT BACKGROUND FOR EVERY MILESTONE
+===================================================== */
+
+/* 1 — First Flight */
+.milestone-row:nth-child(1){
+    background:linear-gradient(135deg,#fff8ed,#f3dfc4);
+    border-color:#e7cda7;
+}
+
+/* 2 — Rising Pilot */
+.milestone-row:nth-child(2){
+    background:linear-gradient(135deg,#f5f7fa,#dfe4ea);
+    border-color:#cbd2da;
+}
+
+/* 3 — Sky Builder */
+.milestone-row:nth-child(3){
+    background:linear-gradient(135deg,#fffbea,#ffe99a);
+    border-color:#ead37b;
+}
+
+/* 4 — Air Captain */
+.milestone-row:nth-child(4){
+    background:linear-gradient(135deg,#eef8ff,#d5ecff);
+    border-color:#afd5f2;
+}
+
+/* 5 — Sky Leader */
+.milestone-row:nth-child(5){
+    background:linear-gradient(135deg,#f8f0ff,#e5d2ff);
+    border-color:#d2b9ed;
+}
+
+/* 6 — Fleet Commander */
+.milestone-row:nth-child(6){
+    background:linear-gradient(135deg,#edf5fc,#d3e2f1);
+    border-color:#b8ccdf;
+}
+
+/* 7 — Sky Master */
+.milestone-row:nth-child(7){
+    background:linear-gradient(135deg,#fff9df,#ffdf75);
+    border-color:#e4c34f;
+}
+
+
+/* =====================================================
+   AIRCRAFT DECORATION
+===================================================== */
+
+.milestone-row::after{
+    content:"✈";
+    position:absolute;
+    right:-4px;
+    bottom:-19px;
+    font-size:68px;
+    opacity:.07;
+    transform:rotate(-12deg);
+    pointer-events:none;
+}
+
+
+/* =====================================================
+   MILESTONE BADGE
+===================================================== */
+
+.milestone-number{
+    width:52px;
+    height:52px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,.85);
+
+    border:2px solid rgba(255,255,255,.95);
+
+    box-shadow:
+        0 4px 10px rgba(20,70,110,.15);
+
+    font-size:27px;
+
+    position:relative;
+    z-index:2;
+}
+
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+.milestone-info{
+    flex:1;
+    min-width:0;
+    position:relative;
+    z-index:2;
+}
+
+.milestone-name{
+    font-size:13px;
+    font-weight:800;
+    color:#173f68;
+    line-height:1.25;
+}
+
+.milestone-target{
+    margin-top:4px;
+    font-size:10px;
+    line-height:1.35;
+    color:#607b93;
+}
+
+.milestone-reward{
+    position:relative;
+    z-index:2;
+
+    text-align:right;
+
+    font-size:13px;
+    font-weight:900;
+
+    color:#16813d;
+
+    white-space:nowrap;
+}
+
+.milestone-status{
+    margin-top:4px;
+    font-size:9px;
+    font-weight:600;
+    color:#71879b;
+}
+
+
+/* =====================================================
+   COMPLETED MILESTONE
+   Keeps its individual background but adds green accent
+===================================================== */
+
+.milestone-row.completed{
+    box-shadow:
+        inset 4px 0 0 #22a35a;
+}
+
+.milestone-row.completed .milestone-number{
+    background:#ffffff;
+    border-color:#b8dfc7;
+}
+
+.milestone-row.completed .milestone-status{
+    color:#16813d;
+    font-weight:800;
+}
+
+
+/* =====================================================
+   CURRENT MILESTONE
+   Stronger highlight over its individual background
+===================================================== */
+
+.milestone-row.current{
+    border:2px solid #168ee5;
+
+    box-shadow:
+        0 5px 18px rgba(7,126,219,.20),
+        inset 4px 0 0 #087edb;
+
+    transform:translateY(-1px);
+}
+
+.milestone-row.current .milestone-number{
+    width:58px;
+    height:58px;
+
+    font-size:31px;
+
+    background:#ffffff;
+
+    border:3px solid #62b5ed;
+
+    box-shadow:
+        0 5px 14px rgba(7,126,219,.22);
+}
+
+.milestone-row.current .milestone-name{
+    color:#0757b5;
+}
+
+.milestone-row.current .milestone-reward{
+    color:#087edb;
+}
+
+.milestone-row.current .milestone-status{
+    color:#087edb;
+    font-weight:800;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .milestone-row{
+        min-height:68px;
+        padding:9px 10px;
+        gap:9px;
+    }
+
+    .milestone-number{
+        width:48px;
+        height:48px;
+        font-size:24px;
+    }
+
+    .milestone-row.current .milestone-number{
+        width:53px;
+        height:53px;
+        font-size:28px;
+    }
+
+    .milestone-name{
+        font-size:12px;
+    }
+
+    .milestone-target{
+        font-size:9px;
+    }
+
+    .milestone-reward{
+        font-size:12px;
+    }
+
+    .milestone-status{
+        font-size:8px;
+    }
+
+    .milestone-row::after{
+        font-size:55px;
+    }
+}
 
 /* =====================================================
    EMPTY
@@ -901,8 +1674,12 @@ body{
         font-size:12px;
     }
 
-    .summary-value{
-        font-size:17px;
+    .milestone-title{
+        font-size:18px;
+    }
+
+    .commission-total{
+        font-size:20px;
     }
 
     .level-name{
@@ -934,18 +1711,6 @@ body{
 
 @media(max-width:320px){
 
-    .summary-grid{
-        gap:7px;
-    }
-
-    .summary-card{
-        padding:11px 9px;
-    }
-
-    .summary-value{
-        font-size:15px;
-    }
-
     .level-header{
         padding:12px 10px;
     }
@@ -966,6 +1731,11 @@ body{
 
     .rate-label{
         font-size:7px;
+    }
+
+    .invested-count{
+        font-size:9px;
+        padding:4px 6px;
     }
 
 }
@@ -999,9 +1769,7 @@ body{
         </div>
 
         <div class="header-description">
-
             Build your network and track your referral activity.
-
         </div>
 
     </div>
@@ -1017,48 +1785,39 @@ body{
 
 
 <!-- =====================================================
-     SUMMARY
+     NETWORK MILESTONE - TOP
 ===================================================== -->
 
-<section class="card">
+<section class="milestone-card">
 
-    <div class="summary-grid">
+    <div class="milestone-top">
 
-        <div class="summary-card main">
+        <div>
 
-            <div class="summary-icon">
-                🪙
-            </div>
-
-            <div class="summary-label">
-                Total Commission
+            <div class="milestone-label">
+                NETWORK REWARD LEVEL
             </div>
 
             <div
-                class="summary-value"
-                id="totalCommission"
+                class="milestone-title"
+                id="currentMilestoneName"
             >
-                ₱0.00
+                Landing Point
             </div>
 
         </div>
 
-
-        <div class="summary-card">
-
-            <div class="summary-icon">
-                👥
-            </div>
-
-            <div class="summary-label">
-                Total Invites
-            </div>
+        <div class="milestone-badge">
 
             <div
-                class="summary-value"
-                id="totalInvites"
+                class="milestone-badge-icon"
+                id="milestoneIcon"
             >
-                0
+                ✈️
+            </div>
+
+            <div class="milestone-badge-text">
+                LEVEL
             </div>
 
         </div>
@@ -1066,9 +1825,152 @@ body{
     </div>
 
 
-    <!-- =================================================
-         REFERRAL
-    ================================================== -->
+    <div class="milestone-progress-area">
+
+        <div class="milestone-progress-info">
+
+            <span>
+                Qualified Network
+            </span>
+
+            <span id="milestoneProgressText">
+                0 / 3
+            </span>
+
+        </div>
+
+
+        <div class="progress-track">
+
+            <div
+                class="progress-fill"
+                id="milestoneProgressFill"
+            ></div>
+
+        </div>
+
+
+        <div class="milestone-bottom">
+
+            <div class="current-network">
+
+                Invested Members:
+                <strong id="qualifiedNetwork">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="next-reward">
+
+                Next Reward
+
+                <strong id="nextReward">
+                    ₱250
+                </strong>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TOTAL ABC COMMISSION
+===================================================== -->
+
+<section class="commission-card">
+
+    <div class="commission-heading">
+
+        <div class="commission-title">
+            🪙 Total Network Comission 
+        </div>
+
+        <div
+            class="commission-total"
+            id="totalCommission"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+
+    <div class="commission-grid">
+
+        <div class="commission-item">
+
+            <div class="commission-rate">
+                LEVEL A
+            </div>
+
+            <div class="commission-level">
+                25%
+            </div>
+
+            <div
+                class="commission-amount"
+                id="commissionA"
+            >
+                ₱0.00
+            </div>
+
+        </div>
+
+
+        <div class="commission-item">
+
+            <div class="commission-rate">
+                LEVEL B
+            </div>
+
+            <div class="commission-level">
+                3%
+            </div>
+
+            <div
+                class="commission-amount"
+                id="commissionB"
+            >
+                ₱0.00
+            </div>
+
+        </div>
+
+
+        <div class="commission-item">
+
+            <div class="commission-rate">
+                LEVEL C
+            </div>
+
+            <div class="commission-level">
+                1%
+            </div>
+
+            <div
+                class="commission-amount"
+                id="commissionC"
+            >
+                ₱0.00
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     REFERRAL INFORMATION
+===================================================== -->
+
+<section class="card">
 
     <div class="referral-card">
 
@@ -1093,6 +1995,7 @@ body{
             <button
                 class="copy-small"
                 onclick="copyReferralCode()"
+                type="button"
             >
                 📋
             </button>
@@ -1116,6 +2019,7 @@ body{
             <button
                 class="copy-link"
                 onclick="copyReferral()"
+                type="button"
             >
                 📋
             </button>
@@ -1126,6 +2030,7 @@ body{
         <button
             class="copy-all"
             onclick="copyReferral()"
+            type="button"
         >
             📋 &nbsp; Copy Referral Link
         </button>
@@ -1210,22 +2115,27 @@ body{
 
         <div class="members-left">
 
-            <span>
-                👥
-            </span>
+            <span>👥</span>
 
-            <span>
-                A Members
-            </span>
+            <span>A Members</span>
 
             <span
                 class="member-count"
                 id="countA"
             >
-                (0)
+                0 / 0
             </span>
 
         </div>
+
+
+        <div
+            class="invested-count"
+            id="investedA"
+        >
+            0 Invested
+        </div>
+
 
         <div
             class="member-arrow"
@@ -1306,22 +2216,27 @@ body{
 
         <div class="members-left">
 
-            <span>
-                👥
-            </span>
+            <span>👥</span>
 
-            <span>
-                B Members
-            </span>
+            <span>B Members</span>
 
             <span
                 class="member-count"
                 id="countB"
             >
-                (0)
+                0 / 0
             </span>
 
         </div>
+
+
+        <div
+            class="invested-count"
+            id="investedB"
+        >
+            0 Invested
+        </div>
+
 
         <div
             class="member-arrow"
@@ -1402,22 +2317,27 @@ body{
 
         <div class="members-left">
 
-            <span>
-                👥
-            </span>
+            <span>👥</span>
 
-            <span>
-                C Members
-            </span>
+            <span>C Members</span>
 
             <span
                 class="member-count"
                 id="countC"
             >
-                (0)
+                0 / 0
             </span>
 
         </div>
+
+
+        <div
+            class="invested-count"
+            id="investedC"
+        >
+            0 Invested
+        </div>
+
 
         <div
             class="member-arrow"
@@ -1443,6 +2363,33 @@ body{
         </div>
 
     </div>
+
+</section>
+
+
+<!-- =====================================================
+     MILESTONE JOURNEY
+===================================================== -->
+
+<section class="milestone-journey">
+
+
+
+    <div class="journey-title">
+        🏆 Network Reward Journey
+
+
+    <div
+        class="milestone-list"
+        id="milestoneList"
+    >
+    </div>
+    
+    <a href="rewards.html" class="rewards-btn">
+    <span class="rewards-icon">🎁</span>
+    <span>Check Rewards</span>
+</a>
+    
 
 </section>
 
@@ -1668,17 +2615,94 @@ let allUsers = [];
 
 let myCommissions = [];
 
+let allInvestments = [];
+
 
 /* =====================================================
    COMMISSION RATES
 ===================================================== */
 
 const COMMISSION_A = 0.25;
-
 const COMMISSION_B = 0.03;
-
 const COMMISSION_C = 0.01;
 
+
+
+
+
+
+
+/* =====================================================
+   MILESTONES
+===================================================== */
+
+const milestoneCard = document.querySelector('.network-milestone-card');
+
+if (milestoneCard) {
+    milestoneCard.classList.remove(
+        'milestone-theme-1',
+        'milestone-theme-2',
+        'milestone-theme-3',
+        'milestone-theme-4',
+        'milestone-theme-5',
+        'milestone-theme-6',
+        'milestone-theme-7'
+    );
+
+    milestoneCard.classList.add(
+        `milestone-theme-${currentMilestoneIndex + 1}`
+    );
+}
+
+
+
+
+
+
+const milestones = [
+    {
+        members: 3,
+        reward: 250,
+        name: "First Flight",
+        icon: "🥇"
+    },
+    {
+        members: 5,
+        reward: 450,
+        name: "Rising Pilot",
+        icon: "🥈"
+    },
+    {
+        members: 10,
+        reward: 1200,
+        name: "Sky Builder",
+        icon: "🥉"
+    },
+    {
+        members: 15,
+        reward: 2000,
+        name: "Air Captain",
+        icon: "✈️"
+    },
+    {
+        members: 25,
+        reward: 3500,
+        name: "Sky Leader",
+        icon: "🚀"
+    },
+    {
+        members: 40,
+        reward: 5600,
+        name: "Fleet Commander",
+        icon: "🛩️"
+    },
+    {
+        members: 50,
+        reward: 12000,
+        name: "Sky Master",
+        icon: "👑"
+    }
+];
 
 /* =====================================================
    NORMALIZE REFERRAL CODE
@@ -1744,10 +2768,6 @@ function getDirectReferrer(user){
     }
 
 
-    /* -------------------------------------------------
-       FIRST: UID
-    ------------------------------------------------- */
-
     if(user.referredByUid){
 
         const byUid =
@@ -1763,10 +2783,6 @@ function getDirectReferrer(user){
 
     }
 
-
-    /* -------------------------------------------------
-       SECOND: PHONE
-    ------------------------------------------------- */
 
     if(user.referredByPhone){
 
@@ -1789,10 +2805,6 @@ function getDirectReferrer(user){
 
     }
 
-
-    /* -------------------------------------------------
-       THIRD: REFERRAL CODE
-    ------------------------------------------------- */
 
     const referredByCode =
         getReferredByCode(user);
@@ -1857,7 +2869,6 @@ function buildNetwork(){
 
     /* =================================================
        LEVEL A
-       DIRECT REFERRALS
     ================================================= */
 
     allUsers.forEach(user => {
@@ -1908,7 +2919,6 @@ function buildNetwork(){
 
     /* =================================================
        LEVEL B
-       REFERRED BY LEVEL A
     ================================================= */
 
     allUsers.forEach(user => {
@@ -1924,9 +2934,7 @@ function buildNetwork(){
                     member.uid === user.uid
             )
         ){
-
             return;
-
         }
 
 
@@ -1956,7 +2964,6 @@ function buildNetwork(){
 
     /* =================================================
        LEVEL C
-       REFERRED BY LEVEL B
     ================================================= */
 
     allUsers.forEach(user => {
@@ -1972,9 +2979,7 @@ function buildNetwork(){
                     member.uid === user.uid
             )
         ){
-
             return;
-
         }
 
 
@@ -1984,9 +2989,7 @@ function buildNetwork(){
                     member.uid === user.uid
             )
         ){
-
             return;
-
         }
 
 
@@ -2033,12 +3036,10 @@ async function loadAllUsers(){
 
     const snapshot =
         await getDocs(
-
             collection(
                 db,
                 "users"
             )
-
         );
 
 
@@ -2096,6 +3097,163 @@ async function loadMyUser(){
         ...userDoc.data()
 
     };
+
+}
+
+
+/* =====================================================
+   LOAD INVESTMENTS
+===================================================== */
+
+async function loadAllInvestments(){
+
+    allInvestments = [];
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "investments"
+                )
+            );
+
+
+        snapshot.forEach(docSnap => {
+
+            allInvestments.push({
+
+                id:
+                    docSnap.id,
+
+                ...docSnap.data()
+
+            });
+
+        });
+
+
+        console.log(
+            "All investments:",
+            allInvestments
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Investment loading error:",
+            error
+        );
+
+        allInvestments = [];
+
+    }
+
+}
+
+
+/* =====================================================
+   CHECK ACTIVE INVESTMENT
+===================================================== */
+
+function hasActiveInvestment(user){
+
+    if(!user){
+        return false;
+    }
+
+
+    const uid =
+        user.uid || "";
+
+
+    const phone =
+        normalizePhone(
+            user.phone
+        );
+
+
+    return allInvestments.some(
+        investment => {
+
+            const investmentUid =
+                investment.userId ||
+                investment.uid ||
+                investment.userUID ||
+                investment.userUid ||
+                "";
+
+
+            const investmentPhone =
+                normalizePhone(
+                    investment.phone ||
+                    investment.userPhone ||
+                    ""
+                );
+
+
+            const status =
+                String(
+
+                    investment.status ||
+
+                    investment.investmentStatus ||
+
+                    ""
+
+                )
+                .toLowerCase()
+                .trim();
+
+
+            const activeStatus =
+
+                status === "active" ||
+
+                status === "approved" ||
+
+                status === "running" ||
+
+                status === "in progress";
+
+
+            const sameUser =
+
+                (
+                    investmentUid &&
+                    investmentUid === uid
+                )
+
+                ||
+
+                (
+                    investmentPhone &&
+                    investmentPhone === phone
+                );
+
+
+            return sameUser && activeStatus;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   GET INVESTED COUNT
+===================================================== */
+
+function getInvestedCount(members){
+
+    return members.filter(
+        member =>
+            hasActiveInvestment(member)
+    ).length;
 
 }
 
@@ -2213,7 +3371,7 @@ function isRejectedCommission(record){
 
 
 /* =====================================================
-   GET COMMISSION AMOUNT
+   COMMISSION AMOUNT
 ===================================================== */
 
 function getCommissionAmount(record){
@@ -2250,9 +3408,7 @@ function getMemberCommission(
         if(
             isRejectedCommission(record)
         ){
-
             return;
-
         }
 
 
@@ -2265,9 +3421,7 @@ function getMemberCommission(
 
 
         if(recordLevel !== level){
-
             return;
-
         }
 
 
@@ -2328,6 +3482,48 @@ function getMemberCommission(
 
 
 /* =====================================================
+   LEVEL COMMISSION
+===================================================== */
+
+function calculateLevelCommission(level){
+
+    let total = 0;
+
+
+    myCommissions.forEach(record => {
+
+        if(
+            isRejectedCommission(record)
+        ){
+            return;
+        }
+
+
+        const recordLevel =
+            String(
+                record.level || ""
+            )
+            .toUpperCase()
+            .trim();
+
+
+        if(recordLevel !== level){
+            return;
+        }
+
+
+        total +=
+            getCommissionAmount(record);
+
+    });
+
+
+    return total;
+
+}
+
+
+/* =====================================================
    TOTAL COMMISSION
 ===================================================== */
 
@@ -2341,9 +3537,7 @@ function calculateTotalCommission(){
         if(
             isRejectedCommission(record)
         ){
-
             return;
-
         }
 
 
@@ -2402,9 +3596,7 @@ function getDateValue(value){
 
 
     if(value instanceof Date){
-
         return value;
-
     }
 
 
@@ -2531,12 +3723,324 @@ function escapeHtml(value){
 
 
 /* =====================================================
+   UPDATE MILESTONE
+===================================================== */
+
+function updateMilestone(qualifiedTotal){
+
+    let current = null;
+    let next = null;
+    let currentIndex = -1;
+
+    milestones.forEach((milestone, index) => {
+
+        if(qualifiedTotal >= milestone.members){
+
+            current = milestone;
+            currentIndex = index;
+
+        } else if(!next){
+
+            next = milestone;
+
+        }
+
+    });
+
+    if(!current){
+        current = {
+            members:0,
+            reward:0,
+            name:"Starting Point",
+            icon:"✈️"
+        };
+    }
+
+    // ADD THE THEME CODE HERE
+    const topMilestoneCard = document.querySelector(".milestone-card");
+
+    if(topMilestoneCard){
+
+        topMilestoneCard.classList.remove(
+            "milestone-theme-1",
+            "milestone-theme-2",
+            "milestone-theme-3",
+            "milestone-theme-4",
+            "milestone-theme-5",
+            "milestone-theme-6",
+            "milestone-theme-7"
+        );
+
+        if(currentIndex >= 0){
+
+            topMilestoneCard.classList.add(
+                "milestone-theme-" + (currentIndex + 1)
+            );
+
+        }
+    }
+
+    
+
+
+
+
+    if(!next){
+
+        next =
+            milestones[
+                milestones.length - 1
+            ];
+
+    }
+
+
+    const progressStart =
+        current.members;
+
+
+    const progressEnd =
+        next.members;
+
+
+    let progress = 0;
+
+
+    if(
+        progressEnd >
+        progressStart
+    ){
+
+        progress =
+            (
+                (qualifiedTotal -
+                progressStart)
+                /
+                (progressEnd -
+                progressStart)
+            ) * 100;
+
+    }
+
+
+    if(
+        qualifiedTotal <
+        milestones[0].members
+    ){
+
+        progress =
+            (
+                qualifiedTotal /
+                milestones[0].members
+            ) * 100;
+
+    }
+
+
+    progress =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                progress
+            )
+        );
+
+
+    document.getElementById(
+        "currentMilestoneName"
+    ).textContent =
+        current.name;
+
+
+    document.getElementById(
+        "milestoneIcon"
+    ).textContent =
+        current.icon;
+
+
+    document.getElementById(
+        "qualifiedNetwork"
+    ).textContent =
+        qualifiedTotal;
+
+
+    document.getElementById(
+        "milestoneProgressText"
+    ).textContent =
+
+        qualifiedTotal +
+        " / " +
+        next.members;
+
+
+    document.getElementById(
+        "milestoneProgressFill"
+    ).style.width =
+        progress + "%";
+
+
+    document.getElementById(
+        "nextReward"
+    ).textContent =
+        money(next.reward);
+
+
+    renderMilestoneJourney(
+        qualifiedTotal
+    );
+
+}
+
+
+/* =====================================================
+   RENDER MILESTONE JOURNEY
+===================================================== */
+
+function renderMilestoneJourney(
+    qualifiedTotal
+){
+
+    const container =
+        document.getElementById(
+            "milestoneList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    milestones.forEach(
+        milestone => {
+
+            const completed =
+                qualifiedTotal >=
+                milestone.members;
+
+
+            const nextTarget =
+                milestones.find(
+                    item =>
+                        item.members >
+                        qualifiedTotal
+                );
+
+
+            const current =
+                !completed &&
+                nextTarget &&
+                nextTarget.members ===
+                milestone.members;
+
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "milestone-row" +
+
+                (
+                    completed
+                        ? " completed"
+                        : ""
+                ) +
+
+                (
+                    current
+                        ? " current"
+                        : ""
+                );
+
+
+            let statusText =
+                "Locked";
+
+
+            if(completed){
+
+                statusText =
+                    "✓ Completed";
+
+            }
+
+            else if(current){
+
+                statusText =
+                    "Current Goal";
+
+            }
+
+
+            row.innerHTML = `
+
+                <div class="milestone-number">
+
+                    ${milestone.icon}
+
+                </div>
+
+
+                <div class="milestone-info">
+
+                    <div class="milestone-name">
+
+                        ${escapeHtml(
+                            milestone.name
+                        )}
+
+                    </div>
+
+                    <div class="milestone-target">
+
+                        ${milestone.members}
+                        invested members
+
+                        •
+                        ${statusText}
+
+                    </div>
+
+                </div>
+
+
+                <div class="milestone-reward">
+
+                    ${money(
+                        milestone.reward
+                    )}
+
+                    <div class="milestone-status">
+
+                        Reward
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
    DISPLAY MEMBERS
 ===================================================== */
 
 function displayMembers(
     elementId,
     countId,
+    investedId,
     members,
     level
 ){
@@ -2553,10 +4057,29 @@ function displayMembers(
         );
 
 
+    const investedElement =
+        document.getElementById(
+            investedId
+        );
+
+
+    const invested =
+        getInvestedCount(
+            members
+        );
+
+
     count.textContent =
-        "(" +
-        members.length +
-        ")";
+
+        invested +
+        " / " +
+        members.length;
+
+
+    investedElement.textContent =
+
+        invested +
+        " Invested";
 
 
     container.innerHTML = "";
@@ -2620,15 +4143,11 @@ function displayMembers(
             );
 
 
-        /*
-           IMPORTANT:
-           Only showing:
-           - Phone
-           - Registered
-           - Commission
+        const invested =
+            hasActiveInvestment(
+                user
+            );
 
-           Purchase information is NOT displayed.
-        */
 
         member.innerHTML = `
 
@@ -2639,7 +4158,11 @@ function displayMembers(
                 </span>
 
                 <span class="member-value">
-                    ${escapeHtml(cleanPhone)}
+
+                    ${escapeHtml(
+                        cleanPhone
+                    )}
+
                 </span>
 
             </div>
@@ -2675,12 +4198,40 @@ function displayMembers(
             <div class="member-row">
 
                 <span class="member-label">
+                    💼 Investment
+                </span>
+
+                <span
+                    class="member-value"
+                    style="color:${
+                        invested
+                        ? "#16813d"
+                        : "#8196aa"
+                    };"
+                >
+
+                    ${
+                        invested
+                        ? "✓ Invested"
+                        : "Not Invested"
+                    }
+
+                </span>
+
+            </div>
+
+
+            <div class="member-row">
+
+                <span class="member-label">
                     🪙 Commission
                 </span>
 
                 <span class="member-value member-commission">
 
-                    ${money(commission)}
+                    ${money(
+                        commission
+                    )}
 
                 </span>
 
@@ -2750,15 +4301,16 @@ async function loadNetwork(){
 
         /* -----------------------------------------
            REFERRAL LINK
-           
-           NEW SKYRENT DOMAIN
         ----------------------------------------- */
 
         const referralUrl =
-    "https://skyrent-official-26.github.io/skyrent/?ref=" +
-    encodeURIComponent(
-        referralCode
-    );
+
+            "https://skyrent-official-26.github.io/skyrent/?ref=" +
+
+            encodeURIComponent(
+                referralCode
+            );
+
 
         document.getElementById(
             "referralLink"
@@ -2772,6 +4324,13 @@ async function loadNetwork(){
         ----------------------------------------- */
 
         await loadAllUsers();
+
+
+        /* -----------------------------------------
+           LOAD INVESTMENTS
+        ----------------------------------------- */
+
+        await loadAllInvestments();
 
 
         /* -----------------------------------------
@@ -2789,13 +4348,35 @@ async function loadNetwork(){
             buildNetwork();
 
 
-        const totalInvites =
+        /* -----------------------------------------
+           COUNTS
+        ----------------------------------------- */
 
-            network.levelA.length +
+        const investedA =
+            getInvestedCount(
+                network.levelA
+            );
 
-            network.levelB.length +
 
-            network.levelC.length;
+        const investedB =
+            getInvestedCount(
+                network.levelB
+            );
+
+
+        const investedC =
+            getInvestedCount(
+                network.levelC
+            );
+
+
+        const qualifiedTotal =
+
+            investedA +
+
+            investedB +
+
+            investedC;
 
 
         /* -----------------------------------------
@@ -2806,11 +4387,22 @@ async function loadNetwork(){
             calculateTotalCommission();
 
 
-        document.getElementById(
-            "totalInvites"
-        ).textContent =
+        const commissionA =
+            calculateLevelCommission(
+                "A"
+            );
 
-            totalInvites;
+
+        const commissionB =
+            calculateLevelCommission(
+                "B"
+            );
+
+
+        const commissionC =
+            calculateLevelCommission(
+                "C"
+            );
 
 
         document.getElementById(
@@ -2822,6 +4414,42 @@ async function loadNetwork(){
             );
 
 
+        document.getElementById(
+            "commissionA"
+        ).textContent =
+
+            money(
+                commissionA
+            );
+
+
+        document.getElementById(
+            "commissionB"
+        ).textContent =
+
+            money(
+                commissionB
+            );
+
+
+        document.getElementById(
+            "commissionC"
+        ).textContent =
+
+            money(
+                commissionC
+            );
+
+
+        /* -----------------------------------------
+           MILESTONE
+        ----------------------------------------- */
+
+        updateMilestone(
+            qualifiedTotal
+        );
+
+
         /* -----------------------------------------
            DISPLAY LEVELS
         ----------------------------------------- */
@@ -2831,6 +4459,8 @@ async function loadNetwork(){
             "membersA",
 
             "countA",
+
+            "investedA",
 
             network.levelA,
 
@@ -2845,6 +4475,8 @@ async function loadNetwork(){
 
             "countB",
 
+            "investedB",
+
             network.levelB,
 
             "B"
@@ -2857,6 +4489,8 @@ async function loadNetwork(){
             "membersC",
 
             "countC",
+
+            "investedC",
 
             network.levelC,
 
@@ -2877,15 +4511,7 @@ async function loadNetwork(){
         document.getElementById(
             "totalCommission"
         ).textContent =
-
             "Unavailable";
-
-
-        document.getElementById(
-            "totalInvites"
-        ).textContent =
-
-            "—";
 
 
         document.getElementById(
@@ -2929,6 +4555,11 @@ async function loadNetwork(){
     }
 
 }
+
+
+
+
+
 
 
 /* =====================================================
@@ -3225,18 +4856,74 @@ function showToast(message){
 
 }
 
+function getLevelByMembers(count) {
+    if (count >= 50) {
+        return {
+            name: "Sky Master",
+            icon: "👑",
+            className: "level-master"
+        };
+    }
 
-/* =====================================================
-   IMPORTANT
-   NO AUTOMATIC VISIBILITY REFRESH
+    if (count >= 40) {
+        return {
+            name: "Fleet Commander",
+            icon: "🛩️",
+            className: "level-fleet"
+        };
+    }
 
-   Network data loads when:
-   - The page is opened
-   - Firebase authentication completes
+    if (count >= 25) {
+        return {
+            name: "Sky Leader",
+            icon: "🚀",
+            className: "level-leader"
+        };
+    }
 
-   It does NOT automatically reload simply because
-   the user leaves the page and comes back to it.
-===================================================== */
+    if (count >= 15) {
+        return {
+            name: "Air Captain",
+            icon: "✈️",
+            className: "level-captain"
+        };
+    }
+
+    if (count >= 10) {
+        return {
+            name: "Sky Builder",
+            icon: " 🥉 ",
+            className: "level-builder"
+        };
+    }
+
+    if (count >= 5) {
+        return {
+            name: "Rising Pilot",
+            icon: "🥈",
+            className: "level-pilot"
+        };
+    }
+
+    if (count >= 3) {
+        return {
+            name: "First Flight",
+            icon: "🥇",
+            className: "level-first"
+        };
+    }
+
+    return {
+        name: "New Pilot",
+        icon: "🛫",
+        className: "level-new"
+    };
+}
+
+
+
+
+
 
 </script>
 
