@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -11,27 +10,20 @@
 
 <title>SkyRent</title>
 
-<!-- SKYRENT APP ICON -->
-
 <link rel="icon" type="image/png" href="skyrent.png">
-
 <link rel="apple-touch-icon" href="skyrent.png">
-
 <link rel="manifest" href="manifest.json">
 
 <meta name="theme-color" content="#0757c9">
-
 <meta name="mobile-web-app-capable" content="yes">
-
 <meta name="apple-mobile-web-app-capable" content="yes">
-
 <meta name="apple-mobile-web-app-title" content="SkyRent">
 
 
 <style>
 
 /* =====================================================
-   DASHBOARD RESET
+   RESET
 ===================================================== */
 
 *{
@@ -54,7 +46,7 @@ body{
 
 
 /* =====================================================
-   SKYRENT FULL PAGE LOADING SCREEN
+   LOADING SCREEN
 ===================================================== */
 
 #loadingScreen{
@@ -76,9 +68,6 @@ body{
     opacity:1;
     transition:opacity .25s ease;
 }
-
-
-/* LOADING SKY EFFECT */
 
 #loadingScreen::before{
     content:"";
@@ -102,9 +91,6 @@ body{
     left:-100px;
 }
 
-
-/* LOADING CONTENT */
-
 .loading-content{
     position:relative;
     z-index:2;
@@ -115,28 +101,19 @@ body{
     text-align:center;
 }
 
-
-/* LOGO */
-
 .loading-logo{
     width:180px;
     max-width:65vw;
     height:auto;
     display:block;
     object-fit:contain;
-    filter:
-        drop-shadow(
-            0 5px 15px rgba(0,0,0,.25)
-        );
-    animation:
-        logoFloat 2s ease-in-out infinite;
+    filter:drop-shadow(
+        0 5px 15px rgba(0,0,0,.25)
+    );
+    animation:logoFloat 2s ease-in-out infinite;
 }
 
-
-/* LOGO ANIMATION */
-
 @keyframes logoFloat{
-
     0%,100%{
         transform:translateY(0);
     }
@@ -144,34 +121,23 @@ body{
     50%{
         transform:translateY(-6px);
     }
-
 }
-
-
-/* SPINNER */
 
 .loading-spinner{
     width:42px;
     height:42px;
     margin-top:28px;
     border-radius:50%;
-    border:
-        4px solid rgba(255,255,255,.25);
+    border:4px solid rgba(255,255,255,.25);
     border-top-color:white;
-    animation:
-        loadingSpin .8s linear infinite;
+    animation:loadingSpin .8s linear infinite;
 }
 
 @keyframes loadingSpin{
-
     to{
         transform:rotate(360deg);
     }
-
 }
-
-
-/* LOADING TEXT */
 
 .loading-title{
     margin-top:18px;
@@ -232,20 +198,14 @@ body{
     padding:22px 20px;
 }
 
-
-/* =====================================================
-   LOGO
-===================================================== */
-
 .logo-img{
     width:145px;
     height:auto;
     display:block;
     object-fit:contain;
-    filter:
-        drop-shadow(
-            0 2px 5px rgba(0,0,0,.20)
-        );
+    filter:drop-shadow(
+        0 2px 5px rgba(0,0,0,.20)
+    );
 }
 
 
@@ -256,8 +216,7 @@ body{
 .welcome{
     position:relative;
     z-index:5;
-    padding:
-        8px 22px 28px;
+    padding:8px 22px 28px;
     color:white;
     transform:translateY(-8px);
 }
@@ -272,8 +231,7 @@ body{
     font-size:23px;
     font-weight:500;
     line-height:1.2;
-    text-shadow:
-        0 2px 6px rgba(0,0,0,.20);
+    text-shadow:0 2px 6px rgba(0,0,0,.20);
 }
 
 .welcome p{
@@ -285,7 +243,7 @@ body{
 
 
 /* =====================================================
-   MAIN CONTAINER
+   MAIN
 ===================================================== */
 
 .container{
@@ -319,17 +277,13 @@ body{
         0 15px 35px rgba(7,70,150,.28);
 }
 
-
-/* CARD LIGHT EFFECT */
-
 .atm-card::before{
     content:"";
     position:absolute;
     width:220px;
     height:220px;
     border-radius:50%;
-    background:
-        rgba(255,255,255,.10);
+    background:rgba(255,255,255,.10);
     top:-120px;
     right:-70px;
 }
@@ -340,14 +294,10 @@ body{
     width:170px;
     height:170px;
     border-radius:50%;
-    background:
-        rgba(255,255,255,.06);
+    background:rgba(255,255,255,.06);
     bottom:-100px;
     left:-50px;
 }
-
-
-/* CARD TOP */
 
 .atm-card-top{
     position:relative;
@@ -374,9 +324,6 @@ body{
     opacity:.8;
 }
 
-
-/* CHIP */
-
 .card-chip{
     position:relative;
     z-index:2;
@@ -401,8 +348,7 @@ body{
     top:0;
     bottom:0;
     width:1px;
-    background:
-        rgba(80,50,0,.35);
+    background:rgba(80,50,0,.35);
 }
 
 .card-chip::after{
@@ -412,12 +358,8 @@ body{
     left:0;
     right:0;
     height:1px;
-    background:
-        rgba(80,50,0,.35);
+    background:rgba(80,50,0,.35);
 }
-
-
-/* CARD USER INFORMATION */
 
 .card-user{
     position:relative;
@@ -442,9 +384,6 @@ body{
     letter-spacing:.5px;
 }
 
-
-/* CARD BALANCE */
-
 .card-balance{
     position:relative;
     z-index:2;
@@ -465,9 +404,6 @@ body{
     font-weight:900;
     letter-spacing:-.5px;
 }
-
-
-/* CARD ACTIONS */
 
 .card-actions{
     position:relative;
@@ -495,19 +431,14 @@ body{
 }
 
 .card-withdraw{
-    background:
-        rgba(255,255,255,.14);
+    background:rgba(255,255,255,.14);
     color:white;
-    border:
-        1px solid rgba(255,255,255,.35);
+    border:1px solid rgba(255,255,255,.35);
 }
 
 .card-action:active{
     transform:scale(.97);
 }
-
-
-/* CARD NUMBER */
 
 .card-number{
     position:absolute;
@@ -518,9 +449,6 @@ body{
     letter-spacing:2px;
     opacity:.35;
 }
-
-
-/* CONTACTLESS */
 
 .contactless{
     position:absolute;
@@ -539,8 +467,7 @@ body{
 
 .stats{
     display:grid;
-    grid-template-columns:
-        repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:9px;
     margin-top:13px;
 }
@@ -572,18 +499,13 @@ body{
     word-break:break-word;
 }
 
-
-/* =====================================================
-   DATA LOADING
-===================================================== */
-
 .data-loading{
     opacity:.65;
 }
 
 
 /* =====================================================
-   INSTALL SKYRENT APP
+   INSTALL APP
 ===================================================== */
 
 .install-app-button{
@@ -619,8 +541,7 @@ body{
     height:45px;
     flex-shrink:0;
     border-radius:14px;
-    background:
-        rgba(255,255,255,.18);
+    background:rgba(255,255,255,.18);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -667,8 +588,7 @@ body{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin:
-        24px 3px 11px;
+    margin:24px 3px 11px;
 }
 
 .section-header h2{
@@ -684,7 +604,7 @@ body{
 
 
 /* =====================================================
-   INVESTMENT CARD
+   INVESTMENT
 ===================================================== */
 
 .investment-card{
@@ -709,8 +629,7 @@ body{
     right:-10px;
     bottom:-20px;
     font-size:95px;
-    color:
-        rgba(7,87,201,.05);
+    color:rgba(7,87,201,.05);
     transform:rotate(-12deg);
 }
 
@@ -765,9 +684,6 @@ body{
     gap:9px;
 }
 
-
-/* BASE LIST ITEM */
-
 .quick-list-item{
     width:100%;
     border:none;
@@ -788,9 +704,6 @@ body{
     transform:scale(.98);
 }
 
-
-/* CRAFTS */
-
 .quick-crafts{
     background:
         linear-gradient(
@@ -808,9 +721,6 @@ body{
 .quick-crafts .quick-list-arrow{
     color:#0757c9;
 }
-
-
-/* TRANSACTIONS */
 
 .quick-transactions{
     background:
@@ -830,9 +740,6 @@ body{
     color:#17834d;
 }
 
-
-/* PROFILE */
-
 .quick-profile{
     background:
         linear-gradient(
@@ -850,9 +757,6 @@ body{
 .quick-profile .quick-list-arrow{
     color:#7044b8;
 }
-
-
-/* GIFT CODES */
 
 .quick-gift{
     background:
@@ -872,9 +776,6 @@ body{
     color:#d23f69;
 }
 
-
-/* CUSTOMER SERVICE */
-
 .quick-support{
     background:
         linear-gradient(
@@ -892,9 +793,6 @@ body{
 .quick-support .quick-list-arrow{
     color:#b87800;
 }
-
-
-/* ABOUT SKYRENT */
 
 .quick-about{
     background:
@@ -914,9 +812,6 @@ body{
     color:#0757c9;
 }
 
-
-/* QUICK ICON */
-
 .quick-list-icon{
     width:43px;
     height:43px;
@@ -927,9 +822,6 @@ body{
     justify-content:center;
     font-size:21px;
 }
-
-
-/* QUICK INFO */
 
 .quick-list-info{
     flex:1;
@@ -950,9 +842,6 @@ body{
     line-height:1.3;
 }
 
-
-/* QUICK ARROW */
-
 .quick-list-arrow{
     flex-shrink:0;
     margin-left:8px;
@@ -962,7 +851,7 @@ body{
 
 
 /* =====================================================
-   INFO BANNER
+   INFO
 ===================================================== */
 
 .info-banner{
@@ -998,11 +887,6 @@ body{
     opacity:.9;
 }
 
-
-/* =====================================================
-   REFRESH STATUS
-===================================================== */
-
 .refresh-status{
     text-align:center;
     margin-top:9px;
@@ -1014,7 +898,7 @@ body{
 
 
 /* =====================================================
-   BOTTOM NAVIGATION
+   BOTTOM NAV
 ===================================================== */
 
 .bottom-nav{
@@ -1023,15 +907,12 @@ body{
     right:0;
     bottom:0;
     height:78px;
-    background:
-        rgba(255,255,255,.97);
-    border-top:
-        1px solid #e8edf4;
+    background:rgba(255,255,255,.97);
+    border-top:1px solid #e8edf4;
     box-shadow:
         0 -5px 20px rgba(20,60,110,.10);
     display:grid;
-    grid-template-columns:
-        repeat(5,1fr);
+    grid-template-columns:repeat(5,1fr);
     z-index:9999;
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
@@ -1059,209 +940,194 @@ body{
 
 
 /* =====================================================
-   ANNOUNCEMENT POPUP
+   SKYRENT ANNOUNCEMENT SLIDER
 ===================================================== */
 
 #announcementOverlay{
-
     position:fixed;
-
     inset:0;
-
     z-index:999998;
-
     display:none;
-
     align-items:center;
-
     justify-content:center;
-
-    /*
-       IMPORTANT:
-       No dark background.
-       The dashboard remains visible.
-    */
-
-    background:transparent;
-
-    pointer-events:none;
+    padding:12px;
+    background:rgba(0,35,80,.78);
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
 }
-
 
 #announcementOverlay.show{
-
     display:flex;
-
 }
 
-
-.announcement-popup{
-
-    width:310px;
-
-    max-width:88vw;
-
+.announcement-slider{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    max-height:90vh;
     background:#ffffff;
-
-    border-radius:22px;
-
-    padding:22px 20px 18px;
-
-    text-align:center;
-
+    border-radius:24px;
+    overflow:hidden;
     box-shadow:
-        0 18px 45px rgba(20,60,110,.28);
-
-    border:1px solid #e7eef8;
-
-    pointer-events:auto;
-
-    animation:
-        announcementPop .25s ease;
-
+        0 20px 60px rgba(0,0,0,.35);
+    animation:announcementPop .25s ease;
 }
-
 
 @keyframes announcementPop{
-
     from{
-
         opacity:0;
-
-        transform:scale(.88);
-
+        transform:scale(.92);
     }
 
     to{
-
         opacity:1;
-
         transform:scale(1);
-
     }
-
 }
 
 
-.announcement-icon{
+/* =====================================================
+   IMPORTANT:
+   VIEWPORT CLIPS THE SLIDES
+===================================================== */
 
-    width:54px;
+.announcement-viewport{
+    width:100%;
+    overflow:hidden;
+    background:#f5f8fc;
+}
 
-    height:54px;
-
-    margin:0 auto 12px;
-
-    border-radius:17px;
-
+.announcement-track{
     display:flex;
+    width:100%;
+    overflow:visible;
+    touch-action:pan-y;
+    transition:transform .35s ease;
+    will-change:transform;
+}
 
-    align-items:center;
-
+.announcement-slide{
+    flex:0 0 100%;
+    width:100%;
+    min-width:100%;
+    display:flex;
     justify-content:center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #e5f1ff,
-            #d5e9ff
-        );
-
-    font-size:28px;
-
+    align-items:center;
+    background:#f5f8fc;
 }
 
-
-.announcement-popup h2{
-
-    margin:0;
-
-    color:#0757c9;
-
-    font-size:19px;
-
-    line-height:1.3;
-
-    font-weight:900;
-
-}
-
-
-.announcement-popup p{
-
-    margin:13px 0 18px;
-
-    color:#3f4b5d;
-
-    font-size:14px;
-
-    line-height:1.65;
-
-    font-weight:500;
-
-    white-space:pre-line;
-
-}
-
-
-.announcement-primary{
-
+.announcement-slide img{
     width:100%;
+    height:auto;
+    max-height:68vh;
+    object-fit:contain;
+    display:block;
+}
 
+
+/* =====================================================
+   CLOSE X
+===================================================== */
+
+.announcement-x{
+    position:absolute;
+    top:10px;
+    right:10px;
+    z-index:20;
+    width:38px;
+    height:38px;
     border:none;
-
-    border-radius:13px;
-
-    padding:12px 15px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0757c9,
-            #08a3ef
-        );
-
-    color:white;
-
-    font-size:13px;
-
-    font-weight:800;
-
+    border-radius:50%;
+    background:rgba(255,255,255,.94);
+    color:#25344b;
+    font-size:25px;
+    line-height:38px;
+    text-align:center;
     cursor:pointer;
-
     box-shadow:
-        0 6px 15px rgba(7,87,201,.18);
-
+        0 4px 12px rgba(0,0,0,.15);
 }
 
 
-.announcement-close{
+/* =====================================================
+   DOTS
+===================================================== */
 
-    width:100%;
+.announcement-dots{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:11px 10px 8px;
+    background:white;
+}
 
+.announcement-dots span{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#cbd8e6;
+    transition:
+        width .2s ease,
+        background .2s ease;
+}
+
+.announcement-dots span.active{
+    width:21px;
+    border-radius:10px;
+    background:#0757c9;
+}
+
+
+/* =====================================================
+   PREVIOUS / NEXT
+===================================================== */
+
+.announcement-controls{
+    display:flex;
+    justify-content:space-between;
+    padding:2px 16px 8px;
+    background:white;
+}
+
+.announcement-controls button{
+    width:40px;
+    height:40px;
     border:none;
-
-    background:transparent;
-
-    margin-top:9px;
-
-    padding:9px;
-
-    color:#687386;
-
-    font-size:12px;
-
-    font-weight:700;
-
+    border-radius:50%;
+    background:#edf5ff;
+    color:#0757c9;
+    font-size:27px;
+    line-height:40px;
     cursor:pointer;
+    transition:
+        transform .15s ease,
+        background .15s ease;
+}
 
+.announcement-controls button:active{
+    transform:scale(.92);
 }
 
 
-.announcement-primary:active,
-.announcement-close:active{
+/* =====================================================
+   CLOSE ANNOUNCEMENT
+===================================================== */
 
-    transform:scale(.98);
+.announcement-done{
+    width:100%;
+    border:none;
+    background:white;
+    border-top:1px solid #edf1f6;
+    padding:14px;
+    color:#687386;
+    font-size:12px;
+    font-weight:800;
+    cursor:pointer;
+}
 
+.announcement-done:active{
+    background:#f5f8fc;
 }
 
 
@@ -1357,26 +1223,20 @@ body{
         width:155px;
     }
 
-    .announcement-popup{
-        width:300px;
-        padding:20px 17px 16px;
+    .announcement-slider{
+        max-width:100%;
+        border-radius:20px;
     }
 
-    .announcement-popup h2{
-        font-size:18px;
+    .announcement-slide img{
+        max-height:63vh;
     }
 
-    .announcement-popup p{
-        font-size:14px;
-        line-height:1.6;
+    .announcement-controls{
+        padding-left:12px;
+        padding-right:12px;
     }
-
 }
-
-
-/* =====================================================
-   VERY SMALL DEVICES
-===================================================== */
 
 @media(max-width:330px){
 
@@ -1389,14 +1249,9 @@ body{
         height:38px;
     }
 
-    .announcement-popup{
-        width:285px;
+    .announcement-slide img{
+        max-height:58vh;
     }
-
-    .announcement-popup p{
-        font-size:13px;
-    }
-
 }
 
 </style>
@@ -1408,43 +1263,70 @@ body{
 
 
 <!-- =====================================================
-     SKYRENT ANNOUNCEMENT POPUP
+     SKYRENT ANNOUNCEMENT SLIDER
 ===================================================== -->
 
 <div id="announcementOverlay">
 
-    <div class="announcement-popup">
-
-        <div class="announcement-icon">
-            📢
-        </div>
-
-        <h2 id="announcementTitle">
-            SkyRent Important Announcement
-        </h2>
-
-        <p id="announcementMessage">
-            SkyRent is officially launching tomorrow!
-
-            Please stay connected to our Official Telegram
-            Group and Official Channel for the latest
-            announcements, updates, and important information.
-        </p>
+    <div class="announcement-slider">
 
         <button
-            id="announcementPrimary"
-            class="announcement-primary"
+            id="announcementX"
+            class="announcement-x"
             type="button"
+            aria-label="Close"
         >
-            View Official Links
+            ×
         </button>
 
+
+        <!-- IMPORTANT:
+             VIEWPORT IS NOW SEPARATE FROM TRACK
+        -->
+
+        <div class="announcement-viewport">
+
+            <div
+                id="announcementTrack"
+                class="announcement-track"
+            ></div>
+
+        </div>
+
+
+        <div
+            id="announcementDots"
+            class="announcement-dots"
+        ></div>
+
+
+        <div class="announcement-controls">
+
+            <button
+                id="announcementPrev"
+                type="button"
+                aria-label="Previous"
+            >
+                ‹
+            </button>
+
+            <button
+                id="announcementNext"
+                type="button"
+                aria-label="Next"
+            >
+                ›
+            </button>
+
+        </div>
+
+
         <button
-            id="announcementClose"
-            class="announcement-close"
+            id="announcementDone"
+            class="announcement-done"
             type="button"
         >
-            Got It
+            Close Announcement
         </button>
 
     </div>
@@ -1453,7 +1335,7 @@ body{
 
 
 <!-- =====================================================
-     FULL PAGE LOADING SCREEN
+     LOADING SCREEN
 ===================================================== -->
 
 <div id="loadingScreen">
@@ -1518,30 +1400,24 @@ body{
 
 
 <!-- =====================================================
-     MAIN CONTENT
+     MAIN
 ===================================================== -->
 
 <main class="container">
 
 
-<!-- =====================================================
-     VIRTUAL ATM CARD
-===================================================== -->
+<!-- VIRTUAL ATM CARD -->
 
 <div class="atm-card">
 
     <div class="atm-card-top">
 
         <div class="card-brand">
-
             ✈ Sky<span>Rent</span>
-
         </div>
 
         <div class="card-type">
-
             VIRTUAL ACCOUNT
-
         </div>
 
     </div>
@@ -1551,9 +1427,7 @@ body{
 
 
     <div class="contactless">
-
         )))
-
     </div>
 
 
@@ -1563,18 +1437,14 @@ body{
             id="cardUserName"
             class="card-user-name"
         >
-
             SKYRENT MEMBER
-
         </div>
 
         <div
             id="cardUserPhone"
             class="card-user-phone"
         >
-
             +63 000 000 0000
-
         </div>
 
     </div>
@@ -1583,27 +1453,21 @@ body{
     <div class="card-balance">
 
         <div class="card-balance-label">
-
             Available Balance
-
         </div>
 
         <div
             id="accountBalance"
             class="data-loading"
         >
-
             Loading...
-
         </div>
 
     </div>
 
 
     <div class="card-number">
-
         SKY • RENT • 2026
-
     </div>
 
 
@@ -1612,19 +1476,17 @@ body{
         <button
             class="card-action card-deposit"
             onclick="deposit()"
+            type="button"
         >
-
             ＋ Deposit
-
         </button>
 
         <button
             class="card-action card-withdraw"
             onclick="withdraw()"
+            type="button"
         >
-
             ↔ Withdraw
-
         </button>
 
     </div>
@@ -1632,9 +1494,7 @@ body{
 </div>
 
 
-<!-- =====================================================
-     STATISTICS
-===================================================== -->
+<!-- STATISTICS -->
 
 <div class="stats">
 
@@ -1652,9 +1512,7 @@ body{
             id="totalDeposited"
             class="data-loading"
         >
-
             Loading...
-
         </b>
 
     </div>
@@ -1674,9 +1532,7 @@ body{
             id="totalEarnings"
             class="data-loading"
         >
-
             Loading...
-
         </b>
 
     </div>
@@ -1696,9 +1552,7 @@ body{
             id="totalWithdrawn"
             class="data-loading"
         >
-
             Loading...
-
         </b>
 
     </div>
@@ -1709,13 +1563,10 @@ body{
 <div
     id="refreshStatus"
     class="refresh-status"
->
-</div>
+></div>
 
 
-<!-- =====================================================
-     INSTALL SKYRENT APP
-===================================================== -->
+<!-- INSTALL APP -->
 
 <button
     id="installAppButton"
@@ -1753,9 +1604,7 @@ body{
 </button>
 
 
-<!-- =====================================================
-     MY INVESTMENT
-===================================================== -->
+<!-- MY INVESTMENT -->
 
 <div class="section-header">
 
@@ -1804,9 +1653,7 @@ body{
 </div>
 
 
-<!-- =====================================================
-     QUICK ACTIONS
-===================================================== -->
+<!-- QUICK ACTIONS -->
 
 <div class="section-header">
 
@@ -1820,11 +1667,10 @@ body{
 <div class="quick-list">
 
 
-<!-- CRAFTS -->
-
 <button
     class="quick-list-item quick-crafts"
     onclick="goCrafts()"
+    type="button"
 >
 
     <div class="quick-list-icon">
@@ -1850,11 +1696,10 @@ body{
 </button>
 
 
-<!-- TRANSACTIONS -->
-
 <button
     class="quick-list-item quick-transactions"
     onclick="goTransactions()"
+    type="button"
 >
 
     <div class="quick-list-icon">
@@ -1880,11 +1725,10 @@ body{
 </button>
 
 
-<!-- PROFILE -->
-
 <button
     class="quick-list-item quick-profile"
     onclick="goProfile()"
+    type="button"
 >
 
     <div class="quick-list-icon">
@@ -1910,11 +1754,10 @@ body{
 </button>
 
 
-<!-- GIFT CODES -->
-
 <button
     class="quick-list-item quick-gift"
     onclick="goGiftCodes()"
+    type="button"
 >
 
     <div class="quick-list-icon">
@@ -1940,11 +1783,10 @@ body{
 </button>
 
 
-<!-- CUSTOMER SERVICE -->
-
 <button
     class="quick-list-item quick-support"
     onclick="goCustomerService()"
+    type="button"
 >
 
     <div class="quick-list-icon">
@@ -1970,11 +1812,10 @@ body{
 </button>
 
 
-<!-- ABOUT SKYRENT -->
-
 <button
     class="quick-list-item quick-about"
     onclick="goAbout()"
+    type="button"
 >
 
     <div class="quick-list-icon">
@@ -2003,9 +1844,7 @@ body{
 </div>
 
 
-<!-- =====================================================
-     INFO
-===================================================== -->
+<!-- INFO -->
 
 <div class="info-banner">
 
@@ -2037,81 +1876,79 @@ body{
 
 <nav class="bottom-nav">
 
+    <button
+        class="nav-item active"
+        type="button"
+        onclick="window.location.href='dashboard.html'"
+    >
 
-<button
-    class="nav-item active"
-    type="button"
-    onclick="window.location.href='dashboard.html'"
->
+        <span class="nav-icon">
+            🏠
+        </span>
 
-    <span class="nav-icon">
-        🏠
-    </span>
+        Home
 
-    Home
-
-</button>
-
-
-<button
-    class="nav-item"
-    type="button"
-    onclick="window.location.href='crafts.html'"
->
-
-    <span class="nav-icon">
-        ✈️
-    </span>
-
-    Crafts
-
-</button>
+    </button>
 
 
-<button
-    class="nav-item"
-    type="button"
-    onclick="window.location.href='network.html'"
->
+    <button
+        class="nav-item"
+        type="button"
+        onclick="window.location.href='crafts.html'"
+    >
 
-    <span class="nav-icon">
-        👥
-    </span>
+        <span class="nav-icon">
+            ✈️
+        </span>
 
-    Network
+        Crafts
 
-</button>
-
-
-<button
-    class="nav-item"
-    type="button"
-    onclick="window.location.href='earnings.html'"
->
-
-    <span class="nav-icon">
-        📊
-    </span>
-
-    Earnings
-
-</button>
+    </button>
 
 
-<button
-    class="nav-item"
-    type="button"
-    onclick="logout()"
->
+    <button
+        class="nav-item"
+        type="button"
+        onclick="window.location.href='network.html'"
+    >
 
-    <span class="nav-icon">
-        🚪
-    </span>
+        <span class="nav-icon">
+            👥
+        </span>
 
-    Logout
+        Network
 
-</button>
+    </button>
 
+
+    <button
+        class="nav-item"
+        type="button"
+        onclick="window.location.href='earnings.html'"
+    >
+
+        <span class="nav-icon">
+            📊
+        </span>
+
+        Earnings
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        type="button"
+        onclick="logout()"
+    >
+
+        <span class="nav-icon">
+            🚪
+        </span>
+
+        Logout
+
+    </button>
 
 </nav>
 
@@ -2179,7 +2016,6 @@ const firebaseConfig = {
 
     appId:
         "1:572678456448:web:6b7132351515742dd09265"
-
 };
 
 
@@ -2190,10 +2026,8 @@ const firebaseConfig = {
 const app =
     initializeApp(firebaseConfig);
 
-
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
@@ -2216,7 +2050,6 @@ function formatMoney(amount){
                 maximumFractionDigits:2
             }
         );
-
 }
 
 
@@ -2239,28 +2072,18 @@ function isApprovedDeposit(data){
         status === "cancelled" ||
         status === "declined"
     ){
-
         return false;
-
     }
 
 
     return (
-
         data.approved === true ||
-
         data.credited === true ||
-
         status === "approved" ||
-
         status === "deposit successful" ||
-
         status === "successful" ||
-
         status === "completed"
-
     );
-
 }
 
 
@@ -2283,42 +2106,31 @@ function isApprovedWithdrawal(data){
         status === "cancelled" ||
         status === "declined"
     ){
-
         return false;
-
     }
 
 
     return (
-
         status === "approved" ||
-
         status === "withdrawal successful" ||
-
         status === "successful" ||
-
         status === "completed"
-
     );
-
 }
 
 
 /* =====================================================
-   GET TRANSACTION AMOUNT
+   TRANSACTION AMOUNT
 ===================================================== */
 
 function getTransactionAmount(data){
 
     return Number(
-
         data.amount ??
         data.amountValue ??
         data.netAmount ??
         0
-
     ) || 0;
-
 }
 
 
@@ -2338,35 +2150,26 @@ function isRejectedCommission(data){
 
 
     return (
-
         status === "reversed" ||
-
         status === "cancelled" ||
-
         status === "canceled" ||
-
         status === "rejected"
-
     );
-
 }
 
 
 /* =====================================================
-   GET COMMISSION AMOUNT
+   COMMISSION AMOUNT
 ===================================================== */
 
 function getCommissionAmount(data){
 
     return Number(
-
         data.commissionAmount ??
         data.commission ??
         data.amount ??
         0
-
     ) || 0;
-
 }
 
 
@@ -2378,11 +2181,6 @@ async function loadUserDashboard(user){
 
     try{
 
-
-        /* =================================================
-           USER DOCUMENT
-        ================================================= */
-
         const userRef =
             doc(
                 db,
@@ -2392,9 +2190,7 @@ async function loadUserDashboard(user){
 
 
         const userSnapshot =
-            await getDoc(
-                userRef
-            );
+            await getDoc(userRef);
 
 
         if(
@@ -2431,17 +2227,12 @@ async function loadUserDashboard(user){
 
 
             return;
-
         }
 
 
         const userData =
             userSnapshot.data();
 
-
-        /* =================================================
-           USER NAME
-        ================================================= */
 
         const name =
             userData.name ||
@@ -2460,10 +2251,6 @@ async function loadUserDashboard(user){
             name;
 
 
-        /* =================================================
-           PHONE
-        ================================================= */
-
         const phone =
             userData.phone ||
             "+63 000 000 0000";
@@ -2475,10 +2262,6 @@ async function loadUserDashboard(user){
             phone;
 
 
-        /* =================================================
-           BALANCE
-        ================================================= */
-
         const balance =
             Number(
                 userData.balance
@@ -2488,9 +2271,7 @@ async function loadUserDashboard(user){
         document.getElementById(
             "accountBalance"
         ).innerText =
-            formatMoney(
-                balance
-            );
+            formatMoney(balance);
 
 
         document.getElementById(
@@ -2499,17 +2280,6 @@ async function loadUserDashboard(user){
             "data-loading"
         );
 
-
-        /* =================================================
-           TRANSACTIONS IN PARALLEL
-
-           IMPORTANT:
-
-           We are reading the EXISTING commissions
-           collection only.
-
-           We are NOT creating new commission records.
-        ================================================= */
 
         const depositsPromise =
             getDocs(
@@ -2559,12 +2329,6 @@ async function loadUserDashboard(user){
             );
 
 
-        /* =================================================
-           REFERRAL COMMISSIONS
-
-           Same source used by My Network.
-        ================================================= */
-
         const commissionsPromise =
             getDocs(
                 query(
@@ -2582,37 +2346,26 @@ async function loadUserDashboard(user){
 
 
         const [
-
             depositsSnapshot,
-
             earningsSnapshot,
-
             withdrawalsSnapshot,
-
             commissionsSnapshot
-
         ] = await Promise.all([
 
             depositsPromise,
-
             earningsPromise,
-
             withdrawalsPromise,
-
             commissionsPromise
 
         ]);
 
 
-        /* =================================================
-           TOTAL DEPOSITED
-        ================================================= */
+        /* TOTAL DEPOSITED */
 
         let totalDeposited = 0;
 
 
         depositsSnapshot.forEach(
-
             function(depositDoc){
 
                 const depositData =
@@ -2633,7 +2386,6 @@ async function loadUserDashboard(user){
                 }
 
             }
-
         );
 
 
@@ -2652,22 +2404,7 @@ async function loadUserDashboard(user){
         );
 
 
-        /* =================================================
-           TOTAL EARNINGS
-
-           Existing system:
-
-           Registration Bonus
-           +
-           Earnings Collection
-
-           NEW:
-
-           +
-           Credited Referral Commissions
-
-           This does NOT modify the balance or commissions.
-        ================================================= */
+        /* TOTAL EARNINGS */
 
         const registrationBonus =
             Number(
@@ -2675,15 +2412,10 @@ async function loadUserDashboard(user){
             ) || 0;
 
 
-        /* -----------------------------------------------
-           DAILY / OTHER EARNINGS
-        ------------------------------------------------ */
-
         let dailyEarnings = 0;
 
 
         earningsSnapshot.forEach(
-
             function(earningDoc){
 
                 const earningData =
@@ -2700,19 +2432,13 @@ async function loadUserDashboard(user){
                     earningAmount;
 
             }
-
         );
 
-
-        /* -----------------------------------------------
-           REFERRAL COMMISSIONS
-        ------------------------------------------------ */
 
         let referralCommissions = 0;
 
 
         commissionsSnapshot.forEach(
-
             function(commissionDoc){
 
                 const commissionData =
@@ -2724,9 +2450,7 @@ async function loadUserDashboard(user){
                         commissionData
                     )
                 ){
-
                     return;
-
                 }
 
 
@@ -2736,20 +2460,12 @@ async function loadUserDashboard(user){
                     );
 
             }
-
         );
 
 
-        /* -----------------------------------------------
-           FINAL TOTAL
-        ------------------------------------------------ */
-
         const totalEarnings =
-
             registrationBonus +
-
             dailyEarnings +
-
             referralCommissions;
 
 
@@ -2769,37 +2485,22 @@ async function loadUserDashboard(user){
 
 
         console.log(
-
             "SkyRent Total Earnings:",
-
             {
-
-                registrationBonus:
-                    registrationBonus,
-
-                dailyEarnings:
-                    dailyEarnings,
-
-                referralCommissions:
-                    referralCommissions,
-
-                totalEarnings:
-                    totalEarnings
-
+                registrationBonus,
+                dailyEarnings,
+                referralCommissions,
+                totalEarnings
             }
-
         );
 
 
-        /* =================================================
-           TOTAL WITHDRAWN
-        ================================================= */
+        /* TOTAL WITHDRAWN */
 
         let totalWithdrawn = 0;
 
 
         withdrawalsSnapshot.forEach(
-
             function(withdrawalDoc){
 
                 const withdrawalData =
@@ -2820,7 +2521,6 @@ async function loadUserDashboard(user){
                 }
 
             }
-
         );
 
 
@@ -2839,9 +2539,7 @@ async function loadUserDashboard(user){
         );
 
 
-        /* =================================================
-           ACTIVE INVESTMENTS
-        ================================================= */
+        /* ACTIVE INVESTMENTS */
 
         const investmentCount =
             Number(
@@ -2871,17 +2569,11 @@ async function loadUserDashboard(user){
             document.getElementById(
                 "investmentCount"
             ).innerText =
-
                 investmentCount +
-
                 (
-
                     investmentCount === 1
-
                         ? " Active Investment"
-
                         : " Active Investments"
-
                 );
 
 
@@ -2900,9 +2592,7 @@ async function loadUserDashboard(user){
         );
 
 
-        /* =================================================
-           REFRESH STATUS
-        ================================================= */
+        /* REFRESH STATUS */
 
         const refreshStatus =
             document.getElementById(
@@ -2917,20 +2607,16 @@ async function loadUserDashboard(user){
 
 
             setTimeout(
-
                 function(){
 
                     refreshStatus.innerText =
                         "";
 
                 },
-
                 2000
-
             );
 
         }
-
 
     }
 
@@ -2940,12 +2626,6 @@ async function loadUserDashboard(user){
             "Error loading dashboard:",
             error
         );
-
-        /*
-           IMPORTANT:
-
-           Do NOT redirect or logout here.
-        */
 
     }
 
@@ -2970,21 +2650,14 @@ function hideLoadingScreen(){
             "0";
 
 
-        loadingScreen.style.transition =
-            "opacity .25s ease";
-
-
         setTimeout(
-
             function(){
 
                 loadingScreen.style.display =
                     "none";
 
             },
-
             250
-
         );
 
     }
@@ -2993,73 +2666,41 @@ function hideLoadingScreen(){
 
 
 /* =====================================================
-   SKYRENT ANNOUNCEMENT SETTINGS
+   SKYRENT ANNOUNCEMENTS
 ===================================================== */
 
 /*
-   CHANGE YOUR ANNOUNCEMENT HERE ANYTIME.
+   ADD OR REMOVE ANNOUNCEMENTS HERE.
 
-   enabled:
-   true  = show popup
-   false = hide popup
-
-   title:
-   Popup title
-
-   message:
-   Popup message
-
-   buttonText:
-   Text on blue button
-
-   buttonLink:
-   Page that opens when button is pressed
+   These four image files must be in the
+   same folder as dashboard.html.
 */
 
-const SKYRENT_ANNOUNCEMENT = {
+const SKYRENT_ANNOUNCEMENTS = [
 
-    enabled:true,
+    "announcement-1.png",
 
-    title:
-        "SkyRent Important Announcement",
+    "announcement-2.png",
 
-    message:
-        "We’re excited to officially open the SkyRent platform. Thank you for being part of our community!\n\n" +
-         "🕙 Service Hours: 10:00 AM - 8:00 PM\n" +
+    "announcement-3.png",
 
- " During service hours, members can request for:  \n" +
- " 💳 Recharge / Deposit \n" +
-" 💸 Withdrawal \n" +
-" 🎧 Customer Support\n\n" +
+    "announcement-4.png"
 
-"Please plan your recharge and withdrawal requests within the service hours above.\n\n" +
-        "Stay connected to our Official Telegram " +
-        "Group and Official Channel for the latest " +
-        "announcements, updates, and important information.",
+];
 
-    buttonText:
-        "View Official Links",
 
-    buttonLink:
-        "customer-service.html"
+let announcementIndex = 0;
 
-};
+let announcementStartX = 0;
+
+let announcementStartY = 0;
 
 
 /* =====================================================
-   SHOW SKYRENT ANNOUNCEMENT
+   SHOW ANNOUNCEMENT
 ===================================================== */
 
 function showSkyRentAnnouncement(){
-
-    if(
-        !SKYRENT_ANNOUNCEMENT.enabled
-    ){
-
-        return;
-
-    }
-
 
     const overlay =
         document.getElementById(
@@ -3067,79 +2708,197 @@ function showSkyRentAnnouncement(){
         );
 
 
-    const title =
+    const track =
         document.getElementById(
-            "announcementTitle"
+            "announcementTrack"
         );
 
 
-    const message =
+    const dots =
         document.getElementById(
-            "announcementMessage"
+            "announcementDots"
         );
 
 
-    const primaryButton =
-        document.getElementById(
-            "announcementPrimary"
-        );
-
-
-    if(!overlay){
+    if(
+        !overlay ||
+        !track ||
+        !dots ||
+        SKYRENT_ANNOUNCEMENTS.length === 0
+    ){
 
         return;
 
     }
 
 
-    if(title){
+    track.innerHTML =
+        SKYRENT_ANNOUNCEMENTS
+        .map(
+            function(image){
 
-        title.innerText =
-            SKYRENT_ANNOUNCEMENT.title;
+                return `
+
+                    <div
+                        class="announcement-slide"
+                    >
+
+                        <img
+                            src="${image}"
+                            alt="SkyRent Announcement"
+                        >
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+
+    dots.innerHTML =
+        SKYRENT_ANNOUNCEMENTS
+        .map(
+            function(_, index){
+
+                return `
+
+                    <span
+                        class="${
+                            index === 0
+                                ? "active"
+                                : ""
+                        }"
+                    ></span>
+
+                `;
+
+            }
+        )
+        .join("");
+
+
+    announcementIndex = 0;
+
+    updateAnnouncementSlide();
+
+    overlay.classList.add("show");
+
+}
+
+
+/* =====================================================
+   UPDATE ANNOUNCEMENT SLIDE
+===================================================== */
+
+function updateAnnouncementSlide(){
+
+    const track =
+        document.getElementById(
+            "announcementTrack"
+        );
+
+
+    const dots =
+        document.querySelectorAll(
+            "#announcementDots span"
+        );
+
+
+    if(!track){
+
+        return;
 
     }
 
 
-    if(message){
-
-        message.innerText =
-            SKYRENT_ANNOUNCEMENT.message;
-
-    }
+    track.style.transform =
+        "translateX(-" +
+        (announcementIndex * 100) +
+        "%)";
 
 
-    if(primaryButton){
+    dots.forEach(
+        function(dot, index){
 
-        primaryButton.innerText =
-            SKYRENT_ANNOUNCEMENT.buttonText;
+            dot.classList.toggle(
+                "active",
+                index === announcementIndex
+            );
 
-
-        primaryButton.onclick =
-            function(){
-
-                if(
-                    SKYRENT_ANNOUNCEMENT.buttonLink
-                ){
-
-                    window.location.href =
-                        SKYRENT_ANNOUNCEMENT.buttonLink;
-
-                }
-
-            };
-
-    }
-
-
-    overlay.classList.add(
-        "show"
+        }
     );
 
 }
 
 
 /* =====================================================
-   CLOSE SKYRENT ANNOUNCEMENT
+   NEXT ANNOUNCEMENT
+===================================================== */
+
+function nextAnnouncement(){
+
+    if(
+        SKYRENT_ANNOUNCEMENTS.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    announcementIndex++;
+
+    if(
+        announcementIndex >=
+        SKYRENT_ANNOUNCEMENTS.length
+    ){
+
+        announcementIndex = 0;
+
+    }
+
+
+    updateAnnouncementSlide();
+
+}
+
+
+/* =====================================================
+   PREVIOUS ANNOUNCEMENT
+===================================================== */
+
+function previousAnnouncement(){
+
+    if(
+        SKYRENT_ANNOUNCEMENTS.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    announcementIndex--;
+
+    if(
+        announcementIndex < 0
+    ){
+
+        announcementIndex =
+            SKYRENT_ANNOUNCEMENTS.length - 1;
+
+    }
+
+
+    updateAnnouncementSlide();
+
+}
+
+
+/* =====================================================
+   CLOSE ANNOUNCEMENT
 ===================================================== */
 
 function closeSkyRentAnnouncement(){
@@ -3162,23 +2921,146 @@ function closeSkyRentAnnouncement(){
 
 
 /* =====================================================
-   ANNOUNCEMENT CLOSE BUTTON
+   ANNOUNCEMENT BUTTONS
 ===================================================== */
 
-const announcementClose =
+const announcementNext =
     document.getElementById(
-        "announcementClose"
+        "announcementNext"
     );
 
 
-if(announcementClose){
+if(announcementNext){
 
-    announcementClose.addEventListener(
-
+    announcementNext.addEventListener(
         "click",
+        nextAnnouncement
+    );
 
+}
+
+
+const announcementPrev =
+    document.getElementById(
+        "announcementPrev"
+    );
+
+
+if(announcementPrev){
+
+    announcementPrev.addEventListener(
+        "click",
+        previousAnnouncement
+    );
+
+}
+
+
+const announcementDone =
+    document.getElementById(
+        "announcementDone"
+    );
+
+
+if(announcementDone){
+
+    announcementDone.addEventListener(
+        "click",
         closeSkyRentAnnouncement
+    );
 
+}
+
+
+const announcementX =
+    document.getElementById(
+        "announcementX"
+    );
+
+
+if(announcementX){
+
+    announcementX.addEventListener(
+        "click",
+        closeSkyRentAnnouncement
+    );
+
+}
+
+
+/* =====================================================
+   SWIPE SUPPORT
+===================================================== */
+
+const announcementTrack =
+    document.getElementById(
+        "announcementTrack"
+    );
+
+
+if(announcementTrack){
+
+    announcementTrack.addEventListener(
+        "touchstart",
+        function(event){
+
+            announcementStartX =
+                event.touches[0].clientX;
+
+            announcementStartY =
+                event.touches[0].clientY;
+
+        },
+        {
+            passive:true
+        }
+    );
+
+
+    announcementTrack.addEventListener(
+        "touchend",
+        function(event){
+
+            const endX =
+                event.changedTouches[0].clientX;
+
+            const endY =
+                event.changedTouches[0].clientY;
+
+
+            const distanceX =
+                announcementStartX -
+                endX;
+
+
+            const distanceY =
+                announcementStartY -
+                endY;
+
+
+            if(
+                Math.abs(distanceX) > 50 &&
+                Math.abs(distanceX) >
+                Math.abs(distanceY)
+            ){
+
+                if(distanceX > 0){
+
+                    nextAnnouncement();
+
+                }
+                else{
+
+                    previousAnnouncement();
+
+                }
+
+            }
+
+        },
+        {
+            passive:true
+        }
     );
 
 }
@@ -3197,9 +3079,7 @@ const announcementOverlay =
 if(announcementOverlay){
 
     announcementOverlay.addEventListener(
-
         "click",
-
         function(event){
 
             if(
@@ -3212,7 +3092,6 @@ if(announcementOverlay){
             }
 
         }
-
     );
 
 }
@@ -3223,14 +3102,8 @@ if(announcementOverlay){
 ===================================================== */
 
 onAuthStateChanged(
-
     auth,
-
     async function(user){
-
-        /* ---------------------------------------------
-           NOT LOGGED IN
-        --------------------------------------------- */
 
         if(!user){
 
@@ -3242,10 +3115,6 @@ onAuthStateChanged(
         }
 
 
-        /* ---------------------------------------------
-           CHECK DASHBOARD SESSION
-        --------------------------------------------- */
-
         const dashboardReady =
             sessionStorage.getItem(
                 "skyRentDashboardReady"
@@ -3256,14 +3125,6 @@ onAuthStateChanged(
             dashboardReady === "true"
         ){
 
-            /*
-               RETURNING BETWEEN PAGES
-
-               Dashboard stays visible immediately.
-
-               Firebase refreshes data in background.
-            */
-
             hideLoadingScreen();
 
 
@@ -3272,74 +3133,45 @@ onAuthStateChanged(
             );
 
 
-            /*
-               SHOW ANNOUNCEMENT
-            */
-
             setTimeout(
-
                 function(){
 
                     showSkyRentAnnouncement();
 
                 },
-
                 600
-
             );
 
         }
 
         else{
 
-            /*
-               FIRST DASHBOARD LOAD
-
-               Keep blue loading screen visible
-               while Firebase loads.
-            */
-
             await loadUserDashboard(
                 user
             );
 
 
-            /*
-               Mark session as ready.
-            */
-
             sessionStorage.setItem(
-
                 "skyRentDashboardReady",
-
                 "true"
-
             );
 
 
             hideLoadingScreen();
 
 
-            /*
-               SHOW ANNOUNCEMENT
-            */
-
             setTimeout(
-
                 function(){
 
                     showSkyRentAnnouncement();
 
                 },
-
                 600
-
             );
 
         }
 
     }
-
 );
 
 
@@ -3348,17 +3180,9 @@ onAuthStateChanged(
 ===================================================== */
 
 window.logout =
-
 async function(){
 
     try{
-
-        /*
-           Remove dashboard session flag.
-
-           Next login will show the full blue
-           loading screen again.
-        */
 
         sessionStorage.removeItem(
             "skyRentDashboardReady"
@@ -3397,7 +3221,6 @@ async function(){
 ===================================================== */
 
 window.goHome =
-
 function(){
 
     window.location.href =
@@ -3407,7 +3230,6 @@ function(){
 
 
 window.goCrafts =
-
 function(){
 
     window.location.href =
@@ -3417,7 +3239,6 @@ function(){
 
 
 window.goMyInvestment =
-
 function(){
 
     window.location.href =
@@ -3427,7 +3248,6 @@ function(){
 
 
 window.goTransactions =
-
 function(){
 
     window.location.href =
@@ -3437,7 +3257,6 @@ function(){
 
 
 window.goNetwork =
-
 function(){
 
     window.location.href =
@@ -3447,7 +3266,6 @@ function(){
 
 
 window.goEarnings =
-
 function(){
 
     window.location.href =
@@ -3457,7 +3275,6 @@ function(){
 
 
 window.goProfile =
-
 function(){
 
     window.location.href =
@@ -3467,7 +3284,6 @@ function(){
 
 
 window.goGiftCodes =
-
 function(){
 
     window.location.href =
@@ -3477,7 +3293,6 @@ function(){
 
 
 window.goCustomerService =
-
 function(){
 
     window.location.href =
@@ -3486,12 +3301,7 @@ function(){
 };
 
 
-/* =====================================================
-   ABOUT SKYRENT
-===================================================== */
-
 window.goAbout =
-
 function(){
 
     window.location.href =
@@ -3505,7 +3315,6 @@ function(){
 ===================================================== */
 
 window.deposit =
-
 function(){
 
     window.location.href =
@@ -3519,7 +3328,6 @@ function(){
 ===================================================== */
 
 window.withdraw =
-
 function(){
 
     window.location.href =
@@ -3532,8 +3340,7 @@ function(){
    SKYRENT APP INSTALL
 ===================================================== */
 
-let deferredInstallPrompt =
-    null;
+let deferredInstallPrompt = null;
 
 
 const installAppButton =
@@ -3542,44 +3349,24 @@ const installAppButton =
     );
 
 
-/* Chrome tells us that the PWA can be installed. */
-
 window.addEventListener(
-
     "beforeinstallprompt",
-
     function(event){
 
         event.preventDefault();
 
-
         deferredInstallPrompt =
             event;
 
-
-        console.log(
-            "SkyRent install prompt is available."
-        );
-
     }
-
 );
 
-
-/* User taps the Install button. */
 
 if(installAppButton){
 
     installAppButton.addEventListener(
-
         "click",
-
         async function(){
-
-            /*
-               If Chrome has provided the native
-               installation prompt, use it.
-            */
 
             if(
                 deferredInstallPrompt
@@ -3593,11 +3380,8 @@ if(installAppButton){
 
 
                 console.log(
-
                     "SkyRent installation:",
-
                     result.outcome
-
                 );
 
 
@@ -3610,37 +3394,21 @@ if(installAppButton){
             }
 
 
-            /*
-               If Chrome did not provide the
-               beforeinstallprompt event, show
-               instructions instead.
-            */
-
             alert(
-
                 "To install SkyRent:\n\n" +
-
                 "1. Tap the Chrome menu ⋮\n" +
-
                 "2. Select 'Install app' or 'Add to Home screen'\n" +
-
                 "3. Follow the installation instructions."
-
             );
 
         }
-
     );
 
 }
 
 
-/* Detect successful installation. */
-
 window.addEventListener(
-
     "appinstalled",
-
     function(){
 
         console.log(
@@ -3660,12 +3428,9 @@ window.addEventListener(
             null;
 
     }
-
 );
 
-
 </script>
-
 
 </body>
 
