@@ -1,1 +1,2221 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0" > <title>SkyRent Admin - Actual Funds</title> <style> *{ box-sizing:border-box; margin:0; padding:0; } body{ font-family:Arial,sans-serif; background:#f1f5f9; color:#0f172a; min-height:100vh; } .header{ background:linear-gradient( 135deg, #0757c9, #0284c7 ); color:white; padding:24px 18px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,.12); } .header h1{ font-size:24px; margin-bottom:7px; } .header p{ font-size:14px; opacity:.9; } .container{ width:100%; max-width:700px; margin:0 auto; padding:18px; } .notice{ background:#fff; border-left:5px solid #0757c9; border-radius:12px; padding:15px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,.06); } .notice strong{ display:block; color:#0757c9; margin-bottom:6px; } .notice p{ font-size:13px; line-height:1.5; color:#475569; } .main-card{ background:white; border-radius:18px; padding:22px 18px; text-align:center; box-shadow:0 5px 18px rgba(0,0,0,.08); margin-bottom:18px; } .main-label{ font-size:13px; color:#64748b; font-weight:bold; letter-spacing:.5px; margin-bottom:8px; } .main-total{ font-size:38px; font-weight:bold; color:#0757c9; margin-bottom:5px; } .main-sub{ font-size:12px; color:#64748b; } .cards{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px; } .card{ background:white; border-radius:16px; padding:18px 12px; box-shadow:0 4px 14px rgba(0,0,0,.07); text-align:center; } .card-title{ font-size:12px; color:#64748b; font-weight:bold; margin-bottom:8px; } .card-value{ font-size:22px; font-weight:bold; } .deposit-value{ color:#16a34a; } .withdraw-value{ color:#dc2626; } .breakdown{ background:white; border-radius:16px; padding:18px; box-shadow:0 4px 14px rgba(0,0,0,.07); margin-bottom:18px; } .breakdown h2{ font-size:17px; margin-bottom:15px; color:#0f172a; } .row{ display:flex; justify-content:space-between; align-items:center; padding:13px 0; border-bottom:1px solid #e2e8f0; } .row:last-child{ border-bottom:none; } .row span:first-child{ color:#64748b; font-size:14px; } .row span:last-child{ font-weight:bold; color:#0f172a; } .refresh{ width:100%; border:none; background:#0757c9; color:white; padding:14px; border-radius:12px; font-size:15px; font-weight:bold; cursor:pointer; } .refresh:active{ transform:scale(.98); } .status{ text-align:center; font-size:13px; color:#64748b; margin-top:12px; min-height:18px; } .session-box{ display:none; background:white; border-radius:16px; padding:22px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.08); } .session-box h2{ color:#dc2626; margin-bottom:10px; } .session-box p{ color:#64748b; font-size:14px; line-height:1.5; margin-bottom:15px; } .session-button{ border:none; background:#0757c9; color:white; padding:13px 20px; border-radius:10px; font-weight:bold; cursor:pointer; margin:4px; } .back-button{ background:#64748b; } .loading{ text-align:center; padding:35px 10px; color:#64748b; } .error{ color:#dc2626; } .footer{ text-align:center; padding:20px; color:#94a3b8; font-size:11px; } @media(max-width:420px){ .main-total{ font-size:32px; } .cards{ gap:9px; } .card{ padding:16px 8px; } } </style> </head> <body> <div class="header"> <h1>💰 Actual Funds Summary</h1> <p> Actual funds from unclassified records </p> </div> <div class="container"> <div id="loadingBox" class="loading" > Loading actual funds... </div> <div id="sessionBox" class="session-box" > <h2>Admin Session Not Detected</h2> <p> Firebase does not currently show an active administrator session on this page. No account was signed out by this page. </p> <button class="session-button" onclick="checkSession()" > 🔄 Check Again </button> <button class="session-button back-button" onclick="window.location.href='admin.html'" > ← Back to Admin </button> </div> <div id="content" style="display:none;" > <div class="notice"> <strong> ℹ️ Actual Funds Calculation </strong> <p> This page treats unclassified deposit and withdrawal records as the current Actual Funds. Records explicitly marked TEST or ACTUAL are excluded from this calculation. Only approved or successful transactions are included. </p> </div> <div class="main-card"> <div class="main-label"> ACTUAL TOTAL FUNDS </div> <div id="totalFunds" class="main-total" > ₱0.00 </div> <div class="main-sub"> Actual Deposits − Actual Withdrawals </div> </div> <div class="cards"> <div class="card"> <div class="card-title"> ACTUAL DEPOSITS </div> <div id="totalDeposits" class="card-value deposit-value" > ₱0.00 </div> </div> <div class="card"> <div class="card-title"> ACTUAL WITHDRAWALS </div> <div id="totalWithdrawals" class="card-value withdraw-value" > ₱0.00 </div> </div> </div> <div class="breakdown"> <h2> Actual Funds Breakdown </h2> <div class="row"> <span> Actual Deposit Records </span> <span id="depositCount"> 0 </span> </div> <div class="row"> <span> Actual Withdrawal Records </span> <span id="withdrawalCount"> 0 </span> </div> <div class="row"> <span> Actual Deposits </span> <span id="breakdownDeposits"> ₱0.00 </span> </div> <div class="row"> <span> Actual Withdrawals </span> <span id="breakdownWithdrawals"> ₱0.00 </span> </div> <div class="row"> <span> Remaining Actual Funds </span> <span id="breakdownTotal"> ₱0.00 </span> </div> </div> <button class="refresh" onclick="loadSummary()" > 🔄 Refresh Actual Funds </button> <div id="status" class="status" ></div> </div> </div> <div class="footer"> Unclassified records are treated as the current Actual Funds. TEST and explicitly classified ACTUAL records are excluded. </div> <script type="module"> import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"; import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"; import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"; const firebaseConfig = { apiKey: "AIzaSyDAbHsV-S363u-sGCBo3mO1Y7YLEaFAa4e", authDomain: "skyrent-ea30c.firebaseapp.com", projectId: "skyrent-ea30c", storageBucket: "skyrent-ea30c.firebasestorage.app", messagingSenderId: "572678456448", appId: "1:572678456448:web:6b7132351515742dd09265" }; const ADMIN_UID = "28zzG9NB46gRkwia7WtOxS1lQNa2"; const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app); function money(value){ return new Intl.NumberFormat( "en-PH", { style:"currency", currency:"PHP", minimumFractionDigits:2 } ).format( Number(value) || 0 ); } function getTransactionType(data){ if( data.transactionType === undefined || data.transactionType === null || data.transactionType === "" ){ return ""; } return String( data.transactionType ).trim().toLowerCase(); } function getAmount(data){ const possibleAmounts = [ data.amount, data.depositAmount, data.withdrawalAmount, data.amountValue, data.requestedAmount ]; for( const value of possibleAmounts ){ const number = Number(value); if( Number.isFinite(number) && number > 0 ){ return number; } } return 0; } function isApprovedDeposit(data){ const status = String( data.status || "" ) .trim() .toLowerCase(); return ( status === "approved" || status === "deposit successful" || status === "successful" || status === "completed" || data.approved === true ); } function isApprovedWithdrawal(data){ const status = String( data.status || "" ) .trim() .toLowerCase(); return ( status === "approved" || status === "withdrawal successful" || status === "successful" || status === "completed" ); } function isUnmarked(data){ const type = getTransactionType(data); /* IMPORTANT: Missing / blank transactionType = Actual Funds. Explicit TEST = excluded. Explicit ACTUAL = excluded from this unclassified Actual Funds page. */ if( type === "test" || type === "actual" ){ return false; } return true; } async function loadSummary(){ const statusBox = document.getElementById( "status" ); statusBox.textContent = "Loading actual funds..."; try{ let totalDeposits = 0; let totalWithdrawals = 0; let depositCount = 0; let withdrawalCount = 0; /* LOAD DEPOSITS */ const depositsSnapshot = await getDocs( collection( db, "deposits" ) ); depositsSnapshot.forEach( docSnap => { const data = docSnap.data(); if( !isUnmarked(data) ){ return; } if( !isApprovedDeposit(data) ){ return; } const amount = getAmount(data); if( amount <= 0 ){ return; } totalDeposits += amount; depositCount++; } ); /* LOAD WITHDRAWALS */ const withdrawalsSnapshot = await getDocs( collection( db, "withdrawals" ) ); withdrawalsSnapshot.forEach( docSnap => { const data = docSnap.data(); if( !isUnmarked(data) ){ return; } if( !isApprovedWithdrawal(data) ){ return; } const amount = getAmount(data); if( amount <= 0 ){ return; } totalWithdrawals += amount; withdrawalCount++; } ); const totalFunds = totalDeposits - totalWithdrawals; /* UPDATE MAIN TOTAL */ document.getElementById( "totalFunds" ).textContent = money(totalFunds); /* UPDATE DEPOSITS */ document.getElementById( "totalDeposits" ).textContent = money(totalDeposits); document.getElementById( "breakdownDeposits" ).textContent = money(totalDeposits); /* UPDATE WITHDRAWALS */ document.getElementById( "totalWithdrawals" ).textContent = money(totalWithdrawals); document.getElementById( "breakdownWithdrawals" ).textContent = money(totalWithdrawals); /* UPDATE COUNTS */ document.getElementById( "depositCount" ).textContent = depositCount; document.getElementById( "withdrawalCount" ).textContent = withdrawalCount; /* UPDATE REMAINING */ document.getElementById( "breakdownTotal" ).textContent = money(totalFunds); statusBox.textContent = "Last updated: " + new Date().toLocaleString(); } catch(error){ console.error( "Actual funds error:", error ); statusBox.innerHTML = '<span class="error">' + 'Error loading actual funds. ' + error.message + '</span>'; } } window.loadSummary = loadSummary; window.checkSession = function(){ const user = auth.currentUser; if( user ){ if( user.uid === ADMIN_UID ){ document.getElementById( "sessionBox" ).style.display = "none"; document.getElementById( "loadingBox" ).style.display = "none"; document.getElementById( "content" ).style.display = "block"; loadSummary(); } else{ document.getElementById( "loadingBox" ).style.display = "none"; document.getElementById( "content" ).style.display = "none"; document.getElementById( "sessionBox" ).style.display = "block"; document.querySelector( "#sessionBox h2" ).textContent = "Access Denied"; document.querySelector( "#sessionBox p" ).textContent = "The currently signed-in Firebase account " + "is not the administrator account."; } } else{ document.getElementById( "loadingBox" ).style.display = "none"; document.getElementById( "content" ).style.display = "none"; document.getElementById( "sessionBox" ).style.display = "block"; } }; /* IMPORTANT AUTH HANDLING This page NEVER calls signOut(). This page NEVER automatically redirects to index.html when auth.currentUser is null. That prevents this page from making it LOOK like the admin was logged out. */ onAuthStateChanged( auth, async user => { console.log( "Actual Funds auth state:", user ? user.uid : "NO USER" ); if( !user ){ document.getElementById( "loadingBox" ).style.display = "none"; document.getElementById( "content" ).style.display = "none"; document.getElementById( "sessionBox" ).style.display = "block"; return; } if( user.uid !== ADMIN_UID ){ document.getElementById( "loadingBox" ).style.display = "none"; document.getElementById( "content" ).style.display = "none"; document.getElementById( "sessionBox" ).style.display = "block"; document.querySelector( "#sessionBox h2" ).textContent = "Access Denied"; document.querySelector( "#sessionBox p" ).textContent = "The currently signed-in Firebase account " + "is not the administrator account."; return; } document.getElementById( "loadingBox" ).style.display = "none"; document.getElementById( "sessionBox" ).style.display = "none"; document.getElementById( "content" ).style.display = "block"; await loadSummary(); } ); </script> </body> </html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>SkyRent Admin - Actual Funds</title>
+
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f1f7fc;
+    color:#123;
+    padding-bottom:40px;
+}
+
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #0757c9,
+        #0b8de3
+    );
+
+    color:white;
+
+    padding:20px 15px;
+
+    text-align:center;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
+
+
+.header h1{
+    font-size:21px;
+    margin-bottom:6px;
+}
+
+
+.header p{
+    font-size:12px;
+    opacity:.9;
+}
+
+
+
+/* CONTAINER */
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:15px;
+}
+
+
+
+/* BACK */
+
+.back-btn{
+    width:100%;
+
+    border:none;
+
+    background:white;
+
+    color:#0757c9;
+
+    padding:13px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+    cursor:pointer;
+}
+
+
+
+/* NOTICE */
+
+.notice{
+    background:#eaf5ff;
+
+    color:#14527f;
+
+    border-left:4px solid #168de2;
+
+    border-radius:10px;
+
+    padding:13px;
+
+    font-size:12px;
+
+    line-height:1.5;
+
+    margin-bottom:15px;
+}
+
+
+.notice b{
+    color:#0757c9;
+}
+
+
+
+/* MAIN TOTAL */
+
+.total-card{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:25px 18px;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+
+}
+
+
+.total-label{
+
+    font-size:12px;
+
+    color:#777;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    margin-bottom:8px;
+
+}
+
+
+.total-value{
+
+    font-size:38px;
+
+    font-weight:900;
+
+    color:#0757c9;
+
+}
+
+
+.total-description{
+
+    font-size:11px;
+
+    color:#777;
+
+    margin-top:6px;
+
+}
+
+
+
+/* SUMMARY */
+
+.summary{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    margin-bottom:15px;
+
+}
+
+
+.summary-card{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:18px 10px;
+
+    text-align:center;
+
+    box-shadow:0 2px 9px rgba(0,0,0,.08);
+
+}
+
+
+.summary-label{
+
+    font-size:10px;
+
+    color:#777;
+
+    font-weight:800;
+
+    margin-bottom:7px;
+
+}
+
+
+.summary-value{
+
+    font-size:21px;
+
+    font-weight:900;
+
+}
+
+
+.deposit{
+
+    color:#159447;
+
+}
+
+
+.withdrawal{
+
+    color:#d93636;
+
+}
+
+
+
+/* BREAKDOWN */
+
+.breakdown{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:17px;
+
+    margin-bottom:15px;
+
+    box-shadow:0 2px 9px rgba(0,0,0,.08);
+
+}
+
+
+.breakdown h2{
+
+    font-size:16px;
+
+    color:#17324d;
+
+    margin-bottom:12px;
+
+}
+
+
+.row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:11px 0;
+
+    border-bottom:1px solid #edf0f3;
+
+    font-size:13px;
+
+}
+
+
+.row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.row span:first-child{
+
+    color:#777;
+
+}
+
+
+.row span:last-child{
+
+    font-weight:800;
+
+    text-align:right;
+
+}
+
+
+
+/* RECORDS */
+
+.records{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:17px;
+
+    margin-bottom:15px;
+
+    box-shadow:0 2px 9px rgba(0,0,0,.08);
+
+}
+
+
+.records h2{
+
+    font-size:16px;
+
+    color:#17324d;
+
+    margin-bottom:12px;
+
+}
+
+
+.record-card{
+
+    border:1px solid #e4ebf1;
+
+    border-radius:11px;
+
+    padding:12px;
+
+    margin-bottom:9px;
+
+}
+
+
+.record-card:last-child{
+
+    margin-bottom:0;
+
+}
+
+
+.record-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+
+.record-title{
+
+    font-size:14px;
+
+    font-weight:800;
+
+    color:#17324d;
+
+}
+
+
+.record-sub{
+
+    font-size:11px;
+
+    color:#777;
+
+    margin-top:3px;
+
+}
+
+
+.record-amount{
+
+    font-size:15px;
+
+    font-weight:900;
+
+    color:#159447;
+
+    white-space:nowrap;
+
+}
+
+
+.withdraw-record .record-amount{
+
+    color:#d93636;
+
+}
+
+
+.record-info{
+
+    margin-top:9px;
+
+    border-top:1px solid #edf0f3;
+
+    padding-top:7px;
+
+}
+
+
+.record-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:3px 0;
+
+    font-size:11px;
+
+}
+
+
+.record-row span:first-child{
+
+    color:#888;
+
+}
+
+
+.record-row span:last-child{
+
+    font-weight:600;
+
+    text-align:right;
+
+    word-break:break-word;
+
+}
+
+
+
+/* BUTTON */
+
+.refresh{
+
+    width:100%;
+
+    border:none;
+
+    background:#0757c9;
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:11px;
+
+    font-size:14px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+.refresh:active{
+
+    transform:scale(.98);
+
+}
+
+
+
+/* LOADING */
+
+.loading{
+
+    text-align:center;
+
+    padding:35px 10px;
+
+    color:#666;
+
+    font-size:14px;
+
+}
+
+
+.error{
+
+    background:#fff0f0;
+
+    color:#a32626;
+
+    border-left:4px solid #d93636;
+
+    border-radius:10px;
+
+    padding:12px;
+
+    font-size:13px;
+
+    margin-bottom:15px;
+
+}
+
+
+.success{
+
+    background:#eaf8ef;
+
+    color:#176b36;
+
+    border-left:4px solid #159447;
+
+    border-radius:10px;
+
+    padding:12px;
+
+    font-size:13px;
+
+    margin-bottom:15px;
+
+}
+
+
+.empty{
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:13px;
+
+    padding:20px 5px;
+
+}
+
+
+
+/* SESSION */
+
+.session-box{
+
+    display:none;
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:25px 18px;
+
+    text-align:center;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+
+}
+
+
+.session-box h2{
+
+    color:#c62828;
+
+    font-size:20px;
+
+    margin-bottom:10px;
+
+}
+
+
+.session-box p{
+
+    color:#666;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    margin-bottom:15px;
+
+}
+
+
+.session-btn{
+
+    border:none;
+
+    background:#0757c9;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+
+/* FOOTER */
+
+.footer{
+
+    text-align:center;
+
+    color:#888;
+
+    font-size:10px;
+
+    padding:15px;
+
+}
+
+
+
+@media(max-width:500px){
+
+    .total-value{
+
+        font-size:32px;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+    <h1>💰 Actual Funds</h1>
+
+    <p>
+        Unmarked Firebase deposit and withdrawal records
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+<button
+    class="back-btn"
+    onclick="window.location.href='admin.html'"
+>
+
+    ← Back to Admin
+
+</button>
+
+
+<div id="message"></div>
+
+
+<div
+    id="loading"
+    class="loading"
+>
+
+    Loading Actual Funds...
+
+</div>
+
+
+<div
+    id="sessionBox"
+    class="session-box"
+>
+
+    <h2>
+        Admin Session Not Detected
+    </h2>
+
+    <p>
+
+        The Firebase authentication session is not
+        available on this page.
+
+        Please return to the Admin page and open this
+        page again.
+
+    </p>
+
+
+    <button
+        class="session-btn"
+        onclick="window.location.href='admin.html'"
+    >
+
+        ← Back to Admin
+
+    </button>
+
+</div>
+
+
+<div
+    id="content"
+    style="display:none;"
+>
+
+
+<div class="notice">
+
+    <b>Actual Funds Definition:</b>
+
+    This page uses the same classification system as the
+    Transaction Classifier.
+
+    Deposit and withdrawal records with no
+    <b>transactionType</b> are treated as the current
+    Actual Funds.
+
+    Records marked <b>TEST</b> or <b>ACTUAL</b> are excluded.
+
+</div>
+
+
+
+<!-- TOTAL -->
+
+<div class="total-card">
+
+    <div class="total-label">
+
+        CURRENT ACTUAL FUNDS
+
+    </div>
+
+
+    <div
+        id="totalFunds"
+        class="total-value"
+    >
+
+        ₱0.00
+
+    </div>
+
+
+    <div class="total-description">
+
+        Unmarked Approved Deposits − Unmarked Approved Withdrawals
+
+    </div>
+
+</div>
+
+
+
+<!-- SUMMARY -->
+
+<div class="summary">
+
+
+<div class="summary-card">
+
+    <div class="summary-label">
+
+        ACTUAL DEPOSITS
+
+    </div>
+
+
+    <div
+        id="totalDeposits"
+        class="summary-value deposit"
+    >
+
+        ₱0.00
+
+    </div>
+
+</div>
+
+
+
+<div class="summary-card">
+
+    <div class="summary-label">
+
+        ACTUAL WITHDRAWALS
+
+    </div>
+
+
+    <div
+        id="totalWithdrawals"
+        class="summary-value withdrawal"
+    >
+
+        ₱0.00
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- BREAKDOWN -->
+
+<div class="breakdown">
+
+    <h2>
+        📊 Actual Funds Breakdown
+    </h2>
+
+
+    <div class="row">
+
+        <span>
+            Unmarked Deposit Records
+        </span>
+
+        <span id="depositCount">
+            0
+        </span>
+
+    </div>
+
+
+    <div class="row">
+
+        <span>
+            Unmarked Withdrawal Records
+        </span>
+
+        <span id="withdrawalCount">
+            0
+        </span>
+
+    </div>
+
+
+    <div class="row">
+
+        <span>
+            Approved Deposits
+        </span>
+
+        <span
+            id="breakdownDeposits"
+            class="deposit"
+        >
+
+            ₱0.00
+
+        </span>
+
+    </div>
+
+
+    <div class="row">
+
+        <span>
+            Approved Withdrawals
+        </span>
+
+        <span
+            id="breakdownWithdrawals"
+            class="withdrawal"
+        >
+
+            ₱0.00
+
+        </span>
+
+    </div>
+
+
+    <div class="row">
+
+        <span>
+            Remaining Actual Funds
+        </span>
+
+        <span id="breakdownTotal">
+
+            ₱0.00
+
+        </span>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- DEPOSITS -->
+
+<div class="records">
+
+    <h2>
+        💰 Actual Deposit Records
+    </h2>
+
+
+    <div id="depositRecords">
+
+        <div class="loading">
+
+            Loading deposits...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- WITHDRAWALS -->
+
+<div class="records">
+
+    <h2>
+        💸 Actual Withdrawal Records
+    </h2>
+
+
+    <div id="withdrawalRecords">
+
+        <div class="loading">
+
+            Loading withdrawals...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<button
+    class="refresh"
+    onclick="loadActualFunds()"
+>
+
+    🔄 Refresh Actual Funds
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<div class="footer">
+
+    SkyRent Admin • Actual Funds
+
+</div>
+
+
+
+<script type="module">
+
+
+/* =====================================================
+   SAME FIREBASE IMPORTS AS TRANSACTION CLASSIFIER
+===================================================== */
+
+
+import {
+
+    initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+
+import {
+
+    getAuth,
+
+    onAuthStateChanged
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+
+import {
+
+    getFirestore,
+
+    collection,
+
+    getDocs
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* =====================================================
+   SAME FIREBASE CONFIG AS TRANSACTION CLASSIFIER
+===================================================== */
+
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3mO1Y7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+
+/* =====================================================
+   SAME ADMIN UID
+===================================================== */
+
+
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+
+/* =====================================================
+   SAME FIREBASE INITIALIZATION
+===================================================== */
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+
+function safe(value){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
+
+        return "-";
+
+    }
+
+    return String(value);
+
+}
+
+
+
+function escapeHtml(value){
+
+    return String(value)
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+function getName(data){
+
+    return (
+
+        data.name ||
+
+        data.fullName ||
+
+        data.displayName ||
+
+        data.userName ||
+
+        data.username ||
+
+        data.customerName ||
+
+        "Unknown User"
+
+    );
+
+}
+
+
+
+function getPhone(data){
+
+    return (
+
+        data.phone ||
+
+        data.phoneNumber ||
+
+        data.mobile ||
+
+        data.mobileNumber ||
+
+        "-"
+
+    );
+
+}
+
+
+
+function getAmount(data){
+
+    const fields = [
+
+        "amount",
+
+        "depositAmount",
+
+        "withdrawalAmount",
+
+        "amountValue",
+
+        "requestedAmount"
+
+    ];
+
+
+    for(
+        const field of fields
+    ){
+
+        if(
+
+            data[field] !== undefined &&
+
+            data[field] !== null &&
+
+            data[field] !== ""
+
+        ){
+
+            const value =
+                Number(data[field]);
+
+
+            if(
+                Number.isFinite(value)
+            ){
+
+                return value;
+
+            }
+
+        }
+
+    }
+
+
+    return 0;
+
+}
+
+
+
+function getReference(data){
+
+    return (
+
+        data.reference ||
+
+        data.referenceNumber ||
+
+        data.ref ||
+
+        data.transactionReference ||
+
+        data.paymentReference ||
+
+        "-"
+
+    );
+
+}
+
+
+
+function getDate(value){
+
+    if(!value){
+
+        return "-";
+
+    }
+
+
+    if(
+        value.seconds
+    ){
+
+        return new Date(
+
+            value.seconds * 1000
+
+        ).toLocaleString();
+
+    }
+
+
+    try{
+
+        return new Date(value)
+            .toLocaleString();
+
+    }
+
+    catch(error){
+
+        return safe(value);
+
+    }
+
+}
+
+
+
+function money(value){
+
+    return new Intl.NumberFormat(
+
+        "en-PH",
+
+        {
+
+            style:"currency",
+
+            currency:"PHP",
+
+            minimumFractionDigits:2,
+
+            maximumFractionDigits:2
+
+        }
+
+    ).format(
+
+        Number(value) || 0
+
+    );
+
+}
+
+
+
+/* =====================================================
+   SAME CLASSIFICATION LOGIC AS CLASSIFIER
+===================================================== */
+
+
+function getTransactionType(data){
+
+    return data.transactionType || "";
+
+}
+
+
+
+function isUnmarked(data){
+
+    const type = String(
+
+        getTransactionType(data)
+
+    )
+    .trim()
+    .toLowerCase();
+
+
+    /*
+        EXACTLY THE SAME IDEA AS THE
+        CLASSIFIER'S "UNMARKED" FILTER.
+
+        Empty / missing transactionType
+        = UNMARKED.
+
+        TEST
+        = not unmarked.
+
+        ACTUAL
+        = not unmarked.
+    */
+
+
+    if(
+        type === "test" ||
+        type === "actual"
+    ){
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+
+/* =====================================================
+   APPROVED DEPOSIT
+===================================================== */
+
+
+function isApprovedDeposit(data){
+
+    const status = String(
+
+        data.status || ""
+
+    )
+    .trim()
+    .toLowerCase();
+
+
+    return (
+
+        status === "approved" ||
+
+        status === "deposit successful" ||
+
+        status === "successful" ||
+
+        status === "completed" ||
+
+        data.approved === true
+
+    );
+
+}
+
+
+
+/* =====================================================
+   APPROVED WITHDRAWAL
+===================================================== */
+
+
+function isApprovedWithdrawal(data){
+
+    const status = String(
+
+        data.status || ""
+
+    )
+    .trim()
+    .toLowerCase();
+
+
+    return (
+
+        status === "approved" ||
+
+        status === "withdrawal successful" ||
+
+        status === "successful" ||
+
+        status === "completed"
+
+    );
+
+}
+
+
+
+/* =====================================================
+   LOAD ACTUAL FUNDS
+===================================================== */
+
+
+window.loadActualFunds =
+async function(){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    const depositRecords =
+        document.getElementById(
+            "depositRecords"
+        );
+
+
+    const withdrawalRecords =
+        document.getElementById(
+            "withdrawalRecords"
+        );
+
+
+    message.innerHTML = "";
+
+
+    depositRecords.innerHTML =
+
+        '<div class="loading">' +
+
+        'Loading deposits...' +
+
+        '</div>';
+
+
+    withdrawalRecords.innerHTML =
+
+        '<div class="loading">' +
+
+        'Loading withdrawals...' +
+
+        '</div>';
+
+
+
+    try{
+
+
+        let totalDeposits = 0;
+
+        let totalWithdrawals = 0;
+
+        let depositCount = 0;
+
+        let withdrawalCount = 0;
+
+
+
+        /* =================================================
+           DEPOSITS
+        ================================================= */
+
+
+        const depositsSnapshot =
+
+            await getDocs(
+
+                collection(
+
+                    db,
+
+                    "deposits"
+
+                )
+
+            );
+
+
+        let depositHtml = "";
+
+
+
+        depositsSnapshot.forEach(
+
+            docSnap => {
+
+                const data =
+                    docSnap.data();
+
+
+                /*
+                    Only UNMARKED
+                */
+
+                if(
+                    !isUnmarked(data)
+                ){
+
+                    return;
+
+                }
+
+
+                /*
+                    Only APPROVED /
+                    SUCCESSFUL
+                */
+
+                if(
+                    !isApprovedDeposit(data)
+                ){
+
+                    return;
+
+                }
+
+
+                const amount =
+                    getAmount(data);
+
+
+                if(
+                    amount <= 0
+                ){
+
+                    return;
+
+                }
+
+
+                totalDeposits +=
+                    amount;
+
+
+                depositCount++;
+
+
+
+                depositHtml += `
+
+                    <div class="record-card">
+
+                        <div class="record-top">
+
+                            <div>
+
+                                <div class="record-title">
+
+                                    ${escapeHtml(
+                                        getName(data)
+                                    )}
+
+                                </div>
+
+                                <div class="record-sub">
+
+                                    ${escapeHtml(
+                                        getPhone(data)
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="record-amount">
+
+                                ${money(amount)}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="record-info">
+
+
+                            <div class="record-row">
+
+                                <span>
+                                    Status
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        safe(data.status)
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="record-row">
+
+                                <span>
+                                    Reference
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        getReference(data)
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="record-row">
+
+                                <span>
+                                    Transaction Type
+                                </span>
+
+                                <span>
+                                    UNMARKED
+                                </span>
+
+                            </div>
+
+
+                            <div class="record-row">
+
+                                <span>
+                                    Date
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        getDate(
+                                            data.createdAt ||
+                                            data.timestamp ||
+                                            data.date
+                                        )
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="record-row">
+
+                                <span>
+                                    Firebase ID
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        docSnap.id
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+        );
+
+
+
+        if(
+            depositHtml === ""
+        ){
+
+            depositRecords.innerHTML = `
+
+                <div class="empty">
+
+                    No approved unmarked deposit
+                    records found.
+
+                </div>
+
+            `;
+
+        }
+        else{
+
+            depositRecords.innerHTML =
+                depositHtml;
+
+        }
+
+
+
+        /* =================================================
+           WITHDRAWALS
+        ================================================= */
+
+
+        const withdrawalsSnapshot =
+
+            await getDocs(
+
+                collection(
+
+                    db,
+
+                    "withdrawals"
+
+                )
+
+            );
+
+
+        let withdrawalHtml = "";
+
+
+
+        withdrawalsSnapshot.forEach(
+
+            docSnap => {
+
+                const data =
+                    docSnap.data();
+
+
+                /*
+                    Only UNMARKED
+                */
+
+                if(
+                    !isUnmarked(data)
+                ){
+
+                    return;
+
+                }
+
+
+                /*
+                    Only APPROVED /
+                    SUCCESSFUL
+                */
+
+                if(
+                    !isApprovedWithdrawal(data)
+                ){
+
+                    return;
+
+                }
+
+
+                const amount =
+                    getAmount(data);
+
+
+                if(
+                    amount <= 0
+                ){
+
+                    return;
+
+                }
+
+
+                totalWithdrawals +=
+                    amount;
+
+
+                withdrawalCount++;
+
+
+
+                withdrawalHtml += `
+
+                    <div class="record-card withdraw-record">
+
+                        <div class="record-top">
+
+                            <div>
+
+                                <div class="record-title">
+
+                                    ${escapeHtml(
+                                        getName(data)
+                                    )}
+
+                                </div>
+
+                                <div class="record-sub">
+
+                                    ${escapeHtml(
+                                        getPhone(data)
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="record-amount">
+
+                                ${money(amount)}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="record-info">
+
+
+                            <div class="record-row">
+
+                                <span>
+                                    Status
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        safe(data.status)
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="record-row">
+
+                                <span>
+                                    Transaction Type
+                                </span>
+
+                                <span>
+                                    UNMARKED
+                                </span>
+
+                            </div>
+
+
+                            <div class="record-row">
+
+                                <span>
+                                    Date
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        getDate(
+                                            data.createdAt ||
+                                            data.timestamp ||
+                                            data.date
+                                        )
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="record-row">
+
+                                <span>
+                                    Firebase ID
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        docSnap.id
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+        );
+
+
+
+        if(
+            withdrawalHtml === ""
+        ){
+
+            withdrawalRecords.innerHTML = `
+
+                <div class="empty">
+
+                    No approved unmarked withdrawal
+                    records found.
+
+                </div>
+
+            `;
+
+        }
+        else{
+
+            withdrawalRecords.innerHTML =
+                withdrawalHtml;
+
+        }
+
+
+
+        /* =================================================
+           CALCULATE TOTAL
+        ================================================= */
+
+
+        const totalFunds =
+
+            totalDeposits -
+
+            totalWithdrawals;
+
+
+
+        /* =================================================
+           UPDATE UI
+        ================================================= */
+
+
+        document.getElementById(
+            "totalFunds"
+        ).textContent =
+
+            money(totalFunds);
+
+
+
+        document.getElementById(
+            "totalDeposits"
+        ).textContent =
+
+            money(totalDeposits);
+
+
+
+        document.getElementById(
+            "totalWithdrawals"
+        ).textContent =
+
+            money(totalWithdrawals);
+
+
+
+        document.getElementById(
+            "depositCount"
+        ).textContent =
+
+            depositCount;
+
+
+
+        document.getElementById(
+            "withdrawalCount"
+        ).textContent =
+
+            withdrawalCount;
+
+
+
+        document.getElementById(
+            "breakdownDeposits"
+        ).textContent =
+
+            money(totalDeposits);
+
+
+
+        document.getElementById(
+            "breakdownWithdrawals"
+        ).textContent =
+
+            money(totalWithdrawals);
+
+
+
+        document.getElementById(
+            "breakdownTotal"
+        ).textContent =
+
+            money(totalFunds);
+
+
+
+        message.innerHTML = `
+
+            <div class="success">
+
+                Actual Funds loaded successfully.
+
+                ${depositCount}
+                unmarked deposits and
+
+                ${withdrawalCount}
+                unmarked withdrawals were included.
+
+            </div>
+
+        `;
+
+
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Actual Funds Error:",
+            error
+        );
+
+
+        message.innerHTML = `
+
+            <div class="error">
+
+                Unable to load Firebase records:
+
+                ${escapeHtml(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+};
+
+
+
+/* =====================================================
+   SAME ADMIN AUTH STRUCTURE AS CLASSIFIER
+===================================================== */
+
+
+onAuthStateChanged(
+
+    auth,
+
+    async user => {
+
+
+        /*
+            SAME AS YOUR CLASSIFIER:
+
+            If no user, return to login.
+        */
+
+        if(!user){
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+
+        /*
+            SAME ADMIN UID CHECK
+        */
+
+        if(
+            user.uid !== ADMIN_UID
+        ){
+
+            document.body.innerHTML = `
+
+                <div
+                    style="
+                        padding:50px 20px;
+                        text-align:center;
+                        font-family:Arial;
+                    "
+                >
+
+                    <h2
+                        style="
+                            color:#c62828;
+                        "
+                    >
+
+                        Access Denied
+
+                    </h2>
+
+
+                    <p
+                        style="
+                            margin-top:10px;
+                            color:#666;
+                        "
+                    >
+
+                        You are not authorized
+                        to access this page.
+
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+
+        /*
+            ADMIN VERIFIED
+
+            NOW LOAD THE SAME FIREBASE
+            DATA USED BY THE CLASSIFIER.
+        */
+
+
+        document.getElementById(
+            "loading"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "content"
+        ).style.display =
+            "block";
+
+
+        await loadActualFunds();
+
+    }
+
+);
+
+
+</script>
+
+
+</body>
+
+</html>
+
