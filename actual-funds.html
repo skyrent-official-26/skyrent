@@ -11,7 +11,7 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>SkyRent Admin - Unmarked Funds Summary</title>
+<title>SkyRent Admin - Actual Funds Summary</title>
 
 <style>
 
@@ -278,6 +278,46 @@ body{
     padding:10px;
 }
 
+/* AUTH CHECK */
+
+.auth-check{
+    position:fixed;
+    inset:0;
+    background:#f1f7fc;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    text-align:center;
+    padding:20px;
+}
+
+.auth-box{
+    background:white;
+    width:100%;
+    max-width:350px;
+    padding:30px 20px;
+    border-radius:18px;
+    box-shadow:0 4px 18px rgba(0,0,0,.10);
+}
+
+.auth-box .icon{
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.auth-box h2{
+    color:#0757c9;
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.auth-box p{
+    color:#777;
+    font-size:13px;
+    line-height:1.5;
+}
+
 /* DESKTOP */
 
 @media(min-width:650px){
@@ -300,16 +340,43 @@ body{
 <body>
 
 
+<!-- AUTH CHECK SCREEN -->
+
+<div
+    id="authCheck"
+    class="auth-check"
+>
+
+    <div class="auth-box">
+
+        <div class="icon">
+            🔐
+        </div>
+
+        <h2>
+            Checking Admin Access
+        </h2>
+
+        <p>
+            Please wait while Firebase verifies
+            your administrator session...
+        </p>
+
+    </div>
+
+</div>
+
+
 <!-- HEADER -->
 
 <div class="header">
 
     <h1>
-        💰 Unmarked Funds Summary
+        💰 Actual Funds Summary
     </h1>
 
     <p>
-        Only unclassified deposit and withdrawal records
+        Actual deposit and withdrawal records
     </p>
 
 </div>
@@ -337,10 +404,14 @@ body{
 
     <div class="notice">
 
-        <b>Unmarked Records Only</b><br>
+        <b>Actual Funds Records</b><br>
 
-        This page excludes transactions already classified
-        as <b>TEST</b> or <b>ACTUAL</b>.
+        In this Firebase setup, records without a
+        <b>transactionType</b> are treated as the
+        actual operating funds.
+
+        Records already classified as
+        <b>TEST</b> or <b>ACTUAL</b> are excluded.
 
         Only approved/successful deposit and withdrawal
         records without a classification are included.
@@ -364,7 +435,7 @@ body{
         id="loading"
         class="loading"
     >
-        Loading unmarked funds...
+        Loading actual funds...
     </div>
 
 
@@ -381,7 +452,7 @@ body{
         <div class="main-card">
 
             <div class="label">
-                UNMARKED TOTAL FUNDS
+                ACTUAL FUNDS REMAINING
             </div>
 
             <div
@@ -392,7 +463,7 @@ body{
             </div>
 
             <div class="small">
-                Unmarked deposits minus unmarked withdrawals
+                Actual deposits minus funds disbursed
             </div>
 
         </div>
@@ -410,7 +481,7 @@ body{
                 </div>
 
                 <div class="title">
-                    UNMARKED DEPOSITS
+                    ACTUAL DEPOSITS
                 </div>
 
                 <div
@@ -430,7 +501,7 @@ body{
                 </div>
 
                 <div class="title">
-                    UNMARKED WITHDRAWALS
+                    FUNDS DISBURSED
                 </div>
 
                 <div
@@ -461,7 +532,7 @@ body{
                 </div>
 
                 <div class="count-label">
-                    Unmarked Deposit Records
+                    Actual Deposit Records
                 </div>
 
             </div>
@@ -477,7 +548,7 @@ body{
                 </div>
 
                 <div class="count-label">
-                    Unmarked Withdrawal Records
+                    Actual Withdrawal Records
                 </div>
 
             </div>
@@ -491,14 +562,14 @@ body{
         <div class="breakdown">
 
             <h2>
-                📊 Unmarked Funds Breakdown
+                📊 Actual Funds Breakdown
             </h2>
 
 
             <div class="line">
 
                 <span>
-                    Approved Deposits
+                    Actual Deposits
                 </span>
 
                 <span
@@ -513,7 +584,7 @@ body{
             <div class="line">
 
                 <span>
-                    Approved Withdrawals
+                    Funds Disbursed
                 </span>
 
                 <span
@@ -528,7 +599,7 @@ body{
             <div class="line">
 
                 <span>
-                    Unmarked Funds
+                    Actual Funds Remaining
                 </span>
 
                 <span
@@ -545,8 +616,9 @@ body{
 
         <div class="footer-note">
 
-            TEST and ACTUAL classified records are excluded
-            from this summary.
+            TEST and classified ACTUAL records are excluded.
+            Unmarked approved records represent the current
+            actual-funds calculation.
 
         </div>
 
@@ -584,7 +656,7 @@ import {
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+        "AIzaSyDAbHsV-S363u-sGCBo3mO1Y7YLEaFAa4e8",
 
     authDomain:
         "skyrent-ea30c.firebaseapp.com",
@@ -618,7 +690,6 @@ const auth =
 
 const db =
     getFirestore(app);
-
 
 
 /* =========================
@@ -841,10 +912,6 @@ async function(){
                     item.data();
 
 
-                /*
-                 * Only approved deposits.
-                 */
-
                 if(
                     !isApprovedDeposit(data)
                 ){
@@ -855,14 +922,18 @@ async function(){
 
 
                 /*
-                 * Only UNMARKED deposits.
+                 * UNMARKED = ACTUAL FUNDS
                  *
-                 * If transactionType exists,
-                 * this record is excluded.
+                 * Only TEST and ACTUAL
+                 * classifications are excluded.
                  */
 
                 const type =
-                    data.transactionType;
+                    String(
+                        data.transactionType || ""
+                    )
+                    .trim()
+                    .toLowerCase();
 
 
                 if(
@@ -916,10 +987,6 @@ async function(){
                     item.data();
 
 
-                /*
-                 * Only approved withdrawals.
-                 */
-
                 if(
                     !isApprovedWithdrawal(data)
                 ){
@@ -930,11 +997,15 @@ async function(){
 
 
                 /*
-                 * Only UNMARKED withdrawals.
+                 * UNMARKED = ACTUAL FUNDS
                  */
 
                 const type =
-                    data.transactionType;
+                    String(
+                        data.transactionType || ""
+                    )
+                    .trim()
+                    .toLowerCase();
 
 
                 if(
@@ -1115,46 +1186,73 @@ function escapeHtml(value){
    AUTH
 ========================= */
 
+let authResolved = false;
+
+
 onAuthStateChanged(
     auth,
     async user => {
 
+        /*
+         * Firebase has now finished checking
+         * the authentication state.
+         */
+
+        authResolved = true;
+
+
+        const authCheck =
+            document.getElementById(
+                "authCheck"
+            );
+
 
         if(!user){
 
-            window.location.href =
-                "index.html";
+            /*
+             * IMPORTANT:
+             * Do NOT immediately redirect.
+             *
+             * This prevents the page from
+             * logging you out simply because
+             * Firebase is still restoring
+             * the session.
+             */
 
-            return;
+            authCheck.innerHTML = `
 
-        }
+                <div class="auth-box">
 
+                    <div class="icon">
+                        🔐
+                    </div>
 
-        if(
-            user.uid !== ADMIN_UID
-        ){
-
-            document.body.innerHTML = `
-
-                <div style="
-                    padding:50px 20px;
-                    text-align:center;
-                    font-family:Arial;
-                ">
-
-                    <h2 style="
-                        color:#c62828;
-                    ">
-                        Access Denied
+                    <h2>
+                        Admin Login Required
                     </h2>
 
-                    <p style="
-                        margin-top:10px;
-                        color:#666;
-                    ">
-                        You are not authorized
-                        to access this page.
+                    <p>
+                        Your Firebase admin session
+                        is not currently available.
                     </p>
+
+                    <button
+                        onclick="window.location.href='index.html'"
+                        style="
+                            margin-top:18px;
+                            width:100%;
+                            border:none;
+                            background:#0757c9;
+                            color:white;
+                            padding:13px;
+                            border-radius:11px;
+                            font-size:14px;
+                            font-weight:700;
+                            cursor:pointer;
+                        "
+                    >
+                        Go to Login
+                    </button>
 
                 </div>
 
@@ -1165,6 +1263,67 @@ onAuthStateChanged(
         }
 
 
+        if(
+            user.uid !== ADMIN_UID
+        ){
+
+            authCheck.innerHTML = `
+
+                <div class="auth-box">
+
+                    <div class="icon">
+                        🚫
+                    </div>
+
+                    <h2 style="color:#c62828;">
+                        Access Denied
+                    </h2>
+
+                    <p>
+                        This account is not authorized
+                        to access the administrator page.
+                    </p>
+
+                    <button
+                        onclick="window.location.href='index.html'"
+                        style="
+                            margin-top:18px;
+                            width:100%;
+                            border:none;
+                            background:#c62828;
+                            color:white;
+                            padding:13px;
+                            border-radius:11px;
+                            font-size:14px;
+                            font-weight:700;
+                            cursor:pointer;
+                        "
+                    >
+                        Return to Login
+                    </button>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /*
+         * Admin verified.
+         * Remove the authentication screen.
+         */
+
+        authCheck.style.display =
+            "none";
+
+
+        /*
+         * Now load the funds.
+         */
+
         await loadSummary();
 
     }
@@ -1174,5 +1333,5 @@ onAuthStateChanged(
 
 </body>
 
-</html>8
+</html>
 
