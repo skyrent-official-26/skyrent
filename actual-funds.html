@@ -12,7 +12,7 @@ content="width=device-width, initial-scale=1.0"
 
 >
 
-<title>SkyRent Actual Funds</title>
+<title>SkyRent Admin - Actual Funds</title>
 
 <style>
 
@@ -24,192 +24,289 @@ content="width=device-width, initial-scale=1.0"
 
 body{
     font-family:Arial,sans-serif;
-    background:#eef6ff;
-    color:#222;
-    padding:15px;
-}
-
-.container{
-    width:100%;
-    max-width:900px;
-    margin:0 auto;
+    background:#f1f7fc;
+    color:#123;
+    padding-bottom:40px;
 }
 
 .header{
     background:linear-gradient(
         135deg,
         #0757c9,
-        #1597ff
+        #0b8de3
     );
     color:white;
-    padding:22px;
-    border-radius:18px;
-    margin-bottom:15px;
-    box-shadow:0 5px 18px rgba(0,0,0,.12);
+    padding:20px 15px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
 }
 
 .header h1{
-    font-size:23px;
+    font-size:21px;
     margin-bottom:6px;
 }
 
 .header p{
-    font-size:13px;
+    font-size:12px;
     opacity:.9;
 }
 
-.auth-box{
-    background:white;
-    border-radius:15px;
+.container{
+    max-width:1000px;
+    margin:auto;
     padding:15px;
-    margin-bottom:15px;
-    font-size:13px;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.auth-ok{
-    color:#176b2c;
-    background:#eaf8ee;
-}
-
-.auth-error{
-    color:#a51d2d;
-    background:#fff0f1;
-}
-
-.loading{
+.back-btn{
+    width:100%;
+    border:none;
+    background:white;
     color:#0757c9;
-    background:#eaf4ff;
+    padding:13px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    cursor:pointer;
 }
+
+
+/* =========================
+   NOTICE
+========================= */
+
+.notice{
+    background:#eaf5ff;
+    color:#14527f;
+    border-left:4px solid #168de2;
+    border-radius:10px;
+    padding:12px;
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.error{
+    background:#fff0f0;
+    color:#a32626;
+    border-left:4px solid #d93636;
+    border-radius:10px;
+    padding:12px;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+
+/* =========================
+   SUMMARY
+========================= */
 
 .summary{
     display:grid;
     grid-template-columns:
         repeat(3,1fr);
-    gap:10px;
+    gap:8px;
     margin-bottom:15px;
 }
 
 .summary-card{
     background:white;
-    border-radius:15px;
-    padding:16px 10px;
+    border-radius:13px;
+    padding:15px 7px;
     text-align:center;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
 }
 
-.summary-title{
-    font-size:11px;
-    color:#777;
-    margin-bottom:8px;
-}
-
-.summary-value{
-    font-size:19px;
-    font-weight:bold;
+.summary-number{
+    font-size:20px;
+    font-weight:800;
     color:#0757c9;
 }
 
-.remaining .summary-value{
-    color:#16843b;
+.summary-label{
+    font-size:10px;
+    color:#666;
+    margin-top:5px;
 }
+
+.remaining .summary-number{
+    color:#16813b;
+}
+
+
+/* =========================
+   SECTION
+========================= */
 
 .section{
+    margin-bottom:18px;
+}
+
+.section-title{
     background:white;
-    border-radius:17px;
-    padding:17px;
-    margin-bottom:15px;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
-}
-
-.section h2{
-    color:#0757c9;
-    font-size:18px;
-    margin-bottom:14px;
-}
-
-.empty{
-    text-align:center;
-    padding:25px 10px;
-    color:#888;
-    font-size:14px;
-}
-
-.record{
-    border:1px solid #e5eaf0;
     border-radius:13px;
-    padding:13px;
+    padding:14px;
     margin-bottom:10px;
-    background:#fbfdff;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
 }
 
-.record:last-child{
-    margin-bottom:0;
+.section-title h2{
+    font-size:17px;
+    color:#17324d;
 }
 
-.record-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:9px;
-}
-
-.record-id{
+.section-title p{
     font-size:11px;
     color:#777;
-    word-break:break-all;
+    margin-top:4px;
 }
 
-.amount{
-    font-size:17px;
-    font-weight:bold;
-    color:#0757c9;
-    white-space:nowrap;
+
+/* =========================
+   RECORD CARDS
+========================= */
+
+.records-grid{
+    width:100%;
 }
 
-.detail{
-    display:grid;
-    grid-template-columns:
-        repeat(2,1fr);
-    gap:8px;
+.card{
+    background:white;
+    border-radius:14px;
+    padding:15px;
+    margin-bottom:10px;
+    box-shadow:0 2px 9px rgba(0,0,0,.08);
 }
 
-.detail-box{
-    background:#f4f7fa;
-    padding:8px;
-    border-radius:8px;
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:10px;
 }
 
-.detail-label{
-    font-size:10px;
-    color:#888;
-    margin-bottom:3px;
+.card-title{
+    font-size:16px;
+    font-weight:800;
+    color:#17324d;
 }
 
-.detail-value{
-    font-size:12px;
+.card-subtitle{
+    font-size:11px;
+    color:#777;
+    margin-top:3px;
     word-break:break-word;
 }
 
-.refresh{
+.amount{
+    white-space:nowrap;
+    font-size:17px;
+    font-weight:800;
+    color:#0757c9;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 8px;
+    border-radius:20px;
+    background:#edf0f3;
+    color:#68717b;
+    font-size:10px;
+    font-weight:800;
+    margin-top:7px;
+}
+
+.info{
+    border-top:1px solid #edf0f3;
+    padding-top:9px;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:5px 0;
+    font-size:12px;
+}
+
+.row span:first-child{
+    color:#777;
+}
+
+.row span:last-child{
+    font-weight:600;
+    text-align:right;
+    word-break:break-word;
+}
+
+.empty{
+    background:white;
+    border-radius:14px;
+    padding:30px 15px;
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.loading{
+    text-align:center;
+    padding:40px 10px;
+    color:#666;
+    font-size:14px;
+}
+
+
+/* =========================
+   REFRESH
+========================= */
+
+.refresh-btn{
     width:100%;
     border:none;
     background:#0757c9;
     color:white;
-    padding:14px;
-    border-radius:12px;
-    font-size:15px;
-    font-weight:bold;
+    padding:13px;
+    border-radius:11px;
+    font-size:14px;
+    font-weight:800;
     cursor:pointer;
     margin-bottom:15px;
 }
 
-.refresh:disabled{
+.refresh-btn:disabled{
     opacity:.6;
 }
 
-@media(max-width:600px){
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:700px){
+
+    .records-grid{
+        display:grid;
+        grid-template-columns:
+            1fr 1fr;
+        gap:10px;
+    }
+
+    .card{
+        margin-bottom:0;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
 
     .summary{
         grid-template-columns:
@@ -220,11 +317,6 @@ body{
         padding:13px;
     }
 
-    .detail{
-        grid-template-columns:
-            1fr;
-    }
-
 }
 
 </style>
@@ -233,43 +325,71 @@ body{
 
 <body>
 
+<div class="header">
+
+```
+<h1>
+    💰 Actual Funds
+</h1>
+
+<p>
+    Unmarked Firebase transactions only
+</p>
+```
+
+</div>
+
 <div class="container">
 
 ```
-<div class="header">
-
-    <h1>
-        💰 Actual Funds
-    </h1>
-
-    <p>
-        Unmarked deposits and withdrawals
-    </p>
-
-</div>
-
-
-<div
-    id="authBox"
-    class="auth-box loading"
+<button
+    class="back-btn"
+    onclick="window.location.href='admin.html'"
 >
-    ⏳ Checking administrator access...
+
+    ← Back to Admin
+
+</button>
+
+
+<div id="message"></div>
+
+
+<div class="notice">
+
+    <b>Read Only:</b>
+
+    This page only displays transactions
+    that have not been classified yet.
+
+    <br><br>
+
+    Records marked
+    <b>TEST</b> or
+    <b>ACTUAL</b>
+    are excluded automatically.
+
 </div>
 
+
+<!-- =========================
+     SUMMARY
+========================== -->
 
 <div class="summary">
 
+
     <div class="summary-card">
 
-        <div class="summary-title">
-            UNMARKED DEPOSITS
-        </div>
-
         <div
-            class="summary-value"
+            class="summary-number"
             id="depositTotal"
         >
             ₱0.00
+        </div>
+
+        <div class="summary-label">
+            UNMARKED DEPOSITS
         </div>
 
     </div>
@@ -277,15 +397,15 @@ body{
 
     <div class="summary-card">
 
-        <div class="summary-title">
-            UNMARKED WITHDRAWALS
-        </div>
-
         <div
-            class="summary-value"
+            class="summary-number"
             id="withdrawalTotal"
         >
             ₱0.00
+        </div>
+
+        <div class="summary-label">
+            UNMARKED WITHDRAWALS
         </div>
 
     </div>
@@ -293,61 +413,100 @@ body{
 
     <div class="summary-card remaining">
 
-        <div class="summary-title">
-            REMAINING FUNDS
-        </div>
-
         <div
-            class="summary-value"
+            class="summary-number"
             id="remainingTotal"
         >
             ₱0.00
         </div>
 
+        <div class="summary-label">
+            REMAINING FUNDS
+        </div>
+
     </div>
+
 
 </div>
 
 
 <button
     id="refreshButton"
-    class="refresh"
+    class="refresh-btn"
     disabled
 >
-    🔄 Loading...
+
+    ⏳ Loading Firebase...
+
 </button>
 
 
+<!-- =========================
+     DEPOSITS
+========================== -->
+
 <div class="section">
 
-    <h2>
-        💵 Unmarked Deposits
-    </h2>
 
-    <div id="depositList">
+    <div class="section-title">
 
-        <div class="empty">
+        <h2>
+            💰 Unmarked Deposits
+        </h2>
+
+        <p>
+            Deposits without a transactionType
+        </p>
+
+    </div>
+
+
+    <div
+        id="depositsContainer"
+        class="records-grid"
+    >
+
+        <div class="loading">
             Loading deposits...
         </div>
 
     </div>
 
+
 </div>
 
 
+<!-- =========================
+     WITHDRAWALS
+========================== -->
+
 <div class="section">
 
-    <h2>
-        💸 Unmarked Withdrawals
-    </h2>
 
-    <div id="withdrawalList">
+    <div class="section-title">
 
-        <div class="empty">
+        <h2>
+            💸 Unmarked Withdrawals
+        </h2>
+
+        <p>
+            Withdrawals without a transactionType
+        </p>
+
+    </div>
+
+
+    <div
+        id="withdrawalsContainer"
+        class="records-grid"
+    >
+
+        <div class="loading">
             Loading withdrawals...
         </div>
 
     </div>
+
 
 </div>
 ```
@@ -355,6 +514,11 @@ body{
 </div>
 
 <script type="module">
+
+
+/* ==================================================
+   SAME FIREBASE IMPORTS AS WORKING CLASSIFIER
+================================================== */
 
 import {
     initializeApp
@@ -380,14 +544,14 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =================================
-   SAME FIREBASE CONFIG
-================================= */
+/* ==================================================
+   SAME FIREBASE CONFIG AS CLASSIFIER
+================================================== */
 
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyDAbHsV-S363u-sGCBo3mO1Y7YLEaFAa4e",
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
 
     authDomain:
         "skyrent-ea30c.firebaseapp.com",
@@ -411,9 +575,9 @@ const ADMIN_UID =
     "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
 
-/* =================================
-   FIREBASE
-================================= */
+/* ==================================================
+   FIREBASE INITIALIZATION
+================================================== */
 
 const app =
     initializeApp(firebaseConfig);
@@ -425,13 +589,18 @@ const db =
     getFirestore(app);
 
 
-/* =================================
+/* ==================================================
    ELEMENTS
-================================= */
+================================================== */
 
-const authBox =
+const depositsContainer =
     document.getElementById(
-        "authBox"
+        "depositsContainer"
+    );
+
+const withdrawalsContainer =
+    document.getElementById(
+        "withdrawalsContainer"
     );
 
 const depositTotal =
@@ -449,55 +618,39 @@ const remainingTotal =
         "remainingTotal"
     );
 
-const depositList =
-    document.getElementById(
-        "depositList"
-    );
-
-const withdrawalList =
-    document.getElementById(
-        "withdrawalList"
-    );
-
 const refreshButton =
     document.getElementById(
         "refreshButton"
     );
 
+const message =
+    document.getElementById(
+        "message"
+    );
 
-/* =================================
-   FORMAT MONEY
-================================= */
 
-function money(value){
+/* ==================================================
+   HELPERS
+================================================== */
 
-    const number =
-        Number(value) || 0;
+function safe(value){
 
-    return "₱" +
-        number.toLocaleString(
-            "en-PH",
-            {
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            }
-        );
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
+
+        return "-";
+
+    }
+
+    return String(value);
 
 }
 
 
-/* =================================
-   ESCAPE HTML
-================================= */
-
 function escapeHtml(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-        return "";
-    }
 
     return String(value)
         .replace(/&/g,"&amp;")
@@ -509,9 +662,9 @@ function escapeHtml(value){
 }
 
 
-/* =================================
-   GET AMOUNT
-================================= */
+/* ==================================================
+   SAME AMOUNT LOGIC AS CLASSIFIER
+================================================== */
 
 function getAmount(data){
 
@@ -535,20 +688,20 @@ function getAmount(data){
     ){
 
         if(
-            data[field] !==
-            undefined &&
+            data[field] !== undefined &&
             data[field] !== null &&
             data[field] !== ""
         ){
 
-            const value =
+            const number =
                 Number(data[field]);
 
+
             if(
-                !isNaN(value)
+                !isNaN(number)
             ){
 
-                return value;
+                return number;
 
             }
 
@@ -556,14 +709,149 @@ function getAmount(data){
 
     }
 
+
     return 0;
 
 }
 
 
-/* =================================
-   CHECK UNMARKED
-================================= */
+/* ==================================================
+   SAME NAME LOGIC AS CLASSIFIER
+================================================== */
+
+function getName(data){
+
+    return (
+
+        data.name ||
+        data.fullName ||
+        data.displayName ||
+        data.userName ||
+        data.username ||
+        data.customerName ||
+        "Unknown User"
+
+    );
+
+}
+
+
+/* ==================================================
+   SAME PHONE LOGIC AS CLASSIFIER
+================================================== */
+
+function getPhone(data){
+
+    return (
+
+        data.phone ||
+        data.phoneNumber ||
+        data.mobile ||
+        data.mobileNumber ||
+        "-"
+
+    );
+
+}
+
+
+/* ==================================================
+   SAME REFERENCE LOGIC AS CLASSIFIER
+================================================== */
+
+function getReference(data){
+
+    return (
+
+        data.reference ||
+        data.referenceNumber ||
+        data.ref ||
+        data.transactionReference ||
+        data.paymentReference ||
+        "-"
+
+    );
+
+}
+
+
+/* ==================================================
+   DATE
+================================================== */
+
+function getDate(value){
+
+    if(!value){
+
+        return "-";
+
+    }
+
+
+    if(
+        value &&
+        typeof value.toDate ===
+        "function"
+    ){
+
+        return value
+            .toDate()
+            .toLocaleString();
+
+    }
+
+
+    if(
+        value &&
+        value.seconds
+    ){
+
+        return new Date(
+            value.seconds * 1000
+        ).toLocaleString();
+
+    }
+
+
+    try{
+
+        return new Date(
+            value
+        ).toLocaleString();
+
+    }
+    catch(error){
+
+        return safe(value);
+
+    }
+
+}
+
+
+/* ==================================================
+   MONEY
+================================================== */
+
+function money(value){
+
+    return "₱" +
+        Number(value || 0)
+        .toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* ==================================================
+   IMPORTANT:
+   ONLY UNMARKED RECORDS
+================================================== */
 
 function isUnmarked(data){
 
@@ -572,213 +860,65 @@ function isUnmarked(data){
 
 
     /*
-     * ONLY these are unmarked:
+     * UNMARKED means:
      *
      * undefined
      * null
      * empty string
+     *
+     * TEST and ACTUAL are excluded.
      */
 
-    return (
+    if(
         type === undefined ||
         type === null ||
         String(type).trim() === ""
-    );
-
-}
-
-
-/* =================================
-   FORMAT DATE
-================================= */
-
-function formatDate(value){
-
-    if(!value){
-        return "—";
-    }
-
-
-    try{
-
-        if(
-            value &&
-            typeof value.toDate ===
-            "function"
-        ){
-
-            return value
-                .toDate()
-                .toLocaleString();
-
-        }
-
-
-        if(
-            value instanceof Date
-        ){
-
-            return value
-                .toLocaleString();
-
-        }
-
-
-        return String(value);
-
-    }
-    catch(error){
-
-        return "—";
-
-    }
-
-}
-
-
-/* =================================
-   FIND USER DISPLAY
-================================= */
-
-function getUserValue(
-    data,
-    fields
-){
-
-    for(
-        const field of fields
     ){
 
-        if(
-            data[field] !==
-            undefined &&
-            data[field] !== null &&
-            data[field] !== ""
-        ){
-
-            return data[field];
-
-        }
+        return true;
 
     }
 
-    return "—";
+
+    return false;
 
 }
 
 
-/* =================================
-   LOAD DEPOSITS
-================================= */
+/* ==================================================
+   LOAD COLLECTION
+   SAME METHOD AS CLASSIFIER
+================================================== */
 
-async function loadDeposits(){
+async function loadCollection(
+    collectionName
+){
 
     const snapshot =
         await getDocs(
             collection(
                 db,
-                "deposits"
+                collectionName
             )
         );
 
 
-    const records = [];
+    return snapshot.docs.map(
+        item => ({
 
+            id:item.id,
 
-    snapshot.forEach(
-        item => {
+            data:item.data()
 
-            const data =
-                item.data();
-
-
-            /*
-             * IMPORTANT:
-             *
-             * Test and Actual are
-             * automatically excluded.
-             *
-             * Only unmarked records
-             * are included.
-             */
-
-            if(
-                isUnmarked(data)
-            ){
-
-                records.push({
-
-                    id:item.id,
-                    data:data
-
-                });
-
-            }
-
-        }
+        })
     );
-
-
-    return records;
 
 }
 
 
-/* =================================
-   LOAD WITHDRAWALS
-================================= */
-
-async function loadWithdrawals(){
-
-    const snapshot =
-        await getDocs(
-            collection(
-                db,
-                "withdrawals"
-            )
-        );
-
-
-    const records = [];
-
-
-    snapshot.forEach(
-        item => {
-
-            const data =
-                item.data();
-
-
-            /*
-             * Only unmarked
-             * withdrawals.
-             */
-
-            if(
-                isUnmarked(data)
-            ){
-
-                records.push({
-
-                    id:item.id,
-                    data:data
-
-                });
-
-            }
-
-        }
-    );
-
-
-    return records;
-
-}
-
-
-/* =================================
+/* ==================================================
    RENDER DEPOSITS
-================================= */
+================================================== */
 
 function renderDeposits(
     records
@@ -788,7 +928,7 @@ function renderDeposits(
         records.length === 0
     ){
 
-        depositList.innerHTML = `
+        depositsContainer.innerHTML = `
 
             <div class="empty">
 
@@ -806,78 +946,73 @@ function renderDeposits(
     let total = 0;
 
 
-    depositList.innerHTML =
+    depositsContainer.innerHTML =
         records.map(
-            record => {
+            item => {
 
                 const data =
-                    record.data;
+                    item.data;
+
 
                 const amount =
                     getAmount(data);
 
+
                 total += amount;
 
 
-                const reference =
-                    getUserValue(
-                        data,
-                        [
-                            "reference",
-                            "referenceNumber",
-                            "refNumber",
-                            "transactionReference"
-                        ]
-                    );
+                const name =
+                    getName(data);
 
 
                 const phone =
-                    getUserValue(
-                        data,
-                        [
-                            "phone",
-                            "phoneNumber",
-                            "userPhone"
-                        ]
-                    );
+                    getPhone(data);
 
 
-                const name =
-                    getUserValue(
-                        data,
-                        [
-                            "name",
-                            "userName",
-                            "fullName"
-                        ]
-                    );
+                const reference =
+                    getReference(data);
 
 
                 const date =
-                    getUserValue(
-                        data,
-                        [
-                            "createdAt",
-                            "timestamp",
-                            "date"
-                        ]
+                    getDate(
+                        data.createdAt ||
+                        data.timestamp ||
+                        data.date
                     );
 
 
                 return `
 
-                    <div class="record">
+                    <div class="card">
 
-                        <div class="record-top">
+                        <div class="card-top">
 
-                            <div class="record-id">
+                            <div>
 
-                                ID:
-                                ${escapeHtml(
-                                    record.id
-                                )}
+                                <div class="card-title">
+
+                                    ${escapeHtml(
+                                        name
+                                    )}
+
+                                </div>
+
+                                <div class="card-subtitle">
+
+                                    ${escapeHtml(
+                                        phone
+                                    )}
+
+                                </div>
+
+                                <span class="badge">
+
+                                    UNMARKED
+
+                                </span>
 
                             </div>
+
 
                             <div class="amount">
 
@@ -888,66 +1023,82 @@ function renderDeposits(
                         </div>
 
 
-                        <div class="detail">
+                        <div class="info">
 
-                            <div class="detail-box">
+                            <div class="row">
 
-                                <div class="detail-label">
-                                    NAME
-                                </div>
+                                <span>
+                                    Reference
+                                </span>
 
-                                <div class="detail-value">
-
-                                    ${escapeHtml(name)}
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    PHONE
-                                </div>
-
-                                <div class="detail-value">
-
-                                    ${escapeHtml(phone)}
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    REFERENCE
-                                </div>
-
-                                <div class="detail-value">
-
-                                    ${escapeHtml(reference)}
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    DATE
-                                </div>
-
-                                <div class="detail-value">
-
+                                <span>
                                     ${escapeHtml(
-                                        formatDate(date)
+                                        reference
                                     )}
+                                </span>
 
-                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Status
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        data.status || "-"
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Payment
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        data.paymentChannel ||
+                                        data.paymentMethod ||
+                                        data.payment ||
+                                        "-"
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Date
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        date
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Firebase ID
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        item.id
+                                    )}
+                                </span>
 
                             </div>
 
@@ -966,9 +1117,9 @@ function renderDeposits(
 }
 
 
-/* =================================
+/* ==================================================
    RENDER WITHDRAWALS
-================================= */
+================================================== */
 
 function renderWithdrawals(
     records
@@ -978,7 +1129,7 @@ function renderWithdrawals(
         records.length === 0
     ){
 
-        withdrawalList.innerHTML = `
+        withdrawalsContainer.innerHTML = `
 
             <div class="empty">
 
@@ -996,79 +1147,69 @@ function renderWithdrawals(
     let total = 0;
 
 
-    withdrawalList.innerHTML =
+    withdrawalsContainer.innerHTML =
         records.map(
-            record => {
+            item => {
 
                 const data =
-                    record.data;
+                    item.data;
+
 
                 const amount =
                     getAmount(data);
 
+
                 total += amount;
 
 
-                const phone =
-                    getUserValue(
-                        data,
-                        [
-                            "phone",
-                            "phoneNumber",
-                            "userPhone"
-                        ]
-                    );
-
-
                 const name =
-                    getUserValue(
-                        data,
-                        [
-                            "name",
-                            "userName",
-                            "fullName"
-                        ]
-                    );
+                    getName(data);
 
 
-                const account =
-                    getUserValue(
-                        data,
-                        [
-                            "accountNumber",
-                            "withdrawalAccount",
-                            "account",
-                            "gcashNumber",
-                            "mayaNumber"
-                        ]
-                    );
+                const phone =
+                    getPhone(data);
 
 
                 const date =
-                    getUserValue(
-                        data,
-                        [
-                            "createdAt",
-                            "timestamp",
-                            "date"
-                        ]
+                    getDate(
+                        data.createdAt ||
+                        data.timestamp ||
+                        data.date
                     );
 
 
                 return `
 
-                    <div class="record">
+                    <div class="card">
 
-                        <div class="record-top">
+                        <div class="card-top">
 
-                            <div class="record-id">
+                            <div>
 
-                                ID:
-                                ${escapeHtml(
-                                    record.id
-                                )}
+                                <div class="card-title">
+
+                                    ${escapeHtml(
+                                        name
+                                    )}
+
+                                </div>
+
+                                <div class="card-subtitle">
+
+                                    ${escapeHtml(
+                                        phone
+                                    )}
+
+                                </div>
+
+                                <span class="badge">
+
+                                    UNMARKED
+
+                                </span>
 
                             </div>
+
 
                             <div class="amount">
 
@@ -1079,66 +1220,69 @@ function renderWithdrawals(
                         </div>
 
 
-                        <div class="detail">
+                        <div class="info">
 
-                            <div class="detail-box">
+                            <div class="row">
 
-                                <div class="detail-label">
-                                    NAME
-                                </div>
+                                <span>
+                                    Status
+                                </span>
 
-                                <div class="detail-value">
-
-                                    ${escapeHtml(name)}
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    PHONE
-                                </div>
-
-                                <div class="detail-value">
-
-                                    ${escapeHtml(phone)}
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    ACCOUNT
-                                </div>
-
-                                <div class="detail-value">
-
-                                    ${escapeHtml(account)}
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="detail-box">
-
-                                <div class="detail-label">
-                                    DATE
-                                </div>
-
-                                <div class="detail-value">
-
+                                <span>
                                     ${escapeHtml(
-                                        formatDate(date)
+                                        data.status || "-"
                                     )}
+                                </span>
 
-                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Account
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        data.accountNumber ||
+                                        data.withdrawalAccount ||
+                                        data.account ||
+                                        data.gcashNumber ||
+                                        data.mayaNumber ||
+                                        "-"
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Date
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        date
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Firebase ID
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        item.id
+                                    )}
+                                </span>
 
                             </div>
 
@@ -1157,9 +1301,9 @@ function renderWithdrawals(
 }
 
 
-/* =================================
-   LOAD EVERYTHING
-================================= */
+/* ==================================================
+   LOAD ACTUAL FUNDS
+================================================== */
 
 async function loadActualFunds(){
 
@@ -1170,19 +1314,23 @@ async function loadActualFunds(){
         "⏳ Loading...";
 
 
-    depositList.innerHTML = `
+    depositsContainer.innerHTML = `
 
-        <div class="empty">
+        <div class="loading">
+
             Loading deposits...
+
         </div>
 
     `;
 
 
-    withdrawalList.innerHTML = `
+    withdrawalsContainer.innerHTML = `
 
-        <div class="empty">
+        <div class="loading">
+
             Loading withdrawals...
+
         </div>
 
     `;
@@ -1190,25 +1338,66 @@ async function loadActualFunds(){
 
     try{
 
+
+        /*
+         * EXACT SAME FIREBASE
+         * COLLECTION READING AS
+         * THE WORKING CLASSIFIER
+         */
+
         const deposits =
-            await loadDeposits();
+            await loadCollection(
+                "deposits"
+            );
 
 
         const withdrawals =
-            await loadWithdrawals();
+            await loadCollection(
+                "withdrawals"
+            );
 
+
+        /*
+         * ONLY UNMARKED
+         */
+
+        const unmarkedDeposits =
+            deposits.filter(
+                item =>
+                    isUnmarked(
+                        item.data
+                    )
+            );
+
+
+        const unmarkedWithdrawals =
+            withdrawals.filter(
+                item =>
+                    isUnmarked(
+                        item.data
+                    )
+            );
+
+
+        /*
+         * RENDER
+         */
 
         const depositAmount =
             renderDeposits(
-                deposits
+                unmarkedDeposits
             );
 
 
         const withdrawalAmount =
             renderWithdrawals(
-                withdrawals
+                unmarkedWithdrawals
             );
 
+
+        /*
+         * TOTAL
+         */
 
         const remaining =
             depositAmount -
@@ -1216,41 +1405,47 @@ async function loadActualFunds(){
 
 
         depositTotal.textContent =
-            money(depositAmount);
+            money(
+                depositAmount
+            );
 
 
         withdrawalTotal.textContent =
-            money(withdrawalAmount);
+            money(
+                withdrawalAmount
+            );
 
 
         remainingTotal.textContent =
-            money(remaining);
+            money(
+                remaining
+            );
 
 
-        authBox.className =
-            "auth-box auth-ok";
+        message.innerHTML = `
 
+            <div class="notice">
 
-        authBox.innerHTML = `
+                <b>Firebase data loaded.</b>
 
-            <strong>
-                ✅ Firebase connected
-            </strong>
+                Showing only unmarked
+                deposits and withdrawals.
 
-            <br>
+                <br>
 
-            Showing only unmarked
-            deposit and withdrawal records.
+                Unmarked deposits:
+                <b>
+                    ${unmarkedDeposits.length}
+                </b>
 
-            <br>
+                &nbsp; | &nbsp;
 
-            Deposits found:
-            ${deposits.length}
+                Unmarked withdrawals:
+                <b>
+                    ${unmarkedWithdrawals.length}
+                </b>
 
-            &nbsp; | &nbsp;
-
-            Withdrawals found:
-            ${withdrawals.length}
+            </div>
 
         `;
 
@@ -1264,26 +1459,26 @@ async function loadActualFunds(){
         );
 
 
-        authBox.className =
-            "auth-box auth-error";
+        message.innerHTML = `
 
+            <div class="error">
 
-        authBox.innerHTML = `
+                <b>
+                    Unable to load Firebase data.
+                </b>
 
-            <strong>
-                ❌ Unable to load Firebase data
-            </strong>
+                <br><br>
 
-            <br><br>
+                ${escapeHtml(
+                    error.message
+                )}
 
-            ${escapeHtml(
-                error.message
-            )}
+            </div>
 
         `;
 
 
-        depositList.innerHTML = `
+        depositsContainer.innerHTML = `
 
             <div class="empty">
 
@@ -1294,7 +1489,7 @@ async function loadActualFunds(){
         `;
 
 
-        withdrawalList.innerHTML = `
+        withdrawalsContainer.innerHTML = `
 
             <div class="empty">
 
@@ -1316,163 +1511,33 @@ async function loadActualFunds(){
 }
 
 
-/* =================================
-   AUTH
-================================= */
-
-onAuthStateChanged(
-    auth,
-    async user => {
-
-        console.log(
-            "Actual Funds Firebase user:",
-            user
-        );
-
-
-        /*
-         * We do NOT redirect.
-         * We do NOT sign out.
-         *
-         * The page simply tries to
-         * read the data when Firebase
-         * provides an authenticated user.
-         */
-
-        if(!user){
-
-            /*
-             * Since your classifier already
-             * works, this message simply
-             * tells us Firebase did not
-             * provide the session here.
-             */
-
-            authBox.className =
-                "auth-box auth-error";
-
-
-            authBox.innerHTML = `
-
-                <strong>
-                    ⚠️ Firebase session not detected
-                </strong>
-
-                <br><br>
-
-                Firebase did not provide a
-                signed-in user to this page.
-
-            `;
-
-
-            refreshButton.disabled =
-                true;
-
-
-            return;
-
-        }
-
-
-        /*
-         * Verify administrator.
-         */
-
-        if(
-            user.uid !==
-            ADMIN_UID
-        ){
-
-            authBox.className =
-                "auth-box auth-error";
-
-
-            authBox.innerHTML = `
-
-                <strong>
-                    ❌ Access Denied
-                </strong>
-
-                <br><br>
-
-                Firebase user detected,
-                but this account is not
-                the administrator.
-
-            `;
-
-
-            refreshButton.disabled =
-                true;
-
-
-            return;
-
-        }
-
-
-        /*
-         * Administrator confirmed.
-         */
-
-        authBox.className =
-            "auth-box auth-ok";
-
-
-        authBox.innerHTML = `
-
-            <strong>
-                ✅ Administrator verified
-            </strong>
-
-            <br>
-
-            Loading unmarked funds...
-
-        `;
-
-
-        refreshButton.disabled =
-            false;
-
-
-        await loadActualFunds();
-
-    }
-);
-
-
-/* =================================
-   REFRESH BUTTON
-================================= */
+/* ==================================================
+   REFRESH
+================================================== */
 
 refreshButton.addEventListener(
     "click",
     async function(){
 
-        const user =
-            auth.currentUser;
+        await loadActualFunds();
+
+    }
+);
+
+
+/* ==================================================
+   SAME ADMIN AUTH AS CLASSIFIER
+================================================== */
+
+onAuthStateChanged(
+    auth,
+    async user => {
 
 
         if(!user){
 
-            authBox.className =
-                "auth-box auth-error";
-
-
-            authBox.innerHTML = `
-
-                <strong>
-                    ⚠️ Firebase session not detected
-                </strong>
-
-                <br><br>
-
-                Please open the page from
-                the working admin dashboard.
-
-            `;
+            window.location.href =
+                "index.html";
 
             return;
 
@@ -1484,15 +1549,54 @@ refreshButton.addEventListener(
             ADMIN_UID
         ){
 
+            document.body.innerHTML = `
+
+                <div style="
+                    padding:50px 20px;
+                    text-align:center;
+                    font-family:Arial;
+                ">
+
+                    <h2 style="
+                        color:#c62828;
+                    ">
+
+                        Access Denied
+
+                    </h2>
+
+
+                    <p style="
+                        margin-top:10px;
+                        color:#666;
+                    ">
+
+                        You are not authorized
+                        to access this page.
+
+                    </p>
+
+                </div>
+
+            `;
+
             return;
 
         }
 
 
+        /*
+         * ADMIN VERIFIED.
+         *
+         * Now load ONLY the
+         * unmarked records.
+         */
+
         await loadActualFunds();
 
     }
 );
+
 
 </script>
 
