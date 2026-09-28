@@ -16,6 +16,25 @@ content="width=device-width, initial-scale=1.0"
 
 <style>
 
+.daily-record-btn{
+    width:100%;
+    border:none;
+    background:white;
+    color:#0757c9;
+    padding:13px;
+    border-radius:11px;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.daily-record-btn:active{
+    transform:scale(.98);
+}
+
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -477,7 +496,7 @@ body{
 </h1>
 
 <p>
-    Unmarked Firebase transactions only
+  Skyrent  Actual Firebase transactions only
 </p>
 
 
@@ -676,6 +695,14 @@ body{
     ⏳ Loading Firebase...
 
 </button>
+
+<button
+    class="daily-record-btn"
+    onclick="window.location.href='daily-funds.html'"
+>
+    📅 View Daily Funds Record
+</button>
+
 
 
 <!-- =========================
