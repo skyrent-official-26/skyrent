@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>SkyRent Admin - Daily Funds Reports</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f1f7fc;
+    color:#18324d;
+    min-height:100vh;
+    padding-bottom:40px;
+}
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(
+        135deg,
+        #0757c9,
+        #0b8de3
+    );
+
+    color:white;
+    text-align:center;
+    padding:22px 15px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.15);
+}
+
+.header h1{
+    font-size:21px;
+    margin-bottom:6px;
+}
+
+.header p{
+    font-size:12px;
+    opacity:.9;
+}
+
+/* CONTAINER */
+
+.container{
+    width:100%;
+    max-width:700px;
+    margin:auto;
+    padding:15px;
+}
+
+/* BACK */
+
+.back-btn{
+    width:100%;
+    border:none;
+    background:white;
+    color:#0757c9;
+    padding:13px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:15px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
+
+    cursor:pointer;
+}
+
+.back-btn:active{
+    transform:scale(.98);
+}
+
+/* DATE */
+
+.date-box{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    margin-bottom:15px;
+
+    box-shadow:
+        0 2px 9px rgba(0,0,0,.08);
+}
+
+.date-title{
+    font-size:13px;
+    font-weight:700;
+    color:#0757c9;
+    margin-bottom:9px;
+}
+
+.date-row{
+    display:flex;
+    gap:8px;
+}
+
+.date-input{
+    flex:1;
+    min-width:0;
+
+    border:1px solid #d8e1ea;
+    background:#f8fbfe;
+
+    padding:12px;
+    border-radius:10px;
+
+    font-size:14px;
+    color:#18324d;
+    outline:none;
+}
+
+.date-input:focus{
+    border-color:#0757c9;
+}
+
+.search-btn{
+    border:none;
+    background:#0757c9;
+    color:white;
+
+    padding:12px 16px;
+    border-radius:10px;
+
+    font-size:13px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.search-btn:active{
+    transform:scale(.97);
+}
+
+.selected-date{
+    text-align:center;
+    color:#718399;
+    font-size:11px;
+    margin-top:9px;
+}
+
+/* REPORT STATUS */
+
+.report-status{
+    display:none;
+
+    background:#eaf7ee;
+    color:#18743b;
+
+    border:1px solid #bde5c9;
+
+    padding:11px 13px;
+    border-radius:10px;
+
+    font-size:11px;
+    line-height:1.5;
+
+    margin-bottom:15px;
+}
+
+/* ERROR */
+
+.error{
+    display:none;
+
+    background:#fff0f0;
+    color:#a32626;
+
+    border-left:4px solid #d93636;
+
+    border-radius:10px;
+
+    padding:13px;
+
+    font-size:12px;
+    line-height:1.5;
+
+    margin-bottom:15px;
+}
+
+/* LOADING */
+
+.loading{
+    background:white;
+
+    border-radius:15px;
+
+    padding:35px 15px;
+
+    text-align:center;
+
+    color:#718399;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.06);
+
+    margin-bottom:15px;
+}
+
+.spinner{
+    width:32px;
+    height:32px;
+
+    border:4px solid #dce8f5;
+    border-top:4px solid #0757c9;
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    margin:0 auto 12px;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+/* REPORT */
+
+.report{
+    display:none;
+}
+
+/* MAIN BALANCE */
+
+.balance-card{
+    background:linear-gradient(
+        135deg,
+        #0757c9,
+        #0b8de3
+    );
+
+    color:white;
+
+    border-radius:17px;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+        0 4px 14px rgba(7,87,201,.22);
+}
+
+.balance-label{
+    font-size:11px;
+    opacity:.85;
+    margin-bottom:7px;
+}
+
+.balance-amount{
+    font-size:28px;
+    font-weight:800;
+    word-break:break-word;
+}
+
+.balance-note{
+    font-size:11px;
+    opacity:.85;
+    margin-top:8px;
+}
+
+/* SUMMARY GRID */
+
+.summary{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+
+    margin-bottom:15px;
+}
+
+.card{
+    background:white;
+
+    border-radius:15px;
+
+    padding:16px 13px;
+
+    box-shadow:
+        0 2px 9px rgba(0,0,0,.08);
+}
+
+.card-icon{
+    font-size:21px;
+    margin-bottom:7px;
+}
+
+.card-title{
+    font-size:10px;
+    color:#718399;
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.card-value{
+    font-size:18px;
+    font-weight:800;
+    word-break:break-word;
+}
+
+.deposit{
+    color:#16813b;
+}
+
+.withdrawal{
+    color:#c62828;
+}
+
+.previous{
+    color:#0757c9;
+}
+
+.users{
+    color:#7b4db3;
+}
+
+/* NET */
+
+.net-card{
+    background:white;
+
+    border-radius:15px;
+
+    padding:17px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+        0 2px 9px rgba(0,0,0,.08);
+}
+
+.net-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+
+    padding:8px 0;
+}
+
+.net-row:not(:last-child){
+    border-bottom:1px solid #edf0f3;
+}
+
+.net-label{
+    color:#718399;
+    font-size:12px;
+}
+
+.net-value{
+    font-size:14px;
+    font-weight:800;
+    text-align:right;
+}
+
+/* HISTORY */
+
+.history-section{
+    background:white;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    margin-top:15px;
+
+    box-shadow:
+        0 2px 9px rgba(0,0,0,.08);
+}
+
+.history-title{
+    color:#0757c9;
+    font-size:16px;
+    font-weight:700;
+
+    padding-bottom:12px;
+    border-bottom:1px solid #edf0f3;
+}
+
+.history-list{
+    width:100%;
+}
+
+.history-item{
+    padding:13px 0;
+
+    border-bottom:1px solid #edf0f3;
+
+    cursor:pointer;
+}
+
+.history-item:last-child{
+    border-bottom:none;
+}
+
+.history-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+}
+
+.history-date{
+    font-size:13px;
+    font-weight:700;
+    color:#18324d;
+}
+
+.history-balance{
+    font-size:14px;
+    font-weight:800;
+    color:#0757c9;
+}
+
+.history-details{
+    display:flex;
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-top:5px;
+
+    font-size:10px;
+    color:#718399;
+}
+
+.empty{
+    text-align:center;
+
+    padding:25px 10px;
+
+    color:#8998a8;
+
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* MOBILE */
+
+@media(max-width:430px){
+
+    .date-row{
+        flex-direction:column;
+    }
+
+    .search-btn{
+        width:100%;
+    }
+
+    .summary{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .balance-amount{
+        font-size:25px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>
+        📊 Daily Funds Reports
+    </h1>
+
+    <p>
+        Automatic daily financial summary
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+    <button
+        class="back-btn"
+        onclick="window.location.href='actual-funds.html'"
+    >
+        ← Back to Actual Funds
+    </button>
+
+
+    <!-- DATE -->
+
+    <div class="date-box">
+
+        <div class="date-title">
+            📅 Select Report Date
+        </div>
+
+        <div class="date-row">
+
+            <input
+                type="date"
+                id="datePicker"
+                class="date-input"
+            >
+
+            <button
+                class="search-btn"
+                id="searchButton"
+            >
+                🔍 Search
+            </button>
+
+        </div>
+
+        <div
+            id="selectedDateText"
+            class="selected-date"
+        >
+            Loading date...
+        </div>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <div
+        id="reportStatus"
+        class="report-status"
+    ></div>
+
+
+    <!-- ERROR -->
+
+    <div
+        id="errorBox"
+        class="error"
+    ></div>
+
+
+    <!-- LOADING -->
+
+    <div
+        id="loading"
+        class="loading"
+    >
+
+        <div class="spinner"></div>
+
+        Calculating daily report...
+
+    </div>
+
+
+    <!-- REPORT -->
+
+    <div
+        id="report"
+        class="report"
+    >
+
+        <!-- CURRENT FUNDS -->
+
+        <div class="balance-card">
+
+            <div class="balance-label">
+                CURRENT REMAINING FUNDS
+            </div>
+
+            <div
+                id="currentFunds"
+                class="balance-amount"
+            >
+                ₱0.00
+            </div>
+
+            <div class="balance-note">
+                Total deposits minus total withdrawals up to the selected date.
+            </div>
+
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="summary">
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    👥
+                </div>
+
+                <div class="card-title">
+                    ACTUAL USERS
+                </div>
+
+                <div
+                    id="actualUsers"
+                    class="card-value users"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💰
+                </div>
+
+                <div class="card-title">
+                    TODAY'S DEPOSITS
+                </div>
+
+                <div
+                    id="todayDeposits"
+                    class="card-value deposit"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💸
+                </div>
+
+                <div class="card-title">
+                    TODAY'S WITHDRAWALS
+                </div>
+
+                <div
+                    id="todayWithdrawals"
+                    class="card-value withdrawal"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🏦
+                </div>
+
+                <div class="card-title">
+                    PREVIOUS FUNDS
+                </div>
+
+                <div
+                    id="previousFunds"
+                    class="card-value previous"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FINANCIAL BREAKDOWN -->
+
+        <div class="net-card">
+
+            <div class="net-row">
+
+                <div class="net-label">
+                    Total Deposits Up To Date
+                </div>
+
+                <div
+                    id="totalDeposits"
+                    class="net-value deposit"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div class="net-row">
+
+                <div class="net-label">
+                    Total Withdrawals Up To Date
+                </div>
+
+                <div
+                    id="totalWithdrawals"
+                    class="net-value withdrawal"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div class="net-row">
+
+                <div class="net-label">
+                    Today's Net Funds
+                </div>
+
+                <div
+                    id="todayNet"
+                    class="net-value"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div class="net-row">
+
+                <div class="net-label">
+                    Previous Remaining Funds
+                </div>
+
+                <div
+                    id="previousFunds2"
+                    class="net-value"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div class="net-row">
+
+                <div class="net-label">
+                    Current Remaining Funds
+                </div>
+
+                <div
+                    id="currentFunds2"
+                    class="net-value"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- HISTORY -->
+
+    <div class="history-section">
+
+        <div class="history-title">
+            📅 Saved Daily Reports
+        </div>
+
+        <div
+            id="historyList"
+            class="history-list"
+        >
+
+            <div class="empty">
+                Loading report history...
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script type="module">
+
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    doc,
+    getDoc,
+    setDoc,
+    query,
+    orderBy
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
+
+    authDomain:
+        "skyrent-ea30c.firebaseapp.com",
+
+    projectId:
+        "skyrent-ea30c",
+
+    storageBucket:
+        "skyrent-ea30c.firebasestorage.app",
+
+    messagingSenderId:
+        "572678456448",
+
+    appId:
+        "1:572678456448:web:6b7132351515742dd09265"
+
+};
+
+
+const ADMIN_UID =
+    "28zzG9NB46gRkwia7WtOxS1lQNa2";
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const datePicker =
+    document.getElementById(
+        "datePicker"
+    );
+
+const searchButton =
+    document.getElementById(
+        "searchButton"
+    );
+
+const loading =
+    document.getElementById(
+        "loading"
+    );
+
+const report =
+    document.getElementById(
+        "report"
+    );
+
+const errorBox =
+    document.getElementById(
+        "errorBox"
+    );
+
+const reportStatus =
+    document.getElementById(
+        "reportStatus"
+    );
+
+const selectedDateText =
+    document.getElementById(
+        "selectedDateText"
+    );
+
+const historyList =
+    document.getElementById(
+        "historyList"
+    );
+
+
+/* =========================================================
+   MONEY
+========================================================= */
+
+function money(value){
+
+    return "₱" +
+        Number(value || 0)
+        .toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =========================================================
+   TIMESTAMP
+========================================================= */
+
+function getTimestamp(data){
+
+    const fields = [
+
+        "createdAt",
+        "timestamp",
+        "date",
+        "created",
+        "createdDate"
+
+    ];
+
+
+    for(
+        const field of fields
+    ){
+
+        const value =
+            data[field];
+
+
+        if(
+            value === undefined ||
+            value === null ||
+            value === ""
+        ){
+
+            continue;
+
+        }
+
+
+        /* Firebase Timestamp */
+
+        if(
+            typeof value.toDate ===
+            "function"
+        ){
+
+            const date =
+                value.toDate();
+
+            if(
+                !isNaN(
+                    date.getTime()
+                )
+            ){
+
+                return date;
+
+            }
+
+        }
+
+
+        /* Timestamp-like object */
+
+        if(
+            value.seconds !== undefined
+        ){
+
+            const date =
+                new Date(
+                    Number(value.seconds) * 1000
+                );
+
+            if(
+                !isNaN(
+                    date.getTime()
+                )
+            ){
+
+                return date;
+
+            }
+
+        }
+
+
+        /* Date */
+
+        if(
+            value instanceof Date
+        ){
+
+            return value;
+
+        }
+
+
+        /* Number */
+
+        if(
+            typeof value === "number"
+        ){
+
+            const milliseconds =
+                value < 10000000000
+                    ? value * 1000
+                    : value;
+
+            const date =
+                new Date(
+                    milliseconds
+                );
+
+            if(
+                !isNaN(
+                    date.getTime()
+                )
+            ){
+
+                return date;
+
+            }
+
+        }
+
+
+        /* String */
+
+        if(
+            typeof value === "string"
+        ){
+
+            const date =
+                new Date(value);
+
+            if(
+                !isNaN(
+                    date.getTime()
+                )
+            ){
+
+                return date;
+
+            }
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   PHILIPPINES DATE
+========================================================= */
+
+function philippinesDate(date){
+
+    if(!date){
+        return null;
+    }
+
+
+    return new Intl.DateTimeFormat(
+        "en-CA",
+        {
+            timeZone:"Asia/Manila",
+            year:"numeric",
+            month:"2-digit",
+            day:"2-digit"
+        }
+    ).format(date);
+
+}
+
+
+/* =========================================================
+   TODAY
+========================================================= */
+
+function getTodayPhilippines(){
+
+    return philippinesDate(
+        new Date()
+    );
+
+}
+
+
+/* =========================================================
+   DISPLAY DATE
+========================================================= */
+
+function formatSelectedDate(value){
+
+    const parts =
+        value.split("-");
+
+
+    if(
+        parts.length !== 3
+    ){
+
+        return value;
+
+    }
+
+
+    const date =
+        new Date(
+            Number(parts[0]),
+            Number(parts[1]) - 1,
+            Number(parts[2])
+        );
+
+
+    return new Intl.DateTimeFormat(
+        "en-US",
+        {
+            month:"long",
+            day:"numeric",
+            year:"numeric"
+        }
+    ).format(date);
+
+}
+
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+function getAmount(data){
+
+    const fields = [
+
+        "amount",
+        "depositAmount",
+        "withdrawalAmount",
+        "amountValue",
+        "requestedAmount",
+        "investmentAmount",
+        "planAmount",
+        "price",
+        "value"
+
+    ];
+
+
+    for(
+        const field of fields
+    ){
+
+        if(
+            data[field] !== undefined &&
+            data[field] !== null &&
+            data[field] !== ""
+        ){
+
+            const number =
+                Number(data[field]);
+
+
+            if(
+                Number.isFinite(number)
+            ){
+
+                return number;
+
+            }
+
+        }
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =========================================================
+   TRANSACTION FILTER
+========================================================= */
+
+/*
+ * TEST records are excluded.
+ *
+ * ACTUAL records are included.
+ *
+ * Unmarked records are also included,
+ * matching the current SkyRent funds logic.
+ */
+
+function isIncluded(data){
+
+    const type =
+        data.transactionType;
+
+
+    if(
+        type === undefined ||
+        type === null ||
+        String(type).trim() === ""
+    ){
+
+        return true;
+
+    }
+
+
+    const normalized =
+        String(type)
+        .trim()
+        .toLowerCase();
+
+
+    if(
+        normalized === "test"
+    ){
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================================================
+   LOAD COLLECTION
+========================================================= */
+
+async function loadCollection(
+    collectionName
+){
+
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                collectionName
+            )
+        );
+
+
+    return snapshot.docs.map(
+        item => ({
+
+            id:item.id,
+            data:item.data()
+
+        })
+    );
+
+}
+
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
+
+async function loadAllData(){
+
+    const [
+        users,
+        deposits,
+        withdrawals
+    ] = await Promise.all([
+
+        loadCollection(
+            "users"
+        ),
+
+        loadCollection(
+            "deposits"
+        ),
+
+        loadCollection(
+            "withdrawals"
+        )
+
+    ]);
+
+
+    return {
+        users,
+        deposits,
+        withdrawals
+    };
+
+}
+
+
+/* =========================================================
+   COUNT ACTUAL USERS
+========================================================= */
+
+function countActualUsers(users){
+
+    return users.filter(
+        item => {
+
+            const data =
+                item.data;
+
+            const type =
+                data.transactionType ||
+                data.userType ||
+                data.accountType ||
+                data.type;
+
+
+            if(
+                type === undefined ||
+                type === null ||
+                String(type).trim() === ""
+            ){
+
+                return true;
+
+            }
+
+
+            const normalized =
+                String(type)
+                .trim()
+                .toLowerCase();
+
+
+            return (
+                normalized !== "test"
+            );
+
+        }
+    ).length;
+
+}
+
+
+/* =========================================================
+   CALCULATE REPORT
+========================================================= */
+
+function calculateReport(
+    selectedDate,
+    data
+){
+
+    const deposits =
+        data.deposits.filter(
+            item =>
+                isIncluded(
+                    item.data
+                )
+        );
+
+
+    const withdrawals =
+        data.withdrawals.filter(
+            item =>
+                isIncluded(
+                    item.data
+                )
+        );
+
+
+    /* TODAY */
+
+    const todayDeposits =
+        deposits.filter(
+            item => {
+
+                const date =
+                    getTimestamp(
+                        item.data
+                    );
+
+                return (
+                    date &&
+                    philippinesDate(date) ===
+                    selectedDate
+                );
+
+            }
+        );
+
+
+    const todayWithdrawals =
+        withdrawals.filter(
+            item => {
+
+                const date =
+                    getTimestamp(
+                        item.data
+                    );
+
+                return (
+                    date &&
+                    philippinesDate(date) ===
+                    selectedDate
+                );
+
+            }
+        );
+
+
+    /* ALL DEPOSITS UP TO SELECTED DATE */
+
+    const depositsUpToDate =
+        deposits.filter(
+            item => {
+
+                const date =
+                    getTimestamp(
+                        item.data
+                    );
+
+                return (
+                    date &&
+                    philippinesDate(date) <=
+                    selectedDate
+                );
+
+            }
+        );
+
+
+    /* ALL WITHDRAWALS UP TO SELECTED DATE */
+
+    const withdrawalsUpToDate =
+        withdrawals.filter(
+            item => {
+
+                const date =
+                    getTimestamp(
+                        item.data
+                    );
+
+                return (
+                    date &&
+                    philippinesDate(date) <=
+                    selectedDate
+                );
+
+            }
+        );
+
+
+    /* BEFORE SELECTED DATE */
+
+    const depositsBeforeDate =
+        deposits.filter(
+            item => {
+
+                const date =
+                    getTimestamp(
+                        item.data
+                    );
+
+                return (
+                    date &&
+                    philippinesDate(date) <
+                    selectedDate
+                );
+
+            }
+        );
+
+
+    const withdrawalsBeforeDate =
+        withdrawals.filter(
+            item => {
+
+                const date =
+                    getTimestamp(
+                        item.data
+                    );
+
+                return (
+                    date &&
+                    philippinesDate(date) <
+                    selectedDate
+                );
+
+            }
+        );
+
+
+    /* TOTALS */
+
+    const todayDepositAmount =
+        todayDeposits.reduce(
+            (
+                total,
+                item
+            ) =>
+                total +
+                getAmount(
+                    item.data
+                ),
+            0
+        );
+
+
+    const todayWithdrawalAmount =
+        todayWithdrawals.reduce(
+            (
+                total,
+                item
+            ) =>
+                total +
+                getAmount(
+                    item.data
+                ),
+            0
+        );
+
+
+    const totalDepositAmount =
+        depositsUpToDate.reduce(
+            (
+                total,
+                item
+            ) =>
+                total +
+                getAmount(
+                    item.data
+                ),
+            0
+        );
+
+
+    const totalWithdrawalAmount =
+        withdrawalsUpToDate.reduce(
+            (
+                total,
+                item
+            ) =>
+                total +
+                getAmount(
+                    item.data
+                ),
+            0
+        );
+
+
+    const previousDepositAmount =
+        depositsBeforeDate.reduce(
+            (
+                total,
+                item
+            ) =>
+                total +
+                getAmount(
+                    item.data
+                ),
+            0
+        );
+
+
+    const previousWithdrawalAmount =
+        withdrawalsBeforeDate.reduce(
+            (
+                total,
+                item
+            ) =>
+                total +
+                getAmount(
+                    item.data
+                ),
+            0
+        );
+
+
+    /*
+     * PREVIOUS REMAINING FUNDS
+     *
+     * Everything before selected date.
+     */
+
+    const previousRemainingFunds =
+        previousDepositAmount -
+        previousWithdrawalAmount;
+
+
+    /*
+     * TODAY NET
+     */
+
+    const todayNetFunds =
+        todayDepositAmount -
+        todayWithdrawalAmount;
+
+
+    /*
+     * CURRENT REMAINING FUNDS
+     */
+
+    const currentRemainingFunds =
+        totalDepositAmount -
+        totalWithdrawalAmount;
+
+
+    return {
+
+        date:selectedDate,
+
+        actualUsers:
+            countActualUsers(
+                data.users
+            ),
+
+        todayDeposits:
+            todayDepositAmount,
+
+        todayWithdrawals:
+            todayWithdrawalAmount,
+
+        todayNetFunds:
+            todayNetFunds,
+
+        previousRemainingFunds:
+            previousRemainingFunds,
+
+        currentRemainingFunds:
+            currentRemainingFunds,
+
+        totalDeposits:
+            totalDepositAmount,
+
+        totalWithdrawals:
+            totalWithdrawalAmount
+
+    };
+
+}
+
+
+/* =========================================================
+   SAVE REPORT
+========================================================= */
+
+async function saveReport(
+    reportData
+){
+
+    const reportRef =
+        doc(
+            db,
+            "dailyFundsReports",
+            reportData.date
+        );
+
+
+    await setDoc(
+        reportRef,
+        {
+
+            date:
+                reportData.date,
+
+            actualUsers:
+                reportData.actualUsers,
+
+            todayDeposits:
+                reportData.todayDeposits,
+
+            todayWithdrawals:
+                reportData.todayWithdrawals,
+
+            todayNetFunds:
+                reportData.todayNetFunds,
+
+            previousRemainingFunds:
+                reportData.previousRemainingFunds,
+
+            currentRemainingFunds:
+                reportData.currentRemainingFunds,
+
+            totalDeposits:
+                reportData.totalDeposits,
+
+            totalWithdrawals:
+                reportData.totalWithdrawals,
+
+            generatedAt:
+                new Date(),
+
+            updatedAt:
+                new Date()
+
+        },
+        {
+            merge:true
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DISPLAY REPORT
+========================================================= */
+
+function displayReport(
+    data
+){
+
+    document.getElementById(
+        "actualUsers"
+    ).textContent =
+        Number(
+            data.actualUsers || 0
+        ).toLocaleString();
+
+
+    document.getElementById(
+        "todayDeposits"
+    ).textContent =
+        money(
+            data.todayDeposits
+        );
+
+
+    document.getElementById(
+        "todayWithdrawals"
+    ).textContent =
+        money(
+            data.todayWithdrawals
+        );
+
+
+    document.getElementById(
+        "previousFunds"
+    ).textContent =
+        money(
+            data.previousRemainingFunds
+        );
+
+
+    document.getElementById(
+        "currentFunds"
+    ).textContent =
+        money(
+            data.currentRemainingFunds
+        );
+
+
+    document.getElementById(
+        "totalDeposits"
+    ).textContent =
+        money(
+            data.totalDeposits
+        );
+
+
+    document.getElementById(
+        "totalWithdrawals"
+    ).textContent =
+        money(
+            data.totalWithdrawals
+        );
+
+
+    document.getElementById(
+        "todayNet"
+    ).textContent =
+        money(
+            data.todayNetFunds
+        );
+
+
+    document.getElementById(
+        "previousFunds2"
+    ).textContent =
+        money(
+            data.previousRemainingFunds
+        );
+
+
+    document.getElementById(
+        "currentFunds2"
+    ).textContent =
+        money(
+            data.currentRemainingFunds
+        );
+
+
+    selectedDateText.textContent =
+        formatSelectedDate(
+            data.date
+        );
+
+
+    report.style.display =
+        "block";
+
+}
+
+
+/* =========================================================
+   LOAD SAVED REPORT HISTORY
+========================================================= */
+
+async function loadHistory(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "dailyFundsReports"
+                )
+            );
+
+
+        const reports =
+            snapshot.docs.map(
+                item => ({
+
+                    id:item.id,
+                    data:item.data()
+
+                })
+            );
+
+
+        reports.sort(
+            (a,b) =>
+                String(
+                    b.data.date || b.id
+                ).localeCompare(
+                    String(
+                        a.data.date || a.id
+                    )
+                )
+        );
+
+
+        if(
+            reports.length === 0
+        ){
+
+            historyList.innerHTML = `
+                <div class="empty">
+                    No saved daily reports yet.
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        historyList.innerHTML =
+            reports.map(
+                item => {
+
+                    const data =
+                        item.data;
+
+                    const date =
+                        data.date ||
+                        item.id;
+
+                    return `
+
+                        <div
+                            class="history-item"
+                            data-date="${date}"
+                        >
+
+                            <div class="history-top">
+
+                                <div class="history-date">
+                                    📅
+                                    ${formatSelectedDate(date)}
+                                </div>
+
+                                <div class="history-balance">
+                                    ${money(
+                                        data.currentRemainingFunds
+                                    )}
+                                </div>
+
+                            </div>
+
+                            <div class="history-details">
+
+                                <span>
+                                    💰 Deposits:
+                                    ${money(
+                                        data.todayDeposits
+                                    )}
+                                </span>
+
+                                <span>
+                                    💸 Withdrawals:
+                                    ${money(
+                                        data.todayWithdrawals
+                                    )}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+        document
+            .querySelectorAll(
+                ".history-item"
+            )
+            .forEach(
+                item => {
+
+                    item.addEventListener(
+                        "click",
+                        () => {
+
+                            datePicker.value =
+                                item.dataset.date;
+
+                            loadDailyReport();
+
+                        }
+                    );
+
+                }
+            );
+
+    }
+    catch(error){
+
+        console.error(
+            "History error:",
+            error
+        );
+
+        historyList.innerHTML = `
+            <div class="empty">
+                Unable to load report history.
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD DAILY REPORT
+========================================================= */
+
+async function loadDailyReport(){
+
+    const selectedDate =
+        datePicker.value;
+
+
+    if(!selectedDate){
+
+        return;
+
+    }
+
+
+    loading.style.display =
+        "block";
+
+    report.style.display =
+        "none";
+
+    errorBox.style.display =
+        "none";
+
+    reportStatus.style.display =
+        "none";
+
+
+    try{
+
+        /*
+         * Load current Firebase data.
+         */
+
+        const data =
+            await loadAllData();
+
+
+        /*
+         * Calculate selected date.
+         */
+
+        const calculated =
+            calculateReport(
+                selectedDate,
+                data
+            );
+
+
+        /*
+         * Save automatically.
+         */
+
+        await saveReport(
+            calculated
+        );
+
+
+        /*
+         * Display.
+         */
+
+        displayReport(
+            calculated
+        );
+
+
+        reportStatus.textContent =
+            "✓ Report automatically calculated and saved to dailyFundsReports.";
+
+        reportStatus.style.display =
+            "block";
+
+
+        /*
+         * Refresh history.
+         */
+
+        await loadHistory();
+
+
+        loading.style.display =
+            "none";
+
+    }
+    catch(error){
+
+        console.error(
+            "Daily report error:",
+            error
+        );
+
+
+        loading.style.display =
+            "none";
+
+        report.style.display =
+            "none";
+
+
+        errorBox.innerHTML = `
+            <b>Unable to generate daily report.</b>
+            <br><br>
+            ${error.message || "Unknown error"}
+        `;
+
+
+        errorBox.style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchButton.addEventListener(
+    "click",
+    loadDailyReport
+);
+
+
+/* =========================================================
+   ENTER
+========================================================= */
+
+datePicker.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Enter"
+        ){
+
+            loadDailyReport();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            window.location.href =
+                "index.html";
+
+            return;
+
+        }
+
+
+        if(
+            user.uid !== ADMIN_UID
+        ){
+
+            document.body.innerHTML = `
+
+                <div style="
+                    min-height:100vh;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    padding:20px;
+                    background:#f1f7fc;
+                    font-family:Arial,sans-serif;
+                ">
+
+                    <div style="
+                        width:100%;
+                        max-width:420px;
+                        background:white;
+                        padding:30px 22px;
+                        border-radius:20px;
+                        text-align:center;
+                        box-shadow:
+                            0 5px 20px
+                            rgba(0,0,0,.1);
+                    ">
+
+                        <div style="
+                            font-size:45px;
+                            margin-bottom:15px;
+                        ">
+                            🔒
+                        </div>
+
+                        <h2 style="
+                            color:#18324d;
+                            margin-bottom:10px;
+                        ">
+                            Access Denied
+                        </h2>
+
+                        <p style="
+                            color:#718399;
+                            font-size:14px;
+                            line-height:1.5;
+                        ">
+                            You are not authorized
+                            to access Daily Funds Reports.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /*
+         * Default to today's
+         * Philippines date.
+         */
+
+        datePicker.value =
+            getTodayPhilippines();
+
+
+        selectedDateText.textContent =
+            formatSelectedDate(
+                datePicker.value
+            );
+
+
+        /*
+         * Automatically generate
+         * today's report.
+         */
+
+        await loadDailyReport();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
