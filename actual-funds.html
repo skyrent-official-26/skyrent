@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -6,11 +7,12 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
-<title>SkyRent Actual Funds</title>
+<title>SkyRent Admin - Actual Funds</title>
 
 <style>
 
@@ -22,321 +24,245 @@
 
 body{
     font-family:Arial,sans-serif;
-    background:#f3f7fc;
-    color:#1d2939;
+    background:#f1f7fc;
+    color:#123;
     padding-bottom:40px;
 }
-
-/* HEADER */
 
 .header{
     background:linear-gradient(
         135deg,
         #0757c9,
-        #1597ff
+        #0b8de3
     );
     color:white;
-    padding:22px 18px;
+    padding:20px 15px;
+    text-align:center;
     box-shadow:0 3px 12px rgba(0,0,0,.15);
 }
 
 .header h1{
-    font-size:23px;
-    margin-bottom:5px;
+    font-size:21px;
+    margin-bottom:6px;
 }
 
 .header p{
-    font-size:13px;
+    font-size:12px;
     opacity:.9;
 }
 
-/* MAIN */
-
 .container{
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
-    padding:16px;
+    padding:15px;
 }
 
-/* SUMMARY CARDS */
+.back-btn{
+    width:100%;
+    border:none;
+    background:white;
+    color:#0757c9;
+    padding:13px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    cursor:pointer;
+}
 
-.summary-grid{
+
+/* =========================
+   NOTICE
+========================= */
+
+.notice{
+    background:#eaf5ff;
+    color:#14527f;
+    border-left:4px solid #168de2;
+    border-radius:10px;
+    padding:12px;
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.error{
+    background:#fff0f0;
+    color:#a32626;
+    border-left:4px solid #d93636;
+    border-radius:10px;
+    padding:12px;
+    font-size:13px;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+
+/* =========================
+   SUMMARY
+========================= */
+
+.summary{
     display:grid;
-    grid-template-columns:1fr;
-    gap:12px;
-    margin-bottom:16px;
+    grid-template-columns:
+        repeat(3,1fr);
+    gap:8px;
+    margin-bottom:15px;
 }
 
 .summary-card{
     background:white;
-    border-radius:16px;
-    padding:18px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-    border-left:5px solid;
+    border-radius:13px;
+    padding:15px 7px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
 }
 
-.summary-card.deposit{
-    border-color:#1683e8;
-}
-
-.summary-card.withdrawal{
-    border-color:#e53935;
-}
-
-.summary-card.remaining{
-    border-color:#20a464;
+.summary-number{
+    font-size:20px;
+    font-weight:800;
+    color:#0757c9;
 }
 
 .summary-label{
-    color:#667085;
-    font-size:13px;
-    margin-bottom:8px;
+    font-size:10px;
+    color:#666;
+    margin-top:5px;
 }
 
-.summary-value{
-    font-size:25px;
-    font-weight:bold;
+.remaining .summary-number{
+    color:#16813b;
 }
 
-.deposit .summary-value{
-    color:#0879d1;
-}
 
-.withdrawal .summary-value{
-    color:#d93025;
-}
-
-.remaining .summary-value{
-    color:#159447;
-}
-
-/* FUNDS VISUAL */
-
-.funds-card{
-    background:white;
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-    margin-bottom:18px;
-}
-
-.funds-title{
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:5px;
-}
-
-.funds-subtitle{
-    font-size:13px;
-    color:#667085;
-    margin-bottom:18px;
-}
-
-/* BAR */
-
-.bar-wrapper{
-    width:100%;
-    height:34px;
-    background:#e8edf3;
-    border-radius:20px;
-    overflow:hidden;
-    position:relative;
-}
-
-.remaining-bar{
-    height:100%;
-    width:0%;
-    background:linear-gradient(
-        90deg,
-        #19a463,
-        #35c77b
-    );
-    transition:width .6s ease;
-    border-radius:20px;
-}
-
-.bar-info{
-    display:flex;
-    justify-content:space-between;
-    margin-top:10px;
-    font-size:12px;
-    color:#667085;
-}
-
-.remaining-percent{
-    font-weight:bold;
-    color:#159447;
-}
-
-/* LEGEND */
-
-.legend{
-    display:flex;
-    justify-content:center;
-    gap:22px;
-    margin-top:18px;
-    flex-wrap:wrap;
-}
-
-.legend-item{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    font-size:12px;
-    color:#475467;
-}
-
-.legend-dot{
-    width:12px;
-    height:12px;
-    border-radius:50%;
-}
-
-.green-dot{
-    background:#20a464;
-}
-
-.red-dot{
-    background:#e53935;
-}
-
-/* SECTION */
+/* =========================
+   SECTION
+========================= */
 
 .section{
-    margin-top:20px;
+    margin-bottom:18px;
 }
 
 .section-title{
-    font-size:19px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.section-title span{
-    font-size:13px;
-    color:#667085;
-    font-weight:normal;
-}
-
-/* TRANSACTION CARD */
-
-.transaction{
     background:white;
-    border-radius:15px;
+    border-radius:13px;
+    padding:14px;
+    margin-bottom:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.section-title h2{
+    font-size:17px;
+    color:#17324d;
+}
+
+.section-title p{
+    font-size:11px;
+    color:#777;
+    margin-top:4px;
+}
+
+
+/* =========================
+   RECORD CARDS
+========================= */
+
+.records-grid{
+    width:100%;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
     padding:15px;
     margin-bottom:10px;
-    box-shadow:0 2px 9px rgba(0,0,0,.07);
+    box-shadow:0 2px 9px rgba(0,0,0,.08);
 }
 
-.transaction-top{
+.card-top{
     display:flex;
     justify-content:space-between;
+    align-items:flex-start;
     gap:10px;
     margin-bottom:10px;
 }
 
-.transaction-name{
-    font-weight:bold;
-    font-size:15px;
+.card-title{
+    font-size:16px;
+    font-weight:800;
+    color:#17324d;
 }
 
-.transaction-amount{
+.card-subtitle{
+    font-size:11px;
+    color:#777;
+    margin-top:3px;
+    word-break:break-word;
+}
+
+.amount{
+    white-space:nowrap;
     font-size:17px;
-    font-weight:bold;
+    font-weight:800;
+    color:#0757c9;
 }
 
-.deposit-amount{
-    color:#0879d1;
+.badge{
+    display:inline-block;
+    padding:5px 8px;
+    border-radius:20px;
+    background:#edf0f3;
+    color:#68717b;
+    font-size:10px;
+    font-weight:800;
+    margin-top:7px;
 }
 
-.withdrawal-amount{
-    color:#d93025;
+.info{
+    border-top:1px solid #edf0f3;
+    padding-top:9px;
 }
 
-.transaction-row{
+.row{
     display:flex;
     justify-content:space-between;
     gap:10px;
     padding:5px 0;
-    border-bottom:1px solid #f0f2f5;
     font-size:12px;
 }
 
-.transaction-row:last-child{
-    border-bottom:none;
+.row span:first-child{
+    color:#777;
 }
 
-.transaction-label{
-    color:#667085;
-}
-
-.transaction-value{
-    color:#344054;
+.row span:last-child{
+    font-weight:600;
     text-align:right;
     word-break:break-word;
 }
 
-/* BADGE */
-
-.badge{
-    display:inline-block;
-    padding:4px 9px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
-    background:#fff3cd;
-    color:#8a6100;
-}
-
-/* EMPTY */
-
 .empty{
     background:white;
     border-radius:14px;
-    padding:25px;
+    padding:30px 15px;
     text-align:center;
-    color:#667085;
+    color:#777;
     font-size:13px;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
-
-/* LOADING */
 
 .loading{
     text-align:center;
-    padding:50px 20px;
-    color:#667085;
+    padding:40px 10px;
+    color:#666;
+    font-size:14px;
 }
 
-.spinner{
-    width:38px;
-    height:38px;
-    border:4px solid #dce8f8;
-    border-top:4px solid #0879d1;
-    border-radius:50%;
-    animation:spin 1s linear infinite;
-    margin:0 auto 15px;
-}
 
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* ERROR */
-
-.error{
-    background:#fff0f0;
-    color:#c62828;
-    border:1px solid #ffcaca;
-    border-radius:12px;
-    padding:15px;
-    margin-top:15px;
-    font-size:13px;
-}
-
-/* REFRESH */
+/* =========================
+   REFRESH
+========================= */
 
 .refresh-btn{
     width:100%;
@@ -344,27 +270,51 @@ body{
     background:#0757c9;
     color:white;
     padding:13px;
-    border-radius:12px;
+    border-radius:11px;
     font-size:14px;
-    font-weight:bold;
+    font-weight:800;
     cursor:pointer;
-    margin-top:10px;
+    margin-bottom:15px;
 }
 
-.refresh-btn:active{
-    transform:scale(.98);
+.refresh-btn:disabled{
+    opacity:.6;
 }
 
-/* DESKTOP */
 
-@media(min-width:650px){
+/* =========================
+   DESKTOP
+========================= */
 
-    .summary-grid{
-        grid-template-columns:repeat(3,1fr);
+@media(min-width:700px){
+
+    .records-grid{
+        display:grid;
+        grid-template-columns:
+            1fr 1fr;
+        gap:10px;
     }
 
-    .summary-value{
-        font-size:22px;
+    .card{
+        margin-bottom:0;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
+
+    .summary{
+        grid-template-columns:
+            1fr;
+    }
+
+    .summary-card{
+        padding:13px;
     }
 
 }
@@ -377,228 +327,231 @@ body{
 
 <div class="header">
 
-    <h1>Actual Funds</h1>
+```
+<h1>
+    💰 Actual Funds
+</h1>
 
-    <p>
-        Unmarked deposits and withdrawals only
-    </p>
+<p>
+    Unmarked Firebase transactions only
+</p>
+```
+
+</div>
+
+<div class="container">
+
+```
+<button
+    class="back-btn"
+    onclick="window.location.href='admin.html'"
+>
+
+    ← Back to Admin
+
+</button>
+
+
+<div id="message"></div>
+
+
+<div class="notice">
+
+    <b>Read Only:</b>
+
+    This page only displays transactions
+    that have not been classified yet.
+
+    <br><br>
+
+    Records marked
+    <b>TEST</b> or
+    <b>ACTUAL</b>
+    are excluded automatically.
 
 </div>
 
 
-<div class="container">
+<!-- =========================
+     SUMMARY
+========================== -->
 
-    <div id="loading" class="loading">
+<div class="summary">
 
-        <div class="spinner"></div>
 
-        Loading Firebase records...
+    <div class="summary-card">
+
+        <div
+            class="summary-number"
+            id="depositTotal"
+        >
+            ₱0.00
+        </div>
+
+        <div class="summary-label">
+            UNMARKED DEPOSITS
+        </div>
 
     </div>
 
 
-    <div id="content" style="display:none;">
-
-        <!-- SUMMARY -->
-
-        <div class="summary-grid">
-
-            <div class="summary-card deposit">
-
-                <div class="summary-label">
-                    Total Deposits
-                </div>
-
-                <div
-                    class="summary-value"
-                    id="totalDeposits"
-                >
-                    ₱0.00
-                </div>
-
-            </div>
-
-
-            <div class="summary-card withdrawal">
-
-                <div class="summary-label">
-                    Total Withdrawals
-                </div>
-
-                <div
-                    class="summary-value"
-                    id="totalWithdrawals"
-                >
-                    ₱0.00
-                </div>
-
-            </div>
-
-
-            <div class="summary-card remaining">
-
-                <div class="summary-label">
-                    Remaining Funds
-                </div>
-
-                <div
-                    class="summary-value"
-                    id="remainingFunds"
-                >
-                    ₱0.00
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- FUNDS BAR -->
-
-        <div class="funds-card">
-
-            <div class="funds-title">
-                Funds Overview
-            </div>
-
-            <div class="funds-subtitle">
-                Remaining funds compared with total unmarked deposits
-            </div>
-
-
-            <div class="bar-wrapper">
-
-                <div
-                    class="remaining-bar"
-                    id="remainingBar"
-                ></div>
-
-            </div>
-
-
-            <div class="bar-info">
-
-                <span id="withdrawnPercent">
-                    Withdrawn: 0%
-                </span>
-
-                <span
-                    class="remaining-percent"
-                    id="remainingPercent"
-                >
-                    Remaining: 0%
-                </span>
-
-            </div>
-
-
-            <div class="legend">
-
-                <div class="legend-item">
-
-                    <div class="legend-dot green-dot"></div>
-
-                    Remaining Funds
-
-                </div>
-
-
-                <div class="legend-item">
-
-                    <div class="legend-dot red-dot"></div>
-
-                    Withdrawn Funds
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- DEPOSITS -->
-
-        <div class="section">
-
-            <div class="section-title">
-
-                Unmarked Deposits
-
-                <span id="depositCount">
-                    (0)
-                </span>
-
-            </div>
-
-            <div id="depositList"></div>
-
-        </div>
-
-
-        <!-- WITHDRAWALS -->
-
-        <div class="section">
-
-            <div class="section-title">
-
-                Unmarked Withdrawals
-
-                <span id="withdrawalCount">
-                    (0)
-                </span>
-
-            </div>
-
-            <div id="withdrawalList"></div>
-
-        </div>
-
-
-        <button
-            class="refresh-btn"
-            onclick="loadActualFunds()"
+    <div class="summary-card">
+
+        <div
+            class="summary-number"
+            id="withdrawalTotal"
         >
-            Refresh Firebase Data
-        </button>
+            ₱0.00
+        </div>
+
+        <div class="summary-label">
+            UNMARKED WITHDRAWALS
+        </div>
+
+    </div>
+
+
+    <div class="summary-card remaining">
+
+        <div
+            class="summary-number"
+            id="remainingTotal"
+        >
+            ₱0.00
+        </div>
+
+        <div class="summary-label">
+            REMAINING FUNDS
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<button
+    id="refreshButton"
+    class="refresh-btn"
+    disabled
+>
+
+    ⏳ Loading Firebase...
+
+</button>
+
+
+<!-- =========================
+     DEPOSITS
+========================== -->
+
+<div class="section">
+
+
+    <div class="section-title">
+
+        <h2>
+            💰 Unmarked Deposits
+        </h2>
+
+        <p>
+            Deposits without a transactionType
+        </p>
 
     </div>
 
 
     <div
-        id="errorBox"
-        class="error"
-        style="display:none;"
-    ></div>
+        id="depositsContainer"
+        class="records-grid"
+    >
+
+        <div class="loading">
+            Loading deposits...
+        </div>
+
+    </div>
+
 
 </div>
 
 
+<!-- =========================
+     WITHDRAWALS
+========================== -->
+
+<div class="section">
+
+
+    <div class="section-title">
+
+        <h2>
+            💸 Unmarked Withdrawals
+        </h2>
+
+        <p>
+            Withdrawals without a transactionType
+        </p>
+
+    </div>
+
+
+    <div
+        id="withdrawalsContainer"
+        class="records-grid"
+    >
+
+        <div class="loading">
+            Loading withdrawals...
+        </div>
+
+    </div>
+
+
+</div>
+```
+
+</div>
+
 <script type="module">
+
+
+/* ==================================================
+   SAME FIREBASE IMPORTS AS WORKING CLASSIFIER
+================================================== */
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
 import {
     getAuth,
     onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 import {
     getFirestore,
     collection,
     getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* SAME FIREBASE CONFIG */
+/* ==================================================
+   SAME FIREBASE CONFIG AS CLASSIFIER
+================================================== */
 
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyDAbHsV-S363u-sGCBo3mO1YLEaFAa4e8",
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
 
     authDomain:
         "skyrent-ea30c.firebaseapp.com",
@@ -622,19 +575,63 @@ const ADMIN_UID =
     "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
 
+/* ==================================================
+   FIREBASE INITIALIZATION
+================================================== */
+
 const app =
     initializeApp(firebaseConfig);
 
-
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
 
 
-/* HELPERS */
+/* ==================================================
+   ELEMENTS
+================================================== */
+
+const depositsContainer =
+    document.getElementById(
+        "depositsContainer"
+    );
+
+const withdrawalsContainer =
+    document.getElementById(
+        "withdrawalsContainer"
+    );
+
+const depositTotal =
+    document.getElementById(
+        "depositTotal"
+    );
+
+const withdrawalTotal =
+    document.getElementById(
+        "withdrawalTotal"
+    );
+
+const remainingTotal =
+    document.getElementById(
+        "remainingTotal"
+    );
+
+const refreshButton =
+    document.getElementById(
+        "refreshButton"
+    );
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+/* ==================================================
+   HELPERS
+================================================== */
 
 function safe(value){
 
@@ -643,7 +640,9 @@ function safe(value){
         value === undefined ||
         value === ""
     ){
+
         return "-";
+
     }
 
     return String(value);
@@ -654,111 +653,31 @@ function safe(value){
 function escapeHtml(value){
 
     return String(value)
-
         .replace(/&/g,"&amp;")
-
         .replace(/</g,"&lt;")
-
         .replace(/>/g,"&gt;")
-
         .replace(/"/g,"&quot;")
-
         .replace(/'/g,"&#039;");
 
 }
 
 
-function getDate(value){
-
-    if(!value){
-        return "-";
-    }
-
-    if(value.seconds){
-
-        return new Date(
-            value.seconds * 1000
-        ).toLocaleString();
-
-    }
-
-    try{
-
-        return new Date(
-            value
-        ).toLocaleString();
-
-    }catch(e){
-
-        return safe(value);
-
-    }
-
-}
-
-
-function getName(data){
-
-    return (
-
-        data.name ||
-
-        data.fullName ||
-
-        data.displayName ||
-
-        data.userName ||
-
-        data.username ||
-
-        data.customerName ||
-
-        "Unknown User"
-
-    );
-
-}
-
-
-function getPhone(data){
-
-    return (
-
-        data.phone ||
-
-        data.phoneNumber ||
-
-        data.mobile ||
-
-        data.mobileNumber ||
-
-        "-"
-
-    );
-
-}
-
+/* ==================================================
+   SAME AMOUNT LOGIC AS CLASSIFIER
+================================================== */
 
 function getAmount(data){
 
     const fields = [
 
         "amount",
-
         "depositAmount",
-
         "withdrawalAmount",
-
         "amountValue",
-
         "requestedAmount",
-
         "investmentAmount",
-
         "planAmount",
-
         "price",
-
         "value"
 
     ];
@@ -769,16 +688,22 @@ function getAmount(data){
     ){
 
         if(
-
             data[field] !== undefined &&
-
             data[field] !== null &&
-
             data[field] !== ""
-
         ){
 
-            return data[field];
+            const number =
+                Number(data[field]);
+
+
+            if(
+                !isNaN(number)
+            ){
+
+                return number;
+
+            }
 
         }
 
@@ -790,20 +715,59 @@ function getAmount(data){
 }
 
 
+/* ==================================================
+   SAME NAME LOGIC AS CLASSIFIER
+================================================== */
+
+function getName(data){
+
+    return (
+
+        data.name ||
+        data.fullName ||
+        data.displayName ||
+        data.userName ||
+        data.username ||
+        data.customerName ||
+        "Unknown User"
+
+    );
+
+}
+
+
+/* ==================================================
+   SAME PHONE LOGIC AS CLASSIFIER
+================================================== */
+
+function getPhone(data){
+
+    return (
+
+        data.phone ||
+        data.phoneNumber ||
+        data.mobile ||
+        data.mobileNumber ||
+        "-"
+
+    );
+
+}
+
+
+/* ==================================================
+   SAME REFERENCE LOGIC AS CLASSIFIER
+================================================== */
+
 function getReference(data){
 
     return (
 
         data.reference ||
-
         data.referenceNumber ||
-
         data.ref ||
-
         data.transactionReference ||
-
         data.paymentReference ||
-
         "-"
 
     );
@@ -811,72 +775,83 @@ function getReference(data){
 }
 
 
-function getPayment(data){
+/* ==================================================
+   DATE
+================================================== */
 
-    return (
+function getDate(value){
 
-        data.paymentMethod ||
+    if(!value){
 
-        data.payment ||
+        return "-";
 
-        data.method ||
-
-        data.channel ||
-
-        "-"
-
-    );
-
-}
+    }
 
 
-function getStatus(data){
+    if(
+        value &&
+        typeof value.toDate ===
+        "function"
+    ){
 
-    return (
+        return value
+            .toDate()
+            .toLocaleString();
 
-        data.status ||
-
-        data.state ||
-
-        "-"
-
-    );
-
-}
+    }
 
 
-function getAccount(data){
+    if(
+        value &&
+        value.seconds
+    ){
 
-    return (
+        return new Date(
+            value.seconds * 1000
+        ).toLocaleString();
 
-        data.account ||
+    }
 
-        data.accountNumber ||
 
-        data.withdrawalAccount ||
+    try{
 
-        data.gcASH ||
+        return new Date(
+            value
+        ).toLocaleString();
 
-        data.maya ||
+    }
+    catch(error){
 
-        data.destination ||
+        return safe(value);
 
-        "-"
-
-    );
+    }
 
 }
 
 
-/*
-    IMPORTANT:
+/* ==================================================
+   MONEY
+================================================== */
 
-    Only records where transactionType
-    is missing, null, or empty are shown.
+function money(value){
 
-    test = excluded
-    actual = excluded
-*/
+    return "₱" +
+        Number(value || 0)
+        .toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* ==================================================
+   IMPORTANT:
+   ONLY UNMARKED RECORDS
+================================================== */
 
 function isUnmarked(data){
 
@@ -884,14 +859,20 @@ function isUnmarked(data){
         data.transactionType;
 
 
+    /*
+     * UNMARKED means:
+     *
+     * undefined
+     * null
+     * empty string
+     *
+     * TEST and ACTUAL are excluded.
+     */
+
     if(
-
         type === undefined ||
-
         type === null ||
-
         String(type).trim() === ""
-
     ){
 
         return true;
@@ -904,26 +885,25 @@ function isUnmarked(data){
 }
 
 
-/* LOAD COLLECTION */
+/* ==================================================
+   LOAD COLLECTION
+   SAME METHOD AS CLASSIFIER
+================================================== */
 
 async function loadCollection(
     collectionName
 ){
 
     const snapshot =
-
         await getDocs(
-
             collection(
                 db,
                 collectionName
             )
-
         );
 
 
     return snapshot.docs.map(
-
         item => ({
 
             id:item.id,
@@ -931,83 +911,439 @@ async function loadCollection(
             data:item.data()
 
         })
-
     );
 
 }
 
 
-/* FORMAT MONEY */
+/* ==================================================
+   RENDER DEPOSITS
+================================================== */
 
-function formatMoney(amount){
+function renderDeposits(
+    records
+){
 
-    const number =
-        Number(amount) || 0;
+    if(
+        records.length === 0
+    ){
+
+        depositsContainer.innerHTML = `
+
+            <div class="empty">
+
+                No unmarked deposits found.
+
+            </div>
+
+        `;
+
+        return 0;
+
+    }
 
 
-    return "₱" +
-        number.toLocaleString(
-            "en-PH",
-            {
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
+    let total = 0;
+
+
+    depositsContainer.innerHTML =
+        records.map(
+            item => {
+
+                const data =
+                    item.data;
+
+
+                const amount =
+                    getAmount(data);
+
+
+                total += amount;
+
+
+                const name =
+                    getName(data);
+
+
+                const phone =
+                    getPhone(data);
+
+
+                const reference =
+                    getReference(data);
+
+
+                const date =
+                    getDate(
+                        data.createdAt ||
+                        data.timestamp ||
+                        data.date
+                    );
+
+
+                return `
+
+                    <div class="card">
+
+                        <div class="card-top">
+
+                            <div>
+
+                                <div class="card-title">
+
+                                    ${escapeHtml(
+                                        name
+                                    )}
+
+                                </div>
+
+                                <div class="card-subtitle">
+
+                                    ${escapeHtml(
+                                        phone
+                                    )}
+
+                                </div>
+
+                                <span class="badge">
+
+                                    UNMARKED
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="amount">
+
+                                ${money(amount)}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info">
+
+                            <div class="row">
+
+                                <span>
+                                    Reference
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        reference
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Status
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        data.status || "-"
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Payment
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        data.paymentChannel ||
+                                        data.paymentMethod ||
+                                        data.payment ||
+                                        "-"
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Date
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        date
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Firebase ID
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        item.id
+                                    )}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
             }
-        );
+        ).join("");
+
+
+    return total;
 
 }
 
 
-/* SHOW ERROR */
+/* ==================================================
+   RENDER WITHDRAWALS
+================================================== */
 
-function showError(message){
+function renderWithdrawals(
+    records
+){
 
-    const errorBox =
-        document.getElementById(
-            "errorBox"
-        );
+    if(
+        records.length === 0
+    ){
+
+        withdrawalsContainer.innerHTML = `
+
+            <div class="empty">
+
+                No unmarked withdrawals found.
+
+            </div>
+
+        `;
+
+        return 0;
+
+    }
 
 
-    errorBox.textContent =
-        message;
+    let total = 0;
 
 
-    errorBox.style.display =
-        "block";
+    withdrawalsContainer.innerHTML =
+        records.map(
+            item => {
+
+                const data =
+                    item.data;
 
 
-    document.getElementById(
-        "loading"
-    ).style.display =
-        "none";
+                const amount =
+                    getAmount(data);
+
+
+                total += amount;
+
+
+                const name =
+                    getName(data);
+
+
+                const phone =
+                    getPhone(data);
+
+
+                const date =
+                    getDate(
+                        data.createdAt ||
+                        data.timestamp ||
+                        data.date
+                    );
+
+
+                return `
+
+                    <div class="card">
+
+                        <div class="card-top">
+
+                            <div>
+
+                                <div class="card-title">
+
+                                    ${escapeHtml(
+                                        name
+                                    )}
+
+                                </div>
+
+                                <div class="card-subtitle">
+
+                                    ${escapeHtml(
+                                        phone
+                                    )}
+
+                                </div>
+
+                                <span class="badge">
+
+                                    UNMARKED
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="amount">
+
+                                ${money(amount)}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="info">
+
+                            <div class="row">
+
+                                <span>
+                                    Status
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        data.status || "-"
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Account
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        data.accountNumber ||
+                                        data.withdrawalAccount ||
+                                        data.account ||
+                                        data.gcashNumber ||
+                                        data.mayaNumber ||
+                                        "-"
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Date
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        date
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="row">
+
+                                <span>
+                                    Firebase ID
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(
+                                        item.id
+                                    )}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+
+    return total;
 
 }
 
 
-/* LOAD ACTUAL FUNDS */
+/* ==================================================
+   LOAD ACTUAL FUNDS
+================================================== */
 
 async function loadActualFunds(){
 
-    const loading =
-        document.getElementById(
-            "loading"
-        );
+    refreshButton.disabled =
+        true;
+
+    refreshButton.textContent =
+        "⏳ Loading...";
 
 
-    const content =
-        document.getElementById(
-            "content"
-        );
+    depositsContainer.innerHTML = `
+
+        <div class="loading">
+
+            Loading deposits...
+
+        </div>
+
+    `;
 
 
-    loading.style.display =
-        "block";
+    withdrawalsContainer.innerHTML = `
 
+        <div class="loading">
 
-    content.style.display =
-        "none";
+            Loading withdrawals...
+
+        </div>
+
+    `;
 
 
     try{
+
+
+        /*
+         * EXACT SAME FIREBASE
+         * COLLECTION READING AS
+         * THE WORKING CLASSIFIER
+         */
 
         const deposits =
             await loadCollection(
@@ -1022,582 +1358,181 @@ async function loadActualFunds(){
 
 
         /*
-            ONLY UNMARKED DATA
-        */
+         * ONLY UNMARKED
+         */
 
         const unmarkedDeposits =
-
             deposits.filter(
-
                 item =>
                     isUnmarked(
                         item.data
                     )
-
             );
 
 
         const unmarkedWithdrawals =
-
             withdrawals.filter(
-
                 item =>
                     isUnmarked(
                         item.data
                     )
-
             );
 
 
         /*
-            CALCULATE TOTALS
-        */
+         * RENDER
+         */
 
-        let depositAmount = 0;
-
-        let withdrawalAmount = 0;
-
-
-        unmarkedDeposits.forEach(
-            item => {
-
-                depositAmount +=
-                    Number(
-                        getAmount(
-                            item.data
-                        )
-                    ) || 0;
-
-            }
-        );
+        const depositAmount =
+            renderDeposits(
+                unmarkedDeposits
+            );
 
 
-        unmarkedWithdrawals.forEach(
-            item => {
+        const withdrawalAmount =
+            renderWithdrawals(
+                unmarkedWithdrawals
+            );
 
-                withdrawalAmount +=
-                    Number(
-                        getAmount(
-                            item.data
-                        )
-                    ) || 0;
 
-            }
-        );
-
+        /*
+         * TOTAL
+         */
 
         const remaining =
             depositAmount -
             withdrawalAmount;
 
 
-        /*
-            SUMMARY
-        */
-
-        document.getElementById(
-            "totalDeposits"
-        ).textContent =
-            formatMoney(
+        depositTotal.textContent =
+            money(
                 depositAmount
             );
 
 
-        document.getElementById(
-            "totalWithdrawals"
-        ).textContent =
-            formatMoney(
+        withdrawalTotal.textContent =
+            money(
                 withdrawalAmount
             );
 
 
-        document.getElementById(
-            "remainingFunds"
-        ).textContent =
-            formatMoney(
+        remainingTotal.textContent =
+            money(
                 remaining
             );
 
 
-        /*
-            BAR CALCULATION
-        */
+        message.innerHTML = `
 
-        let remainingPercent = 0;
+            <div class="notice">
 
-        let withdrawnPercent = 0;
+                <b>Firebase data loaded.</b>
 
+                Showing only unmarked
+                deposits and withdrawals.
 
-        if(depositAmount > 0){
+                <br>
 
-            remainingPercent =
-                (
-                    remaining /
-                    depositAmount
-                ) * 100;
+                Unmarked deposits:
+                <b>
+                    ${unmarkedDeposits.length}
+                </b>
 
+                &nbsp; | &nbsp;
 
-            withdrawnPercent =
-                (
-                    withdrawalAmount /
-                    depositAmount
-                ) * 100;
-
-        }
-
-
-        /*
-            Keep visual percentage
-            between 0 and 100.
-        */
-
-        const visualRemaining =
-            Math.max(
-                0,
-                Math.min(
-                    100,
-                    remainingPercent
-                )
-            );
-
-
-        const visualWithdrawn =
-            Math.max(
-                0,
-                Math.min(
-                    100,
-                    withdrawnPercent
-                )
-            );
-
-
-        document.getElementById(
-            "remainingBar"
-        ).style.width =
-            visualRemaining + "%";
-
-
-        document.getElementById(
-            "remainingPercent"
-        ).textContent =
-            "Remaining: " +
-            remainingPercent.toFixed(1) +
-            "%";
-
-
-        document.getElementById(
-            "withdrawnPercent"
-        ).textContent =
-            "Withdrawn: " +
-            withdrawnPercent.toFixed(1) +
-            "%";
-
-
-        /*
-            COUNTS
-        */
-
-        document.getElementById(
-            "depositCount"
-        ).textContent =
-            "(" +
-            unmarkedDeposits.length +
-            ")";
-
-
-        document.getElementById(
-            "withdrawalCount"
-        ).textContent =
-            "(" +
-            unmarkedWithdrawals.length +
-            ")";
-
-
-        /*
-            RENDER DEPOSITS
-        */
-
-        renderDeposits(
-            unmarkedDeposits
-        );
-
-
-        /*
-            RENDER WITHDRAWALS
-        */
-
-        renderWithdrawals(
-            unmarkedWithdrawals
-        );
-
-
-        loading.style.display =
-            "none";
-
-
-        content.style.display =
-            "block";
-
-
-    }catch(error){
-
-        console.error(error);
-
-        showError(
-            "Unable to load Firebase records: " +
-            error.message
-        );
-
-    }
-
-}
-
-
-/* RENDER DEPOSITS */
-
-function renderDeposits(
-    records
-){
-
-    const container =
-        document.getElementById(
-            "depositList"
-        );
-
-
-    if(records.length === 0){
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                No unmarked deposits found.
+                Unmarked withdrawals:
+                <b>
+                    ${unmarkedWithdrawals.length}
+                </b>
 
             </div>
 
         `;
 
-        return;
 
     }
+    catch(error){
 
-
-    container.innerHTML =
-        records.map(
-            item => {
-
-                const data =
-                    item.data;
-
-
-                return `
-
-                    <div class="transaction">
-
-                        <div class="transaction-top">
-
-                            <div class="transaction-name">
-
-                                ${escapeHtml(
-                                    getName(data)
-                                )}
-
-                            </div>
-
-                            <div class="
-                                transaction-amount
-                                deposit-amount
-                            ">
-
-                                ${formatMoney(
-                                    getAmount(data)
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Phone
-                            </span>
-
-                            <span class="transaction-value">
-                                ${escapeHtml(
-                                    getPhone(data)
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Reference
-                            </span>
-
-                            <span class="transaction-value">
-                                ${escapeHtml(
-                                    getReference(data)
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Payment
-                            </span>
-
-                            <span class="transaction-value">
-                                ${escapeHtml(
-                                    getPayment(data)
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Status
-                            </span>
-
-                            <span class="transaction-value">
-
-                                <span class="badge">
-
-                                    ${escapeHtml(
-                                        getStatus(data)
-                                    )}
-
-                                </span>
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Date
-                            </span>
-
-                            <span class="transaction-value">
-                                ${escapeHtml(
-                                    getDate(
-                                        data.createdAt ||
-                                        data.timestamp ||
-                                        data.date
-                                    )
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Firebase ID
-                            </span>
-
-                            <span class="transaction-value">
-                                ${escapeHtml(
-                                    item.id
-                                )}
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-
-        ).join("");
-
-}
-
-
-/* RENDER WITHDRAWALS */
-
-function renderWithdrawals(
-    records
-){
-
-    const container =
-        document.getElementById(
-            "withdrawalList"
+        console.error(
+            "Actual Funds Error:",
+            error
         );
 
 
-    if(records.length === 0){
+        message.innerHTML = `
 
-        container.innerHTML = `
+            <div class="error">
 
-            <div class="empty">
+                <b>
+                    Unable to load Firebase data.
+                </b>
 
-                No unmarked withdrawals found.
+                <br><br>
+
+                ${escapeHtml(
+                    error.message
+                )}
 
             </div>
 
         `;
 
-        return;
+
+        depositsContainer.innerHTML = `
+
+            <div class="empty">
+
+                Unable to load deposits.
+
+            </div>
+
+        `;
+
+
+        withdrawalsContainer.innerHTML = `
+
+            <div class="empty">
+
+                Unable to load withdrawals.
+
+            </div>
+
+        `;
 
     }
 
 
-    container.innerHTML =
-        records.map(
-            item => {
+    refreshButton.disabled =
+        false;
 
-                const data =
-                    item.data;
-
-
-                return `
-
-                    <div class="transaction">
-
-                        <div class="transaction-top">
-
-                            <div class="transaction-name">
-
-                                ${escapeHtml(
-                                    getName(data)
-                                )}
-
-                            </div>
-
-                            <div class="
-                                transaction-amount
-                                withdrawal-amount
-                            ">
-
-                                ${formatMoney(
-                                    getAmount(data)
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Phone
-                            </span>
-
-                            <span class="transaction-value">
-                                ${escapeHtml(
-                                    getPhone(data)
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Account
-                            </span>
-
-                            <span class="transaction-value">
-                                ${escapeHtml(
-                                    getAccount(data)
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Status
-                            </span>
-
-                            <span class="transaction-value">
-
-                                <span class="badge">
-
-                                    ${escapeHtml(
-                                        getStatus(data)
-                                    )}
-
-                                </span>
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Date
-                            </span>
-
-                            <span class="transaction-value">
-                                ${escapeHtml(
-                                    getDate(
-                                        data.createdAt ||
-                                        data.timestamp ||
-                                        data.date
-                                    )
-                                )}
-                            </span>
-
-                        </div>
-
-
-                        <div class="transaction-row">
-
-                            <span class="transaction-label">
-                                Firebase ID
-                            </span>
-
-                            <span class="transaction-value">
-                                ${escapeHtml(
-                                    item.id
-                                )}
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-
-        ).join("");
+    refreshButton.textContent =
+        "🔄 Refresh";
 
 }
 
 
-/*
-    SAME ADMIN AUTH AS
-    WORKING CLASSIFIER
-*/
+/* ==================================================
+   REFRESH
+================================================== */
+
+refreshButton.addEventListener(
+    "click",
+    async function(){
+
+        await loadActualFunds();
+
+    }
+);
+
+
+/* ==================================================
+   SAME ADMIN AUTH AS CLASSIFIER
+================================================== */
 
 onAuthStateChanged(
-
     auth,
-
     async user => {
+
 
         if(!user){
 
@@ -1610,7 +1545,8 @@ onAuthStateChanged(
 
 
         if(
-            user.uid !== ADMIN_UID
+            user.uid !==
+            ADMIN_UID
         ){
 
             document.body.innerHTML = `
@@ -1649,20 +1585,18 @@ onAuthStateChanged(
         }
 
 
+        /*
+         * ADMIN VERIFIED.
+         *
+         * Now load ONLY the
+         * unmarked records.
+         */
+
         await loadActualFunds();
 
     }
-
 );
 
-
-/*
-    MAKE FUNCTION AVAILABLE
-    TO REFRESH BUTTON
-*/
-
-window.loadActualFunds =
-    loadActualFunds;
 
 </script>
 
