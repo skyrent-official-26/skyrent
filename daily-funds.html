@@ -10,9 +10,14 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>SkyRent Admin - Daily Funds</title>
+<title>SkyRent Admin - Daily Funds Record</title>
+
 
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 *{
     box-sizing:border-box;
@@ -20,12 +25,19 @@
     padding:0;
 }
 
+
+/* =========================
+   BODY
+========================= */
+
 body{
     font-family:Arial,sans-serif;
     background:#f1f7fc;
-    color:#123;
+    color:#18324d;
+    min-height:100vh;
     padding-bottom:40px;
 }
+
 
 /* =========================
    HEADER
@@ -37,10 +49,15 @@ body{
         #0757c9,
         #0b8de3
     );
+
     color:white;
-    padding:22px 15px;
+
     text-align:center;
-    box-shadow:0 3px 12px rgba(0,0,0,.15);
+
+    padding:22px 15px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.15);
 }
 
 .header h1{
@@ -53,97 +70,149 @@ body{
     opacity:.9;
 }
 
+
 /* =========================
    CONTAINER
 ========================= */
 
 .container{
-    max-width:900px;
+    width:100%;
+    max-width:700px;
     margin:auto;
     padding:15px;
 }
 
+
 /* =========================
-   BACK
+   BACK BUTTON
 ========================= */
 
 .back-btn{
     width:100%;
+
     border:none;
+
     background:white;
+
     color:#0757c9;
+
     padding:13px;
+
     border-radius:12px;
+
     font-size:14px;
+
     font-weight:700;
+
     margin-bottom:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
+
     cursor:pointer;
 }
+
+.back-btn:active{
+    transform:scale(.98);
+}
+
 
 /* =========================
    DATE SEARCH
 ========================= */
 
-.date-card{
+.date-box{
     background:white;
+
     border-radius:15px;
+
     padding:15px;
+
     margin-bottom:15px;
-    box-shadow:0 2px 9px rgba(0,0,0,.08);
+
+    box-shadow:
+        0 2px 9px rgba(0,0,0,.08);
 }
 
 .date-title{
-    font-size:14px;
-    font-weight:800;
-    color:#17324d;
-    margin-bottom:10px;
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#0757c9;
+
+    margin-bottom:9px;
 }
 
-.date-search{
-    display:grid;
-    grid-template-columns:1fr 100px;
+.date-row{
+    display:flex;
+
     gap:8px;
 }
 
-.date-search input{
-    width:100%;
-    border:1px solid #d9e2eb;
-    background:#f8fbfd;
+.date-input{
+    flex:1;
+
+    min-width:0;
+
+    border:1px solid #d8e1ea;
+
+    background:#f8fbfe;
+
     padding:12px;
+
     border-radius:10px;
+
     font-size:14px;
-    color:#17324d;
+
+    color:#18324d;
+
     outline:none;
 }
 
-.date-search input:focus{
+.date-input:focus{
     border-color:#0757c9;
 }
 
 .search-btn{
     border:none;
+
     background:#0757c9;
+
     color:white;
+
+    padding:12px 16px;
+
     border-radius:10px;
+
     font-size:13px;
-    font-weight:800;
+
+    font-weight:700;
+
     cursor:pointer;
+
+    white-space:nowrap;
 }
+
+.search-btn:active{
+    transform:scale(.97);
+}
+
 
 /* =========================
    SELECTED DATE
 ========================= */
 
 .selected-date{
-    background:#eaf5ff;
-    color:#14527f;
-    border-left:4px solid #168de2;
-    border-radius:10px;
-    padding:12px;
-    margin-bottom:15px;
-    font-size:12px;
+    text-align:center;
+
+    color:#718399;
+
+    font-size:11px;
+
+    margin-top:9px;
 }
+
 
 /* =========================
    SUMMARY
@@ -151,288 +220,272 @@ body{
 
 .summary{
     display:grid;
+
     grid-template-columns:
-        repeat(3,1fr);
-    gap:8px;
+        1fr 1fr;
+
+    gap:10px;
+
     margin-bottom:15px;
 }
 
 .summary-card{
     background:white;
-    border-radius:14px;
-    padding:16px 8px;
-    text-align:center;
-    box-shadow:0 2px 9px rgba(0,0,0,.08);
+
+    border-radius:15px;
+
+    padding:16px 13px;
+
+    box-shadow:
+        0 2px 9px rgba(0,0,0,.08);
 }
 
 .summary-icon{
-    font-size:21px;
+    font-size:22px;
+
     margin-bottom:7px;
 }
 
-.summary-number{
-    font-size:19px;
-    font-weight:800;
-    margin-bottom:5px;
-    word-break:break-word;
-}
-
-.summary-label{
+.summary-title{
     font-size:10px;
-    color:#666;
+
+    color:#718399;
+
     font-weight:700;
+
+    margin-bottom:5px;
 }
 
 .summary-count{
-    font-size:10px;
-    color:#888;
-    margin-top:5px;
+    font-size:12px;
+
+    color:#718399;
+
+    margin-bottom:4px;
 }
 
-.deposit-number{
+.summary-amount{
+    font-size:19px;
+
+    font-weight:800;
+
+    word-break:break-word;
+}
+
+.deposit-summary .summary-amount{
     color:#16813b;
 }
 
-.withdrawal-number{
-    color:#d93636;
+.withdrawal-summary .summary-amount{
+    color:#c62828;
 }
 
-.net-number{
-    color:#0757c9;
-}
 
 /* =========================
-   DAILY BAR
+   SECTION
 ========================= */
 
-.bar-card{
+.section{
     background:white;
+
     border-radius:15px;
-    padding:16px;
+
+    padding:15px;
+
     margin-bottom:15px;
-    box-shadow:0 2px 9px rgba(0,0,0,.08);
-}
 
-.bar-title{
-    font-size:15px;
-    font-weight:800;
-    color:#17324d;
-    margin-bottom:15px;
+    box-shadow:
+        0 2px 9px rgba(0,0,0,.08);
 }
-
-.bar-item{
-    margin-bottom:15px;
-}
-
-.bar-item:last-child{
-    margin-bottom:0;
-}
-
-.bar-header{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:7px;
-}
-
-.bar-track{
-    width:100%;
-    height:17px;
-    background:#e9eef3;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.deposit-bar{
-    height:100%;
-    width:0%;
-    background:#16813b;
-    border-radius:20px;
-    transition:width .4s ease;
-}
-
-.withdrawal-bar{
-    height:100%;
-    width:0%;
-    background:#d93636;
-    border-radius:20px;
-    transition:width .4s ease;
-}
-
-/* =========================
-   RECORD SECTION
-========================= */
 
 .section-title{
-    background:white;
-    border-radius:14px;
-    padding:14px;
-    margin-bottom:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.07);
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding-bottom:12px;
+
+    margin-bottom:3px;
+
+    border-bottom:1px solid #edf0f3;
 }
 
 .section-title h2{
     font-size:16px;
-    color:#17324d;
-}
 
-.section-title p{
-    font-size:11px;
-    color:#777;
-    margin-top:4px;
-}
-
-/* =========================
-   TABS
-========================= */
-
-.record-tabs{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    background:#e8f0f8;
-    padding:5px;
-    border-radius:13px;
-    margin-bottom:12px;
-}
-
-.record-tab{
-    border:none;
-    background:transparent;
-    color:#64778a;
-    padding:12px 8px;
-    border-radius:9px;
-    font-size:13px;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.record-tab.active{
-    background:white;
     color:#0757c9;
-    box-shadow:0 2px 7px rgba(0,0,0,.08);
 }
 
-.tab-count{
-    display:inline-block;
-    margin-left:4px;
-    font-size:10px;
-    background:#dfe8f1;
-    padding:3px 6px;
-    border-radius:20px;
+.section-total{
+    font-size:12px;
+
+    font-weight:700;
 }
+
 
 /* =========================
-   PANELS
+   RECORD LIST
 ========================= */
 
-.record-panel{
-    display:none;
+.record-list{
+    width:100%;
 }
 
-.record-panel.active{
-    display:block;
+.record{
+    padding:13px 0;
+
+    border-bottom:1px solid #edf0f3;
 }
 
-/* =========================
-   RECORD CARDS
-========================= */
-
-.card{
-    background:white;
-    border-radius:14px;
-    padding:15px;
-    margin-bottom:10px;
-    box-shadow:0 2px 9px rgba(0,0,0,.08);
+.record:last-child{
+    border-bottom:none;
 }
 
-.card-top{
+.record-top{
     display:flex;
+
     justify-content:space-between;
+
     align-items:flex-start;
+
     gap:10px;
-    margin-bottom:10px;
 }
 
-.card-title{
-    font-size:15px;
-    font-weight:800;
-    color:#17324d;
-}
+.record-name{
+    font-size:14px;
 
-.card-subtitle{
-    font-size:11px;
-    color:#777;
-    margin-top:3px;
-}
+    font-weight:700;
 
-.amount{
-    font-size:16px;
-    font-weight:800;
-    white-space:nowrap;
-}
+    color:#18324d;
 
-.deposit-amount{
-    color:#16813b;
-}
-
-.withdrawal-amount{
-    color:#d93636;
-}
-
-.badge{
-    display:inline-block;
-    padding:5px 8px;
-    border-radius:20px;
-    background:#edf0f3;
-    color:#68717b;
-    font-size:9px;
-    font-weight:800;
-    margin-top:7px;
-}
-
-.info{
-    border-top:1px solid #edf0f3;
-    padding-top:8px;
-}
-
-.row{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    padding:5px 0;
-    font-size:11px;
-}
-
-.row span:first-child{
-    color:#777;
-}
-
-.row span:last-child{
-    font-weight:600;
-    text-align:right;
     word-break:break-word;
 }
 
-.empty{
-    background:white;
-    border-radius:14px;
-    padding:30px 15px;
-    text-align:center;
-    color:#777;
-    font-size:13px;
-    box-shadow:0 2px 8px rgba(0,0,0,.05);
+.record-amount{
+    font-size:15px;
+
+    font-weight:800;
+
+    white-space:nowrap;
 }
+
+.deposit-record .record-amount{
+    color:#16813b;
+}
+
+.withdrawal-record .record-amount{
+    color:#c62828;
+}
+
+.record-details{
+    margin-top:5px;
+
+    color:#718399;
+
+    font-size:11px;
+
+    line-height:1.6;
+
+    word-break:break-word;
+}
+
+.record-details span{
+    display:block;
+}
+
+
+/* =========================
+   BADGE
+========================= */
+
+.unmarked-badge{
+    display:inline-block;
+
+    background:#fff8e7;
+
+    color:#8a6500;
+
+    border:1px solid #f0d37a;
+
+    padding:2px 6px;
+
+    border-radius:5px;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    margin-left:5px;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    text-align:center;
+
+    padding:25px 10px;
+
+    color:#8998a8;
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+
+/* =========================
+   LOADING
+========================= */
 
 .loading{
     background:white;
-    border-radius:14px;
-    padding:35px;
+
+    border-radius:15px;
+
+    padding:35px 15px;
+
     text-align:center;
-    color:#777;
+
+    color:#718399;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.06);
+
+    margin-bottom:15px;
 }
+
+.spinner{
+    width:32px;
+
+    height:32px;
+
+    border:4px solid #dce8f5;
+
+    border-top:4px solid #0757c9;
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    margin:0 auto 12px;
+}
+
+@keyframes spin{
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
 
 /* =========================
    ERROR
@@ -440,59 +493,71 @@ body{
 
 .error{
     background:#fff0f0;
+
     color:#a32626;
+
     border-left:4px solid #d93636;
+
     border-radius:10px;
-    padding:12px;
-    font-size:13px;
+
+    padding:13px;
+
+    font-size:12px;
+
+    line-height:1.5;
+
     margin-bottom:15px;
 }
+
 
 /* =========================
-   REFRESH
+   FOOTER
 ========================= */
 
-.refresh-btn{
-    width:100%;
-    border:none;
-    background:#0757c9;
-    color:white;
-    padding:13px;
-    border-radius:11px;
-    font-size:14px;
-    font-weight:800;
-    cursor:pointer;
-    margin-bottom:15px;
+.footer{
+    text-align:center;
+
+    color:#8998a8;
+
+    font-size:10px;
+
+    line-height:1.5;
+
+    padding:5px 10px 15px;
 }
 
-.refresh-btn:disabled{
-    opacity:.6;
-}
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:500px){
+@media(max-width:430px){
 
-    .summary{
-        grid-template-columns:1fr;
-    }
-
-    .date-search{
-        grid-template-columns:1fr;
+    .date-row{
+        flex-direction:column;
     }
 
     .search-btn{
-        padding:12px;
+        width:100%;
+    }
+
+    .summary-amount{
+        font-size:17px;
     }
 
 }
+
 </style>
 
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <div class="header">
 
@@ -501,7 +566,7 @@ body{
     </h1>
 
     <p>
-        Daily unmarked deposits and withdrawals
+        Unmarked Firebase deposit and withdrawal records
     </p>
 
 </div>
@@ -509,6 +574,10 @@ body{
 
 <div class="container">
 
+
+    <!-- =========================
+         BACK
+    ========================= -->
 
     <button
         class="back-btn"
@@ -518,287 +587,226 @@ body{
     </button>
 
 
-    <div id="message"></div>
+    <!-- =========================
+         DATE SEARCH
+    ========================= -->
 
-
-    <!-- DATE SEARCH -->
-
-    <div class="date-card">
+    <div class="date-box">
 
         <div class="date-title">
-            🔎 Search Daily Record
+            📅 Select Date
         </div>
 
-        <div class="date-search">
+        <div class="date-row">
 
             <input
                 type="date"
                 id="datePicker"
+                class="date-input"
             >
 
             <button
                 class="search-btn"
-                onclick="searchDate()"
+                id="searchButton"
             >
-                Search
+                🔍 Search
             </button>
 
         </div>
 
+        <div
+            id="selectedDateText"
+            class="selected-date"
+        >
+            Loading date...
+        </div>
+
     </div>
 
+
+    <!-- =========================
+         ERROR
+    ========================= -->
 
     <div
-        class="selected-date"
-        id="selectedDate"
+        id="errorBox"
+        style="display:none;"
+    ></div>
+
+
+    <!-- =========================
+         LOADING
+    ========================= -->
+
+    <div
+        id="loading"
+        class="loading"
     >
-        Loading date...
-    </div>
 
+        <div class="spinner"></div>
 
-    <!-- SUMMARY -->
-
-    <div class="summary">
-
-
-        <div class="summary-card">
-
-            <div class="summary-icon">
-                🟢
-            </div>
-
-            <div
-                class="summary-number deposit-number"
-                id="depositTotal"
-            >
-                ₱0.00
-            </div>
-
-            <div class="summary-label">
-                UNMARKED DEPOSITS
-            </div>
-
-            <div
-                class="summary-count"
-                id="depositCount"
-            >
-                0 records
-            </div>
-
-        </div>
-
-
-        <div class="summary-card">
-
-            <div class="summary-icon">
-                🔴
-            </div>
-
-            <div
-                class="summary-number withdrawal-number"
-                id="withdrawalTotal"
-            >
-                ₱0.00
-            </div>
-
-            <div class="summary-label">
-                UNMARKED WITHDRAWALS
-            </div>
-
-            <div
-                class="summary-count"
-                id="withdrawalCount"
-            >
-                0 records
-            </div>
-
-        </div>
-
-
-        <div class="summary-card">
-
-            <div class="summary-icon">
-                🔵
-            </div>
-
-            <div
-                class="summary-number net-number"
-                id="netTotal"
-            >
-                ₱0.00
-            </div>
-
-            <div class="summary-label">
-                DAILY NET FUNDS
-            </div>
-
-        </div>
-
+        Loading daily records...
 
     </div>
 
 
-    <!-- BARS -->
+    <!-- =========================
+         CONTENT
+    ========================= -->
 
-    <div class="bar-card">
+    <div
+        id="content"
+        style="display:none;"
+    >
 
-        <div class="bar-title">
-            📊 Daily Activity
-        </div>
+
+        <!-- =====================
+             SUMMARY
+        ===================== -->
+
+        <div class="summary">
 
 
-        <div class="bar-item">
+            <!-- DEPOSITS -->
 
-            <div class="bar-header">
+            <div class="summary-card deposit-summary">
 
-                <span>
-                    🟢 Deposits
-                </span>
+                <div class="summary-icon">
+                    💰
+                </div>
 
-                <span id="depositBarLabel">
-                    ₱0.00
-                </span>
-
-            </div>
-
-            <div class="bar-track">
+                <div class="summary-title">
+                    DEPOSITS
+                </div>
 
                 <div
-                    id="depositBar"
-                    class="deposit-bar"
-                ></div>
-
-            </div>
-
-        </div>
-
-
-        <div class="bar-item">
-
-            <div class="bar-header">
-
-                <span>
-                    🔴 Withdrawals
-                </span>
-
-                <span id="withdrawalBarLabel">
-                    ₱0.00
-                </span>
-
-            </div>
-
-            <div class="bar-track">
+                    class="summary-count"
+                    id="depositSummaryCount"
+                >
+                    0 records
+                </div>
 
                 <div
-                    id="withdrawalBar"
-                    class="withdrawal-bar"
-                ></div>
+                    class="summary-amount"
+                    id="depositSummaryAmount"
+                >
+                    ₱0.00
+                </div>
 
             </div>
 
-        </div>
 
-    </div>
+            <!-- WITHDRAWALS -->
 
+            <div class="summary-card withdrawal-summary">
 
-    <!-- RECORDS -->
+                <div class="summary-icon">
+                    💸
+                </div>
 
-    <div class="section-title">
+                <div class="summary-title">
+                    WITHDRAWALS
+                </div>
 
-        <h2>
-            📋 Daily Records
-        </h2>
+                <div
+                    class="summary-count"
+                    id="withdrawalSummaryCount"
+                >
+                    0 records
+                </div>
 
-        <p>
-            Only unmarked transactions for the selected date.
-        </p>
+                <div
+                    class="summary-amount"
+                    id="withdrawalSummaryAmount"
+                >
+                    ₱0.00
+                </div>
 
-    </div>
-
-
-    <div class="record-tabs">
-
-        <button
-            id="depositTab"
-            class="record-tab active"
-            onclick="showTab('deposits')"
-        >
-            💰 Deposits
-            <span
-                class="tab-count"
-                id="depositTabCount"
-            >
-                0
-            </span>
-        </button>
-
-
-        <button
-            id="withdrawalTab"
-            class="record-tab"
-            onclick="showTab('withdrawals')"
-        >
-            💸 Withdrawals
-            <span
-                class="tab-count"
-                id="withdrawalTabCount"
-            >
-                0
-            </span>
-        </button>
-
-    </div>
-
-
-    <div
-        id="depositsPanel"
-        class="record-panel active"
-    >
-
-        <div
-            id="depositsContainer"
-        >
-
-            <div class="loading">
-                Loading deposits...
             </div>
 
+
         </div>
 
-    </div>
 
+        <!-- =====================
+             DEPOSITS LIST
+        ===================== -->
 
-    <div
-        id="withdrawalsPanel"
-        class="record-panel"
-    >
+        <div class="section">
 
-        <div
-            id="withdrawalsContainer"
-        >
+            <div class="section-title">
 
-            <div class="loading">
-                Loading withdrawals...
+                <h2>
+                    💰 Deposit Records
+                </h2>
+
+                <div
+                    class="section-total"
+                    id="depositListTotal"
+                >
+                    ₱0.00
+                </div>
+
             </div>
 
+
+            <div
+                id="depositList"
+                class="record-list"
+            ></div>
+
         </div>
 
+
+        <!-- =====================
+             WITHDRAWALS LIST
+        ===================== -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    💸 Withdrawal Records
+                </h2>
+
+                <div
+                    class="section-total"
+                    id="withdrawalListTotal"
+                >
+                    ₱0.00
+                </div>
+
+            </div>
+
+
+            <div
+                id="withdrawalList"
+                class="record-list"
+            ></div>
+
+        </div>
+
+
+        <div class="footer">
+
+            Only unmarked records are shown.
+            Records marked TEST or ACTUAL are excluded.
+
+        </div>
+
+
     </div>
-
-
-    <button
-        id="refreshButton"
-        class="refresh-btn"
-        onclick="loadDailyFunds()"
-    >
-        🔄 Refresh
-    </button>
-
 
 </div>
 
 
 <script type="module">
+
+
+/* =========================================================
+   FIREBASE
+========================================================= */
 
 import {
     initializeApp
@@ -806,12 +814,14 @@ import {
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+
 import {
     getAuth,
     onAuthStateChanged
 }
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 
 import {
     getFirestore,
@@ -822,9 +832,9 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =========================
-   FIREBASE
-========================= */
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
 
 const firebaseConfig = {
 
@@ -853,10 +863,12 @@ const ADMIN_UID =
     "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
 
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
 const app =
-    initializeApp(
-        firebaseConfig
-    );
+    initializeApp(firebaseConfig);
 
 const auth =
     getAuth(app);
@@ -865,99 +877,84 @@ const db =
     getFirestore(app);
 
 
-/* =========================
+/* =========================================================
    ELEMENTS
-========================= */
+========================================================= */
 
 const datePicker =
     document.getElementById(
         "datePicker"
     );
 
-const selectedDate =
+const searchButton =
     document.getElementById(
-        "selectedDate"
+        "searchButton"
     );
 
-const depositTotal =
+const loading =
     document.getElementById(
-        "depositTotal"
+        "loading"
     );
 
-const withdrawalTotal =
+const content =
     document.getElementById(
-        "withdrawalTotal"
+        "content"
     );
 
-const netTotal =
+const errorBox =
     document.getElementById(
-        "netTotal"
+        "errorBox"
     );
 
-const depositCount =
+const selectedDateText =
     document.getElementById(
-        "depositCount"
+        "selectedDateText"
     );
 
-const withdrawalCount =
+const depositList =
     document.getElementById(
-        "withdrawalCount"
+        "depositList"
     );
 
-const depositTabCount =
+const withdrawalList =
     document.getElementById(
-        "depositTabCount"
+        "withdrawalList"
     );
 
-const withdrawalTabCount =
+const depositSummaryCount =
     document.getElementById(
-        "withdrawalTabCount"
+        "depositSummaryCount"
     );
 
-const depositsContainer =
+const withdrawalSummaryCount =
     document.getElementById(
-        "depositsContainer"
+        "withdrawalSummaryCount"
     );
 
-const withdrawalsContainer =
+const depositSummaryAmount =
     document.getElementById(
-        "withdrawalsContainer"
+        "depositSummaryAmount"
     );
 
-const refreshButton =
+const withdrawalSummaryAmount =
     document.getElementById(
-        "refreshButton"
+        "withdrawalSummaryAmount"
     );
 
-const message =
+const depositListTotal =
     document.getElementById(
-        "message"
+        "depositListTotal"
     );
 
-const depositBar =
+const withdrawalListTotal =
     document.getElementById(
-        "depositBar"
-    );
-
-const withdrawalBar =
-    document.getElementById(
-        "withdrawalBar"
-    );
-
-const depositBarLabel =
-    document.getElementById(
-        "depositBarLabel"
-    );
-
-const withdrawalBarLabel =
-    document.getElementById(
-        "withdrawalBarLabel"
+        "withdrawalListTotal"
     );
 
 
-/* =========================
-   HELPERS
-========================= */
+/* =========================================================
+   MONEY
+========================================================= */
 
 function money(value){
 
@@ -974,6 +971,10 @@ function money(value){
 }
 
 
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
 function escapeHtml(value){
 
     return String(value)
@@ -986,18 +987,51 @@ function escapeHtml(value){
 }
 
 
+/* =========================================================
+   SAFE VALUE
+========================================================= */
+
+function safe(value){
+
+    if(
+        value === undefined ||
+        value === null ||
+        value === ""
+    ){
+
+        return "-";
+
+    }
+
+    return String(value);
+
+}
+
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
 function getAmount(data){
 
     const fields = [
 
         "amount",
+
         "depositAmount",
+
         "withdrawalAmount",
+
         "amountValue",
+
         "requestedAmount",
+
         "investmentAmount",
+
         "planAmount",
+
         "price",
+
         "value"
 
     ];
@@ -1029,103 +1063,317 @@ function getAmount(data){
 
     }
 
+
     return 0;
 
 }
 
 
-/* =========================
-   UNMARKED
-========================= */
+/* =========================================================
+   NAME
+========================================================= */
 
-function isUnmarked(data){
-
-    const type =
-        data.transactionType;
-
+function getName(data){
 
     return (
-        type === undefined ||
-        type === null ||
-        String(type).trim() === ""
+
+        data.name ||
+
+        data.fullName ||
+
+        data.displayName ||
+
+        data.userName ||
+
+        data.username ||
+
+        data.customerName ||
+
+        "Unknown User"
+
     );
 
 }
 
 
-/* =========================
-   DATE HELPERS
-========================= */
+/* =========================================================
+   PHONE
+========================================================= */
 
-function getRecordDate(data){
+function getPhone(data){
 
-    const value =
-        data.createdAt ||
-        data.timestamp ||
-        data.date;
+    return (
 
+        data.phone ||
 
-    if(!value){
-        return null;
-    }
+        data.phoneNumber ||
 
+        data.mobile ||
 
-    if(
-        value &&
-        typeof value.toDate ===
-        "function"
-    ){
+        data.mobileNumber ||
 
-        return value.toDate();
+        "-"
 
-    }
-
-
-    if(
-        value &&
-        value.seconds
-    ){
-
-        return new Date(
-            value.seconds * 1000
-        );
-
-    }
-
-
-    const parsed =
-        new Date(value);
-
-
-    if(
-        Number.isNaN(
-            parsed.getTime()
-        )
-    ){
-
-        return null;
-
-    }
-
-
-    return parsed;
+    );
 
 }
 
 
-/*
- * Convert a Date to YYYY-MM-DD
- * using the Philippines timezone.
- */
+/* =========================================================
+   REFERENCE
+========================================================= */
+
+function getReference(data){
+
+    return (
+
+        data.reference ||
+
+        data.referenceNumber ||
+
+        data.ref ||
+
+        data.transactionReference ||
+
+        data.paymentReference ||
+
+        "-"
+
+    );
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function getStatus(data){
+
+    return (
+
+        data.status ||
+
+        "Unknown"
+
+    );
+
+}
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+function getAccount(data){
+
+    return (
+
+        data.accountName ||
+
+        data.accountNumber ||
+
+        data.withdrawalAccount ||
+
+        data.paymentAccount ||
+
+        data.account ||
+
+        "-"
+
+    );
+
+}
+
+
+/* =========================================================
+   TIMESTAMP VALUE
+========================================================= */
+
+function getTimestamp(data){
+
+    const fields = [
+
+        "createdAt",
+
+        "timestamp",
+
+        "date",
+
+        "created",
+
+        "createdDate"
+
+    ];
+
+
+    for(
+        const field of fields
+    ){
+
+        const value =
+            data[field];
+
+
+        if(
+            value === undefined ||
+            value === null ||
+            value === ""
+        ){
+
+            continue;
+
+        }
+
+
+        /*
+         * Firebase Timestamp
+         */
+
+        if(
+            typeof value.toDate ===
+            "function"
+        ){
+
+            const date =
+                value.toDate();
+
+
+            if(
+                !isNaN(date.getTime())
+            ){
+
+                return date;
+
+            }
+
+        }
+
+
+        /*
+         * Firestore timestamp-like object
+         */
+
+        if(
+            value.seconds !== undefined
+        ){
+
+            const date =
+                new Date(
+                    Number(value.seconds) * 1000
+                );
+
+
+            if(
+                !isNaN(date.getTime())
+            ){
+
+                return date;
+
+            }
+
+        }
+
+
+        /*
+         * JavaScript Date
+         */
+
+        if(
+            value instanceof Date
+        ){
+
+            if(
+                !isNaN(value.getTime())
+            ){
+
+                return value;
+
+            }
+
+        }
+
+
+        /*
+         * Number timestamp
+         */
+
+        if(
+            typeof value === "number"
+        ){
+
+            const milliseconds =
+                value < 10000000000
+                    ? value * 1000
+                    : value;
+
+            const date =
+                new Date(
+                    milliseconds
+                );
+
+
+            if(
+                !isNaN(date.getTime())
+            ){
+
+                return date;
+
+            }
+
+        }
+
+
+        /*
+         * String date
+         */
+
+        if(
+            typeof value === "string"
+        ){
+
+            const date =
+                new Date(value);
+
+
+            if(
+                !isNaN(date.getTime())
+            ){
+
+                return date;
+
+            }
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   PHILIPPINES DATE
+========================================================= */
 
 function philippinesDate(date){
+
+    if(!date){
+        return null;
+    }
+
 
     return new Intl.DateTimeFormat(
         "en-CA",
         {
             timeZone:"Asia/Manila",
+
             year:"numeric",
+
             month:"2-digit",
+
             day:"2-digit"
         }
     ).format(date);
@@ -1133,37 +1381,114 @@ function philippinesDate(date){
 }
 
 
-function formatSelectedDate(dateString){
+/* =========================================================
+   PHILIPPINES DISPLAY DATE
+========================================================= */
 
-    const parts =
-        dateString.split("-");
+function philippinesDisplayDate(date){
 
-    if(parts.length !== 3){
-        return dateString;
+    if(!date){
+        return "-";
     }
 
-    const date =
-        new Date(
-            Number(parts[0]),
-            Number(parts[1]) - 1,
-            Number(parts[2])
-        );
 
-    return date.toLocaleDateString(
-        "en-US",
+    return new Intl.DateTimeFormat(
+        "en-PH",
         {
-            month:"long",
+            timeZone:"Asia/Manila",
+
+            year:"numeric",
+
+            month:"short",
+
             day:"numeric",
-            year:"numeric"
+
+            hour:"numeric",
+
+            minute:"2-digit",
+
+            hour12:true
         }
-    );
+    ).format(date);
 
 }
 
 
-/* =========================
+/* =========================================================
+   TODAY IN PHILIPPINES
+========================================================= */
+
+function getTodayPhilippines(){
+
+    const now =
+        new Date();
+
+
+    return philippinesDate(now);
+
+}
+
+
+/* =========================================================
+   UNMARKED CHECK
+========================================================= */
+
+function isUnmarked(data){
+
+    const type =
+        data.transactionType;
+
+
+    /*
+     * Missing transactionType
+     * = unmarked
+     */
+
+    if(
+        type === undefined ||
+        type === null ||
+        String(type).trim() === ""
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+     * TEST / ACTUAL
+     * are excluded.
+     */
+
+    const normalized =
+        String(type)
+        .trim()
+        .toLowerCase();
+
+
+    if(
+        normalized === "test" ||
+        normalized === "actual"
+    ){
+
+        return false;
+
+    }
+
+
+    /*
+     * Any other classification
+     * is also excluded.
+     */
+
+    return false;
+
+}
+
+
+/* =========================================================
    LOAD COLLECTION
-========================= */
+========================================================= */
 
 async function loadCollection(
     collectionName
@@ -1180,105 +1505,359 @@ async function loadCollection(
 
     return snapshot.docs.map(
         item => ({
+
             id:item.id,
+
             data:item.data()
+
         })
     );
 
 }
 
 
-/* =========================
-   SHOW TAB
-========================= */
+/* =========================================================
+   LOAD DAILY RECORDS
+========================================================= */
 
-window.showTab =
-function(tab){
+async function loadDailyRecords(){
 
-    const depositsPanel =
-        document.getElementById(
-            "depositsPanel"
-        );
-
-    const withdrawalsPanel =
-        document.getElementById(
-            "withdrawalsPanel"
-        );
-
-    const depositTab =
-        document.getElementById(
-            "depositTab"
-        );
-
-    const withdrawalTab =
-        document.getElementById(
-            "withdrawalTab"
-        );
+    const selectedDate =
+        datePicker.value;
 
 
-    if(tab === "deposits"){
-
-        depositsPanel.classList.add(
-            "active"
-        );
-
-        withdrawalsPanel.classList.remove(
-            "active"
-        );
-
-        depositTab.classList.add(
-            "active"
-        );
-
-        withdrawalTab.classList.remove(
-            "active"
-        );
-
-    }
-    else{
-
-        withdrawalsPanel.classList.add(
-            "active"
-        );
-
-        depositsPanel.classList.remove(
-            "active"
-        );
-
-        withdrawalTab.classList.add(
-            "active"
-        );
-
-        depositTab.classList.remove(
-            "active"
-        );
-
-    }
-
-};
-
-
-/* =========================
-   SEARCH DATE
-========================= */
-
-window.searchDate =
-async function(){
-
-    if(!datePicker.value){
+    if(!selectedDate){
 
         return;
 
     }
 
-    await loadDailyFunds();
 
-};
+    loading.style.display =
+        "block";
+
+    content.style.display =
+        "none";
+
+    errorBox.style.display =
+        "none";
 
 
-/* =========================
+    try{
+
+
+        /*
+         * Load Firebase records.
+         */
+
+        const [
+            depositRecords,
+            withdrawalRecords
+        ] = await Promise.all([
+
+            loadCollection(
+                "deposits"
+            ),
+
+            loadCollection(
+                "withdrawals"
+            )
+
+        ]);
+
+
+        /*
+         * Filter deposits.
+         */
+
+        const deposits =
+            depositRecords
+            .filter(item => {
+
+                const data =
+                    item.data;
+
+
+                if(
+                    !isUnmarked(data)
+                ){
+
+                    return false;
+
+                }
+
+
+                const date =
+                    getTimestamp(data);
+
+
+                if(!date){
+
+                    return false;
+
+                }
+
+
+                return (
+                    philippinesDate(date) ===
+                    selectedDate
+                );
+
+            });
+
+
+        /*
+         * Filter withdrawals.
+         */
+
+        const withdrawals =
+            withdrawalRecords
+            .filter(item => {
+
+                const data =
+                    item.data;
+
+
+                if(
+                    !isUnmarked(data)
+                ){
+
+                    return false;
+
+                }
+
+
+                const date =
+                    getTimestamp(data);
+
+
+                if(!date){
+
+                    return false;
+
+                }
+
+
+                return (
+                    philippinesDate(date) ===
+                    selectedDate
+                );
+
+            });
+
+
+        /*
+         * Sort oldest to newest.
+         */
+
+        deposits.sort(
+            (a,b) => {
+
+                const dateA =
+                    getTimestamp(
+                        a.data
+                    );
+
+                const dateB =
+                    getTimestamp(
+                        b.data
+                    );
+
+                return (
+                    dateA.getTime() -
+                    dateB.getTime()
+                );
+
+            }
+        );
+
+
+        withdrawals.sort(
+            (a,b) => {
+
+                const dateA =
+                    getTimestamp(
+                        a.data
+                    );
+
+                const dateB =
+                    getTimestamp(
+                        b.data
+                    );
+
+                return (
+                    dateA.getTime() -
+                    dateB.getTime()
+                );
+
+            }
+        );
+
+
+        /*
+         * Calculate totals.
+         */
+
+        const depositAmount =
+            deposits.reduce(
+                (
+                    total,
+                    item
+                ) => {
+
+                    return (
+                        total +
+                        getAmount(
+                            item.data
+                        )
+                    );
+
+                },
+                0
+            );
+
+
+        const withdrawalAmount =
+            withdrawals.reduce(
+                (
+                    total,
+                    item
+                ) => {
+
+                    return (
+                        total +
+                        getAmount(
+                            item.data
+                        )
+                    );
+
+                },
+                0
+            );
+
+
+        /*
+         * Update summary.
+         */
+
+        depositSummaryCount.textContent =
+            deposits.length +
+            (
+                deposits.length === 1
+                    ? " record"
+                    : " records"
+            );
+
+
+        withdrawalSummaryCount.textContent =
+            withdrawals.length +
+            (
+                withdrawals.length === 1
+                    ? " record"
+                    : " records"
+            );
+
+
+        depositSummaryAmount.textContent =
+            money(
+                depositAmount
+            );
+
+
+        withdrawalSummaryAmount.textContent =
+            money(
+                withdrawalAmount
+            );
+
+
+        depositListTotal.textContent =
+            money(
+                depositAmount
+            );
+
+
+        withdrawalListTotal.textContent =
+            money(
+                withdrawalAmount
+            );
+
+
+        /*
+         * Render lists.
+         */
+
+        renderDeposits(
+            deposits
+        );
+
+
+        renderWithdrawals(
+            withdrawals
+        );
+
+
+        /*
+         * Display selected date.
+         */
+
+        selectedDateText.textContent =
+            formatSelectedDate(
+                selectedDate
+            );
+
+
+        loading.style.display =
+            "none";
+
+        content.style.display =
+            "block";
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Daily funds error:",
+            error
+        );
+
+
+        loading.style.display =
+            "none";
+
+        content.style.display =
+            "none";
+
+
+        errorBox.innerHTML = `
+
+            <div class="error">
+
+                <b>Unable to load daily records.</b>
+
+                <br><br>
+
+                ${escapeHtml(
+                    error.message ||
+                    "Unknown error"
+                )}
+
+            </div>
+
+        `;
+
+
+        errorBox.style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =========================================================
    RENDER DEPOSITS
-========================= */
+========================================================= */
 
 function renderDeposits(
     records
@@ -1288,140 +1867,135 @@ function renderDeposits(
         records.length === 0
     ){
 
-        depositsContainer.innerHTML = `
+        depositList.innerHTML = `
+
             <div class="empty">
-                No unmarked deposits
+
+                No unmarked deposit records
                 found for this date.
+
             </div>
+
         `;
 
-        return 0;
+        return;
 
     }
 
 
-    let total = 0;
-
-
-    depositsContainer.innerHTML =
+    depositList.innerHTML =
         records.map(
             item => {
 
                 const data =
                     item.data;
 
+
+                const date =
+                    getTimestamp(data);
+
+
                 const amount =
                     getAmount(data);
 
-                total += amount;
-
 
                 const name =
-                    data.name ||
-                    data.fullName ||
-                    data.displayName ||
-                    data.userName ||
-                    data.username ||
-                    data.customerName ||
-                    "Unknown User";
+                    getName(data);
 
 
                 const phone =
-                    data.phone ||
-                    data.phoneNumber ||
-                    data.mobile ||
-                    data.mobileNumber ||
-                    "-";
+                    getPhone(data);
 
 
                 const reference =
-                    data.reference ||
-                    data.referenceNumber ||
-                    data.ref ||
-                    data.transactionReference ||
-                    data.paymentReference ||
+                    getReference(data);
+
+
+                const status =
+                    getStatus(data);
+
+
+                const payment =
+                    data.paymentMethod ||
+                    data.payment ||
+                    data.method ||
                     "-";
-
-
-                const date =
-                    getRecordDate(data);
 
 
                 return `
 
-                    <div class="card">
+                    <div class="
+                        record
+                        deposit-record
+                    ">
 
-                        <div class="card-top">
+                        <div class="record-top">
 
-                            <div>
+                            <div class="record-name">
 
-                                <div class="card-title">
-                                    ${escapeHtml(name)}
-                                </div>
+                                ${escapeHtml(
+                                    name
+                                )}
 
-                                <div class="card-subtitle">
-                                    ${escapeHtml(phone)}
-                                </div>
-
-                                <span class="badge">
+                                <span
+                                    class="unmarked-badge"
+                                >
                                     UNMARKED
                                 </span>
 
                             </div>
 
-                            <div class="amount deposit-amount">
-                                ${money(amount)}
+                            <div class="
+                                record-amount
+                            ">
+
+                                ${money(
+                                    amount
+                                )}
+
                             </div>
 
                         </div>
 
 
-                        <div class="info">
+                        <div class="record-details">
 
-                            <div class="row">
+                            <span>
+                                📱
+                                ${escapeHtml(
+                                    phone
+                                )}
+                            </span>
 
-                                <span>
-                                    Reference
-                                </span>
+                            <span>
+                                🧾 Reference:
+                                ${escapeHtml(
+                                    reference
+                                )}
+                            </span>
 
-                                <span>
-                                    ${escapeHtml(reference)}
-                                </span>
+                            <span>
+                                💳 Payment:
+                                ${escapeHtml(
+                                    payment
+                                )}
+                            </span>
 
-                            </div>
+                            <span>
+                                📌 Status:
+                                ${escapeHtml(
+                                    status
+                                )}
+                            </span>
 
-
-                            <div class="row">
-
-                                <span>
-                                    Status
-                                </span>
-
-                                <span>
-                                    ${escapeHtml(
-                                        data.status || "-"
-                                    )}
-                                </span>
-
-                            </div>
-
-
-                            <div class="row">
-
-                                <span>
-                                    Date
-                                </span>
-
-                                <span>
-                                    ${date
-                                        ? escapeHtml(
-                                            date.toLocaleString()
-                                        )
-                                        : "-"
-                                    }
-                                </span>
-
-                            </div>
+                            <span>
+                                🕐
+                                ${escapeHtml(
+                                    philippinesDisplayDate(
+                                        date
+                                    )
+                                )}
+                            </span>
 
                         </div>
 
@@ -1430,17 +2004,15 @@ function renderDeposits(
                 `;
 
             }
-        ).join("");
-
-
-    return total;
+        )
+        .join("");
 
 }
 
 
-/* =========================
+/* =========================================================
    RENDER WITHDRAWALS
-========================= */
+========================================================= */
 
 function renderWithdrawals(
     records
@@ -1450,138 +2022,121 @@ function renderWithdrawals(
         records.length === 0
     ){
 
-        withdrawalsContainer.innerHTML = `
+        withdrawalList.innerHTML = `
+
             <div class="empty">
-                No unmarked withdrawals
+
+                No unmarked withdrawal records
                 found for this date.
+
             </div>
+
         `;
 
-        return 0;
+        return;
 
     }
 
 
-    let total = 0;
-
-
-    withdrawalsContainer.innerHTML =
+    withdrawalList.innerHTML =
         records.map(
             item => {
 
                 const data =
                     item.data;
 
+
+                const date =
+                    getTimestamp(data);
+
+
                 const amount =
                     getAmount(data);
 
-                total += amount;
-
 
                 const name =
-                    data.name ||
-                    data.fullName ||
-                    data.displayName ||
-                    data.userName ||
-                    data.username ||
-                    data.customerName ||
-                    "Unknown User";
+                    getName(data);
 
 
                 const phone =
-                    data.phone ||
-                    data.phoneNumber ||
-                    data.mobile ||
-                    data.mobileNumber ||
-                    "-";
+                    getPhone(data);
 
 
-                const date =
-                    getRecordDate(data);
+                const status =
+                    getStatus(data);
+
+
+                const account =
+                    getAccount(data);
 
 
                 return `
 
-                    <div class="card">
+                    <div class="
+                        record
+                        withdrawal-record
+                    ">
 
-                        <div class="card-top">
+                        <div class="record-top">
 
-                            <div>
+                            <div class="record-name">
 
-                                <div class="card-title">
-                                    ${escapeHtml(name)}
-                                </div>
+                                ${escapeHtml(
+                                    name
+                                )}
 
-                                <div class="card-subtitle">
-                                    ${escapeHtml(phone)}
-                                </div>
-
-                                <span class="badge">
+                                <span
+                                    class="unmarked-badge"
+                                >
                                     UNMARKED
                                 </span>
 
                             </div>
 
-                            <div class="amount withdrawal-amount">
-                                ${money(amount)}
+                            <div class="
+                                record-amount
+                            ">
+
+                                ${money(
+                                    amount
+                                )}
+
                             </div>
 
                         </div>
 
 
-                        <div class="info">
+                        <div class="record-details">
 
-                            <div class="row">
+                            <span>
+                                📱
+                                ${escapeHtml(
+                                    phone
+                                )}
+                            </span>
 
-                                <span>
-                                    Status
-                                </span>
+                            <span>
+                                🏦 Account:
+                                ${escapeHtml(
+                                    account
+                                )}
+                            </span>
 
-                                <span>
-                                    ${escapeHtml(
-                                        data.status || "-"
-                                    )}
-                                </span>
+                            <span>
+                                📌 Status:
+                                ${escapeHtml(
+                                    status
+                                )}
+                            </span>
 
-                            </div>
-
-
-                            <div class="row">
-
-                                <span>
-                                    Account
-                                </span>
-
-                                <span>
-                                    ${escapeHtml(
-                                        data.accountNumber ||
-                                        data.withdrawalAccount ||
-                                        data.account ||
-                                        data.gcashNumber ||
-                                        data.mayaNumber ||
-                                        "-"
-                                    )}
-                                </span>
-
-                            </div>
-
-
-                            <div class="row">
-
-                                <span>
-                                    Date
-                                </span>
-
-                                <span>
-                                    ${date
-                                        ? escapeHtml(
-                                            date.toLocaleString()
-                                        )
-                                        : "-"
-                                    }
-                                </span>
-
-                            </div>
+                            <span>
+                                🕐
+                                ${escapeHtml(
+                                    philippinesDisplayDate(
+                                        date
+                                    )
+                                )}
+                            </span>
 
                         </div>
 
@@ -1590,318 +2145,91 @@ function renderWithdrawals(
                 `;
 
             }
-        ).join("");
-
-
-    return total;
+        )
+        .join("");
 
 }
 
 
-/* =========================
-   LOAD DAILY FUNDS
-========================= */
+/* =========================================================
+   FORMAT SELECTED DATE
+========================================================= */
 
-window.loadDailyFunds =
-async function(){
+function formatSelectedDate(
+    value
+){
 
-    refreshButton.disabled =
-        true;
+    const parts =
+        value.split("-");
 
-    refreshButton.textContent =
-        "⏳ Loading...";
 
+    if(
+        parts.length !== 3
+    ){
 
-    depositsContainer.innerHTML = `
-        <div class="loading">
-            Loading deposits...
-        </div>
-    `;
-
-
-    withdrawalsContainer.innerHTML = `
-        <div class="loading">
-            Loading withdrawals...
-        </div>
-    `;
-
-
-    try{
-
-        const selected =
-            datePicker.value;
-
-
-        const deposits =
-            await loadCollection(
-                "deposits"
-            );
-
-
-        const withdrawals =
-            await loadCollection(
-                "withdrawals"
-            );
-
-
-        /*
-         * ONLY UNMARKED RECORDS
-         */
-
-        const dailyDeposits =
-            deposits.filter(
-                item => {
-
-                    if(
-                        !isUnmarked(
-                            item.data
-                        )
-                    ){
-
-                        return false;
-
-                    }
-
-
-                    const date =
-                        getRecordDate(
-                            item.data
-                        );
-
-
-                    if(!date){
-                        return false;
-                    }
-
-
-                    return (
-                        philippinesDate(date)
-                        === selected
-                    );
-
-                }
-            );
-
-
-        const dailyWithdrawals =
-            withdrawals.filter(
-                item => {
-
-                    if(
-                        !isUnmarked(
-                            item.data
-                        )
-                    ){
-
-                        return false;
-
-                    }
-
-
-                    const date =
-                        getRecordDate(
-                            item.data
-                        );
-
-
-                    if(!date){
-                        return false;
-                    }
-
-
-                    return (
-                        philippinesDate(date)
-                        === selected
-                    );
-
-                }
-            );
-
-
-        const depositAmount =
-            renderDeposits(
-                dailyDeposits
-            );
-
-
-        const withdrawalAmount =
-            renderWithdrawals(
-                dailyWithdrawals
-            );
-
-
-        const netAmount =
-            depositAmount -
-            withdrawalAmount;
-
-
-        /*
-         * SUMMARY
-         */
-
-        depositTotal.textContent =
-            money(
-                depositAmount
-            );
-
-        withdrawalTotal.textContent =
-            money(
-                withdrawalAmount
-            );
-
-        netTotal.textContent =
-            money(
-                netAmount
-            );
-
-
-        depositCount.textContent =
-            dailyDeposits.length +
-            (
-                dailyDeposits.length === 1
-                    ? " record"
-                    : " records"
-            );
-
-
-        withdrawalCount.textContent =
-            dailyWithdrawals.length +
-            (
-                dailyWithdrawals.length === 1
-                    ? " record"
-                    : " records"
-            );
-
-
-        depositTabCount.textContent =
-            dailyDeposits.length;
-
-
-        withdrawalTabCount.textContent =
-            dailyWithdrawals.length;
-
-
-        /*
-         * BARS
-         */
-
-        const maximum =
-            Math.max(
-                depositAmount,
-                withdrawalAmount,
-                1
-            );
-
-
-        depositBar.style.width =
-            (
-                depositAmount /
-                maximum *
-                100
-            ) + "%";
-
-
-        withdrawalBar.style.width =
-            (
-                withdrawalAmount /
-                maximum *
-                100
-            ) + "%";
-
-
-        depositBarLabel.textContent =
-            money(
-                depositAmount
-            );
-
-
-        withdrawalBarLabel.textContent =
-            money(
-                withdrawalAmount
-            );
-
-
-        selectedDate.textContent =
-            "📅 Showing records for " +
-            formatSelectedDate(
-                selected
-            );
-
-
-        message.innerHTML = `
-            <div class="selected-date">
-                Unmarked deposits:
-                <b>${dailyDeposits.length}</b>
-                &nbsp; | &nbsp;
-                Unmarked withdrawals:
-                <b>${dailyWithdrawals.length}</b>
-            </div>
-        `;
+        return value;
 
     }
-    catch(error){
 
-        console.error(
-            "Daily Funds Error:",
-            error
+
+    const date =
+        new Date(
+            Number(parts[0]),
+            Number(parts[1]) - 1,
+            Number(parts[2])
         );
 
 
-        message.innerHTML = `
-            <div class="error">
-
-                <b>
-                    Unable to load daily records.
-                </b>
-
-                <br><br>
-
-                ${escapeHtml(
-                    error.message
-                )}
-
-            </div>
-        `;
-
-    }
-
-
-    refreshButton.disabled =
-        false;
-
-    refreshButton.textContent =
-        "🔄 Refresh";
-
-};
-
-
-/* =========================
-   DEFAULT TODAY
-========================= */
-
-function setToday(){
-
-    const now =
-        new Date();
-
-
-    const today =
-        philippinesDate(now);
-
-
-    datePicker.value =
-        today;
+    return new Intl.DateTimeFormat(
+        "en-US",
+        {
+            month:"long",
+            day:"numeric",
+            year:"numeric"
+        }
+    ).format(date);
 
 }
 
 
-/* =========================
-   ADMIN AUTH
-========================= */
+/* =========================================================
+   SEARCH BUTTON
+========================================================= */
+
+searchButton.addEventListener(
+    "click",
+    loadDailyRecords
+);
+
+
+/* =========================================================
+   ENTER KEY
+========================================================= */
+
+datePicker.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Enter"
+        ){
+
+            loadDailyRecords();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AUTHENTICATION
+========================================================= */
 
 onAuthStateChanged(
     auth,
     async user => {
+
 
         if(!user){
 
@@ -1913,33 +2241,62 @@ onAuthStateChanged(
         }
 
 
+        /*
+         * ADMIN ONLY
+         */
+
         if(
-            user.uid !==
-            ADMIN_UID
+            user.uid !== ADMIN_UID
         ){
 
             document.body.innerHTML = `
 
                 <div style="
-                    padding:50px 20px;
-                    text-align:center;
-                    font-family:Arial;
+                    min-height:100vh;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    padding:20px;
+                    background:#f1f7fc;
+                    font-family:Arial,sans-serif;
                 ">
 
-                    <h2 style="
-                        color:#c62828;
+                    <div style="
+                        width:100%;
+                        max-width:420px;
+                        background:white;
+                        padding:30px 22px;
+                        border-radius:20px;
+                        text-align:center;
+                        box-shadow:
+                            0 5px 20px
+                            rgba(0,0,0,.1);
                     ">
-                        Access Denied
-                    </h2>
 
-                    <p style="
-                        margin-top:10px;
-                        color:#666;
-                        margin-top:10px;
-                    ">
-                        You are not authorized
-                        to access this page.
-                    </p>
+                        <div style="
+                            font-size:45px;
+                            margin-bottom:15px;
+                        ">
+                            🔒
+                        </div>
+
+                        <h2 style="
+                            color:#18324d;
+                            margin-bottom:10px;
+                        ">
+                            Access Denied
+                        </h2>
+
+                        <p style="
+                            color:#718399;
+                            font-size:14px;
+                            line-height:1.5;
+                        ">
+                            You are not authorized
+                            to access the Daily Funds Record.
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -1950,9 +2307,27 @@ onAuthStateChanged(
         }
 
 
-        setToday();
+        /*
+         * Default date:
+         * TODAY IN PHILIPPINES
+         */
 
-        await loadDailyFunds();
+        datePicker.value =
+            getTodayPhilippines();
+
+
+        selectedDateText.textContent =
+            formatSelectedDate(
+                datePicker.value
+            );
+
+
+        /*
+         * Automatically load today's
+         * records.
+         */
+
+        await loadDailyRecords();
 
     }
 );
