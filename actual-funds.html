@@ -12,7 +12,7 @@ content="width=device-width, initial-scale=1.0"
 
 >
 
-<title>SkyRent - Actual Funds Diagnostic</title>
+<title>SkyRent Actual Funds</title>
 
 <style>
 
@@ -26,11 +26,12 @@ body{
     font-family:Arial,sans-serif;
     background:#eef6ff;
     color:#222;
-    padding:20px;
+    padding:15px;
 }
 
 .container{
-    max-width:700px;
+    width:100%;
+    max-width:900px;
     margin:0 auto;
 }
 
@@ -48,7 +49,7 @@ body{
 }
 
 .header h1{
-    font-size:22px;
+    font-size:23px;
     margin-bottom:6px;
 }
 
@@ -57,99 +58,173 @@ body{
     opacity:.9;
 }
 
-.card{
+.auth-box{
     background:white;
-    border-radius:18px;
-    padding:18px;
-    margin-bottom:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
-}
-
-.card h2{
-    font-size:18px;
-    color:#0757c9;
-    margin-bottom:15px;
-}
-
-.status{
+    border-radius:15px;
     padding:15px;
-    border-radius:12px;
     margin-bottom:15px;
-    line-height:1.6;
-    font-size:14px;
-    word-break:break-word;
+    font-size:13px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.waiting{
-    background:#fff8e1;
-    color:#795548;
+.auth-ok{
+    color:#176b2c;
+    background:#eaf8ee;
 }
 
-.success{
-    background:#e8f5e9;
-    color:#1b5e20;
+.auth-error{
+    color:#a51d2d;
+    background:#fff0f1;
 }
 
-.error{
-    background:#ffebee;
-    color:#b71c1c;
+.loading{
+    color:#0757c9;
+    background:#eaf4ff;
 }
 
-.row{
-    border-bottom:1px solid #eee;
-    padding:12px 0;
+.summary{
+    display:grid;
+    grid-template-columns:
+        repeat(3,1fr);
+    gap:10px;
+    margin-bottom:15px;
 }
 
-.row:last-child{
-    border-bottom:none;
+.summary-card{
+    background:white;
+    border-radius:15px;
+    padding:16px 10px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.label{
-    font-size:12px;
+.summary-title{
+    font-size:11px;
     color:#777;
-    margin-bottom:4px;
+    margin-bottom:8px;
 }
 
-.value{
-    font-size:14px;
+.summary-value{
+    font-size:19px;
     font-weight:bold;
-    color:#222;
+    color:#0757c9;
+}
+
+.remaining .summary-value{
+    color:#16843b;
+}
+
+.section{
+    background:white;
+    border-radius:17px;
+    padding:17px;
+    margin-bottom:15px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.section h2{
+    color:#0757c9;
+    font-size:18px;
+    margin-bottom:14px;
+}
+
+.empty{
+    text-align:center;
+    padding:25px 10px;
+    color:#888;
+    font-size:14px;
+}
+
+.record{
+    border:1px solid #e5eaf0;
+    border-radius:13px;
+    padding:13px;
+    margin-bottom:10px;
+    background:#fbfdff;
+}
+
+.record:last-child{
+    margin-bottom:0;
+}
+
+.record-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:9px;
+}
+
+.record-id{
+    font-size:11px;
+    color:#777;
     word-break:break-all;
 }
 
-.uid{
-    font-size:11px;
-    font-weight:normal;
+.amount{
+    font-size:17px;
+    font-weight:bold;
+    color:#0757c9;
+    white-space:nowrap;
 }
 
-button{
+.detail{
+    display:grid;
+    grid-template-columns:
+        repeat(2,1fr);
+    gap:8px;
+}
+
+.detail-box{
+    background:#f4f7fa;
+    padding:8px;
+    border-radius:8px;
+}
+
+.detail-label{
+    font-size:10px;
+    color:#888;
+    margin-bottom:3px;
+}
+
+.detail-value{
+    font-size:12px;
+    word-break:break-word;
+}
+
+.refresh{
     width:100%;
     border:none;
-    border-radius:12px;
+    background:#0757c9;
+    color:white;
     padding:14px;
+    border-radius:12px;
     font-size:15px;
     font-weight:bold;
     cursor:pointer;
-    margin-top:8px;
+    margin-bottom:15px;
 }
 
-.login-btn{
-    background:#0757c9;
-    color:white;
+.refresh:disabled{
+    opacity:.6;
 }
 
-.refresh-btn{
-    background:#e3f2fd;
-    color:#0757c9;
-}
+@media(max-width:600px){
 
-.note{
-    background:#f5f5f5;
-    padding:14px;
-    border-radius:12px;
-    font-size:13px;
-    line-height:1.6;
-    color:#555;
+    .summary{
+        grid-template-columns:
+            1fr;
+    }
+
+    .summary-card{
+        padding:13px;
+    }
+
+    .detail{
+        grid-template-columns:
+            1fr;
+    }
+
 }
 
 </style>
@@ -168,150 +243,91 @@ button{
     </h1>
 
     <p>
-        Firebase Authentication Diagnostic
+        Unmarked deposits and withdrawals
     </p>
 
 </div>
 
 
 <div
-    id="authStatus"
-    class="status waiting"
+    id="authBox"
+    class="auth-box loading"
 >
-    ⏳ Waiting for Firebase Authentication...
+    ⏳ Checking administrator access...
 </div>
 
 
-<div class="card">
+<div class="summary">
+
+    <div class="summary-card">
+
+        <div class="summary-title">
+            UNMARKED DEPOSITS
+        </div>
+
+        <div
+            class="summary-value"
+            id="depositTotal"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-title">
+            UNMARKED WITHDRAWALS
+        </div>
+
+        <div
+            class="summary-value"
+            id="withdrawalTotal"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+
+    <div class="summary-card remaining">
+
+        <div class="summary-title">
+            REMAINING FUNDS
+        </div>
+
+        <div
+            class="summary-value"
+            id="remainingTotal"
+        >
+            ₱0.00
+        </div>
+
+    </div>
+
+</div>
+
+
+<button
+    id="refreshButton"
+    class="refresh"
+    disabled
+>
+    🔄 Loading...
+</button>
+
+
+<div class="section">
 
     <h2>
-        🔍 Firebase Session Details
+        💵 Unmarked Deposits
     </h2>
 
+    <div id="depositList">
 
-    <div class="row">
-
-        <div class="label">
-            Page Origin
-        </div>
-
-        <div
-            class="value"
-            id="origin"
-        >
-            Checking...
-        </div>
-
-    </div>
-
-
-    <div class="row">
-
-        <div class="label">
-            Current Page
-        </div>
-
-        <div
-            class="value"
-            id="pageUrl"
-        >
-            Checking...
-        </div>
-
-    </div>
-
-
-    <div class="row">
-
-        <div class="label">
-            Document Referrer
-        </div>
-
-        <div
-            class="value"
-            id="referrer"
-        >
-            Checking...
-        </div>
-
-    </div>
-
-
-    <div class="row">
-
-        <div class="label">
-            Firebase Auth Domain
-        </div>
-
-        <div
-            class="value"
-            id="authDomain"
-        >
-            Checking...
-        </div>
-
-    </div>
-
-
-    <div class="row">
-
-        <div class="label">
-            Firebase Project ID
-        </div>
-
-        <div
-            class="value"
-            id="projectId"
-        >
-            Checking...
-        </div>
-
-    </div>
-
-
-    <div class="row">
-
-        <div class="label">
-            Firebase Current User
-        </div>
-
-        <div
-            class="value uid"
-            id="firebaseUser"
-        >
-            Checking...
-        </div>
-
-    </div>
-
-
-    <div class="row">
-
-        <div class="label">
-            Firebase UID
-        </div>
-
-        <div
-            class="value uid"
-            id="firebaseUid"
-        >
-            Checking...
-        </div>
-
-    </div>
-
-
-    <div class="row">
-
-        <div class="label">
-            Firebase Email
-        </div>
-
-        <div
-            class="value"
-            id="firebaseEmail"
-        >
-            Checking...
+        <div class="empty">
+            Loading deposits...
         </div>
 
     </div>
@@ -319,121 +335,19 @@ button{
 </div>
 
 
-<div class="card">
+<div class="section">
 
     <h2>
-        💾 Browser Session
+        💸 Unmarked Withdrawals
     </h2>
 
+    <div id="withdrawalList">
 
-    <div class="row">
-
-        <div class="label">
-            skyRentAdminLoggedIn
-        </div>
-
-        <div
-            class="value"
-            id="sessionLogin"
-        >
-            Checking...
+        <div class="empty">
+            Loading withdrawals...
         </div>
 
     </div>
-
-
-    <div class="row">
-
-        <div class="label">
-            skyRentAdminUID
-        </div>
-
-        <div
-            class="value uid"
-            id="sessionUid"
-        >
-            Checking...
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="card">
-
-    <h2>
-        👤 Expected Administrator
-    </h2>
-
-
-    <div class="row">
-
-        <div class="label">
-            Expected Admin UID
-        </div>
-
-        <div
-            class="value uid"
-            id="expectedUid"
-        >
-            28zzG9NB46gRkwia7WtOxS1lQNa2
-        </div>
-
-    </div>
-
-
-    <div class="row">
-
-        <div class="label">
-            Expected Admin Email
-        </div>
-
-        <div
-            class="value"
-        >
-            admin@skyrent.com
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="card">
-
-    <div class="note">
-
-        <strong>
-            Important:
-        </strong>
-
-        This diagnostic page is
-        <strong>read-only</strong>.
-
-        <br><br>
-
-        It does not modify deposits,
-        withdrawals, users, investments,
-        balances, or transaction types.
-
-    </div>
-
-
-    <button
-        class="refresh-btn"
-        onclick="location.reload()"
-    >
-        🔄 Refresh Diagnostic
-    </button>
-
-
-    <button
-        class="login-btn"
-        onclick="window.location.href='index.html'"
-    >
-        🔐 Go To Admin Login
-    </button>
 
 </div>
 ```
@@ -456,6 +370,19 @@ import {
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+
+import {
+    getFirestore,
+    collection,
+    getDocs
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =================================
+   SAME FIREBASE CONFIG
+================================= */
 
 const firebaseConfig = {
 
@@ -484,196 +411,1066 @@ const ADMIN_UID =
     "28zzG9NB46gRkwia7WtOxS1lQNa2";
 
 
+/* =================================
+   FIREBASE
+================================= */
+
 const app =
     initializeApp(firebaseConfig);
-
 
 const auth =
     getAuth(app);
 
-
-/* --------------------------------
-   BASIC PAGE INFORMATION
--------------------------------- */
-
-document.getElementById(
-    "origin"
-).textContent =
-    window.location.origin;
+const db =
+    getFirestore(app);
 
 
-document.getElementById(
-    "pageUrl"
-).textContent =
-    window.location.href;
+/* =================================
+   ELEMENTS
+================================= */
 
-
-document.getElementById(
-    "referrer"
-).textContent =
-    document.referrer || "NONE";
-
-
-document.getElementById(
-    "authDomain"
-).textContent =
-    auth.app.options.authDomain;
-
-
-document.getElementById(
-    "projectId"
-).textContent =
-    auth.app.options.projectId;
-
-
-document.getElementById(
-    "expectedUid"
-).textContent =
-    ADMIN_UID;
-
-
-/* --------------------------------
-   SESSION STORAGE
--------------------------------- */
-
-const savedLogin =
-    sessionStorage.getItem(
-        "skyRentAdminLoggedIn"
-    );
-
-
-const savedUid =
-    sessionStorage.getItem(
-        "skyRentAdminUID"
-    );
-
-
-document.getElementById(
-    "sessionLogin"
-).textContent =
-    savedLogin || "NONE";
-
-
-document.getElementById(
-    "sessionUid"
-).textContent =
-    savedUid || "NONE";
-
-
-/* --------------------------------
-   FIREBASE AUTH
--------------------------------- */
-
-const authStatus =
+const authBox =
     document.getElementById(
-        "authStatus"
+        "authBox"
     );
 
+const depositTotal =
+    document.getElementById(
+        "depositTotal"
+    );
+
+const withdrawalTotal =
+    document.getElementById(
+        "withdrawalTotal"
+    );
+
+const remainingTotal =
+    document.getElementById(
+        "remainingTotal"
+    );
+
+const depositList =
+    document.getElementById(
+        "depositList"
+    );
+
+const withdrawalList =
+    document.getElementById(
+        "withdrawalList"
+    );
+
+const refreshButton =
+    document.getElementById(
+        "refreshButton"
+    );
+
+
+/* =================================
+   FORMAT MONEY
+================================= */
+
+function money(value){
+
+    const number =
+        Number(value) || 0;
+
+    return "₱" +
+        number.toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =================================
+   ESCAPE HTML
+================================= */
+
+function escapeHtml(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =================================
+   GET AMOUNT
+================================= */
+
+function getAmount(data){
+
+    const fields = [
+
+        "amount",
+        "depositAmount",
+        "withdrawalAmount",
+        "amountValue",
+        "requestedAmount",
+        "investmentAmount",
+        "planAmount",
+        "price",
+        "value"
+
+    ];
+
+
+    for(
+        const field of fields
+    ){
+
+        if(
+            data[field] !==
+            undefined &&
+            data[field] !== null &&
+            data[field] !== ""
+        ){
+
+            const value =
+                Number(data[field]);
+
+            if(
+                !isNaN(value)
+            ){
+
+                return value;
+
+            }
+
+        }
+
+    }
+
+    return 0;
+
+}
+
+
+/* =================================
+   CHECK UNMARKED
+================================= */
+
+function isUnmarked(data){
+
+    const type =
+        data.transactionType;
+
+
+    /*
+     * ONLY these are unmarked:
+     *
+     * undefined
+     * null
+     * empty string
+     */
+
+    return (
+        type === undefined ||
+        type === null ||
+        String(type).trim() === ""
+    );
+
+}
+
+
+/* =================================
+   FORMAT DATE
+================================= */
+
+function formatDate(value){
+
+    if(!value){
+        return "—";
+    }
+
+
+    try{
+
+        if(
+            value &&
+            typeof value.toDate ===
+            "function"
+        ){
+
+            return value
+                .toDate()
+                .toLocaleString();
+
+        }
+
+
+        if(
+            value instanceof Date
+        ){
+
+            return value
+                .toLocaleString();
+
+        }
+
+
+        return String(value);
+
+    }
+    catch(error){
+
+        return "—";
+
+    }
+
+}
+
+
+/* =================================
+   FIND USER DISPLAY
+================================= */
+
+function getUserValue(
+    data,
+    fields
+){
+
+    for(
+        const field of fields
+    ){
+
+        if(
+            data[field] !==
+            undefined &&
+            data[field] !== null &&
+            data[field] !== ""
+        ){
+
+            return data[field];
+
+        }
+
+    }
+
+    return "—";
+
+}
+
+
+/* =================================
+   LOAD DEPOSITS
+================================= */
+
+async function loadDeposits(){
+
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "deposits"
+            )
+        );
+
+
+    const records = [];
+
+
+    snapshot.forEach(
+        item => {
+
+            const data =
+                item.data();
+
+
+            /*
+             * IMPORTANT:
+             *
+             * Test and Actual are
+             * automatically excluded.
+             *
+             * Only unmarked records
+             * are included.
+             */
+
+            if(
+                isUnmarked(data)
+            ){
+
+                records.push({
+
+                    id:item.id,
+                    data:data
+
+                });
+
+            }
+
+        }
+    );
+
+
+    return records;
+
+}
+
+
+/* =================================
+   LOAD WITHDRAWALS
+================================= */
+
+async function loadWithdrawals(){
+
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "withdrawals"
+            )
+        );
+
+
+    const records = [];
+
+
+    snapshot.forEach(
+        item => {
+
+            const data =
+                item.data();
+
+
+            /*
+             * Only unmarked
+             * withdrawals.
+             */
+
+            if(
+                isUnmarked(data)
+            ){
+
+                records.push({
+
+                    id:item.id,
+                    data:data
+
+                });
+
+            }
+
+        }
+    );
+
+
+    return records;
+
+}
+
+
+/* =================================
+   RENDER DEPOSITS
+================================= */
+
+function renderDeposits(
+    records
+){
+
+    if(
+        records.length === 0
+    ){
+
+        depositList.innerHTML = `
+
+            <div class="empty">
+
+                No unmarked deposits found.
+
+            </div>
+
+        `;
+
+        return 0;
+
+    }
+
+
+    let total = 0;
+
+
+    depositList.innerHTML =
+        records.map(
+            record => {
+
+                const data =
+                    record.data;
+
+                const amount =
+                    getAmount(data);
+
+                total += amount;
+
+
+                const reference =
+                    getUserValue(
+                        data,
+                        [
+                            "reference",
+                            "referenceNumber",
+                            "refNumber",
+                            "transactionReference"
+                        ]
+                    );
+
+
+                const phone =
+                    getUserValue(
+                        data,
+                        [
+                            "phone",
+                            "phoneNumber",
+                            "userPhone"
+                        ]
+                    );
+
+
+                const name =
+                    getUserValue(
+                        data,
+                        [
+                            "name",
+                            "userName",
+                            "fullName"
+                        ]
+                    );
+
+
+                const date =
+                    getUserValue(
+                        data,
+                        [
+                            "createdAt",
+                            "timestamp",
+                            "date"
+                        ]
+                    );
+
+
+                return `
+
+                    <div class="record">
+
+                        <div class="record-top">
+
+                            <div class="record-id">
+
+                                ID:
+                                ${escapeHtml(
+                                    record.id
+                                )}
+
+                            </div>
+
+                            <div class="amount">
+
+                                ${money(amount)}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    NAME
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(name)}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    PHONE
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(phone)}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    REFERENCE
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(reference)}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    DATE
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        formatDate(date)
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+
+    return total;
+
+}
+
+
+/* =================================
+   RENDER WITHDRAWALS
+================================= */
+
+function renderWithdrawals(
+    records
+){
+
+    if(
+        records.length === 0
+    ){
+
+        withdrawalList.innerHTML = `
+
+            <div class="empty">
+
+                No unmarked withdrawals found.
+
+            </div>
+
+        `;
+
+        return 0;
+
+    }
+
+
+    let total = 0;
+
+
+    withdrawalList.innerHTML =
+        records.map(
+            record => {
+
+                const data =
+                    record.data;
+
+                const amount =
+                    getAmount(data);
+
+                total += amount;
+
+
+                const phone =
+                    getUserValue(
+                        data,
+                        [
+                            "phone",
+                            "phoneNumber",
+                            "userPhone"
+                        ]
+                    );
+
+
+                const name =
+                    getUserValue(
+                        data,
+                        [
+                            "name",
+                            "userName",
+                            "fullName"
+                        ]
+                    );
+
+
+                const account =
+                    getUserValue(
+                        data,
+                        [
+                            "accountNumber",
+                            "withdrawalAccount",
+                            "account",
+                            "gcashNumber",
+                            "mayaNumber"
+                        ]
+                    );
+
+
+                const date =
+                    getUserValue(
+                        data,
+                        [
+                            "createdAt",
+                            "timestamp",
+                            "date"
+                        ]
+                    );
+
+
+                return `
+
+                    <div class="record">
+
+                        <div class="record-top">
+
+                            <div class="record-id">
+
+                                ID:
+                                ${escapeHtml(
+                                    record.id
+                                )}
+
+                            </div>
+
+                            <div class="amount">
+
+                                ${money(amount)}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="detail">
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    NAME
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(name)}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    PHONE
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(phone)}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    ACCOUNT
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(account)}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    DATE
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ${escapeHtml(
+                                        formatDate(date)
+                                    )}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+
+    return total;
+
+}
+
+
+/* =================================
+   LOAD EVERYTHING
+================================= */
+
+async function loadActualFunds(){
+
+    refreshButton.disabled =
+        true;
+
+    refreshButton.textContent =
+        "⏳ Loading...";
+
+
+    depositList.innerHTML = `
+
+        <div class="empty">
+            Loading deposits...
+        </div>
+
+    `;
+
+
+    withdrawalList.innerHTML = `
+
+        <div class="empty">
+            Loading withdrawals...
+        </div>
+
+    `;
+
+
+    try{
+
+        const deposits =
+            await loadDeposits();
+
+
+        const withdrawals =
+            await loadWithdrawals();
+
+
+        const depositAmount =
+            renderDeposits(
+                deposits
+            );
+
+
+        const withdrawalAmount =
+            renderWithdrawals(
+                withdrawals
+            );
+
+
+        const remaining =
+            depositAmount -
+            withdrawalAmount;
+
+
+        depositTotal.textContent =
+            money(depositAmount);
+
+
+        withdrawalTotal.textContent =
+            money(withdrawalAmount);
+
+
+        remainingTotal.textContent =
+            money(remaining);
+
+
+        authBox.className =
+            "auth-box auth-ok";
+
+
+        authBox.innerHTML = `
+
+            <strong>
+                ✅ Firebase connected
+            </strong>
+
+            <br>
+
+            Showing only unmarked
+            deposit and withdrawal records.
+
+            <br>
+
+            Deposits found:
+            ${deposits.length}
+
+            &nbsp; | &nbsp;
+
+            Withdrawals found:
+            ${withdrawals.length}
+
+        `;
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Actual Funds Error:",
+            error
+        );
+
+
+        authBox.className =
+            "auth-box auth-error";
+
+
+        authBox.innerHTML = `
+
+            <strong>
+                ❌ Unable to load Firebase data
+            </strong>
+
+            <br><br>
+
+            ${escapeHtml(
+                error.message
+            )}
+
+        `;
+
+
+        depositList.innerHTML = `
+
+            <div class="empty">
+
+                Unable to load deposits.
+
+            </div>
+
+        `;
+
+
+        withdrawalList.innerHTML = `
+
+            <div class="empty">
+
+                Unable to load withdrawals.
+
+            </div>
+
+        `;
+
+    }
+
+
+    refreshButton.disabled =
+        false;
+
+    refreshButton.textContent =
+        "🔄 Refresh";
+
+}
+
+
+/* =================================
+   AUTH
+================================= */
 
 onAuthStateChanged(
     auth,
-    user => {
+    async user => {
 
         console.log(
-            "================================"
-        );
-
-        console.log(
-            "ACTUAL FUNDS AUTH DIAGNOSTIC"
-        );
-
-        console.log(
-            "================================"
-        );
-
-        console.log(
-            "Origin:",
-            window.location.origin
-        );
-
-        console.log(
-            "URL:",
-            window.location.href
-        );
-
-        console.log(
-            "Referrer:",
-            document.referrer
-        );
-
-        console.log(
-            "Auth domain:",
-            auth.app.options.authDomain
-        );
-
-        console.log(
-            "Project:",
-            auth.app.options.projectId
-        );
-
-        console.log(
-            "Firebase user:",
+            "Actual Funds Firebase user:",
             user
         );
 
-        console.log(
-            "Firebase currentUser:",
-            auth.currentUser
-        );
 
-        console.log(
-            "Session login:",
-            savedLogin
-        );
+        /*
+         * We do NOT redirect.
+         * We do NOT sign out.
+         *
+         * The page simply tries to
+         * read the data when Firebase
+         * provides an authenticated user.
+         */
 
-        console.log(
-            "Session UID:",
-            savedUid
-        );
+        if(!user){
+
+            /*
+             * Since your classifier already
+             * works, this message simply
+             * tells us Firebase did not
+             * provide the session here.
+             */
+
+            authBox.className =
+                "auth-box auth-error";
+
+
+            authBox.innerHTML = `
+
+                <strong>
+                    ⚠️ Firebase session not detected
+                </strong>
+
+                <br><br>
+
+                Firebase did not provide a
+                signed-in user to this page.
+
+            `;
+
+
+            refreshButton.disabled =
+                true;
+
+
+            return;
+
+        }
+
+
+        /*
+         * Verify administrator.
+         */
+
+        if(
+            user.uid !==
+            ADMIN_UID
+        ){
+
+            authBox.className =
+                "auth-box auth-error";
+
+
+            authBox.innerHTML = `
+
+                <strong>
+                    ❌ Access Denied
+                </strong>
+
+                <br><br>
+
+                Firebase user detected,
+                but this account is not
+                the administrator.
+
+            `;
+
+
+            refreshButton.disabled =
+                true;
+
+
+            return;
+
+        }
+
+
+        /*
+         * Administrator confirmed.
+         */
+
+        authBox.className =
+            "auth-box auth-ok";
+
+
+        authBox.innerHTML = `
+
+            <strong>
+                ✅ Administrator verified
+            </strong>
+
+            <br>
+
+            Loading unmarked funds...
+
+        `;
+
+
+        refreshButton.disabled =
+            false;
+
+
+        await loadActualFunds();
+
+    }
+);
+
+
+/* =================================
+   REFRESH BUTTON
+================================= */
+
+refreshButton.addEventListener(
+    "click",
+    async function(){
+
+        const user =
+            auth.currentUser;
 
 
         if(!user){
 
-            document.getElementById(
-                "firebaseUser"
-            ).textContent =
-                "NONE";
+            authBox.className =
+                "auth-box auth-error";
 
 
-            document.getElementById(
-                "firebaseUid"
-            ).textContent =
-                "NONE";
-
-
-            document.getElementById(
-                "firebaseEmail"
-            ).textContent =
-                "NONE";
-
-
-            authStatus.className =
-                "status error";
-
-
-            authStatus.innerHTML = `
+            authBox.innerHTML = `
 
                 <strong>
-                    ❌ Firebase says NO REGISTERED USER IS SIGNED IN
+                    ⚠️ Firebase session not detected
                 </strong>
 
                 <br><br>
 
-                Firebase Authentication returned:
-
-                <strong>
-                    user = null
-                </strong>
-
-                <br><br>
-
-                The diagnostic information above
-                shows exactly what this page is receiving.
+                Please open the page from
+                the working admin dashboard.
 
             `;
 
@@ -682,66 +1479,17 @@ onAuthStateChanged(
         }
 
 
-        document.getElementById(
-            "firebaseUser"
-        ).textContent =
-            "USER DETECTED";
-
-
-        document.getElementById(
-            "firebaseUid"
-        ).textContent =
-            user.uid;
-
-
-        document.getElementById(
-            "firebaseEmail"
-        ).textContent =
-            user.email || "No email";
-
-
         if(
-            user.uid === ADMIN_UID
+            user.uid !==
+            ADMIN_UID
         ){
 
-            authStatus.className =
-                "status success";
-
-
-            authStatus.innerHTML = `
-
-                <strong>
-                    ✅ FIREBASE ADMIN SESSION FOUND
-                </strong>
-
-                <br><br>
-
-                UID matches the expected
-                administrator account.
-
-            `;
+            return;
 
         }
-        else{
-
-            authStatus.className =
-                "status error";
 
 
-            authStatus.innerHTML = `
-
-                <strong>
-                    ⚠️ FIREBASE USER FOUND
-                </strong>
-
-                <br><br>
-
-                However, the UID does not
-                match the SkyRent administrator UID.
-
-            `;
-
-        }
+        await loadActualFunds();
 
     }
 );
