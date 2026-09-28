@@ -2067,297 +2067,131 @@ remainingFunds.textContent =
    RENDER DEPOSITS
 ========================================================= */
 
-function renderDeposits(
-    records
-){
+function renderDeposits(records){
 
-    if(
-        records.length === 0
-    ){
+    if(records.length === 0){
 
         depositList.innerHTML = `
-
             <div class="empty">
-
                 No unmarked deposit records
                 found for this date.
-
             </div>
-
         `;
 
         return;
-
     }
 
-
     depositList.innerHTML =
-        records.map(
-            item => {
+        records.map(item => {
 
-                const data =
-                    item.data;
+            const data = item.data;
 
+            const date =
+                getTimestamp(data);
 
-                const date =
-                    getTimestamp(data);
+            const amount =
+                getAmount(data);
 
+            const name =
+                getName(data);
 
-                const amount =
-                    getAmount(data);
+            return `
+                <div class="record deposit-record">
 
+                    <div class="record-top">
 
-                const name =
-                    getName(data);
-
-
-                const phone =
-                    getPhone(data);
-
-
-                const reference =
-                    getReference(data);
-
-
-                const status =
-                    getStatus(data);
-
-
-                const payment =
-                    data.paymentMethod ||
-                    data.payment ||
-                    data.method ||
-                    "-";
-
-
-                return `
-
-                    <div class="
-                        record
-                        deposit-record
-                    ">
-
-                        <div class="record-top">
-
-                            <div class="record-name">
-
-                                ${escapeHtml(
-                                    name
-                                )}
-
-                                <span
-                                    class="unmarked-badge"
-                                >
-                                    UNMARKED
-                                </span>
-
-                            </div>
-
-                            <div class="
-                                record-amount
-                            ">
-
-                                ${money(
-                                    amount
-                                )}
-
-                            </div>
-
+                        <div class="record-name">
+                            ${escapeHtml(name)}
                         </div>
 
-
-                        <div class="record-details">
-
-                            <span>
-                                📱
-                                ${escapeHtml(
-                                    phone
-                                )}
-                            </span>
-
-                            <span>
-                                🧾 Reference:
-                                ${escapeHtml(
-                                    reference
-                                )}
-                            </span>
-
-                            <span>
-                                💳 Payment:
-                                ${escapeHtml(
-                                    payment
-                                )}
-                            </span>
-
-                            <span>
-                                📌 Status:
-                                ${escapeHtml(
-                                    status
-                                )}
-                            </span>
-
-                            <span>
-                                🕐
-                                ${escapeHtml(
-                                    philippinesDisplayDate(
-                                        date
-                                    )
-                                )}
-                            </span>
-
+                        <div class="record-amount">
+                            ${money(amount)}
                         </div>
 
                     </div>
 
-                `;
+                    <div class="record-details">
 
-            }
-        )
-        .join("");
+                        <span>
+                            🕐
+                            ${escapeHtml(
+                                philippinesDisplayDate(date)
+                            )}
+                        </span>
 
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
 }
+
 
 
 /* =========================================================
    RENDER WITHDRAWALS
 ========================================================= */
 
-function renderWithdrawals(
-    records
-){
+function renderWithdrawals(records){
 
-    if(
-        records.length === 0
-    ){
+    if(records.length === 0){
 
         withdrawalList.innerHTML = `
-
             <div class="empty">
-
                 No unmarked withdrawal records
                 found for this date.
-
             </div>
-
         `;
 
         return;
-
     }
 
-
     withdrawalList.innerHTML =
-        records.map(
-            item => {
+        records.map(item => {
 
-                const data =
-                    item.data;
+            const data = item.data;
 
+            const date =
+                getTimestamp(data);
 
-                const date =
-                    getTimestamp(data);
+            const amount =
+                getAmount(data);
 
+            const name =
+                getName(data);
 
-                const amount =
-                    getAmount(data);
+            return `
+                <div class="record withdrawal-record">
 
+                    <div class="record-top">
 
-                const name =
-                    getName(data);
-
-
-                const phone =
-                    getPhone(data);
-
-
-                const status =
-                    getStatus(data);
-
-
-                const account =
-                    getAccount(data);
-
-
-                return `
-
-                    <div class="
-                        record
-                        withdrawal-record
-                    ">
-
-                        <div class="record-top">
-
-                            <div class="record-name">
-
-                                ${escapeHtml(
-                                    name
-                                )}
-
-                                <span
-                                    class="unmarked-badge"
-                                >
-                                    UNMARKED
-                                </span>
-
-                            </div>
-
-                            <div class="
-                                record-amount
-                            ">
-
-                                ${money(
-                                    amount
-                                )}
-
-                            </div>
-
+                        <div class="record-name">
+                            ${escapeHtml(name)}
                         </div>
 
-
-                        <div class="record-details">
-
-                            <span>
-                                📱
-                                ${escapeHtml(
-                                    phone
-                                )}
-                            </span>
-
-                            <span>
-                                🏦 Account:
-                                ${escapeHtml(
-                                    account
-                                )}
-                            </span>
-
-                            <span>
-                                📌 Status:
-                                ${escapeHtml(
-                                    status
-                                )}
-                            </span>
-
-                            <span>
-                                🕐
-                                ${escapeHtml(
-                                    philippinesDisplayDate(
-                                        date
-                                    )
-                                )}
-                            </span>
-
+                        <div class="record-amount">
+                            ${money(amount)}
                         </div>
 
                     </div>
 
-                `;
+                    <div class="record-details">
 
-            }
-        )
-        .join("");
+                        <span>
+                            🕐
+                            ${escapeHtml(
+                                philippinesDisplayDate(date)
+                            )}
+                        </span>
 
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
 }
-
 
 /* =========================================================
    FORMAT SELECTED DATE
