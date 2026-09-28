@@ -229,6 +229,33 @@ body{
     margin-bottom:15px;
 }
 
+/* =========================
+   SMALL FINANCIAL SUMMARY
+========================= */
+
+.small-financial-summary{
+    padding:4px 5px 12px;
+    color:#7b8997;
+    font-size:10px;
+    line-height:1.8;
+}
+
+.small-financial-summary div{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.small-financial-summary strong{
+    color:#536474;
+    font-weight:700;
+    text-align:right;
+}
+
+
+
+
 .summary-card{
     background:white;
 
@@ -659,6 +686,34 @@ body{
         style="display:none;"
     >
 
+<!-- SMALL FINANCIAL SUMMARY -->
+
+<div class="small-financial-summary">
+
+    <div>
+        <span>Current Total Deposits:</span>
+        <strong id="currentTotalDeposits">₱0.00</strong>
+    </div>
+
+    <div>
+        <span>Previous Current Balance:</span>
+        <strong id="previousCurrentBalance">₱0.00</strong>
+    </div>
+
+    <div>
+        <span>Today's Withdrawal:</span>
+        <strong id="todayWithdrawal">₱0.00</strong>
+    </div>
+
+    <div>
+        <span>Remaining Funds:</span>
+        <strong id="remainingFunds">₱0.00</strong>
+    </div>
+
+</div>
+
+
+
 
         <!-- =====================
              SUMMARY
@@ -950,6 +1005,27 @@ const withdrawalListTotal =
     document.getElementById(
         "withdrawalListTotal"
     );
+
+const currentTotalDeposits =
+    document.getElementById(
+        "currentTotalDeposits"
+    );
+
+const previousCurrentBalance =
+    document.getElementById(
+        "previousCurrentBalance"
+    );
+
+const todayWithdrawal =
+    document.getElementById(
+        "todayWithdrawal"
+    );
+
+const remainingFunds =
+    document.getElementById(
+        "remainingFunds"
+    );
+
 
 
 /* =========================================================
@@ -1734,6 +1810,137 @@ async function loadDailyRecords(){
                 },
                 0
             );
+
+
+/* =========================================================
+   SMALL FINANCIAL SUMMARY
+========================================================= */
+
+/*
+ * Current Total Deposits
+ * = all unmarked deposits
+ */
+const currentTotalDepositAmount =
+    depositRecords.reduce(
+        (
+            total,
+            item
+        ) => {
+
+            if(
+                !isUnmarked(
+                    item.data
+                )
+            ){
+
+                return total;
+
+            }
+
+            const amount =
+                getAmount(
+                    item.data
+                );
+
+            return total + amount;
+
+        },
+        0
+    );
+
+
+/*
+ * Previous Current Balance
+ * = all unmarked withdrawals
+ * BEFORE the selected date
+ */
+const previousWithdrawalAmount =
+    withdrawalRecords.reduce(
+        (
+            total,
+            item
+        ) => {
+
+            const data =
+                item.data;
+
+            if(
+                !isUnmarked(data)
+            ){
+
+                return total;
+
+            }
+
+            const date =
+                getTimestamp(data);
+
+            if(!date){
+
+                return total;
+
+            }
+
+            const recordDate =
+                philippinesDate(date);
+
+            if(
+                recordDate >= selectedDate
+            ){
+
+                return total;
+
+            }
+
+            const amount =
+                getAmount(data);
+
+            return total + amount;
+
+        },
+        0
+    );
+
+
+/*
+ * Remaining Funds
+ *
+ * Total Deposits
+ * - Previous Withdrawals
+ * - Today's Withdrawal
+ */
+const calculatedRemainingFunds =
+    currentTotalDepositAmount -
+    previousWithdrawalAmount -
+    withdrawalAmount;
+
+
+/*
+ * Display small summary
+ */
+
+currentTotalDeposits.textContent =
+    money(
+        currentTotalDepositAmount
+    );
+
+previousCurrentBalance.textContent =
+    money(
+        previousWithdrawalAmount
+    );
+
+todayWithdrawal.textContent =
+    money(
+        withdrawalAmount
+    );
+
+remainingFunds.textContent =
+    money(
+        calculatedRemainingFunds
+    );
+
+
+
 
 
         /*
