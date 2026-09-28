@@ -12,6 +12,7 @@
 
 <title>SkyRent Admin - Daily Funds Record</title>
 
+
 <style>
 
 /* =========================
@@ -50,7 +51,9 @@ body{
     );
 
     color:white;
+
     text-align:center;
+
     padding:22px 15px;
 
     box-shadow:
@@ -86,13 +89,21 @@ body{
 
 .back-btn{
     width:100%;
+
     border:none;
+
     background:white;
+
     color:#0757c9;
+
     padding:13px;
+
     border-radius:12px;
+
     font-size:14px;
+
     font-weight:700;
+
     margin-bottom:15px;
 
     box-shadow:
@@ -112,9 +123,12 @@ body{
 
 .date-box{
     background:white;
+
     border-radius:15px;
+
     padding:15px;
-    margin-bottom:10px;
+
+    margin-bottom:15px;
 
     box-shadow:
         0 2px 9px rgba(0,0,0,.08);
@@ -122,21 +136,27 @@ body{
 
 .date-title{
     font-size:13px;
+
     font-weight:700;
+
     color:#0757c9;
+
     margin-bottom:9px;
 }
 
 .date-row{
     display:flex;
+
     gap:8px;
 }
 
 .date-input{
     flex:1;
+
     min-width:0;
 
     border:1px solid #d8e1ea;
+
     background:#f8fbfe;
 
     padding:12px;
@@ -144,6 +164,7 @@ body{
     border-radius:10px;
 
     font-size:14px;
+
     color:#18324d;
 
     outline:none;
@@ -155,7 +176,9 @@ body{
 
 .search-btn{
     border:none;
+
     background:#0757c9;
+
     color:white;
 
     padding:12px 16px;
@@ -163,9 +186,11 @@ body{
     border-radius:10px;
 
     font-size:13px;
+
     font-weight:700;
 
     cursor:pointer;
+
     white-space:nowrap;
 }
 
@@ -173,44 +198,19 @@ body{
     transform:scale(.97);
 }
 
-.selected-date{
-    text-align:center;
-    color:#718399;
-    font-size:11px;
-    margin-top:9px;
-}
-
 
 /* =========================
-   SMALL FINANCIAL SUMMARY
+   SELECTED DATE
 ========================= */
 
-.small-financial-summary{
-    background:transparent;
+.selected-date{
+    text-align:center;
 
-    padding:4px 5px 12px;
+    color:#718399;
 
-    color:#7b8997;
+    font-size:11px;
 
-    font-size:10px;
-
-    line-height:1.8;
-}
-
-.small-financial-summary div{
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-}
-
-.small-financial-summary strong{
-    color:#536474;
-
-    font-weight:700;
-
-    text-align:right;
+    margin-top:9px;
 }
 
 
@@ -242,25 +242,33 @@ body{
 
 .summary-icon{
     font-size:22px;
+
     margin-bottom:7px;
 }
 
 .summary-title{
     font-size:10px;
+
     color:#718399;
+
     font-weight:700;
+
     margin-bottom:5px;
 }
 
 .summary-count{
     font-size:12px;
+
     color:#718399;
+
     margin-bottom:4px;
 }
 
 .summary-amount{
     font-size:19px;
+
     font-weight:800;
+
     word-break:break-word;
 }
 
@@ -303,17 +311,18 @@ body{
 
     margin-bottom:3px;
 
-    border-bottom:
-        1px solid #edf0f3;
+    border-bottom:1px solid #edf0f3;
 }
 
 .section-title h2{
     font-size:16px;
+
     color:#0757c9;
 }
 
 .section-total{
     font-size:12px;
+
     font-weight:700;
 }
 
@@ -329,8 +338,7 @@ body{
 .record{
     padding:13px 0;
 
-    border-bottom:
-        1px solid #edf0f3;
+    border-bottom:1px solid #edf0f3;
 }
 
 .record:last-child{
@@ -391,7 +399,7 @@ body{
 
 
 /* =========================
-   UNMARKED BADGE
+   BADGE
 ========================= */
 
 .unmarked-badge{
@@ -401,8 +409,7 @@ body{
 
     color:#8a6500;
 
-    border:
-        1px solid #f0d37a;
+    border:1px solid #f0d37a;
 
     padding:2px 6px;
 
@@ -456,21 +463,19 @@ body{
 
 .spinner{
     width:32px;
+
     height:32px;
 
-    border:
-        4px solid #dce8f5;
+    border:4px solid #dce8f5;
 
-    border-top:
-        4px solid #0757c9;
+    border-top:4px solid #0757c9;
 
     border-radius:50%;
 
     animation:
         spin .8s linear infinite;
 
-    margin:
-        0 auto 12px;
+    margin:0 auto 12px;
 }
 
 @keyframes spin{
@@ -491,8 +496,7 @@ body{
 
     color:#a32626;
 
-    border-left:
-        4px solid #d93636;
+    border-left:4px solid #d93636;
 
     border-radius:10px;
 
@@ -621,74 +625,6 @@ body{
 
 
     <!-- =========================
-         SMALL FINANCIAL SUMMARY
-    ========================= -->
-
-    <div class="small-financial-summary">
-
-        <div>
-
-            <span>
-                Current Total Deposits:
-            </span>
-
-            <strong
-                id="currentTotalDeposits"
-            >
-                ₱0.00
-            </strong>
-
-        </div>
-
-
-        <div>
-
-            <span>
-                Previous Current Balance:
-            </span>
-
-            <strong
-                id="previousCurrentBalance"
-            >
-                ₱0.00
-            </strong>
-
-        </div>
-
-
-        <div>
-
-            <span>
-                Today's Withdrawal:
-            </span>
-
-            <strong
-                id="todayWithdrawal"
-            >
-                ₱0.00
-            </strong>
-
-        </div>
-
-
-        <div>
-
-            <span>
-                Remaining Funds:
-            </span>
-
-            <strong
-                id="remainingFunds"
-            >
-                ₱0.00
-            </strong>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================
          ERROR
     ========================= -->
 
@@ -725,11 +661,13 @@ body{
 
 
         <!-- =====================
-             DAILY SUMMARY
+             SUMMARY
         ===================== -->
 
         <div class="summary">
 
+
+            <!-- DEPOSITS -->
 
             <div class="summary-card deposit-summary">
 
@@ -757,6 +695,8 @@ body{
 
             </div>
 
+
+            <!-- WITHDRAWALS -->
 
             <div class="summary-card withdrawal-summary">
 
@@ -789,7 +729,7 @@ body{
 
 
         <!-- =====================
-             DEPOSIT LIST
+             DEPOSITS LIST
         ===================== -->
 
         <div class="section">
@@ -819,7 +759,7 @@ body{
 
 
         <!-- =====================
-             WITHDRAWAL LIST
+             WITHDRAWALS LIST
         ===================== -->
 
         <div class="section">
@@ -865,7 +805,7 @@ body{
 
 
 /* =========================================================
-   FIREBASE IMPORTS
+   FIREBASE
 ========================================================= */
 
 import {
@@ -899,7 +839,7 @@ from
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyDAbHsV-S363u-sGCBo3mO1Y7YLEaFAa4e8",
+        "AIzaSyDAbHsV-S363u-sGCBo3m1O7YLEaFAa4e8",
 
     authDomain:
         "skyrent-ea30c.firebaseapp.com",
@@ -924,13 +864,11 @@ const ADMIN_UID =
 
 
 /* =========================================================
-   INITIALIZE FIREBASE
+   INITIALIZE
 ========================================================= */
 
 const app =
-    initializeApp(
-        firebaseConfig
-    );
+    initializeApp(firebaseConfig);
 
 const auth =
     getAuth(app);
@@ -1015,31 +953,6 @@ const withdrawalListTotal =
 
 
 /* =========================================================
-   SMALL FINANCIAL SUMMARY ELEMENTS
-========================================================= */
-
-const currentTotalDeposits =
-    document.getElementById(
-        "currentTotalDeposits"
-    );
-
-const previousCurrentBalance =
-    document.getElementById(
-        "previousCurrentBalance"
-    );
-
-const todayWithdrawal =
-    document.getElementById(
-        "todayWithdrawal"
-    );
-
-const remainingFunds =
-    document.getElementById(
-        "remainingFunds"
-    );
-
-
-/* =========================================================
    MONEY
 ========================================================= */
 
@@ -1075,7 +988,7 @@ function escapeHtml(value){
 
 
 /* =========================================================
-   SAFE
+   SAFE VALUE
 ========================================================= */
 
 function safe(value){
@@ -1104,13 +1017,21 @@ function getAmount(data){
     const fields = [
 
         "amount",
+
         "depositAmount",
+
         "withdrawalAmount",
+
         "amountValue",
+
         "requestedAmount",
+
         "investmentAmount",
+
         "planAmount",
+
         "price",
+
         "value"
 
     ];
@@ -1127,9 +1048,7 @@ function getAmount(data){
         ){
 
             const number =
-                Number(
-                    data[field]
-                );
+                Number(data[field]);
 
 
             if(
@@ -1159,11 +1078,17 @@ function getName(data){
     return (
 
         data.name ||
+
         data.fullName ||
+
         data.displayName ||
+
         data.userName ||
+
         data.username ||
+
         data.customerName ||
+
         "Unknown User"
 
     );
@@ -1180,9 +1105,13 @@ function getPhone(data){
     return (
 
         data.phone ||
+
         data.phoneNumber ||
+
         data.mobile ||
+
         data.mobileNumber ||
+
         "-"
 
     );
@@ -1199,10 +1128,15 @@ function getReference(data){
     return (
 
         data.reference ||
+
         data.referenceNumber ||
+
         data.ref ||
+
         data.transactionReference ||
+
         data.paymentReference ||
+
         "-"
 
     );
@@ -1217,8 +1151,11 @@ function getReference(data){
 function getStatus(data){
 
     return (
+
         data.status ||
+
         "Unknown"
+
     );
 
 }
@@ -1233,10 +1170,15 @@ function getAccount(data){
     return (
 
         data.accountName ||
+
         data.accountNumber ||
+
         data.withdrawalAccount ||
+
         data.paymentAccount ||
+
         data.account ||
+
         "-"
 
     );
@@ -1245,7 +1187,7 @@ function getAccount(data){
 
 
 /* =========================================================
-   GET TIMESTAMP
+   TIMESTAMP VALUE
 ========================================================= */
 
 function getTimestamp(data){
@@ -1253,9 +1195,13 @@ function getTimestamp(data){
     const fields = [
 
         "createdAt",
+
         "timestamp",
+
         "date",
+
         "created",
+
         "createdDate"
 
     ];
@@ -1280,7 +1226,9 @@ function getTimestamp(data){
         }
 
 
-        /* Firebase Timestamp */
+        /*
+         * Firebase Timestamp
+         */
 
         if(
             typeof value.toDate ===
@@ -1292,9 +1240,7 @@ function getTimestamp(data){
 
 
             if(
-                !isNaN(
-                    date.getTime()
-                )
+                !isNaN(date.getTime())
             ){
 
                 return date;
@@ -1304,7 +1250,9 @@ function getTimestamp(data){
         }
 
 
-        /* Firestore timestamp object */
+        /*
+         * Firestore timestamp-like object
+         */
 
         if(
             value.seconds !== undefined
@@ -1312,16 +1260,12 @@ function getTimestamp(data){
 
             const date =
                 new Date(
-                    Number(
-                        value.seconds
-                    ) * 1000
+                    Number(value.seconds) * 1000
                 );
 
 
             if(
-                !isNaN(
-                    date.getTime()
-                )
+                !isNaN(date.getTime())
             ){
 
                 return date;
@@ -1331,16 +1275,16 @@ function getTimestamp(data){
         }
 
 
-        /* Date */
+        /*
+         * JavaScript Date
+         */
 
         if(
             value instanceof Date
         ){
 
             if(
-                !isNaN(
-                    value.getTime()
-                )
+                !isNaN(value.getTime())
             ){
 
                 return value;
@@ -1350,7 +1294,9 @@ function getTimestamp(data){
         }
 
 
-        /* Number timestamp */
+        /*
+         * Number timestamp
+         */
 
         if(
             typeof value === "number"
@@ -1361,7 +1307,6 @@ function getTimestamp(data){
                     ? value * 1000
                     : value;
 
-
             const date =
                 new Date(
                     milliseconds
@@ -1369,9 +1314,7 @@ function getTimestamp(data){
 
 
             if(
-                !isNaN(
-                    date.getTime()
-                )
+                !isNaN(date.getTime())
             ){
 
                 return date;
@@ -1381,22 +1324,20 @@ function getTimestamp(data){
         }
 
 
-        /* String date */
+        /*
+         * String date
+         */
 
         if(
             typeof value === "string"
         ){
 
             const date =
-                new Date(
-                    value
-                );
+                new Date(value);
 
 
             if(
-                !isNaN(
-                    date.getTime()
-                )
+                !isNaN(date.getTime())
             ){
 
                 return date;
@@ -1420,26 +1361,20 @@ function getTimestamp(data){
 function philippinesDate(date){
 
     if(!date){
-
         return null;
-
     }
 
 
     return new Intl.DateTimeFormat(
         "en-CA",
         {
-            timeZone:
-                "Asia/Manila",
+            timeZone:"Asia/Manila",
 
-            year:
-                "numeric",
+            year:"numeric",
 
-            month:
-                "2-digit",
+            month:"2-digit",
 
-            day:
-                "2-digit"
+            day:"2-digit"
         }
     ).format(date);
 
@@ -1453,35 +1388,26 @@ function philippinesDate(date){
 function philippinesDisplayDate(date){
 
     if(!date){
-
         return "-";
-
     }
 
 
     return new Intl.DateTimeFormat(
         "en-PH",
         {
-            timeZone:
-                "Asia/Manila",
+            timeZone:"Asia/Manila",
 
-            year:
-                "numeric",
+            year:"numeric",
 
-            month:
-                "short",
+            month:"short",
 
-            day:
-                "numeric",
+            day:"numeric",
 
-            hour:
-                "numeric",
+            hour:"numeric",
 
-            minute:
-                "2-digit",
+            minute:"2-digit",
 
-            hour12:
-                true
+            hour12:true
         }
     ).format(date);
 
@@ -1489,14 +1415,16 @@ function philippinesDisplayDate(date){
 
 
 /* =========================================================
-   TODAY PHILIPPINES
+   TODAY IN PHILIPPINES
 ========================================================= */
 
 function getTodayPhilippines(){
 
-    return philippinesDate(
-        new Date()
-    );
+    const now =
+        new Date();
+
+
+    return philippinesDate(now);
 
 }
 
@@ -1511,6 +1439,11 @@ function isUnmarked(data){
         data.transactionType;
 
 
+    /*
+     * Missing transactionType
+     * = unmarked
+     */
+
     if(
         type === undefined ||
         type === null ||
@@ -1521,6 +1454,11 @@ function isUnmarked(data){
 
     }
 
+
+    /*
+     * TEST / ACTUAL
+     * are excluded.
+     */
 
     const normalized =
         String(type)
@@ -1537,6 +1475,11 @@ function isUnmarked(data){
 
     }
 
+
+    /*
+     * Any other classification
+     * is also excluded.
+     */
 
     return false;
 
@@ -1563,11 +1506,9 @@ async function loadCollection(
     return snapshot.docs.map(
         item => ({
 
-            id:
-                item.id,
+            id:item.id,
 
-            data:
-                item.data()
+            data:item.data()
 
         })
     );
@@ -1605,9 +1546,9 @@ async function loadDailyRecords(){
     try{
 
 
-        /* =========================
-           LOAD FIREBASE DATA
-        ========================= */
+        /*
+         * Load Firebase records.
+         */
 
         const [
             depositRecords,
@@ -1625,101 +1566,137 @@ async function loadDailyRecords(){
         ]);
 
 
-        /* =========================
-           ALL UNMARKED DEPOSITS
-        ========================= */
-
-        const unmarkedDeposits =
-            depositRecords.filter(
-                item => {
-
-                    return isUnmarked(
-                        item.data
-                    );
-
-                }
-            );
-
-
-        /* =========================
-           ALL UNMARKED WITHDRAWALS
-        ========================= */
-
-        const unmarkedWithdrawals =
-            withdrawalRecords.filter(
-                item => {
-
-                    return isUnmarked(
-                        item.data
-                    );
-
-                }
-            );
-
-
-        /* =========================
-           DAILY DEPOSITS
-        ========================= */
+        /*
+         * Filter deposits.
+         */
 
         const deposits =
-            unmarkedDeposits.filter(
-                item => {
+            depositRecords
+            .filter(item => {
 
-                    const date =
-                        getTimestamp(
-                            item.data
-                        );
+                const data =
+                    item.data;
 
 
-                    if(!date){
+                if(
+                    !isUnmarked(data)
+                ){
 
-                        return false;
-
-                    }
-
-
-                    return (
-                        philippinesDate(date) ===
-                        selectedDate
-                    );
+                    return false;
 
                 }
-            );
 
 
-        /* =========================
-           DAILY WITHDRAWALS
-        ========================= */
+                const date =
+                    getTimestamp(data);
+
+
+                if(!date){
+
+                    return false;
+
+                }
+
+
+                return (
+                    philippinesDate(date) ===
+                    selectedDate
+                );
+
+            });
+
+
+        /*
+         * Filter withdrawals.
+         */
 
         const withdrawals =
-            unmarkedWithdrawals.filter(
-                item => {
+            withdrawalRecords
+            .filter(item => {
 
-                    const date =
-                        getTimestamp(
-                            item.data
-                        );
+                const data =
+                    item.data;
 
 
-                    if(!date){
+                if(
+                    !isUnmarked(data)
+                ){
 
-                        return false;
-
-                    }
-
-
-                    return (
-                        philippinesDate(date) ===
-                        selectedDate
-                    );
+                    return false;
 
                 }
-            );
 
 
-        /* =========================
-           TOTAL DEPOSITS
-        ========================= */
+                const date =
+                    getTimestamp(data);
+
+
+                if(!date){
+
+                    return false;
+
+                }
+
+
+                return (
+                    philippinesDate(date) ===
+                    selectedDate
+                );
+
+            });
+
+
+        /*
+         * Sort oldest to newest.
+         */
+
+        deposits.sort(
+            (a,b) => {
+
+                const dateA =
+                    getTimestamp(
+                        a.data
+                    );
+
+                const dateB =
+                    getTimestamp(
+                        b.data
+                    );
+
+                return (
+                    dateA.getTime() -
+                    dateB.getTime()
+                );
+
+            }
+        );
+
+
+        withdrawals.sort(
+            (a,b) => {
+
+                const dateA =
+                    getTimestamp(
+                        a.data
+                    );
+
+                const dateB =
+                    getTimestamp(
+                        b.data
+                    );
+
+                return (
+                    dateA.getTime() -
+                    dateB.getTime()
+                );
+
+            }
+        );
+
+
+        /*
+         * Calculate totals.
+         */
 
         const depositAmount =
             deposits.reduce(
@@ -1740,10 +1717,6 @@ async function loadDailyRecords(){
             );
 
 
-        /* =========================
-           DAILY WITHDRAWALS
-        ========================= */
-
         const withdrawalAmount =
             withdrawals.reduce(
                 (
@@ -1763,131 +1736,9 @@ async function loadDailyRecords(){
             );
 
 
-        /* =========================
-           CURRENT TOTAL DEPOSITS
-
-           All unmarked deposits
-           currently in Firebase.
-        ========================= */
-
-        const currentTotalDepositAmount =
-            unmarkedDeposits.reduce(
-                (
-                    total,
-                    item
-                ) => {
-
-                    return (
-                        total +
-                        getAmount(
-                            item.data
-                        )
-                    );
-
-                },
-                0
-            );
-
-
-        /* =========================
-           PREVIOUS WITHDRAWALS
-
-           Withdrawals before the
-           selected date.
-        ========================= */
-
-        const previousWithdrawals =
-            unmarkedWithdrawals
-            .filter(
-                item => {
-
-                    const date =
-                        getTimestamp(
-                            item.data
-                        );
-
-
-                    if(!date){
-
-                        return false;
-
-                    }
-
-
-                    return (
-                        philippinesDate(date) <
-                        selectedDate
-                    );
-
-                }
-            )
-            .reduce(
-                (
-                    total,
-                    item
-                ) => {
-
-                    return (
-                        total +
-                        getAmount(
-                            item.data
-                        )
-                    );
-
-                },
-                0
-            );
-
-
-        /* =========================
-           ALL WITHDRAWALS
-        ========================= */
-
-        const totalAllWithdrawals =
-            previousWithdrawals +
-            withdrawalAmount;
-
-
-        /* =========================
-           REMAINING FUNDS
-        ========================= */
-
-        const calculatedRemainingFunds =
-            currentTotalDepositAmount -
-            totalAllWithdrawals;
-
-
-        /* =========================
-           SMALL SUMMARY DISPLAY
-        ========================= */
-
-        currentTotalDeposits.textContent =
-            money(
-                currentTotalDepositAmount
-            );
-
-
-        previousCurrentBalance.textContent =
-            money(
-                previousWithdrawals
-            );
-
-
-        todayWithdrawal.textContent =
-            money(
-                withdrawalAmount
-            );
-
-
-        remainingFunds.textContent =
-            money(
-                calculatedRemainingFunds
-            );
-
-
-        /* =========================
-           DAILY SUMMARY DISPLAY
-        ========================= */
+        /*
+         * Update summary.
+         */
 
         depositSummaryCount.textContent =
             deposits.length +
@@ -1931,9 +1782,9 @@ async function loadDailyRecords(){
             );
 
 
-        /* =========================
-           RENDER RECORDS
-        ========================= */
+        /*
+         * Render lists.
+         */
 
         renderDeposits(
             deposits
@@ -1945,9 +1796,9 @@ async function loadDailyRecords(){
         );
 
 
-        /* =========================
-           SELECTED DATE
-        ========================= */
+        /*
+         * Display selected date.
+         */
 
         selectedDateText.textContent =
             formatSelectedDate(
@@ -1955,15 +1806,12 @@ async function loadDailyRecords(){
             );
 
 
-        /* =========================
-           SHOW
-        ========================= */
-
         loading.style.display =
             "none";
 
         content.style.display =
             "block";
+
 
     }
     catch(error){
@@ -1985,9 +1833,7 @@ async function loadDailyRecords(){
 
             <div class="error">
 
-                <b>
-                    Unable to load daily records.
-                </b>
+                <b>Unable to load daily records.</b>
 
                 <br><br>
 
@@ -2337,14 +2183,9 @@ function formatSelectedDate(
     return new Intl.DateTimeFormat(
         "en-US",
         {
-            month:
-                "long",
-
-            day:
-                "numeric",
-
-            year:
-                "numeric"
+            month:"long",
+            day:"numeric",
+            year:"numeric"
         }
     ).format(date);
 
@@ -2382,12 +2223,13 @@ datePicker.addEventListener(
 
 
 /* =========================================================
-   ADMIN AUTHENTICATION
+   AUTHENTICATION
 ========================================================= */
 
 onAuthStateChanged(
     auth,
     async user => {
+
 
         if(!user){
 
@@ -2398,6 +2240,10 @@ onAuthStateChanged(
 
         }
 
+
+        /*
+         * ADMIN ONLY
+         */
 
         if(
             user.uid !== ADMIN_UID
@@ -2461,9 +2307,10 @@ onAuthStateChanged(
         }
 
 
-        /* =========================
-           DEFAULT TODAY
-        ========================= */
+        /*
+         * Default date:
+         * TODAY IN PHILIPPINES
+         */
 
         datePicker.value =
             getTodayPhilippines();
@@ -2474,6 +2321,11 @@ onAuthStateChanged(
                 datePicker.value
             );
 
+
+        /*
+         * Automatically load today's
+         * records.
+         */
 
         await loadDailyRecords();
 
