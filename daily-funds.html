@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1819,7 +1818,7 @@ async function loadDailyRecords(){
 
 /*
  * Current Total Deposits
- * = all unmarked deposits
+ * = ALL unmarked deposits
  */
 const currentTotalDepositAmount =
     depositRecords.reduce(
@@ -1833,17 +1832,15 @@ const currentTotalDepositAmount =
                     item.data
                 )
             ){
-
                 return total;
-
             }
 
-            const amount =
+            return (
+                total +
                 getAmount(
                     item.data
-                );
-
-            return total + amount;
+                )
+            );
 
         },
         0
@@ -1852,8 +1849,9 @@ const currentTotalDepositAmount =
 
 /*
  * Previous Current Balance
- * = all unmarked withdrawals
- * BEFORE the selected date
+ *
+ * = Total deposits
+ *   - withdrawals BEFORE selected date
  */
 const previousWithdrawalAmount =
     withdrawalRecords.reduce(
@@ -1868,18 +1866,14 @@ const previousWithdrawalAmount =
             if(
                 !isUnmarked(data)
             ){
-
                 return total;
-
             }
 
             const date =
                 getTimestamp(data);
 
             if(!date){
-
                 return total;
-
             }
 
             const recordDate =
@@ -1888,36 +1882,37 @@ const previousWithdrawalAmount =
             if(
                 recordDate >= selectedDate
             ){
-
                 return total;
-
             }
 
-            const amount =
-                getAmount(data);
-
-            return total + amount;
+            return (
+                total +
+                getAmount(data)
+            );
 
         },
         0
     );
 
 
+const previousBalance =
+    currentTotalDepositAmount -
+    previousWithdrawalAmount;
+
+
 /*
  * Remaining Funds
  *
- * Total Deposits
- * - Previous Withdrawals
- * - Today's Withdrawal
+ * = Previous Current Balance
+ *   - Today's Withdrawal
  */
 const calculatedRemainingFunds =
-    currentTotalDepositAmount -
-    previousWithdrawalAmount -
+    previousBalance -
     withdrawalAmount;
 
 
 /*
- * Display small summary
+ * DISPLAY
  */
 
 currentTotalDeposits.textContent =
@@ -1927,7 +1922,7 @@ currentTotalDeposits.textContent =
 
 previousCurrentBalance.textContent =
     money(
-        previousWithdrawalAmount
+        previousBalance
     );
 
 todayWithdrawal.textContent =
@@ -1939,129 +1934,6 @@ remainingFunds.textContent =
     money(
         calculatedRemainingFunds
     );
-
-
-
-
-
-        /*
-         * Update summary.
-         */
-
-        depositSummaryCount.textContent =
-            deposits.length +
-            (
-                deposits.length === 1
-                    ? " record"
-                    : " records"
-            );
-
-
-        withdrawalSummaryCount.textContent =
-            withdrawals.length +
-            (
-                withdrawals.length === 1
-                    ? " record"
-                    : " records"
-            );
-
-
-        depositSummaryAmount.textContent =
-            money(
-                depositAmount
-            );
-
-
-        withdrawalSummaryAmount.textContent =
-            money(
-                withdrawalAmount
-            );
-
-
-        depositListTotal.textContent =
-            money(
-                depositAmount
-            );
-
-
-        withdrawalListTotal.textContent =
-            money(
-                withdrawalAmount
-            );
-
-
-        /*
-         * Render lists.
-         */
-
-        renderDeposits(
-            deposits
-        );
-
-
-        renderWithdrawals(
-            withdrawals
-        );
-
-
-        /*
-         * Display selected date.
-         */
-
-        selectedDateText.textContent =
-            formatSelectedDate(
-                selectedDate
-            );
-
-
-        loading.style.display =
-            "none";
-
-        content.style.display =
-            "block";
-
-
-    }
-    catch(error){
-
-        console.error(
-            "Daily funds error:",
-            error
-        );
-
-
-        loading.style.display =
-            "none";
-
-        content.style.display =
-            "none";
-
-
-        errorBox.innerHTML = `
-
-            <div class="error">
-
-                <b>Unable to load daily records.</b>
-
-                <br><br>
-
-                ${escapeHtml(
-                    error.message ||
-                    "Unknown error"
-                )}
-
-            </div>
-
-        `;
-
-
-        errorBox.style.display =
-            "block";
-
-    }
-
-}
-
 
 /* =========================================================
    RENDER DEPOSITS
