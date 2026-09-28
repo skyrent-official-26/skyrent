@@ -750,11 +750,38 @@ const remainingTotal =
     document.getElementById(
         "remainingTotal"
     );
+    
+    const fundsDepositBar =
+    document.querySelector(
+        ".funds-deposit-bar"
+    );
+
+const fundsWithdrawalBar =
+    document.querySelector(
+        ".funds-withdrawal-bar"
+    );
+
+const fundsDepositBarLabel =
+    document.getElementById(
+        "fundsDepositBarLabel"
+    );
+
+const fundsWithdrawalBarLabel =
+    document.getElementById(
+        "fundsWithdrawalBarLabel"
+    );
+    
+  
 
 const refreshButton =
     document.getElementById(
         "refreshButton"
     );
+    
+    
+    
+    
+    
 
 const message =
     document.getElementById(
@@ -1553,6 +1580,39 @@ async function loadActualFunds(){
             money(
                 remaining
             );
+
+/* ==================================================
+   UPDATE FUNDS BARS
+================================================== */
+
+const maximumAmount =
+    Math.max(
+        depositAmount,
+        withdrawalAmount,
+        1
+    );
+
+const depositPercent =
+    (depositAmount / maximumAmount) * 100;
+
+const withdrawalPercent =
+    (withdrawalAmount / maximumAmount) * 100;
+
+
+fundsDepositBar.style.width =
+    depositPercent + "%";
+
+fundsWithdrawalBar.style.width =
+    withdrawalPercent + "%";
+
+
+fundsDepositBarLabel.textContent =
+    money(depositAmount);
+
+fundsWithdrawalBarLabel.textContent =
+    money(withdrawalAmount);
+
+
 
 
         message.innerHTML = `
