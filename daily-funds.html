@@ -1812,6 +1812,118 @@ async function loadDailyRecords(){
             );
 
 
+/* =========================================================
+   SMALL FINANCIAL SUMMARY
+========================================================= */
+
+/*
+ * Current Total Deposits
+ * = ALL unmarked deposits
+ */
+const currentTotalDepositAmount =
+    depositRecords.reduce(
+        (
+            total,
+            item
+        ) => {
+
+            if(
+                !isUnmarked(
+                    item.data
+                )
+            ){
+                return total;
+            }
+
+            return (
+                total +
+                getAmount(
+                    item.data
+                )
+            );
+
+        },
+        0
+    );
+
+
+/*
+ * Total Withdrawals
+ * = ALL unmarked withdrawals
+ */
+const totalWithdrawalAmount =
+    withdrawalRecords.reduce(
+        (
+            total,
+            item
+        ) => {
+
+            if(
+                !isUnmarked(
+                    item.data
+                )
+            ){
+                return total;
+            }
+
+            return (
+                total +
+                getAmount(
+                    item.data
+                )
+            );
+
+        },
+        0
+    );
+
+
+/*
+ * Previous Current Balance
+ *
+ * = Total Deposits - Total Withdrawals
+ */
+const previousBalance =
+    currentTotalDepositAmount -
+    totalWithdrawalAmount;
+
+
+/*
+ * Remaining Funds
+ *
+ * = Current Total Deposits
+ *   - Total Withdrawals
+ *   + Today's Withdrawal
+ */
+const calculatedRemainingFunds =
+    currentTotalDepositAmount -
+    totalWithdrawalAmount +
+    withdrawalAmount;
+
+
+/*
+ * DISPLAY
+ */
+
+currentTotalDeposits.textContent =
+    money(
+        currentTotalDepositAmount
+    );
+
+previousCurrentBalance.textContent =
+    money(
+        previousBalance
+    );
+
+todayWithdrawal.textContent =
+    money(
+        withdrawalAmount
+    );
+
+remainingFunds.textContent =
+    money(
+        calculatedRemainingFunds
+    );
 
 
 
