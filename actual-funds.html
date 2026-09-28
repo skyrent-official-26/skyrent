@@ -135,6 +135,27 @@ body{
     color:#16813b;
 }
 
+.summary-count{
+    font-size:10px;
+    color:#888;
+    margin-top:5px;
+    font-weight:600;
+}
+
+.deposit-card .summary-number{
+    color:#16813b;
+}
+
+.withdrawal-card .summary-number{
+    color:#d93636;
+}
+
+.remaining-card .summary-number{
+    color:#0757c9;
+}
+
+
+
 
 /* =========================
    SECTION
@@ -442,62 +463,74 @@ body{
 
 
 <!-- =========================
-     SUMMARY
+     UNMARKED FUNDS SUMMARY
 ========================== -->
 
 <div class="summary">
 
+    <!-- UNMARKED DEPOSITS -->
 
-    <div class="summary-card">
+    <div class="summary-card deposit-card">
 
-        <div
-            class="summary-number"
-            id="depositTotal"
-        >
+        <div class="summary-number" id="depositTotal">
             ₱0.00
         </div>
 
         <div class="summary-label">
-            UNMARKED DEPOSITS
+            🟢 UNMARKED DEPOSITS
+        </div>
+
+        <div
+            class="summary-count"
+            id="depositCount"
+        >
+            0 records
         </div>
 
     </div>
 
 
-    <div class="summary-card">
+    <!-- UNMARKED WITHDRAWALS -->
 
-        <div
-            class="summary-number"
-            id="withdrawalTotal"
-        >
+    <div class="summary-card withdrawal-card">
+
+        <div class="summary-number" id="withdrawalTotal">
             ₱0.00
         </div>
 
         <div class="summary-label">
-            UNMARKED WITHDRAWALS
+            🔴 UNMARKED WITHDRAWALS
+        </div>
+
+        <div
+            class="summary-count"
+            id="withdrawalCount"
+        >
+            0 records
         </div>
 
     </div>
 
 
-    <div class="summary-card remaining">
+    <!-- REMAINING -->
 
-        <div
-            class="summary-number"
-            id="remainingTotal"
-        >
+    <div class="summary-card remaining-card">
+
+        <div class="summary-number" id="remainingTotal">
             ₱0.00
         </div>
 
         <div class="summary-label">
-            REMAINING FUNDS
+            🔵 REMAINING FUNDS
+        </div>
+
+        <div class="summary-count">
+            Deposits − Withdrawals
         </div>
 
     </div>
-
 
 </div>
-
 
 
 <!-- =========================
@@ -785,6 +818,19 @@ const remainingTotal =
     document.getElementById(
         "remainingTotal"
     );
+  
+  
+  const depositCount =
+    document.getElementById(
+        "depositCount"
+    );
+
+const withdrawalCount =
+    document.getElementById(
+        "withdrawalCount"
+    );
+  
+  
     
     const fundsDepositBar =
     document.querySelector(
@@ -1632,6 +1678,25 @@ const maximumAmount =
             money(
                 remaining
             );
+            
+            depositCount.textContent =
+    unmarkedDeposits.length +
+    (
+        unmarkedDeposits.length === 1
+            ? " record"
+            : " records"
+    );
+
+withdrawalCount.textContent =
+    unmarkedWithdrawals.length +
+    (
+        unmarkedWithdrawals.length === 1
+            ? " record"
+            : " records"
+    );
+            
+            
+            
             
             /* =========================
    UPDATE FUNDS BARS
