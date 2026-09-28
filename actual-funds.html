@@ -318,6 +318,76 @@ body{
     }
 
 }
+/* =========================
+   FUNDS BAR
+========================= */
+
+.funds-bar-card{
+    background:white;
+    border-radius:13px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.funds-bar-title{
+    font-size:14px;
+    font-weight:800;
+    color:#17324d;
+    margin-bottom:12px;
+}
+
+.funds-bar{
+    width:100%;
+    height:20px;
+    background:#e9eef3;
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+}
+
+.funds-deposit-bar{
+    width:50%;
+    height:100%;
+    background:#16813b;
+}
+
+.funds-withdrawal-bar{
+    width:50%;
+    height:100%;
+    background:#d93636;
+}
+
+.funds-bar-legend{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+    font-size:11px;
+    color:#666;
+}
+
+.funds-legend-item{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.funds-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+}
+
+.funds-green{
+    background:#16813b;
+}
+
+.funds-red{
+    background:#d93636;
+}
+
+
+
 
 </style>
 
@@ -428,6 +498,54 @@ body{
 
 
 </div>
+
+
+<!-- =========================
+     FUNDS BAR
+========================== -->
+
+<div class="funds-bar-card">
+
+    <div class="funds-bar-title">
+        📊 Funds Overview
+    </div>
+
+    <div class="funds-bar">
+
+        <div class="funds-deposit-bar"></div>
+
+        <div class="funds-withdrawal-bar"></div>
+
+    </div>
+
+    <div class="funds-bar-legend">
+
+        <div class="funds-legend-item">
+
+            <span class="funds-dot funds-green"></span>
+
+            Deposits
+
+        </div>
+
+        <div class="funds-legend-item">
+
+            <span class="funds-dot funds-red"></span>
+
+            Withdrawals
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
 
 
 <button
