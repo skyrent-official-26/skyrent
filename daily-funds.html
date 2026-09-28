@@ -1812,128 +1812,130 @@ async function loadDailyRecords(){
             );
 
 
-/* =========================================================
-   SMALL FINANCIAL SUMMARY
-========================================================= */
 
-/*
- * Current Total Deposits
- * = ALL unmarked deposits
- */
-const currentTotalDepositAmount =
-    depositRecords.reduce(
-        (
-            total,
-            item
-        ) => {
 
-            if(
-                !isUnmarked(
-                    item.data
-                )
-            ){
-                return total;
-            }
 
-            return (
-                total +
-                getAmount(
-                    item.data
-                )
+
+
+
+        /*
+         * Update summary.
+         */
+
+        depositSummaryCount.textContent =
+            deposits.length +
+            (
+                deposits.length === 1
+                    ? " record"
+                    : " records"
             );
 
-        },
-        0
-    );
 
-
-/*
- * Previous Current Balance
- *
- * = Total deposits
- *   - withdrawals BEFORE selected date
- */
-const previousWithdrawalAmount =
-    withdrawalRecords.reduce(
-        (
-            total,
-            item
-        ) => {
-
-            const data =
-                item.data;
-
-            if(
-                !isUnmarked(data)
-            ){
-                return total;
-            }
-
-            const date =
-                getTimestamp(data);
-
-            if(!date){
-                return total;
-            }
-
-            const recordDate =
-                philippinesDate(date);
-
-            if(
-                recordDate >= selectedDate
-            ){
-                return total;
-            }
-
-            return (
-                total +
-                getAmount(data)
+        withdrawalSummaryCount.textContent =
+            withdrawals.length +
+            (
+                withdrawals.length === 1
+                    ? " record"
+                    : " records"
             );
 
-        },
-        0
-    );
+
+        depositSummaryAmount.textContent =
+            money(
+                depositAmount
+            );
 
 
-const previousBalance =
-    currentTotalDepositAmount -
-    previousWithdrawalAmount;
+        withdrawalSummaryAmount.textContent =
+            money(
+                withdrawalAmount
+            );
 
 
-/*
- * Remaining Funds
- *
- * = Previous Current Balance
- *   - Today's Withdrawal
- */
-const calculatedRemainingFunds =
-    previousBalance -
-    withdrawalAmount;
+        depositListTotal.textContent =
+            money(
+                depositAmount
+            );
 
 
-/*
- * DISPLAY
- */
+        withdrawalListTotal.textContent =
+            money(
+                withdrawalAmount
+            );
 
-currentTotalDeposits.textContent =
-    money(
-        currentTotalDepositAmount
-    );
 
-previousCurrentBalance.textContent =
-    money(
-        previousBalance
-    );
+        /*
+         * Render lists.
+         */
 
-todayWithdrawal.textContent =
-    money(
-        withdrawalAmount
-    );
+        renderDeposits(
+            deposits
+        );
 
-remainingFunds.textContent =
-    money(
-        calculatedRemainingFunds
-    );
+
+        renderWithdrawals(
+            withdrawals
+        );
+
+
+        /*
+         * Display selected date.
+         */
+
+        selectedDateText.textContent =
+            formatSelectedDate(
+                selectedDate
+            );
+
+
+        loading.style.display =
+            "none";
+
+        content.style.display =
+            "block";
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Daily funds error:",
+            error
+        );
+
+
+        loading.style.display =
+            "none";
+
+        content.style.display =
+            "none";
+
+
+        errorBox.innerHTML = `
+
+            <div class="error">
+
+                <b>Unable to load daily records.</b>
+
+                <br><br>
+
+                ${escapeHtml(
+                    error.message ||
+                    "Unknown error"
+                )}
+
+            </div>
+
+        `;
+
+
+        errorBox.style.display =
+            "block";
+
+    }
+
+}
+
 
 /* =========================================================
    RENDER DEPOSITS
