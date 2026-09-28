@@ -1888,16 +1888,32 @@ const previousBalance =
     totalWithdrawalAmount;
 
 
+/* =========================================================
+   PREVIOUS REMAINING FUNDS
+========================================================= */
+
 /*
- * Remaining Funds
+ * Current Total Funds
+ * = ALL unmarked deposits
+ *   - ALL unmarked withdrawals
+ */
+const currentTotalFunds =
+    currentTotalDepositAmount -
+    totalWithdrawalAmount;
+
+
+/*
+ * Previous Remaining Funds
  *
- * = Current Total Deposits
- *   - Total Withdrawals
- *   + Today's Withdrawal
+ * Remove today's deposits from the
+ * current total funds.
+ *
+ * Add today's withdrawals back because
+ * they belong to today's activity.
  */
 const calculatedRemainingFunds =
-    currentTotalDepositAmount -
-    totalWithdrawalAmount +
+    currentTotalFunds -
+    depositAmount +
     withdrawalAmount;
 
 
@@ -1912,7 +1928,7 @@ currentTotalDeposits.textContent =
 
 previousCurrentBalance.textContent =
     money(
-        previousBalance
+        currentTotalFunds
     );
 
 todayWithdrawal.textContent =
@@ -1924,8 +1940,6 @@ remainingFunds.textContent =
     money(
         calculatedRemainingFunds
     );
-
-
 
 
 
