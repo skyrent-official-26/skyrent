@@ -319,7 +319,7 @@ body{
 
 }
 /* =========================
-   FUNDS BAR
+   SEPARATE FUNDS BARS
 ========================= */
 
 .funds-bar-card{
@@ -334,28 +334,47 @@ body{
     font-size:14px;
     font-weight:800;
     color:#17324d;
-    margin-bottom:12px;
+    margin-bottom:15px;
+}
+
+.funds-item{
+    margin-bottom:15px;
+}
+
+.funds-item:last-child{
+    margin-bottom:0;
+}
+
+.funds-item-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:12px;
+    font-weight:700;
+    color:#555;
+    margin-bottom:7px;
 }
 
 .funds-bar{
     width:100%;
-    height:20px;
+    height:18px;
     background:#e9eef3;
     border-radius:20px;
     overflow:hidden;
-    display:flex;
 }
 
 .funds-deposit-bar{
-    width:50%;
+    width:100%;
     height:100%;
     background:#16813b;
+    border-radius:20px;
 }
 
 .funds-withdrawal-bar{
-    width:50%;
+    width:100%;
     height:100%;
     background:#d93636;
+    border-radius:20px;
 }
 
 .funds-bar-legend{
@@ -501,8 +520,8 @@ body{
 
 
 <!-- =========================
-     FUNDS BAR
-========================== -->
+     FUNDS BARS
+========================= -->
 
 <div class="funds-bar-card">
 
@@ -510,37 +529,33 @@ body{
         📊 Funds Overview
     </div>
 
-    <div class="funds-bar">
+    <div class="funds-item">
 
-        <div class="funds-deposit-bar"></div>
+        <div class="funds-item-header">
+            <span>🟢 Deposits</span>
+            <span id="fundsDepositBarLabel">Deposits</span>
+        </div>
 
-        <div class="funds-withdrawal-bar"></div>
+        <div class="funds-bar">
+            <div class="funds-deposit-bar"></div>
+        </div>
 
     </div>
 
-    <div class="funds-bar-legend">
+    <div class="funds-item">
 
-        <div class="funds-legend-item">
-
-            <span class="funds-dot funds-green"></span>
-
-            Deposits
-
+        <div class="funds-item-header">
+            <span>🔴 Withdrawals</span>
+            <span id="fundsWithdrawalBarLabel">Withdrawals</span>
         </div>
 
-        <div class="funds-legend-item">
-
-            <span class="funds-dot funds-red"></span>
-
-            Withdrawals
-
+        <div class="funds-bar">
+            <div class="funds-withdrawal-bar"></div>
         </div>
 
     </div>
 
 </div>
-
-
 
 
 
