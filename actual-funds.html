@@ -407,6 +407,60 @@ body{
 }
 
 
+/* =========================
+   RECORD TABS
+========================= */
+
+.record-tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    background:#e8f0f8;
+    padding:5px;
+    border-radius:13px;
+    margin-bottom:12px;
+}
+
+.record-tab{
+    border:none;
+    background:transparent;
+    color:#64778a;
+    padding:12px 8px;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.record-tab.active{
+    background:white;
+    color:#0757c9;
+    box-shadow:0 2px 7px rgba(0,0,0,.08);
+}
+
+.record-tab .tab-count{
+    display:inline-block;
+    margin-left:4px;
+    font-size:10px;
+    background:#dfe8f1;
+    padding:3px 6px;
+    border-radius:20px;
+}
+
+.record-tab.active .tab-count{
+    background:#eaf4ff;
+    color:#0757c9;
+}
+
+.record-panel{
+    display:none;
+}
+
+.record-panel.active{
+    display:block;
+}
+
+
 
 
 </style>
@@ -625,74 +679,100 @@ body{
 
 
 <!-- =========================
-     DEPOSITS
+     RECORD TABS
 ========================== -->
 
 <div class="section">
 
-
     <div class="section-title">
 
         <h2>
-            💰 Unmarked Deposits
+            📋 Unmarked Records
         </h2>
 
         <p>
-            Deposits without a transactionType
+            Select a tab to view the unmarked transactions.
         </p>
 
     </div>
 
 
+    <!-- TABS -->
+
+    <div class="record-tabs">
+
+        <button
+            id="depositTab"
+            class="record-tab active"
+            onclick="showRecordTab('deposits')"
+        >
+            💰 Deposits
+            <span
+                class="tab-count"
+                id="depositTabCount"
+            >
+                0
+            </span>
+        </button>
+
+
+        <button
+            id="withdrawalTab"
+            class="record-tab"
+            onclick="showRecordTab('withdrawals')"
+        >
+            💸 Withdrawals
+            <span
+                class="tab-count"
+                id="withdrawalTabCount"
+            >
+                0
+            </span>
+        </button>
+
+    </div>
+
+
+    <!-- DEPOSITS PANEL -->
+
     <div
-        id="depositsContainer"
-        class="records-grid"
+        id="depositsPanel"
+        class="record-panel active"
     >
 
-        <div class="loading">
-            Loading deposits...
+        <div
+            id="depositsContainer"
+            class="records-grid"
+        >
+
+            <div class="loading">
+                Loading deposits...
+            </div>
+
         </div>
 
     </div>
 
 
-</div>
-
-
-<!-- =========================
-     WITHDRAWALS
-========================== -->
-
-<div class="section">
-
-
-    <div class="section-title">
-
-        <h2>
-            💸 Unmarked Withdrawals
-        </h2>
-
-        <p>
-            Withdrawals without a transactionType
-        </p>
-
-    </div>
-
+    <!-- WITHDRAWALS PANEL -->
 
     <div
-        id="withdrawalsContainer"
-        class="records-grid"
+        id="withdrawalsPanel"
+        class="record-panel"
     >
 
-        <div class="loading">
-            Loading withdrawals...
+        <div
+            id="withdrawalsContainer"
+            class="records-grid"
+        >
+
+            <div class="loading">
+                Loading withdrawals...
+            </div>
+
         </div>
 
     </div>
-
-
-</div>
-```
 
 </div>
 
@@ -810,6 +890,17 @@ const remainingTotal =
 const withdrawalCount =
     document.getElementById(
         "withdrawalCount"
+    );
+  
+  
+  const depositTabCount =
+    document.getElementById(
+        "depositTabCount"
+    );
+
+const withdrawalTabCount =
+    document.getElementById(
+        "withdrawalTabCount"
     );
   
   
@@ -1532,6 +1623,80 @@ function renderWithdrawals(
 }
 
 
+/* =========================
+   RECORD TAB SWITCHING
+========================= */
+
+window.showRecordTab =
+function(tab){
+
+    const depositsPanel =
+        document.getElementById(
+            "depositsPanel"
+        );
+
+    const withdrawalsPanel =
+        document.getElementById(
+            "withdrawalsPanel"
+        );
+
+    const depositTab =
+        document.getElementById(
+            "depositTab"
+        );
+
+    const withdrawalTab =
+        document.getElementById(
+            "withdrawalTab"
+        );
+
+
+    if(tab === "deposits"){
+
+        depositsPanel.classList.add(
+            "active"
+        );
+
+        withdrawalsPanel.classList.remove(
+            "active"
+        );
+
+        depositTab.classList.add(
+            "active"
+        );
+
+        withdrawalTab.classList.remove(
+            "active"
+        );
+
+    }
+    else{
+
+        withdrawalsPanel.classList.add(
+            "active"
+        );
+
+        depositsPanel.classList.remove(
+            "active"
+        );
+
+        withdrawalTab.classList.add(
+            "active"
+        );
+
+        depositTab.classList.remove(
+            "active"
+        );
+
+    }
+
+};
+
+
+
+
+
+
 /* ==================================================
    LOAD ACTUAL FUNDS
 ================================================== */
@@ -1677,6 +1842,12 @@ withdrawalCount.textContent =
             : " records"
     );
             
+            
+            depositTabCount.textContent =
+    unmarkedDeposits.length;
+
+withdrawalTabCount.textContent =
+    unmarkedWithdrawals.length;
             
             
             
