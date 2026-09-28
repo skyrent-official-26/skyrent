@@ -14,6 +14,40 @@
 
 
 <style>
+    
+    
+    .search-box{
+    display:flex;
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.search-box input{
+    flex:1;
+    border:1px solid #dce5ee;
+    border-radius:12px;
+    padding:13px;
+    font-size:14px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#0757c9;
+}
+
+.search-box button{
+    border:none;
+    background:#0757c9;
+    color:white;
+    padding:0 17px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+    
+    
+    
 
 /* =========================
    RESET
@@ -751,6 +785,23 @@ body{
 
 
         </div>
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="userSearch"
+        placeholder="Search name or phone number..."
+    >
+
+    <button
+        onclick="searchUsers()"
+    >
+        🔍 Search
+    </button>
+
+</div>
+
 
 
         <!-- =====================
@@ -2073,6 +2124,45 @@ onAuthStateChanged(
 
     }
 );
+
+function searchUsers(){
+
+    const search =
+        document.getElementById(
+            "userSearch"
+        ).value
+        .trim()
+        .toLowerCase();
+
+    const cards =
+        document.querySelectorAll(
+            ".user-card"
+        );
+
+    cards.forEach(card => {
+
+        const text =
+            card.textContent
+            .toLowerCase();
+
+        if(
+            search === "" ||
+            text.includes(search)
+        ){
+
+            card.style.display = "block";
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
 
 </script>
 
