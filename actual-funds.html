@@ -318,8 +318,9 @@ body{
     }
 
 }
+
 /* =========================
-   SEPARATE FUNDS BARS
+   FUNDS BARS
 ========================= */
 
 .funds-bar-card{
@@ -364,45 +365,17 @@ body{
 }
 
 .funds-deposit-bar{
-    width:100%;
+    width:0%;
     height:100%;
     background:#16813b;
     border-radius:20px;
 }
 
 .funds-withdrawal-bar{
-    width:100%;
+    width:0%;
     height:100%;
     background:#d93636;
     border-radius:20px;
-}
-
-.funds-bar-legend{
-    display:flex;
-    justify-content:space-between;
-    margin-top:10px;
-    font-size:11px;
-    color:#666;
-}
-
-.funds-legend-item{
-    display:flex;
-    align-items:center;
-    gap:5px;
-}
-
-.funds-dot{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-}
-
-.funds-green{
-    background:#16813b;
-}
-
-.funds-red{
-    background:#d93636;
 }
 
 .funds-remaining-bar{
@@ -526,9 +499,10 @@ body{
 </div>
 
 
+
 <!-- =========================
      FUNDS BARS
-========================= -->
+========================== -->
 
 <div class="funds-bar-card">
 
@@ -536,19 +510,29 @@ body{
         📊 Funds Overview
     </div>
 
+
     <!-- DEPOSITS -->
 
     <div class="funds-item">
 
         <div class="funds-item-header">
-            <span>🟢 Deposits</span>
+
+            <span>
+                🟢 Deposits
+            </span>
+
             <span id="fundsDepositBarLabel">
                 ₱0.00
             </span>
+
         </div>
 
         <div class="funds-bar">
-            <div class="funds-deposit-bar"></div>
+
+            <div
+                class="funds-deposit-bar"
+            ></div>
+
         </div>
 
     </div>
@@ -559,32 +543,50 @@ body{
     <div class="funds-item">
 
         <div class="funds-item-header">
-            <span>🔴 Withdrawals</span>
+
+            <span>
+                🔴 Withdrawals
+            </span>
+
             <span id="fundsWithdrawalBarLabel">
                 ₱0.00
             </span>
+
         </div>
 
         <div class="funds-bar">
-            <div class="funds-withdrawal-bar"></div>
+
+            <div
+                class="funds-withdrawal-bar"
+            ></div>
+
         </div>
 
     </div>
 
 
-    <!-- REMAINING FUNDS -->
+    <!-- REMAINING -->
 
     <div class="funds-item">
 
         <div class="funds-item-header">
-            <span>🔵 Remaining Funds</span>
+
+            <span>
+                🔵 Remaining Funds
+            </span>
+
             <span id="fundsRemainingBarLabel">
                 ₱0.00
             </span>
+
         </div>
 
         <div class="funds-bar">
-            <div class="funds-remaining-bar"></div>
+
+            <div
+                class="funds-remaining-bar"
+            ></div>
+
         </div>
 
     </div>
@@ -794,6 +796,11 @@ const fundsWithdrawalBar =
         ".funds-withdrawal-bar"
     );
 
+const fundsRemainingBar =
+    document.querySelector(
+        ".funds-remaining-bar"
+    );
+
 const fundsDepositBarLabel =
     document.getElementById(
         "fundsDepositBarLabel"
@@ -803,12 +810,6 @@ const fundsWithdrawalBarLabel =
     document.getElementById(
         "fundsWithdrawalBarLabel"
     );
-    
-    
-    const fundsRemainingBar =
-    document.querySelector(
-        ".funds-remaining-bar"
-    );
 
 const fundsRemainingBarLabel =
     document.getElementById(
@@ -816,17 +817,14 @@ const fundsRemainingBarLabel =
     );
     
     
-  
+    
+    
+    
 
 const refreshButton =
     document.getElementById(
         "refreshButton"
     );
-    
-    
-    
-    
-    
 
 const message =
     document.getElementById(
@@ -1608,6 +1606,15 @@ async function loadActualFunds(){
             depositAmount -
             withdrawalAmount;
 
+const maximumAmount =
+    Math.max(
+        depositAmount,
+        withdrawalAmount,
+        remaining,
+        1
+    );
+
+
 
         depositTotal.textContent =
             money(
@@ -1626,44 +1633,20 @@ async function loadActualFunds(){
                 remaining
             );
             
-            
-            /* ==================================================
-   UPDATE REMAINING FUNDS BAR
-================================================== */
-
-const remainingPercent =
-    remaining > 0
-        ? (remaining / maximumAmount) * 100
-        : 0;
-
-fundsRemainingBar.style.width =
-    Math.min(
-        remainingPercent,
-        100
-    ) + "%";
-
-fundsRemainingBarLabel.textContent =
-    money(remaining);
-            
-            
-            
-
-/* ==================================================
+            /* =========================
    UPDATE FUNDS BARS
-================================================== */
-
-const maximumAmount =
-    Math.max(
-        depositAmount,
-        withdrawalAmount,
-        1
-    );
+========================= */
 
 const depositPercent =
     (depositAmount / maximumAmount) * 100;
 
 const withdrawalPercent =
     (withdrawalAmount / maximumAmount) * 100;
+
+const remainingPercent =
+    remaining > 0
+        ? (remaining / maximumAmount) * 100
+        : 0;
 
 
 fundsDepositBar.style.width =
@@ -1672,6 +1655,9 @@ fundsDepositBar.style.width =
 fundsWithdrawalBar.style.width =
     withdrawalPercent + "%";
 
+fundsRemainingBar.style.width =
+    remainingPercent + "%";
+
 
 fundsDepositBarLabel.textContent =
     money(depositAmount);
@@ -1679,7 +1665,10 @@ fundsDepositBarLabel.textContent =
 fundsWithdrawalBarLabel.textContent =
     money(withdrawalAmount);
 
-
+fundsRemainingBarLabel.textContent =
+    money(remaining);
+            
+            
 
 
         message.innerHTML = `
