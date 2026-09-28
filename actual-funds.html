@@ -405,6 +405,13 @@ body{
     background:#d93636;
 }
 
+.funds-remaining-bar{
+    width:0%;
+    height:100%;
+    background:#0757c9;
+    border-radius:20px;
+}
+
 
 
 
@@ -529,11 +536,15 @@ body{
         📊 Funds Overview
     </div>
 
+    <!-- DEPOSITS -->
+
     <div class="funds-item">
 
         <div class="funds-item-header">
             <span>🟢 Deposits</span>
-            <span id="fundsDepositBarLabel">Deposits</span>
+            <span id="fundsDepositBarLabel">
+                ₱0.00
+            </span>
         </div>
 
         <div class="funds-bar">
@@ -542,11 +553,16 @@ body{
 
     </div>
 
+
+    <!-- WITHDRAWALS -->
+
     <div class="funds-item">
 
         <div class="funds-item-header">
             <span>🔴 Withdrawals</span>
-            <span id="fundsWithdrawalBarLabel">Withdrawals</span>
+            <span id="fundsWithdrawalBarLabel">
+                ₱0.00
+            </span>
         </div>
 
         <div class="funds-bar">
@@ -555,8 +571,25 @@ body{
 
     </div>
 
-</div>
 
+    <!-- REMAINING FUNDS -->
+
+    <div class="funds-item">
+
+        <div class="funds-item-header">
+            <span>🔵 Remaining Funds</span>
+            <span id="fundsRemainingBarLabel">
+                ₱0.00
+            </span>
+        </div>
+
+        <div class="funds-bar">
+            <div class="funds-remaining-bar"></div>
+        </div>
+
+    </div>
+
+</div>
 
 
 
@@ -770,6 +803,18 @@ const fundsWithdrawalBarLabel =
     document.getElementById(
         "fundsWithdrawalBarLabel"
     );
+    
+    
+    const fundsRemainingBar =
+    document.querySelector(
+        ".funds-remaining-bar"
+    );
+
+const fundsRemainingBarLabel =
+    document.getElementById(
+        "fundsRemainingBarLabel"
+    );
+    
     
   
 
@@ -1580,6 +1625,28 @@ async function loadActualFunds(){
             money(
                 remaining
             );
+            
+            
+            /* ==================================================
+   UPDATE REMAINING FUNDS BAR
+================================================== */
+
+const remainingPercent =
+    remaining > 0
+        ? (remaining / maximumAmount) * 100
+        : 0;
+
+fundsRemainingBar.style.width =
+    Math.min(
+        remainingPercent,
+        100
+    ) + "%";
+
+fundsRemainingBarLabel.textContent =
+    money(remaining);
+            
+            
+            
 
 /* ==================================================
    UPDATE FUNDS BARS
