@@ -1611,6 +1611,33 @@ function getNumber(value){
 
 
 /* =========================
+   UNMARKED RECORD CHECK
+========================= */
+
+function isUnmarkedRecord(data){
+
+    if(!data){
+        return false;
+    }
+
+    const transactionType =
+        String(
+            data.transactionType || ""
+        )
+        .trim()
+        .toLowerCase();
+
+    /*
+     * Only records with NO transactionType
+     * are treated as actual/unmarked records.
+     */
+
+    return transactionType === "";
+
+}
+
+
+/* =========================
    STATUS HELPERS
 ========================= */
 
@@ -1995,180 +2022,233 @@ async function loadDashboard(){
 
 
         /* =========================
-           DEPOSITS
-        ========================= */
+   DEPOSITS
+   UNMARKED RECORDS ONLY
+========================= */
 
-        updateAdminLoading(
-            "Loading deposits...",
-            "Fetching deposit records and approval status"
-        );
+updateAdminLoading(
+    "Loading deposits...",
+    "Fetching unmarked deposit records and approval status"
+);
 
-        const depositsSnapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "deposits"
-                )
+const depositsSnapshot =
+    await getDocs(
+        collection(
+            db,
+            "deposits"
+        )
+    );
+
+
+
+depositsSnapshot.forEach(
+    (docSnap) => {
+
+        const deposit =
+            docSnap.data();
+
+        if(!deposit){
+            return;
+        }
+
+
+
+        /*
+         * ONLY UNMARKED RECORDS
+         */
+        if(!isUnmarkedRecord(deposit)){
+            return;
+        }
+
+
+
+        depositRecords++;
+
+
+
+        const amount =
+            getNumber(
+                deposit.amount
             );
 
-        depositRecords =
-            depositsSnapshot.size;
+        const status =
+            deposit.status || "";
 
-
-        depositsSnapshot.forEach(
-            (docSnap) => {
-
-                const deposit =
-                    docSnap.data();
-
-                if(!deposit){
-                    return;
-                }
-
-                const amount =
-                    getNumber(
-                        deposit.amount
-                    );
-
-                const status =
-                    deposit.status || "";
-
-
-                /* TOTAL DEPOSIT */
-
-                if(
-                    !isRejected(status)
-                ){
-
-                    totalDeposit +=
-                        amount;
-
-                }
-
-
-                /* APPROVED DEPOSIT */
-
-                if(
-                    isApprovedDeposit(status)
-                ){
-
-                    approvedDeposit +=
-                        amount;
-
-                }
-
-
-                /* PENDING DEPOSIT */
-
-                if(
-                    isPendingDeposit(status)
-                ){
-
-                    pendingDeposits++;
-
-                    const paymentOption =
-                        getPaymentOption(
-                            deposit
-                        );
-
-                    if(
-                        paymentOption === "1"
-                    ){
-
-                        pendingPayment1++;
-
-                    }
-
-                    if(
-                        paymentOption === "2"
-                    ){
-
-                        pendingPayment2++;
-
-                    }
-
-                }
-
-            }
-        );
 
 
         /* =========================
-           WITHDRAWALS
+           TOTAL DEPOSIT
+           ALL UNMARKED NON-REJECTED
         ========================= */
 
-        updateAdminLoading(
-            "Loading withdrawals...",
-            "Checking approved and pending withdrawals"
-        );
+        if(
+            !isRejected(status)
+        ){
 
-        const withdrawalsSnapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "withdrawals"
-                )
-            );
+            totalDeposit +=
+                amount;
 
-        withdrawalRecords =
-            withdrawalsSnapshot.size;
+        }
 
 
-        withdrawalsSnapshot.forEach(
-            (docSnap) => {
 
-                const withdrawal =
-                    docSnap.data();
+        /* =========================
+           APPROVED DEPOSIT
+        ========================= */
 
-                if(!withdrawal){
-                    return;
-                }
+        if(
+            isApprovedDeposit(status)
+        ){
 
-                const amount =
-                    getNumber(
-                        withdrawal.amount
-                    );
+            approvedDeposit +=
+                amount;
 
-                const status =
-                    withdrawal.status || "";
+        }
 
 
-                /* TOTAL WITHDRAWAL */
 
-                if(
-                    !isRejected(status)
-                ){
+        /* =========================
+           PENDING DEPOSIT
+        ========================= */
 
-                    totalWithdrawal +=
-                        amount;
+        if(
+            isPendingDeposit(status)
+        ){
 
-                }
-
-
-                /* APPROVED WITHDRAWAL */
-
-                if(
-                    isApprovedWithdrawal(status)
-                ){
-
-                    approvedWithdrawal +=
-                        amount;
-
-                }
+            pendingDeposits++;
 
 
-                /* PENDING WITHDRAWAL */
 
-                if(
-                    isPendingWithdrawal(status)
-                ){
+            const paymentOption =
+                getPaymentOption(
+                    deposit
+                );
 
-                    pendingWithdrawals++;
 
-                }
+
+            if(
+                paymentOption === "1"
+            ){
+
+                pendingPayment1++;
 
             }
-        );
+
+
+
+            if(
+                paymentOption === "2"
+            ){
+
+                pendingPayment2++;
+
+            }
+
+        }
+
+    }
+);
+
+        /* =========================
+   WITHDRAWALS
+   UNMARKED RECORDS ONLY
+========================= */
+
+updateAdminLoading(
+    "Loading withdrawals...",
+    "Checking unmarked withdrawal records"
+);
+
+const withdrawalsSnapshot =
+    await getDocs(
+        collection(
+            db,
+            "withdrawals"
+        )
+    );
+
+
+
+withdrawalsSnapshot.forEach(
+    (docSnap) => {
+
+        const withdrawal =
+            docSnap.data();
+
+        if(!withdrawal){
+            return;
+        }
+
+
+
+        /*
+         * ONLY UNMARKED RECORDS
+         */
+        if(!isUnmarkedRecord(withdrawal)){
+            return;
+        }
+
+
+
+        withdrawalRecords++;
+
+
+
+        const amount =
+            getNumber(
+                withdrawal.amount
+            );
+
+        const status =
+            withdrawal.status || "";
+
+
+
+        /* =========================
+           TOTAL WITHDRAWAL
+           ALL UNMARKED NON-REJECTED
+        ========================= */
+
+        if(
+            !isRejected(status)
+        ){
+
+            totalWithdrawal +=
+                amount;
+
+        }
+
+
+
+        /* =========================
+           APPROVED WITHDRAWAL
+        ========================= */
+
+        if(
+            isApprovedWithdrawal(status)
+        ){
+
+            approvedWithdrawal +=
+                amount;
+
+        }
+
+
+
+        /* =========================
+           PENDING WITHDRAWAL
+        ========================= */
+
+        if(
+            isPendingWithdrawal(status)
+        ){
+
+            pendingWithdrawals++;
+
+        }
+
+    }
+);
 
 
         /* =========================
