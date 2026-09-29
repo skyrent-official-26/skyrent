@@ -1139,7 +1139,7 @@ body{
 
 <div class="count-box actual-member-count-box">
     <span class="count-number" id="actualMemberCount">0</span>
-    <span>Actual Members</span>
+    <span>Actual / Unmarked</span>
 </div>
 
     </div>
@@ -2016,21 +2016,20 @@ async function loadDashboard(){
 
        const usersSnapshot = await getDocs(collection(db, "users"));
 
-document.getElementById("memberCount").textContent = usersSnapshot.size;
-
 let actualMemberCount = 0;
 
 usersSnapshot.forEach((docSnap) => {
 
     const userData = docSnap.data() || {};
 
-    // isTestAccount === true means marked/test account
-    // false or missing means actual/unmarked account
-    if(userData.isTestAccount !== true){
+    // EXCLUDE test/marked accounts
+    if (userData.isTestAccount !== true) {
         actualMemberCount++;
     }
 
 });
+
+document.getElementById("memberCount").textContent = usersSnapshot.size;
 
 document.getElementById("actualMemberCount").textContent = actualMemberCount;
 
