@@ -440,6 +440,10 @@ body{
     margin-bottom:12px;
 }
 
+
+
+
+
 .record-tab{
     border:none;
     background:transparent;
@@ -471,6 +475,9 @@ body{
     color:#0757c9;
 }
 
+
+
+
 .record-panel{
     display:none;
 }
@@ -479,7 +486,49 @@ body{
     display:block;
 }
 
+.date-filter{
+    background:white;
+    border-radius:13px;
+    padding:12px;
+    margin-bottom:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
 
+.date-filter label{
+    display:block;
+    font-size:12px;
+    font-weight:800;
+    color:#17324d;
+    margin-bottom:7px;
+}
+
+.date-filter-row{
+    display:flex;
+    gap:8px;
+}
+
+.date-filter input{
+    flex:1;
+    border:1px solid #d9e2eb;
+    border-radius:9px;
+    padding:10px;
+    font-size:13px;
+}
+
+.date-filter button{
+    border:none;
+    background:#0757c9;
+    color:white;
+    border-radius:9px;
+    padding:10px 14px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.date-filter button.clear{
+    background:#e9eef3;
+    color:#555;
+}
 
 
 </style>
@@ -737,6 +786,34 @@ body{
     </div>
 
 
+<div class="date-filter">
+
+    <label>📅 Filter Unmarked Records by Date</label>
+
+    <div class="date-filter-row">
+
+        <input
+            type="date"
+            id="recordDateFilter"
+        >
+
+        <button onclick="applyDateFilter()">
+            Filter
+        </button>
+
+        <button
+            class="clear"
+            onclick="clearDateFilter()"
+        >
+            Clear
+        </button>
+
+    </div>
+
+</div>
+
+
+
     <!-- TABS -->
 
     <div class="record-tabs">
@@ -990,6 +1067,14 @@ const message =
         "message"
     );
 
+const recordDateFilter =
+    document.getElementById(
+        "recordDateFilter"
+    );
+
+let allUnmarkedDeposits = [];
+let allUnmarkedWithdrawals = [];
+
 
 /* ==================================================
    HELPERS
@@ -1189,6 +1274,73 @@ function getDate(value){
     }
 
 }
+
+
+function getRecordDate(value){
+
+    if(!value){
+        return null;
+    }
+
+    if(
+        value &&
+        typeof value.toDate === "function"
+    ){
+        return value.toDate();
+    }
+
+    if(
+        value &&
+        value.seconds
+    ){
+        return new Date(
+            value.seconds * 1000
+        );
+    }
+
+    const date = new Date(value);
+
+    if(isNaN(date.getTime())){
+        return null;
+    }
+
+    return date;
+}
+
+
+function isSameDate(value, selectedDate){
+
+    const date = getRecordDate(value);
+
+    if(!date || !selectedDate){
+        return false;
+    }
+
+    const year =
+        date.getFullYear();
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+    const recordDate =
+        year + "-" +
+        month + "-" +
+        day;
+
+    return recordDate === selectedDate;
+}
+
+
+
+
+
 
 
 /* ==================================================
@@ -1743,42 +1895,30 @@ function(tab){
 
 async function loadActualFunds(){
 
-    refreshButton.disabled =
-        true;
+    refreshButton.disabled = true;
 
     refreshButton.textContent =
         "⏳ Loading...";
 
 
     depositsContainer.innerHTML = `
-
         <div class="loading">
-
             Loading deposits...
-
         </div>
-
     `;
 
 
     withdrawalsContainer.innerHTML = `
-
         <div class="loading">
-
             Loading withdrawals...
-
         </div>
-
     `;
 
 
     try{
 
-
         /*
-         * EXACT SAME FIREBASE
-         * COLLECTION READING AS
-         * THE WORKING CLASSIFIER
+         * LOAD FIREBASE COLLECTIONS
          */
 
         const deposits =
@@ -1794,10 +1934,10 @@ async function loadActualFunds(){
 
 
         /*
-         * ONLY UNMARKED
+         * ONLY UNMARKED RECORDS
          */
 
-        const unmarkedDeposits =
+        allUnmarkedDeposits =
             deposits.filter(
                 item =>
                     isUnmarked(
@@ -1806,7 +1946,7 @@ async function loadActualFunds(){
             );
 
 
-        const unmarkedWithdrawals =
+        allUnmarkedWithdrawals =
             withdrawals.filter(
                 item =>
                     isUnmarked(
@@ -1816,118 +1956,33 @@ async function loadActualFunds(){
 
 
         /*
-         * RENDER
+         * SHOW ALL UNMARKED RECORDS
          */
 
-        const depositAmount =
-            renderDeposits(
-                unmarkedDeposits
-            );
+        renderDeposits(
+            allUnmarkedDeposits
+        );
 
 
-        const withdrawalAmount =
-            renderWithdrawals(
-                unmarkedWithdrawals
-            );
+        renderWithdrawals(
+            allUnmarkedWithdrawals
+        );
 
 
         /*
-         * TOTAL
+         * UPDATE TOTALS, COUNTS
+         * AND FUNDS BARS
          */
 
-        const remaining =
-            depositAmount -
-            withdrawalAmount;
-
-const maximumAmount =
-    Math.max(
-        depositAmount,
-        withdrawalAmount,
-        remaining,
-        1
-    );
+        updateSummary(
+            allUnmarkedDeposits,
+            allUnmarkedWithdrawals
+        );
 
 
-
-        depositTotal.textContent =
-            money(
-                depositAmount
-            );
-
-
-        withdrawalTotal.textContent =
-            money(
-                withdrawalAmount
-            );
-
-
-        remainingTotal.textContent =
-            money(
-                remaining
-            );
-            
-            depositCount.textContent =
-    unmarkedDeposits.length +
-    (
-        unmarkedDeposits.length === 1
-            ? " record"
-            : " records"
-    );
-
-withdrawalCount.textContent =
-    unmarkedWithdrawals.length +
-    (
-        unmarkedWithdrawals.length === 1
-            ? " record"
-            : " records"
-    );
-            
-            
-            depositTabCount.textContent =
-    unmarkedDeposits.length;
-
-withdrawalTabCount.textContent =
-    unmarkedWithdrawals.length;
-            
-            
-            
-            /* =========================
-   UPDATE FUNDS BARS
-========================= */
-
-const depositPercent =
-    (depositAmount / maximumAmount) * 100;
-
-const withdrawalPercent =
-    (withdrawalAmount / maximumAmount) * 100;
-
-const remainingPercent =
-    remaining > 0
-        ? (remaining / maximumAmount) * 100
-        : 0;
-
-
-fundsDepositBar.style.width =
-    depositPercent + "%";
-
-fundsWithdrawalBar.style.width =
-    withdrawalPercent + "%";
-
-fundsRemainingBar.style.width =
-    remainingPercent + "%";
-
-
-fundsDepositBarLabel.textContent =
-    money(depositAmount);
-
-fundsWithdrawalBarLabel.textContent =
-    money(withdrawalAmount);
-
-fundsRemainingBarLabel.textContent =
-    money(remaining);
-            
-            
-
+        /*
+         * SUCCESS MESSAGE
+         */
 
         message.innerHTML = `
 
@@ -1938,18 +1993,18 @@ fundsRemainingBarLabel.textContent =
                 Showing only unmarked
                 deposits and withdrawals.
 
-                <br>
+                <br><br>
 
                 Unmarked deposits:
                 <b>
-                    ${unmarkedDeposits.length}
+                    ${allUnmarkedDeposits.length}
                 </b>
 
                 &nbsp; | &nbsp;
 
                 Unmarked withdrawals:
                 <b>
-                    ${unmarkedWithdrawals.length}
+                    ${allUnmarkedWithdrawals.length}
                 </b>
 
             </div>
@@ -2009,14 +2064,273 @@ fundsRemainingBarLabel.textContent =
     }
 
 
-    refreshButton.disabled =
-        false;
+    refreshButton.disabled = false;
 
     refreshButton.textContent =
         "🔄 Refresh";
 
 }
 
+
+/* =========================
+   DATE FILTER
+========================= */
+
+window.applyDateFilter = function(){
+
+    const selectedDate =
+        recordDateFilter.value;
+
+
+    if(!selectedDate){
+
+        alert(
+            "Please select a date first."
+        );
+
+        return;
+    }
+
+
+    const filteredDeposits =
+        allUnmarkedDeposits.filter(
+            item =>
+                isSameDate(
+                    item.data.createdAt ||
+                    item.data.timestamp ||
+                    item.data.date,
+                    selectedDate
+                )
+        );
+
+
+    const filteredWithdrawals =
+        allUnmarkedWithdrawals.filter(
+            item =>
+                isSameDate(
+                    item.data.createdAt ||
+                    item.data.timestamp ||
+                    item.data.date,
+                    selectedDate
+                )
+        );
+
+
+    renderDeposits(
+        filteredDeposits
+    );
+
+
+    renderWithdrawals(
+        filteredWithdrawals
+    );
+
+
+    updateSummary(
+        filteredDeposits,
+        filteredWithdrawals
+    );
+
+};
+
+
+/* =========================
+   CLEAR DATE FILTER
+========================= */
+
+window.clearDateFilter = function(){
+
+    recordDateFilter.value = "";
+
+
+    renderDeposits(
+        allUnmarkedDeposits
+    );
+
+
+    renderWithdrawals(
+        allUnmarkedWithdrawals
+    );
+
+
+    updateSummary(
+        allUnmarkedDeposits,
+        allUnmarkedWithdrawals
+    );
+
+};
+
+
+/* =========================
+   UPDATE SUMMARY
+========================= */
+
+function updateSummary(
+    deposits,
+    withdrawals
+){
+
+    let depositAmount = 0;
+
+
+    deposits.forEach(
+        item => {
+
+            depositAmount +=
+                getAmount(
+                    item.data
+                );
+
+        }
+    );
+
+
+    let withdrawalAmount = 0;
+
+
+    withdrawals.forEach(
+        item => {
+
+            withdrawalAmount +=
+                getAmount(
+                    item.data
+                );
+
+        }
+    );
+
+
+    const remaining =
+        depositAmount -
+        withdrawalAmount;
+
+
+    const maximumAmount =
+        Math.max(
+            depositAmount,
+            withdrawalAmount,
+            remaining,
+            1
+        );
+
+
+    /*
+     * TOTAL AMOUNTS
+     */
+
+    depositTotal.textContent =
+        money(
+            depositAmount
+        );
+
+
+    withdrawalTotal.textContent =
+        money(
+            withdrawalAmount
+        );
+
+
+    remainingTotal.textContent =
+        money(
+            remaining
+        );
+
+
+    /*
+     * RECORD COUNTS
+     */
+
+    depositCount.textContent =
+        deposits.length +
+        (
+            deposits.length === 1
+                ? " record"
+                : " records"
+        );
+
+
+    withdrawalCount.textContent =
+        withdrawals.length +
+        (
+            withdrawals.length === 1
+                ? " record"
+                : " records"
+        );
+
+
+    /*
+     * TAB COUNTS
+     */
+
+    depositTabCount.textContent =
+        deposits.length;
+
+
+    withdrawalTabCount.textContent =
+        withdrawals.length;
+
+
+    /*
+     * UPDATE FUNDS BARS
+     */
+
+    const depositPercent =
+        (
+            depositAmount /
+            maximumAmount
+        ) * 100;
+
+
+    const withdrawalPercent =
+        (
+            withdrawalAmount /
+            maximumAmount
+        ) * 100;
+
+
+    const remainingPercent =
+        remaining > 0
+            ? (
+                remaining /
+                maximumAmount
+            ) * 100
+            : 0;
+
+
+    fundsDepositBar.style.width =
+        depositPercent + "%";
+
+
+    fundsWithdrawalBar.style.width =
+        withdrawalPercent + "%";
+
+
+    fundsRemainingBar.style.width =
+        remainingPercent + "%";
+
+
+    /*
+     * BAR LABELS
+     */
+
+    fundsDepositBarLabel.textContent =
+        money(
+            depositAmount
+        );
+
+
+    fundsWithdrawalBarLabel.textContent =
+        money(
+            withdrawalAmount
+        );
+
+
+    fundsRemainingBarLabel.textContent =
+        money(
+            remaining
+        );
+
+}
 
 /* ==================================================
    REFRESH
