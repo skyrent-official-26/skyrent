@@ -1132,14 +1132,11 @@ body{
             View and manage registered members
         </p>
 
-        <div class="count-box">
-    <span class="count-number" id="memberCount">0</span>
-    <span>Total Members</span>
-</div>
+        
 
 <div class="count-box actual-member-count-box">
     <span class="count-number" id="actualMemberCount">0</span>
-    <span>Actual / Unmarked</span>
+    <span>Actual Members</span>
 </div>
 
     </div>
@@ -2022,17 +2019,14 @@ usersSnapshot.forEach((docSnap) => {
 
     const userData = docSnap.data() || {};
 
-    // EXCLUDE test/marked accounts
+    // Exclude marked/test accounts
     if (userData.isTestAccount !== true) {
         actualMemberCount++;
     }
 
 });
 
-document.getElementById("memberCount").textContent = usersSnapshot.size;
-
 document.getElementById("actualMemberCount").textContent = actualMemberCount;
-
 
         /* =========================
    DEPOSITS
