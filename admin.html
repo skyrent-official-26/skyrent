@@ -1075,11 +1075,8 @@ body{
 
 </div>
 
-<button onclick="window.location.href='test-account.html'">
-    💰 Test Accounts 
-</button>
         
-```html
+
 <button onclick="window.location.href='actual-funds.html'" class="admin-btn">
     💰 Actual Funds
 </button>
@@ -1136,7 +1133,7 @@ body{
 
 <div class="count-box actual-member-count-box">
     <span class="count-number" id="actualMemberCount">0</span>
-    <span>Actual Members</span>
+    <span>Actual / Unmarked</span>
 </div>
 
     </div>
@@ -2002,53 +1999,35 @@ async function loadDashboard(){
         let investmentRecords = 0;
 
 
-       /* =========================
-   USERS
-========================= */
+        /* =========================
+           USERS
+        ========================= */
 
-updateAdminLoading(
-    "Loading members...",
-    "Fetching registered SkyRent users"
-);
+        updateAdminLoading(
+            "Loading members...",
+            "Fetching registered SkyRent users"
+        );
 
-const usersSnapshot = await getDocs(
-    collection(db, "users")
-);
+       const usersSnapshot = await getDocs(collection(db, "users"));
 
-let totalUsers = usersSnapshot.size;
-let unmarkedUsers = 0;
-let markedUsers = 0;
+let actualMemberCount = 0;
 
 usersSnapshot.forEach((docSnap) => {
 
     const userData = docSnap.data() || {};
 
-    console.log(
-        "USER:",
-        docSnap.id,
-        userData
-    );
-
-    if (userData.isTestAccount === true) {
-
-        markedUsers++;
-
-    } else {
-
-        unmarkedUsers++;
-
+    // EXCLUDE test/marked accounts
+    if (userData.isTestAccount !== true) {
+        actualMemberCount++;
     }
 
 });
 
-console.log("TOTAL USERS:", totalUsers);
-console.log("MARKED/TEST USERS:", markedUsers);
-console.log("UNMARKED/ACTUAL USERS:", unmarkedUsers);
+document.getElementById("memberCount").textContent = usersSnapshot.size;
 
-document.getElementById("memberCount").textContent =
-    unmarkedUsers;
-    
-    
+document.getElementById("actualMemberCount").textContent = actualMemberCount;
+
+
         /* =========================
    DEPOSITS
    UNMARKED RECORDS ONLY
