@@ -2002,32 +2002,53 @@ async function loadDashboard(){
         let investmentRecords = 0;
 
 
-        /* =========================
-           USERS
-        ========================= */
+       /* =========================
+   USERS
+========================= */
 
-        updateAdminLoading(
-            "Loading members...",
-            "Fetching registered SkyRent users"
-        );
+updateAdminLoading(
+    "Loading members...",
+    "Fetching registered SkyRent users"
+);
 
-       const usersSnapshot = await getDocs(collection(db, "users"));
+const usersSnapshot = await getDocs(
+    collection(db, "users")
+);
 
-let actualMemberCount = 0;
+let totalUsers = usersSnapshot.size;
+let unmarkedUsers = 0;
+let markedUsers = 0;
 
 usersSnapshot.forEach((docSnap) => {
 
     const userData = docSnap.data() || {};
 
-    // Exclude marked/test accounts
-    if (userData.isTestAccount !== true) {
-        actualMemberCount++;
+    console.log(
+        "USER:",
+        docSnap.id,
+        userData
+    );
+
+    if (userData.isTestAccount === true) {
+
+        markedUsers++;
+
+    } else {
+
+        unmarkedUsers++;
+
     }
 
 });
 
-document.getElementById("actualMemberCount").textContent = actualMemberCount;
+console.log("TOTAL USERS:", totalUsers);
+console.log("MARKED/TEST USERS:", markedUsers);
+console.log("UNMARKED/ACTUAL USERS:", unmarkedUsers);
 
+document.getElementById("memberCount").textContent =
+    unmarkedUsers;
+    
+    
         /* =========================
    DEPOSITS
    UNMARKED RECORDS ONLY
